@@ -9,12 +9,17 @@ Will Robertson is now maintaining this package. Please contact him
 in preference to the original author, Peter Wilson, for feature requests
 and bug reports.
 
+_______________
+Change history:
+
+Version 1.2a (2009/06/08)
+o New package maintainer (Will)
+
 Peter's change history:
 
 Changes in version 1.2 (2009/05/23)
 o Added style option
 o \abstitleskip now works as described
-
 
 Changes (2004/04/16) 
 o Changed license from LPPL v1.0 to v1.3
@@ -70,4 +75,4 @@ herries dot press at earthlink dot net
 
 2009/06/08
 Will Robertson
-wspr81 at gmail dot com
+will dot robertson at latex-project dot org
