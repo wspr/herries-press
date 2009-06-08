@@ -1,0 +1,757 @@
+% \iffalse meta-comment
+% abstract.dtx
+% Author: Peter Wilson, Herries Press
+%                       herries dot press at earthlink dot net
+% Maintainer: Will Robertson (wspr81 at gmail dot com)
+% Copyright 2000 --- 2009 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+% The Current Maintainer of this work is Will Robertson.
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{abstract.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{281}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2000/06/11}{First public release}
+% \changes{v1.1}{2001/02/11}{Added runin option}
+% \changes{v1.1a}{2004/04/16}{Changed license and contact details}
+% \changes{v1.2}{2009/05/22}{Changed contact details, and minor improvements}
+% \changes{v1.2}{2009/05/23}{Added style option}
+% \changes{v1.2a}{2009/06/08}{New maintainer}
+%
+% \def\dtxfile{abstract.dtx}
+% ^^A \def\fileversion{v0.3}
+% ^^A \def\filedate{2000/05/20}
+% ^^A \def\fileversion{v1.0}
+% ^^A \def\filedate{2000/06/11}
+% \def\fileversion{v1.1} \def\filedate{2001/02/11}
+% \def\fileversion{v1.1a} \def\filedate{2004/04/16}
+% \def\fileversion{v1.2} \def\filedate{2009/05/23}
+% \def\fileversion{v1.2a} \def\filedate{2009/06/08}
+%
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{abstract} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson \\
+% Herries Press\\
+% \texttt{herries dot press at earthlink dot net}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{abstract} package provides control over the typesetting
+% of the |abstract| environment, and especially provides for a one-column
+% abstract in a two-column paper.
+%
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+% Questions about how to have a one-column abstract in a two-column paper
+% seem to pop up fairly regularly on the
+% \texttt{comp.text.tex} newsgroup. While an answer based on responses
+% on \texttt{ctt} is provided in the FAQ,
+% the \Lpack{abstract} package provides a more author-friendly means
+% of accomplishing this. Further, additional controls are provided
+% for the typesetting of the |abstract| environment in general.
+%
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{abstract} 
+% package and 
+% commented source code is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{abstract} package} \label{sec:usc}
+%
+%    The typeset format of the |abstract| in a \Lpack{report} or 
+% \Lpack{article} class\footnote{The \texttt{abstract} environment is not 
+% available for the \Lpack{book} class.} document depends on the class
+% options. The formats are:
+% \begin{itemize}
+% \item \Lopt{titlepage} class option: The abstract heading (i.e., value of 
+%    |\abstractname|) is typeset centered in a bold font; the text is set in
+%    the normal font and to the normal width.
+% \item \Lopt{twocolumn} class option: The abstract heading is typeset like
+%    an unnumbered section; the text is set in the normal font and to the
+%    normal width (of a single column). 
+% \item Default (neither of the above class options): The abstract heading
+%    is typeset centered in a small bold font; the text is set in a small
+%    font and indented like the |quotation| environment.
+% \end{itemize}
+% Note that the \Lopt{titlepage} option takes precedence over the 
+% \Lopt{twocolumn} option.
+%
+%    The \Lpack{abstract} package provides handles to modify the typesetting
+% of the |abstract|.
+%
+% \subsection{Options}
+%
+%    The \Lpack{abstract} package takes the following options.
+% \begin{itemize}
+% \item \Lopt{original}. In a \Lopt{twocolumn} document the package default
+%       is to use the default abstract style (i.e., centered heading
+%       and small text). This option sets the
+%       typeset format of the abstract to match that of a standard
+%       two column document (i.e., section heading and normal sized text).
+% \item \Lopt{addtotoc}. The abstract title (the value of |\abstractname|)
+%       is added to the Table of Contents.
+% \item \Lopt{number}. The abstract title will be typeset as a 
+% numbered |\chapter|
+% or as a |\section|, depending on whether the document class supports
+% chapters or not.
+% \item \Lopt{style}. You specify the style for the title.\footnote{This
+% option was suggested by Will Robertson.} The \Lopt{addtotoc} option
+% does not apply if you use the \Lopt{style} option.
+% \item \Lopt{runin}. The abstract title is typeset as a run-in\footnote{This
+% option was suggested by R.~Chandrasekhar (\texttt{chandra@ee.uwa.edu.au}).} heading.
+% Note that the \Lopt{number} and \Lopt{style} options are ignored if the 
+% \Lopt{runin} option is used, and the \Lopt{number} and \Lopt{addtotoc} 
+% options are ignored if the \Lopt{style} option is given.
+% \end{itemize}
+%
+%    When the \Lopt{number} option is used with a class that provides chapters,
+% the usual |\chapter| command is used for typesetting the title. If you
+% do not want the word `Chapter' (or its equivalent) to appear, 
+% you can use the \Lpack{anonchap}
+% package to suppress this.
+%
+% \subsection{Commands and environments}
+%
+%    The usual advice about creating a one-column |abstract| in a two-column
+% document is to write code like this:
+% \par\begin{small}\begin{verbatim}
+% \documentclass[twocolumn...]{...}
+% ...
+% \twocolumn[
+%    \begin{@twocolumnfalse}
+%      \maketitle               % need full-width title
+%      \begin{abstract}
+%         abstract text...
+%      \end{abstract}
+%    \end{@twocolumnfalse}
+% ]
+% ... hand make footnotes for any \thanks commands
+% ...
+% \end{verbatim}
+% \end{small}\par
+%
+% \DescribeEnv{onecolabstract}
+% \DescribeMacro{\saythanks}
+%    With the \Lpack{abstract} package, instead you do:
+% \par\begin{small}\begin{verbatim}
+% \documentclass[twocolumn...]{...}
+% \usepackage{abstract}
+% ...
+% \twocolumn[
+%    \maketitle               % need full-width title
+%    \begin{onecolabstract}
+%      abstract text...
+%    \end{onecolabstract}
+% ]
+% \saythanks  % typesets any \thanks commands
+% ...
+% \end{verbatim}
+% \end{small}\par
+%     If you want, you can use the |onecolabstract| environment in place
+% of the |abstract| environment --- it doesn't have to be within the optional
+% argument of the |\twocolumn| command. In fact, |onecolabstract| internally
+% uses |abstract| for the typesetting.
+%
+% \DescribeMacro{\abstractnamefont}
+% \DescribeMacro{\abstracttextfont}
+%    These two commands can be redefined to change the fonts used for 
+% typesetting the heading (defined via |\abstractname|) of the |abstract| 
+% environment and the font for typesetting the text of the abstract,
+% respectively. The default definitions for these are designed to mimic
+% the traditional |abstract| typesetting. Different values are used
+% depending on whether the document uses the \Lopt{titlepage} and/or
+% \Lopt{twocolumn} options. For example, in a non-titlepage 
+% one-column paper, their definitions are:
+% \par\begin{small}\begin{verbatim}
+% \newcommand{\abstractnamefont}{\normalfont\small\bfseries}
+% \newcommand{\abstracttextfont}{\normalfont\small}
+% \end{verbatim}
+% \end{small}\par
+%
+% \DescribeMacro{\abstitlestyle}
+% When the \Lopt{style} option is used the title is set as \\
+% \verb?\abstitlestyle{\abstractname}? where the default definition
+% is simply \\
+% \verb?\newcommand{\abstitlestyle}[1]{#1}? \\
+% It is up to you to redefine \cs{abstitlestyle} to give any effects
+% you want (e.g., if you want the title added to the ToC you have to include
+% the necessary code as part of your redefinition).
+%
+%
+% \DescribeMacro{\absleftindent}
+% \DescribeMacro{\absrightindent}
+% \DescribeMacro{\absparindent}
+% \DescribeMacro{\absparsep}
+%    The amended version of |abstract| uses a list environment for typesetting
+% the text. These four lengths can be changed (via |\setlength|) to adjust
+% the left and right margins, the paragraph indentation, and the vertical skip
+% between paragraphs in this environment. 
+% The default values depend on the document class options in
+% effect.
+%
+% \DescribeMacro{\abslabeldelim}
+% If the \Lopt{runin} option is used, the heading is typeset as a run-in heading.
+% That is, it is the first piece of text on the first line of the abstract text.
+% The \meta{text} as dspecified by |\abslabeldelim{|\meta{text}|}| is typeset
+% immediately after the heading. By default it is defined to do nothing, but
+% if you wanted, for example, the |\abstractname| to be followed by a colon and
+% some extra space you could specify |\abslabeldelim{:\quad}|.
+%
+% \DescribeMacro{\absnamepos}
+%    If the \Lopt{runin} option is not used then the heading is typeset
+% in its own environment. |\absnamepos| specifies the name of the environment 
+% in which the abstract
+% name is typeset. It can be redefined to be one of |flushleft|, |center|,
+% or |flushright| to give a left, centered or right aligned heading; or to any
+% other appropriate environment which is supported by the document class or
+% used packages.
+%
+% \DescribeMacro{\abstitleskip}
+%    With the \Lopt{runin} option a space of length |\abstitleskip| is typeset
+% before the heading. For example, if |\absparindent| is non-zero, then: \\
+% |\setlength{\abstitleskip}{-\absparindent}| \\
+%  will typeset the heading flush left.
+%
+% Without the \Lopt{runin} option |\abstitleskip| is aditional vertical 
+% space (either positive
+% or negative) that is inserted between the abstract name and the text of
+% the abstract.
+%
+% \DescribeMacro{\appendiargdef}
+%    The (internal) command |\appendiargdef{|\meta{macro}|}{|\meta{stuff}|}| 
+% will append
+% \meta{stuff} at the end of the current definition of \meta{macro}, where
+% \meta{macro} is the name of a macro (including the backslash) which takes
+% a single argument. For example the following are two equivalent definitions
+% of |\mymacro|:
+% \par\begin{small}\begin{verbatim}
+% \newcommand{\mymacro}[1]{#1 is an artist}
+% \appendiargdef{\mymacro}{ in spite of being colour blind}
+% % or
+% \newcommand{\mymacro}[1]{#1 is an artist in spite of being colour blind}
+% \end{verbatim}
+% \end{small}\par
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+% ^^A \bibitem[Wil96]{PRW96i}
+% ^^A Peter~R. Wilson.
+% ^^A \newblock {\em {LaTeX for standards: The LaTeX package files user manual}}.
+% ^^A \newblock NIST Report NISTIR, June 1996.
+% \end{thebibliography}
+% }
+%
+%
+% 
+% \section{The package code} \label{sec:code}
+%
+%    To try and avoid name clashes, all the internal commands include
+% the string |@bs|.
+%
+% \subsection{Preliminaries}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{abstract}[2009/06/08 v1.2a configurable abstracts]
+
+%    \end{macrocode}
+%
+%
+%    The following |\if...| commands are for implementing various options.
+% \changes{v1.1}{2001/02/11}{Added \cs{if@bsrunin}}
+% \changes{v1.2}{2009/05/23}{Added \cs{if@bsstyle}}
+% \begin{macro}{\if@bsonecol}
+% \begin{macro}{\ifadd@bstotoc}
+% \begin{macro}{\ifnumber@bs}
+% \begin{macro}{\if@bsrunin}
+% \begin{macro}{\if@bsstyle}
+%    \begin{macrocode}
+\newif\if@bsonecol
+  \@bsonecoltrue
+\newif\ifadd@bstotoc
+  \add@bstotocfalse
+\newif\ifnumber@bs
+  \number@bsfalse
+\newif\if@bsrunin
+  \@bsruninfalse
+\newif\if@bsstyle
+  \@bsstylefalse
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% Now declare and process the options.
+% \changes{v1.2}{2009/05/23}{Added the style option and supporting code}
+%    \begin{macrocode}
+\DeclareOption{original}{\@bsonecolfalse}
+\DeclareOption{addtotoc}{\add@bstotoctrue}
+\DeclareOption{number}{\number@bstrue}
+\DeclareOption{runin}{\@bsrunintrue}
+\DeclareOption{style}{\@bsstyletrue}
+\ProcessOptions\relax
+%    \end{macrocode}
+% Disable the \Lopt{number} and \Lopt{addtotoc} option if \Lopt{style} is 
+% specified.
+% Make sure that the \Lopt{number} option is disabled 
+% if \Lopt{runin} is used (otherwise the \Lopt{addtotoc} option
+% may not work as expected) and also disable the \Lopt{style} option.
+%    \begin{macrocode}
+\if@bsstyle\number@bsfalse\add@bstotocfalse\fi
+\if@bsrunin\number@bsfalse\@bsstylefalse\fi
+
+%    \end{macrocode}
+% 
+% \subsection{Abstracts}
+%
+%  The original definition of the |abstract| environment given in 
+% \file{ltclasses.dtx} is:
+% \par\begin{small}\begin{verbatim}
+% \if@titlepage
+%   \renewenvironment{abstract}{%
+%     \titlepage
+%     \null\vfil
+%     \@beginparpenalty\@lowpenalty
+%     \begin{center}%
+%       \bfseries \abstractname
+%       \@endparpenalty\@M
+%     \end{center}}%
+%     {\par\vfil\null\endtitlepage}
+% \else 
+%   \renewenvironment{abstract}{%
+%     \if@twocolumn
+%       \section*{\abstractname}%
+%     \else
+%       \small
+%       \begin{center}%
+%         {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+%       \end{center}%
+%       \quotation
+%     \fi}
+%     {\if@twocolumn\else\endquotation\fi}
+% \fi
+% \end{verbatim}
+% \end{small}\par
+%    The next set of macros comprise the \Lpack{abstract} package 
+% reimplementation of the |abstract| environment.
+%
+% \begin{macro}{\abstractnamefont}
+% \begin{macro}{\abstracttextfont}
+%    These two macros are for specifying the fonts for typesetting the
+% abstract's title and text. They are initialised for the default case
+% (i.e., no class options).
+%    \begin{macrocode}
+\newcommand{\abstractnamefont}{\normalfont\small\bfseries}
+\newcommand{\abstracttextfont}{\normalfont\small}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\absnamepos}
+% \begin{macro}{\abstitleskip}
+%    |\absnamepos| specifies the environment in which the abstract's title
+% name will be typeset, and the length |\abstitleskip| is an adjustement
+% to the vertical space between the title and the abstract's text. These
+% are initialised for the default case.
+%    \begin{macrocode}
+\newcommand{\absnamepos}{center}
+\newlength{\abstitleskip} \setlength{\abstitleskip}{-0.5em}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\absleftindent}
+% \begin{macro}{\absrightindent}
+% \begin{macro}{\absparindent}
+% \begin{macro}{\absparsep}
+%    The abstract's text is typeset as a single item list, called 
+% |@bstr@ctlist|. These lengths set the left and right margin indents, the
+% paragraph indentation, and the inter-paragraph vertical space. Their
+% initial values are all class option-dependent.
+%    \begin{macrocode}
+\newlength{\absleftindent} 
+\newlength{\absrightindent}
+\newlength{\absparindent}
+\newlength{\absparsep}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\abslabeldelim}
+% \begin{macro}{\@bslabeldelim}
+% The contents of |\abslabeldelim| are typeset after a run-in heading.
+% \changes{v1.1}{2001/02/11}{Added \cs{abslabeldelim} and \cs{@bslabeldelim}}
+%    \begin{macrocode}
+\newcommand{\abslabeldelim}[1]{\def\@bslabeldelim{#1}}
+\abslabeldelim{}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@bsrunintitle}
+% This macro typeset the run-in heading.
+% \changes{v1.1}{2001/02/11}{Added \cs{@bsrunintitle}}
+%    \begin{macrocode}
+\newcommand{\@bsrunintitle}{%
+  \hspace*{\abstitleskip}{\abstractnamefont\abstractname\@bslabeldelim}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%    Now set all the class option-dependent values.
+%    \begin{macrocode}
+\if@titlepage
+%    \end{macrocode}
+% Values for the \Lopt{titlepage} class option. Note that this option takes
+% precedence over any other option.
+%    \begin{macrocode}
+  \setlength{\absleftindent}{\z@}
+  \renewcommand{\abstractnamefont}{\normalfont\bfseries}
+  \renewcommand{\abstracttextfont}{\normalfont}
+  \setlength{\abstitleskip}{0em}
+\else
+  \if@twocolumn
+%    \end{macrocode}
+% Values for the \Lopt{twocolumn} class option.
+%    \begin{macrocode}
+    \if@bsonecol 
+      \setlength{\absleftindent}{\leftmargin}
+    \else
+      \setlength{\absleftindent}{\z@}
+      \renewcommand{\abstractnamefont}{\normalfont\Large\bfseries}
+      \renewcommand{\abstracttextfont}{\normalfont}
+      \renewcommand{\absnamepos}{flushleft}
+      \setlength{\abstitleskip}{0em}
+    \fi
+  \else
+%    \end{macrocode}
+% Values for the default, if not already initialised.
+%    \begin{macrocode}
+    \setlength{\absleftindent}{\leftmargin}
+  \fi
+\fi
+%    \end{macrocode}
+% Finally, values that apply for all cases.
+%    \begin{macrocode}
+\setlength{\absrightindent}{\absleftindent}
+\AtBeginDocument{\setlength{\absparindent}{\parindent}
+                 \setlength{\absparsep}{\parskip}}
+
+%    \end{macrocode}
+%
+% \begin{environment}{@bstr@ctlist}
+%    The abstract's text is typeset within the |@bstr@ctlist| list environment.
+%    \begin{macrocode}
+\newenvironment{@bstr@ctlist}{%
+  \list{}{%
+          %%\topsep        \z@
+          \partopsep     \z@
+          \listparindent \absparindent
+          \itemindent    \listparindent
+          \leftmargin    \absleftindent
+          \rightmargin   \absrightindent
+          \parsep        \absparsep}%
+  \item\relax}
+  {\endlist}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\put@bsintoc}
+%    This macro adds the abstract's title to the ToC. It does nothing if
+% the abstract is being numbered.
+%    \begin{macrocode}
+\newcommand{\put@bsintoc}{%
+  \ifadd@bstotoc
+    \ifnumber@bs\else
+      \@ifundefined{chapter}{\addcontentsline{toc}{section}{\abstractname}}{%
+                             \addcontentsline{toc}{chapter}{\abstractname}}
+    \fi
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\num@bs}
+%    This macro generates a numbered abstract heading.
+%    \begin{macrocode}
+\newcommand{\num@bs}{%
+  \@ifundefined{chapter}{\section{\abstractname}}{%
+                         \chapter{\abstractname}}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\abstitlestyle}
+%    When the \Lopt{style} option is called this macro is called to typeset 
+% the abstract 
+% heading; it should be redefined by the user to suit.
+%    \begin{macrocode}
+\newcommand*{\abstitlestyle}[1]{#1}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{abstract}
+%  At last we are in position to redefine the |abstract| environment. This
+% follows very much along the lines of the original definition, but with
+% macros inserted at strategic points.
+%    \begin{macrocode}
+\if@titlepage
+%    \end{macrocode}
+% For the \Lopt{titlepage} option.
+%    \begin{macrocode}
+  \renewenvironment{abstract}{%
+    \titlepage
+    \null\vfil
+    \@beginparpenalty\@lowpenalty
+    \if@bsrunin
+    \else
+%    \end{macrocode}
+% If the \Lopt{runin} option is not used: 
+% number the title, if called for, otherwise typeset the title in the
+% specified (via |\absnamepos|) environment and adjust the following vertical
+% spacing.
+% \changes{v1.2}{2009/05/22}{Made \cs{abstitleskip} behave to match the manual}
+%    \begin{macrocode}
+      \if@bsstyle 
+        \abstitlestyle{\abstractname} 
+      \else
+        \ifnumber@bs 
+          \num@bs 
+        \else
+          \begin{\absnamepos}% 
+            \abstractnamefont \abstractname
+            \@endparpenalty\@M
+          \end\absnamepos% 
+%%        \vspace{\abstitleskip}%
+        \fi
+      \fi
+      \vspace{\abstitleskip}%
+    \fi
+%    \end{macrocode}
+% Try adding the title to the ToC, then start the environment for typesetting
+% the text. If the \Lopt{runin} option is used, typeset the heading at the start
+% of the environment.
+%    \begin{macrocode}
+    \put@bsintoc%
+    \begin{@bstr@ctlist}\if@bsrunin\@bsrunintitle\fi\abstracttextfont}%
+%    \end{macrocode}
+% Finish the |abstract| environment.
+%    \begin{macrocode}
+    {\par\end{@bstr@ctlist}\vfil\null\endtitlepage}
+\else
+%    \end{macrocode}
+% The \Lopt{twocolumn} option and the default case. These use the same code
+% as any style differences are embedded in the new macros.
+%    \begin{macrocode}
+  \renewenvironment{abstract}{%
+    \if@bsrunin
+    \else
+      \if@bsstyle 
+        \abstitlestyle{\abstractname}
+      \else
+        \ifnumber@bs 
+          \num@bs 
+        \else
+          \begin{\absnamepos}\abstractnamefont\abstractname\end\absnamepos%
+%%        \vspace{\abstitleskip}%
+        \fi
+      \fi
+      \vspace{\abstitleskip}%
+    \fi
+    \put@bsintoc%
+    \begin{@bstr@ctlist}\if@bsrunin\@bsrunintitle\fi\abstracttextfont}%
+    {\par\end{@bstr@ctlist}}
+\fi
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{onecolabstract}
+%  An environment for typesetting a single column abstract, 
+% particularly as the optional
+% argument to the |\twocolumn| command.
+%    \begin{macrocode}
+\newenvironment{onecolabstract}{%
+  \begin{@twocolumnfalse}\begin{abstract}}{%
+  \end{abstract}\end{@twocolumnfalse}}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\appendiargdef}
+% |\appendiargdef{\macro}{Additional stuff}| will add |Additional stuff| at
+% the end of the definition of |\macro|, where |\macro| is a macro that has
+% one argument.\footnote{Code suggestions for this were made by Michael Downes
+% (\texttt{epsmjd@ams.org}) and Heiko Oberdiek 
+% (\texttt{oberdiek@ruf.uni-freiburg.de}) on \texttt{ctt}.}
+%    \begin{macrocode}
+\providecommand{\appendiargdef}[2]{\begingroup
+  \toks@\expandafter{#1{##1}#2}%
+  \edef\@bsx{\endgroup \def\noexpand#1####1{\the\toks@}}%
+  \@bsx}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thanks}
+% \begin{macro}{\@bs@thanks}
+%    We have to keep the contents of the |\thanks| commands as normally these
+% are emptied by the |\maketitle| command. I do this by extending the definition
+% of the |\thanks| (from \file{ltsect.dtx}) command, 
+% so that |\@bs@thanks| has a copy of the contents
+% of |\@thanks|.
+%    \begin{macrocode}
+\appendiargdef{\thanks}{%
+  \protected@xdef\@bs@thanks{\@bs@thanks
+    \protect\footnotetext[\the\c@footnote]{#1}}%
+}
+\let\@bs@thanks\@empty
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\saythanks}
+% This macro typesets any |\thanks| commands \emph{after} using 
+% |onecolabstract|. 
+%    \begin{macrocode}
+\newcommand{\saythanks}{\begingroup
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}\@bs@thanks
+  \endgroup\global\let\@bs@thanks\@empty}
+  
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+
