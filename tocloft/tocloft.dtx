@@ -1829,8 +1829,8 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftchapaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftchapfont #1}\nobreak
-     \cftchapfillnum{#2}}
-  \fi}
+     \cftchapfillnum{#2}}%
+  \fi}%
 \fi
 %    \end{macrocode}
 % \end{macro}
@@ -1865,7 +1865,7 @@ Consider installing the current version of tocbibind.}}
   \newcommand{\cftchapdotsep}{\cftnodots}
   \newcommand{\cftchappagefont}{\bfseries}
   \newcommand{\cftchapafterpnum}{}
-  \newcommand{\cftchapfillnum}[1]{
+  \newcommand{\cftchapfillnum}[1]{%
     {\cftchapleader}\nobreak
     \hb@xt@\@pnumwidth{\hfil\cftchappagefont #1}\cftchapafterpnum\par}
 %    \end{macrocode}
@@ -1916,7 +1916,7 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftsecaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftsecfont #1}\nobreak
-     \cftsecfillnum{#2}}
+     \cftsecfillnum{#2}}%
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -2041,7 +2041,7 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % Print the leader and the page number, and close the group.
 %    \begin{macrocode}
-     \cftsubsecfillnum{#2}}
+     \cftsubsecfillnum{#2}}%
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -2127,7 +2127,7 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftsubsubsecaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftsubsubsecfont #1}\nobreak
-     \cftsubsubsecfillnum{#2}}
+     \cftsubsubsecfillnum{#2}}%
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -2205,7 +2205,7 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftparaaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftparafont #1}\nobreak
-     \cftparafillnum{#2}}
+     \cftparafillnum{#2}}%
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -2283,7 +2283,7 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftsubparaaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftsubparafont #1}\nobreak
-     \cftsubparafillnum{#2}}
+     \cftsubparafillnum{#2}}%
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -2368,7 +2368,7 @@ Consider installing the current version of tocbibind.}}
 % in one definition, hence some of the checks. First, perform the default
 % checks for multicolumns. (Do nothing if \Lopt{titles} option is used).
 %    \begin{macrocode}
-\AtBeginDocument{
+\AtBeginDocument{%
 \if@cftnctoc\else
 \renewcommand{\listoffigures}{%
   \@cfttocstart
@@ -2389,7 +2389,7 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % Finally, restore any multicolumn typesetting.
 %    \begin{macrocode}
-  \@cfttocfinish}
+  \@cfttocfinish}%
 \fi
 }
 
@@ -2485,7 +2485,7 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftfigaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftfigfont #1}\nobreak
-     \cftfigfillnum{#2}}
+     \cftfigfillnum{#2}}%
    \fi
   }
 %    \end{macrocode}
@@ -2581,7 +2581,7 @@ Consider installing the current version of tocbibind.}}
 % checks for multicolumns. (Do nothing if the \Lopt{titles} option has
 %  been used).
 %    \begin{macrocode}
-\AtBeginDocument{
+\AtBeginDocument{%
 \if@cftnctoc\else
 \renewcommand{\listoftables}{%
   \@cfttocstart
@@ -2602,7 +2602,7 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % Finally, restore any multicolumn typesetting.
 %    \begin{macrocode}
-  \@cfttocfinish}
+  \@cfttocfinish}%
 \fi
 }
 
@@ -2698,7 +2698,7 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cfttabaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cfttabfont #1}\nobreak
-     \cfttabfillnum{#2}}
+     \cfttabfillnum{#2}}%
    \fi
   }
 %    \end{macrocode}
@@ -2762,7 +2762,7 @@ Consider installing the current version of tocbibind.}}
 % \begin{macro}{\@cftl@subfig}
 %    This command redefines the |\l@subfigure| command. 
 %    \begin{macrocode}
-\newcommand{\@cftl@subfig}{
+\newcommand{\@cftl@subfig}{%
 %    \end{macrocode}
 % \begin{macro}{\l@subfigure}
 %  |\l@subfigure{|\meta{title}|}{|\meta{page}|}| typesets the LoF entry for
@@ -2785,9 +2785,9 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftsubfigaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftsubfigfont ##1}\nobreak
-     \cftsubfigfillnum{##2}}
+     \cftsubfigfillnum{##2}}%
   \fi
-  }
+  }%
 }
 
 %    \end{macrocode}
@@ -2855,7 +2855,7 @@ Consider installing the current version of tocbibind.}}
 % \begin{macro}{\@cftl@subtab}
 %    This code redefines the code for |\l@subtable|.
 %    \begin{macrocode}
-\newcommand{\@cftl@subtab}{
+\newcommand{\@cftl@subtab}{%
 %    \end{macrocode}
 % \begin{macro}{\l@subtable}
 %  |\l@subtable{|\meta{title}|}{|\meta{page}|}| typesets the LoT entry for
@@ -2878,9 +2878,9 @@ Consider installing the current version of tocbibind.}}
      \let\@cftasnumb \cftsubtabaftersnumb
      \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
      {\cftsubtabfont ##1}\nobreak
-     \cftsubtabfillnum{##2}}
+     \cftsubtabfillnum{##2}}%
   \fi
-  }
+  }%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -2889,7 +2889,7 @@ Consider installing the current version of tocbibind.}}
 % \begin{macro}{\@cftsetsubtab}
 % This command sets up the defaults for subtable entries in the LoT.
 %    \begin{macrocode}
-\newcommand{\@cftsetsubtab}{
+\newcommand{\@cftsetsubtab}{%
 %    \end{macrocode}
 % \begin{macro}{\cftbeforesubtabskip}
 % \begin{macro}{\cftsubtabindent}
@@ -3021,7 +3021,7 @@ Consider installing the current version of tocbibind.}}
        \expandafter\let\expandafter\@cftasnumb\csname cft#2aftersnumb\endcsname
        \advance\leftskip\@tempdima \null\nobreak\hskip -\leftskip
        {\@nameuse{cft#2font}##1}\nobreak
-       \@nameuse{cft#2fillnum}{##2}}
+       \@nameuse{cft#2fillnum}{##2}}%
     \fi
   }  % end of \l@#2
 
