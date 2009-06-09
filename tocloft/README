@@ -1,0 +1,98 @@
+    The tocloft package provides control over the typography of the 
+Table of Contents, List of Figures, and List of Tables. You can also
+define your own kinds of `List of ...'
+
+Changes in version 2.3c (2003/09/26)
+o Another fix for the hyperref package
+
+Changes in version 2.3b (2003/01/20)
+o Again made Part commands work as advertised
+
+Changes in version 2.3a (2002/10/03)
+o Made Part commands work as advertised or deleted them
+o Added examples for page break control in the ToC, etc
+
+Changes in version 2.3 (2002/06/15)
+o Made compatible with the koma classes
+o Added control over the pagestyle
+
+Changes in version 2.2 (2001/04/17)
+o Stitched up another wound inflicted by the hyperref package
+
+Changes in version 2.1 (2001/04/08)
+o Added command to change the ToC parskip
+
+Changes in version 2.0 (2001/03/15)
+o Added commands to create new kinds of `List of ...'
+o Can eliminate page numbers from list entries
+o Removed the requirement for the stdclsdv package
+o Removed the requirement for the hyperref package
+
+Changes in version 1.1 (2000/02/11)
+o Upgraded to work with the minitoc and subfigure packages
+o Fixed slight problem with multiline ToC/LoF/LoT entries
+o Documentation includes more examples
+
+Changes in version 1.0 (1999/09/19)
+o Changed from beta to production release
+o Improved (warning) reporting 
+
+Changes in version 0.3 (1999/08/22)
+o Added option to use default headings, so that packages like
+  fncychap can be used for ToC, etc headings
+
+Changes in version 0.2 (1999/01/17)
+o Now works with the tocbibind package
+o Improved documentation
+o Now doesn't fail with packages like float
+
+Changes in version 0.1 (1998/12/31)
+o First public beta release
+
+----------------------------------------------------------------- 
+  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com
+                             (or pandgwilson@earthlink.net) 
+  Copyright 1998-2003 Peter R. Wilson
+ 
+  This work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either
+  version 1.3 of this license or (at your option) any 
+  later version.
+  The latest version of the license is in
+     http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+ 
+  This work has the LPPL maintenance status "author-maintained".
+ 
+  This work consists of the files:
+README (this file)
+tocloft.dtx
+tocloft.ins
+  and the derived files:
+tocloft.sty
+
+    The distribution consists of the following files:
+README (this file)
+tocloft.ins
+tocloft.dtx
+tocloft.pdf (user manual)
+
+----------------------------------------------------------------- 
+
+    To install the package:
+o run: latex tocloft.ins (which will generate tocloft.sty)
+o Move tocloft.sty to a location where LaTeX will find it.
+  (typically in a local texmf tree at tex/latex/***) and refresh the
+  file database. See the FAQ on CTAN at help/uk-tex-faq or
+  http://www.tug.ac.uk/faq for more information on this.
+    To process the manual
+o run: latex tocloft.dtx
+o run: makeindex -s gind.ist tocloft
+o run: latex tocloft.dtx
+o Print tocloft.dvi for a hardcopy of the package manual 
+
+2003/09/26
+Peter Wilson
+peter.r.wilson@boeing.com
+

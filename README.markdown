@@ -14,7 +14,10 @@ ones such as `xtab`), feel free to request maintainership for yourself.
 The packages in this repository are:
 
  - abstract
- - addtodef
+ - tocloft
+
+Packages that will become part of this repository are:
+
  - anonchap
  - appendix
  - bez123 & multiply
@@ -41,7 +44,6 @@ The packages in this repository are:
  - stdclsdv
  - titling
  - tocbibind
- - tocloft
  - tocvsec2
  - verse
  - vertbars
