@@ -54,13 +54,8 @@
 \endpreamble
 
 \keepsilent
-
-%%% \Msg{*** Generating the driver file ***}
-%%% \generateFile{abstract.drv}{t}{\from{abstract.dtx}{driver}}
-
-\Msg{*** Generating the LaTeX2e package files ***}
-
-\generateFile{abstract.sty}{t}{\from{abstract.dtx}{usc}}
+\askforoverwritefalse
+\generate{\file{abstract.sty}{\from{abstract.dtx}{usc}}}
 
 \Msg{***********************************************************}
 \Msg{*}

@@ -53,13 +53,8 @@
 \endpreamble
 
 \keepsilent
-
-%%% \Msg{*** Generating the driver file ***}
-%%% \generateFile{tocloft.drv}{t}{\from{tocloft.dtx}{driver}}
-
-\Msg{*** Generating the LaTeX2e package files ***}
-
-\generateFile{tocloft.sty}{t}{\from{tocloft.dtx}{usc}}
+\askforoverwritefalse
+\generate{\file{tocloft.sty}{\from{tocloft.dtx}{usc}}}
 
 \Msg{***********************************************************}
 \Msg{*}
