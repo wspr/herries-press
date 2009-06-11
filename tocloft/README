@@ -5,7 +5,7 @@ The TOCLOFT package
 Table of Contents, List of Figures, and List of Tables. You can also
 define your own kinds of `List of ...'
 
-Will Robertson is now maintaining this package. Please contact him
+    Will Robertson is now maintaining this package. Please contact him
 in preference to the original author, Peter Wilson, for feature requests
 and bug reports.
 
@@ -90,7 +90,7 @@ tocloft.ins
   and the derived files:
 tocloft.sty
 
-    The distribution consists of the following files:
+  The distribution consists of the following files:
 README (this file)
 tocloft.ins
 tocloft.dtx
@@ -105,10 +105,10 @@ o Move tocloft.sty to a location where LaTeX will find it.
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the manual
-o run: latex tocloft.dtx
+o run: pdflatex tocloft.dtx
 o run: makeindex -s gind.ist tocloft
-o run: latex tocloft.dtx
-o Print tocloft.dvi for a hardcopy of the package manual 
+o run: pdflatex tocloft.dtx
+o Print tocloft.pdf for a hardcopy of the package manual 
 
 2003/09/26
 Peter Wilson

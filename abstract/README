@@ -5,7 +5,7 @@ The ABSTRACT package
 abstract environment, and in particular provides for a one column abstract
 in a two column paper. 
 
-Will Robertson is now maintaining this package. Please contact him
+    Will Robertson is now maintaining this package. Please contact him
 in preference to the original author, Peter Wilson, for feature requests
 and bug reports.
 
@@ -50,9 +50,14 @@ o Added an option for a run-in heading
 README (this file)
 abstract.dtx
 abstract.ins
-abstract.pdf (the user manual)
-  and the derived files:
+  and the derived file:
 abstract.sty
+
+  The distribution consists of the files:
+README (this file)
+abstract.dtx
+abstract.ins
+abstract.pdf (the user manual)
 
 ----------------------------------------------------------------- 
 
@@ -63,10 +68,10 @@ o Move abstract.sty to a location where LaTeX will find it (typically
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the user manual
-o run: latex abstract.dtx
+o run: pdflatex abstract.dtx
 o For an index, run: makeindex -s gind.ist abstract
-o run: latex abstract.dtx
-o Print abstract.dvi for a hardcopy of the user manual 
+o run: pdflatex abstract.dtx
+o Print abstract.pdf for a hardcopy of the user manual 
 
 
 2009/05/23
