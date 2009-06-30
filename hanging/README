@@ -1,0 +1,59 @@
+    The hanging package facilitates the typesetting of hanging paragraphs.
+It also enables typesetting with hanging punctuation; I don't necessarily
+recommend this.
+
+Changes in version 1.2
+o Option for less aggressive hanging punctuation
+
+Changes in version 1.1
+o Should now work with the ltugboat class
+o Takes options to exclude punctuations characters from being hung
+
+----------------------------------------------------------------- 
+  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+                             (or at: pandgwilson at earthlink dot net) 
+  Copyright 1998 --- 2004 Peter R. Wilson
+ 
+  This work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either
+  version 1.3 of this license or (at your option) any 
+  later version.
+  The latest version of the license is in
+     http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+ 
+  This work has the LPPL maintenance status "author-maintained".
+ 
+  This work consists of the files:
+README (this file)
+hanging.dtx
+hanging.ins
+hanging.pdf (user manual)
+  and the derived files:
+hanging.sty
+
+  The distribution consists of the files:
+README (this file)
+hanging.dtx
+hanging.ins
+hanging.pdf (user manual)
+
+----------------------------------------------------------------- 
+
+    To install the package:
+o run: latex hanging.ins (which will generate hanging.sty)
+o Move hanging.sty to a location where LaTeX will find it
+  (typically in a local texmf tree at tex/latex/hanging) and refresh the
+  file database. See the FAQ on CTAN at help/uk-tex-faq or
+  http://www.tug.ac.uk/faq for more information on this.
+
+   To process the user manual:
+o run: latex hanging.dtx
+o If you want an index then run: makeindex -s gind.ist hanging
+o run: latex hanging.dtx
+o Print hanging.dvi for a hardcopy of the package manual 
+
+2004/04/22
+Peter Wilson
+peter.r.wilson@boeing.com

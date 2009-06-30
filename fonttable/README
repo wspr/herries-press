@@ -1,0 +1,88 @@
+    The fonttable package enables you to print a table of the characters
+in a font (a font table), and/or some example text, and/or individual
+glyphs in a variety of settings.
+
+    This, in a package form, is a poor man's version of nfssfont.tex and
+testfont.tex.
+
+    IF THERE ARE ANY QUESTIONS PLEASE ASK THEM ON THE COMP.TEXT.TEX NEWSGROUP
+AS I AM AWAY MORE OFTEN THAN NOT.
+
+
+Changes in version 1.51 (2009/05/14)
+o Eliminated a clash with the babel package.
+o Described how to avoid a clash with the mftinc package.
+
+Changes in version 1.5 (2009/05/12)
+o Added code providing a packaged version of Donald Knuth's testfont.tex,
+  principally as an aid for font designers in testing their font.
+
+Changes in version 1.4 (2009/05/06)
+o Added a second method for specifying a font.
+
+Changes in version 1.3 (2009/04/30)
+o Fixed a major bug relating to redefining \:
+
+Changes in version 1.2 (2008/05/08)
+o Minor extensions providing more text examples
+
+Changes in version 1.1 (2006/10/02)
+o Minor extensions providing more text examples
+
+Changes in version 1.1 (2006/10/02)
+o Minor extensions providing more text examples
+
+Changes in version 1.0a (2005/12/06)
+o Fixed bug preventing multiple unnumbered tables
+
+Changes in version 1.0 (2005/11/27)
+o First public release
+
+------------------------------------------------------------------
+  Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+  Copyright 2005--2009 Peter R. Wilson
+
+  This work may be distributed and/or modified under the
+  conditions of the Latex Project Public License, either
+  version 1.3 of this license or (at your option) any
+  later version.
+  The latest version of the license is in
+    http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+
+  This work has the LPPL maintenance status "author-maintained".
+
+  This work consists of the files:
+    README (this file)
+    fonttable.dtx
+    fonttable.ins
+    fonttable.pdf
+  and the derived files
+    fonttable.sty
+
+------------------------------------------------------------------
+     The distribution consists of the following files:
+README (this file)
+fonttable.dtx
+fonttable.ins
+fonttable.pdf
+
+
+    To install the package:
+o run: latex fonttable.ins (which will generate fonttable.sty)
+o Move fonttable.sty to a location where LaTeX will find it,
+  for example /usr/TeX/texmf-local/tex/latex/fonttable/fonttable.sty
+  (for more information on installation see the FAQ).
+
+    To generate a second copy of the manual (which is already supplied as a PDF file):
+o run: latex fonttable.dtx
+o (for an index run: makeindex -s gind.ist fonttable.idx)
+o run: latex fonttable.dtx
+o Print *.dvi for a hardcopy of the package manual
+
+2009/05/14
+Peter Wilson
+herries dot press at earthlink dot net
+
+ 

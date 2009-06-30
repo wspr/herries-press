@@ -1,0 +1,1474 @@
+% \iffalse meta-comment
+% titling.dtx
+% Author: Peter Wilson (Herries Press) pandgwilson at earthlink dot net 
+% Copyright 2000 --- 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{titling.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{490}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2000/06/11}{First public release}
+% \changes{v2.0}{2001/02/24}{Added controls for thanks marks}
+% \changes{v2.1}{2001/03/23}{Further controls for thanks note layout}
+% \changes{v2.1}{2001/03/23}{Added extra hooks into \cs{maketitle}}
+% \changes{v2.1a}{2002/02/19}{Added quote from Jason}
+% \changes{v2.1b}{2004/05/10}{Changed license from LPPL v.10 to v1.3}
+% \changes{v2.1c}{2004/09/26}{Deleted mention of unimplemented command}
+%
+% \def\dtxfile{titling.dtx}
+% ^^A \def\fileversion{v0.3}
+% ^^A \def\filedate{2000/05/20}
+% ^^A \def\fileversion{v1.0}
+% ^^A \def\filedate{2000/06/11}
+% ^^A \def\fileversion{v2.0}
+% ^^A \def\filedate{2001/02/24}
+% ^^A \def\fileversion{v2.1}
+% ^^A \def\filedate{2001/03/23}
+% \def\fileversion{v2.1a}
+% \def\filedate{2002/02/19}
+% \def\fileversion{v2.1b}
+% \def\filedate{2004/05/10}
+% \def\fileversion{v2.1c}
+% \def\filedate{2004/09/26}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{titling} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson \\
+% Herries Press \\
+% \texttt{pandgwilson at earthlink dot net}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{titling} package provides control over the typesetting
+% of the |\maketitle| and |\thanks| commands. 
+% The values of |\title|, |\author| and
+% |\date| are also retained, and there may be mutiple titles in a document.
+% New titling elements may be defined for printing by |\maketitle|.
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+% The format for typesetting the |\maketitle| command is fixed in the
+% standard \LaTeX{} classes. The \Lpack{titling} package provides some
+% controls for modifying the appearance of the titling information presented
+% via |\maketitle|.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{titling} 
+% package and 
+% commented source code is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{titling} package} \label{sec:usc}
+%
+%    The typeset format of the |\maketitle| command is virtually fixed
+% within the \LaTeX{} standard classes. The \Lpack{titling} package
+% provides a set of formatting commands that can be used to modify
+% the appearance of the titling information; that is, the contents of
+% the |\title|, |\author| and |date| commands. It also keeps the values
+% of these commands so that they may be printed again later in the
+% document.
+%
+%    The package inhibits the normal automatic cancellation of titling
+% commands after |\maketitle|. This means that you can have multiple
+% instances of the same, or perhaps different, titles in one document.
+% Hooks are provided so that additional titling elements can be defined
+% and printed by |\maketitle|.
+%
+%   The |\thanks| command is enhanced to provide various configurations
+% for both the marker symbol and the layout of the thanks notes.
+%
+%
+%
+% \subsection{Commands and environments}
+%
+% \subsubsection{Restyling the titling}
+%
+% The \Lpack{titling} package provides a configurable |\maketitle| command.
+%
+% \DescribeMacro{\pretitle}
+% \DescribeMacro{\posttitle}
+% \DescribeMacro{\preauthor}
+% \DescribeMacro{\postauthor}
+% \DescribeMacro{\predate}
+% \DescribeMacro{\postdate}
+% These six commands each have a single argument, 
+% like |\pretitle{|\meta{text}|}|and |\posttitle{|\meta{text}|}|.
+%  The argument to these commands control the typesetting of the 
+% standard elements of the document's |\maketitle|
+% command. The |\title| is effectively processed between the |\pretitle| and
+% |\posttitle| commands; that is, like: \\
+% |{\pretitle \title \posttitle}| \\
+% and similarly for the |\author| and |\date| commands. The 
+% commands are initialised to mimic the normal result of |\maketitle|
+% typesetting in the \Lpack{article/report} classes. 
+% For example, the default definitions of the |\...title...|
+% and |\...author...| commands are:
+% \par\begin{small}\begin{verbatim}
+% \pretitle{\begin{center}\LARGE}
+% \posttitle{\par\end{center}\vskip 0.5em}
+% \preauthor{\begin{center}
+%            \large \lineskip 0.5em%
+%            \begin{tabular}[t]{c}}
+% \postauthor{\end{tabular}\par\end{center}}
+% \predate{\begin{center}\large}
+% \postdate{\par\end{center}}
+% \end{verbatim}
+% \end{small}\par
+% They can be changed to obtain different effects. For example to get
+% a right justified sans-serif title and a left justifed small caps
+% date:
+% \begin{verbatim}
+% \pretitle{\begin{flushright}\LARGE\sffamily}
+% \posttitle{\par\end{flushright}\vskip 0.5em}
+% \predate{\begin{flushleft}\large\scshape}
+% \postdate{\par\end{flushleft}}
+% \end{verbatim}
+% \textbf{NOTE:} The above commands differ from the similar ones in version~1.0
+% of this package. So, if you have upgraded from v1.0 to v2.0, beware.
+%
+%      As another example, the following (slightly edited)
+% was sent to me by Jason Harrison
+% (\texttt{harrison@cs.ubc.ca}) on 2002/02/18.
+% \begin{quotation}
+% I'm trying to format my latest conference paper for a conference that 
+% doesn't supply a latex class (only a MSWord example, sigh) and I ran 
+% into a problem that I'm not sure if it's an interaction of the titling 
+% package [it's not] or just no one ever cares because hitting return gets you an 
+% output when latex complains:
+% \begin{verbatim}
+% ! Argument of \reserved@a has an extra }.
+% <inserted text>
+%                  \par
+% l.46         \end{tabular}}
+% ? x
+% \end{verbatim}
+% What I did was to define my 
+% authors list using the following methodology:
+% \begin{verbatim}
+% \preauthor{}
+% \DeclareRobustCommand{\authorthing}{
+% \begin{center}
+% \begin{tabular}{ccc}
+%   Jason Harrison & Kellogg S. Booth & Brian D. Fisher \\
+%   \multicolumn{3}{c}{Department of Computer Science} \\
+%   \multicolumn{3}{c}{and} \\
+%   \multicolumn{3}{c}{Media and Graphics Interdisciplinary Centre}\\
+%   \multicolumn{3}{c}{University of British Columbia, Vancouver, BC Canada}
+%          \end{tabular}
+% \end{center}}
+% \author{\authorthing}
+% \postauthor{}
+% \end{verbatim}
+% 
+% Thus latex does not complain and I get the formatting I want.  Perhaps 
+% you'd add this to the titling documentation for those of us who can't 
+% follow the usual conventions because of the strange conventions of a 
+% strange conference.
+% \end{quotation}
+%
+%    Changing the above example a little, when authors are from different
+% organisations you may be required to flag these. This is one way of doing
+% that.
+% \begin{verbatim}
+% \preauthor{\large}
+% \DeclareRobustCommand{\authoring}{
+%   \begin{center}
+%     Smith\textsuperscript{\dag} and Wesson\textsuperscript{\#} \\
+%     \textsuperscript{\dag}House, \textsuperscript{\#}Barn      \\
+%     The OK Corral
+%   \end{center}}
+% \author{\authoring}
+% \postauthor{\par}
+% \end{verbatim}
+%
+%
+% \DescribeMacro{\droptitle}
+%  The |\maketitle| command puts the title at a particular height on the 
+% page. Unless it is used with the \Lopt{titlepage} option of the standard
+% classes it starts a new page.
+%  You can change the vertical position of the title via the length
+% |\droptitle|. Giving this a positive value will lower the title and a
+% negative value will raise it. The default definition is: \\
+% |\setlength{\droptitle}{0pt}|.
+%
+% \DescribeMacro{\maketitlehooka}
+% \DescribeMacro{\maketitlehookb}
+% \DescribeMacro{\maketitlehookc}
+% \DescribeMacro{\maketitlehookd}
+% The |\maketitle| command as defined by the \Lpack{titling} package 
+% is essentially
+% \begin{verbatim}
+% \renewcommand{\maketitle}{%
+%    \vspace*{\droptitle}
+%    \maketitlehooka
+%    {\pretitle \title \posttitle}
+%    \maketitlehookb
+%    {\preauthor \author \postauthor}
+%    \maketitlehookc
+%    {\predate \date \postdate}
+%    \maketitlehookd
+% }
+% \end{verbatim}
+%  The four hook commands are provided so that additional elements may
+% be added to |\maketitle|. These are initially defined to do nothing
+% but can be renewed. For example, some publications
+% want a statement about where an article is published immediately
+% before the actual titling text. The following defines a command
+% |\published| that can be used to hold the publishing information
+% which will then be automatically printed by |\maketitle|.
+% \begin{verbatim}
+% \newcommand{\published}[1]{%
+%    \gdef\puB{#1}}
+% \newcommand{\puB}{}
+% \renewcommand{\maketitlehooka}{%
+%    \par\noindent \puB}
+% \end{verbatim}
+% You can then say:
+% \begin{verbatim}
+% \published{Originally published in 
+%           \textit{The Journal of ...}\thanks{Reprinted with permission}}
+% ...
+% \maketitle
+% \end{verbatim}
+% to print both the published and the normal titling information. Note
+% that nothing extra had to be done in order to use the |\thanks| command
+% in the argument to the new |\published| command.
+%
+% 
+%
+% \DescribeEnv{titlingpage}
+%    When one of the standard classes is used with the \Lopt{titlepage}
+% option, |\maketitle| puts the title elements on an unnumbered page
+% and then starts a new page numbered page 1. 
+% The standard classes also provide
+% a |titlepage| environment which starts a new unnumbered page and at the
+% end starts a new page numbered 1. You are entirely responsible
+% for specify exactly what and where is to go on this title page.
+% Do not use |\maketitle| within the |titlepage| environment as it
+% will start yet another page.
+%
+%    The |titlingpage| environment falls between the \Lopt{titlepage}
+% option and the |titlepage| environment. Within the |titlingpage|
+% environment you can use the |\maketitle| command, and any others you wish.
+% The pagestyle is |empty|;
+% ^^A given by the value of the |\titlingpagestyle| command;
+% at the end it starts another ordinary page numbered page 1. 
+%
+% ^^A \DescribeMacro{\titlingpagestyle}
+% ^^A The macro |\titlingpagestyle{|\meta{pstyle}|}| sets the page style 
+% ^^A in the |titlingpage| environment to be \meta{pstyle}. This is
+% ^^A initially set as |\titlingpagestyle{empty}|.
+%
+%    For example, to put both the title and an abstract on a title page
+% ^^A with a |plain| pagestyle:
+% \begin{verbatim}
+% \begin{document}
+% \begin{titlingpage}
+% \setlength{\droptitle}{30pt} % lower the title
+% \maketitle
+% \begin{abstract}...\end{abstract}
+% \end{titlingpage}
+% \end{verbatim}
+%
+%    By default, titling information is centered with respect to the
+% width of the text block.
+%    Occasionally someone asks on the \texttt{comp.text.tex} newsgroup how
+% to center the titling information on a title page 
+% with respect to the width of the physical 
+% page. If the textblock is centered with respect to the physical page,
+% then the default centering suffices. If the textblock is not physically
+% centered, then the titling information either has to be shifted 
+% horizontally or |\maketitle| has to be made to think that the textblock
+% has been shifted horizontally. 
+%
+%    One solution is to use the |titlingpage|
+% environment and the \Lopt{chngpage} package\footnote{Available
+% from CTAN as file \texttt{chngpage.sty}.}, which lets
+% you temporarily adjust the location of the textblock. Remember that
+% TeX starts its page measurements at a distance of 1 inch + |\hoffset| 
+% (default 0pt)
+% in from the left side of the
+% physical sheet; this is the zero point for the |\evensidemargin| and
+% the |\oddsidemargin|. Let $H$ be the value of (1 inch + |\hoffset|), 
+% $M$ be the |\...sidemargin|, $T$ be the
+% |\textwidth| and $P$ be the width of the physical page, 
+% and let $X$ be the distance between the righthand edge of the
+% text block and the right side of the physical sheet. Then
+% \[ H + M + T + X = P \]
+% and the textblock is $H+M$ in from the left side of the page. For
+% the textblock to be centered on the physical page, we must have
+% \(X = H+M\). If the textblock is not physically centered, then
+% the margin value, $M$ can be adjusted to made it so. Let $d$ be the
+% amount to be added to $M$ to center the textblock. Some simple algebra
+% leads to
+% \[ d = (P - T)/2 - M - H \]
+% as the amount to be added to the |\...sidemargin| to center the textblock.
+% For example,
+% assume that the |\textwidth| is 5 inches, the |\...sidemargin|s are
+% both 2 inches, and |\hoffset| is zero (i.e., $H$ is 1 inch). 
+% Then to center the textblock, 
+% 1.25 inches must be 
+% subtracted from the margin if it is printed on US letterpaper,
+% where the paper width is 8.5 inches. A different adjustment would
+% be required 
+% if A4 paper was used instead. See the \Lopt{chngpage} documentation for
+% details, but a physically centred title can now be achieved by
+% \begin{verbatim}
+% \usepackage{chngpage}
+% ...
+% \begin{titlingpage}
+%    \chngtext{}{}{-1.25in}{-1.25in}{}
+%    \maketitle
+% \end{titlingpage}
+% \end{verbatim}
+%
+% \DescribeMacro{\calccentering}
+%  If you don't want to do the above calculations by hand, 
+% |\calccentering{|\meta{length}|}{|\meta{margin}|}| will do it for you. 
+% The \meta{length}
+% argument must be the name of a pre-existing length command, 
+% including the backslash, and the \meta{margin} is the value of the
+% appropriate |\evensidemargin| or |\oddsidemargin|. After calling
+% |\calccentering|, \meta{length} is the amount to be added to the
+% margin to center the textblock.
+% An example usage is
+% \begin{verbatim}
+% \begin{titlingpage}
+%    \newlength{\addtoeven}
+%    \newlength{\addtoodd}
+%    \calccentering{\addtoeven}{\evensidemargin}
+%    \calccentering{\addtoodd}{\oddsidemargin}
+%    \chngtext{}{}{\addtoeven}{\addtoodd}{}
+%    ....
+% \end{titlingpage}
+% \end{verbatim}
+% The |\calccentering| macro requires the length |\paperwidth| to be
+% set to the physical width of the paper you will be printing on. 
+% If your paper matches the paper size option in for the document class
+% then this is done for you.
+%
+%    You do not necessarily have to define a new length for the purposes
+% of |\calccentering|. Any existing length will do, such as
+% |\unitlength|, provided it will be otherwise unused between performing
+% the calculation and changing the margins (and that you can, if necessary
+% reset it to its original value --- the default value for |\unitlength|
+% is 1pt). There are also some lengths provided by the package that you
+% may consider using, such as |\droptitle|, |\thanksmarkwidth| or
+% |\thanksmargin|.
+%
+%
+%
+% \DescribeMacro{\thetitle}
+% \DescribeMacro{\theauthor}
+% \DescribeMacro{\thedate}
+%    In the usual document classes, the |\title|, |\author| and |\date|
+% macros used for |\maketitle| are unavailable once |\maketitle| has been
+% issued. The package provides the |\thetitle|,
+% |\theauthor| and |\thedate| commands that can be used for printing
+% these elements of the title later in the document, 
+% if desired. 
+%
+%    The \Lpack{titling} package prevents the standard classes' habit
+% of automatically killing the titling
+% commands after |\maketitle| has been issued. You can have multiple
+% |\title|, |\author|, |\date| and |\maketitle| commands in your
+% document if you wish. For example, some reports are issued with
+% a title page, followed by an executive summary, and then they
+% have another, possibly modified, title at the start of
+% the main body of the report. This can be accomplished like this:
+% \begin{verbatim}
+% \title{Cover title}
+% ...
+% \begin{titlingpage}
+% \maketitle
+% \end{titlingpage}
+% ...
+% \title{Body title}
+% \maketitle
+% ...
+% \end{verbatim}
+%
+% \DescribeMacro{\killtitle}
+% \DescribeMacro{\keepthetitle}
+% \DescribeMacro{\emptythanks}
+%     The |\killtitle| macro makes all aspects of titling, including
+% |\thetitle| etc,
+% unavailable from the point that it is issued (using this command will save
+% some macro space if the |\thetitle|, etc., commands are not required).
+% Using this command is the \Lpack{titling} package's manual version
+% of the automatic killing performed by the standard classes.
+% The |\keepthetitle| command performs a similar function, except that
+% it keeps the |\thetitle|, |\theauthor| and |\thedate| commands, while 
+% killing everything else.
+% The |\emptythanks| command discards any text from prior use of |\thanks|.
+% This command is useful when |\maketitle| is used multiple times ---
+% the |\thanks| commands in each use just stack up the texts for output
+% at each use, so each subsequent use of |\maketitle| will output all 
+% previous |\thanks| texts together with any new ones. To avoid this,
+% put |\emptythanks| before each |\maketitle| after the first.
+%
+%
+%
+% \subsubsection{Restyling the thanks}
+%
+% The \Lpack{titling} package provides a configurable |\thanks| command.
+% As a side effect of modifications to the |\thanks| command, the thanks
+% text can be one or more paragraphs, unlike the standard |\thanks|
+% text which is restricted to a single paragraph.
+%
+% \DescribeMacro{\thanksmarkseries}
+% \DescribeMacro{\symbolthanksmark}
+%  In the standard classes, |\thanks{}| are marked with symbols in the 
+% titling and footnotes unless on a titlepage where they are marked with
+% numbers. The command |\thanksmarkseries{|\meta{format}|}| command
+% can be used to change the marking style. The \meta{format} argument
+% is the name of one of the formats for printing a counter. The name 
+% is the same as that of a counter format but without the backslash.
+% The default matches the standard class defaults. To have the 
+% titlepage marks as symbols instead of numerals do:\\
+% |\thanksmarkseries{fnsymbol}| \\
+% or to use lowercase letters do: \\
+% |\thanksmarkseries{alph}| \\
+% Just for convenience the |\symbolthanksmark| command sets the series
+% to be footnote symbols (so you don't have to use the first example above).
+% Using the standard classes the potential names for \meta{format} are:
+% |arabic|, |roman|, |Roman|, |alph|, |Alph|, and |fnsymbol|. Other classes
+% or packages may provide more or fewer names.
+%
+% \DescribeMacro{\continuousmarks}
+% The |\thanks| command uses the footnote counter, and normally the counter
+% is zeroed after the titling so that the footnote marks start from 1.
+% If the counter should not be zeroed, then just specify |\continuousmarks|.
+% This might be required if numerals are used as the thanks markers.
+%
+% \DescribeMacro{\thanksheadextra}
+% \DescribeMacro{\thanksfootextra}
+% The |\thanksheadextra{|\meta{pre}|}{|\meta{post}|}| command will insert
+% \meta{pre} and \meta{post} before and after the thanks markers in the
+% titling block. 
+%
+%     Similarly |\thanksfootextra{|\meta{pre}|}{|\meta{post}|}|
+% inserts \meta{pre} and \meta{post} before and after the thanks markers
+% in the footnotes. 
+%
+%    By default \meta{pre} and \meta{post} are empty in
+% both cases. For example, to put parentheses round the titling markers
+% and to have a full stop (a period) after the footnote markers do: \\
+% |\thanksheadextra{(}{)}| and \\
+% |\thanksfootextra{}{.}|
+%
+% \DescribeMacro{\thanksmark}
+% It is sometimes desireable to have the same thanks text be applied to,
+% say, four out of six authors, these being the first 3 and the last one.
+% The command |\thanksmark{|\meta{n}|}| is similar to 
+% |\footnotemark[|\meta{n}|]| in that it prints a thanks mark identical
+% to that of the \meta{n}'th |\thanks| command. No changes are made
+% to any thanks in the footnotes.
+%
+% \DescribeMacro{\thanksgap}
+% The marks in the titling block printed by the |\thanks| and |\thanksmark|
+% commands take zero space. This is acceptable if they come at the end of
+% a line, but not in the middle of a line. Use the 
+% |\thanksgap{|\meta{length}|}| command immediately after a mid-line
+% |\thanks| or |\thanksmark| command to add \meta{length} amount of
+% space before the next word. For example, if there are three authors
+% from two different institutions: \\
+% |\author{Alpha\thanks{ABC},| \\
+% |        Omega\thanks{XYZ}\thanksgap{1ex} and | \\
+% |        Beta\thanksmark{1}} |
+%
+% \DescribeMacro{\thanksmarkwidth}
+%  The thanks mark in the footnote is typeset right justified in a box
+% of width |\thanksmarkwidth|. The first line of the thanks text starts
+% after this box. The initialisation is |\setlength{\thanksmarkwidth}{1.8em}|
+% giving the default position.
+%
+% \DescribeMacro{\thanksmargin}
+% The value of the length |\thanksmargin| controls the indentation the
+% second and subsequent lines of the thanks text, with respect to
+% the end of the mark box. As examples: \\
+% |\setlength{\thanksmargin}{0em}| will align the left hand ends of
+% of a multiline thanks text, while: \\
+% |\setlength{\thanksmargin}{-\thanksmarkwidth}| will left justify
+% any second and subsequent lines of the thanks text. This last
+% setting is the initialised value, giving the default appearance.
+%
+% \DescribeMacro{\thanksfootmark}
+%     A thanks mark in the footnote region is typeset by |\thanksfootmark|.
+% The code for this is roughly:
+% \begin{verbatim}
+% \newcommand{\thanksfootmark}{%
+%   \hbox to\thanksmarkwidth{\hfil\normalfont%
+%      \thanksscript{\thanksfootpre \thefootnote \thanksfootpost}}}
+% \end{verbatim}
+% where |\thanksfootpre| and |\thanksfootpost| are specified via the
+% |\thanksfootextra| macro. You should not need to change the definition
+% of |\thanksfootmark| 
+% but you may want to change the default definitions of one or more
+% of the macros it uses.
+%
+% \DescribeMacro{\thanksscript}
+% Note that the thanks mark, together with the |\...pre| and |\...post|
+% commands form the argument to the |\thanksscript| command. This
+% is initially defined as: \\
+% |\newcommand{\thanksscript}[1]{\textsuperscript{#1}}| \\
+% so that |\thanksscript| typesets its argument as a superscript, which
+% is the default for thanks notes. If you would prefer the mark to be
+% set at the baseline instead, for example, just do: \\
+% |\renewcommand{\thanksscript}[1]{#1}|, and if you also wanted very
+% small symbols on the baseline you could do: \\
+% |\renewcommand{\thanksscript}[1]{\tiny #1}|. Alternatively \\
+% |\renewcommand{\thanksscript}[1]{#1}| \\
+% |\thanksfootextra{\bfseries}{.}| \\
+% will give a bold baseline mark followed by a dot.
+%
+%    Using combinations of |\thanksscript|, |\thanksmargin|, 
+% |\thanksmarkwidth| and |\thanksfootextra| you can easily define
+% different layouts for the thanks footnotes. Here are some
+% sample combinations, but to shorten them I have ignored any
+% |\renewcommand|s and |\setlength|s, leaving these to be implied
+% as necessary.
+% \begin{itemize}
+% \item Setting |\thanksfootextra{}{\hfill}| left justifies the mark
+%     in its box:
+%    \begin{itemize}
+%    \item |\thanksscript{\llap{#1\space}}|, |\thanksmarkwidth{0em}| and \\
+%          |\thanksmargin{0em}| puts the baseline mark in the margin
+%          and the text left justified.
+%    \item Using |\thanksscript{#1}|, |\thanksmarkwidth{1em}| and \\
+%          |\thanksmargin{-\thanksmarkwidth}| makes the baseline mark 
+%          and text left adjusted.
+%    \item |\thanksscript{#1}|, |\thanksmarkwidth{1em}| and
+%          |\thanksmargin{0em}| puts the baseline mark left adjusted
+%          and the text indented and aligned, like this marked
+%          sentence is typeset.
+%    \end{itemize}
+%
+% \item Setting |\thanksfootextra{ }| and |\thanksscript{#1}| 
+%       right justifies the baseline mark and a space in the mark box:
+%    \begin{itemize}
+%    \item The normal style is
+%          defined by |\thanksmarkwidth{1.8em}| and \\
+%          |\thanksmargin{-\thanksmarkwidth}| which put the mark 
+%          indented and the text left adjusted, like a normal indented
+%          paragraph.
+%    \item |\thanksmarkwidth{1.8em}| and
+%          |\thanksmargin{0em}| put the mark indented 
+%          and the text indented and aligned.
+%    \end{itemize}
+%
+% \end{itemize}
+% 
+% \DescribeMacro{\makethanksmark}
+% \DescribeMacro{\makethanksmarkhook}
+% The macro |\makethanksmark| typesets both the thanks marker (via
+% |\thanksfootmark|) and the thanks text. You probably will not need
+% to change its default definition. Just in case, though, |\makethanksmark|
+% calls the macro |\makethanksmarkhook| before it does any typesetting.
+% The default definition of this is: \\
+% |\newcommand{\makethanksmarkhook}{}|, which does nothing.
+% 
+%    You can redefine |\makethanksmarkhook| to do something useful. For
+% example, if you wanted a slightly bigger baseline skip you could do: \\
+% |\renewcommand{\makethanksmarkhook}{\fontsize{8}{11}\selectfont}| \\
+% where the numbers |8| and |11| specify the point size of the font 
+% and the baseline skip
+% respectively. In this example 8pt is the normal |\footnotesize| in
+% a 10pt document, and 11pt is the baselineskip for |\footnotesize|
+% text in an 11pt document (the baseline skip is 9.5pt in a 10pt document); 
+% adjust these numbers to suit.
+%
+% \DescribeMacro{\thanksrule}
+% \DescribeMacro{\usethanksrule}
+% \DescribeMacro{\cancelthanksrule}
+% By default, there is no rule above |\thanks|
+% text that appears in a |titlingpage| environment.
+% If you want a rule in that environment, put |\usethanksrule| 
+% before the |\maketitle| command, which will then print a rule according
+% to the current definition of |\thanksrule|.
+% |\thanksrule| is initialised to be a copy of |\footnoterule| as it 
+% is defined at the
+% end of the preamble. The definition of |\thanksrule| can be changed
+% after |\begin{document}|. If the definition of |\thanksrule| is modified
+% and a |\usethanksrule| command has been issued, then the redefined
+% rule may also be used for footnotes. Issuing the command 
+% |\cancelthanksrule| will cause the normal |\footnoterule| definition
+% to be used from thereon; another |\usethanksrule| 
+% command can be issued later
+% if you want to swap back again.
+%
+% The parameters for the vertical positioning of footnotes and thanks notes,
+% and the default |\footnoterule| are described below. You may need to
+% change one or more of these if the vertical spacings of footnotes
+% and thanks notes are meant to be different.
+%
+% \DescribeMacro{\footnotesep}
+% \DescribeMacro{\skip\footins}
+% The length |\footnotesep| controls the vertical spacing between footnotes
+% (and thanks notes),
+% and is initialised by the class to give no extra spacing for a
+% |\footnotesize| font. You can change the spacing by \\
+% |\addtolength{\footnotesep}{...}| \\
+% The length |\skip\footins| defines the vertical spacing between the
+% bottom of the main text and the top of the first line of the first
+% footnote. Likewise this can be changed by \\
+% |\addtolength{\skip\footins}{...}| \\
+% The total vertical distance between the bottom of the main text and
+% the baseline of the first line of the first footnote is
+% |\footnotesep + \skip\footins|.
+% 
+%
+% \DescribeMacro{\footnoterule}
+%  The |\footnoterule| command is defined in the LaTeX kernel and
+% redefined in the standard classes. An `@less' definition, which is slightly
+% less efficient than that in the classes, is:
+% \begin{verbatim}
+% \renewcommand{\footnoterule}{%
+%    \kern -3pt  % call this kerna
+%    \hrule height 0.4pt width 0.4\columnwidth
+%    \kern 2.6pt % call this kernb
+% }
+% \end{verbatim}
+% This produces a horizontal rule from the left margin to 40\% of the
+% |\columnwidth| with thickness 0.4pt. The rule must not take up any
+% vertical space, which means that |kerna + kernb| must equal the thickness
+% of the rule. The rule is located a distance |\skip\footins + kerna|
+% below the bottom of the main text. So, to move the rule upwards, decrease
+% the value of |kerna| and increase that of |kernb|, and the reverse to
+% move the rule downwards.
+%
+% 
+%
+% \DescribeMacro{\appendiargdef}
+%  This is only noted here as someone may find it useful
+% in another context. Get the \Lpack{patchcmd} 
+% package~\cite{PATCHCMD} if you need
+% to make other additions to definitions.
+% The internal command |\appendiargdef{|\meta{macro}|}{|\meta{stuff}|}|
+% appends \meta{stuff} at the end of the current definition of \meta{macro},
+% where \meta{macro} is the name of a macro (including the backslash) which 
+% takes a single argument. For example the following are two equivalent
+% definitions of |\mymacro|:
+% \par\begin{small}\begin{verbatim}
+% \newcommand{\mymacro}[1]{#1 is a violinist}
+% \appendiargdef{\mymacro}{ in spite of being tone deaf}
+% % or
+% \newcommand{\mymacro}[1]{# is a violinist in spite of being tone deaf}
+% \end{verbatim}
+% \end{small}\par
+%
+%    The usual advice about creating a one-column |abstract| in a two-column
+% document is to write code like this:
+% \par\begin{small}\begin{verbatim}
+% \documentclass[twocolumn...]{...}
+% ...
+% \twocolumn[
+%    \begin{@twocolumnfalse}
+%      \maketitle               % need full-width title
+%      \begin{abstract}
+%         abstract text...
+%      \end{abstract}
+%    \end{@twocolumnfalse}
+% ]
+% ... hand make footnotes for any \thanks commands
+% ...
+% \end{verbatim}
+% \end{small}\par
+% The \Lpack{titling} package gives no assistance for doing this, but the
+% \Lpack{abstract} package~\cite{ABSTRACT} provides a command that caters for the somewhat 
+% non-intuitive 
+% \texttt{... hand make footnotes ...} aspect.
+%
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[Dow00]{PATCHCMD}
+% Michael J.~Downes.
+% \newblock \emph{{The patchcmd package}}.
+% \newblock July, 2000.
+% \newblock (Available from CTAN in subdirectory \texttt{/patchcmd})
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock \emph{{The LaTeX Companion}}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[Wil01]{ABSTRACT}
+% Peter Wilson.
+% \newblock \emph{{The abstract package}}.
+% \newblock February, 2001.
+% \newblock (Available from CTAN in subdirectory \texttt{/abstract})
+%
+% \end{thebibliography}
+% }
+%
+%
+% 
+% \section{The package code} \label{sec:code}
+%
+%    To try and avoid name clashes, all the internal commands include
+% the string |@bs| (this code was initially part of the \Lpack{abstract}
+% package).
+%
+% \subsection{Preliminaries}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{titling}[2004/09/26 v2.1c maketitle typesetting]
+
+%    \end{macrocode}
+%
+% The original code for
+% |\maketitle| is shown in Section~\ref{sec:app}.
+%    Changes to |\maketitle| and friends are defined here.
+%
+% \begin{macro}{\pretitle}
+% \begin{macro}{\@bspretitle}
+% \begin{macro}{\posttitle}
+% \begin{macro}{\@bsposttitle}
+% \begin{macro}{\preauthor}
+% \begin{macro}{\@bspreauthor}
+% \begin{macro}{\postauthor}
+% \begin{macro}{\@bspostauthor}
+% \begin{macro}{\predate}
+% \begin{macro}{\@bspredate}
+% \begin{macro}{\postdate}
+% \begin{macro}{\@bspostdate}
+%    To provide some flexibilty in the titling style of the document,
+% user level commands are provided that can be changed to reconfigure
+% the appearance resulting from |\maketitle|. 
+% \changes{v2.0}{2001/02/24}{Revised and replaced the title configuration commands}
+%    \begin{macrocode}
+\newcommand{\pretitle}[1]{\def\@bspretitle{#1}}
+\newcommand{\posttitle}[1]{\def\@bsposttitle{#1}}
+\newcommand{\preauthor}[1]{\def\@bspreauthor{#1}}
+\newcommand{\postauthor}[1]{\def\@bspostauthor{#1}}
+\newcommand{\predate}[1]{\def\@bspredate{#1}}
+\newcommand{\postdate}[1]{\def\@bspostdate{#1}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% These are defined initially
+% to mimic the normal \LaTeX{} style.
+%    \begin{macrocode}
+\if@titlepage
+  \pretitle{\begin{center}\LARGE}
+  \posttitle{\par\end{center}\vskip 2em}
+  \preauthor{\begin{center}
+    \large \lineskip .75em%
+    \begin{tabular}[t]{c}}
+  \postauthor{\end{tabular}\par\end{center}}
+  \predate{\begin{center}\large}
+  \postdate{\par\end{center}}
+\else
+  \pretitle{\begin{center}\LARGE}
+  \posttitle{\par\end{center}\vskip 0.5em}
+  \preauthor{\begin{center}
+    \large \lineskip .5em%
+    \begin{tabular}[t]{c}}
+  \postauthor{\end{tabular}\par\end{center}}
+  \predate{\begin{center}\large}
+  \postdate{\par\end{center}}
+\fi
+
+%    \end{macrocode}
+%
+% \begin{macro}{\maketitlehooka}
+% \begin{macro}{\maketitlehookb}
+% \begin{macro}{\maketitlehookc}
+% \begin{macro}{\maketitlehookd}
+% The four hooks which will be called by |\maketitle|. These are initially
+% vacuous.
+% \changes{v2.1}{2001/03/23}{Added the four \cs{maketitlehook} commands}
+%    \begin{macrocode}
+\newcommand{\maketitlehooka}{}
+\newcommand{\maketitlehookb}{}
+\newcommand{\maketitlehookc}{}
+\newcommand{\maketitlehookd}{}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\thanksmarkseries}
+% \begin{macro}{\@bsmarkseries}
+% \begin{macro}{\symbolthanksmark}
+%  These are for specifying the kind of series for thanks markers.
+% \changes{v2.0}{2001/02/24}{Added all the controls for the \cs{thanks} command.}
+%    \begin{macrocode}
+\newcommand{\thanksmarkseries}[1]{%
+  \def\@bsmarkseries{\renewcommand{\thefootnote}{\@nameuse{#1}{footnote}}}}
+\newcommand{\symbolthanksmark}{\thanksmarkseries{\fnsymbol}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\continuousmarks}
+% \begin{macro}{\@bscontmark}
+% These are for (non) zeroing of the footnote counter.
+%    \begin{macrocode}
+\newcommand{\@bscontmark}{\setcounter{footnote}{0}}
+\newcommand{\continuousmarks}{\def\@bscontmark{}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\thanksheadextra}
+% \begin{macro}{\@bsthanksheadpre}
+% \begin{macro}{\@bsthanksheadpost}
+% These are for inserting stuff before and after a mark in the titling.
+%    \begin{macrocode}
+\newcommand{\thanksheadextra}[2]{%
+  \def\@bsthanksheadpre{#1}%
+  \def\@bsthanksheadpost{#2}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\thanksfootextra}
+% \begin{macro}{\thanksfootpre}
+% \begin{macro}{\thanksfootpost}
+% These are for inserting stuff before and after a thanks mark in the 
+% footnoting.
+%    \begin{macrocode}
+\newcommand{\thanksfootextra}[2]{%
+  \def\thanksfootpre{#1}%
+  \def\thanksfootpost{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\thanksmark}
+% This adds a thanks mark. The |\footnotemark| could have been used directly
+% but it is fragile in a moving argument.
+%    \begin{macrocode}
+\DeclareRobustCommand{\thanksmark}[1]{\footnotemark[#1]}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thanksgap}
+% This specifies some horizontal space.
+%    \begin{macrocode}
+\newcommand{\thanksgap}[1]{\hspace{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\tamark}
+% This stores the current definition of |\@thefnmark|. For some reason
+% using |\@thefnmark| directly only gave the last value.
+%    \begin{macrocode}
+\newcommand{\tamark}{\@thefnmark}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thanksmarkwidth}
+% A length determining the size of the box for typesetting
+% a thanks marker.
+%    \begin{macrocode}
+\newlength{\thanksmarkwidth}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thanksmargin}
+% A length determining the inset of thanks footnotes.
+%    \begin{macrocode}
+\newlength{\thanksmargin}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thanksscript}
+% A wrapper round the actual mark stuff to be typeset. This is
+% initialised to give a superscript mark.
+%    \begin{macrocode}
+\newcommand{\thanksscript}[1]{\textsuperscript{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makethanksmarkhook}
+% A vacuous macro used as a hook into |\makethanksmark|.
+%    \begin{macrocode}
+\newcommand{\makethanksmarkhook}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thanksfootmark}
+% This typesets the thanks footnote mark.
+% \changes{v2.1}{2001/03/23}{Changed \cs{thanksfootmark} definition}
+%    \begin{macrocode}
+
+\newcommand{\thanksfootmark}{%
+  \hb@xt@\thanksmarkwidth{\hfil\normalfont\thanksscript{%
+    \thanksfootpre \tamark \thanksfootpost}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makethanksmark}
+% This sets the general indentations for the thanks footnote, 
+% and typesets the mark. The code is a simplified version of that
+% for typeseeting ToC entries.
+% \changes{v2.1}{2001/03/23}{Changed definition of \cs{makethanksmark}}
+%    \begin{macrocode}
+\newcommand{\makethanksmark}{%
+  \leavevmode%
+  \makethanksmarkhook\relax
+  \parindent 1em\noindent
+  \leftskip\thanksmargin\relax
+  \advance\leftskip \thanksmarkwidth \null\nobreak\hskip -\leftskip
+  \thanksfootmark
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\usethanksrule}
+% \begin{macro}{\cancelhanksrule}
+%  Simple macros that let |\footnoterule| to another rule definition.
+%    \begin{macrocode}
+\newcommand{\usethanksrule}{\let\footnoterule\thanksrule}
+\newcommand{\cancelthanksrule}{\let\footnoterule\@bsfootnoterule}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+%    Now set up the thanks defaults.
+%    \begin{macrocode}
+\if@titlepage
+  \thanksmarkseries{arabic}    % normal footnote numbers
+\else
+  \thanksmarkseries{fnsymbol}
+\fi
+\thanksheadextra{}{}
+\thanksfootextra{}{}
+\setlength{\thanksmarkwidth}{1.8em}
+\setlength{\thanksmargin}{-\thanksmarkwidth}
+
+%    \end{macrocode}
+% \begin{macro}{\thanksrule}
+% \begin{macro}{\@bsfootnoterule}
+% These are saved versions of the |\footnoterule| definition as it
+% is at the end of the preamble.
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \let\thanksrule\footnoterule
+  \let\@bsfootnoterule\footnoterule
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\droptitle}
+% A titling block has |\droptitle| amount of additional vertical space 
+% above it (normally zero).
+%    \begin{macrocode}
+\newlength{\droptitle}
+\setlength{\droptitle}{0pt}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\maketitle}
+% The following is a
+% modification of |\maketitle| as in the \Lpack{article}, \Lpack{report},
+% and \Lpack{book} classes 
+% (see Section~\ref{sec:app} for the original definition).
+% \changes{v1.2}{2001/03/23}{Added the four \cs{maketitlehook} commands
+% to \cs{maketitle}}
+%    \begin{macrocode}
+\providecommand{\maketitle}{}
+\if@titlepage
+  \renewcommand{\maketitle}{\begin{titlepage}%
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \let \footnote \thanks
+    \@bsmarkseries
+      \def\@makefnmark{\rlap{\@textsuperscript{%
+         \normalfont\@bsthanksheadpre \tamark \@bsthanksheadpost}}}%
+      \long\def\@makefntext##1{\makethanksmark ##1}
+    \null\vfil
+    \vskip 60\p@
+    \vspace*{\droptitle}
+    \maketitlehooka
+    {\@bspretitle \@title \@bsposttitle}
+    \maketitlehookb
+    {\@bspreauthor \@author \@bspostauthor}
+    \maketitlehookc
+    {\@bspredate \@date \@bspostdate}
+    \maketitlehookd
+    \par
+    \@thanks
+    \vfil\null
+    \end{titlepage}%
+    \@bscontmark  %  \setcounter{footnote}{0}%
+%%%    \@bsmtitlempty             
+  } % end titlepage defs
+\else
+  \renewcommand{\maketitle}{\par
+    \begingroup
+      \@bsmarkseries
+      \def\@makefnmark{\rlap{\@textsuperscript{%
+         \normalfont\@bsthanksheadpre \tamark \@bsthanksheadpost}}}%
+      \long\def\@makefntext##1{\makethanksmark ##1}
+      \if@twocolumn
+        \ifnum \col@number=\@ne
+          \@maketitle
+        \else
+          \twocolumn[\@maketitle]%
+        \fi
+      \else
+        \newpage
+        \global\@topnum\z@
+        \@maketitle
+      \fi
+      \thispagestyle{plain}\@thanks
+    \endgroup
+    \@bscontmark  %  \setcounter{footnote}{0}%
+%%%    \@bsmtitlempty 
+  } % end non-titlepage
+%    \end{macrocode}
+% \begin{macro}{\@maketitle}
+% I use |\def\@maketitle| to account for the cases where the main class 
+% does not have titling commands, and to ensure an existing |\@maketitle|
+% gets overridden.
+% \changes{v1.2}{2001/03/23}{Added the four \cs{maketitlehook} commands
+% to \cs{@maketitle}}
+%    \begin{macrocode}
+
+  \def\@maketitle{%               
+    \newpage
+    \null
+    \vskip 2em%
+          \vspace*{\droptitle}
+    \maketitlehooka
+    {\@bspretitle \@title \@bsposttitle}
+    \maketitlehookb
+    {\@bspreauthor \@author \@bspostauthor}
+    \maketitlehookc
+    {\@bspredate \@date \@bspostdate}
+    \maketitlehookd
+    \par
+    \vskip 1.5em}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{environment}{titlingpage}
+%  The |titlingpage| environment sets the pagestyle to be empty,
+% disables the footnote rule and ensures that the page is single
+% column. At the end it switches back to twocolumn if neccessary,
+% and then starts a new page as number 1.
+%    \begin{macrocode}
+\newenvironment{titlingpage}%
+  {%
+   \let\footnoterule\relax
+   \let\footnotesize\small
+   \if@twocolumn
+     \@restonecoltrue\onecolumn
+   \else
+     \@restonecolfalse
+   \fi
+   \thispagestyle{empty}
+   \setcounter{page}\@ne
+  }{%
+   \thispagestyle{empty}
+   \if@restonecol\twocolumn \else \newpage \fi
+   \if@twoside\else \setcounter{page}\@ne\fi}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\calccentering}
+% This macro calculates the amount to be added to a |...sidemargin|
+% in order to center the textblock. Call as \\
+% |\calccentering{\length}{...sidemargin}| and it sets |\length|
+% to the required value.
+% \changes{v2.1}{2001/03/23}{Added \cs{calccentering} command}
+%    \begin{macrocode}
+\newcommand{\calccentering}[2]{
+  #1 = \paperwidth
+  \advance #1 by -\textwidth
+  \divide #1 by \tw@
+  \advance #1 by -#2
+  \advance #1 by -\hoffset
+  \advance #1 by -1in
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\emptythanks}
+% This macro discards all prior |\thanks| texts.
+% \changes{v2.1}{2001/03/23}{Added \cs{emptythanks} command}
+%    \begin{macrocode}
+\newcommand{\emptythanks}{\global\let\@thanks\@empty}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@bsmtitlempty}
+%    |\@bsmtitlempty| is a helper macro to save some macro space. 
+% It empties some elements of |\maketitle|.
+%    \begin{macrocode}
+\newcommand{\@bsmtitlempty}{%
+  \global\let\maketitle\relax
+  \global\let\@maketitle\relax
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\thanksmarkseries\relax
+  \global\let\thanksheadextra\relax
+  \global\let\thanksfootextra\relax
+  \global\let\thanksmark\relax
+  \global\let\thanksgap\relax
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\keepthetitle}
+% This macro undefines all the titling commands except for
+% |\thetitle|, |\theauthor| and |\thedate|.
+% \changes{v2.1}{2001/03/23}{Added \cs{keepthetitle} command}
+% \changes{v2.1}{2001/03/23}{Moved \cs{@bsmtitlempty} from \cs{maketitle}
+% to \cs{keepthetitle}}
+%    \begin{macrocode}
+\newcommand{\keepthetitle}{%
+  \@bsmtitlempty
+  \global\let\thanks\relax
+  \global\let\and\relax
+  \global\let\@thanks\@empty
+  \global\let\@title\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\killtitle}
+% |\killtitle| undefines the remaining macros of |\maketitle|.
+% \changes{v2.1}{2001/03/23}{\cs{killtitle} calls \cs{keepthetitle} to
+%     do most of the work}
+%    \begin{macrocode}
+\providecommand{\killtitle}{}
+\renewcommand{\killtitle}{%
+  \keepthetitle
+  \global\let\thetitle\relax
+  \global\let\theauthor\relax
+  \global\let\thedate\relax
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\appendiargdef}
+%  The code is copied from the \Lpack{abstract} package.
+%    \begin{macrocode}
+\providecommand{\appendiargdef}[2]{\begingroup
+  \toks@\expandafter{#1{##1}#2}%
+  \edef\@bsx{\endgroup \def\noexpand#1####1{\the\toks@}}%
+  \@bsx}
+
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\thetitle}
+% \begin{macro}{\theauthor}
+% \begin{macro}{\thedate}
+%    In order to make the |\title|, etc., values available for printing
+% their definitions need extending to save their arguments
+% (see Section~\ref{sec:app} for their
+% original definitions). We have to make sure that extraneous material,
+% like |\thanks|, is excluded from the saved texts.
+%    \begin{macrocode}
+\appendiargdef{\title}{%
+  \begingroup
+    \renewcommand{\thanks}[1]{}
+    \renewcommand{\thanksmark}[1]{}
+    \renewcommand{\thanksgap}[1]{}
+    \protected@xdef\thetitle{#1}
+  \endgroup}
+\appendiargdef{\author}{%
+  \begingroup
+    \renewcommand{\thanks}[1]{}
+    \renewcommand{\and}{\unskip, }
+    \renewcommand{\thanksmark}[1]{}
+    \renewcommand{\thanksgap}[1]{}
+    \protected@xdef\theauthor{#1}
+  \endgroup}
+\appendiargdef{\date}{%
+  \begingroup
+    \renewcommand{\thanks}[1]{}
+    \renewcommand{\thanksmark}[1]{}
+    \renewcommand{\thanksgap}[1]{}
+    \protected@xdef\thedate{#1}
+  \endgroup}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+% \appendix
+% \section{Original code for making a title} \label{sec:app}
+%
+% These are the kernel commands (from \file{ltsect.dtx}) for the elements
+% of |\maketitle|.
+% \par\begin{small}\begin{verbatim}
+% \def\title#1{\gdef\@title{#1}}
+%   \def\@title{\@latex@error{No \noexpand\title given}\@ehc}
+% \def\author#1{\gdef\@author{#1}}
+%   \def\@author{\@latex@warning@no@line{No \noexpand\author given}}
+% \def\date#1{\gdef\@date{#1}}
+%   \def\@date{\today}
+% \def\thanks#1{\footnotemark
+%    \protected@xdef\@thanks{\@thanks
+%      \protect\footnotetext[\the\c@footnote]{#1}}%
+% }
+% \let\@thanks\@empty
+% \def\and{%                  % \begin{tabular}
+%   \end{tabular}%
+%   \hskip 1em \@plus.17fil%
+%   \begin{tabular}[t]{c}}%   % \end{tabular}
+% \end{verbatim}
+% \par\end{small}
+%
+%
+% This is the version of
+% |\maketitle| and |\@maketitle| from \file{classes.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \if@titlepage
+% \newcommand{\maketitle}{\begin{titlepage}%
+%   \let\footnotesize\small
+%   \let\footnoterule\relax
+%   \let \footnote \thanks
+%   \null\vfil
+%   \vskip 60\p@
+%   \begin{center}%
+%     {\LARGE \@title \par}%
+%     \vskip 3em%
+%     {\large
+%      \lineskip .75em%
+%      \begin{tabular}[t]{c}%
+%        \@author
+%      \end{tabular}\par}
+%      \vskip 1.5em%
+%     {\large \@date \par}%
+%   \end{center}\par
+%   \@thanks
+%   \vfil\null
+%   \end{titlepage}%
+%   \setcounter{footnote}{0}%
+%   \global\let\thanks\relax
+%   \global\let\maketitle\relax
+%   \global\let\@maketitle\relax
+%   \global\let\@thanks\@empty
+%   \global\let\@author\@empty
+%   \global\let\@date\@empty
+%   \global\let\@title\@empty
+%   \global\let\title\relax
+%   \global\let\author\relax
+%   \global\let\date\relax
+%   \global\let\and\relax
+% }
+% \else
+% \newcommand{\maketitle}{\par
+%   \begingroup
+%     \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+%     \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+%     \long\def\@makefntext##1{\parindent 1em\noindent
+%       \hb@xt@1.8em{%
+%         \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+%     \if@twocolumn
+%       \ifnum \col@number=\@ne
+%         \@maketitle
+%       \else
+%         \twocolumn[\@maketitle]%
+%       \fi
+%     \else
+%       \newpage
+%       \global\@topnum\z@
+%       \@maketitle
+%     \fi
+%     \thispagestyle{plain}\@thanks
+%   \endgroup
+%   \setcounter{footnote}{0}%
+%   \global\let\thanks\relax
+%   \global\let\maketitle\relax
+%   \global\let\@maketitle\relax
+%   \global\let\@thanks\@empty
+%   \global\let\@author\@empty
+%   \global\let\@date\@empty
+%   \global\let\@title\@empty
+%   \global\let\title\relax
+%   \global\let\author\relax
+%   \global\let\date\relax
+%   \global\let\and\relax
+% }
+%
+% \def\@maketitle{%
+%   \newpage
+%   \null
+%   \vskip 2em%
+%   \begin{center}%
+%     \let \footnote \thanks
+%     {\LARGE \@title \par}%
+%     \vskip 1.5em%
+%     {\large
+%      \lineskip .5em%
+%      \begin{tabular}[t]{c}%
+%        \@author
+%      \end{tabular}\par}
+%      \vskip 1em%
+%     {\large \@date}%
+%   \end{center}
+%   \par
+%   \vskip 1.5em}
+% \fi
+% 
+% \end{verbatim}
+% \end{small}\par
+%
+%
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

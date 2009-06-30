@@ -1,0 +1,91 @@
+    The layouts package enables the display of various elements of a
+document's layout including: the general page layout; disposition
+of floats; layout of paragraphs, lists, footnotes, table of contents, 
+and sectional headings; font boxes.
+Facilities are provided for a document designer to experiment with
+the layout parameters.
+
+Changes in version v2.6c (2004/10/25)
+o Privatised some internal macro names (no change in functionality)
+
+Changes in version v2.6b (2003/11/25)
+o Fixed some spelling and gramatical errors
+
+Changes in version v2.6a (2002/12/12)
+o Fixed problem with negative length in list layout
+o NO CHANGE TO THE MANUAL
+
+Changes in version v2.6 (2002/06/09)
+o Expanded page layout options
+
+Changes in version v2.5a (2002/03/24)
+o Fixed problem with footer size on page diagrams
+
+Changes in version v2.5 (2001/11/11)
+o Cleaner seperation between generic and designed layouts
+o Added controls over the appearance of pictures
+o Lengths may be printed using any TeX unit (except scaled point)
+
+Changes in version v2.4 (2001/04/30)
+o Added switch for drawing marginal notes
+o Added support for the memoir class page layout
+
+
+Changes in version v2.3 (1999/03/06)
+o Added tabulation of actual layout values.
+o Corrected the ToC layout.
+o Reduced the number of counters used.
+
+----------------------------------------------------------------- 
+  Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+  Copyright 1998 --- 2004 Peter R. Wilson
+ 
+  This work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either
+  version 1.3 of this license or (at your option) any 
+  later version.
+  The latest version of the license is in
+     http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+ 
+  This work has the LPPL maintenance status "author-maintained".
+ 
+  This work consists of the files:
+README (this file)
+layouts.dtx
+layouts.ins
+  and the derived files:
+layouts.sty
+
+    The distribution consists of the following files:
+README          (this file)
+layouts.ins     (Source extractor file)
+layouts.dtx     (Package source)
+layman.tex      (LaTeX source for the User Manual)
+layman.pdf      (User Manual in PDF)
+
+----------------------------------------------------------------- 
+
+    To install the package:
+o run: latex layouts.ins (which will generate layouts.sty)
+o Move layouts.sty to a location where LaTeX will find it
+  (typically in a local texmf tree at /tex/latex/layouts)
+  and refresh the file database. See the FAQ on CTAN at
+  /help/uk-tex-faq or http://www.tex.ac.uk/faq for more 
+  information on this.
+
+    To process the user manual:
+o run: latex layman (twice) and print for the user manual
+  
+    For a printed version of the package source:
+o run: latex layouts.dtx
+  If you want an index run: makeindex -s gind.ist layouts
+o run: latex layouts.dtx
+o Print layouts.dvi for a hardcopy of the package source
+
+2004/10/25
+Peter Wilson
+herries dot press at earthlink dot net
+
+

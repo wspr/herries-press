@@ -1,0 +1,971 @@
+% \iffalse meta-comment
+% newfile.dtx
+% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%                            (or at: pandgwilson at earthlink dot net) 
+% Copyright 2002 --- 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{newfile.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{329}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2002/06/22}{First public release}
+% \changes{v1.0a}{2002/07/07}{Corrected documentation}
+% \changes{v1.0b}{2004/05/10}{Changed license from LPPL v1.0 to v1.3}
+%
+% \def\dtxfile{newfile.dtx}
+% \def\fileversion{v1.0}
+% \def\filedate{2002/06/22}
+% \def\fileversion{v1.0a}
+% \def\filedate{2002/07/07}
+% \def\fileversion{v1.0b}
+% \def\filedate{2004/05/10}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{newfile} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{After May 2004 at: \texttt{pandgwilson at earthlink dot net}}\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{newfile} package provides convenient user level commands 
+% for reading and writing new files during a LaTeX run.
+% \end{abstract}
+% \tableofcontents
+%
+%
+% \section{Introduction}
+%
+% TeX has a maximum of 16 input and 16 output \emph{streams} 
+% for reading and writing
+% files. The \Lpack{newfile} package provides means of associating
+% several different files with a particular stream.
+%
+% The \Lpack{newfile} package requires the \Lpack{verbatim} 
+% package~\cite{VERBATIM}, which is one of the required packages in
+% a LaTeX distribution.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the package.
+% Commented source code for the package is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{newfile} package} \label{sec:usc}
+%
+%
+% \DescribeMacro{\newoutputstream}
+% \DescribeMacro{\newinputstream}
+%    The command |\newoutputstream|\marg{stream} creates a new stream
+% called \meta{stream} for writing out text and commands. The \meta{stream}
+% should be just alphabetic characters with no spaces; for example |myout|.
+% The command |\newinputstream|\marg{stream} creates a new stream for
+% reading from a file. The \meta{stream} names must be unique --- you cannot
+% use the same name for both an input and an output stream.
+%
+% If you try and create too many streams, TeX will tell you via an error 
+% message.
+%
+% These two commands also attempt to create two other new commands, 
+% called respectively
+% |\atstreamopen<stream>| and |\atstreamclose<stream>|. If these commands
+% already exist then they are left untouched, otherwise they are
+% created (like using |\providecommand{\atstreamopen<stream}{}|). 
+% For example if
+% if you have used |mystr| as the name of a stream (either input or output),
+% then the macros |\atstreamopenmystr| and |\atstreamclosemystr| are
+% defined; by default they do nothing, but you can |\renewcommand| them
+% to do something.
+%
+% \DescribeMacro{\openoutputfile}
+% The macro |\openoutputfile|\marg{filename}\marg{stream} opens the
+% file called \meta{filename} and the output stream \meta{stream}. It
+% then attaches the file to the stream for writing and calls the macro
+% |\atstreamopen<stream>|. Any pre-existing contents of \meta{filname}
+% are deleted.
+%
+% \DescribeMacro{\closeoutputstream}
+% The macro |\closeoutputstream|\marg{stream} calls the macro
+% |\atstreamclose<stream>|, closes the output stream
+% \meta{stream} and closes whatever file
+% is currently attached to \meta{stream}. It then detaches the file from
+% the stream.
+%
+% \DescribeEnv{writeverbatim}
+% The |writeverbatim| environment takes one argument, the name of an output
+% stream, which must be open. The contents of the environment are written
+% out verbatim to the file currently attached to the stream.
+%
+% \DescribeMacro{\addtostream}
+% The command |\addtostream|\marg{stream}\marg{text} writes \meta{text}
+% to the file currently attached to the output stream \meta{stream}, which
+% must be open. Any commands within \meta{text} will be processed before
+% being written. To prevent this, put |\protect| before any command that
+% you do not want expanding.
+%
+% \DescribeMacro{\openinputfile}
+% The macro |\openinputfile|\marg{filename}\marg{stream} opens the
+% file called \meta{filename} and the input stream \meta{stream}. It
+% then attaches the file to the stream for reading and calls the macro
+% |\atstreamopen<stream>|. It is an error if \meta{filename} can not be found.
+%
+% \DescribeMacro{\closeinputstream}
+% The macro |\closeinputstream|\marg{stream} calls the macro
+% |\atstreamclose<stream>|, closes the input stream
+% \meta{stream} and closes whatever file
+% is currently attached to \meta{stream}. It then detaches the file from
+% the stream.
+%
+% \DescribeMacro{\readstream}
+% The macro |\readstream|\marg{stream} reads the contents of the file that
+% is currently associated with the input stream \meta{stream}. This provides
+% the same functionality as |\input|\marg{filename} does.
+%
+% \DescribeMacro{\readaline}
+% The macro |\readaline|\marg{stream} reads what TeX considers to be
+% one line from the file that
+% is currently associated with the input stream \meta{stream}. Multiple lines
+% can be read by calling |\readaline| multiple times. A warning is issued
+% if there are no more lines to be read (i.e., the end of the file has
+% been reached).
+%
+%
+% \DescribeMacro{\readverbatim}
+% The macro |\readverbatim|\marg{stream} reads the contents of the file that
+% is currently associated with the input stream \meta{stream} as |verbatim|
+% text. This provides
+% the same functionality as the \Lpack{verbatim} package's
+% |\verbatiminput|\marg{filename} command does.
+%
+% \DescribeMacro{\streamvfont}
+% Text read in verbatim is typeset using the font specified by
+% |\streamvfont|\marg{font}. The default is 
+% |\streamvfont{\normalfont\ttfamily}|. To typeset in a smaller font, try
+% for example,
+% |\streamvfont{\small\ttfamily}|. 
+%
+%
+% \DescribeMacro{\numbervstream}
+% \DescribeMacro{\marginnumbervstream}
+% \DescribeMacro{\streamvnumfont}
+% The declaration |\numbervstream| causes |\readverbatim| to number each 
+% line it reads.
+% The declaration |\marginnumbervstream| is similar to |\numbervstream|
+% except it puts the numbers in the margin.
+% The |streamvline| counter is used for the line numbering. Both
+% the numbering declarations (re)set it to zero. The numbers are
+% typeset in the font specified by |\streamvnumfont|\marg{font}. 
+% The default is |\streamvnumfont{\footnotesize}|.
+%
+% \DescribeMacro{\plainvstream}
+% The declaration |\plainvstream| stops any numbering. The default
+% is |\plainvstream|.
+%
+% \DescribeEnv{comment}
+% The |comment| environment, which is part of the \Lpack{verbatim}
+% package, throws away everything inside the environment.
+%
+% The \Lpack{verbatim} package~\cite{VERBATIM} provides some other 
+% facilities, apart from
+% the |comment| environment, and its documentation explains them.
+%
+% \section{Examples}
+%
+% \subsection{Output stream}
+%
+% This example is inspired by the \Lpack{endfloat} package~\cite{ENDFLOAT}
+% which provides a more sophisticated approach than shown below. The
+% example demonstrates the use of an output stream.
+%
+% Suppose that in an \Lpack{article} class document you want all the
+% figures to be collected at the end, but to specify them at the appropriate
+% places in the body of the text.
+%
+%    \begin{macrocode}
+%<*ex>
+%    \end{macrocode}
+%    \begin{macrocode}
+\documentclass{article}
+\usepackage{newfile}
+...
+%    \end{macrocode}
+% Create a new output stream called |figs| and open it to write to file
+% |figures.tex|.
+%    \begin{macrocode}
+\newoutputstream{figs}
+\openoutputfile{figures.out}{figs}
+...
+%    \end{macrocode}
+% Write out verbatim the first |figure| environment to the |figs| stream.
+%    \begin{macrocode}
+\begin{writeverbatim}{figs}
+\begin{figure}
+...
+\end{figure}
+\end{writeverbatim}
+...
+%    \end{macrocode}
+% After the last |figure| is written to |figs|, close the |figs| output
+% stream, which also closes the |figures.out| file. 
+%    \begin{macrocode}
+\begin{writeverbatim}{figs}
+\begin{figure}
+...
+\end{figure}
+\end{writeverbatim}
+\closeoutputstream{figs}
+...
+%    \end{macrocode}
+% At the end |\input| |figures.out| to typeset the figures.
+%    \begin{macrocode}
+\input{figures.out}
+\end{document}
+%    \end{macrocode}
+%
+% \subsection{An output and input stream}
+%
+% This example is the kind of thing that the \Lpack{answers} 
+% package~\cite{ANSWERS} does rather better. The example illustrates
+% the use of an output and an input stream.
+%
+% Suppose you are writing a document that includes questions and answers
+% and you want all the answers at the end. It is most convenient if you
+% can write the answer to each question as it is posed, and then only
+% print them at the end.
+%
+% \setcounter{CodelineNo}{0}
+%    \begin{macrocode}
+\documentclass{article}
+\usepackage{newfile}
+...
+%    \end{macrocode}
+% Create new output and input streams called |ans| and |ansin|. Just to 
+% demonstrate the use of the |\atstreamopen...| command, redefine
+% |\atstreamopenansin| so that it will start a section called 
+% `Answers to all the questions'. Then open the |ans| stream to write to
+% a file called |answers.all|.
+%    \begin{macrocode}
+\newoutputstream{ans}
+\newinputstream{ansin}
+\renewcommand{\atstreamopenansin}{\section{Answers to all the questions}}
+\openoutputfile{answers.all}{ans}
+...
+%    \end{macrocode}
+% For each question, write out the answer verbatim to the |ans| stream.
+%    \begin{macrocode}
+This is a question.
+\begin{writeverbatim}{ans}
+This is the answer to a question.
+\end{writeverbatim}
+...
+%    \end{macrocode}
+% At the end, close the |ans| stream and open the |ansin| stream to read from
+% the file |answers.all|. Opening the stream will also start the new
+% `Answers to all the questions' section (from |\atstreamopenansin|). Then
+% read from the |ansin| stream.
+%    \begin{macrocode}
+\closeoutputstream{ans}
+\openinputfile{answers.all}{ansin}
+\readstream{ansin}
+%    \end{macrocode}
+% Finally, close the |ansin| stream, and we are done.
+%    \begin{macrocode}
+\closeinputstream{ansin}
+\end{document}
+%    \end{macrocode}
+%
+% If desired, instead of inserting the answers at the end of the question
+% document, |answers.all| could have been |\input| into a seperate
+% answer document.
+%
+% Along the same lines as above, perhaps the original document is
+% a \Lpack{book} class, with questions (and answers) at the end of each
+% chapter. A seperate answer file could be produced for each chapter, like:
+% \setcounter{CodelineNo}{0}
+%    \begin{macrocode}
+...
+\newoutputstream{ansout}
+\newinputstream{ansin}
+...
+\chapter{First chapter} % chapter 1
+\openoutputfile{\jobname\thechapter.ans}{ansout}
+%    \end{macrocode}
+% The |\jobname| is the name of the main LaTeX document file, without
+% the |.tex| extension, so if the name of the LaTeX source file is 
+% |mybook.tex| the above line creates a file called |mybook1.ans|.
+%    \begin{macrocode}
+...
+\begin{writeverbatim}{ansout}
+An answer
+\end{writeverbatim}
+...
+\closeoutputstream{ansout}
+\chapter{Another chapter} % chapter N
+\openoutputfile{\jobname\thechapter.ans}{ansout}
+...
+\closeoutputstream{ansout}
+
+\chapter{Answers}
+
+\section{Chapter 1}
+\openinputstream{\jobname1.ans}{ansin}
+\readstream{ansin}
+\closestream{ansin}
+...
+\section{Chapter N}
+\openinputstream{\jobnameN.ans}{ansin}
+\readstream{ansin}
+\closestream{ansin}
+...
+%    \end{macrocode}
+%
+% The above example shows how you can associate different files with a single
+% stream.
+%
+% \subsection{Multiple streams}
+%
+% This is a more complex example, again inspired by the \Lpack{endfloat}
+% package. In a \Lpack{book} class document you want 
+% all the
+% figures and tables to be collected at the end, 
+% but to specify them at the appropriate
+% places in the body of the text.
+%
+% \setcounter{CodelineNo}{0}
+%     \begin{macrocode}
+\documentclass{book}
+\usepackage{newfile}
+...
+%    \end{macrocode}
+% Create and open two new output streams, one for figures (|figs|) and the 
+% other (|tabs|) for tables.
+% For demonstration purposes, also create a new input stream called figtab.
+%    \begin{macrocode}
+\newoutputstream{figs}
+\openoutputfile{figures.out}{figs}
+\newoutputstream{tabs}
+\openoutputfile{tables.out}{tabs}
+\newinputstream{figtab}
+...
+%    \end{macrocode}
+% There is a slight difficulty with this example, as in the \Lpack{book}
+% class, figures and table numbers start anew with each chapter and the
+% chapter number is preprended to the sequence number. We can make a
+% start on solving this by creating a new pseudo chapter number and changing
+% the default definitions of the figure and table numbers (which are
+% |\renewcommand{\thefigure}{\thechapter.\arabic{figure}}| and similarly
+% for tables).
+%    \begin{macrocode}
+\newcounter{pseudochapter}
+\renewcommand{\thepseudochapter}{\arabic{pseudochapter}}
+\renewcommand{\thefigure}{\thepseudochapter.\arabic{figure}}
+\renewcommand{\thetable}{\thepseudochapter.\arabic{table}}
+...
+%    \end{macrocode}
+% Do the usual things at the start of the document.
+%    \begin{macrocode}
+\begin{document}
+\maketitle
+\tableofcontents
+\listoffigures
+..
+%    \end{macrocode}
+% At the start of each chapter we need to set the |pseudochapter| counter
+% to the chapter number, and write this to the output streams so
+% that there is a record of which chapters the figures and tables came from
+% Normally, each chapter resets the figure and table numbers, but as
+% these will now be at the end, we have to fake the start of chapters
+% in the output files. We can do all of this by the |\addtostream| macro.
+%    \begin{macrocode}
+\chapter{First}
+%    \end{macrocode}
+% The next bit of code will result in \\
+% |\setcounter{pseudochapter}{N}| \\
+% where |N| is the number of this chapter, appearing in the output files.
+%    \begin{macrocode}
+\addtostream{figs}{\protect\setcounter{pseudochapter}{\thechapter}}
+\addtostream{tabs}{\protect\setcounter{pseudochapter}{\thechapter}}
+%    \end{macrocode}
+% The next bit of code results in the following two lines in the output files:\\
+% |\refstepcounter{chapter}| \\
+% |\addtocounter{chapter}{-1}| \\
+% The first of these has the effect of resetting the figure and table 
+% counters by increasing the chapter counter by one. The second line resets
+% the chapter counter back to its original value.
+%    \begin{macrocode}
+\addtostream{figs}{\protect\refstepcounter{chapter}}
+\addtostream{figs}{\protect\addtocounter{chapter}{-1}}
+\addtostream{tabs}{\protect\refstepcounter{chapter}}
+\addtostream{tabs}{\protect\addtocounter{chapter}{-1}}
+%    \end{macrocode}
+% Write out verbatim each figure to the |figs| stream.
+%    \begin{macrocode}
+\begin{writeverbatim}{figs}
+\begin{figure}
+...
+\end{figure}
+\end{writeverbatim}
+...
+%    \end{macrocode}
+% and write each table verbatim to the |tabs| stream.
+%    \begin{macrocode}
+\begin{writeverbatim}{tabs}
+\begin{table}
+...
+\end{table}
+\end{writeverbatim}
+...
+%    \end{macrocode}
+% When we have done all the chapters, figures and tables, 
+% close the two output streams.
+%    \begin{macrocode}
+\closeoutputstream{figs}
+\closeoutputstream{tabs}
+%    \end{macrocode}
+% Then if we want the figures to be typeset before the tables, open
+% the |figtab| stream to read from |figures.out|, read the stream and 
+% close it.
+%    \begin{macrocode}
+\openinputfile{figures.out}{figtab}
+\readstream{figtab}
+\closestream{figtab}
+%    \end{macrocode}
+% We can use the same |figtab| stream for reading the tables.
+%    \begin{macrocode}
+\openinputfile{tables.out}{figtab}
+\readstream{figtab}
+\closestream{figtab}
+\end{document}
+%    \end{macrocode}
+%    \begin{macrocode}
+%</ex>
+%    \end{macrocode}
+%
+% Note that the \Lpack{endfloat} package~\cite{ENDFLOAT} will produce the
+% same effect as the previous example, but much simply.
+%
+%
+%    \StopEventually{}
+%
+%
+% \section{The package code} \label{sec:code}
+%
+%    This package can only be used with LaTeX2e, and requires the
+% \Lpack{verbatim} package~\cite{VERBATIM}, which is one of the required 
+% packages for a LaTeX distribution.
+% \setcounter{CodelineNo}{0}
+%    \begin{macrocode}
+%<*outin>
+\NeedsTeXFormat{LaTeX2e}[1996/06/01]
+\ProvidesPackage{newfile}[2002/06/21 v1.0 Output and input files]
+\RequirePackage{verbatim}
+%    \end{macrocode}
+%
+% To try and avoid name clashes with other packages, each internal macro
+% in this package includes the character string `|stre@m|'.
+%
+% \begin{macro}{\newoutputstream}
+% |\newoutputstream|\marg{stream} creates a new output stream called \meta{stream}.
+% Different files may be associated with the \meta{stream}. Note that
+% TeX permits no more than 16 output streams.
+%    \begin{macrocode}
+\newcommand{\newoutputstream}[1]{%
+  \@ifundefined{#1outstre@m}%
+    {\expandafter\newwrite\csname #1outstre@m\endcsname
+     \csname newif\expandafter\endcsname
+       \csname ifstre@m#1open\endcsname
+     \global\csname stre@m#1openfalse\endcsname
+     \expandafter\ifx\csname atstreamopen#1\endcsname\relax
+       \global\@namedef{atstreamopen#1}{}%
+     \fi
+     \expandafter\ifx\csname atstreamclose#1\endcsname\relax
+       \global\@namedef{atstreamclose#1}{}%
+     \fi
+    }%
+    {\PackageError{newfile}{Output stream #1 is already defined}{\@ehc}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\newinputstream}
+% |\newinputstream|\marg{stream} creates a new input stream called \meta{stream}.
+% Different files may be associated with the \meta{stream}. Note that
+% TeX permits no more than 16 input streams.
+%    \begin{macrocode}
+\newcommand{\newinputstream}[1]{%
+  \@ifundefined{#1instre@m}%
+    {\expandafter\newread\csname #1instre@m\endcsname
+     \csname newif\expandafter\endcsname
+       \csname ifstre@m#1open\endcsname
+     \global\csname stre@m#1openfalse\endcsname
+     \expandafter\ifx\csname atstreamopen#1\endcsname\relax
+       \global\@namedef{atstreamopen#1}{}%
+     \fi
+     \expandafter\ifx\csname atstreamclose#1\endcsname\relax
+       \global\@namedef{atstreamclose#1}{}%
+     \fi
+    }%
+    {\PackageError{newfile}{Input stream #1 is already defined}{\@ehc}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%    Some checking macros will be useful as some of the checks occur in
+% multiple places.
+%
+% \begin{macro}{\@ifstre@mopen}
+% |\@ifstre@mopen|\marg{stream}\marg{TRUE code}\marg{FALSE code}
+% checks if stream \meta{stream} is currently open.
+%    \begin{macrocode}
+\newcommand{\@ifstre@mopen}[3]{%
+  \csname ifstre@m#1open\endcsname#2\else#3\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\instre@mandopen}
+% |\instre@mandopen|\marg{stream}\marg{TRUE code} checks if \meta{stream}
+% is an input stream and is open. If so, it executes \meta{TRUE code}.
+%    \begin{macrocode}
+\newcommand{\instre@mandopen}[2]{%
+  \@ifundefined{#1instre@m}{%
+    \PackageError{newfile}{#1\space is not an input stream}{\@ehc}}%
+  {\@ifstre@mopen{#1}{#2}{%
+    \PackageError{newfile}{Input stream #1\space is not open}{\@ehc}}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\instre@mandclosed}
+% |\instre@mandclosed|\marg{stream}\marg{TRUE code} checks if \meta{stream}
+% is an input stream and is closed (not open). 
+% If so, it executes \meta{TRUE code}.
+%    \begin{macrocode}
+\newcommand{\instre@mandclosed}[2]{%
+  \@ifundefined{#1instre@m}{%
+    \PackageError{newfile}{#1\space is not an input stream}{\@ehc}}%
+  {\@ifstre@mopen{#1}{%
+    \PackageError{newfile}{Input stream #1\space is open}{\@ehc}}{#2}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\outstre@mandopen}
+% |\outstre@mandopen|\marg{stream}\marg{TRUE code} checks if \meta{stream}
+% is an output stream and is open. If so, it executes \meta{TRUE code}.
+%    \begin{macrocode}
+\newcommand{\outstre@mandopen}[2]{%
+  \@ifundefined{#1outstre@m}{%
+    \PackageError{newfile}{#1\space is not an output stream}{\@ehc}}%
+  {\@ifstre@mopen{#1}{#2}{%
+    \PackageError{newfile}{Output stream #1\space is not open}{\@ehc}}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\outstre@mandclosed}
+% |\outtre@mandclosed|\marg{stream}\marg{TRUE code} checks if \meta{stream}
+% is an output stream and is closed (not open). 
+% If so, it executes \meta{TRUE code}.
+%    \begin{macrocode}
+\newcommand{\outstre@mandclosed}[2]{%
+  \@ifundefined{#1outstre@m}{%
+    \PackageError{newfile}{#1\space is not an output stream}{\@ehc}}%
+  {\@ifstre@mopen{#1}{%
+    \PackageError{newfile}{Output stream #1\space is open}{\@ehc}}{#2}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\openoutputfile}
+% |\openoutputfile|\marg{filename}\marg{stream} opens the file called 
+% \meta{filename} and attaches it to the stream \meta{stream} for
+% writing. However, if the |\nofiles| command has been given the
+% file is \emph{not} attached to the stream. No more than one file can be 
+% attached to a stream at any given time.
+%    \begin{macrocode}
+\newcommand{\openoutputfile}[2]{%
+  \outstre@mandclosed{#2}{%
+    \global\@namedef{#1@filename}{#1}%
+    \if@filesw 
+      \immediate\openout\@nameuse{#2outstre@m}=\@nameuse{#1@filename}%
+    \fi
+    \global\csname stre@m#2opentrue\endcsname%
+    \@nameuse{atstreamopen#2}%
+  }%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\closeoutputstream}
+% |\closeoutputstream|\marg{stream} closes the stream \meta{stream}.
+%    \begin{macrocode}
+\newcommand{\closeoutputstream}[1]{%
+  \outstre@mandopen{#1}{%
+    \@nameuse{atstreamclose#1}%
+    \immediate\closeout\@nameuse{#1outstre@m}%
+    \global\csname stre@m#1openfalse\endcsname}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\openinputfile}
+% |\openinputfile|\marg{filename}\marg{stream} opens the file called 
+% \meta{filename} and attaches it to the stream \meta{stream} for
+% reading. The file is added to the list of files. 
+% No more than one file can be attached to a stream at
+% any given time.
+%    \begin{macrocode}
+\newcommand{\openinputfile}[2]{%
+  \IfFileExists{#1}{%                   file exists
+    \instre@mandclosed{#2}{% 
+      \@addtofilelist{#1}%
+      \global\@namedef{#1@filename}{#1}%
+      \immediate\openin\@nameuse{#2instre@m}=\@nameuse{#1@filename}%
+      \global\csname stre@m#2opentrue\endcsname%
+      \@nameuse{atstreamopen#2}}}%
+  {%                                    file not found
+    \PackageError{newfile}{Can't find file #1}{\@ehc}%
+  }%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\closeinputstream}
+% |\closeinputstream|\marg{stream} closes the stream \meta{stream}.
+%    \begin{macrocode}
+\newcommand{\closeinputstream}[1]{%
+  \instre@mandopen{#1}{%
+     \@nameuse{atstreamclose#1}%
+     \immediate\closein\@nameuse{#1instre@m}%
+     \global\csname stre@m#1openfalse\endcsname}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{writeverbatim}
+% |\begin{writeverbatim}|\marg{stream} writes the contents of
+% the environment as verbatim text to the given \meta{stream}.
+%    \begin{macrocode}
+\def\writeverbatim#1{%
+  \@bsphack
+  \let\do\@makeother\dospecials
+  \catcode`\^^M\active
+  \verbatim@startline
+  \verbatim@addtoline
+  \verbatim@finish
+  \def\verbatim@processline{%
+    \immediate\write\@nameuse{#1outstre@m}{\the\verbatim@line}}%
+  \verbatim@start}
+\def\endwriteverbatim{\@esphack}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\addtostream}
+% |\addtostream|\marg{stream}\marg{text} writes \meta{text} to the
+% given \meta{stream}.
+%    \begin{macrocode}
+\newcommand{\addtostream}[2]{%
+  \@bsphack
+  \outstre@mandopen{#1}{%
+    {\let\protect\string
+     \immediate\write\@nameuse{#1outstre@m}{#2}%
+    }}%
+  \@esphack
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifstre@mnoteof}
+% \begin{macro}{\checkstre@mnoteof}
+% |\checkstre@mnoteof|\marg{stream} sets |\ifstre@mnoteof| to TRUE if
+% \meta{stream} is not at the end of the file (i.e., it is the opposite
+% of |\ifeof|).
+%    \begin{macrocode}
+\newif\ifstre@mnoteof
+\newcommand{\checkstre@meof}[1]{%
+  \stre@mnoteoftrue\ifeof\@nameuse{#1instre@m}\stre@mnoteoffalse\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\readstream}
+% |\readstream|\marg{stream} reads the contents of
+% the given \meta{stream} as |\input| text.
+%    \begin{macrocode}
+\def\readstream#1{
+  \instre@mandopen{#1}{%
+    \loop \checkstre@meof{#1} \ifstre@mnoteof
+      \read\@nameuse{#1instre@m} to\temptokstre@m
+     \temptokstre@m
+    \repeat
+    }%
+}
+  
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\readaline}
+% |\readaline|\marg{stream} reads what TeX considers to be one line
+% from the given \meta{stream} as |\input| text.
+%    \begin{macrocode}
+\def\readaline#1{
+  \instre@mandopen{#1}{%
+    \ifeof\@nameuse{#1instre@m}
+      \PackageWarning{newfile}{No more to read from stream #1}
+    \else
+      \read\@nameuse{#1instre@m} to\temptokstre@m
+      \temptokstre@m
+    \fi
+    }%
+}
+  
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\readverbatim}
+% \begin{macro}{\stre@mverbatim@input}
+% \begin{macro}{\verbatim@readstre@m}
+% |\readverbatim|\marg{stream} reads the contents of
+% the given \meta{stream} as verbatim text.
+%
+% The read verbatim code is a slight variation on code from the
+% \Lpack{verbatim} package. Most of the setup is done by the macros
+% |\stre@mverbatim@input|\marg{setup}\marg{stream} and
+% |\verbatim@readstre@m|\marg{stream}. Finally, |\verbatim@read@file|
+% is a \Lpack{verbatim} package macro.
+%    \begin{macrocode}
+\def\readverbatim{\begingroup
+  \@ifstar{\stre@mverbatim@input\relax}%
+          {\stre@mverbatim@input{\frenchspacing\@vobeyspaces}}}
+
+\def\stre@mverbatim@input#1#2{%
+  \@ifstre@mopen{#2}%
+    {\@verbatim #1\relax
+     \def\verbatim@in@stream{\@nameuse{#2instre@m}}
+     \verbatim@readstre@m{#2}\endtrivlist\endgroup\@doendpe}%
+    {\PackageError{newfile}{Stream #2 is not open}{\@ehc}\endgroup}%
+}
+
+\def\verbatim@readstre@m#1{%
+  \verbatim@startline
+  \expandafter\endlinechar\expandafter\m@ne
+  \expandafter\verbatim@read@file
+  \expandafter\endlinechar\the\endlinechar\relax
+  \verbatim@finish
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\plainvstream}
+% A macro that sets |\verbatim@processline| to its default definition.
+%    \begin{macrocode}
+\newcommand{\plainvstream}{%
+  \def\verbatim@processline{\the\verbatim@line\par}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\streamvnumfont}
+% \begin{macro}{\stre@mvnfont}
+% We need a counter for numbering lines read in verbatim.
+%
+% |\streamvnumfont|\marg{font} defines |\stre@mvnfont| to be \meta{font}.
+%    \begin{macrocode}
+\newcounter{streamvline}
+\newcommand{\streamvnumfont}[1]{\def\stre@mvnfont{#1}}
+\streamvnumfont{\footnotesize}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\streamvfont}
+% \begin{macro}{\verbatim@font}
+% |\streamvfont|\marg{font} defines |\verbatim@font| to use \meta{font}.
+%    \begin{macrocode}
+\newcommand{\verbatimfont}[1]{%
+  \def\verbatim@font{#1%
+    \hyphenchar\font\m@ne
+    \let\do\do@noligs
+    \verbatim@nolig@list}}
+\verbatimfont{\normalfont\ttfamily}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\numbervstream}
+% |\numbervstream| puts numbers at the start of each line read verbatim.
+%    \begin{macrocode}
+\newcommand{\numbervstream}{%
+  \setcounter{streamvline}{0}%
+  \def\verbatim@processline{%
+    \addtocounter{streamvline}{1}%
+    \leavevmode
+    {\stre@mvnfont \thestreamvline}\space
+    \the\verbatim@line\par}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\marginnumbervstream}
+% |\marginnumbervstream| puts numbers in the margin at the start of 
+% each line read verbatim.
+%    \begin{macrocode}
+\newcommand{\marginnumbervstream}{%
+  \setcounter{streamvline}{0}%
+  \def\verbatim@processline{%
+    \addtocounter{streamvline}{1}%
+    \leavevmode
+    \llap{{\stre@mvnfont \thestreamvline} \hskip\@totalleftmargin}
+    \the\verbatim@line\par}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%    The end of the \Lpack{newfile} package.
+%    \begin{macrocode}
+%</outin>
+%    \end{macrocode}
+%
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock \emph{The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[MG95]{ENDFLOAT}
+% James Darrell McCauley and Jeff Goldberg.
+% \newblock `The \texttt{endfloat} package'.
+% \newblock October, 1995.
+%
+% \bibitem[Pif96]{ANSWERS}
+% Mike Piff.
+% \newblock `Production of solution sheets in LaTeX2e'.
+% \newblock July, 1996.
+%
+% \bibitem[SRR99]{VERBATIM}
+% Rainer Sch\"{o}pf, Bernd Raichle, and Chris Rowley.
+% \newblock `A New Implementation of LaTeX's \texttt{verbatim} and 
+%            \texttt{verbatim*} Environments'.
+% \newblock December, 1999.
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+

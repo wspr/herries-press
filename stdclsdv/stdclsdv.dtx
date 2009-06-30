@@ -1,0 +1,372 @@
+% \iffalse meta-comment
+%
+% stdclsdv.dtx
+% Copyright 1999 Peter R. Wilson
+%
+% This program is provided under the terms of the
+% LaTeX Project Public License distributed from CTAN
+% archives in directory macros/latex/base/lppl.txt.
+%
+% Author: Peter Wilson (CUA and NIST) (now at: peter.r.wilson@boeing.com)
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{stdclsdv.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{130}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{1999/01/17}{First public release}
+% \changes{v1.1}{2000/07/16}{Added koma classes}
+%
+% ^^A \def\fileversion{v1.0}
+% ^^A \def\filedate{1999/01/17}
+% \def\fileversion{v1.1}
+% \def\filedate{2000/07/16}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{stdclsdv} package\thanks{This
+%        file has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\\
+% Catholic University of America\thanks{This work was originally
+% performed as
+% a Guest Researcher at the National Institute of Standards and Technology.} \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{stdclsdv} package is intended to be used by the authors
+% of \LaTeX{} packages that need to know about the sectional divisions
+% provided by the document class.
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+% Several packages need to know the kind of sectional divisions
+% provided by the document class.
+%
+%  The \Lpack{stdclsdv} package provides a solution for
+% for the case when the document class is one of the \LaTeX{} standard
+% classes (i.e., \Lpack{book}, \Lpack{report}, \Lpack{article},
+% \Lpack{letter}, \Lpack{slides}, and classes derived from the 
+% \Lpack{article} class, namely \Lpack{ltxdoc} and \Lpack{proc}).
+% It also handles the \Lpack{koma} classes.\footnote{Courtesy of
+% Joerg Jaspert \texttt{Joerg.Jaspert@informatik.fh-fulda.de}.}
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the package.
+% Commented source code for the package is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{stdclsdv} package} \label{sec:usc}
+%
+%    The \Lpack{stdclsdv} package provides several |\if...| macros
+% which can be used to determine the kinds of sectional divisions
+% supported by the current (standard) |\documentclass|.
+%
+%    The package is designed to work with the standard \LaTeX{}
+% document classes \Lpack{book}, \Lpack{report}, \Lpack{article}, \Lpack{proc}
+% and \Lpack{ltxdoc} class (which is based to a large extent on
+% the \Lpack{article} class).
+%
+% \DescribeMacro{\ifSCDknownclass}
+% |\ifSCDknownclass| is TRUE iff the document class is one of:
+% \Lpack{book}, \Lpack{report}, \Lpack{article}, \Lpack{letter},
+% \Lpack{slides}, \Lpack{proc}, \Lpack{ltxdoc}, 
+% \Lpack{scrbook}, \Lpack{scrreprt}, \Lpack{scrartcl} or \Lpack{scrlettr}. 
+% Otherwise it is FALSE.
+%
+% \DescribeMacro{\ifSCDchapter}
+% |\ifSCDchapter| is TRUE iff the document class defines a |\chapter|
+% sectional division, otherwise it is FALSE.
+%
+% \DescribeMacro{\ifSCDpart}
+% |\ifSCDpart| is TRUE iff the document class defines a |\part|
+% sectional division, otherwise it is FALSE.
+%
+% \DescribeMacro{\ifSCDsection}
+% |\ifSCDsection| is TRUE iff the document class defines a |\section|
+% sectional division, otherwise it is FALSE.
+%
+% \DescribeMacro{\ifSCDnodivs}
+% |\ifSCDnodivs| is TRUE iff the document class has neither |\part|
+% nor |\chapter|
+% nor |\section| divisions, otherwise it is FALSE.
+%
+% \DescribeMacro{\SCDquit}
+%  If the document class or divisioning is not handled by a package, it
+% can be useful to skip all futher package code. This could be done using:
+% \begin{verbatim}
+% ...
+% \ifSCDknownclass
+%   % normal processing
+% \else % just before end of package file
+%   % error/warning message about unknown class
+% \fi 
+% \endinput
+% \end{verbatim}
+% Alternatively, using the |\SCDQuit| command provides a clearer means
+% of accomplishing this. The |\SCDquit| macro is defined to do nothing. 
+% It is intended to
+% be used for prematurely ending a package file in the following manner:
+% \begin{verbatim}
+% \ifSCDknownclass\else
+%   \renewcommand{\SCDquit}{\endinput}
+%   % error/warning message about unknown class
+% \fi
+% \SCDquit % ends the file iff the class is unknown
+% % normal processing
+% ...
+% \endinput
+% \end{verbatim}
+%
+% \DescribeMacro{\SCDCheckCommand}
+% \DescribeMacro{\ifSCDSameDefinition}
+%  |\SCDCheckCommand| takes the same arguments as |\newcommand|, that is:\\
+% |\SCDCheckCommand{|\meta{command}|}[|\meta{nargs}|][|\meta{defarg}|]{|\meta{definition}|}| \\
+% |\SCDCheckCommand| is
+% identical to the kernel |\CheckCommand| (see \file{ltdefns.dtx}) except
+% that it sets |\ifSCDSameDefinition| to TRUE iff the definition given
+% in |\SCDCheckCommand| is the same as the current definition, otherwise
+% |\ifSCDSameDefinition| is set to FALSE.
+% (|\CheckCommand| issues a warning if the definitions are different).
+%
+%
+% \StopEventually{
+%   \bibliographystyle{alpha}
+%   \begin{thebibliography}{GMS94}
+%   \bibitem[GMS94]{GOOSSENS94}
+%   Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+%   \newblock {\em The LaTeX Companion}.
+%   \newblock Addison-Wesley Publishing Company, 1994.
+%   \end{thebibliography}
+% }
+%
+% 
+% \section{The package code} \label{sec:code}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{stdclsdv}[2000/07/16 v1.1 Sectional divisions]
+%    \end{macrocode}
+%
+% In order to try and avoid name clashes with other packages, each macro
+% name includes the character string |SCD| (Standard Class Division).
+%
+% \begin{macro}{\ifSCDknownclass}
+% \begin{macro}{\ifSCDpart}
+% \begin{macro}{\ifSCDchapter}
+% \begin{macro}{\ifSCDsection}
+% \begin{macro}{\ifSCDnodivs}
+%    These are used when we need to decide what sectional
+% divisions are supported by the document's class.
+% We will assume assume an unknown class that has |\part| and |\section| 
+% but not
+% |\chapter| divisions.
+%    \begin{macrocode}
+\newif\ifSCDknownclass\SCDknownclassfalse
+\newif\ifSCDpart\SCDparttrue
+\newif\ifSCDchapter\SCDchapterfalse
+\newif\ifSCDsection\SCDsectiontrue
+\newif\ifSCDnodivs\SCDnodivsfalse
+%    \end{macrocode}
+%    Check the actual class.\footnote{Thanks to David Carlisle for 
+%    information on how to check on the class.}
+%    \begin{macrocode}
+\@ifclassloaded{book}{\SCDknownclasstrue\SCDchaptertrue}{}
+\@ifclassloaded{report}{\SCDknownclasstrue\SCDchaptertrue}{}
+\@ifclassloaded{article}{\SCDknownclasstrue}{}
+\@ifclassloaded{proc}{\SCDknownclasstrue}{}
+\@ifclassloaded{ltxdoc}{\SCDknownclasstrue}{}
+\@ifclassloaded{slides}{\SCDknownclasstrue
+                        \SCDnodivstrue\SCDpartfalse\SCDsectionfalse}{}
+\@ifclassloaded{letter}{\SCDknownclasstrue
+                        \SCDnodivstrue\SCDpartfalse\SCDsectionfalse}{}
+%    \end{macrocode}
+% Joerg Jaspert supplied, via Email on 2000/07/16, the following code
+% for the \Lpack{koma} classes.
+% \changes{v1.1}{2000/07/16}{Added checks for koma classes}
+%    \begin{macrocode}
+\@ifclassloaded{scrbook}{\SCDknownclasstrue\SCDchaptertrue}{}
+\@ifclassloaded{scrreprt}{\SCDknownclasstrue\SCDchaptertrue}{}
+\@ifclassloaded{scrartcl}{\SCDknownclasstrue}{}
+\@ifclassloaded{scrlettr}{\SCDknownclasstrue
+                          \SCDnodivstrue\SCDpartfalse\SCDsectionfalse}{}
+%    \end{macrocode}
+%
+% If the class is not one of the standard classes, check if |\part| or
+% |\chapter| or |\section| headings are provided.
+%    \begin{macrocode}
+\ifSCDknownclass\else
+  \SCDnodivstrue
+  \ifx\part\undefined
+    \SCDpartfalse
+  \else
+    \SCDnodivsfalse
+  \fi
+  \ifx\chapter\undefined\else
+    \SCDchaptertrue \SCDnodivsfalse
+  \fi
+  \ifx\section\undefined
+    \SCDsectionfalse
+  \else
+    \SCDnodivsfalse
+  \fi
+\fi
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\SCDquit}
+% A macro that does nothing (see \S\ref{sec:usc} for its intended usage).
+%    \begin{macrocode}
+\newcommand{\SCDquit}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifSCDSameDefinition}
+% Used to store the result of |\SCDCheckCommand|. TRUE iff the command
+% has the given definition.
+%    \begin{macrocode}
+\newif\ifSCDSameDefinition
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\SCDCheckCommand}
+% This is identical to the kernal |\CheckCommand| except that it sets 
+% the |\ifSCDSameCommand| flag rather than issuing a warning. See
+% \file{ltdefns.dtx} for the coding for |\CheckCommand|.
+%    \begin{macrocode}
+\def\SCDCheckCommand{\@star@or@long%
+  \SCDSameDefinitiontrue%             changed from CheckCommand
+  \@SCD@check@command}
+  \@onlypreamble\SCDCheckCommand
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@SCD@check@command}
+%    \begin{macrocode}
+\def\@SCD@check@command#1#2#{\@SCD@check@c#1{#2}}
+  \@onlypreamble\@SCD@check@command
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@SCD@check@c}
+%    \begin{macrocode}
+\long\def\@SCD@check@c#1#2#3{%
+  \expandafter\let\csname\string\reserved@a\endcsname\relax
+  \renew@command\reserved@a#2{#3}%
+  \@ifundefined{\string\reserved@a}%
+   {\@SCD@check@eq#1\reserved@a}%
+   {\expandafter\@SCD@check@eq
+    \csname\string#1\expandafter\endcsname
+    \csname\string\reserved@a\endcsname}}
+  \@onlypreamble\@SCD@check@c
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\@SCD@check@eq}
+%    \begin{macrocode}
+\def\@SCD@check@eq#1#2{%
+  \ifx#1#2\else
+    \SCDSameDefinitionfalse  % changed from CheckCommand
+  \fi}
+  \@onlypreamble\@SCD@check@eq
+%    \end{macrocode}
+% \end{macro}
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

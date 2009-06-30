@@ -1,0 +1,825 @@
+% \iffalse meta-comment
+% epigraph.dtx
+% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%                            (or at: pandgwilson at earthlink dot net) 
+% Copyright 1998 --- 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{epigraph.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{242}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{1998/11/15}{First public release}
+% \changes{v1.1}{1998/11/29}{Added epigraphs before chapter headings}
+% \changes{v1.2}{1999/09/12}{Added cleartoevenpage and extended documentation}
+% \changes{v1.2a}{1999/12/01}{Extended documentation for epigraphs on Part pages}
+% \changes{v1.3}{1999/12/01}{Added \cs{dropchapter} and \cs{undodrop} commands}
+% \changes{v1.4}{2000/01/16}{Added flushleftright environment}
+% \changes{v1.5}{2000/02/20}{Generalised \cs{cleartoevenpage} command}
+% \changes{v1.5a}{2002/10/22}{Fixed class with ccaption package}
+% \changes{v1.5b}{2004/04/22}{Updated license and contact details}
+%
+% \def\dtxfile{epigraph.dtx}
+% \def\fileversion{v1.5}
+% \def\filedate{2000/02/20}
+% \def\fileversion{v1.5a}
+% \def\filedate{2002/10/22}
+% \def\fileversion{v1.5b}
+% \def\filedate{2004/04/22}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%  ^^A fake a rhsepigraph for demo purposes
+% \newcommand{\tepi}[2]{\vspace{.5\baselineskip}\begin{flushright}\small
+%    \begin{minipage}{2.5in}
+%    \begin{minipage}{2.5in}\begin{flushleft} #1\\
+%       \rule[.5ex]{2.5in}{.4pt}
+%    \end{flushleft}\end{minipage} \\
+%    \begin{minipage}{2.5in}\begin{flushright} #2
+%    \end{flushright}\end{minipage}
+%    \end{minipage}\end{flushright}\vspace{.5\baselineskip}}
+%
+% \title{The \Lpack{epigraph} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{After May 2004 at: \texttt{pandgwilson at earthlink dot net}}\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{epigraph} package can be used to typeset a relevant
+% quotation or saying as an \emph{epigraph}, usually just after a
+% sectional heading. Various handles are provided to tweak the appearance.
+% \end{abstract}
+% \tableofcontents
+%
+% \StopEventually{}
+%
+% 
+%
+% \section{Introduction}
+%
+% \tepi{My soul, seek not the life of immortals; but enjoy to the full
+%       the resources that are within your reach}
+%      {\textit{Pythian Odes \\ Pindar}}
+%
+% Some authors like to add an interesting quotation at either the start
+% or end of a section. The \Lpack{epigraph} package provides commands
+% to assist in the typesetting of a single epigraph. Other authors like to 
+% add many such quotations and the package provides environments to
+% cater for these as well.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the package.
+% Commented source code for the package is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{epigraph} package} \label{sec:usc}
+%
+% \tepi{The whole is more than the sum of the parts.}
+%      {\textit{Metaphysica \\ Aristotle}}
+%
+%    The \Lpack{epigraph} package provides commands for typesetting
+% a single epigraph and environments for typesetting a list of epigraphs.
+% Epigraphs can be typeset at either the left, the center or the right of 
+% the typeblock. A few example eipgraphs are exhibited here, and
+% others can be found in an article by
+% Christina Thiele~\cite{TTC199}.
+%
+% \subsection{The \texttt{epigraph} command}
+%
+%  The original inspiration for |\epigraph| was Doug Schenck's
+% for the epigraphs in our book~\cite{EBOOK}. That was hard wired for
+% the purpose at hand. The version here provides much more flexibility.
+%
+%
+%
+% \DescribeMacro{\epigraph}
+%  The command |\epigraph{|\meta{text}|}{|\meta{source}|}| 
+% typesets
+% an epigraph using \meta{text} as the main text of the epigraph and
+% \meta{source} being the original author (or book, article, etc.)
+% of the quoted text. By default the epigraph is placed at the right hand 
+% side of the textblock, and the \meta{source} is typeset at the bottom
+% right of the \meta{text}.
+%
+%
+% \subsection{The \texttt{epigraphs} environment}
+%
+% \DescribeEnv{epigraphs}
+% The |epigraphs| environment typesets a list of epigraphs, and by default
+% places them at the right hand side of the textblock.
+%
+% \DescribeMacro{\qitem}
+%  Each epigraph in the list is specified by a 
+% |\qitem{|\meta{text}|}{|\meta{source}|}| command (analagous to the |\item|
+% command in ordinary list environments).
+% By default, the \meta{source} is typeset at the bottom right of the
+% \meta{text}. 
+%
+% 
+%
+% \subsection{General}
+%
+% \tepi{Example is the school of mankind, and they will learn at no other.}
+%      {\textit{Letters on a Regicide Peace}\\ \textsc{Edmund Burke}}
+%
+%   The commands described in this section apply to both the |\epigraph|
+% command and the |epigraphs| environment. But first of all, note that an
+% epigraph immediately after a heading will cause the first paragraph
+% of the following text to be indented. If you want the initial paragraph
+% to have no indentation, then start it with the |\noindent| command.
+%
+% \DescribeMacro{\epigraphwidth}
+% \DescribeMacro{\textflush}
+%  The epigraphs are typeset in a minipage of width |\epigraphwidth|. The default
+% value for this can be changed using the |\setlength| command. Typically,
+% epigraphs are typset in a measure much less than the width of the textblock.
+% In order to avoid bad line breaks, the \meta{text} is normally typeset 
+% raggedright. 
+% The |\textflush| command controls the \meta{text} typesetting style,
+% and it can be redefined from its default value of
+% \texttt{flushleft} (which produces raggedright). The sensible values
+% are \texttt{center} for centered text, \texttt{flushright} for raggedleft
+% text, and \texttt{flushepinormal} for normal justified text.
+%
+%    If by any chance you want the \meta{text} to be typeset in some
+% other layout style, the easiest
+% way to do this is by defining a new environment which sets the paragraphing
+% parameters to your desired values. For example, as the \meta{text} is
+% typeset in a minipage, there is no paragraph indentation. If you
+% want the paragraphs to be indented and justified then define
+% a new environment like:\\
+% |\newenvironment{myparastyle}{\setlength{\parindent}{1em}}{}| \\
+% and use it as: \\
+% |\renewcommand{\textflush}{myparastyle}|. 
+%
+% \DescribeMacro{\epigraphflush}
+%  As noted, the default position of epigraphs is at the right hand side
+% of the textblock. The positioning is controlled by |\epigraphflush|
+% whose default value is \texttt{flushright}. This can be changed
+% to \texttt{flushleft} for positioning at the left hand side or to
+% \texttt{center} for positioning at the center of the textblock.
+%
+% \DescribeMacro{\sourceflush}
+% The |\sourceflush| command controls the position of the \meta{source}.
+% The default value is \texttt{flushright}. It can be changed to
+% \texttt{flushleft}, \texttt{center} or \texttt{flushepinormal}.
+%
+% For example, to have epigraphs centered with the \meta{source} at the left,
+% add the following to your
+% document (after loading the \Lpack{epigraph} package):
+% \begin{verbatim}
+% \renewcommand{\epigraphflush}{center}
+% \renewcommand{\sourceflush}{flushleft}
+% \end{verbatim}
+%
+% \DescribeMacro{\epigraphsize}
+% Epigraphs are often typeset in a smaller font than the main text. The
+% |\epigraphsize| command sets the font size to be used.
+% If you don't like the default value, change it by redefining the command,
+% for example: \\
+% |    \renewcommand{\epigraphsize}{\footnotesize}|
+%		
+% \DescribeMacro{\epigraphrule}
+% By default, a rule is drawn between the \meta{text} and \meta{source},
+% with the rule thickness being given by the value of |\epigraphrule|.
+% The value can be changed by using the \LaTeX{} |\setlength| command.
+% A value of \texttt{0pt} will eliminate the rule. Personally, I dislike
+% the rule in the list environments.
+%
+% \DescribeMacro{\beforeepigraphskip}
+% \DescribeMacro{\afterepigraphskip}
+% The two |...skip| commands specify the amount of vertical space inserted
+% before and after typeset epigraphs. Again, these can be changed by
+% |\setlength|. It is desireable that the sum of their values should be an 
+% integer multiple of the |\baselineskip|.
+%
+% Note that you can use normal \LaTeX{} commands in the \meta{text} and
+% \meta{source} arguments. You may wish to use different fonts for the
+% \meta{text} (say roman) and the \meta{source} (say italic).
+%
+% The epigraph at the start of this section can be specified as:
+% \begin{verbatim}
+% \epigraph{Example is the school of mankind,
+%           and they will learn at no other.}%
+%  {\textit{Letters on a Regicide Peace}\\ \textsc{Edmund Burke}}
+% \end{verbatim}
+%
+% \subsection{Epigraphs before chapter headings}
+%
+%    The |\epigraph| command and the |epigraphs| environment typeset
+% an epigraph at the point in the text where they are placed. The
+% first thing that a |\chapter| command does is to start off a new page,
+% so another mechanism is provided for placing an epigraph just before
+% a chapter heading.
+%    
+% \DescribeMacro{\epigraphhead}
+%  The |\epigraphhead[|\meta{distance}|]{|\meta{text}|}| stores \meta{text} 
+% for printing at \meta{distance} below the header on a page.
+% \meta{text} can be ordinary text or, more likely, can be either an
+% |\epigraph| command or an |epigraphs| environment. By default, the 
+% epigraph will be typeset at the righthand margin.
+% If the command is immediately preceeded by a |\chapter| or |\chapter*| 
+% command, the epigraph is typeset on the chapter title page.
+%
+%    The default value for the optional \meta{distance} argument is set so
+% that an |\epigraph| consisting of a single line of quotation and a single
+% line denoting the source is aligned with the bottom of the `Chapter X'
+% line produced by the |\chapter| command. In other cases you will
+% have to experiment with the \meta{distance} value. The value for
+% \meta{distance} can be either a integer or a real number. The units
+% are in terms of the current value for |\unitlength|. A typical value
+% for \meta{distance} for a single line quotation and source for 
+% a |\chapter*| might be about 70 (points). A positive value
+% of \meta{distance} places the epigraph below the page heading and a negative
+% value will raise it above the page heading.
+%
+%    Here's some example code:
+% \begin{verbatim}
+% \chapter*{Celestial navigation}
+% \epigraphhead[70]{\epigraph{Star crossed lovers.}{\textit{The Bard}}}
+% \end{verbatim}
+%
+% The |\epigraphhead| command changes the page style for the page on
+% which it is specified, so there should be no text between the
+% |\chapter| and the |\epigraphhead| commands.
+%
+% The \meta{text} argument is put into a minipage of width |\epigraphwidth|.
+% If you use something other than |\epigraph| or |epigraphs| for the
+% \meta{text} argument, you may have to so some positioning of the text
+% yourself so that it is properly located in the minipage. For example
+% \begin{verbatim}
+% \chapter{Short}
+% \renewcommand{\epigraphflush}{center}
+% \epigraphhead{\centerline{Short quote}}
+% \end{verbatim}
+%
+% \changes{v1.3}{1999/12/01}{Added description of dropchapter and undodrop}
+% \DescribeMacro{\dropchapter}
+% \DescribeMacro{\undodrop}
+% If a long epigraph is placed before a chapter title it is possible that the
+% bottom of the epigraph may interfere with the chapter title. The command
+% |\dropchapter{|\meta{length}|}| will lower any subsequent chapter titles by 
+% \meta{length}; a negative \meta{length} will raise the titles.
+% The command |\undodrop| restores subsequent chapter titles to their default
+% positions. For example:
+% \begin{verbatim}
+% \dropchapter{2in}
+% \chapter{Title}
+% \epigraphhead{long epigraph}
+% \undodrop
+% \end{verbatim}
+%
+% \changes{v1.2}{1999/09/12}{Added description of cleartoevenpage uses}
+% \DescribeMacro{\cleartoevenpage}
+% On occasions it may be desirable to put something (e.g., an epigraph, a map,
+% a picture) on the page facing the start
+% of a chapter, where the something belongs to the chapter that is about to 
+% start rather than the chapter that has just ended. In order to do this 
+% in a document that is going to be printed
+% doublesided, the chapter must start on an odd numbered page and the 
+% pre-chapter material put on the immediately preceeding even numbered page.
+% The |\cleartoevenpage| command is like the |\cleardoublepage| except
+% that the page following the command will be an even numbered page, and the
+% command takes an optional argument, i.e., |\cleartoevenpage{|[arg|]|,
+% which is applied to the skipped page (if any).
+%
+%    Here is an example:
+% \begin{verbatim}
+% ... end previous chapter.
+% \cleartoevenpage
+% \begin{center}
+% \begin{picture}... \end{picture}
+% \end{center}
+% \chapter{Next chapter}
+% \end{verbatim}
+% If the style is such that chapter headings are put at the top of the pages,
+% then it would be advisable to include |\thispagestyle{empty}| (or |plain|)
+% immediately after |\cleartoevenpage| to avoid a heading related to the
+% previous chapter from appearing on the page. 
+%
+% If the something is like a figure with a numbered caption and the numbering
+% depends on the chapter numbering, then the numbers have to be hand set (unless
+% you define a special chapter command for the purpose). For example:
+% \begin{verbatim}
+% ... end previous chapter.
+% \cleartoevenpage[\thispagestyle{empty}] % skipped page, if any, to be empty
+% \thispagestyle{plain}
+% \addtocounter{chapter}{1} % increment the chapter number
+% \setcounter{figure}{0}    % initialise figure counter
+% \begin{figure}
+% ...
+% \caption{Pre chapter figure}
+% \end{figure}
+%
+% \addtocounter{chapter}{-1} % decrement the chapter number
+% \chapter{Next chapter}     % increments chapter number, initialises figure number
+% \addtocounter{figure}{1}   % to account for pre-chapter figure
+% \end{verbatim}
+% 
+%
+% \subsection{Epigraphs on Part pages}
+%
+%     The \Lpack{epigraph} package as it stands cannot put an epigraph on the
+% same page as a |\part| or |\part*| title page in 
+% a \Lpack{book} or \Lpack{report} class. This is because the |\part| command
+% internally does some page flipping before and after the title page.
+% However, it is easy enough to put epigraphs on part pages.
+%
+% \begin{itemize}
+% \item Create a file called, say, \file{epipart.sty} which looks like this:
+% \begin{verbatim}
+% % epipart.sty
+% \let\@epipart\@endpart
+% \renewcommand{\@endpart}{\thispagestyle{epigraph}\@epipart}
+% \endinput
+% \end{verbatim}
+%
+% \item Start your document like:
+% \begin{verbatim}
+% \documentclass[...]{...}
+% \usepackage{epigraph}
+% \usepackage{epipart}
+% \end{verbatim}
+%
+% \item Immediately \emph{before} each |\part| command put an 
+% |\epigraphhead| command. For example:
+% \begin{verbatim}
+% \epigraphhead[300]{Epigraph text}
+% \part{Part title}
+% \end{verbatim}
+% The value of the optional argument may need changing to vertically adjust
+% the position of the epigraph. If there is any |\part| that does not have an
+% epigraph then an empty |\epigraphhead| command (i.e., |\epigraphhead{}|)
+% must be placed immediately befor the |\part| command.
+%
+% \end{itemize}
+%
+%     A similar scheme may be used for epigraphs on other kinds of pages. 
+% The essential
+% trick is to make sure that the \pstyle{epigraph} pagestyle is used for
+% the page.
+%
+%
+% \subsection{Epigraphed bibliographies}
+% \changes{v1.2}{1999/09/12}{Added application of an epigraph to a bibliography}
+% One author asked how to associate an epigraph with his bibliography. The
+% following is one way to do it (the example is based on the book class).
+% \begin{enumerate}
+% \item Copy the definition of the |thebibliography| environment from 
+% \file{book.cls} to your own file called, say \file{epibib.sty}.
+%
+% \item Edit \file{epibib.sty} to include the definition of a vacuous
+% command called, say, |\bibadd|. Edit the definition of the |thebibliography|
+% to include |\bibadd| immediately before the |\list| command. The relevant
+% portions of \file{epibib.sty} will look like this:
+% \begin{verbatim}
+% % epibib.sty
+% ...
+% \newcommand{\bibadd}{}
+% \renewenvironment{thebibliography}[1]
+%   {\chapter*{\bibname
+%      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}%
+%    \bibadd
+%    \list{\@biblabel .....
+% \end{verbatim}
+%
+% \item In your document, start it off like this:
+% \begin{verbatim}
+% \documentclass...
+% \usepackage{epigraph}
+% \usepackage{epibib}
+% \end{verbatim}
+% At the point where the bibliography is to go, do something like the following:
+% \begin{verbatim}
+% ...
+% \newcommand{\bepi}{<definition of epigraph>}
+% \renewcommand{\bibadd}{\bepi}
+% \bepi  % seems to be required if using \epigraphhead in \bepi
+% \begin{thebibliography}{...} % or \bibliography{...}
+% ...
+% \end{verbatim}
+% \end{enumerate}
+%    The same idea can be applied to document elements like an abstract or an
+% index. Of course |\bibadd| can be defined to be anything you want to typeset
+% between the bibliography heading and the start of the reference list.
+%
+%
+% \section{The package code} \label{sec:code}
+%
+% \tepi{And now for something completely different.}{\textit{Monty Python}}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{epigraph}[2002/10/22 v1.5a typesetting epigraphs]
+%    \end{macrocode}
+%
+% \begin{macro}{\beforeepigraphskip}
+% \begin{macro}{\afterepigraphskip}
+% \begin{macro}{\epigraphwidth}
+% \begin{macro}{\epigraphrule}
+%    The several length commands, which can be changed by the user with
+% |\setlength|.
+%    \begin{macrocode}
+\newlength{\beforeepigraphskip}
+  \setlength{\beforeepigraphskip}{.5\baselineskip}
+\newlength{\afterepigraphskip}
+  \setlength{\afterepigraphskip}{.5\baselineskip}
+\newlength{\epigraphwidth}
+  \setlength{\epigraphwidth}{.4\textwidth}
+\newlength{\epigraphrule}
+  \setlength{\epigraphrule}{.4\p@}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\epigraphsize}
+%    The size of the font to be used.
+%    \begin{macrocode}
+\newcommand{\epigraphsize}{\small}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\epigraphflush}
+% \begin{macro}{\textflush}
+% \begin{macro}{\sourceflush}
+%  The three commands to position epigraphs in the textblock and to position
+%  the components of the epigraph.
+%    \begin{macrocode}
+\newcommand{\epigraphflush}{flushright}
+\newcommand{\textflush}{flushleft}
+\newcommand{\sourceflush}{flushright}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{environment}{flushleftright}
+%    An environment for |\textflush| to use normal minipage typesetting. It
+% is vacuous. Defining this was a mistake as the \Lpack{ccaption}
+% package also defines |\flushleftright|.
+% \changes{v1.5a}{2002/10/22}{Made flushleftright environment an error}
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \@ifundefined{flushleftright}{%
+    \newenvironment{flushleftright}{%
+      \PackageError{epigraph}%
+      {The flushleftright environment has been removed.\MessageBreak
+       Use the flushepinormal environment instead}{\@ehc}}{}}%
+    {\PackageWarningNoLine{epigraph}%
+     {flushleftright has been previously defined.\MessageBreak
+      Use flushepinormal for epigraphs instead}}}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{flushepinormal}
+%    An environment for |\textflush| to use normal minipage typesetting. It
+% is vacuous.
+% \changes{v1.5a}{2002/10/22}{Added flushepinormal environment}
+%    \begin{macrocode}
+\newenvironment{flushepinormal}{}{}
+
+%    \end{macrocode}
+% \end{environment}
+%
+%
+% \begin{macro}{\@epirule}
+%  The internal command to draw a rule between text and source.
+%    \begin{macrocode}
+\newcommand{\@epirule}{\rule[.5ex]{\epigraphwidth}{\epigraphrule}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@epitext}
+% The internal command to typeset the \meta{text}. Put it into a minipage of the
+% right size and typeset per |\textflush|.
+%    \begin{macrocode}
+\newcommand{\@epitext}[1]{%
+  \begin{minipage}{\epigraphwidth}\begin{\textflush} #1\\
+%    \end{macrocode}
+%  Draw a rule if it will be visible, otherwise add some extra vertical space.
+%    \begin{macrocode}
+    \ifdim\epigraphrule>\z@ \@epirule \else \vspace*{1ex} \fi
+  \end{\textflush}\end{minipage}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@episource}
+%    The internal command for typesetting the \meta{source}, which is put 
+% into a minipage and typeset according to |\sourceflush|.
+%    \begin{macrocode}
+\newcommand{\@episource}[1]{%
+  \begin{minipage}{\epigraphwidth}\begin{\sourceflush} #1\end{\sourceflush}
+  \end{minipage}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\epigraph}
+%    Having got the preliminaries out of the way, here's the user command
+% for a single epigraph. This is set in a minipage to prevent breaking
+% across a page. Position it according to |\epigraphflush|.
+%    \begin{macrocode}
+\newcommand{\epigraph}[2]{\vspace{\beforeepigraphskip}
+  {\epigraphsize\begin{\epigraphflush}\begin{minipage}{\epigraphwidth}
+    \@epitext{#1}\\ \@episource{#2}
+    \end{minipage}\end{\epigraphflush}
+    \vspace{\afterepigraphskip}}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\qitem}
+% \begin{macro}{\qitemlabel}
+%    |\qitem| is the epigraph list version of |\item|. 
+% Set everything inside a minipage.
+%    \begin{macrocode}
+\newcommand{\qitem}[2]{{\raggedright\item \begin{minipage}{\epigraphwidth}
+  \@epitext{#1}\\ \@episource{#2}
+  \end{minipage}}}
+%    \end{macrocode}
+%  |\qitemlabel| is needed for a list as well. It is not going to 
+% typeset anything.
+%    \begin{macrocode}
+\newcommand{\qitemlabel}[1]{\hfill}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{environment}{epigraphs}
+%  Now for the epigraph list. This is defined in terms of a |list|
+% environment. 
+%    \begin{macrocode}
+\newenvironment{epigraphs}{%
+%    \end{macrocode}
+% Do the vertical space, set the font size, position according to 
+% |\epigraphflush|, and put everyting into a minipage.
+%    \begin{macrocode}
+  \vspace{\beforeepigraphskip}\begin{\epigraphflush}
+  \epigraphsize
+  \begin{minipage}{\epigraphwidth}
+   \list{}%
+%    \end{macrocode}
+%  Make the list just fit the minipage (i.e., no indents).
+%    \begin{macrocode}
+    {\itemindent\z@ \labelwidth\z@ \labelsep\z@
+     \leftmargin\z@ \rightmargin\z@
+     \let\makelabel\qitemlabel}}%
+  {\endlist\end{minipage}\end{\epigraphflush}
+   \vspace{\afterepigraphskip}}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{Epigraphs before a chapter title}
+%
+% \begin{macro}{\cleartoevenpage}
+% Like |\cleardoublepage| except that it skips pages until an even one, and
+% its optional argument is applied to the skipped page, if any.
+% The code is based on the kernel |\cleardoublepage| in \file{ltoutput.dtx}.
+% \changes{v1.2}{1999/09/12}{Added \cs{cleartoevenpage} command}
+% \changes{v1.5}{2000/02/20}{Added optional arg to \cs{cleartoevenpage}}
+%    \begin{macrocode}
+\providecommand{\cleartoevenpage}[1][\@empty]{%
+  \clearpage%
+  \ifodd\c@page\hbox{}#1\clearpage\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@epichapapp}
+% \begin{macro}{\dropchapter}
+% \begin{macro}{\undodrop}
+% \changes{v1.3}{1999/12/01}{Defined chapter dropping and support commands}
+%    Commands to drop and restore positions of chapter titles. Dropping is
+% accomplished by inserting vertical space before the |\@chapapp| command.
+%    \begin{macrocode}
+\newcommand{\dropchapter}[1]{%
+  \let\@epichapapp\@chapapp
+  \renewcommand{\@chapapp}{\vspace*{#1}\@epichapapp}}
+\newcommand{\undodrop}{\let\@chapapp\@epichapapp}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% Placing an epigraph before a chapter title uses the scheme outlined
+% by Piet van Oostrum~\cite{OOSTRUM96}. This is to put a zero sized
+% picture into the page header. 
+%
+% \begin{macro}{\if@epirhs}
+% \begin{macro}{\if@epicenter}
+%  Two booleans for testing whether an epigraph is to be at the RH margin,
+% centered, or at the LH margin. The default is RH margin.
+%    \begin{macrocode}
+\newif\if@epirhs     \@epirhstrue
+\newif\if@epicenter  \@epicentertrue
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@epipos}
+%    This routine sets the |\if@epi...| booleans according to the value of
+% |\epigraphflush|. If |\epigraphflush| is neither |center| nor |flushleft|
+% then it defaults to |flushright|. We have to use this to be upward 
+% compatible with |\epigraphflush| being set by the user with |\renewcommand|.
+%    \begin{macrocode}
+\newcommand{\@epipos}{
+  \long\def\@ept{flushleft}
+  \ifx\epigraphflush\@ept
+    \@epirhsfalse \@epicenterfalse
+  \else
+    \long\def\@ept{center}
+    \ifx\epigraphflush\@ept
+      \@epirhsfalse \@epicentertrue
+    \else
+      \@epirhstrue  \@epicenterfalse
+    \fi
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\epigraphhead}
+% |\epigraphhead[|\meta{distance}|]{|\meta{text}|}| puts \meta{text} at
+% \meta{distance} (a number, not a length) below the header at the 
+% page position specified by |\epigraphflush|.
+%    \begin{macrocode}
+\newcommand{\epigraphhead}[2][95]{%
+%    \end{macrocode}
+% We have to use |\def| instead of the normal \LaTeX{} definition commands
+% as we will keep on
+% (re)defining things. For reasons that are not fully clear to me \LaTeX{}
+% doesn't seem to like me using a |\savebox| for storing the epigraph text,
+% so I'll use a command instead.
+%    \begin{macrocode}
+  \def\@epitemp{\begin{minipage}{\epigraphwidth}#2\end{minipage}}
+%    \end{macrocode}
+% Define an |epigraph| page style.
+%    \begin{macrocode}
+  \def\ps@epigraph{\let\@mkboth\@gobbletwo
+%    \end{macrocode}
+% There are three possible definitions for |\@oddhead| depending on the
+% value of |\epigraphflush|. We call |\@epipos| to decide which one to do.
+%    \begin{macrocode}
+    \@epipos
+    \if@epirhs
+      \def\@oddhead{\hfil\begin{picture}(0,0)
+                         \put(0,-#1){\makebox(0,0)[r]{\@epitemp}}
+                         \end{picture}}
+    \else
+      \if@epicenter
+        \def\@oddhead{\hfil\begin{picture}(0,0)
+                           \put(0,-#1){\makebox(0,0)[b]{\@epitemp}}
+                           \end{picture}\hfil}
+      \else
+        \def\@oddhead{\begin{picture}(0,0)
+                           \put(0,-#1){\makebox(0,0)[l]{\@epitemp}}
+                           \end{picture}\hfil}
+      \fi
+    \fi
+    \let\@evenhead\@oddhead
+    \def\@oddfoot{\reset@font\hfil\thepage\hfil}
+    \let\@evenfoot\@oddfoot}
+%    \end{macrocode}
+% Make |epigraph| be the page style for this page.
+%    \begin{macrocode}
+  \thispagestyle{epigraph}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[vO96]{OOSTRUM96}
+% Piet van Oostrum
+% \newblock {\em Page layout in \LaTeX}, June 1996.
+% \newblock (Available from CTAN as file \texttt{fancyhdr.tex}).
+%
+% \bibitem[SW94]{EBOOK}
+% Douglas Schenck and Peter Wilson.
+% \newblock {\em Information Modeling the EXPRESS Way}.
+% \newblock Oxford University Press, 1994 (ISBN 0-19-508714-3).
+%
+% \bibitem[Thi99]{TTC199}
+% Christina Thiele.
+% \newblock \emph{The Treasure Chest: Package tours from CTAN},
+% \newblock TUGboat, vol.~20, no.~1, pp~53--58, March 1999.
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

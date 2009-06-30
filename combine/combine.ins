@@ -1,7 +1,7 @@
-%% abstract.ins
-%% Author: Peter Wilson, Herries Press
-%% Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-%% Copyright 2000 --- 2009 Peter R. Wilson
+%% combine.ins
+%% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%%                            (or at: pandgwilson at earthlink dot net) 
+%% Copyright 2000, 2003, 2004 Peter R. Wilson
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either
@@ -12,8 +12,7 @@
 %% and version 1.3 or later is part of all distributions of
 %% LaTeX version 2003/06/01 or later.
 %%
-%% This work has the LPPL maintenance status "maintained".
-%% The Current Maintainer of this work is Will Robertson.
+%% This work has the LPPL maintenance status "author-maintained".
 %%
 %% This work consists of the files listed in the README file.
 %%
@@ -24,17 +23,15 @@
 %%
 %%
 %%
-%%
 %% --------------- start of docstrip commands ------------------
 %%
-\def\batchfile{abstract.ins}
+\def\batchfile{combine.ins}
 \input docstrip.tex
 \preamble
 
------------------------------------------------------------------ 
-  Author: Peter Wilson, Herries Press
-  Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-  Copyright 2000 --- 2009 Peter R. Wilson
+  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com
+                             (or at: pandgwilson at earthlink dot net) 
+  Copyright 2000, 2001, 2002, 2003 Peter R. Wilson
  
   This work may be distributed and/or modified under the
   conditions of the LaTeX Project Public License, either
@@ -45,31 +42,43 @@
   and version 1.3 or later is part of all distributions of
   LaTeX version 2003/06/01 or later.
  
-  This work has the LPPL maintenance status "maintained".
-  The Current Maintainer of this work is Will Robertson.
+  This work has the LPPL maintenance status "author-maintained".
  
   This work consists of the files listed in the README file.
------------------------------------------------------------------ 
 
 \endpreamble
 
 \keepsilent
-\askforoverwritefalse
-\generate{\file{abstract.sty}{\from{abstract.dtx}{usc}}}
+
+%%% \Msg{*** Generating the driver file ***}
+%%% \generateFile{combine.drv}{t}{\from{combine.dtx}{driver}}
+
+\Msg{*** Generating the LaTeX2e class file ***}
+
+\generateFile{combine.cls}{t}{\from{combine.dtx}{usc}}
+
+\Msg{*** Generating the LaTeX2e package files ***}
+
+\generateFile{combinet.sty}{t}{\from{combine.dtx}{pck}}
+\generateFile{combnat.sty}{t}{\from{combine.dtx}{natpack}}
+\generateFile{combcite.sty}{t}{\from{combine.dtx}{citepack}}
 
 \Msg{***********************************************************}
 \Msg{*}
 \Msg{* To finish the installation you have to move the following}
 \Msg{* file(s) into a directory searched by TeX:}
 \Msg{*}
-\Msg{* \space\space abstract.sty}
+\Msg{* \space\space combine.cls}
+\Msg{* \space\space combinet.sty}
+\Msg{* \space\space combnat.sty}
+\Msg{* \space\space combcite.sty}
 \Msg{*}
 \Msg{*}
 \Msg{* To produce the documentation run the files ending with}
 \Msg{* `.dtx' through LaTeX.}
-\Msg{* For an index, process any name.idx file by:}
+\Msg{* Process any name.idx file by:}
 \Msg{* \space\space\space\space makeindex -s gind.ist name}
-\Msg{* For a list of changes, process any name.glo file by:}
+\Msg{* Process any name.glo file by:}
 \Msg{* \space\space\space\space makeindex -s gglo.ist -o name.gls name.glo}
 \Msg{*}
 \Msg{* Happy TeXing}

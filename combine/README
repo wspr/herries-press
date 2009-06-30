@@ -1,0 +1,122 @@
+    The combine class lets you bundle individual documents into
+a single document, such as when preparing a conference proceedings.
+
+    The auxiliary combinet package puts the titles and authors from
+\maketitle commands into the main document's table of contents and the
+combnat package enables the combine class and the natbib package
+to be used harmoniously together. The auxiliary combcite package
+provides a version of the cite package for use with the combine class.
+
+Minor change in the manual's abstract (2004/05/07)
+
+Changes in version 0.2a of combinet.sty (2004/03/06)
+o Minor internal change to ease hyperref pain
+
+Changes in version 1.0 of combcite.sty (2003/11/09)
+o First public release
+
+Changes in version 0.52 of combine.cls (2003/11/09)
+o Added `memoir' to the class options
+
+Changes in version 0.51 of combine.cls (2003/07/17)
+o Added macro to fix stack overflow for the combination:
+  pdflatex + combine + graphicx + caption2
+
+Changes in version 0.21 of combnat.sty (2003/05/22)
+o Removed extraneous space from year citation.
+
+Changes in version 0.5 of combine.cls
+       and version 0.2 of combnat.sty (2002/08/24)
+o Added options for individual bibliographies, a global bibliography,
+  or both local bibliographies and a global combined bibliography.
+
+Changes in version 0.45 of combine.cls 
+       and version 0.2 of combinet.sty (2001/09/05)
+o Fixed ToC alignment problem
+
+Changes in version 0.44 of combine.cls (2001/08/25)
+o Imported documents can now use a class that \LoadClass another class.
+
+Changes in version 0.43 of combine.cls (2001/07/09)
+o Removed the feature that the \appendix command changed the
+  numbering scheme in all subsequent imported documents
+o ToC additions are now in predefined order instead of
+  input order
+
+Changes in version 0.1 of combnat.sty (2001/07/03)
+o First public release
+
+Changes in version 0.42 of combine.cls (2001/04/04)
+o Fixed incompatibility with the fancyhdr package
+o Reduced, and hopefully eliminated, a pagebreak problem in the ToC
+
+Changes in version 0.41 of combine.cls (2000/06/18)
+o Cooperates with the abstract and titling packages
+
+Changes in version 0.4 of combine.cls (2000/05/27)
+o Added book option
+o Extra options for ToC contents and more flexible ToC formatting
+o Counters are now reset for each imported document
+o Reduced the save stack size required for latexing combine.dtx
+
+Changes in version 0.3 of combine.cls: (2000/05/20)
+o \newtheorem is now catered for
+o Control over the \maketitle formatting
+o Improved documentation
+
+Changes in version 0.2 of combine.cls: (2000/05/07)
+o Renamed as combine class instead of collection class
+o Improved documentation
+
+Changes in version 0.1 of combinet.sty: (2000/05/07)
+o First public release
+
+----------------------------------------------------------------- 
+  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+                             (or at: pandgwilson at earthlink dot net) 
+  Copyright 2001, 2002, 2003, 2004 Peter R. Wilson
+ 
+  This work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either
+  version 1.3 of this license or (at your option) any 
+  later version.
+  The latest version of the license is in
+     http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+ 
+  This work has the LPPL maintenance status "author-maintained".
+ 
+  This work consists of the following files:
+README (this file)
+combine.dtx
+combine.ins
+combine.pdf
+  and the derived files:
+combine.cls
+combinet.sty
+combnat.sty
+
+----------------------------------------------------------------- 
+
+    The distribution consists of the following files:
+README (this file)
+combine.dtx
+combine.ins
+combine.pdf (user manual)
+
+    To install the distribution:
+o run: latex combine.ins (which will generate combine.cls,
+                          combinet.sty and combnat.sty)
+o run: latex combine.dtx
+o For an index, run: makeindex -s gind.ist combine
+o run: latex combine.dtx
+o Print combine.dvi for a hardcopy of the user manual 
+o Move combine.cls, combinet.sty and combnat.sty to locations 
+  where LaTeX will find them (The FAQ on CTAN in /help/uktug-FAQ
+  gives more information about this magic place).
+
+
+2004/05/07
+Peter Wilson
+peter.r.wilson@boeing.com

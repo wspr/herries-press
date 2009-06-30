@@ -1,0 +1,4185 @@
+% \iffalse meta-comment
+%
+% combine.dtx
+% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%                            (or at: pandgwilson at earthlink dot net) 
+% Copyright 2000, 2001, 2002, 2003, 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass[twoside]{ltxdoc}
+\makeatletter \@mparswitchfalse \makeatother
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\renewcommand{\MakeUppercase}[1]{#1}
+\pagestyle{headings}
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{combine.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{3866}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v0.1}{2000/04/29}{First public release as `collection' class}
+% \changes{v0.2}{2000/05/07}{First public release with class changed to `combine'}
+% \changes{v0.3}{2000/05/20}{Fix newtheorem and letter class}
+% \changes{v0.3}{2000/05/20}{Add title formatting}
+% \changes{v0.4}{2000/05/27}{Reset counters, ToC formatting}
+% \changes{v0.41}{2000/06/18}{Added and used \cs{appendiargdef}}
+% \changes{v0.42}{2001/04/04}{Fixed(?) problem with fancyhdr package}
+% \changes{v0.5}{2001/07/03}{Added the combnat package}
+% \changes{v0.51}{2001/07/09}{Fixed problem with \cs{appendix} in imports}
+% \changes{v0.51}{2001/07/09}{Fixed problem with ordering of 
+%                             \cs{coltocauthor} and \cs{coltoctitle}}
+% \changes{v0.52}{2001/08/25}{Fixed problem with `wrapped class' imports}
+% \changes{v0.53}{2001/09/05}{Fixed problem with spaces in ToC entries}
+% \changes{v0.54}{2001/12/19}{Added text about exam class}
+% \changes{v0.6}{2002/08/24}{Added option for single bibliography}
+% \changes{v0.61}{2003/05/22}{Minimal tweak to combnat}
+% \changes{v0.62}{2003/07/19}{Minimal addition to combine}
+% \changes{v0.63}{2003/11/09}{Memoir option added to combine}
+% \changes{v0.63}{2003/11/09}{Added the combcite package}
+% \changes{v0.64}{2004/03/06}{Minor change to combinet package}
+% \changes{v0.64a}{2004/05/07}{Minor change to the abstract}
+%
+% \def\dtxfilename{\texttt{combine.dtx}}
+% ^^A \def\fileversion{v0.3}
+% ^^A \def\filedate{2000/05/20}
+% ^^A \def\fileversion{v0.4}
+% ^^A \def\filedate{2000/05/27}
+% ^^A \def\fileversion{v0.41}
+% ^^A \def\filedate{2000/06/18}
+% ^^A \def\fileversion{v0.42}
+% ^^A \def\filedate{2001/04/04}
+% ^^A \def\fileversion{v0.51}
+% ^^A \def\filedate{2001/07/09}
+% ^^A \def\fileversion{v0.52}
+% ^^A \def\filedate{2001/08/25}
+% \def\fileversion{v0.53} \def\filedate{2001/09/05}
+% \def\fileversion{v0.6} \def\filedate{2002/08/24}
+% \def\fileversion{v0.61} \def\filedate{2003/05/22}
+% \def\fileversion{v0.62} \def\filedate{2003/07/19}
+% \def\fileversion{v0.63} \def\filedate{2003/11/09}
+% \def\fileversion{v0.64} \def\filedate{2004/03/06}
+% \def\fileversion{v0.64a} \def\filedate{2004/05/07}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{combine} class and the \Lpack{combinet}, 
+%       \Lpack{combnat} and \Lpack{combcite} packages\thanks{This file (\dtxfilename)
+%       has version number \fileversion, last revised \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{Dick Nickalls (\texttt{dicknickalls@compuserve.com})
+%   provided several requirements and suggestions.
+%   He also very helpfully tested earlier experimental versions.}\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}\thanks{After May 2004 at
+%  \texttt{pandgwilson at earthlink dot net}}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{combine} class can be used to assemble a group
+% of individual \LaTeX{} documents into a single document,
+% such as required for a conference proceedings. Typically the documents
+% are all of the same class, but with some limitations on ordering
+% may be of different classes (e.g., several \Lpack{article}s with 
+% one \Lpack{letter}).
+% The class requires the \Lpack{keyval} package.
+%
+% The accompanying \Lpack{combinet} and \Lpack{combnat} packages 
+% respectively let
+% the titles of imported documents be added to the main ToC, and
+% enable the \Lpack{combine} class and the \Lpack{natbib} package
+% to cooperate. The \Lpack{combcite} package enables the \Lpack{cite}
+% package to cooperate.
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+% Questions about making a collection of different articles into a single
+% document 
+% seem to pop up fairly regularly on the
+% \texttt{comp.text.tex} newsgroup. 
+%  The \Lpack{combine} class provides a solution for this problem.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{combine} class and
+% Sections~\ref{pack} and~\ref{natpack} describe the \Lpack{combinet} 
+% and \Lpack{combnat} packages. Section~\ref{citepack} describes
+% the \Lpack{combcite} package.
+% Commented source code for the class is in Section~\ref{sec:code}.
+% The class requires the \Lpack{keyval} package to be available.
+% Commented source code for the \Lpack{combinet} package is in 
+% Section~\ref{packcode}, for \Lpack{combnat} is in 
+% Section~\ref{natpackcode} and for \Lpack{combcite} is in
+% Section~\ref{citepackcode}.
+%
+%    Note that the version number and date given for this file does not
+% necessarily match version numbers or dates for the class and packages.
+%
+% \section{The \Lpack{combine} class} \label{sec:usc}
+%
+%    The \Lpack{combine} class enables a group of individual
+% \LaTeX{} documents to be imported and assembled into a single document. All
+% the individual documents should be of the same class (e.g., all
+% \Lpack{article} or all \Lpack{report}). 
+%
+%    Sectioning, cross-referencing, bibliographies, etc., are local within
+% each imported document. Various means are provided for controlling local
+% Table of Contents, the format of |\maketitle|, and so on, without having
+% to make any changes to the original of an imported document.
+%
+%    Here is a simple example file which might be the skeleton for a
+% conference proceedings.
+% \begin{verbatim}
+% \documentclass[11pt]{combine}
+%
+% \title{Proceedings of the ...}
+% \author{A. N. Editor\thanks{Support ...}}
+% \date{29 February, 2000}
+%
+% \begin{document}
+% \pagestyle{combine}        % use the combine page style
+% \maketitle                 % main title
+% \tableofcontents           % main ToC
+% \clearpage
+% 
+% \section{Editor's introduction} \label{intro}  % into main ToC (section 1)
+% 
+%     In the article by A.~N.~Author on page~\pageref{art1} ...
+% 
+% \begin{papers}                  % start of individual articles/papers
+% \coltoctitle{An article}        % first article title into main ToC
+% \coltocauthor{A.~N.~Author}     % first authors into main ToC
+% \label{art1}
+% \import{art1}                   % first article, may have own ToC, 
+%                                 % bibliography, etc.
+% \coltoctitle{Another article}   
+% \coltocauthor{A.~N.~Other}
+% \label{art2}
+% \import{art2}
+% \end{papers}                    % end of individual articles/papers
+% 
+% \clearpage
+% \section{Acknowledgements}      % into main ToC (section 2)
+% 
+%     Among the many ...
+% 
+% \end{document}
+% \end{verbatim}
+%
+% \subsection{Class options}
+%
+%    As well as providing all the class options appropriate for
+% the class of the individual documents, the \Lpack{combine}
+% class provides the following additional options:
+% \begin{itemize}
+% \item \Lopt{memoir}, \Lopt{book}, \Lopt{report}, and \Lopt{letter}. 
+%       By default the \Lpack{article}
+%       class is assumed for both the main and the imported documents.
+%       These options change the class to \Lpack{memoir}, \Lpack{book}, \Lpack{report} or
+%       \Lpack{letter}, respectively.
+% \item \Lopt{colclass=\meta{class}}. This option changes
+%       the `classes' to \meta{class}. For example, specifying
+%       |colclass=phdthesis| will use the \Lpack{phdthesis} 
+%       class\footnote{Whatever that is.} definitions
+%       throughout the entire document.
+%
+%       Note that if you use this option there are likely to be \LaTeX{}
+%       warnings about \texttt{Unused global option(s): [colclass=\ldots]}.
+%
+% \item \Lopt{classes}. This option enables the imported documents
+%       to be of different classes. For example, embedding a letter
+%       into a compendium of articles. Using this option may
+%       induce a plethora of \LaTeX{} errors and the printed results
+%       may be unpredictable. If this happens, try hitting `q' to 
+%       put \LaTeX{} into
+%       its `quiet batch' processing mode and then examine the typeset result
+%       for usability. 
+%
+%         Different classes of imported documents should not be mixed
+%       within a single |papers| environment. Also, imported documents
+%       whose class is the same but which differs from the main class 
+%       should be within a single |papers| environment. For example,
+%       if several letters are to be imported into a collection
+%       of articles, the letters must not be scattered between different
+%       |papers| environments, although the imported articles can be 
+%       scattered.
+%
+% \item \Lopt{packages}. By default all |\usepackage| commands in
+%       imported documents are ignored. If this is not desired,
+%       then the \Lopt{packages} option will enable the imported 
+%       |\usepackage| commands(s). If this option is used, then only
+%       the first occurrence of a package is actually used and is not
+%       available to any later imported documents. 
+%
+%       Generally speaking, it is advisable to put all |\usepackage|
+%       commands into the preamble of the main document.
+%
+% \item \Lopt{layouts}. By default, a single setting of the 
+%       page layout is used throughout the document. The \Lopt{layouts}
+%       option takes account of any changes to the |\textwidth|, 
+%       |\textheight|, etc., in the imported documents.
+%
+% \item \Lopt{folios}. The page numbers are sequential throughout
+%       the document. When the |plain| page style is used, the 
+%       \Lopt{folios} option will display the
+%       local page numbers of imported documents as well as the
+%       the main page number. This may have unfortunate consequences
+%       on the page numbers in ToC, etc., entries as they may well
+%       refer to local rather than global page numbers.
+%
+% \item \Lopt{notoc}. Disables the inclusion of a Table of Contents
+%       in any imported document.
+% \item \Lopt{nolof}. Disables the inclusion of a List of Figures
+%       in any imported document.
+% \item \Lopt{nolot}. Disables the inclusion of a List of Tables
+%       in any imported document.
+% \item \Lopt{maintoc}. Adds all imported documents ToC, LoF, LoT, etc.,
+%       entries to the main document ToC, LoF, \ldots
+% \item \Lopt{notitle}. Disables title printing by any |\maketitle|
+%       in any imported document.
+% \item \Lopt{noauthor}. Disables author printing by any |\maketitle|
+%       in any imported document.
+% \item \Lopt{date}. By default, date printing by any |\maketitle|
+%       in any imported document is disabled. This option causes
+%       the date(s) to be printed.
+% \item \Lopt{nomaketitle}. Disables all printing by any |\maketitle|
+%       in any imported document. 
+% \item \Lopt{nopubindoc}. Disables the printing of the |\published|
+%       information within an imported document.
+% \item \Lopt{nopubintoc}. Disables the printing of the |\published|
+%       information within the main ToC.
+% \item \Lopt{onebib}. Disables imported bibliographies and puts all
+%       citations in the main document's bibliography.
+% \item \Lopt{combinedbib}. Individual imported bibliographies and 
+%       also all citations put into the main document's bibliography.
+% \end{itemize}
+%
+% The \Lpack{combine}
+% class may be able to incorporate any class of imported documents by
+% setting an appropriate value for the \Lopt{colclass} option and perhaps
+% doing some additional work.
+%
+% For example, if you want to have a collection of examination papers
+% which were each is originally produced using the \Lpack{exam} class, 
+% then start off with: \\
+% |\documentclass[...,colclass=exam]{combine} | \\
+% The \Lpack{exam} class, though, does a couple of things that prevent
+% \Lpack{combine} and \Lpack{exam} from working well together:
+% \begin{itemize}
+% \item \Lpack{exam} has its own version of |\section| which is totally at
+%     odds with the normal \Lpack{article} definition, and |\section*| is
+%     used by the |\tableofcontents| command.
+% \item \Lpack{exam} does wonderful things at the end of a document. This
+% is alright for imported documents in a |papers| environment but is an
+% abject failure at the final end of the main document.
+% \end{itemize}
+%
+%    To get round these problems, put the following in the preamble to
+% the main document:
+% \begin{verbatim}
+% \makeatletter
+% \let\oldsection\section     % keep exam's definition of \section
+% \renewcommand{\section}{%   % article's definition of \section
+%   \@startsection{section}{1]{\z@}%
+%                 {-3.5ex \@plus -1ex \@minus -.2ex}%
+%                 {2.3ex \@plus .2ex}%
+%                 {\normalfont\Large\bfseries}}
+% \makeatletter
+% \end{verbatim}
+% and in the document put: \\
+% |\let\section\oldsection| \\
+% immediately before the first |papers| environment.
+%
+%    For the end document problem, put:
+% \begin{verbatim}
+% \makeatletter
+% \let\@enddocumenthook\@oldenddocumenthook
+% \makeatother
+% \end{verbatim}
+% immediately before the main document's |\end{document}|.
+%
+%
+% \subsection{Class commands and environments}
+%
+%    Within a \Lpack{combine} class document you can use any commands
+% that are supported by the selected class.
+% The following additional commands and environments are also
+% provided.
+%
+% \DescribeEnv{papers}
+% The environment |\begin{papers}[|\meta{text/code}|]...\end{papers}|
+% provides a wrapper around imported file(s). Effectively, it modifies
+% any |\documentclass| command or |document| environment within an
+% imported file so that \LaTeX{} does not stop with an error at meeting
+% these, or preamble-only commands like |\usepackage|, in the middle 
+% of a document.
+%
+%    The optional argument is executed immediately at the start of
+% the environment and its default value is |\cleardoublepage|. 
+% To avoid any forced page breaking you can call the environment with
+% an empty optional argument (e.g., |\begin{papers}[]|).
+% 
+%
+% \DescribeMacro{\import}
+% The command |\import{|\meta{texfile}|}| is a cross between the |\input|
+% and |\include| commands, and should only be used within a |papers|
+% environment. \meta{texfile} is the name of a \LaTeX{} file \emph{without}
+% the |.tex| extension. For example, |\import{fred}| will attempt to
+% read in a file called |fred.tex|. The \meta{texfile} should be a
+% complete \LaTeX{} document file, from |\documentclass...| to
+% |\end{document}|. The contents of \meta{texfile} will be typeset in
+% the document at the point where it is imported, including any document
+% title (via a |\maketitle|), Table of Contents, \ldots, Bibliography, etc.
+%
+% \DescribeMacro{\maketitle}
+% The \Lpack{combine} class provides a |\maketitle| command, together with
+% |\title|, |\author| and |\date| commands like those in the 
+% \Lpack{book/report/article} classes. A \Lopt{titlepage} option is only
+% supported if the main class has a \Lopt{titlepage} option. For example,
+% if the main class is \Lpack{article} then both |\maketitle| and the
+% \Lopt{titlepage} option are supported, but if the main class is 
+% \Lpack{letter} then only the |\maketitle| command is provided.
+%
+% \DescribeMacro{\maintitlefont}
+% \DescribeMacro{\postmaintitle}
+% \DescribeMacro{\mainauthorfont}
+% \DescribeMacro{\postmainauthor}
+% \DescribeMacro{\maindatefont}
+% \DescribeMacro{\postmaindate}
+%  These commands control the typesetting of the main document's |\maketitle|
+% command. The |\title| is processed between the |\maintitlefont| and
+% |\postmaintitle| commands; that is, like: \\
+% |{\maintitlefont \title \postmaintitle}| \\
+% and similarly for the |\author| and |\date| commands. The |\...main...|
+% commands are initialised to mimic the normal result of |\maketitle|
+% typesetting in the \Lpack{article/report} classes. 
+% For example, the default definitions of the |\...maintitle...|
+% and |\...mainauthor...| commands are:\par
+% \begin{small}
+% \begin{verbatim}
+% \newcommand{\maintitlefont}{\begin{center}\LARGE}
+% \newcommand{\postmaintitle}{\par\end{center}\vskip 0.5em}
+% \newcommand{\mainauthorfont}{\begin{center}
+%             \large \lineskip 0.5em%
+%             \begin{tabular}[t]{c}}
+% \newcommand{\postmainauthor}{\end{tabular}\par\end{center}}
+% \end{verbatim}
+% \end{small}\par
+% They can be renewed to obtain different effects, for instance removing
+% the |center| environment from |\...title...| will result in the title 
+% being typeset as a normal paragraph.
+%
+% \DescribeMacro{\importtitlefont}
+% \DescribeMacro{\postimporttitle}
+% \DescribeMacro{\importauthorfont}
+% \DescribeMacro{\postimportauthor}
+% \DescribeMacro{\importdatefont}
+% \DescribeMacro{\postimportdate}
+%    Without any options, the |\title| and |\author| commands
+% are typeset by |\maketitle| commands in imported documents. 
+% Like the main document's |\maketitle|, the typesetting is controlled
+% by these |\...import...| commands. The default definition for
+% the title and author differ a little from the main document style, 
+% and are:\par
+% \begin{small}
+% \begin{verbatim}
+% \newcommand{\importtitlefont}{\begin{center}\LARGE\bfseries}
+% \newcommand{\postimporttitle}{\par\end{center}}
+% \newcommand{\importauthorfont}{\begin{center}
+%             \large\itshape \lineskip 0.5em%
+%             \begin{tabular}[t]{c}}
+% \newcommand{\postimportauthor}{\end{tabular}\par\end{center}}
+% \end{verbatim}
+% \end{small}\par
+% The commands can be renewed to obtain different formatting.
+%
+%    Note that if the \Lpack{titling} package is used with the \Lpack{combine}
+% class, the \Lpack{titling} maketitle typesetting commands are unavailable,
+% being replaced by the corresponding \Lpack{combine} commands above. Other
+% aspects of \Lpack{titling}, like the |\thetitle| command, are still
+% available for use.
+%
+% \DescribeMacro{\bodytitle}
+% The |\bodytitle[|\meta{short title}|]{|\meta{long title}|}| command
+% is similar
+% to a |\chapter| or |\section| command, depending on the \meta{class}
+% of document. It may be used for adding a numbered title heading into 
+% the main
+% document and ToC for the following |\import{|\meta{texfile}|}|. There
+% is also a starred version of the command, which produces an unnumbered
+% title heading and makes no entry in the ToC. The numbering used for
+% |\bodytitle| is independent from any other numbering sequence.
+%
+% \DescribeMacro{\coltoctitle}
+% \DescribeMacro{\coltocauthor}
+% The two commands |\coltoctitle{|\meta{title}|}| and 
+% |\coltocauthor{|\meta{author}|}| are for adding \meta{title} and 
+% \meta{author} to the main ToC, where \meta{title} is the compiler's
+% choice for the title of the following |\import{|\meta{texfile}|}|
+% and \meta{author} is for the names of the authors.
+%
+% \DescribeMacro{\published}
+% The command |\published[|\meta{short}|]{|\meta{long}|}| can be used
+% for putting the \meta{long} text into the body of the main document.
+% If the optional argument is not used, then \meta{long} is also added
+% to the main ToC. If the optional argument is used, then \meta{short}
+% instead of \meta{long} is added to the ToC. The expectation is that this
+% will be used for noting the original publication information for an
+% imported document.
+%
+% \DescribeMacro{\pubfont}
+% In the document body the text of the |\published| command is typeset
+% using |\pubfont|. By default this is defined as |{\normalfont\centering}| to
+% give centered text in the normal font. If, for example, you wanted
+% it to be typeset ragged right in an italic font you would do: \\
+% |\renewcommand{\pubfont}{\itshape\raggedright}|
+%
+% \DescribeMacro{\toctitleindent}
+% \DescribeMacro{\tocauthorindent}
+% \DescribeMacro{\tocpubindent}
+% \DescribeMacro{\toctocindent}
+%    These are all lengths, and their values can be changed using
+% |\setlength|. They control the extra indentation of an imported
+% document's title, authors, publication information and section
+% headings within the main ToC. The default value of |\toctitleindent|
+% is 0em and the default for the other four is 1.5em. If any values 
+% are changed, this must be
+% done before the |\tableofcontents| command in the main document.
+% For example, the title texts are aligned at the left margin;
+% to align them with the default position of authors do: \\
+% |\setlength{\toctitleindent}{1.5em}|
+%
+% \DescribeMacro{\toctitlefont}
+% \DescribeMacro{\tocauthorfont}
+% \DescribeMacro{\tocpubfont}
+%    These macros specify the fonts to be used for typesetting the
+% imported titles, authors and publishing information within the main ToC.
+% Their default definitions are: \\
+% |\newcommand{\toctitlefont}{\bfseries}|  % bold titles \\
+% |\newcommand{\tocauthorfont}{\itshape}|  % italic authors \\
+% |\newcommand{\tocpubfont}{\normalfont}|  % normal font for published 
+%
+%    The class tries to keep any group of title/author/published entries 
+% in the ToC on one page, but sometimes TeX will insert a pagebreak anyway.
+% The way of combating this is to make sure that the ToC page is broken
+% \emph{before} the group. You can do this like: \\
+% |\addtocontents{toc}{\protect\pagebreak}| \\
+% |\coltoctitle{...} \coltocauthor{...}| etc.
+% 
+% \DescribeMacro{\erasetitling}
+%     This macro `undefines' any previous |\coltoctitle|, |\coltocauthor|
+% and/or |\published| commands; it is principally provided for use with the
+% \Lpack{combinet} package.
+%
+%
+% \DescribeMacro{combine}
+%  A new |combine| pagestyle is provided. This is like the |plain|
+% pagestyle except that page numbers are put at the bottom outside corner
+% of the page. This is the default pagestyle for the \Lpack{combine}
+% class.
+% 
+%    Provided a |plain| (or |combine|) page style is used the pages 
+% are numbered in sequence throughout the document. If an imported document
+% has any |empty| page style pages these will not be numbered. 
+%
+%    Unless the \Lopt{folios} option is used, all references to page
+% numbers will be to the global page number. With the \Lopt{folios}
+% options some references will be to global page numbers and some to
+% local page numbers.
+%
+%    You can, of course, define your own heading styles; I recommend
+% the \Lpack{fancyhdr} package~\cite{FANCYHDR} if you do this. For example,
+% if you had a collection of papers and you wanted to have the
+% headers on the lefthand pages to have the title of the collection
+% and the righthand pages to have the name of the current author(s), you
+% can do this along the following lines.
+% \begin{verbatim}
+% \documentclass[report,twoside]{combine}
+% \usepackage{fancyhdr}
+% \title{The collection}
+% \author{A. N. Editor}
+% \pagestyle{fancy}
+% \fancyhead[RO]{A. N. Editor}
+% \fancyhead[LE]{The collection}
+% \fancyfoot{}
+% \fancyfoot[LE,RO]{\thepage}
+% \newcommand{\authortochead}[1]{%
+%    \coltocauthor{#1}
+%    \fancyhead[RO]{#1}
+%  }
+% ...
+% \begin{document}
+% \maketitle
+% %% Editors introduction, ToC, etc
+% \begin{papers}
+% \coltoctitle{Paper 1}
+% \authortochead{A. N. Author}
+%     \import{paper1}
+% \cleardoublepage
+% \coltoctitle{Paper 2}
+% \authortochead{A. N. Other}
+%     \import{paper2}
+% ...
+% \end{verbatim}
+%  
+%
+%    In order to ensure that all the material in an imported document
+% is typeset, there is an inbuilt |\clearpage| command within the
+% imported document's |\end{document}|. Thus, any material after an
+% |\import| command will start on a new page.
+%
+%    Here is another example file which might be the skeleton for a
+% thesis that includes a copy of a published paper.
+% \begin{verbatim}
+% %%\documentclass{thesis}  % replace this by
+% \documentclass[colclass=thesis,classes,layouts]{combine}
+% ... packages etc.,
+%
+% \title{Observations on the ...}
+% \author{A. Candidate}
+% \date{1 April, 2000}
+% \addtolength{\toctitleindent}{2.3em}  % extra main ToC indentation
+% \addtolength{\tocauthorindent}{2.3em}
+% \addtolength{\tocpubindent}{2.3em}
+%
+% \begin{document}
+% \pagestyle{combine}        % use the combine page style
+% \maketitle                 % main title
+% \tableofcontents           % main ToC
+% \clearpage
+% ...
+% lots of remarkable research results
+% ...
+% \appendix
+% ...
+% \section{Publication}
+% \begin{papers}[]
+% \coltoctitle{...}
+% \published{Originally published in the   
+%            \textit{Journal of Irreproducible Results}, 1987}
+% \import{mypaper}
+% \end{papers}
+% ...
+% 
+% \bibliography{refs}      % main bibliography
+% \end{document}
+% \end{verbatim}
+%
+%    Each imported file generates its own \file{.aux}, \file{.toc}, etc.,
+% files. If a BibTeX database is used for the literature references
+% in an imported document, then BibTeX must be run against the imported
+% document, \emph{not} the main document, to resolve the citations. 
+% Citations are local to each imported document. There can, of course,
+% also be a bibliography for citations made in the main document, as shown
+% in the example file above.
+%
+% \DescribeMacro{\provideenvironment}
+%    This macro is like the |\providecommand| macro except that it applies
+% to an environment instead of a command. It is required internally
+% by the \Lpack{combine} class.
+%
+% \DescribeMacro{\providelength}
+% \DescribeMacro{\providecounter}
+%     These macros are used internally. They are |\provide...|
+% versions of the |\newlength| and |\newcounter| commands.
+%
+% \DescribeMacro{\zeroextracounters}
+%    The class attempts to initialise the counters used by each imported 
+% document. For example, the figure, equation, etc., counters are zeroed
+% for each document. The |\zeroextracounters| command can be redefined so
+% that it includes the zeroing of any additional counters that might have
+% been introduced in a package or defined by the author. For example,
+% if two different imports both define a (new) counter called, say, 
+% |mycounter|, then redefine the command like:
+% \begin{verbatim}
+% \renewcommand{\zeroextracounters}{%
+%    \@ifundefined{c@mycounter}{}{\setcounter{mycounter}{0}}
+% }
+% \end{verbatim}
+%
+% \DescribeMacro{\appendiargdef}
+% The (internal) command |\appendiargdef{|\meta{macro}|}{|\meta{stuff}|}|
+% appends \meta{stuff} at the end of the current definition of \meta{macro},
+% where \meta{macro} is the name of a macro (including the backslash)
+% which takes one argument. For example the following are two equivalent
+% definitions of |\mymacro|:
+% \par\begin{small}\begin{verbatim}
+% \newcommand{\mymacro}[1]{#1 is a bagpiper}
+% \appendiargdef{\mymacro}{ and of course is tone deaf}
+% % or
+% \newcommand{\mymacro}[1]{#1 is a bagpiper and of course is tone deaf}
+% \end{verbatim}
+% \end{small}\par
+%
+% \DescribeMacro{\emptyAtBeginDocument}
+%  Some combinations of circumstances cause an infinite recursion at the 
+% start of an imported document; in particular the combination of 
+% \texttt{combine + graphicx + caption2 + pdflatex} causes this. In this case
+% the solution was to put |\emptyAtBeginDocument| immediately after the
+% initial |\begin{document}|. It may also have worked if it had been added
+% after each |\begin{papers}| or before each |\import{}|. An error message
+% about being out of stack space may indicate recursion. Judicious use
+% of |\emptyAtBeginDocument| may resolve the problem. 
+% 
+% \subsection{Imports in subdirectories}
+%
+%    Authors may find it convenient to put the LaTeX source files for imported
+% documents into subdirectories of the directory for the main document.
+% Perhaps the easiest way to make this work is to set an environment
+% variable so that LaTeX will look in the subdirectories of the current
+% working directory for files it can't find.
+%
+%    I use a teTeX system and can only talk about that distribution.
+% The relevant environment variable, at least for document files, is
+% |TEXINPUTS|. An example setting for this is: \\
+% |TEXINPUTS=.//:${LOCALTEX}//:| \\
+% The fragment |.//| tells LaTeX to look for files in the current directory, 
+% and recursively in its subdirectories. The fragment |:${LOCALTEX}//| tells
+% LaTeX to look for files in the place defined by the environment variable
+% |LOCALTEX|, and recursively in its subdirectories. The final |:| tells
+% LaTeX to look in the standard teTeX defined places.
+%
+% \section{The \Lpack{combinet} package} \label{pack}
+%
+%    The \Lpack{combinet} (COMBINE Title) package, 
+% which should only be used in conjunction
+% with the \Lpack{combine} class, modifies the |\maketitle| command of
+% all imported documents so that the imported document's title and/or 
+% author, if
+% defined, are automatically added to the main document's ToC.
+%
+%    This is presented as a package rather than as part of the 
+% \Lpack{combine} class as some unfortunate side effects may become
+% apparent.
+% 
+%    If a |\coltoctitle| or |\coltocauthor| command has been given
+% immediately prior to the import, then these will be put into the main
+% ToC instead of the |\maketitle| texts. The |\erasetitling| command can
+% be used to disable any prior |\coltoctitle|, |\coltocauthor| and
+% |\published| commands.
+%
+%    The package takes the following options.
+% \begin{itemize}
+% \item \Lopt{nomtitle}. Disable the |\maketitle| title 
+%       from being added to the main ToC.
+% \item \Lopt{nomauthor}. Disable the |\maketitle| author
+%       from being added to the main ToC.
+% \item \Lopt{nothanks}. By default, the contents of a |\thanks| command
+%       will be added to the main ToC. This option prevents that, but 
+%       may have unfortunate side effects if any |\title| or |\author|
+%       command has any embedded commands within the text.
+% \item \Lopt{pub}. Put the text of an immediately prior |\published|
+%      command after the |\maketitle| typesetting, and add the text to the
+%      main ToC after any title or author. Remember that the \Lpack{combine}
+%      class options \Lopt{nopubindoc} and \Lopt{nopubindoc} can be used
+%      to inhibit printing of |\published| information.
+% \item \Lopt{pubtop}. Put the text of an immediately prior |\published|
+%      command at the top of the |\maketitle| typesetting, and add the 
+%      text to the
+%      main ToC after any title or author.
+% \end{itemize}
+%
+%   As noted above, embedded commands within a |\title| or |\author| may
+% not transform well if they appear in the main ToC. In such cases you can
+% use |\coltoctitle| or |\coltocauthor| for adding appropriate text to
+% the main ToC, not forgetting to disable these after the import via
+% |\erasetitling|.
+%
+% \section{The \Lpack{combnat} package} \label{natpack}
+%
+%     The \Lpack{combine} class and Patrick Daly's \Lpack{natbib} 
+% package~\cite{NATBIB}
+% both redefine some of the same basic LaTeX macros, and naturally
+% the redefinitions are incompatible\footnote{Discovered by
+% Thomas Hertweck (\texttt{Thomas.Hertweck@gpi.uni-karlsruhe.de}) in
+% June 2001.}.
+%
+%    The \Lpack{combnat} (COMBine NATbib) package hopefully resolves this
+% problem. With the \Lpack{combine} class you use \Lpack{combnat} instead
+% of \Lpack{natbib}. That is, instead of: \\
+% |\usepackage[|\meta{natbib-options}|]{natbib}|, simply do \\
+% |\usepackage[|\meta{natbib-options}|]{combnat}| \\
+% in the preamble of the main document. The package automatically calls
+% the \Lpack{natbib} package with the given \meta{natbib-options} and
+% then redefines some of the \Lpack{natbib} redefinitions to ensure
+% \Lpack{combine/natbib} compatibility.
+%
+%    For details on the \meta{natbib-options} and the other facilities,
+% read the \Lpack{natbib} documentation~\cite{NATBIB}.
+%
+% \section{The \Lpack{combcite} package} \label{citepack}
+%
+%     The \Lpack{combine} class and Donald Aresneau's \Lpack{cite} 
+% package~\cite{CITE}
+% both redefine some of the same basic LaTeX macros, and naturally
+% the redefinitions are incompatible\footnote{Discovered by
+% Marcilio Alves (\texttt{maralves@usp.br}) in
+% November 2003.}
+%
+%    The \Lpack{combcite} (COMBine CITE) package hopefully resolves this
+% problem. With the \Lpack{combine} class you use \Lpack{combcite} instead
+% of \Lpack{cite}. That is, instead of: \\
+% |\usepackage[|\meta{cite-options}|]{cite}|, simply do \\
+% |\usepackage[|\meta{cite-options}|]{combcite}| \\
+% in the preamble of the main document. The package automatically calls
+% the \Lpack{cite} package with the given \meta{cite-options} and
+% then redefines some of the \Lpack{cite} redefinitions to ensure
+% \Lpack{combine/cite} compatibility.
+%
+%    For details on the \meta{cite-options} and the other facilities,
+% read the \Lpack{cite} documentation~\cite{CITE}.
+%
+%    The \Lpack{combcite} package requires the November 2003 version 4.01
+% of \Lpack{cite}. This version covers the functions provided by the
+% \Lpack{overcite} package. More precisely \\
+% \verb?\usepackage[...]{overcite}? is implemented as \\
+% \verb?\usepackage[superscript,...]{cite}?
+%
+%
+% \section{Caveats}
+%
+%    \LaTeX{} was designed to typeset a single document, where the document
+% has one and only one |\documentclass| command and one and only one
+% |document| environment. The \Lpack{combine} class attempts to handle
+% a document that has multiple |\documentclass| commands and multiple
+% |document| environments. In order to do this certain parts of the
+% \LaTeX{} kernel code has had to be modified. Unfortunately, to make
+% the usage of \Lpack{combine} completely transparent to the user would
+% require very major surgery, with a high probability that with my skills
+% the patient would die; being able to remove a hangnail does not imply
+% the ability to perform a heart transplant.
+%
+%    It is, of course, assumed that each imported document processes without
+% error as an individual document.
+%
+%    Essentially, be prepared for the unexpected, usually indicated
+% by a rash of \LaTeX{} error messages about undefined commands or about
+% defining an already defined command. These are usually caused by incorrect
+% grouping.
+%
+%    Commands, etc., defined in the main document are available to 
+% all imported
+% documents. The |papers| environment forms a group. Commands
+% defined within a group are local to the group and are not visible outside
+% it. Another point is that \LaTeX{} will read the code for any given
+% class or package only once. These facts have some consequences.
+%
+% \begin{itemize}
+% \item The facilities provided by any package that is used by an imported
+%       file are only available within the first |papers| environment
+%       in which the package is called for. This is why it is recommended
+%       that all packages should be called for in the main document.
+%
+% \item Similarly for a class that is not the main class. For example,
+%       if the main class is \Lpack{article} and some letters are to be
+%       imported, then they must all be in the same |papers| environment.
+%       If they are in multiple |papers| environments, then only the first
+%       of these will have access to commands like |\address| which are
+%       defined by the \Lpack{letter} class (which is only read once and
+%       whose facilities are then local to the first of the |papers|).
+%
+% \item An imported document does not form a group (if it did, then only
+%       a single letter could be imported into an article class collection).
+%       If two imports in a single |papers| seperately use |\new...|
+%       commands
+%       with the same \meta{name}, then these \meta{name}s will be 
+%       visible throughout
+%       the environment. \LaTeX{} will then normally report trying to define a
+%       pre-existing \meta{name}. The solution to this is either: (a) put
+%       the imports into different |papers|, or (b) enclose each import
+%       within a |\begingroup| \ldots |\endgroup| pair.
+%
+% \end{itemize}
+%
+%   Not all problems can be solved by the above methods. For example, consider
+% the case again of importing letters into an article collection. If two
+% letters both define the same \meta{name}, then adding additional grouping
+% will only change the `defining a pre-existing \meta{name}' problem into
+% the `undefined |\address|' problem. A potential solution in this 
+% particular case
+% would be to define all the \Lpack{letter} class specific \meta{name}s in the
+% main document.
+%
+%    Within a |papers| environment all |\newcommand| and |\newenvironment|
+% commands are replaced by |\providecommand| and |\provideenvironment|
+% respectively. This should stop \LaTeX{} from reporting the pre-existing
+% \meta{name} error from these commands, but one and only one of the
+% definitions will be available. |\newlength| and |\newcounter| commands
+% are handled in the same manner. There is no equivalent for |\newtheorem|,
+% but instead the |\newtheorem| command has been made local instead
+% of global, so cunning use of grouping should be able to circumvent the
+% problem of two seperate authors creating identically named
+% theorems.
+%
+%
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[Ars03]{CITE}
+% Donald Arseneau.
+% \newblock \emph{Cite: Compressed, sorted lists of on-line
+%                 or superscript numerical citations}.
+% \newblock November 2003.
+% \newblock (Available from CTAN in directory 
+%           \texttt{macros/latex/contrib/cite})
+%
+% \bibitem[Dal99]{NATBIB}
+% Patrick W. Daly.
+% \newblock \emph{Natural Sciences Citations and References}.
+% \newblock May 1999.
+% \newblock (Available from CTAN in directory 
+%           \texttt{macros/latex/contrib/natbib})
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock \emph{The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[Oos96]{FANCYHDR}
+% Piet van Oostrum.
+% \newblock \emph{Page layout in LaTeX}.
+% \newblock June 1996.
+% \newblock (Available from CTAN in directory 
+%           \texttt{macros/latex/contrib/fancyhdr})
+%
+%
+% \end{thebibliography}
+% }
+%
+% 
+% \section{The \Lpack{combine} class code} \label{sec:code}
+%
+%    There are various difficulties to be overcome by the 
+% \Lpack{combine} code, some seemingly inherent in \TeX{} itself and
+% others by the \LaTeX{} kernel code. These include, but are not limited to:
+% \begin{itemize}
+%  \item TeX{} was not designed for processing multiple documents.
+%  \item There can only be one |\documentclass| command within
+% a document.
+%  \item There are many \LaTeX{} commands that can only be used in
+% the preamble, and the preamble is closed by the (first) |\begin{document}|.
+%  \item There is a single global page number, which may be reset to one
+% at any point in any document. If this occurs in an imported document
+% then the page numbering for the main document is similarly reset.
+%  \item |\label|s are global in nature, and with multiple imported
+% documents there are likely to be labels with the same name in two
+% or more of these.
+%  \item Many of the kernel (and standard classes) commands use 
+% the page number; sometimes the use is buried at the end of a chain 
+% of macros.
+% \end{itemize}
+%
+%    A design goal for \Lpack{combine} is that virtually any kind
+% of document should be importable and should be processible without
+% have to make any changes to it. To completely satisfy this would
+% require a rewrite of much of the \LaTeX{} kernel, which is out
+% of the question. Of necessity some changes have had to be made but
+% these have been limited as far as possible. I think that a collection
+% that consists of documents that are all of the same class should
+% process without interruption. 
+%
+%    When there are mixed classes, \LaTeX{}
+% reads in the code for each class. An example is importing a \Lpack{letter}
+% class document into an \Lpack{article} class collection.
+% If the same command is defined
+% by |\newcommand| in two or more of these classes, then \LaTeX{}
+% complains and I see no way of getting around this without rewriting
+% all the classes and kernel to use |\def| instead of |\newcommand|.
+% In any event, if this happens, try responding to the errors by hitting
+% `q' to put \LaTeX{} into a batch mode. The typeset result may be useable.
+%
+%    To try and avoid name clashes, all the internal commands include
+% the string |c@l|.
+%
+% \section{Preliminaries}
+%
+%    Announce the name and version of the class, which requires
+% \LaTeXe{} and the \Lpack{keyval} package.
+% \changes{v0.53}{2001/09/05}{Class is now v0.45}
+% \changes{v0.6}{2002/08/24}{Class is now v0.5}
+% \changes{v0.63}{2003/11/09}{Class is now v0.52}
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{combine}[2003/11/09 v0.52 collection of documents]
+\RequirePackage{keyval}
+
+%    \end{macrocode}
+%
+% \begin{macro}{\c@lclass}
+% |\c@lclass| stores the class name, which by default is |article|.
+%    \begin{macrocode}
+\newcommand{\c@lclass}{article}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@l@tempa}
+% \begin{macro}{\c@l@getoptionname}
+% The next code chunk is based on code posted to the \texttt{ctt} newsgroup
+% by Heiko Oberdiek (\texttt{oberdiek@ruf.uni-freiburg.de}) on 18~April 2000.
+% The code, by some miraculous means, sets up a keyed class option.
+%    \begin{macrocode}
+\define@key{COLCLASS}{colclass}[article]%
+           {\renewcommand{\c@lclass}{#1}
+            \ClassWarningNoLine{combine}
+                               {Expect warnings like:\MessageBreak
+            \space\space LaTeX Warning: Unused global option(s):\MessageBreak
+            \space\space\space\space [colclass=#1]}}
+\let\c@l@tempa\@empty
+\def\c@l@getoptionname#1=#2\@nil{#1}
+\@for\CurrentOption:=\@classoptionslist\do{%
+  \@ifundefined{%
+    KV@COLCLASS@\expandafter\c@l@getoptionname\CurrentOption=\@nil
+  }%
+  {%  other options
+  }{%
+    \edef\c@l@tempa{\c@l@tempa,\CurrentOption,}%
+  }%
+}%
+\edef\c@l@tempa{%
+  \noexpand\setkeys{COLCLASS}{\c@l@tempa}%
+}
+\c@l@tempa
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%    The following |\if...| commands are for implementing various options.
+% \changes{v0.4}{2000/05/27}{Unnested some macro environments to save save stack space}
+% \begin{macro}{\ifc@lclasses}
+%    \begin{macrocode}
+\newif\ifc@lclasses
+  \c@lclassesfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lpackages}
+%    \begin{macrocode}
+\newif\ifc@lpackages
+  \c@lpackagesfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@llayouts}
+%    \begin{macrocode}
+\newif\ifc@llayouts
+  \c@llayoutsfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lfolios}
+%    \begin{macrocode}
+\newif\ifc@lfolios
+  \c@lfoliosfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnotoc}
+%    \begin{macrocode}
+\newif\ifc@lnotoc
+  \c@lnotocfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnolof}
+%    \begin{macrocode}
+\newif\ifc@lnolof
+  \c@lnoloffalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnolot}
+%    \begin{macrocode}
+\newif\ifc@lnolot
+  \c@lnolotfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lmaintoc}
+%    \begin{macrocode}
+\newif\ifc@lmaintoc
+  \c@lmaintocfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnodate}
+%    \begin{macrocode}
+\newif\ifc@lnodate
+  \c@lnodatetrue
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnoauthor}
+%    \begin{macrocode}
+\newif\ifc@lnoauthor
+  \c@lnoauthorfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnotitle}
+%    \begin{macrocode}
+\newif\ifc@lnotitle
+  \c@lnotitlefalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnomaketitle}
+%    \begin{macrocode}
+\newif\ifc@lnomaketitle
+  \c@lnomaketitlefalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnopubindoc}
+% \changes{v0.4}{2000/05/27}{Added nopubindoc and nopubintoc options}
+%    \begin{macrocode}
+\newif\ifc@lnopubindoc
+  \c@lnopubindocfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lnopubintoc}
+%    \begin{macrocode}
+\newif\ifc@lnopubintoc
+  \c@lnopubintocfalse
+%    \end{macrocode}
+% \end{macro}
+% \changes{v0.5}{2002/08/24}{Added onebib and combinedbib options}
+% \begin{macro}{\ifc@lonebib}
+%    \begin{macrocode}
+\newif\ifc@lonebib
+  \c@lonebibfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\ifc@lcombib}
+%    \begin{macrocode}
+\newif\ifc@lcombib
+  \c@lcombibfalse
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% Now declare and process the options.
+% \changes{v0.4}{2000/05/27}{Added book option}
+% \changes{v0.6}{2002/08/24}{Added onebib option}
+% \changes{v0.63}{2003/11/09}{Added memoir option}
+%    \begin{macrocode}
+
+\DeclareOption{book}{\def\c@lclass{book}}
+\DeclareOption{report}{\def\c@lclass{report}}
+\DeclareOption{letter}{\def\c@lclass{letter}}
+\DeclareOption{memoir}{\def\c@lclass{memoir}}
+\DeclareOption{classes}{\c@lclassestrue}
+\DeclareOption{packages}{\c@lpackagestrue}
+\DeclareOption{layouts}{\c@llayoutstrue}
+\DeclareOption{folios}{\c@lfoliostrue}
+\DeclareOption{notoc}{\c@lnotoctrue}
+\DeclareOption{nolof}{\c@lnoloftrue}
+\DeclareOption{nolot}{\c@lnolottrue}
+\DeclareOption{maintoc}{\c@lmaintoctrue}
+\DeclareOption{date}{\c@lnodatefalse}
+\DeclareOption{noauthor}{\c@lnoauthortrue}
+\DeclareOption{notitle}{\c@lnotitletrue}
+\DeclareOption{nomaketitle}{\c@lnomaketitletrue}
+\DeclareOption{nopubindoc}{\c@lnopubindoctrue}
+\DeclareOption{nopubintoc}{\c@lnopubintoctrue}
+\DeclareOption{onebib}{\c@lonebibtrue}
+\DeclareOption{combinedbib}{\c@lcombibtrue}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{\c@lclass}}
+\ProcessOptions\relax
+\ifc@lcombib
+  \c@lonebibtrue
+\fi
+
+%    \end{macrocode}
+% 
+%
+%    At this point, load the actual class (as specified by |\c@lclass|).
+%    \begin{macrocode}
+\LoadClass{\c@lclass}
+
+%    \end{macrocode}
+%
+% \begin{macro}{\ifc@lhaschapter}
+%    |\ifc@lhaschapter| is TRUE if the loaded class has chapters.
+%    \begin{macrocode}
+\newif\ifc@lhaschapter
+  \c@lhaschapterfalse
+\@ifundefined{chapter}{}{\c@lhaschaptertrue}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\if@titlepage}
+%    The \Lpack{letter} class (and perhaps others) does not have a 
+% |\maketitle| command, and therefor neither has a \Lopt{titlepage} option.
+% In this case we need a new |\if@titlepage| for later use when dealing
+% with |\maketitle|. A side effect of this implementation is that |\maketitle|
+% is available for any main document class.
+% \changes{v0.3}{2000/05/20}{Ensured \cs{if@titlepage} is defined}
+%    \begin{macrocode}
+\@ifundefined{if@titlepage}{\newif\if@titlepage\@titlepagefalse}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifc@ltoctitle}
+% \begin{macro}{\ifc@ltoctitle}
+% \begin{macro}{\ifc@lpub}
+%    Boolean hooks for testing if |\coltoctitle|, |\coltocauthor| and
+% |\published| have been set.
+%    \begin{macrocode}
+\newif\ifc@ltoctitle
+  \c@ltoctitlefalse
+\newif\ifc@ltocauthor
+  \c@ltocauthorfalse
+\newif\ifc@lpub
+  \c@lpubfalse
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{colpage}
+% \begin{macro}{c@lctr}
+% \begin{macro}{\c@section}
+% |colpage| is a counter for storing the (current) page number for the
+% main document.
+% |c@lctr| is a counter for storing the current main document sectioning
+% number. A section counter (|\c@section|) is provided when the class 
+% does not have sections.
+%    \begin{macrocode}
+\newcounter{colpage} \setcounter{colpage}{1}
+  \renewcommand{\thecolpage}{\arabic{colpage}}
+\newcounter{c@lctr}
+\@ifundefined{c@section}{\newcounter{section}}{}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@ltocfnum}
+% \begin{macro}{\c@lloffnum}
+% \begin{macro}{\c@llotfnum}
+%    These are output stream numbers for local ToC, LoF and LoT files.
+% Allocating new streams for each imported file may cause \TeX{} to
+% run out of streams (there is a limit of 16).
+%    \begin{macrocode}
+\newwrite\c@ltocfnum
+\newwrite\c@lloffnum
+\newwrite\c@llotfnum
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+% \section{Kernel modifications (and potential additions)}
+%
+%    Much of the class code consists of new versions of \LaTeX{} kernel commands.
+% Redefinitions starting with |\c@la...| are for commands in the main
+% document. Modifications starting |\c@lb...| are for commands within
+% imported documents.
+%
+%
+% \begin{macro}{\provideenvironment}
+% \begin{macro}{\c@lprovide@environment}
+% \begin{macro}{\c@lenvironment}
+% \begin{macro}{\c@lenva}
+% \begin{macro}{\c@lenvb}
+% \begin{macro}{\c@lthrowenv}
+%     To stop \LaTeX{} whining when multiple classes are read which happen
+% to define commands (via |\newcommand|) or environments 
+% (via |\newenvironment|) that have the same names, we need to be able
+% to make \LaTeX{} use |\providecommand| and |\provideenvironment|
+% instead. Unfortunately the kernel does not provide a |\provideenvironment|
+% command, so here is one based on the code in the \Lpack{makecmds} package.
+%    \begin{macrocode}
+\def\provideenvironment{%
+  \@star@or@long\c@lprovide@environment}
+\def\c@lprovide@environment#1{%
+  \@ifundefined{#1}{%
+    \expandafter\let\csname#1\endcsname\relax
+    \expandafter\let\csname end#1\endcsname\relax
+    \new@environment{#1}}{\c@lenvironment{#1}}
+}
+\def\c@lenvironment#1{%
+  \@testopt{\c@lenva#1}0}
+\def\c@lenva#1[#2]{%
+  \@ifnextchar [{\c@lenvb#1[#2]}{\c@lthrowenv{#1}{[#2]}}}
+\def\c@lenvb#1[#2][#3]{\c@lthrowenv{#1}{[#2][#3]}}
+\def\c@lthrowenv#1#2#3#4{}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lnamethm}
+% \begin{macro}{\@xnthm}
+% \begin{macro}{\@ynthm}
+% \begin{macro}{\@othm}
+%  As pointed out by Hendri Hondrop\footnote{Email 
+% from \texttt{hendri@cs.utwente.nl} on 16~May, 2000.}
+% |\newtheorem| commands in imported documents can interfere with each other.
+% My solution to this is to make the command local instead of global.
+% |\c@lnamethm| is a helper macro (removes the |\global| from the 
+% |\@namedef|s in the original code), and the others are modifications
+% of the originals in \file{ltthm.dtx} (just removing any |\global| commands).
+% \changes{v0.3}{2000/05/20}{Added a local version of \cs{newtheorem}.}
+%    \begin{macrocode}
+\@ifundefined{newtheorem}{}{%
+  \newcommand{\c@lnamethm}[3]{%
+    \@namedef{#1}{\@thm{#2}{#3}}%
+    \@namedef{end#1}{\@endtheorem}}
+  \def\@xnthm#1#2[#3]{%
+    \expandafter\@ifdefinable\csname #1\endcsname
+      {\@definecounter{#1}\@newctr{#1}[#3]%
+       \expandafter\xdef\csname the#1\endcsname{%
+         \expandafter\noexpand\csname the#3\endcsname \@thmcountersep
+           \@thmcounter{#1}}%
+       \c@lnamethm{#1}{#1}{#2}}}
+  \def\@ynthm#1#2{%
+    \expandafter\@ifdefinable\csname #1\endcsname
+      {\@definecounter{#1}%
+       \expandafter\xdef\csname the#1\endcsname{\@thmcounter{#1}}%
+       \c@lnamethm{#1}{#1}{#2}}}
+  \def\@othm#1[#2]#3{%
+    \@ifundefined{c@#2}{\@nocounterr{#2}}%
+      {\expandafter\@ifdefinable\csname #1\endcsname
+       {\@namedef{the#1}{\@nameuse{the#2}}
+       \c@lnamethm{#1}{#2}{#3}}}}
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\providelength}
+%  This is a |\provide...| version of |\newlength| (from \file{ltlength.dtx}).
+% \changes{v0.4}{2000/05/27}{Added \cs{providelength} and \cs{providecounter}
+%  commands}
+% \changes{v0.63}{2003/11/09}{Used \cs{providecommand} for \cs{providelength}
+%          and \cs{providecounter} as they are defined in the memoir class}
+%    \begin{macrocode}
+\providecommand{\providelength}[1]{%
+  \ifx #1\undefined
+    \newlength{#1}
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\providecounter}
+%  This is a |\provide...| version of |\newcounter| (from \file{ltcounts.dtx}).
+%    \begin{macrocode}
+\providecommand{\providecounter}[1]{%
+  \expandafter\ifx \csname c@#1\endcsname \undefined
+    {\@definecounter{#1}}%
+    \@ifnextchar[{\@newctr{#1}}{}
+  \else
+    \@ifnextchar[{\c@l@gobbleoptarg}{}
+  \fi
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@l@gobbleoptarg}
+%    A macro that discards an optional argument (i.e., the tokens |[optarg]|).
+% \changes{v0.4}{2000/05/27}{Added \cs{c@l@gobbleoptarg} command}
+%    \begin{macrocode}
+\def\c@l@gobbleoptarg[#1]{}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\appendiargdef}
+%    The code for this is copied from the \Lpack{abstract} package, hence
+% the use of |@bs| instead of |c@l| as a distinguishing substring.
+% \changes{v0.41}{2000/06/18}{Added \cs{appendiargdef} from the abstract package}
+%    \begin{macrocode}
+\providecommand{\appendiargdef}[2]{\begingroup
+  \toks@\expandafter{#1{##1}#2}%
+  \edef\@bsx{\endgroup \def\noexpand#1####1{\the\toks@}}%
+  \@bsx}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Document commands and environments}
+%
+% \begin{macro}{\c@lbdocumentclass}
+% The |\documentclass| in imported documents has to be changed so that
+% commands including the |@| sign are legal in the preamble. By default
+% the declared options and class are discarded. When the \Lopt{classes}
+% option is used, any potential new class file must be read.
+% |\documentclass|
+% is originally defined in \file{ltclass.dtx}.
+%    \begin{macrocode}
+\ifc@lclasses
+  \newcommand\c@lbdocumentclass{%
+    \makeatletter                           %% added
+    \let\newcommand\providecommand          %% added
+    \let\newenvironment\provideenvironment  %% added
+%%    \let\documentclass\@twoclasseserror
+%%    \if@compatability\else\let\usepackage\RequirePackage\fi
+    \@fileswithoptions\@clsextension
+  }
+\else
+  \newcommand{\c@lbdocumentclass}[2][\@empty]{%
+    \makeatletter
+  }
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbusepackage}
+% The |\usepackage| command (from \file{ltclass.dtx}) 
+% in imported documents is normally disabled.
+% This is the disabled version.
+%    \begin{macrocode}
+\ifc@lpackages\else
+  \newcommand{\c@lbusepackage}[2][\@empty]{}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbLoadClass}
+% This is a copy of the |\LoadClass| from \file{ltclass.dtx}. I found it was
+% needed if an imported document used a class that in its turn used
+% |\LoadClass|.\footnote{Problem reported by Hans Fredrik Nordhaug
+% \texttt{hansfn@mi.uib.no} on 2001/08/24.}
+% \changes{v0.52}{2001/08/25}{Added \cs{c@lbLoadClass}}
+%    \begin{macrocode}
+\newcommand{\c@lbLoadClass}{%
+  \ifx\@currext\@pkgextension
+    \@latex@error{\noexpand\LoadClass in package file}%
+      {You may only use \noexpand\LoadClass in a class file.}%
+  \fi
+  \@fileswithoptions\@clsextension}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% The |\document| command (defined in \file{ltfiles.dtx}) has to be modified,
+% both for the main document (to allow later preamble commands and to
+% store the jobname of the main document), and similarly but not identically,
+% for the imported documents (output here is to the |\@partaux| file instead
+% of the |\@mainaux| file).
+%
+% \begin{macro}{\c@ltextblock}
+% |\c@ltextblock| is a macro holding some code that is common to both
+% |\c@ladocument| and |\c@lbdocument|.
+% \changes{v0.3}{2000/05/20}{Added \cs{c@ltextblock} command}
+%    \begin{macrocode}
+\newcommand{\c@ltextblock}{%
+  \@colht\textheight
+  \@colroom\textheight \vsize\textheight
+  \columnwidth\textwidth
+  \@clubpenalty\clubpenalty
+  \if@twocolumn
+    \advance\columnwidth -\columnsep
+    \divide\columnwidth\tw@ \hsize\columnwidth \@firstcolumntrue
+  \fi
+  \hsize\columnwidth \linewidth\hsize
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@ladocument}
+% \begin{macro}{\c@lbdocument}
+%    \begin{macrocode}
+\newcommand{\c@ladocument}{%
+  \endgroup
+  \let\mainjobname\jobname            %% added
+  \def\c@lmainauxfile{\jobname.aux}   %% added
+  \ifx\@unusedoptionlist\@empty\else
+    \@latex@warning@no@line{Unused global option(s):^^J%
+           \@spaces[\@unusedoptionlist]}%
+  \fi
+  \c@ltextblock                       %% a replacement
+  \begingroup\@floatplacement\@dblfloatplacement
+    \makeatletter\let\@writefile\@gobbletwo
+    \global \let \@multiplelabels \relax
+    \@input{\c@lmainauxfile}%                   %% changed
+  \endgroup
+  \if@filesw
+    \immediate\openout\@mainaux\c@lmainauxfile  %% changed
+    \immediate\write\@mainaux{\relax}%
+  \fi
+  \process@table
+  \let\glb@currsize\@empty
+  \normalsize
+  \everypar{}%
+  \ifx\normalsfcodes\@empty
+    \ifnum\sfcode`\.=\@m
+      \let\normalsfcodes\frenchspacing
+    \else
+      \let\normalsfcodes\nonfrenchspacing
+    \fi
+  \fi
+  \@noskipsecfalse
+%    \end{macrocode}
+% \begin{macro}{\@outputpage}
+%    Imported documents may change the page number, which can then mess
+% up the numbering of later pages. The |colpage| counter is used
+% to synchronize the main document page numbering after any import.
+% To do this, it has to be incremented for each typeset page, so
+% this is added to the output routine (described in \file{ltoutput.dtx}).
+% This is done here in case any package in the main document has modified
+% |\@outputpage|, as the \Lpack{showframe} package does.
+% \changes{v0.4}{2000/05/27}{Moved the modification to \cs{@outputpage}
+% to within \cs{c@ladocument}}
+%
+% Similarly, the |\maketitle| command is made to be |\@clamaketitle| in case
+% some other package (e.g., \Lpack{titling}) has modified |\maketitle| after
+% the \Lpack{combine} class has done its thing.
+% \changes{v0.41}{2000/06/18}{Moved \cs{maketitle} letting to 
+% \cs{c@lamaketitle} to inside \cs{c@ladocument}}
+%    \begin{macrocode}
+  \g@addto@macro{\@outputpage}{\stepcounter{colpage}}  %% added
+  \let\maketitle\c@lamaketitle                         %% added
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\c@lthechap}
+% \begin{macro}{\c@lthesec}
+% Store the initial forms of |\thechapter| or |\thesection| for later
+% restoration after a possible |\appendix|.
+% \changes{v0.51}{2001/07/05}{Added \cs{c@lthechap} and \cs{c@lthesec}}
+%    \begin{macrocode}
+  \@ifundefined{c@chapter}%            %% added
+    {\@ifundefined{c@section}{}{\let\c@lthesec\thesection}}%
+    {\let\c@lthechap\thechapter}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%    \begin{macrocode}
+  \let \@refundefined \relax
+  \let\AtBeginDocument\@firstofone
+  \@begindocumenthook
+  \ifdim\topskip<1sp\global\topskip 1sp\relax\fi
+  \global\@maxdepth\maxdepth
+%%  \global\let\@begindocumenthook\@undefined
+  \ifx\@listfiles\@undefined
+    \global\let\@filelist\relax
+    \global\let\@addtofilelist\@gobble
+  \fi
+%%  \gdef\do##1{\global\let ##1\@notprerr}%
+%%  \@preamblecmds
+  \global\let \@nodocument \relax
+  \global\let\do\noexpand
+  \ignorespaces}
+
+%    \end{macrocode}
+%    For an imported document the \Lopt{layouts} option is implemented
+% in the |\document| command. The \Lpack{article},
+% \Lpack{report} and \Lpack{letter} classes all start of with the |plain|
+% page style, which is specified within the class file. When mixed classes
+% of imported documents are used the page style definitions can get 
+% overwritten by the extra class(es). So, the revised |\document| command
+% resets the |plain| page style to the \Lpack{combine} class definition
+% and sets the initial page style to be |plain|.
+%    \begin{macrocode}
+\newcommand{\c@lbdocument}{%
+%%  \endgroup
+%%  \ifx\@unusedoptionlist\@empty\else
+%%    \@latex@warning@no@line{Unused global option(s):^^J%
+%%           \@spaces[\@unusedoptionlist]}%
+%%  \fi
+  \ifc@llayouts            %% layouts option
+    \c@ltextblock
+  \fi
+  \begingroup\@floatplacement\@dblfloatplacement
+    \makeatletter \let\@writefile\@gobbletwo
+%%    \global \let \@multiplelabels \relax
+    \@input{\c@lauxfile}%
+  \endgroup
+  \if@filesw
+    \immediate\openout\@partaux\c@lauxfile 
+    \immediate\write\@partaux{\relax}%
+  \fi
+  \process@table
+  \let\glb@currsize\@empty
+  \normalsize
+  \everypar{}%
+  \@noskipsecfalse
+%%  \let \@refundefined \relax
+  \let\AtBeginDocument\@firstofone
+  \@begindocumenthook
+  \ifdim\topskip<1sp\global\topskip 1sp\relax\fi
+  \global\@maxdepth\maxdepth
+%%  \global\let\@begindocumenthook\@undefined
+  \ifx\@listfiles\@undefined
+    \global\let\@filelist\relax
+    \global\let\@addtofilelist\@gobble
+  \fi
+%%  \gdef\do##1{\global\let ##1\@notprerr}%
+%%  \@preamblecmds
+  \global\let \@nodocument \relax
+  \global\let\do\noexpand
+  \let\ps@plain\c@lbps@plain   %% set pagestyle
+%    \end{macrocode}
+% Setting |\pagestyle| here kills the use of any other style (e.g.,
+% a fancy style) in the imports\footnote{Problem discovered by Rumen
+% Bogdanovski (\texttt{rgb@libra.astro.bas.bg}) on 2001/04/03.}.
+% \changes{v0.41}{2001/04/04}{Eliminated page style setting for imports.}
+%    \begin{macrocode}
+%%  \pagestyle{plain}    
+  \ifc@lfolios                 %% folios option initialises page number
+    \setcounter{page}{1}        
+  \fi
+  \ifc@lhaschapter             %% set chapter/section number
+    \setcounter{c@lctr}{\value{chapter}}
+    \setcounter{chapter}{0}
+  \else
+    \setcounter{c@lctr}{\value{section}}
+    \setcounter{section}{0}
+  \fi
+  \c@lresetcounters            %% added
+  \makeatother                 %% added
+  \ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lresetcounters}
+%    This sets various counters to zero, and is called at the beginning of
+% an imported document.
+% \changes{v0.4}{2000/05/27}{Added \cs{c@lresetcounters} and 
+% \cs{zeroextracounters} commands}
+% \changes{v0.51}{2001/07/05}{Reset chapter/section format after possible \cs{appendix}}
+%    \begin{macrocode}
+\newcommand{\c@lresetcounters}{%
+  \@ifundefined{c@figure}{}{\setcounter{figure}{0}}
+  \@ifundefined{c@table}{}{\setcounter{table}{0}}
+  \@ifundefined{c@equation}{}{\setcounter{equation}{0}}
+  \@ifundefined{c@footnote}{}{\setcounter{footnote}{0}}
+  \@ifundefined{c@chapter}%
+    {\@ifundefined{c@section}{}{\renewcommand{\thesection}{\c@lthesec}}}%
+    {\renewcommand{\thechapter}{\c@lthechap}}
+  \zeroextracounters
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\zeroextracounters}
+%    This is a user-level macro that can be renewed to reset addtional
+% counters to zero at the beginning of an imported document.
+%    \begin{macrocode}
+\newcommand{\zeroextracounters}{}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% 
+%
+%  The |\enddocument| command (defined in \file{ltmiscen.dtx}) has
+% to be modified for both the main and imported documents. The modifications
+% are minor, mainly concerned with handling the proper files.
+%
+% \begin{macro}{\c@lenddoca}
+% |\c@lenddoca| holds some code that is common to both |\c@laenddocument|
+% and |\c@lbenddocument|.
+% \changes{v0.3}{2000/05/20}{Added \cs{c@lenddoca} command}
+%    \begin{macrocode}
+\newcommand{\c@lenddoca}{%
+    \@dofilelist
+    \ifdim \font@submax >\fontsubfuzz\relax
+      \@font@warning{Size substitutions with differences\MessageBreak
+                 up to \font@submax\space have occured.\@gobbletwo}%
+    \fi
+    \@defaultsubs
+%%    \@refundefined
+    \if@filesw
+      \ifx \@multiplelabels \relax
+        \if@tempswa
+          \@latex@warning@no@line{Label(s) may have changed.
+              Rerun to get cross-references right}%
+        \fi
+      \else
+        \@multiplelabels
+      \fi
+    \fi
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@laenddocument}
+% \begin{macro}{\c@lbenddocument}
+%    \begin{macrocode}
+\newcommand{\c@laenddocument}{%
+  \@enddocumenthook
+  \@checkend{document}%
+  \clearpage
+  \begingroup
+    \if@filesw
+      \immediate\closeout\@mainaux 
+      \immediate\closeout\@partaux 
+      \let\@setckpt\@gobbletwo
+      \let\@newl@bel\@testdef
+      \@tempswafalse
+      \makeatletter \input\c@lmainauxfile  %% change here
+    \fi
+    \c@lenddoca                            %% a replacement
+    \@refundefined
+  \endgroup
+  \deadcycles\z@\@@end}
+
+\newcommand{\c@lbenddocument}{%
+  \@enddocumenthook
+  \@checkend{document}%
+  \clearpage
+  \begingroup
+    \if@filesw
+      \immediate\closeout\@partaux   %% change here
+      \let\@setckpt\@gobbletwo
+      \let\@newl@bel\@testdef
+      \@tempswafalse
+      \makeatletter \input\c@lauxfile  %% change here
+    \fi
+    \c@lenddoca                        %% a replacement
+%%    \@refundefined
+  \endgroup
+  \deadcycles\z@  %%\@@end     %% \@@end will close *all* files
+  \c@lclosetocs                %% close local files
+%    \end{macrocode}
+% Reset sectional and page numbering. Also reset stuff to take account
+% of the possibily that |\appendix| was called.
+% \changes{v0.51}{2001/05/09}{Added reset of chapter name after appendix}
+%    \begin{macrocode}
+  \ifc@lhaschapter             %% reset chap/sec and page numbering
+    \setcounter{chapter}{\value{c@lctr}}
+    \gdef\thechapter{\c@lthechap}
+    \gdef\@chapapp{\chaptername}
+  \else
+    \setcounter{section}{\value{c@lctr}}
+    \gdef\thesection{\c@lthesec}
+  \fi
+  \setcounter{page}{\value{colpage}}
+  \pagestyle{\c@lastyle}
+  \erasetitling                %% no \coltoc... or \published commands defined
+%%  \let\@auxout\@mainaux
+  \gdef\jobname{\mainjobname}  %% swap back to main document file name
+  \endinput                    %% ignore any text after \end{document}
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \subsection{Titling commands}
+%
+%    Changes to |\maketitle| and friends are defined here.
+%
+% \begin{macro}{\maintitlefont}
+% \begin{macro}{\postmaintitle}
+% \begin{macro}{\mainauthorfont}
+% \begin{macro}{\postmainauthor}
+% \begin{macro}{\maindatefont}
+% \begin{macro}{\postmaindate}
+%    To provide some flexibilty in the titling style of the main document,
+% user level commands are provided that can be changed to reconfigure
+% the appearance resulting from |\maketitle|. These are defined initially
+% to approximately mimic the normal \LaTeX{} style.
+% \changes{v0.3}{2000/05/20}{Added \cs{...main...} commands.}
+%    \begin{macrocode}
+\newcommand{\maintitlefont}{\begin{center}\LARGE}
+\newcommand{\postmaintitle}{\par\end{center}\vskip 0.5em}
+\newcommand{\mainauthorfont}{\begin{center}
+  \large \lineskip .5em%
+  \begin{tabular}[t]{c}}
+\newcommand{\postmainauthor}{\end{tabular}\par\end{center}}
+\newcommand{\maindatefont}{\begin{center}\large}
+\newcommand{\postmaindate}{\par\end{center}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lamaketitle}
+%    The |\maketitle| command (defined by each class) must not incapacitate
+% several commands that it normally does (e.g., |\thanks|, |\maketitle|,
+% |\title|, |\author|, |\date|, and |\and|). The following is a
+% modification of |\maketitle| as in the \Lpack{article}, \Lpack{report},
+% and \Lpack{book} classes.
+% \changes{v0.3}{2000/05/20}{Revised maketitle-related commands.}
+%    \begin{macrocode}
+\if@titlepage
+  \newcommand{\c@lamaketitle}{\begin{titlepage}%
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \let \footnote \thanks
+    \null\vfil
+    \vskip 60\p@
+    {\maintitlefont \@title \postmaintitle}
+    {\mainauthorfont \@author \postmainauthor}
+    {\maindatefont \@date \postmaindate}
+    \par
+    \@thanks
+    \vfil\null
+    \end{titlepage}%
+    \setcounter{footnote}{0}%
+    \c@lmtitlempty                %% change here
+  } % end titlepage defs
+\else
+  \newcommand{\c@lamaketitle}{\par
+    \begingroup
+      \c@lmtitle                   %% change here
+    \endgroup
+    \setcounter{footnote}{0}%
+    \c@lmtitlempty                 %% change here
+  } % end non-titlepage
+
+%    \end{macrocode}
+% I use |\def\@maketitle| to account for the cases where the main class 
+% does not have titling commands, and to ensure an existing |\@maketitle|
+% gets overridden.
+%    \begin{macrocode}
+
+  \def\@maketitle{%               
+    \newpage
+    \null
+    \vskip 2em%
+    {\maintitlefont \@title \postmaintitle}
+    {\mainauthorfont \@author \postmainauthor}
+    {\maindatefont \@date \postmaindate}
+    \par
+    \vskip 1.5em}
+\fi    % end mod A of titling
+
+%    \end{macrocode}
+%
+% \begin{macro}{\c@lmtitle}
+%    This macro contains much of the code that is common between
+% |\c@l@maketitle| and |\c@lbmaketitle|.
+%    \begin{macrocode}
+\newcommand{\c@lmtitle}{%
+  \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+  \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+  \long\def\@makefntext##1{\parindent 1em\noindent
+    \hb@xt@1.8em{%
+      \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+  \if@twocolumn
+    \ifnum \col@number=\@ne
+      \@maketitle
+    \else
+      \twocolumn[\@maketitle]%
+    \fi
+  \else
+    \newpage
+    \global\@topnum\z@
+    \@maketitle
+  \fi
+  \thispagestyle{plain}\@thanks
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% The modification for imported documents is simpler as there seems no
+% point in allowing for a \Lopt{titlepage} option. Also, don't start
+% a new page for the title and use a local typesetting style.
+%    \begin{macrocode}
+  \newcommand{\c@lbmaketitle}{\par
+    \begingroup
+      \let\newpage\relax
+      \let\@maketitle\c@lb@maketitle
+      \c@lmtitle
+    \endgroup
+    \setcounter{footnote}{0}%
+    \c@lmtitlempty
+  } 
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lmtitlempty}
+%    A helper macro to save some macro space. 
+% It empties elements of |\maketitle|.
+%    \begin{macrocode}
+\newcommand{\c@lmtitlempty}{%
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\importtitlefont}
+% \begin{macro}{\postimporttitle}
+% \begin{macro}{\importauthorfont}
+% \begin{macro}{\postimportauthor}
+% \begin{macro}{\importdatefont}
+% \begin{macro}{\postimportdate}
+%    The fonts and layouts for use within |\maketitle| in imported documents.
+% \changes{v0.3}{2000/05/20}{Added \cs{...import...} commands.}
+%    \begin{macrocode}
+\newcommand{\importtitlefont}{\begin{center}\LARGE\bfseries}
+\newcommand{\postimporttitle}{\par\end{center}}
+\newcommand{\importauthorfont}{\begin{center}
+  \large\itshape \lineskip .5em%
+  \begin{tabular}[t]{c}}
+\newcommand{\postimportauthor}{\end{tabular}\par\end{center}}
+\newcommand{\importdatefont}{\begin{center}\large}
+\newcommand{\postimportdate}{\par\end{center}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lb@maketitle}
+% This typesets the title in an imported document. It also includes the
+% code for implementing the \Lopt{nodate}, \Lopt{notitle} and \Lopt{noauthor}
+% options. The vertical spacing is reduced slightly from normal. 
+% The title and author texts are set with |\importtitlefont| and
+% |\importauthorfont| respectiveley. The date is set with |\importdatefont|.
+%    \begin{macrocode}
+\newcommand{\c@lb@maketitle}{%
+%%  \newpage
+  \begingroup
+    \let\footnote\thanks
+    \null
+    \vskip 2em%
+    \ifc@lnotitle\else
+      {\importtitlefont \@title \postimporttitle}
+    \fi
+    \ifc@lnoauthor\else
+      {\importauthorfont \@author \postimportauthor}
+    \fi
+    \ifc@lnodate\else
+      {\importdatefont \@date \postimportdate}%
+    \fi
+    \par
+  \endgroup
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Cross referencing}
+%
+%    This section deals with |\tableofcontents| and friends, together
+% with labeling, referencing and citations.
+%
+% \begin{macro}{\c@lbstarttoc}
+% The |\@starttoc| command (from \file{ltsect.dtx}) has to be modified
+% for imported documents so that a local ToC (LoF, LoT) file is used
+% instead of the one for the main document. I use a file identifier
+% of |c@l#1fnum| instead of the normal |tf@#1|.
+%    \begin{macrocode}
+\newcommand{\c@lb@starttoc}[1]{%
+  \begingroup
+    \makeatletter
+    \def\tocfname{\jobname.#1}
+    \@input{\tocfname}%
+    \if@filesw
+%    \end{macrocode}
+% The following tests are to check if we can use a predefined output stream
+% or have to allocate a new one (e.g., if a new list of floats hase been
+% defined).
+%    \begin{macrocode}
+      \def\c@ltempa{#1} \def\c@ltempb{toc}
+      \ifx \c@ltempa \c@ltempb
+         \immediate\openout\c@ltocfnum \tocfname\relax
+      \else
+        \def\c@ltempb{lof}
+        \ifx \c@tempa \c@ltempb
+          \immediate\openout\c@lloffnum \tocfname\relax
+        \else
+          \def\c@ltempb{lot}
+          \ifx \c@tempa \c@ltempb
+            \immediate\openout\c@llotfnum \tocfname\relax
+          \else
+            \expandafter\newwrite\csname c@l#1fnum\endcsname
+            \immediate\openout\csname c@l#1fnum\endcsname \tocfname\relax
+          \fi
+        \fi
+      \fi
+    \fi
+    \@nobreakfalse
+  \endgroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbwritefile}
+% To go along with local ToC files, |\@writefile| (in \file{ltmiscen.dtx})
+% has to be modified to match. We also check if a local file exists before
+% writing to it. 
+%    \begin{macrocode}
+\newcommand{\c@lb@writefile}[2]{%
+  \def\tocfname{\jobname.#1}
+  \IfFileExists{\tocfname}
+    {\@temptokena{#2}%
+     \immediate\write\csname c@l#1fnum\endcsname{\the\@temptokena}}
+    {}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lclosetocs}
+% At the end of each imported document, any local ToC, etc., files 
+% must be closed.
+%    \begin{macrocode}
+\newcommand{\c@lclosetocs}{%
+  \immediate\closeout\c@ltocfnum
+  \immediate\closeout\c@lloffnum
+  \immediate\closeout\c@llotfnum
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\c@ltocgobble}
+%    A macro containing some common code for |\...addtocontents| commands.
+%    \begin{macrocode}
+\newcommand{\c@ltocgobble}{%
+  \let\label\@gobble \let\index\@gobble \let\glossary\@gobble}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@laaddtocontents}
+% \begin{macro}{\c@laaddcontentsline}
+%    It turns out to be useful to have versions of ToC addition commands
+% that go towards the main document.
+%    \begin{macrocode}
+\newcommand{\c@laaddtocontents}[2]{%
+  \protected@write\@mainaux
+    {\c@ltocgobble}%
+    {\string\@writefile{#1}{#2}}
+}
+\newcommand{\c@laaddcontentsline}[3]{%
+  \c@laaddtocontents{#1}{\protect\contentsline{#2}{#3}{\thecolpage}}
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lbaddtocontents}
+% To implement the \Lopt{maintoc} option, we need a modification of
+% |\addtocontents| (in \file{ltsect.dtx}) so that it will write to 
+% both the local and the main \file{.aux} files.
+%    \begin{macrocode}
+\ifc@lmaintoc
+  \newcommand{\c@lbaddtocontents}[2]{%
+    \protected@write\@auxout
+      {\c@ltocgobble}%
+      {\string\@writefile{#1}{#2}}
+    \ifx\@mainaux\@auxout\else    %% prevent writing twice to mainaux
+      \protected@write\@mainaux
+        {\c@ltocgobble}%
+        {\string\@writefile{#1}{\protect\begin{tocindent}{\toctocindent}}}
+      \protected@write\@mainaux
+        {\c@ltocgobble}%
+        {\string\@writefile{#1}{#2}}
+      \protected@write\@mainaux
+        {\c@ltocgobble}%
+        {\string\@writefile{#1}{\protect\end{tocindent}}}
+    \fi
+  }
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lblabel}
+% \begin{macro}{\c@lb@setref}
+%    To get the `correct' page number for labels in an imported
+% document, we have to use the global and not the local page number.
+%    \begin{macrocode}
+\newcommand{\c@lblabel}[1]{\@bsphack
+  \protected@write\@auxout{}%
+    {\string\newlabel{#1}{{\@currentlabel}{\thecolpage}}}%
+  \@esphack}
+\newcommand{\c@lb@setref}[3]{%
+  \ifx#1\relax
+    \protect\G@refundefinedtrue
+    \nfss@text{\reset@font\bfseries ??}%
+    \@latex@warning{Reference `#3' on page \thecolpage \space
+                    undefined}%
+  \else
+    \expandafter#2#1\null
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lbnewlabel}
+% \begin{macro}{\c@lbref}
+% \begin{macro}{\c@lpagebref}
+%  For local labels and cross-references in an imported document, 
+% special versions of 
+% |\newlabel|, |\ref| and |\pageref| (in \file{ltxref.dtx}) are needed.
+% I use |\jobname| to distinguish identical labels in different imported
+% files.
+%    \begin{macrocode}
+\newcommand{\c@lbnewlabel}{\@newl@bel{R?\jobname?}}
+\newcommand{\c@lbref}[1]{\expandafter\@setref\csname R?\jobname?@#1\endcsname
+               \@firstoftwo{#1}}
+\newcommand{\c@lbpageref}[1]{\expandafter\@setref\csname R?\jobname?@#1\endcsname
+               \@secondoftwo{#1}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lwritemainbib}
+% \begin{macro}{\c@lwritelocalbib}
+% For citatations we may be writing to either the main bibliography
+% or to a local bibliography. For local bibliographies I use the
+% |\jobname| as a distinguishing characteristic.
+% \changes{v0.6}{2002/08/24}{Added \cs{c@lwritemainbib} and \cs{c@lwritelocalbib}}
+%    \begin{macrocode}
+\newcommand{\c@lwritemainbib}{%
+     \if@filesw\immediate\write\@mainaux{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\mbox{\reset@font\bfseries ?}%
+      \G@refundefinedtrue
+      \@latex@warning
+        {Citation `\@citeb' on page \thecolpage \space undefined}}%
+      {\hbox{\csname b@\@citeb\endcsname}}}
+\newcommand{\c@lwritelocalbib}{%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{B?\jobname?@\@citeb}{\mbox{\reset@font\bfseries ?}%
+      \G@refundefinedtrue
+      \@latex@warning
+        {Citation `\@citeb' on page \thecolpage \space undefined}}%
+      {\hbox{\csname B?\jobname?@\@citeb\endcsname}}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\c@lanocite}
+%  Slight mod to the kernel |\nocite| macro.
+% \changes{v0.6}{2002/08/24}{Added \cs{c@lanocite}}
+%    \begin{macrocode}
+\newcommand{\c@lanocite}[1]{\@bsphack
+  \@for\@citeb:=#1\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\@mainaux{\string\citation{\@citeb}}\fi
+    \@ifundefined{b@\@citeb}{\G@refundefinedtrue
+      \@latex@warning{Citation `\@citeb' undefined}}{}}%
+  \@esphack}
+\let\nocite\c@lanocite
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbnocite}
+%  Need another version of |\nocite| for imports.
+% \changes{v0.6}{2002/08/24}{Added \cs{c@lbnocite}}
+%    \begin{macrocode}
+\newcommand{\c@lbnocite}[1]{\@bsphack
+  \@for\@citeb:=#1\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+    \@ifundefined{B?\jobname?@\@citeb}{\G@refundefinedtrue
+      \@latex@warning{Citation `\@citeb' undefined}}{}}%
+  \@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lb@citex}
+% \begin{macro}{\c@lbbibcite}
+%  For local citations in an imported document, special versions of
+% |\@citex| and |\bibcite| (in \file{ltbibl.dtx}) are needed. I use
+% the |\jobname| as a means of distinguishing between identical citation
+% labels in different imported files.
+% \changes{v0.6}{2002/08/24}{Added code for bib options to \cs{c@lbbibcite}}
+%    \begin{macrocode}
+\def\c@lb@citex[#1]#2{%
+  \ifc@lcombib
+    \c@lanocite{#2}%
+  \fi
+  \let\@citea\@empty
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{,\penalty\@m\ }%
+     \edef\@citeb{\expandafter\@firstofone\@citeb\@empty}%
+     \ifc@lcombib
+       \c@lwritelocalbib
+     \else
+       \ifc@lonebib
+         \c@lwritemainbib
+       \else
+         \c@lwritelocalbib
+       \fi
+     \fi}}{#1}}
+
+\ifc@lonebib
+  \newcommand{\c@lbbibcite}{\@newl@bel b}
+  \ifc@lcombib
+    \renewcommand{\c@lbbibcite}{\@newl@bel{B?\jobname?}}
+  \fi
+\else
+  \newcommand{\c@lbbibcite}{\@newl@bel{B?\jobname?}}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \subsection{Page styles and numbering}
+%
+% \begin{macro}{\c@lapagestyle}
+% \begin{macro}{\c@lastyle}
+% \begin{macro}{\c@lbpagestyle}
+%    I want to be able to restore the main document pagestyle after an
+% import. The current main pagestyle is kept in |\c@lastyle| which is
+% defined by |\c@lapagestyle| (original in \file{ltpage.dtx}).
+% \changes{v0.41}{2001/04/04}{Changed c@lstyle to \cs{c@lastyle} (two places)}
+%    \begin{macrocode}
+\newcommand{\c@lapagestyle}[1]{%
+  \gdef\c@lastyle{#1}
+  \@ifundefined{ps@#1}{}{\@nameuse{ps@#1}}
+}
+%    \end{macrocode}
+% |\c@lbpagestyle| is the same as the kernel |\pagestyle|, except for some
+% reason \LaTeX{} complains that the original command |\undefinedpagestyle|
+% is undefined!
+%    \begin{macrocode}
+\newcommand{\c@lbpagestyle}[1]{%
+  \@ifundefined{ps@#1}{}{\@nameuse{ps@#1}}
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lbpagenumbering}
+% Need to do something about changing the page numbering in imported
+% documents, as it can have an unfortunate impact on later numbering.
+% The original command is in \file{ltpageno.dtx}. Disable changing
+% the style of the page number unless the \Lopt{folios} option is in effect.
+%    \begin{macrocode}
+\ifc@lfolios
+  \newcommand{\c@lbpagenumbering}[1]{%
+    \global\c@page \@ne \gdef\thepage{\csname @#1\endcsname
+      \c@page}}
+\else
+  \newcommand{\c@lbpagenumbering}[1]{}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@laps@plain}
+% \begin{macro}{\c@lbps@plain}
+%    Alternative definitions for the |plain| pagestyle.
+%    \begin{macrocode}
+\if@twoside
+  \newcommand{\c@laps@plain}{%
+    \let\@mkboth\@gobbletwo
+    \let\@oddhead\@empty \let\@evenhead\@empty
+    \def\@oddfoot{\reset@font\hfil\thepage}%
+    \def\@evenfoot{\reset@font\thepage\hfil}%
+  }
+  \ifc@lfolios
+    \newcommand{\c@lbps@plain}{%
+      \let\@mkboth\@gobbletwo
+      \let\@oddhead\@empty \let\@evenhead\@empty
+      \def\@oddfoot{\reset@font(\thepage)\hfil\thecolpage}%
+      \def\@evenfoot{\reset@font\thecolpage\hfil(\thepage)}%
+    }
+  \else
+    \newcommand{\c@lbps@plain}{%
+      \let\@mkboth\@gobbletwo
+      \let\@oddhead\@empty \let\@evenhead\@empty
+      \def\@oddfoot{\reset@font\hfil\thecolpage}%
+      \def\@evenfoot{\reset@font\thecolpage\hfil}%
+    }
+  \fi
+\else
+  \newcommand{\c@laps@plain}{%
+    \let\@mkboth\@gobbletwo
+    \let\@oddhead\@empty \let\@evenhead\@empty
+    \def\@oddfoot{\reset@font\hfil\thepage}%
+    \let\@evenfoot\@oddfoot
+  }
+  \ifc@lfolios
+    \newcommand{\c@lbps@plain}{%
+      \let\@mkboth\@gobbletwo
+      \let\@oddhead\@empty \let\@evenhead\@empty
+      \def\@oddfoot{\reset@font(\thepage)\hfil\thecolpage}%
+      \let\@evenfoot\@oddfoot
+    }
+  \else
+    \newcommand{\c@lbps@plain}{%
+      \let\@mkboth\@gobbletwo
+      \let\@oddhead\@empty \let\@evenhead\@empty
+      \def\@oddfoot{\reset@font\hfil\thecolpage}%
+      \let\@evenfoot\@oddfoot
+    }
+  \fi
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \section{New class commands}
+%
+%    That completes the preliminaries. We can now move on and define the
+% new commands and environment implemented by the \Lpack{combine} class.
+%
+% \begin{macro}{\ps@combine}
+%    A new pagestyle. Like |plain| but the page numbers are put at 
+% a bottom corner instead of being centered. It also changes the
+% the |plain| style to match.
+%    \begin{macrocode}
+\if@twoside
+  \newcommand{\ps@combine}{%
+    \let\@mkboth\@gobbletwo
+    \let\@oddhead\@empty \let\@evenhead\@empty
+    \def\@oddfoot{\reset@font\hfil\thepage}%
+    \def\@evenfoot{\reset@font\thepage\hfil}%
+    \let\ps@plain\c@laps@plain
+  }
+\else
+  \newcommand{\ps@combine}{%
+    \let\@mkboth\@gobbletwo
+    \let\@oddhead\@empty \let\@evenhead\@empty
+    \def\@oddfoot{\reset@font\hfil\thepage}%
+    \let\@evenfoot\@oddfoot
+    \let\ps@plain\c@laps@plain
+  }
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\import}
+% |\import{|\meta{texfile}|}| attempts to find and input the file 
+% \meta{texfile}\texttt{.tex}. It is very loosely based on |\include|.
+% It also adds the |\coltoctitle|, etc., to the ToC in a useful
+% order\footnote{This need pointed out by Stefan Becuwe
+%                (\texttt{Stefan.Becuwe@ua.ac.be}) by Email on 2001/07/09.}.
+% \changes{v0.51}{2001/07/09}{\cs{import} adds coltoctitle, etc., to the ToC}
+% \changes{v0.53}{2001/09/05}{Added empty \cs{numberline} to title in ToC}
+%    \begin{macrocode}
+\newcommand{\import}[1]{%
+  \ifc@ltoctitle
+    \addtocontents{toc}{\protect\contentsline{coltoctitle}%
+      {\protect\numberline{}\savec@ltoctitle}{\thecolpage}}
+    \c@ltoctitlefalse
+  \fi
+  \ifc@ltocauthor
+    \addcontentsline{toc}{coltocauthor}{\protect\numberline{}\savec@ltocauthor}
+    \c@ltocauthorfalse
+  \fi
+  \ifc@lpub
+    \addcontentsline{toc}{published}{\protect\numberline{}\savec@lpublished}
+    \c@lpubfalse
+  \fi
+  \gdef\jobname{#1}
+%    \end{macrocode}
+% \changes{v0.6}{2002/08/24}{Added empty definition for nocite{*} 
+%                            handling to \cs{import}}
+%    \begin{macrocode}
+  \expandafter\let\csname B?\jobname?@*\endcsname\@empty
+  \gdef\c@lauxfile{#1.aux}
+  \@tempswatrue
+  \let\@auxout\@partaux
+  \@input@{#1.tex}%
+%%  \@writeckpt{#1}%
+  \let\@auxout\@mainaux
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\bodytitlemark}
+% \begin{macro}{\bodytitle}
+%    |\bodytitle[|\meta{short}|]{|\meta{long}|}| is for putting a sectional
+% title into the main document for the following imported document. It is
+% like a |\section| (or |\chapter|) command and has its own numbering scheme.
+%    \begin{macrocode}
+\newcommand*\bodytitlemark[1]{}
+\newcounter{bodytitle}
+\renewcommand{\thebodytitle}{\@arabic\c@bodytitle}
+\ifc@lhaschapter
+  \newcommand{\bodytitle}{\@startsection{bodytitle}{0}{\z@}%
+                                        {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                        {2.3ex \@plus.2ex}%
+                                        {\normalfont\Huge\bfseries}}
+\else
+  \newcommand{\bodytitle}{\@startsection{bodytitle}{1}{\z@}%
+                                        {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                        {2.3ex \@plus.2ex}%
+                                        {\normalfont\Large\bfseries}}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@ll@chapseci}
+% \begin{macro}{\c@ll@chapsecii}
+%    These are two helper macros that contain common code used for
+% some of the ToC typesetting commands that will be defined. Essentially
+% they hold the first and second quarter of the code for ToC typesetting
+% of chapters and sections.
+%    \begin{macrocode}
+\newcommand{\c@ll@chapseci}{%
+%  \setlength\@tempdima{1.5em}%
+  \setlength\@tempdima{0em}%
+  \begingroup
+    \parindent \z@ \rightskip \@pnumwidth
+    \parfillskip -\@pnumwidth
+    \leavevmode
+}
+\newcommand{\c@ll@chapsecii}[2]{%
+  \advance\leftskip\@tempdima
+  \hskip -\leftskip
+  #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\l@bodytitle}
+% |\l@bodytitle| typesets the ToC entry for |\bodytitle|.
+%    \begin{macrocode}
+\ifc@lhaschapter
+  \newcommand*\l@bodytitle[2]{%  % as per chapter
+    \ifnum \c@tocdepth >\m@ne
+      \addpenalty{-\@highpenalty}%
+      \addvspace{1.0em \@plus\p@}%
+      \c@ll@chapseci
+      \bfseries                    %% bold ToC entry
+      \c@ll@chapsecii{#1}{#2}
+      \penalty\@highpenalty
+      \endgroup
+    \fi}
+\else
+  \newcommand*\l@bodytitle[2]{%  % as per section
+    \ifnum \c@tocdepth >\z@
+      \addpenalty\@secpenalty
+      \addvspace{1.0em \@plus\p@}%
+      \c@ll@chapseci
+      \bfseries                    %% bold ToC entry
+      \c@ll@chapsecii{#1}{#2}
+      \endgroup
+    \fi}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\toctitleindent}
+% \begin{macro}{\tocauthorindent}
+% \begin{macro}{\tocpubindent}
+% \begin{macro}{\toctocindent}
+%    These lengths control the indentations of the imported title, author,
+% published, and sectional headings in the main ToC.
+%    \begin{macrocode}
+\newlength{\toctitleindent}\setlength{\toctitleindent}{0pt}
+\newlength{\tocauthorindent}\setlength{\tocauthorindent}{1.5em}
+\newlength{\tocpubindent}\setlength{\tocpubindent}{1.5em}
+\newlength{\toctocindent}\setlength{\toctocindent}{1.5em}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{environment}{tocindent}
+%  The |tocindent| environment is used to set the various main ToC indents.
+%    \begin{macrocode}
+\newenvironment{tocindent}[1]{%
+  \hangindent #1 \hangafter -100\relax}{}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\toctitlefont}
+% \begin{macro}{\tocauthorfont}
+% \begin{macro}{\tocpubfont}
+%    These macros define the fonts to be used for typesetting the title,
+% author and publication entries in the main ToC.
+%    \begin{macrocode}
+\newcommand{\toctitlefont}{\bfseries}
+\newcommand{\tocauthorfont}{\itshape}
+\newcommand{\tocpubfont}{\normalfont}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\coltoctitle}
+% \begin{macro}{\l@coltoctitle}
+% |\coltoctitle{|\meta{title}|}| adds \meta{title} to the ToC for the 
+% following imported document. The ToC entry is typeset by |\l@coltoctitle|.
+% \changes{v0.51}{2001/07/09}{Save the value of \cs{coltoctitle}}
+%    \begin{macrocode}
+\newcommand*{\coltoctitle}[1]{%
+  \c@ltoctitletrue%
+  \gdef\savec@ltoctitle{#1}
+}
+
+%    \end{macrocode}
+%
+%    We want to arrange it so that if the title is near the bottom of a
+% page in the ToC, have the pagebreak before rather than after the title.
+% \changes{v0.42}{2001/04/04}{Changed pagebreak penalties in \cs{l@coltoctitle}}
+% \changes{v0.53}{2001/09/05}{Fixed extraneous space in \cs{l@coltoctitle}}
+%    \begin{macrocode}
+\ifc@lhaschapter
+  \newcommand*\l@coltoctitle[2]{%  % as per chapter
+    \ifnum \c@tocdepth >\m@ne
+      \addpenalty{-\@highpenalty}% encourage page break
+      \addvspace{1.0em \@plus\p@}%
+      \c@ll@chapseci
+      \setlength{\@tempdima}{\toctitleindent}% eliminate any spaces here
+      \toctitlefont                    %% bold ToC entry
+      \c@ll@chapsecii{#1}{#2}
+      \penalty\@highpenalty      % discourage page break
+      \endgroup
+    \fi}
+\else
+  \newcommand*\l@coltoctitle[2]{%  % as per section
+    \ifnum \c@tocdepth >\z@
+      \addpenalty\@secpenalty
+      \addvspace{1.0em \@plus\p@}%
+      \c@ll@chapseci
+      \setlength{\@tempdima}{\toctitleindent}% eliminate any spaces here
+      \toctitlefont                    %% bold ToC entry
+      \c@ll@chapsecii{#1}{#2}
+      \penalty\@highpenalty      % discourage page break
+      \endgroup
+    \fi}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\coltocauthor}
+% \begin{macro}{\l@coltocauthor}
+% |\coltocauthor{|\meta{authors}|}| adds \meta{authors} to the ToC for the 
+% following imported document. The ToC entry is typeset by |\l@coltocauthor|.
+% Note that a page number is not printed.
+% \changes{v0.51}{2001/07/09}{Save value of \cs{coltocauthor}}
+%    \begin{macrocode}
+\newcommand*{\coltocauthor}[1]{%
+  \c@ltocauthortrue%
+  \gdef\savec@ltocauthor{#1}
+}
+
+%    \end{macrocode}
+% As it is unlikely that the author will be in the ToC without the title,
+% don't encourage a page break beforehand.
+% \changes{v0.42}{2001/04/04}{Changed pagebreak penalties in \cs{l@coltocauthor}}
+% \changes{v0.53}{2001/09/05}{Fixed extraneous space in \cs{l@coltocauthor}}
+%
+%    \begin{macrocode}
+\ifc@lhaschapter
+  \newcommand*\l@coltocauthor[2]{%  % similar to chapter
+    \ifnum \c@tocdepth >\m@ne
+      \c@ll@chapseci
+      \setlength{\@tempdima}{\tocauthorindent}% eliminate any spaces here
+      \tocauthorfont                    %% italic ToC entry
+      \c@ll@chapsecii{#1}{}
+      \penalty\@highpenalty  % discourage page break
+      \endgroup
+    \fi}
+\else
+  \newcommand*\l@coltocauthor[2]{%  % similar to section
+    \ifnum \c@tocdepth >\z@
+      \c@ll@chapseci
+      \setlength{\@tempdima}{\tocauthorindent}% eliminate any spaces here
+      \tocauthorfont                    %% italic ToC entry
+      \c@ll@chapsecii{#1}{}
+      \penalty\@highpenalty  % discourage page break
+      \endgroup
+    \fi}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\published}
+% \begin{macro}{\pubfont}
+% \begin{macro}{\l@published}
+% |\published[|\meta{short}|]{|\meta{long}|}| adds \meta{long} to the
+% body of the document. It also adds \meta{long} to the ToC, unless the
+% optional argument is present, in which case \meta{short} is added
+% to the ToC.
+%
+%    In the body of the document \meta{long} is typeset using |\pubfont|.
+% The ToC entry is typeset by |\l@published|.
+% Note that a page number is not printed.
+% \changes{v0.51}{2001/07/09}{Save value of \cs{published}}
+%    \begin{macrocode}
+\newcommand{\published}[2][\@empty]{%
+  \c@lpubtrue
+  \ifc@lnopubintoc\else
+    \ifx #1\@empty
+      \gdef\savec@lpublished{#2}
+    \else
+      \gdef\savec@lpublished{#1}
+    \fi
+  \fi
+  \ifc@lnopubindoc\else
+    {\parindent \z@ \pubfont #2\par\nobreak}
+  \fi
+}
+\newcommand{\pubfont}{\normalfont\centering}
+
+%    \end{macrocode}
+% As the published information is unlikely to be in the ToC without
+% prior title or author information, don't encourage a prior break,
+% but also don't try and prevent one afterwards either.
+% \changes{v0.42}{2001/04/04}{Changed pagebreak penalties in \cs{l@published}}
+% \changes{v0.53}{2001/09/05}{Fixed extraneous space in \cs{l@published}}
+%
+%    \begin{macrocode}
+\ifc@lhaschapter
+  \newcommand*\l@published[2]{%  % similar to chapter
+    \ifnum \c@tocdepth >\m@ne
+      \c@ll@chapseci       
+      \setlength{\@tempdima}{\tocpubindent}% eliminate any spaces here
+      \tocpubfont               %% normal font ToC entry
+      \c@ll@chapsecii{#1}{}
+      \endgroup
+    \fi}
+\else
+  \newcommand*\l@published[2]{%  % similar to section
+    \ifnum \c@tocdepth >\z@
+      \c@ll@chapseci           
+      \setlength{\@tempdima}{\tocpubindent}% eliminate any spaces here
+      \tocpubfont              %% normal font ToC entry
+      \c@ll@chapsecii{#1}{}
+      \endgroup
+    \fi}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\erasetitling}
+%    This macro sets the |\coltoctitle|, |\coltocauthor| and |\published|
+% flags to FALSE.
+%    \begin{macrocode}
+\newcommand{\erasetitling}{\c@ltoctitlefalse\c@ltocauthorfalse\c@lpubfalse}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{environment}{papers}
+%  The |papers| environment has one optional argument, 
+% default |\cleardoublepage| which gets executed at the start of the 
+% environment. Then the appropriate changes to the kernel commands are
+% executed.
+%    \begin{macrocode}
+\newenvironment{papers}[1][\cleardoublepage]{%
+#1
+\setuppapers
+}{%
+\takedownpapers
+}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\setuppapers}
+% This macro executes the kernel modifications within the |papers| 
+% environment. Various options are also checked and implemented if required.
+% Sectional numbering is reset to zero. Imported files can't |\include|
+% other files, so |\include| is replaced by |\input|. If |\chapter| is
+% defined, then the chapter typesetting is redefined to look more like
+% a |\section| heading.
+% \changes{v0.41}{2000/06/18}{\cs{def}ed \cs{maketitle} instead of \cs{let}ing
+% inside \cs{setuppapers} to ignore any titling package redefinitions}
+% \changes{v0.52}{2001/08/25}{Added \cs{c@lbLoadClass} to \cs{setuppapers}}
+% \changes{v0.6}{2002/08/24}{Added onebib and combinedbib options code to \cs{setuppapers}}
+% \changes{v0.62}{2003/06/30}{Left \cs{bibliographystyle} unaltered}.
+%    \begin{macrocode}
+\newcommand{\setuppapers}{%
+\let\documentclass\c@lbdocumentclass
+\ifc@lpackages\else \let\usepackage\c@lbusepackage \fi
+\let\document\c@lbdocument
+\let\enddocument\c@lbenddocument
+\let\LoadClass\c@lbLoadClass
+%% \let\maketitle\c@lbmaketitle
+\def\maketitle{\c@lbmaketitle}
+\let\@writefile\c@lb@writefile
+\let\@starttoc\c@lb@starttoc
+\ifc@lnomaketitle \let\maketitle\relax \fi
+\ifc@lnotoc \let\tableofcontents\relax \fi
+\ifc@lnolof \let\listoffigures\relax \fi
+\ifc@lnolot \let\listoftables\relax \fi
+\ifc@lmaintoc \let\addtocontents\c@lbaddtocontents \fi
+\let\label\c@lblabel
+\let\@setref\c@lb@setref
+\let\newlabel\c@lbnewlabel
+\let\ref\c@lbref
+\let\pageref\c@lbpageref
+%%% \renewcommand{\bibliographystyle}[1]{}
+\ifc@lcombib
+\else
+  \ifc@lonebib
+    \renewcommand{\bibliography}[1]{}
+  \fi
+\fi
+\let\@citex\c@lb@citex
+\let\bibcite\c@lbbibcite
+\let\nocite\c@lbnocite
+\ifc@lhaschapter
+  \renewcommand{\chapter}{\@startsection{chapter}{0}{\z@}%
+                                        {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                        {2.3ex \@plus.2ex}%
+                                        {\normalfont\Large\bfseries}}
+\fi
+\c@ltoctitlefalse
+\c@ltocauthorfalse
+\c@lpubfalse
+\let\pagenumbering\c@lbpagenumbering
+\setcounter{colpage}{\value{page}}
+\let\pagestyle\c@lbpagestyle
+\pagestyle{\c@lastyle}
+\let\include\input
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\takedownpapers}
+% This macro executes the actions, if any, at the end of the |papers| 
+% environment.
+%    \begin{macrocode}
+\newcommand{\takedownpapers}{%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\emptyAtBeginDocument}
+% This macro empties tokens stored for use at |\begin{document}| time.
+% \changes{v0.51}{2003/07/17}{Added \cs{emptyAtBeginDocument}}
+%    \begin{macrocode}
+\newcommand{\emptyAtBeginDocument}{\let\@begindocumenthook\@empty}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% Finally, use the appropriate revised kernel commands for the main document.
+% \changes{v0.41}{2000/06/18}{Moved main document \cs{maketitle} letting to
+% its begin document}
+%    \begin{macrocode}
+\let\document\c@ladocument
+\let\enddocument\c@laenddocument
+%%\let\maketitle\c@lamaketitle
+\let\pagestyle\c@lapagestyle
+\pagestyle{combine}
+
+%    \end{macrocode}
+%
+%
+%
+%
+%    The end of this class.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+% \section{The \Lpack{combinet} package code} \label{packcode}
+%
+%
+%    \begin{macrocode}
+%<*pck>
+%    \end{macrocode}
+% The usual preliminaries. The \Lpack{combine} class is expected.
+% \changes{v0.53}{2001/09/05}{combinet package now version 0.2}
+% \changes{v0.64}{2004/03/06}{combinet package now version 0.2a}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{combinet}[2004/03/06 v0.2a document titles in ToC]
+\@ifclassloaded{combine}{}{%
+  \PackageError{combinet}{The `combine' class is expected}{\@ehc}%
+}
+
+%    \end{macrocode}
+%
+% \begin{macro}{\ifc@lnomtitle}
+% \begin{macro}{\ifc@lnomauthor}
+% \begin{macro}{\ifc@lnothanks}
+% \begin{macro}{\ifc@lpubopt}
+% \begin{macro}{\ifc@lpubtop}
+% \begin{macro}{\ifc@lpubs}
+%    Booleans for implementing the options.
+%    \begin{macrocode}
+\newif\ifc@lnomtitle
+  \c@lnomtitlefalse
+\newif\ifc@lnomauthor
+  \c@lnomauthorfalse
+\newif\ifc@lnothanks
+  \c@lnothanksfalse
+\newif\ifc@lpubopt
+  \c@lpuboptfalse
+\newif\ifc@lpubtop
+  \c@lpubtopfalse
+\newif\ifc@lpubs
+  \c@lpubsfalse
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% Declare and execute the options.
+%    \begin{macrocode}
+\DeclareOption{nomtitle}{\c@lnomtitletrue}
+\DeclareOption{nomauthor}{\c@lnomauthortrue}
+\DeclareOption{nothanks}{\c@lnothankstrue}
+\DeclareOption{pub}{\c@lpubopttrue\c@lpubtopfalse\c@lpubstrue}
+\DeclareOption{pubtop}{\c@lpubtoptrue\c@lpuboptfalse\c@lpubstrue}
+\ProcessOptions\relax
+
+%    \end{macrocode}
+%
+% \begin{macro}{\published}
+% \begin{macro}{\c@lpubtoc}
+% \begin{macro}{\c@lpubbody}
+% In order to implement either of the \Lopt{pub} options, the |\published|
+% command must be modified to delay printing.
+%    \begin{macrocode}
+\ifc@lpubs
+  \renewcommand{\published}[2][\@empty]{%
+    \c@lpubtrue
+    \ifx #1\@empty
+      \gdef\c@lpubtoc{#2}
+    \else
+      \gdef\c@lpubtoc{#1}
+    \fi
+    \gdef\c@lpubbody{#2}
+  }
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\title}
+% \begin{macro}{\author}
+%    To implement the \Lopt{nothanks} option, the |\title| and |\author|
+% kernel commands must be extended to save their values.
+%
+%    Originally I used |\xdef| below which worked unless there was some
+% command other than |\thanks| in the title or author text. 
+% David Kastrup\footnote{At \texttt{dak@neuroinformatik.ruhr-uni-bochum.de}.}
+% and Donald Arseneau\footnote{At \texttt{asnd@triumf.ca}.} 
+% both pointed out the use of |\protected@xdef|.
+% Barbara Beeton\footnote{\texttt{bnb@ams.org}} suggested adding the |\unskip|
+% to the redefinition of |\and| in order to remove any preceeding spaces when
+% it gets printed in the ToC.
+% \changes{v0.4}{2000/06/09}{Added \cs{unskip} to \cs{and} redefinition}
+% \changes{v0.41}{2000/06/18}{Appended to \cs{title} and \cs{author} definitions}
+%    \begin{macrocode}
+\appendiargdef{\title}{%
+  \begingroup
+    \renewcommand{\thanks}[1]{}
+    \protected@xdef\c@l@title{#1}
+  \endgroup
+}
+\appendiargdef{\author}{%
+  \begingroup
+    \renewcommand{\thanks}[1]{}
+    \renewcommand{\and}{\unskip, }
+    \protected@xdef\c@l@author{#1}
+  \endgroup
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lbmaketitle}
+%    The |\c@lbmaketitle| command is (re)defined so that it adds the title
+% and author (if given) to the main ToC. If |\coltoctitle| and/or
+% |\coltocauthor| have been used then nothing is done with the title
+% and/or author respectively. 
+% \changes{v0.53}{2001/09/05}{Added empty \cs{numberline} in \cs{c@lbmaketitle}}
+% \changes{v0.64}{2004/03/06}{Changed \cs{c@laaddtocontents} for titles to
+%                             \cs{c@laaddcontentsline} in \cs{c@lbmaketitle}}
+%    \begin{macrocode}
+\def\c@lbmaketitle{\par
+  \begingroup
+    \let\newpage\relax
+    \let\@maketitle\c@lb@maketitle
+    \ifc@lpub
+      \ifc@lpubtop
+        \ifc@lnopubindoc\else
+          {\parindent\z@ \pubfont \c@lpubbody\par\nobreak}
+        \fi
+      \fi
+    \fi
+    \c@lmtitle        %% typeset the title block
+  \endgroup
+  \setcounter{footnote}{0}
+  \begingroup
+    \let\thanks\@empty
+    \ifc@ltoctitle\else
+      \ifc@lnomtitle\else
+        \ifx\@title\@empty\else
+          \ifc@lnothanks
+%    \end{macrocode}
+% I originally used 
+% \begin{verbatim}
+%            \c@laaddtocontents{toc}%
+%              {\protect\contentsline{coltoctitle}%
+%              {\protect\numberline{}\c@l@title}{\thecolpage}}
+% \end{verbatim}
+% below, but James Szinger\footnote{Email, 2004/03/05, \texttt{szinger@lanl.gov}}
+% asked me to change to \verb?\c@laaddcontentsline? instead 
+% (which I should have done, looking back I've no idea why I didn't) to help
+% with using hyperref, which he said required redefining
+% \verb?\c@laaddcontentsline? to be compatible with hyperref's (hyperref never
+% seems to bother with trying to be compatible with other classes though).
+%    \begin{macrocode}
+            \c@laaddcontentsline{toc}%
+              {coltoctitle}{\protect\numberline{}\c@l@title}%
+          \else
+            \c@laaddcontentsline{toc}%
+              {coltoctitle}{\protect\numberline{}\@title}%
+          \fi
+        \fi
+      \fi
+    \fi
+    \ifc@ltocauthor\else
+      \ifc@lnomauthor\else
+        \ifx\@author\@empty\else
+          \ifc@lnothanks
+            \c@laaddcontentsline{toc}%
+              {coltocauthor}{\protect\numberline{}\c@l@author}
+          \else
+            \c@laaddcontentsline{toc}%
+              {coltocauthor}{\protect\numberline{}\@author}
+          \fi
+        \fi
+      \fi
+    \fi
+  \endgroup
+  \ifc@lpub
+    \ifc@lpubopt
+      \ifc@lnopubindoc\else
+        {\parindent\z@ \pubfont \c@lpubbody\par\nobreak}
+      \fi
+    \fi
+    \ifc@lpubs
+      \ifc@lnopubintoc\else
+        \c@laaddcontentsline{toc}{published}{\protect\numberline{}\c@lpubtoc}
+      \fi
+    \fi
+  \fi
+  \c@lmtitlempty
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%    The end of this package
+%    \begin{macrocode}
+%</pck>
+%    \end{macrocode}
+%
+%
+% \section{The \Lpack{combnat} package code} \label{natpackcode}
+%
+% This package calls the \Lpack{natbib} package~\cite{NATBIB}
+% and then makes some minor changes to some of its macro definitions.
+% \changes{v0.6}{2002/08/24}{Added onebib option processing to combnat package}
+%
+%    \begin{macrocode}
+%<*natpack>
+%    \end{macrocode}
+% The usual preliminaries. The \Lpack{natbib} package is required
+% and all options are passed to it to deal with.
+% \changes{v0.5}{2001/07/03}{Added the combnat package}
+% \changes{v0.6}{2002/08/24}{Added combine class check to the combnat package}
+% \changes{v0.6}{2002/08/24}{combnat package is now version 0.2}
+% \changes{v0.61}{2003/05/22}{combnat package is now version 0.21}
+% \changes{v0.61}{2003/05/22}{Somehow removed extraneous space from combnat package}
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{combnat}[2003/05/22 v0.21 combined natbib package]
+\@ifclassloaded{combine}{}{%
+  \PackageError{combnat}{The `combine' class is expected}{\@ehc}}
+\RequirePackageWithOptions{natbib}
+
+%    \end{macrocode}
+%
+% For multiple bibliographies (|\c@lonebibfalse|)
+% the change consists of replacing 
+% \Lpack{natbib}'s
+% naming of citation labels in the \file{.aux} files by the form
+% used by the \Lpack{combine} class. That is, the |b@| in each
+% code fragment like |b@#...| or |b@\...| is replaced by 
+% |B?\jobname?@...|.
+%
+% For a single main bibliography |\c@lonebibtrue|, implementation is much 
+% easier, merely ensuring that the stuff gets written to the main
+% *.aux file.
+%
+%
+% \begin{macro}{\c@lNATwritemainbib}
+% \begin{macro}{\c@lNATwritemainbibdate}
+% We have to write different biblabels to different files. These write
+% to the main *.aux file.
+%    \begin{macrocode}
+\newcommand{\c@lNATwritemainbib}{%
+  \if@filesw\immediate\write\@mainaux{\string\citation{\@citeb}}\fi
+  \@ifundefined{b@\@citeb\@extra@b@citeb}{%
+    {\reset@font\bfseries?}
+     \NAT@citeundefined\PackageWarning{natbib}%
+    {Citation `\@citeb' on page \thepage \space undefined}}}
+
+\newcommand{\c@lNATwritemainbibdate}{%
+  \if@filesw\immediate\write\@mainaux{\string\citation{\@citeb}}\fi
+  \@ifundefined{b@\@citeb\@extra@b@citeb}{\@citea%
+    {\reset@font\bfseries ?}\NAT@citeundefined
+     \PackageWarning{natbib}%
+       {Citation `\@citeb' on page \thepage \space undefined}
+     \def\NAT@date{}}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lNATwritelocalbib}
+% \begin{macro}{\c@lNATwritelocalbibdate}
+% We have to write different biblabels to different files. These write
+% to the local *.aux files.
+%    \begin{macrocode}
+\newcommand{\c@lNATwritelocalbib}{%
+  \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+  \@ifundefined{B?\jobname?@\@citeb\@extra@b@citeb}{%
+    {\reset@font\bfseries?}
+     \NAT@citeundefined\PackageWarning{natbib}%
+    {Citation `\@citeb' on page \thepage \space undefined}}}
+
+\newcommand{\c@lNATwritelocalbibdate}{%
+  \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+  \@ifundefined{B?\jobname?@\@citeb\@extra@b@citeb}{\@citea%
+    {\reset@font\bfseries ?}\NAT@citeundefined
+     \PackageWarning{natbib}%
+       {Citation `\@citeb' on page \thepage \space undefined}
+     \def\NAT@date{}}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\c@lNAT@citexnum@swatrue}
+% Holds some of the internals of the original |\NAT@citexnum|.
+%    \begin{macrocode}
+\newcommand{\c@lNAT@citexnum@swatrue}{%
+  \ifnum\NAT@ctype>1\relax\@citea
+    \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+        \ifnum\NAT@ctype=2\relax\NAT@test{\NAT@ctype}%
+        \else\NAT@alias
+        \fi\hyper@natlinkend\else
+    \ifnum\NAT@sort>1\relax
+      \begingroup\catcode`\_=8
+        \ifcat _\ifnum\z@<0\NAT@num _\else A\fi
+          \global\let\NAT@nm=\NAT@num \else \gdef\NAT@nm{-2}\fi
+        \ifcat _\ifnum\z@<0\NAT@last@num _\else A\fi
+          \global\@tempcnta=\NAT@last@num \global\advance\@tempcnta by\@ne
+          \else \global\@tempcnta\m@ne\fi
+      \endgroup
+      \ifnum\NAT@nm=\@tempcnta
+        \ifx\NAT@last@yr\relax
+          \edef\NAT@last@yr{\@citea \mbox{\noexpand\citenumfont\NAT@num}}%
+        \else
+          \edef\NAT@last@yr{--\penalty\@m\mbox{\noexpand\citenumfont\NAT@num}}%
+        \fi
+      \else
+        \NAT@last@yr \@citea \mbox{\citenumfont\NAT@num}%
+        \let\NAT@last@yr\relax
+      \fi
+    \else
+      \@citea \mbox{\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+        {\citenumfont\NAT@num}\hyper@natlinkend}%
+    \fi
+  \fi
+  \def\@citea{\NAT@sep\penalty\@m\NAT@space}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\NAT@citexnum}
+% We redefine the original |\NAT@citexnum| to write for the main file.
+%    \begin{macrocode}
+\def\NAT@citexnum[#1][#2]#3{%
+  \NAT@sort@cites{#3}%
+  \let\@citea\@empty
+  \@cite{\def\NAT@num{-1}\let\NAT@last@yr\relax\let\NAT@nm\@empty
+    \@for\@citeb:=\NAT@cite@list\do
+      {\edef\@citeb{\expandafter\@firstofone\@citeb}%
+       \c@lNATwritemainbib   %%% change here
+       {\let\NAT@last@num\NAT@num\let\NAT@last@nm\NAT@nm
+        \NAT@parse{\@citeb}%
+        \ifNAT@longnames\@ifundefined{bv@\@citeb\@extra@b@citeb}{%
+            \let\NAT@name=\NAT@all@names
+            \global\@namedef{bv@\@citeb\@extra@b@citeb}{}}{}%
+        \fi
+        \ifNAT@full\let\NAT@nm\NAT@all@names\else
+          \let\NAT@nm\NAT@name
+        \fi
+      \ifNAT@swa
+        \c@lNAT@citexnum@swatrue
+      \else
+        \ifcase\NAT@ctype\relax
+          \ifx\NAT@last@nm\NAT@nm \NAT@yrsep\penalty\@m\NAT@space\else
+          \@citea \NAT@test{1}\ \NAT@@open
+          \if*#1*\else#1\ \fi\fi \NAT@mbox{%
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          {\citenumfont\NAT@num}\hyper@natlinkend}%
+          \def\@citea{\NAT@@close\NAT@sep\penalty\@m\ }%
+        \or\@citea
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+           \NAT@test{\NAT@ctype}\hyper@natlinkend
+          \def\@citea{\NAT@sep\penalty\@m\ }%
+        \or\@citea
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+           \NAT@test{\NAT@ctype}\hyper@natlinkend
+          \def\@citea{\NAT@sep\penalty\@m\ }%
+        \or\@citea
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+           \NAT@alias\hyper@natlinkend
+          \def\@citea{\NAT@sep\penalty\@m\ }%
+        \fi
+      \fi
+      }}%
+      \ifnum\NAT@sort>1\relax\NAT@last@yr\fi
+      \ifNAT@swa\else\ifnum\NAT@ctype=0\if*#2*\else
+      \NAT@cmt#2\fi \NAT@@close\fi\fi}{#1}{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbNAT@citexnum}
+% A local version of |\NAT@citexnum|.
+%    \begin{macrocode}
+\def\c@lbNAT@citexnum[#1][#2]#3{%
+  \ifc@lcombib\c@laNATnocite{#3}\fi   %%% change here
+  \NAT@sort@cites{#3}%
+  \let\@citea\@empty
+  \@cite{\def\NAT@num{-1}\let\NAT@last@yr\relax\let\NAT@nm\@empty
+    \@for\@citeb:=\NAT@cite@list\do
+    {\edef\@citeb{\expandafter\@firstofone\@citeb}%
+     \c@lNATwritelocalbib             %%% change here
+     {\let\NAT@last@num\NAT@num\let\NAT@last@nm\NAT@nm
+      \NAT@parse{\@citeb}%
+      \ifNAT@longnames\@ifundefined{bv@\@citeb\@extra@b@citeb}{%
+        \let\NAT@name=\NAT@all@names
+        \global\@namedef{bv@\@citeb\@extra@b@citeb}{}}{}%
+      \fi
+      \ifNAT@full\let\NAT@nm\NAT@all@names\else
+        \let\NAT@nm\NAT@name\fi
+      \ifNAT@swa
+        \c@lNAT@citexnum@swatrue
+      \else
+        \ifcase\NAT@ctype\relax
+          \ifx\NAT@last@nm\NAT@nm \NAT@yrsep\penalty\@m\NAT@space\else
+          \@citea \NAT@test{1}\ \NAT@@open
+          \if*#1*\else#1\ \fi\fi \NAT@mbox{%
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          {\citenumfont\NAT@num}\hyper@natlinkend}%
+          \def\@citea{\NAT@@close\NAT@sep\penalty\@m\ }%
+        \or\@citea
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@test{\NAT@ctype}\hyper@natlinkend
+          \def\@citea{\NAT@sep\penalty\@m\ }%
+        \or\@citea
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@test{\NAT@ctype}\hyper@natlinkend
+          \def\@citea{\NAT@sep\penalty\@m\ }%
+        \or\@citea
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@alias\hyper@natlinkend
+          \def\@citea{\NAT@sep\penalty\@m\ }%
+        \fi\fi
+      }}%
+      \ifnum\NAT@sort>1\relax\NAT@last@yr\fi
+      \ifNAT@swa\else\ifnum\NAT@ctype=0\if*#2*\else
+      \NAT@cmt#2\fi \NAT@@close\fi\fi}{#1}{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\c@lNAT@citex@swatrue}
+% Holds some of the internals of the original |\NAT@citex|.
+%    \begin{macrocode}
+\newcommand{\c@lNAT@citex@swatrue}{%
+  \ifcase\NAT@ctype
+    \if\relax\NAT@date\relax
+      \@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+      \NAT@nmfmt{\NAT@nm}\NAT@date\hyper@natlinkend
+    \else
+      \ifx\NAT@last@nm\NAT@nm\NAT@yrsep
+        \ifx\NAT@last@yr\NAT@year
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}\NAT@exlab
+          \hyper@natlinkend
+        \else
+          \unskip\
+          \hyper@natlinkstart{\@citeb\@extra@b@citeb}\NAT@date
+          \hyper@natlinkend
+        \fi
+      \else\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+        \NAT@nmfmt{\NAT@nm}%
+        \hyper@natlinkbreak{\NAT@aysep\ }{\@citeb\@extra@b@citeb}%
+        \NAT@date\hyper@natlinkend
+      \fi
+    \fi
+  \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+     \NAT@nmfmt{\NAT@nm}\hyper@natlinkend
+  \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+     \NAT@date\hyper@natlinkend
+  \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+     \NAT@alias\hyper@natlinkend
+  \fi \def\@citea{\NAT@sep\ }%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@laNAT@citex}
+% We redefine the original |\NAT@citex| macro for the main document.
+%    \begin{macrocode}
+\def\NAT@citex%
+  [#1][#2]#3{%
+  \NAT@sort@cites{#3}%
+  \let\@citea\@empty
+  \@cite{\let\NAT@nm\@empty\let\NAT@year\@empty
+    \@for\@citeb:=\NAT@cite@list\do
+    {\edef\@citeb{\expandafter\@firstofone\@citeb}%
+     \c@lNATwritemainbibdate     %%%% change here
+     {\let\NAT@last@nm=\NAT@nm\let\NAT@last@yr=\NAT@year
+     \NAT@parse{\@citeb}%
+     \ifNAT@longnames\@ifundefined{bv@\@citeb\@extra@b@citeb}{%
+         \let\NAT@name=\NAT@all@names
+         \global\@namedef{bv@\@citeb\@extra@b@citeb}{}}{}%
+     \fi
+     \ifNAT@full\let\NAT@nm\NAT@all@names\else
+       \let\NAT@nm\NAT@name\fi
+     \ifNAT@swa
+       \c@lNAT@citex@swatrue
+     \else
+       \ifcase\NAT@ctype
+         \if\relax\NAT@date\relax
+           \@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+           \NAT@nmfmt{\NAT@nm}\hyper@natlinkend
+         \else
+           \ifx\NAT@last@nm\NAT@nm\NAT@yrsep
+             \ifx\NAT@last@yr\NAT@year
+               \hyper@natlinkstart{\@citeb\@extra@b@citeb}\NAT@exlab
+               \hyper@natlinkend
+             \else\unskip\
+               \hyper@natlinkstart{\@citeb\@extra@b@citeb}\NAT@date
+               \hyper@natlinkend
+             \fi
+           \else\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+             \NAT@nmfmt{\NAT@nm}%
+             \hyper@natlinkbreak{\ \NAT@@open\if*#1*\else#1\ \fi}%
+                {\@citeb\@extra@b@citeb}%
+             \NAT@date\hyper@natlinkend\fi
+        \fi
+       \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@nmfmt{\NAT@nm}\hyper@natlinkend
+       \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@date\hyper@natlinkend
+       \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@alias\hyper@natlinkend
+       \fi  \if\relax\NAT@date\relax\def\@citea{\NAT@sep\ }%
+            \else\def\@citea{\NAT@@close\NAT@sep\ }\fi
+     \fi
+     }}\ifNAT@swa\else\if*#2*\else\NAT@cmt#2\fi
+    \if\relax\NAT@date\relax\else\NAT@@close\fi\fi}{#1}{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbNAT@citex}
+% The local version of |\NAT@citex|.
+%    \begin{macrocode}
+\def\c@lbNAT@citex[#1][#2]#3{%
+  \ifc@lcombib \c@laNATnocite{#3} \fi    %%%% change here
+  \NAT@sort@cites{#3}%
+  \let\@citea\@empty
+  \@cite{\let\NAT@nm\@empty\let\NAT@year\@empty
+    \@for\@citeb:=\NAT@cite@list\do
+    {\edef\@citeb{\expandafter\@firstofone\@citeb}%
+     \c@lNATwritelocalbibdate            %%%% change here
+     {\let\NAT@last@nm=\NAT@nm\let\NAT@last@yr=\NAT@year
+     \NAT@parse{\@citeb}%
+     \ifNAT@longnames\@ifundefined{bv@\@citeb\@extra@b@citeb}{%
+         \let\NAT@name=\NAT@all@names
+         \global\@namedef{bv@\@citeb\@extra@b@citeb}{}}{}%
+     \fi
+     \ifNAT@full\let\NAT@nm\NAT@all@names\else
+       \let\NAT@nm\NAT@name\fi
+     \ifNAT@swa
+       \c@lNAT@citex@swatrue
+     \else
+       \ifcase\NAT@ctype
+         \if\relax\NAT@date\relax
+           \@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+           \NAT@nmfmt{\NAT@nm}\hyper@natlinkend
+         \else
+           \ifx\NAT@last@nm\NAT@nm\NAT@yrsep
+             \ifx\NAT@last@yr\NAT@year
+               \hyper@natlinkstart{\@citeb\@extra@b@citeb}\NAT@exlab
+               \hyper@natlinkend
+             \else\unskip\
+               \hyper@natlinkstart{\@citeb\@extra@b@citeb}\NAT@date
+               \hyper@natlinkend
+             \fi
+           \else\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+             \NAT@nmfmt{\NAT@nm}%
+             \hyper@natlinkbreak{\ \NAT@@open\if*#1*\else#1\ \fi}%
+                {\@citeb\@extra@b@citeb}%
+             \NAT@date\hyper@natlinkend\fi
+        \fi
+       \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@nmfmt{\NAT@nm}\hyper@natlinkend
+       \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@date\hyper@natlinkend
+       \or\@citea\hyper@natlinkstart{\@citeb\@extra@b@citeb}%
+          \NAT@alias\hyper@natlinkend
+       \fi \if\relax\NAT@date\relax\def\@citea{\NAT@sep\ }%
+           \else\def\@citea{\NAT@@close\NAT@sep\ }\fi
+     \fi
+     }}\ifNAT@swa\else\if*#2*\else\NAT@cmt#2\fi
+    \if\relax\NAT@date\relax\else\NAT@@close\fi\fi}{#1}{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@laNATnocite}
+% \begin{macro}{\nocite}
+% A main document version of the natbib |\nocite|.
+%    \begin{macrocode}
+\newcommand\c@laNATnocite[1]{\@bsphack
+  \@for\@citeb:=#1\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\@mainaux{\string\citation{\@citeb}}\fi
+    \if*\@citeb\else
+    \@ifundefined{b@\@citeb\@extra@b@citeb}{%
+       \NAT@citeundefined \PackageWarning{natbib}%
+       {Citation `\@citeb' undefined}}{}\fi}%
+  \@esphack}
+\renewcommand{\nocite}[1]{\c@laNATnocite{#1}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@lbNATnocite}
+% The local version pf |\nocite|.
+%    \begin{macrocode}
+\newcommand\c@lbNATnocite[1]{\@bsphack
+  \@for\@citeb:=#1\do{%
+    \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+    \if*\@citeb\else
+    \@ifundefined{B?\jobname?@\@citeb\@extra@b@citeb}{%
+       \NAT@citeundefined \PackageWarning{natbib}%
+       {Citation `\@citeb' undefined}}{}\fi}%
+  \@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\NAT@wrout}
+% Main version of the original |\NAT@wrout|.
+%    \begin{macrocode}
+\renewcommand{\NAT@wrout}[5]{%
+  \if@filesw
+    {\let\protect\noexpand\let~\relax
+     \immediate
+     \write\@mainaux{\string\bibcite{#5}{{#1}{#2}{{#3}}{{#4}}}}}\fi
+\ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbNAT@wrout}
+% Local version of the original |\NAT@wrout|.
+%    \begin{macrocode}
+\newcommand{\c@lbNAT@wrout}[5]{%
+  \if@filesw
+    {\let\protect\noexpand\let~\relax
+     \immediate
+     \write\@auxout{\string\bibcite{#5}{{#1}{#2}{{#3}}{{#4}}}}}\fi
+\ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \begin{macro}{\c@laNAT@parse}
+% \begin{macro}{\c@lbNAT@parse}
+% Main and local versions of |\NAT@parse|.
+%    \begin{macrocode}
+\newcommand\c@laNAT@parse[1]{{%
+     \let\protect=\@unexpandable@protect\let~\relax
+     \let\active@prefix=\@gobble
+     \xdef\NAT@temp{\csname b@#1\@extra@b@citeb\endcsname}}%
+     \expandafter\NAT@split\NAT@temp
+     \expandafter\NAT@parse@date\NAT@date??????@@%
+     \ifciteindex\NAT@index\fi}
+
+\newcommand\c@lbNAT@parse[1]{{%
+     \let\protect=\@unexpandable@protect\let~\relax
+     \let\active@prefix=\@gobble
+     \xdef\NAT@temp{\csname B?\jobname?@#1\@extra@b@citeb\endcsname}}%
+     \expandafter\NAT@split\NAT@temp
+     \expandafter\NAT@parse@date\NAT@date??????@@%
+     \ifciteindex\NAT@index\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@laNAT@lbibitem}
+% \begin{macro}{\c@lbNAT@lbibitem}
+% Main and local version of |\@lbibitem|.
+%    \begin{macrocode}
+\def\c@laNAT@lbibitem[#1]#2{%
+  \if\relax\@extra@b@citeb\relax\else
+    \@ifundefined{br@#2\@extra@b@citeb}{}{%
+     \@namedef{br@#2}{\@nameuse{br@#2\@extra@b@citeb}}}\fi
+   \@ifundefined{b@#2\@extra@b@citeb}{\def\NAT@num{}}{\NAT@parse{#2}}%
+   \item[\hfil\hyper@natanchorstart{#2\@extra@b@citeb}\@biblabel{\NAT@num}%
+    \hyper@natanchorend]%
+    \NAT@ifcmd#1(@)(@)\@nil{#2}}
+
+\def\c@lbNAT@lbibitem[#1]#2{%
+  \if\relax\@extra@b@citeb\relax\else
+    \@ifundefined{br@#2\@extra@b@citeb}{}{%
+     \@namedef{br@#2}{\@nameuse{br@#2\@extra@b@citeb}}}\fi
+   \@ifundefined{B?\jobname?@#2\@extra@b@citeb}{\def\NAT@num{}}{\NAT@parse{#2}}%
+   \item[\hfil\hyper@natanchorstart{#2\@extra@b@citeb}\@biblabel{\NAT@num}%
+    \hyper@natanchorend]%
+    \NAT@ifcmd#1(@)(@)\@nil{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@laNATbibcite}
+% \begin{macro}{\c@lbNATbibcite}
+% Main and local versions of |\NATbibcite|.
+%    \begin{macrocode}
+\newcommand\c@laNATbibcite[2]{\@ifundefined{b@#1\@extra@binfo}\relax
+  {\NAT@citemultiple
+  \PackageWarningNoLine{natbib}{Citation `#1' multiply defined}}%
+  \global\@namedef{b@#1\@extra@binfo}{#2}}
+
+\newcommand\c@lbNATbibcite[2]{\@ifundefined{B?\jobname?@#1\@extra@binfo}\relax
+  {\NAT@citemultiple
+  \PackageWarningNoLine{natbib}{Citation `#1' multiply defined}}%
+  \global\@namedef{B?\jobname?@#1\@extra@binfo}{#2}}
+
+\ifc@lonebib
+  \ifc@lcombib
+  \else
+    \renewcommand\c@lbNATbibcite[2]{\@ifundefined{b@#1\@extra@binfo}\relax
+      {\NAT@citemultiple
+      \PackageWarningNoLine{natbib}{Citation `#1' multiply defined}}%
+      \global\@namedef{B?\jobname?@#1\@extra@binfo}{#2}}
+  \fi
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@laNAT@testdef}
+% \begin{macro}{\c@lbNAT@testdef}
+% Main and local versions of |\NAT@testdef|.
+%    \begin{macrocode}
+\newcommand\c@laNAT@testdef[2]{%
+  \def\NAT@temp{#2}\expandafter \ifx \csname b@#1\@extra@binfo\endcsname
+    \NAT@temp \else \ifNAT@swa \NAT@swafalse
+       \PackageWarningNoLine{natbib}{Citation(s) may have
+          changed.\MessageBreak
+          Rerun to get citations correct}\fi\fi}
+
+\newcommand\c@lbNAT@testdef[2]{%
+  \def\NAT@temp{#2}\expandafter \ifx \csname B?\jobname?@#1\@extra@binfo\endcsname
+    \NAT@temp \else \ifNAT@swa \NAT@swafalse
+       \PackageWarningNoLine{natbib}{Citation(s) may have
+          changed.\MessageBreak
+          Rerun to get citations correct}\fi\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@laNAT@make@cite@list}
+% \begin{macro}{\c@lbNAT@make@cite@list}
+% Main and local versions of |\NAT@make@cite@list|.
+%    \begin{macrocode}
+\ifnum\NAT@sort>0
+  \begingroup \catcode`\_=8
+    \gdef\c@laNAT@make@cite@list{%
+      \edef\@citeb{\expandafter\@firstofone\@citeb}%
+      \@ifundefined{b@\@citeb\@extra@b@citeb}{\def\NAT@num{A}}%
+      {\NAT@parse{\@citeb}}%
+        \ifcat _\ifnum\z@<0\NAT@num _\else A\fi
+       \@tempcnta\NAT@num \relax
+       \ifnum \@tempcnta>\@tempcntb
+          \edef\NAT@num@list{\NAT@num@list \@celt{\NAT@num}}%
+          \edef\NAT@cite@list{\NAT@cite@list\@citeb,}%
+          \@tempcntb\@tempcnta
+       \else
+          \let\NAT@@cite@list=\NAT@cite@list \def\NAT@cite@list{}%
+          \edef\NAT@num@list{\expandafter\NAT@num@celt \NAT@num@list \@gobble @}%
+          {\let\@celt=\NAT@celt\NAT@num@list}%
+       \fi
+    \else
+       \edef\NAT@nonsort@list{\NAT@nonsort@list\@citeb,}%
+ \fi}
+ \endgroup
+
+ \begingroup \catcode`\_=8
+   \gdef\c@lbNAT@make@cite@list{%
+     \edef\@citeb{\expandafter\@firstofone\@citeb}%
+    \@ifundefined{B?\jobname?@\@citeb\@extra@b@citeb}{\def\NAT@num{A}}%
+    {\NAT@parse{\@citeb}}%
+      \ifcat _\ifnum\z@<0\NAT@num _\else A\fi
+       \@tempcnta\NAT@num \relax
+       \ifnum \@tempcnta>\@tempcntb
+          \edef\NAT@num@list{\NAT@num@list \@celt{\NAT@num}}%
+          \edef\NAT@cite@list{\NAT@cite@list\@citeb,}%
+          \@tempcntb\@tempcnta
+       \else
+          \let\NAT@@cite@list=\NAT@cite@list \def\NAT@cite@list{}%
+          \edef\NAT@num@list{\expandafter\NAT@num@celt \NAT@num@list \@gobble @}%
+          {\let\@celt=\NAT@celt\NAT@num@list}%
+       \fi
+    \else
+       \edef\NAT@nonsort@list{\NAT@nonsort@list\@citeb,}%
+ \fi}
+  \endgroup
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% Some things are done at the end of a document.
+%
+%    \begin{macrocode}
+\AtEndDocument{%
+  \ifNAT@stdbst\if@filesw\immediate\write
+    \@mainaux{\string\global\string\NAT@numberstrue}\fi\fi
+  }
+
+\AtEndDocument{\NAT@swatrue\let\bibcite\NAT@testdef}
+
+%    \end{macrocode}
+%
+% \begin{macro}{\c@laNAT@set@cites}
+% Main version of |\NAT@set@cites|.
+%    \begin{macrocode}
+\newcommand{\c@laNAT@set@cites}{\ifNAT@numbers
+  \ifNAT@super \let\@cite\NAT@citesuper
+      \def\NAT@mbox##1{\unskip\nobreak\hspace{1\p@}\textsuperscript{##1}}%
+      \let\citeyearpar=\citeyear
+      \let\NAT@space\relax\else
+      \let\NAT@mbox=\mbox
+      \let\@cite\NAT@citenum \def\NAT@space{ }\fi
+    \let\@citex\NAT@citexnum
+    \ifx\@biblabel\@empty\let\@biblabel\NAT@biblabelnum\fi
+    \let\@bibsetup\NAT@bibsetnum
+    \def\natexlab##1{}%
+  \else
+    \let\@cite\NAT@cite
+    \let\@citex\NAT@citex
+    \let\@biblabel\NAT@biblabel
+    \let\@bibsetup\NAT@bibsetup
+    \def\natexlab##1{##1}%
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbNAT@set@cites}
+% Local version of |\NAT@set@cites|.
+%    \begin{macrocode}
+\newcommand{\c@lbNAT@set@cites}{\ifNAT@numbers
+  \ifNAT@super \let\@cite\NAT@citesuper
+      \def\NAT@mbox##1{\unskip\nobreak\hspace{1\p@}\textsuperscript{##1}}%
+      \let\citeyearpar=\citeyear
+      \let\NAT@space\relax\else
+      \let\NAT@mbox=\mbox
+      \let\@cite\NAT@citenum \def\NAT@space{ }\fi
+    \let\@citex\NAT@citexnum
+    \ifx\@biblabel\@empty\let\@biblabel\NAT@biblabelnum\fi
+    \let\@bibsetup\NAT@bibsetnum
+    \def\natexlab##1{}%
+  \else
+    \let\@cite\NAT@cite
+    \let\@citex\NAT@citex
+    \let\@biblabel\NAT@biblabel
+    \let\@bibsetup\NAT@bibsetup
+    \def\natexlab##1{##1}%
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% For the main document, use |\c@la...| to replace the |\NAT...| definitions.
+%    \begin{macrocode}
+\let\NAT@parse\c@laNAT@parse
+%%\let\nocite\c@laNATnocite
+%%\let\NAT@wrout\c@laNAT@wrout
+\let\@lbibitem\c@laNAT@lbibitem
+\let\bibcite\c@laNATbibcite
+\let\NAT@testdef\c@laNAT@testdef
+%%\let\NAT@make@cite@list\c@laNAT@make@cite@list
+%%\let\NAT@citexnum\c@laNAT@citexnum
+%%\let\NAT@citex\c@laNAT@citex
+
+%    \end{macrocode}
+%
+% And similarly for imported documents
+%    \begin{macrocode}
+\let\c@loldsetuppapers\setuppapers
+\newcommand{\c@lNATsetuplocal}{%
+  \let\NAT@parse\c@lbNAT@parse
+  \let\nocite\c@lbNATnocite
+  \let\NAT@wrout\c@lbNAT@wrout
+  \let\@lbibitem\c@lbNAT@lbibitem
+  \let\bibcite\c@lbNATbibcite
+  \let\NAT@testdef\c@lbNAT@testdef
+  \let\NAT@make@cite@list\c@lbNAT@make@cite@list
+  \let\NAT@citexnum\c@lbNAT@citexnum
+  \let\NAT@citex\c@lbNAT@citex
+  \let\NAT@set@cites\c@lbNAT@set@cites
+  \c@lbNAT@set@cites
+}  
+\renewcommand{\setuppapers}{%
+  \c@loldsetuppapers 
+  \ifc@lcombib
+    \c@lNATsetuplocal
+  \else
+    \ifc@lonebib
+    \else
+      \c@lNATsetuplocal
+    \fi
+  \fi
+}
+
+%    \end{macrocode}
+%
+%
+%    The end of this package
+%    \begin{macrocode}
+%</natpack>
+%    \end{macrocode}
+%
+%
+%
+% \section{The \Lpack{combcite} package code} \label{citepackcode}
+%
+% This package calls the \Lpack{cite} package~\cite{CITE}
+% and then makes some minor changes to some of its macro definitions.
+% \changes{v0.63}{2003/11/09}{Added the combcite package}
+%
+%    \begin{macrocode}
+%<*citepack>
+%    \end{macrocode}
+% The usual preliminaries. The \Lpack{cite} package is required
+% and all options are passed to it to deal with.
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{combcite}[2003/11/09 v1.0 combine version of cite package]
+\@ifclassloaded{combine}{}{%
+  \PackageError{combcite}{The `combine' class is expected}{\@ehc}}
+
+%    \end{macrocode}
+% By definition, we need the \Lpack{cite} package, but first have
+% to set up some option handling.
+% \begin{macro}{\ifc@lbsuperopt}
+% \cs{ifc@lbsuperopt} is a flag for if the \Lpack{cite} \Lopt{superscript}
+% option has been used.
+%    \begin{macrocode}
+\newif\ifc@lbsuperopt
+  \c@lbsuperoptfalse
+%    \end{macrocode}
+% \end{macro}
+% Now do the options.
+%    \begin{macrocode}
+\DeclareOption{super}{\ExecuteOptions{superscript}}
+\DeclareOption{superscript}{\c@lbsuperopttrue
+                            \PassOptionsToClass{superscript}{cite}}
+\ProcessOptions
+%    \end{macrocode}
+%
+% We need the latest cite package (version 4.01 November 2003)
+%    \begin{macrocode}
+\RequirePackageWithOptions{cite}[2003/11/04]
+
+%    \end{macrocode}
+% Need special versions of various macros for imported papers,
+% principally to handle writing to the .aux files.
+% Indicate these by prepending `c@lb' to the name.
+%
+% \begin{macro}{\c@lbciten}
+%    \begin{macrocode}
+\DeclareRobustCommand\c@lbciten[1]{%
+ \begingroup
+  \let\@safe@activesfalse\@empty
+%%  \c@lb@nocite{#1}% ignores spaces, writes to .aux file, returns #1 in \@no@sparg
+  \@nocite{#1}% ignores spaces, writes to .aux file, returns #1 in \@no@sparg
+  \@tempcntb\m@ne    % \@tempcntb tracks highest number
+  \let\@h@ld\@empty  % nothing held from list yet
+  \let\@citea\@empty % no punctuation preceding first
+  \let\@celt\delimiter % an unexpandable, but identifiable, token
+  \def\@cite@list{}% % empty list to start
+  \@for \@citeb:=\@no@sparg\do{\c@lb@make@cite@list}% make a sorted list of numbers
+  % After sorted citelist is made, execute it to compress citation ranges.
+  \@tempcnta\m@ne    % no previous number
+  \let\@celt\@compress@cite \@cite@list % output number list with compression
+  \@h@ld % output anything held over
+ \endgroup
+ \@restore@auxhandle
+ }
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lb@make@cite@list}
+%
+%    \begin{macrocode}
+\def\c@lb@make@cite@list{%
+ \expandafter\let \expandafter\@B@citeB
+          \csname B?\jobname?@\@citeb\@extra@b@citeb \endcsname
+ \ifx\@B@citeB\relax % undefined: output ? and warning
+    \@citea {\bfseries ?}\let\@citea\citepunct \G@refundefinedtrue
+    \@warning {Citation `\@citeb' on page \thepage\space undefined}%
+    \oc@verbo \global\@namedef{B?\jobname?@\@citeb\@extra@b@citeb}{?}%
+ \else %  defined               % remove previous line to repeat warnings
+    \ifcat _\ifnum\z@<0\@B@citeB _\else A\fi % a positive number, put in list
+       \@addto@cite@list
+    \else % citation is not a number, output immediately
+       \@citea \citeform{\@B@citeB}\let\@citea\citepunct
+ \fi\fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbcite}
+% The revision to \cs{cite} depends on whether the \Lopt{superscript}
+% option has been used.
+%    \begin{macrocode}
+\ifc@lbsuperopt
+  \DeclareRobustCommand{\c@lbcite}{%
+    \@ifnextchar[{\@tempswatrue\c@lb@citex}{\@tempswafalse\c@lb@citew}}
+\else
+  \DeclareRobustCommand{\c@lbcite}{%
+    \@ifnextchar[{\@tempswatrue\c@lb@citex}{\@tempswafalse\c@lb@citex[]}}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lb@citex}
+%
+%    \begin{macrocode}
+\def\c@lb@citex[#1]#2{\@cite{\c@lbciten{#2}}{#1}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lb@citew}
+%
+%    \begin{macrocode}
+\def\c@lb@citew#1{\begingroup \leavevmode
+  \@if@fillglue \lastskip \relax \unskip
+  \def\@tempa{\@tempcnta\spacefactor
+     \/% this allows the last word to be hyphenated, and it looks better.
+     \@citess{\c@lbciten{#1}}\spacefactor\@tempcnta
+     \endgroup \@restore@auxhandle}%
+  \oc@movep\relax}% check for following punctuation (depending on options)
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@lbnocite}
+%
+%    \begin{macrocode}
+\DeclareRobustCommand\c@lbnocite[1]{%
+ \@bsphack \@nocite{#1}%
+ \@for \@citeb:=\@no@sparg\do{\@ifundefined{B?\jobname?@\@citeb\@extra@b@citeb}%
+    {\G@refundefinedtrue\@warning{Citation `\@citeb' undefined}%
+    \oc@verbo \global\@namedef{B?\jobname?@\@citeb\@extra@b@citeb}{?}}{}}%
+ \@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@nocite}
+%
+%    \begin{macrocode}
+\def\@nocite#1{\begingroup\let\protect\string% normalize active chars
+ \xdef\@no@sparg{\expandafter\@ignsp#1 \: }\endgroup% and remove ALL spaces
+ \if@filesw \immediate\write\@newciteauxhandle % = \@auxout, except with multibib
+    {\string\citation {\@no@sparg}}\fi
+ }
+
+%    \end{macrocode}
+% \end{macro}
+%
+% Finally, add the revision to \cs{setuppapers}.
+%    \begin{macrocode}
+\g@addto@macro{\setuppapers}{\let\cite\c@lbcite}
+\g@addto@macro{\setuppapers}{\let\citenum\c@lbciten}
+\g@addto@macro{\setuppapers}{\let\citeonline\c@lbciten}
+
+%    \end{macrocode}
+%
+%
+%    The end of this package
+%    \begin{macrocode}
+%</citepack>
+%    \end{macrocode}
+%
+%
+%
+% \appendix
+% \section{Original code}
+%
+%    This section presents the original kernel code before modification.
+%
+%     The |\documentclass| macro is specified in \file{ltclass.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\documentclass{%
+%   \let\documentclass\@twoclasseserror
+%   \if@compatability\else\let\usepackage\RequirePackage\fi
+%   \@fileswithoptions\@clsextension}
+% \@onlypreamble\documentclass
+% \end{verbatim}
+% \end{small}\par
+%
+%    The |document| environment is specified between \file{ltfiles.dtx} and
+% \file{ltmiscen.dtx}. The |\document| command is given in \file{ltfiles.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\document{\endgroup
+%   \ifx\@unusedoptionlist\@empty\else
+%     \@latex@warning@no@line{Unused global option(s):^^J%
+%            \@spaces[\@unusedoptionlist]}%
+%   \fi
+%   \@colht\textheight
+%   \@colroom\textheight \vsize\textheight
+%   \columnwidth\textwidth
+%   \@clubpenalty\clubpenalty
+%   \if@twocolumn
+%     \advance\columnwidth -\columnsep
+%     \divide\columnwidth\tw@ \hsize\columnwidth \@firstcolumntrue
+%   \fi
+%   \hsize\columnwidth \linewidth\hsize
+%   \begingroup\@floatplacement\@dblfloatplacement
+%     \makeatletter\let\@writefile\@gobbletwo
+%     \global \let \@multiplelabels \relax
+%     \@input{\jobname.aux}%
+%   \endgroup
+%   \if@filesw
+%     \immediate\openout\@mainaux\jobname.aux
+%     \immediate\write\@mainaux{\relax}%
+%   \fi
+%   \process@table
+%   \let\glb@currsize\@empty
+%   \normalsize
+%   \everypar{}%
+%   \ifx\normalsfcodes\@empty
+%     \ifnum\sfcode`\.=\@m
+%       \let\normalsfcodes\frenchspacing
+%     \else
+%       \let\normalsfcodes\nonfrenchspacing
+%     \fi
+%   \fi
+%   \@noskipsecfalse
+%   \let \@refundefined \relax
+%   \let\AtBeginDocument\@firstofone
+%   \@begindocumenthook
+%   \ifdim\topskip<1sp\global\topskip 1sp\relax\fi
+%   \global\@maxdepth\maxdepth
+%   \global\let\@begindocumenthook\@undefined
+%   \ifx\@listfiles\@undefined
+%     \global\let\@filelist\relax
+%     \global\let\@addtofilelist\@gobble
+%   \fi
+%   \gdef\do##1{\global\let ##1\@notprerr}%
+%   \@preamblecmds
+%   \global\let \@nodocument \relax
+%   \global\let\do\noexpand
+%   \ignorespaces}
+% \@onlypreamble\document
+% \end{verbatim}
+% \end{small}\par
+%    The |\enddocument| macro is specified in \file{ltmiscen.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\enddocument{%
+%   \@enddocumenthook
+%   \@checkend{document}%
+%   \clearpage
+%   \begingroup
+%     \if@filesw
+%       \immediate\closeout\@mainaux 
+%       \let\@setckpt\@gobbletwo
+%       \let\@newl@bel\@testdef
+%       \@tempswafalse
+%       \makeatletter \input\jobname.aux
+%     \fi
+%     \@dofilelist
+%     \ifdim \font@submax >\fontsubfuzz\relax
+%       \@font@warning{Size substitutions with differences\MessageBreak
+%                  up to \font@submax\space have occured.\@gobbletwo}%
+%     \fi
+%     \@defaultsubs
+%     \@refundefined
+%     \if@filesw
+%       \ifx \@multiplelabels \relax
+%         \if@tempswa
+%           \@latex@warning@no@line{Label(s) may have changed.
+%               Rerun to get cross-references right}%
+%         \fi
+%       \else
+%         \@multiplelabels
+%       \fi
+%     \fi
+%   \endgroup
+%   \deadcycles\z@\@@end}
+% \end{verbatim}
+% \end{small}\par
+%
+%    |\maketitle| is defined by each class. The following is from 
+% \file{classes.dtx} for the \Lpack{book}, \Lpack{report} and \Lpack{article}
+% classes.
+% \par\begin{small}\begin{verbatim}
+% \if@titlepage
+%   \newcommand{\maketitle}{\begin{titlepage}%
+%     \let\footnotesize\small
+%     \let\footnoterule\relax
+%     \let \footnote \thanks
+%     \null\vfil
+%     \vskip 60\p@
+%     \begin{center}%
+%       {\LARGE \@title \par}%
+%       \vskip 3em%
+%       {\large
+%        \lineskip .75em%
+%        \begin{tabular}[t]{c}%
+%          \@author
+%        \end{tabular}\par}%
+%       \vskip 1.5em%
+%       {\large \@date \par}%
+%     \end{center}\par
+%     \@thanks
+%     \vfil\null
+%     \end{titlepage}%
+%     \setcounter{footnote}{0}%
+%     \global\let\thanks\relax
+%     \global\let\maketitle\relax
+%     \global\let\@thanks\@empty
+%     \global\let\@author\@empty
+%     \global\let\@date\@empty
+%     \global\let\@title\@empty
+%     \global\let\title\relax
+%     \global\let\author\relax
+%     \global\let\date\relax
+%     \global\let\and\relax
+%   } % end titlepage \maketitle
+% \else
+%   \newcommand{\maketitle}{\par
+%     \begingroup
+%       \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+%       \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+%       \long\def\@makefntext##1{\parindent 1em\noindent
+%         \hb@xt@1.8em{%
+%           \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+%       \if@twocolumn
+%         \ifnum \col@number=\@ne
+%           \@maketitle
+%         \else
+%           \twocolumn[\@maketitle]%
+%         \fi
+%       \else
+%         \newpage
+%         \global\@topnum\z@
+%         \@maketitle
+%       \fi
+%       \thispagestyle{plain}\@thanks
+%     \endgroup
+%     \setcounter{footnote}{0}%
+%     \global\let\thanks\relax
+%     \global\let\maketitle\relax
+%     \global\let\@maketitle\relax
+%     \global\let\@thanks\@empty
+%     \global\let\@author\@empty
+%     \global\let\@date\@empty
+%     \global\let\@title\@empty
+%     \global\let\title\relax
+%     \global\let\author\relax
+%     \global\let\date\relax
+%     \global\let\and\relax
+%   } % end non-titlepage \maketitle
+%
+%   \def\@maketitle{%               
+%     \newpage
+%     \null
+%     \vskip 2em%
+%     \begin{center}%
+%       \let \footnote \thanks
+%       {\LARGE \@title \par}%
+%       \vskip 1.5em%
+%       {\large
+%        \lineskip .5em%
+%        \begin{tabular}[t]{c}%
+%          \@author
+%        \end{tabular}\par}%
+%       \vskip 1em%
+%       {\large \@date}%
+%     \end{center}\par
+%     \vskip 1.5em}
+% \fi
+% \end{verbatim}
+% \end{small}\par
+%
+%    The definitions of |\title| and friends are in \file{ltsect.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\title#1{\gdef\@title{#1}}
+%   \def\@title{\@latex@error{No \noexpand\title given}\@ehc}
+% \def\author#1{\gdef\@author{#1}}
+%   \def\@author{\@latex@warning@no@line{No \noexpand\author given}}
+% \def\date#1{\gdef\@date{#1}}
+%   \gdef\@date{\today}
+% \def\thanks#1{\footnotemark
+%   \protected@xdef\@thanks{\@thanks
+%     \protect\footnotetext[\the\c@footnote]{#1}}}
+%   \let\@thanks\@empty
+% \def\and{%                   % \begin{tabular}
+%   \end{tabular}%
+%   \hskip 1em \@plus.17fil%
+%   \begin{tabular}[t]{c}}%    % \end{tabular}
+% \end{verbatim}
+% \end{small}\par
+%
+%    The definition of |\@starttoc| from \file{ltsect.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\@starttoc#1{%
+%   \begingroup
+%     \makeatletter
+%     \@input{\jobname.#1}%
+%     \if@filesw
+%       \expandafter\newwrite\csname tf@#1\endcsname
+%       \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+%     \fi
+%     \@nobreakfalse
+%   \endgroup}
+% \end{verbatim}
+% \end{small}\par
+%
+%    The definition of |\@writefile| from \file{ltmiscen.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \long\def@writefile#1#2{%
+%   \@ifundefined{tf@#1}\relax
+%     {\@temptokena{#2}%
+%      \immediate\write\csname tf@#1\endcsname{\the\@temptokena}%
+%     }}
+% \end{verbatim}
+% \end{small}\par
+%
+%    The definitions of |\addtocontents| and |addcontentsline|
+% from \file{ltsect.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \long\def\addtocontents#1#2{%
+%   \protected@write\@auxout
+%   {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble}%
+%   {\string\@writefile{#1}{#2}}}
+% \def\addcontentsline#1#2#3{%
+%   \addtocontents{#1}{\protect\contentsline{#2}{#3}{\thepage}}}
+% \end{verbatim}
+% \end{small}\par
+%
+%    The definitions of |\label|, |\@setref|, |\newlabel|, |\ref| and |\pageref|
+% from \file{ltxref.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\label#1{\@bsphack
+%   \protected@write\@auxout{}%
+%     {\string\newlabel{#1}{{\@currentlabel}{\thepage}}}%
+%   \@esphack}
+% \def\@setref#1#2#3{%
+%   \ifx#1\relax
+%     \protect\G@refundefinedtrue
+%     \nfss@text{\reset@font\bfseries ??}%
+%     \@latex@warning{Reference `#3' on page \thepage \space
+%                     undefined}%
+%   \else
+%     \expandafter#2#1\null
+%   \fi}
+% \def\newlabel{\@newl@bel r}
+% \def\ref#1{\expandafter\@setref\csname r@#1\endcsname
+%             \@firstoftwo{#1}}
+% \def\pageref#1{\expandafter\@setref\csname r@#1\endcsname
+%                \@secondoftwo{#1}}
+% \end{verbatim}
+% \end{small}\par
+%
+%    The definitions of |\bibcite| and |\@citex| from \file{ltbibl.dtx}.
+% \par\begin{small}\begin{verbatim}
+% \def\bibcite{\@newl@bel b}
+% \def\@citex[#1]#2{%
+%   \let\@citea\@empty
+%   \@cite{\@for\@citeb:=#2\do
+%     {\@citea\def\@citea{,\penalty\@m\ }%
+%      \edef\@citeb{\expandafter\@firstofone\@citeb\@empty}%
+%      \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+%      \@ifundefined{b\@citeb}{\mbox{\reset@font\bfseries ?}%
+%       \G@refundefinedtrue
+%       \@latex@warning
+%         {Citation `\@citeb' on page \thepage \space undefined}}%
+%       {\hbox{\csname b\@citeb\endcsname}}}}{#1}}
+% \end{verbatim}
+% \end{small}\par
+%
+%
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

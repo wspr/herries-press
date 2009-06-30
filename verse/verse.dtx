@@ -1,0 +1,1696 @@
+% \iffalse meta-comment
+%
+% verse.dtx
+% Author: Peter Wilson (herries dot press at earthlink dot net)
+%         Herries Press
+% Copyright 2001--2007 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+%<*driver>
+\documentclass[twoside]{ltxdoc}
+\usepackage{alltt}
+\usepackage{verse}
+\usepackage[draft=false,
+            plainpages=false,
+            pdfpagelabels,
+            bookmarksnumbered,
+            hyperindex=false
+           ]{hyperref}
+\providecommand{\phantomsection}
+\show\makeatletter
+\makeatletter
+  \@mparswitchfalse
+\makeatother
+\renewcommand{\MakeUppercase}[1]{#1}
+\pagestyle{headings}
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{verse.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{555}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2001/07/21}{First public release}
+% \changes{v1.1}{2001/08/03}{Added patterns for line indents}
+% \changes{v1.2}{2001/10/28}{Minor change in verse environment}
+% \changes{v2.0}{2002/03/24}{Added numbering}
+% \changes{v2.1}{2002/03/28}{Added shorthands for linebreak and end of stanza}
+% \changes{v2.2}{2002/07/18}{Added interstanza spacing}
+% \changes{v2.21}{2004/03/21}{Made compatible with hangul package}
+% \changes{v2.22}{2005/08/22}{Made compatible with hyperref package}
+% \changes{v2.3}{2006/01/14}{Added switch for linenumber side}
+% \changes{v2.4}{2007/01/10}{Added code to start numbering at a given line}
+%
+% \def\dtxfile{verse.dtx}
+% ^^A \def\fileversion{v1.0}
+% ^^A \def\filedate{2001/07/21}
+% ^^A \def\fileversion{v1.1}
+% ^^A \def\filedate{2001/08/03}
+% ^^A \def\fileversion{v1.2}
+% ^^A \def\filedate{2001/10/28}
+% ^^A \def\fileversion{v2.0}
+% ^^A \def\filedate{2002/03/24}
+% \def\fileversion{v2.1} \def\filedate{2002/03/28}
+% \def\fileversion{v2.2} \def\filedate{2002/07/18}
+% \def\fileversion{v2.21} \def\filedate{2004/03/21}
+% \def\fileversion{v2.22} \def\filedate{2005/08/22}
+% \def\fileversion{v2.3} \def\filedate{2006/01/14}
+% \def\fileversion{v2.4} \def\filedate{2007/01/10}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+% \newcommand*{\ablankline}{\vspace{\baselineskip}}
+%
+% \title{Typesetting simple verse with LaTeX\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{\texttt{herries dot press at earthlink dot net}}\\
+% Herries Press
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{verse} package provides some aids for the typesetting
+% of simple verse.
+%
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+% The typesetting of a poem should be really be dependent on the
+% particular poem. Individual problems do not usually admit of a
+% general solution, so this document and code should be used more
+% as a guide towards some solutions rather than providing a ready
+% made solution for any particular piece of verse.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{verse} 
+% package and 
+% commented source code is in Section~\ref{sec:code}.
+%
+% The doggerel used as illustrative material has been taken 
+% from~\cite{RUMOUR}.
+%
+% LaTeX provides the |verse| environment which is defined as a particular
+% kind of list. Within the environment you use |\\| to end a line
+% and a blank line will end a stanza. For example, here is a single
+% stanza poem:
+% \begin{verbatim}
+% \newcommand{\garden}{
+% I used to love my garden \\
+% But now my love is dead \\
+% For I found a bachelor's button \\
+% In black-eyed Susan's bed.
+% }
+% \end{verbatim}
+% \newcommand{\garden}{
+% I used to love my garden \\
+% But now my love is dead \\
+% For I found a bachelor's button \\
+% In black-eyed Susan's bed.
+% }
+% When this is typeset as a normal LaTeX paragraph (with no paragraph
+% indentation) it looks like: \\[\baselineskip]
+% \garden{}
+%
+% \ablankline
+%
+%    Typesetting it within the |verse| environment produces: \\[\baselineskip]
+% \begin{verse}  
+% \garden
+% \end{verse}
+%
+% \ablankline
+%
+% The stanza could also be typeset within the |alltt| environment, defined
+% in the standard \Lpack{alltt} package, using a normal font and no |\\|
+% line endings.
+% \begin{verbatim}
+% \begin{alltt}\normalfont
+% I used to love my garden 
+% But now my love is dead 
+% For I found a bachelor's button 
+% In black-eyed Susan's bed.
+% \end{alltt}
+% \end{verbatim}
+% which produces:
+% \begin{alltt}
+% \normalfont
+% I used to love my garden 
+% But now my love is dead 
+% For I found a bachelor's button 
+% In black-eyed Susan's bed.
+% \end{alltt}
+% The |alltt| environment is like the |verbatim| environment except that
+% you can use LaTeX macros inside it. Note that the \% characters are
+% an artifact of an interaction between this document's class and
+% the |alltt| environment that I have not been able to eliminate.
+%
+%    In the |verse| environment long lines will be wrapped and indented
+% but in the |alltt| environment there is no indentation. 
+%
+% Some stanzas have certain lines indented, often alternate ones. To
+% typeset stanzas like this you have to add your own spacing. For
+% instance:
+% \begin{verbatim}
+% \begin{verse}
+% There was an old party of Lyme \\
+% Who married three wives at one time. \\
+% \hspace{2em} When asked: `Why the third?' \\
+% \hspace{2em} He replied: `One's absurd, \\
+% And bigamy, sir, is a crime.'
+% \end{verse}
+% \end{verbatim}
+% will be typeset in a verse environment as: 
+% \begin{verse}
+% There was an old party of Lyme \\
+% Who married three wives at one time. \\
+% \hspace{2em} When asked: `Why the third?' \\
+% \hspace{2em} He replied: `One's absurd, \\
+% And bigamy, sir, is a crime.'
+% \end{verse}
+%
+% \ablankline
+%
+% Using the |alltt| environment you can put in the spacing via ordinary
+% spaces. That is, this
+% \begin{verbatim}
+% \begin{alltt}\normalfont
+% There was an old party of Lyme
+% Who married three wives at one time.
+%       When asked: `Why the third?' 
+%       He replied: `One's absurd, 
+% And bigamy, sir, is a crime.'
+% \end{alltt}
+% \end{verbatim}
+% is typeset as
+% \begin{alltt}
+% \normalfont
+% There was an old party of Lyme
+% Who married three wives at one time.
+%       When asked: `Why the third?' 
+%       He replied: `One's absurd, 
+% And bigamy, sir, is a crime.'
+% \end{alltt}
+%
+% More exotically you could use the TeX |\parshape| command:
+% \begin{verbatim}
+% \parshape = 5 0pt \linewidth 0pt \linewidth 
+%               2em \linewidth 2em \linewidth 0pt \linewidth
+% \noindent There was an old party of Lyme \\
+% Who married three wives at one time. \\
+% When asked: `Why the third?' \\
+% He replied: `One's absurd, \\
+% And bigamy, sir, is a crime.' \par
+% \end{verbatim}
+% which will be typeset as:
+%
+% \ablankline
+%
+% \parshape = 5 0pt \linewidth 0pt \linewidth 
+%               2em \linewidth 2em \linewidth 0pt \linewidth
+% \noindent There was an old party of Lyme \\
+% Who married three wives at one time. \\
+% When asked: `Why the third?' \\
+% He replied: `One's absurd, \\
+% And bigamy, sir, is a crime.' \par
+%
+% \ablankline
+% 
+%    This is about as much assistance as standard (La)TeX provides.
+%
+%
+% \clearpage
+% \section{The \Lpack{verse} package} \label{sec:usc}
+%
+% The code provided by the \Lpack{verse} package is meant to help
+% with some aspects of typesetting poetry but does not, and cannot,
+% provide a comprehensive solution to all the requirements that
+% will arise.
+%
+% \DescribeEnv{verse}
+% The |verse| environment provided by the package is an extension
+% of the usual LaTeX environment. The environment takes one optional
+% parameter, which is a length; for example |\begin{verse}[4em]|.
+% You may have noticed that the earlier verse examples are all
+% near the left margin, whereas verses usually look better if they
+% are typeset about the center of the page. The length parameter,
+% if given, should be about the length of an average line, and then
+% the entire contents will be typeset with the mid point of the length
+% centered horizontally on the page.
+%
+% \DescribeMacro{\versewidth}
+% The length |\versewidth| is provided as a convenience. It may be used,
+% for example, to calculate the length of a line of text for use
+% as the optional argument to the |verse| environment: 
+% \begin{verbatim}
+% \settowidth{\versewidth}{This is the average line,}
+% \begin{verse}[\versewidth]
+% \end{verbatim}
+%
+% \DescribeEnv{altverse}
+% Within the |verse| environment verses are seperated by a blank line
+% in the input. Individual verses within |verse| may, however, 
+% be enclosed in the |altverse| environment. This has the effect of
+% indenting the 2nd, 4th, etc., lines of the verse by the length |\vgap|.
+%
+% \DescribeEnv{patverse}
+% Individual verses within the |verse| environment may be enclosed
+% in the |patverse| environment. Within the environment the indentation
+% of each line is specified by an indentation pattern, which consists
+% of an array of digits, $d_{1}$ to $d_{n}$, and the $n^{th}$ line is
+% indented by $d_{n}$ times |\vgap|. However, the first line is
+% not indented, irrespective of the value of $d_{1}$.
+%
+% \DescribeEnv{patverse*}
+% The |patverse*| environment is similar to |patverse| environment,
+% except that the pattern will keep on repeating itself.
+%
+% \DescribeMacro{\indentpattern}
+% The indentation pattern for a |patverse| environment is specified
+% via the |\indentpattern{|\meta{digits}|}| command. If the pattern is
+% shorter than the number of lines in a verse, the trailing lines will
+% not be indented.
+%
+% \DescribeMacro{\vin}
+% \DescribeMacro{\vgap}
+% The command |\vin| is shorthand for |\hspace{\vgap}| for use
+% at the start of an indented line of verse. The length |\vgap|
+% (initially 1.5em) can be changed by |\setlength| or |\addtolength|.
+%
+% \DescribeMacro{\vindent}
+% When a verse line is too long to fit within the typeblock it is
+% wrapped onto the next line with a space, given by the value of the
+% length \cs{vindent}.
+%
+% \DescribeMacro{\leftmargini}
+% All verse lines have a minimum indent given by the length \cs{leftmargini}
+% which also applies to any list environment. To change the minimum
+% indent for verses do something along the lines:
+% \begin{verbatim}
+% \newlength{\saveleftmargini}
+% \setlength{\saveleftmargini}{\leftmargini}
+% \setlength{\leftmargini}{-1em}% for example to outdent verse
+% %  verses
+% \setlength{\leftmargini}{\saveleftmargini}% restore original value
+% \end{verbatim}
+%
+% \DescribeMacro{\stanzaskip}
+% The length |\stanzaskip| controls the spacing between stanzas.
+% It may be changed like any other length.
+%
+% \DescribeMacro{\verselinebreak}
+% Using the command |\verselinebreak[|\meta{length}|]| will cause 
+% later text in the
+% line of the verse to be typeset indented on the following line.
+% If the optional length argument is not given the indentation is 
+% |\vgap|, otherwise the indentation is given by \meta{length} plus |\vgap|.
+% The broken
+% line will count as a single line as far as the |altverse| and |patverse|
+% environments are concerned (see also the |\\>| macro).
+%
+% \DescribeMacro{\flagverse}
+% \DescribeMacro{\vleftskip}
+% Putting the command |\flagverse{|\meta{flag}|}| at the start of a line
+% of verse will typeset \meta{flag} towards the left margin, ending
+% a distance |\vleftskip| before the verse line.
+%
+% \DescribeMacro{\poemlines}
+% The declaration |\poemlines{|\meta{nth}|}| will cause every \meta{nth}
+% lines of succeeding verses to be numbered. For example, |\poemlines{5}|
+% will number every fifth line. The default is |\poemlines{0}| which prevents
+% any numbering.
+%
+% \DescribeMacro{\setverselinenums}
+% The command \cs{setverselinenums}\marg{firstlinenum}\marg{startnumsat}
+% can be used to set the number of the first verse line to \meta{firstlinenum}
+% instead of the default `1' and to specify that the first printed line number
+% should be for line number \meta{startnumsat}. If used the command must be
+% given within the \texttt{verse} environment before the first line of the
+% verses. For example, if you were quoting portions of poems from a source
+% where the lines were numbered, your first line might be the 112th of the 
+% original and that line was originally numbered: \\
+% \verb?\setverselinenums{112}{112}? \\
+% or if it was line 115 that was first numbered: \\
+% \verb?\setverselinenums{112}{115}? 
+%
+% Note that the numbers must be such that the relationship \\
+% \verb?firstlinenum <= startnumsat < firstlinenum + poemlines? \\
+% holds.
+%
+%
+% \DescribeMacro{\thepoemline}
+% \DescribeMacro{\verselinenumfont}
+% Lines are numbered via \cs{thepoemline} which defaults to typesetting 
+% arabic numerals via: \\
+% \verb?\renewcommand*{\thepoemline}{\arabic{poemline}}? \\
+% The particular font is defined by \cs{verselinenumfont}\marg{font-spec}.
+% The default is: \\
+% \verb?\verselinenumfont{\rmfamily}? \\
+%
+% \DescribeMacro{\vrightskip}
+% \DescribeMacro{\verselinenumbersleft}
+% \DescribeMacro{\verselinenumbersright}
+% By default the numbers are typeset at the distance \cs{vrightskip} into the 
+% right margin.
+% If you want line numbers set at the left use the \cs{verselinenumbersleft}
+% declaration. To revert to the default use \cs{verselinenumbersright}.
+%
+%
+% \DescribeMacro{\\}
+% Within the |verse| environment, the macro |\\| must be used at the
+% end of each line of a verse, except for the last line in each stanza.
+% If the lines in a poem are to be numbered then |\\!| must be used at the 
+% end of the last line in each stanza (the |\\| macro increments the line
+% numbers). The starred version, |\\*|, prohibits a page break after the
+% line. The |\\>| version causes a linebreak within a verse line.
+% The |\\| macro in its various forms can also take an optional length 
+% argument, like |\\[30pt]|
+% which will insert |30pt| of vertical space; in the case of |\\>[30pt]|
+% an additional 30pt of horizontal space will be inserted after the
+% linebreak (effectively |\\>| is shorthand for |\verselinebreak|).
+% The allowable forms of the
+% macro are: |\\|, |\\*|. |\\!|, |\\>|, |\\[...]|, |\\*[...]|, |\\![...]|,
+% and |\\>[...]|.
+%
+% \DescribeMacro{\label}
+% \DescribeMacro{\ref}
+% The standard |\label{|meta{key}|}| command
+% can be used inside the |verse| environment, between the end of the text 
+% of a line and the line-ending |\\|, to grab that line number, no matter 
+% what the setting of |\poemlines|. Elsewhere the standard
+% |\ref{|\meta{key}|}| command can be used to refer to the line number.
+%
+% \DescribeMacro{\poemtitle}
+% |\poemtitle[|\meta{short}|}{|\meta{long}|}| typesets the title
+% of a poem and makes an entry into the ToC. There is a starred version
+% that makes no ToC entry.
+%
+% \DescribeMacro{\poemtoc}
+% The kind of entry made in the ToC by the |\poemtitle| command is
+% defined by |\poemtoc|. The initial definition is: \\
+% |\newcommand{\poemtoc}{section}| \\
+% for a section-like ToC entry. This can be changed to, say, |chapter|
+% or |subsection| or \ldots.
+%
+% \DescribeMacro{\poemtitlefont}
+% This macro specifies the font and positioning of the poem title. Its
+% initial definition is: \\
+% |\newcommand{\poemtitlefont}{\normalfont\bfseries\large\centering}| \\
+% to give a |\large| bold centered title. This can of course be renewed
+% if you want something else.
+%
+% \DescribeMacro{\beforepoemtitleskip}
+% \DescribeMacro{\afterpoemtitleskip}
+% These two lengths are the vertical space before and after the |\poemtitle|
+% title text. They are initially defined to give the same spacing
+% as for a |\section| title. They can be changed by |\setlength| or
+% |\addtolength| for different spacings.
+%
+%
+% \DescribeMacro{\poemtitlemark}
+% The |\poemtitle| macro, but not |\poemtitle*|,
+% calls the |\poemtitlemark{|\meta{title}|}| macro,
+% which is defined to do nothing. This would probably be changed by a
+% pagestyle definition (like |\sectionmark| or |\chaptermark|).
+%
+% \subsection{Supports}
+%
+%    The package includes some macros for supporting the |patverse|
+% environment which may be more generally useful. See the code section
+% for examples on how these may be used.
+%
+% \DescribeMacro{\newarray}
+% |\newarray{|\meta{arrayname}|}{|\meta{low}|}{|\meta{high}|}| defines
+% the \meta{arrayname} array, where \meta{arrayname} is a name like
+% |MyArray|. The lowest and highest array indices are set to
+% \meta{low} and \meta{high} respectively, where both are integer numbers.
+%
+% \DescribeMacro{\setarrayelement}
+% |\setarrayelement{|\meta{arrayname}|}{|\meta{index}|}{|\meta{text}|}|
+% sets the \meta{index} location in the \meta{arrayname} array to be 
+% \meta{text}. For example: \\
+%  |\setarrayelement{MyArray}{23}{$2^{23}$}|.
+%
+% \DescribeMacro{\getarrayelement}
+% |\getarrayelement{|\meta{arrayname}|}{|\meta{index}|}{|\meta{result}|}|
+% sets the parameterless macro \meta{result} to the contents of
+% the \meta{index} location in the \meta{arrayname} array. For
+% example: \\
+%  |\getarrayelement{MyArray}{23}{\result}|.
+%
+% \DescribeMacro{\checkarrayindex}
+% |\checkarrayindex{|\meta{arrayname}|}{|\meta{index}|}| checks if
+% \meta{arrayname} is an array and if \meta{index} is a valid index for
+% the array.
+%
+% \DescribeMacro{\stringtoarray}
+% |\stringtoarray{|\meta{arrayname}|}{|\meta{string}|}| puts each character
+% from \meta{string} sequentially into the \meta{arrayname} array, starting
+% at index 1. For example: \\
+%  |\stringtoarray{MyArray}{Chars}|.
+%
+% \DescribeMacro{\arraytostring}
+% The macro |\arraytostring{|\meta{arrayname}|}{|\meta{result}|}| assumes
+% that \meta{arrayname} is an array of characters, and defines the macro
+% \meta{result} to be that sequence of characters. For example: \\
+% |\arraytostring{MyArray}{\MyString}|.
+%
+% \DescribeMacro{\checkifinteger}
+% |\checkifinteger{|\meta{num}|}| ckecks if \meta{num} is an integer (not less
+% than zero). If it is then |\ifinteger| is set TRUE, otherwise it is set 
+% FALSE.
+%
+% \clearpage
+% \subsection{Examples}
+%
+%    Here are some sample verses using the package facilities.
+% First our old Limerick friend, but titled and centered:
+% \begin{verbatim}
+% \renewcommand{\poemtoc}{subsection}
+% \poemtitle{A Limerick}
+% \settowidth{\versewidth}{There was an old party of Lyme}
+% \begin{verse}[\versewidth]
+% There was an old party of Lyme \\
+% Who married three wives at one time. \\
+% \vin When asked: `Why the third?' \\
+% \vin He replied: `One's absurd, \\
+% And bigamy, sir, is a crime.'
+% \end{verse}
+% \end{verbatim}
+% which gets typeset as below. The default |\poemtoc| is redefined
+% to |subsection| so the
+% title is entered into the ToC as an unnumbered |\subsection|.
+%
+% \renewcommand{\poemtoc}{subsection}
+% \poemtitle{A Limerick}
+% \settowidth{\versewidth}{There was an old party of Lyme}
+% \begin{verse}[\versewidth]
+% There was an old party of Lyme \\
+% Who married three wives at one time. \\
+% \vin When asked: `Why the third?' \\
+% \vin He replied: `One's absurd, \\
+% And bigamy, sir, is a crime.'
+% \end{verse}
+%
+% \ablankline
+%
+%     Next is the Garden verse within the |altverse| environment. It
+% is titled and centered.
+% \begin{verbatim}
+% \settowidth{\versewidth}{But now my love is dead}
+% \poemtitle{Love's lost}
+% \begin{verse}[\versewidth]
+% \begin{altverse}
+% \garden
+% \end{altverse}
+% \end{verse}
+% \end{verbatim}
+% which produces:
+% \settowidth{\versewidth}{But now my love is dead}
+% \poemtitle{Love's lost}
+% \begin{verse}[\versewidth]
+% \begin{altverse}
+% \garden
+% \end{altverse}
+% \end{verse}
+%
+%  \ablankline
+%
+% It is left up to you how you might want to add information about
+% the author of a poem. Here is one example of a macro for this:
+% \begin{verbatim}
+% \newcommand{\attrib}[1]{%
+%    \nopagebreak{\raggedleft\footnotesize #1\par}}
+% \end{verbatim}
+% \newcommand{\attrib}[1]{%
+%    \nopagebreak{\raggedleft\footnotesize #1\par}}
+%
+%    This can be used as in the next bit of doggeral.
+% \begin{verbatim}
+% \poemtitle{Fleas}
+% \settowidth{\versewidth}{What a funny thing is a flea}
+% \begin{verse}[\versewidth]
+% What a funny thing is a flea. \\
+% You can't tell a he from a she. \\
+% But he can. And she can. \\
+% Whoopee!
+% \end{verse}
+% \attrib{Anonymous}
+% \end{verbatim}
+%
+% \poemtitle{Fleas}
+% \settowidth{\versewidth}{What a funny thing is a flea}
+% \begin{verse}[\versewidth]
+% What a funny thing is a flea. \\
+% You can't tell a he from a she. \\
+% But he can. And she can. \\
+% Whoopee!
+% \end{verse}
+% \attrib{Anonymous}
+%
+% \ablankline
+%
+% Here is an example of line wrapping.
+% \begin{verbatim}
+% \poemtitle{In the beginning}
+% \settowidth{\versewidth}{And objects at rest tended to remain at rest}
+% \begin{verse}[\versewidth]
+% Then God created Newton, \\*
+% And objects at rest tended to remain at rest, \\*
+% And objects in motion tended to remain in motion, \\*
+% And energy was conserved
+%    and momentum was conserved
+%    and matter was conserved \\*
+% And God saw that it was conservative.
+% \end{verse}
+% \attrib{Possibly from \textit{Analog}, circa 1950}
+% \end{verbatim}
+%
+% \clearpage
+% \poemtitle{In the beginning}
+% \settowidth{\versewidth}{And objects at rest tended to remain at rest}
+% \begin{verse}[\versewidth]
+% Then God created Newton, \\*
+% And objects at rest tended to remain at rest, \\*
+% And objects in motion tended to remain in motion, \\*
+% And energy was conserved
+%    and momentum was conserved
+%    and matter was conserved \\*
+% And God saw that it was conservative.
+% \end{verse}
+% \attrib{Possibly from \textit{Analog}, circa 1950}
+%
+% \ablankline
+%
+% Here is one with a forced line break and a slightly different title style.
+% \begin{verbatim}
+% \renewcommand{\poemtitlefont}{\normalfont\large\itshape\centering}
+% \poemtitle{Mathematics}
+% \settowidth{\versewidth}{Than Tycho Brahe, or Erra Pater:}
+% \begin{verse}[\versewidth]
+% In mathematics he was greater \\
+% Than Tycho Brahe, or Erra Pater: \\
+% For he, by geometric scale, \\
+% Could take the size of pots of ale;\\ \settowidth{\versewidth}{Resolve by}
+% Resolve, by sines \\>[\versewidth] and tangents straight, \\
+% If bread or butter wanted weight; \\
+% And wisely tell what hour o' the day \\
+% The clock does strike, by Algebra.
+% \end{verse}
+% \attrib{Samuel Butler (1612--1680)}
+% \end{verbatim}
+%
+% \renewcommand{\poemtitlefont}{\normalfont\large\itshape\centering}
+% \poemtitle{Mathematics}
+% \settowidth{\versewidth}{Than Tycho Brahe, or Erra Pater:}
+% \begin{verse}[\versewidth]
+% In mathematics he was greater \\
+% Than Tycho Brahe, or Erra Pater: \\
+% For he, by geometric scale, \\
+% Could take the size of pots of ale;\\ \settowidth{\versewidth}{Resolve by}
+% Resolve, by sines \\>[\versewidth] and tangents straight, \\
+% If bread or butter wanted weight; \\
+% And wisely tell what hour o' the day \\
+% The clock does strike, by Algebra.
+% \end{verse}
+% \attrib{Samuel Butler (1612--1680)}
+%
+% \ablankline
+% \clearpage
+%
+% Another limerick, but this time taking advantage of the |patverse|
+% environment and numbering every third line.
+% \begin{verbatim}
+% \settowidth{\versewidth}{There was a young lady of Ryde}
+% \poemtitle{The Young Lady of Ryde}
+% \begin{verse}[\versewidth]
+% \poemlines{3}
+% \indentpattern{00110}
+% \begin{patverse}
+% There was a young lady of Ryde \\
+% Who ate some apples and died. \\
+% The apples fermented \\
+% Inside the lamented \\
+% And made cider inside her inside.
+% \end{patverse}
+% \poemlines{0}
+% \end{verse}
+% \end{verbatim}
+%
+% \settowidth{\versewidth}{There was a young lady of Ryde}
+% \poemtitle{The Young Lady of Ryde}
+% \begin{verse}[\versewidth]
+% \poemlines{3}
+% \indentpattern{00110}
+% \begin{patverse}
+% There was a young lady of Ryde \\
+% Who ate some apples and died. \\
+% The apples fermented \\
+% Inside the lamented \\
+% And made cider inside her inside.
+% \end{patverse}
+% \poemlines{0}
+% \end{verse}
+%
+% \ablankline
+%
+% The next example is a song you may have heard of. The `forty-niner' in
+% line \ref{vs:49} refers to the gold rush  of 1849.
+%
+% \begin{verbatim}
+% \settowidth{\versewidth}{In a cavern, in a canyon,}
+% \poemtitle{Clementine}
+% \begin{verse}[\versewidth]
+% \poemlines{2}
+% \begin{altverse}
+% \flagverse{1.} In a cavern, in a canyon, \\
+% Excavating for a mine, \\
+% Lived a miner, forty-niner, \label{vs:49} \\
+% And his daughter, Clementine. \\!
+% \end{altverse}
+%
+% \begin{altverse}
+% \flagverse{\textsc{chorus}} Oh my darling, Oh my darling, \\
+% Oh my darling Clementine. \\
+% Thou art lost and gone forever, \\
+% Oh my darling Clementine
+% \end{altverse}
+% \poemlines{0}
+% \end{verse}
+% \end{verbatim}
+%
+%
+% \settowidth{\versewidth}{In a cavern, in a canyon,}
+% \poemtitle{Clementine}
+% \begin{verse}[\versewidth]
+% \poemlines{2}
+% \begin{altverse}
+% \flagverse{1.} In a cavern, in a canyon, \\
+% Excavating for a mine, \\
+% Lived a miner, forty-niner, \label{vs:49} \\
+% And his daughter, Clementine. \\!
+% \end{altverse}
+%
+% \begin{altverse}
+% \flagverse{\textsc{chorus}} Oh my darling, Oh my darling, \\
+% Oh my darling Clementine. \\
+% Thou art lost and gone forever, \\
+% Oh my darling Clementine
+% \end{altverse}
+% \poemlines{0}
+% \end{verse}
+%
+%
+%  The last example is a much more ambitious use of |\indentpattern|. In
+% this case it is defined as: \\
+% |\indentpattern{0135554322112346898779775545653222345544456688778899}| \\
+% and the result is shown on the next page.
+%
+%
+% \clearpage
+% \poemtitle{Mouse's Tale}
+% \settowidth{\versewidth}{a mouse that morning}
+% \indentpattern{0135554322112346898779775545653222345544456688778899}
+% \begin{verse}[\versewidth]
+% \setlength{\vgap}{1em}
+% \begin{patverse}
+% \large Fury said to \\
+%   a mouse, That \\
+%   he met \\
+%   in the \\
+%   house, \\
+% \normalsize `Let us \\
+%   both go \\
+%   to law: \\
+%   \emph{I} will \\
+%   prosecute \\
+%   \textit{you.} --- \\
+%   Come, I'll \\
+% \small take no \\
+%   denial; \\
+%   We must \\
+%   have a \\
+%   trial: \\
+%   For \\
+% \footnotesize really \\
+%   this \\
+%   morning \\
+%   I've \\
+%   nothing \\
+%   to do.' \\
+%   Said the \\
+%   mouse to \\
+% \scriptsize the cur, \\
+%   Such a \\
+%   trial, \\
+%   dear sir, \\
+%   With no \\
+%   jury or \\
+%   judge, \\
+%   would be \\
+%   wasting \\
+%   our breath.' \\
+% \tiny  `I'll be \\
+%   judge, \\
+%   I'll be \\
+%   jury.' \\
+%   Said \\
+%   cunning \\
+%   old Fury; \\
+%   `I'll try \\
+%   the whole \\
+%   cause \\
+%   and \\
+%   condemn \\
+%   you \\
+%   to \\
+%   death.'  \par
+% \end{patverse}
+% \end{verse}
+% \attrib{Lewis Carrol, \textit{Alice's Adventures in Wonderland}, 1865}
+% 
+%
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock \emph{The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+% \bibitem[Wil01]{RUMOUR}
+% Peter Wilson.
+% \newblock \emph{A Rumour of Humour: A scientist's commonplace book}.
+% \newblock To be published.
+% \end{thebibliography}
+% }
+%
+%
+% \clearpage
+% \section{The package code} \label{sec:code}
+%
+%    To try and avoid name clashes, all the internal commands include
+% the string |@vs|.
+%
+% \subsection{Preliminaries}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{verse}[2007/01/10 v2.4 verse typesetting]
+
+%    \end{macrocode}
+%
+% For reference, here is the original definition of the |verse| environment
+% from \file{classes.dtx}, based on |\let|ting |\\| equal |\@centercr|.
+% \begin{verbatim}
+% \newenvironment{verse}
+%    {\let\\\@centercr
+%     \list{}{\itemsep      \z@
+%             \itemindent   -1.5em%
+%             \listparindent\itemindent
+%             \rightmargin  \leftmargin
+%             \advance\leftmargin 1.5em}%
+%    \item\relax}
+%    {\endlist}
+% \end{verbatim}
+%
+% \subsection{Verse code}
+%
+%
+% \begin{macro}{vslineno}
+% \begin{macro}{poemline}
+% \begin{macro}{\c@fvsline}
+% \begin{macro}{modulo@vs}
+% \begin{macro}{verse@envctr}
+% \begin{macro}{\theHpoemlines}
+% We need a counter for verse lines and poem lines, and one for unique
+% hyperref anchors (based on the verse environment). Also one for specifying
+% the start of line numbering.
+% \changes{v2.0}{2002/03/24}{Added poemline and modulo@vs counters}
+% \changes{v2.22}{2005/08/22}{Added verse@envctr counter and 
+%                \cs{theHpoemlines} for hyperref}
+% \changes{v2.4}{2007/01/10}{Added fvsline counter}
+%    \begin{macrocode}
+\newcounter{vslineno}
+\newcounter{poemline}
+\newcounter{fvsline}
+  \setcounter{fvsline}{0}
+\newcounter{modulo@vs}
+\newcounter{verse@envctr}\setcounter{verse@envctr}{0}
+\newcommand*{\theHpoemline}{\arabic{verse@envctr}.\arabic{poemline}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\poemlines}
+% |\poemlines{|\meta{nth}|}| specifies that every \meta{nth} poem line 
+% should be numbered. Default is not to number any lines.
+% \changes{v2.0}{2002/03/24}{Added \cs{poemlines}}
+%    \begin{macrocode}
+\newcommand{\poemlines}[1]{%
+  \ifnum#1>\z@
+    \setcounter{modulo@vs}{#1}
+  \else
+    \setcounter{modulo@vs}{0}
+  \fi
+}
+\poemlines{0}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\verselinenumfont}
+% \begin{macro}{\vlvnumfont}
+% Set the font for line numbers.
+% \changes{v2.3}{2006/01/14}{Added \cs{verselinenumfont} and \cs{vlvnumfont}}
+%    \begin{macrocode}
+\newcommand*{\verselinenumfont}[1]{\def\vlnumfont{#1}}
+\verselinenumfont{\rmfamily}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\setverselinenums}
+% \cs{setverslinenums}\marg{firstlinenum}\marg{startnumsat} sets the
+% number of the first verse line to be \meta{firstlinenum} and the
+% first line to be numbered to be \meta{startnumsat}. Note that
+% \verb?startnumsat < (firstlinenum + poemlines)?
+% \changes{v2.4}{2007/01/10}{Added \cs{setverselinenums}}
+%    \begin{macrocode}
+\newcommand*{\setverselinenums}[2]{%
+%    \end{macrocode}
+% Set the poemline counter to \verb?#1?.
+%    \begin{macrocode}
+  \setcounter{poemline}{#1}\addtocounter{poemline}{\m@ne}%
+  \refstepcounter{poemline}%
+  \ifnum\c@modulo@vs>\z@
+%    \end{macrocode}
+% If line numbers are to be printed, set \cs{c@fvsline} to a suitable
+% value so that the first number to be printed will be line \verb?#2?.
+%    \begin{macrocode}
+    \@tempcnta #2\relax
+    \divide\@tempcnta\c@modulo@vs
+    \multiply\@tempcnta\c@modulo@vs
+    \c@fvsline #2\relax
+    \advance\c@fvsline-\@tempcnta
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\getmodulo@vs}
+% This returns either nothing or a poem line number for printing.
+% \changes{v2.0}{2002/03/24}{Added \cs{getmodulo@vs}}
+% \changes{v2.4}{2007/01/10}{Modified \cs{getmodulo@vs} for specified start
+%                            of line numbers}
+%    \begin{macrocode}
+\newcommand{\getmodulo@vs}{\bgroup
+  \ifnum\c@modulo@vs<\@ne%   no line numbers
+  \else
+    \ifnum\c@modulo@vs<\tw@% every line numbered
+      \vlnumfont\thepoemline
+    \else
+      \@tempcnta\c@poemline
+      \advance\@tempcnta -\c@fvsline
+      \divide\@tempcnta\c@modulo@vs
+      \multiply\@tempcnta\c@modulo@vs
+      \advance\@tempcnta\c@fvsline
+      \ifnum\@tempcnta=\c@poemline\vlnumfont\thepoemline\fi
+    \fi
+  \fi
+\egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifaltindent}
+% This should be set TRUE for indenting alternate lines.
+%    \begin{macrocode}
+\newif\ifaltindent
+  \altindentfalse
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifpattern}
+% This should be set TRUE for indenting lines according to a pattern.
+%    \begin{macrocode}
+\newif\ifpattern
+  \patternfalse
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifstarpattern}
+% This should be set TRUE for indenting lines according in a |patverse*|
+% environment.
+% \changes{v2.1}{2002/03/8}{Added \cs{ifstarpattern}}
+%    \begin{macrocode}
+\newif\ifstarpattern
+  \starpatternfalse
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\versewidth}
+% |\versewidth| is a convenience length for the user.
+%    \begin{macrocode}
+\newlength{\versewidth}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\vgap}
+% \begin{macro}{\vin}
+% \begin{macro}{\vindent}
+% \begin{macro}{\stanzaskip}
+% The length |\vgap| is used as the basis for spacing. |\vin| makes
+% a horizontal space of |\vgap| and |\vindent| is the indentation
+% of wrapped lines in a verse. |\stanzaskip| controls the space
+% between stanzas.
+% \changes{v2.2}{2002/07/18}{Added \cs{stanzaskip}}
+%    \begin{macrocode}
+\newlength{\vgap} \setlength{\vgap}{1.5em}
+\newcommand{\vin}{\hspace*{\vgap}}
+\newlength{\vindent} \setlength{\vindent}{2\vgap}
+\newlength{\stanzaskip} \setlength{\stanzaskip}{0.75\baselineskip}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\vleftskip}
+% \begin{macro}{\vrightskip}
+% Skips to the left and right of a line of verse.
+% \changes{v2.0}{2002/03/24}{Added \cs{vleftksip} and \cs{vrightskip}}
+%    \begin{macrocode}
+\newlength{\vleftskip}
+  \setlength{\vleftskip}{30pt}
+\newlength{\vrightskip}
+  \setlength{\vrightskip}{10pt}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\flagverse}
+% |\flagverse{|\meta{flag}|}| inserts \meta{flag} at the left (of a line).
+% \changes{v2.0}{2002/03/24}{Added \cs{flagverse}}
+%    \begin{macrocode}
+\newcommand{\flagverse}[1]{\hskip-\vleftskip\llap{#1}\hskip\vleftskip\ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\verselinebreak}
+% Break a verse line by inserting \cs{newline}.\footnote{In an email to me
+% dated 2006/01/13 Aaron Rendahl pointed out that this should include
+% an \cs{ignorespaces}.}
+% \changes{v2.0}{2002/03/24}{Modified \cs{verselinebreak}}
+% \changes{v2.1}{2002/03/28}{Modified \cs{verselinebreak}}
+% \changes{v2.3}{2006/01/14}{Added \cs{ignorespaces} to \cs{verselinebreak}}
+%    \begin{macrocode}
+\newcommand*{\verselinebreak}[1][\z@]{\newline\hspace*{#1}\ignorespaces}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\incr@vsline}
+% Increment the line counters.
+% \changes{v2.0}{2002/03/24}{Added poemline counter to \cs{incr@vsline}}
+%    \begin{macrocode}
+\newcommand{\incr@vsline}{%
+  \refstepcounter{poemline}%
+  \stepcounter{vslineno}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vsifbang}
+% Like the kernel |\@ifstar| except it looks for an exclamation mark!
+% \changes{v2.0}{2002/03/24}{Added \cs{@vsifbang}}
+%    \begin{macrocode}
+\newcommand{\@vsifbang}[1]{\@ifnextchar !{\@firstoftwo{#1}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vsifgt}
+% Like the kernel |\@ifstar| except it looks for a |>| character.
+% \changes{v2.1}{2002/03/28}{Added \cs{@vsifgt}}
+%    \begin{macrocode}
+\newcommand{\@vsifgt}[1]{\@ifnextchar >{\@firstoftwo{#1}}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vstypelinenumright}
+% \begin{macro}{\@vstypelinenumleft}
+% \begin{macro}{\verselinenumbersright}
+% \begin{macro}{\verselinenumbersleft}
+% These control the typesetting of verse linenumbers to the
+% right and to the left of the verse. Default is to set them at
+% the right.
+% \changes{v2.3}{2006/01/14}{Added left/right switching line numbers}
+%    \begin{macrocode}
+\newcommand*{\@vstypelinenumright}{%
+  \hfill\rlap{\kern\vrightskip\kern\rightmargin\getmodulo@vs}}
+\newcommand*{\@vstypelinenumleft}{%
+  \hfill\rlap{\kern-\textwidth\kern-\vrightskip\getmodulo@vs}}
+\newcommand*{\verselinenumbersright}{\def\@vstypelinenum{\@vstypelinenumright}}
+\newcommand*{\verselinenumbersleft}{\def\@vstypelinenum{\@vstypelinenumleft}}
+\verselinenumbersright
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@vscentercr}
+% This puts the poem line number in the margin, increments
+% the line numbers, and then deals with the options. It is based
+% on the kernel |\@centercr|.
+% This has to handle various forms of the |\\| command: |\\|,
+% |\\*|, |\\!|, and |\\>|, together with an optional length argument.
+% \changes{v1.1}{2001/08/03}{Changed definition of \cs{@centercrplus}}
+% \changes{v2.0}{2002/03/24}{Renamed \cs{@centercrplus} as \cs{@vscentercr}}
+% \changes{v2.0}{2002/03/24}{Major rewrite of \cs{@vscentercr} and friends}
+% \changes{v2.1}{2002/03/28}{Added greater than character to \cs{@vscentercr}}%
+% \changes{v2.3}{2006/01/14}{Used \cs{@vstypelinenum} in \cs{@vscentercr}}
+%    \begin{macrocode}
+\newcommand{\@vscentercr}{%
+  \ifhmode \unskip\else \@nolnerr\fi
+  \@vstypelinenum%
+%%%%  \hfill\rlap{\kern\vrightskip\kern\rightmargin\getmodulo@vs}%
+%    \end{macrocode}
+% For |>| call |\verselinebreak| to process it.
+%    \begin{macrocode}
+  \@vsifgt{\verselinebreak}{%
+  \incr@vsline
+%    \end{macrocode}
+% If the call is |\\*...| call |\@vsxcentercr| to handle the |*...|.
+% If the call is |\\!|, do nothing.
+% If the call is |\\![...]|, call |\@vsicentercr| to handle the |[...]|.
+% Otherwise, call |\@vsxcentercr|.
+%    \begin{macrocode}
+  \par\@ifstar{\nobreak\@vsxcentercr}{%
+%    \end{macrocode}
+%    \begin{macrocode}
+    \@vsifbang{\@ifnextchar[ {\@vsicentercr}{}}{\@vsxcentercr}}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vsxcentercr}
+% Processes |\\*|, and either calls |\@vsicentercr| to handle a |[length]|,
+% or |\start@vsline|.
+% \changes{v2.0}{2002/03/24}{Added \cs{@vsxcentercr}}
+%    \begin{macrocode}
+\newcommand{\@vsxcentercr}{\addvspace{-\parskip}%
+  \@ifnextchar[ {\@vsicentercr}{\start@vsline}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vsicentercr}
+% Processes |(\\...)[length]| and then calls |\start@vsline|.
+% \changes{v2.0}{2002/03/24}{Added \cs{@vsicentercr}}
+%    \begin{macrocode}
+\def\@vsicentercr[#1]{\vskip #1\ignorespaces \start@vsline}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\start@vsline}
+% This is called at the start of every verse line except the first.
+% \changes{v1.1}{2001/08/03}{Added \cs{start@vsline}}
+% \changes{v2.1}{2002/03/28}{Added \cs{ifstarpattern} to \cs{start@vsline}}
+% \changes{v2.21}{2004/03/22}{Changed \cs{thevslineno} to \cs{c@vslineno} in
+%                             \cs{start@vsline}}
+%    \begin{macrocode}
+\newcommand{\start@vsline}{%
+  \ifaltindent\ifodd\c@vslineno\else\vin\fi\fi%
+  \ifpattern\get@vsindent\fi%
+  \ifstarpattern\getstar@vsindent\fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{verse}
+% The extended |verse| environment. It sets the verse line counter,
+% then defines the particular list environment adjusting the margins
+% to center according to the length parameter. If the length parameter
+% is at least the |\linewidth| then the `centering' defaults to
+% the original |verse| layout.
+% \changes{v1.1}{2001/08/03}{Initialise the line counter to 1, not 0, in
+%                all cases}
+% \changes{v1.2}{2001/10/28}{Fixed new verse environment to match spacings
+%                of the original (misplaced close brace)}
+% \changes{v2.2}{2002/07/18}{Added \cs{stanzaskip} to the verse environment}
+% \changes{v2.22}{2005/08/22}{Added verse@envctr to the verse environment}
+%    \begin{macrocode}
+\renewenvironment{verse}[1][\linewidth]{
+  \stepcounter{verse@envctr}%
+  \setcounter{poemline}{0}\refstepcounter{poemline}%
+  \setcounter{vslineno}{1}%
+  \let\\=\@vscentercr
+  \list{}{\itemsep \z@
+          \itemindent  -\vindent%
+          \listparindent\itemindent
+          \parsep       \stanzaskip
+          \ifdim #1 < \linewidth
+            \rightmargin        \z@
+            \setlength{\leftmargin}{\linewidth}%
+            \addtolength{\leftmargin}{-#1}%
+            \addtolength{\leftmargin}{-0.5\leftmargin}%
+          \else
+            \rightmargin        \leftmargin
+          \fi
+          \addtolength{\leftmargin}{\vindent}}
+  \item[]}{\endlist}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{altverse}
+% This sets |\altindenttrue| (afterwards false) and initialises the line counter.
+% \changes{v2.1}{2002/03/28}{Added \cs{starpatternfalse} to altverse}
+%    \begin{macrocode}
+\newenvironment{altverse}%
+  {\starpatternfalse\patternfalse\altindenttrue\setcounter{vslineno}{1}}%
+  {\altindentfalse}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{Pattern code}
+%
+%    The pattern code is based on the idea of converting a string of
+% digits to an array of digits, and then being able to access the
+% digit at a particular position in the array.
+% \changes{v1.1}{2001/08/03}{Added all the pattern code}
+%
+% \begin{macro}{\@nameedef}
+% A shorthand for using |\protected@edef|.
+%    \begin{macrocode}
+\newcommand{\@nameedef}[1]{
+  \expandafter\protected@edef\csname #1\endcsname}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ifbounderror}
+% A flag set TRUE if an attempt is made to access an array element outside
+% the array limits.
+%    \begin{macrocode}
+\newif\ifbounderror
+  \bounderrorfalse
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifinteger}
+%  A flag to indicate if a `number' is an integer (TRUE) or not (FALSE).
+%    \begin{macrocode}
+\newif\ifinteger
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@chrsinstr}
+% A counter for the number of characters.
+%    \begin{macrocode}
+\newcounter{chrsinstr}  % CHARactersINSTRing
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\newarray}
+% |\newarray{|\meta{arrayname}|}{|\meta{low}|}{|\meta{high}|}| defines
+% an array called \meta{arrayname} (no backslash e.g. |MyArray|), 
+% with low and high limts \meta{low} and \meta{high}.
+%    \begin{macrocode}
+\newcommand{\newarray}[3]{%
+  \@nameedef{#1-low}{#2}%
+  \@nameedef{#1-high}{#3}%
+  \ifnum #3<#2
+    \PackageError{verse}{Limits for array #1 are in reverse order}{\@ehc}%
+  \fi
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\stringtoarray}
+% |\stringtoarray{|\meta{arrayname}|}{|\meta{string}|}| puts each character
+% from \meta{string} sequentially into the \meta{arrayname} array, starting
+% with \meta{low} = 1. It checks for an empty \meta{string} and handles that
+% specially.
+%    \begin{macrocode}
+\newcommand{\stringtoarray}[2]{%
+  \def\@vsarrayname{#1}%
+  \protected@edef\the@vsstring{#2}%
+  \newarray{\@vsarrayname}{1}{1}%
+  \@ifmtarg{#2}{%
+    \c@chrsinstr \z@
+    \@namedef{\@vsarrayname-1}{}
+  }{%
+    \c@chrsinstr \@ne
+    \expandafter\@vsstringtoarray \the@vsstring\@vsend
+  }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@vsstringtoarray}
+% Recursively adds characters to the array |\@vsarrayname|, incrementing
+% the array's high limit.
+%    \begin{macrocode}
+\def\@vsstringtoarray #1#2\@vsend{%
+  \@namedef{\@vsarrayname-\the\c@chrsinstr}{#1}
+  \@nameedef{\@vsarrayname-high}{\the\c@chrsinstr}
+  \@ifmtarg{#2}{%
+    \def\@vsinext{}%
+  }{%
+    \advance\c@chrsinstr \@ne
+    \def\@vsinext{%
+      \@vsstringtoarray #2\@vsend%
+    }%
+  }
+  \@vsinext
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\setarrayelement}
+% |\setarrayelement{|\meta{arrayname}|}{|\meta{index}|}{|\meta{value}|}| sets
+% the \meta{arrayname} array's element at \meta{index} to \meta{value}.
+%    \begin{macrocode}
+\newcommand{\setarrayelement}[3]{%
+  \checkarrayindex{#1}{#2}%
+  \@nameedef{#1-#2}{#3}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\getarrayelement}
+% |\getarrayelement{|\meta{arrayname}|}{|\meta{index}|}{|\meta{value}|}|
+% defines the parameterless macro \meta{value} (e.g., |\result|) to be
+% the value at \meta{index} in the \meta{arrayname} array.
+%    \begin{macrocode}
+\newcommand{\getarrayelement}[3]{%
+  \checkarrayindex{#1}{#2}%
+  \protected@edef#3{\@nameuse{#1-#2}}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\checkarrayindex}
+% |\checkarrayindex{|\meta{arrayname}|}{|\meta{index}|}| checks that
+% the \meta{index} of the \meta{arrayname} array is valid. |\ifbounderror|
+% is set FALSE if everything is OK, otherwise it is set TRUE.
+%    \begin{macrocode}
+\newcommand{\checkarrayindex}[2]{%
+  \bounderrorfalse
+  \expandafter\ifx\csname #1-low\endcsname\relax%
+    \ifpattern\else
+      \PackageError{verse}{No array called #1}{\@ehc}%
+    \fi
+    \bounderrortrue
+  \fi
+  \ifnum #2<\@nameuse{#1-low}\relax%
+    \ifpattern\else
+      \PackageError{verse}{Index #2 outside limits for array #1}{\@ehc}%
+    \fi
+    \bounderrortrue
+  \fi
+  \ifnum #2>\@nameuse{#1-high}\relax%
+    \ifpattern\else
+      \PackageError{verse}{Index #2 outside limits for array #1}{\@ehc}%
+    \fi
+    \bounderrortrue
+  \fi
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@ifmtarg}
+% Provides an if-then-else command for an empty macro argument
+% (empty = zero or more spaces only). Use as: \\
+%  |\@ifmtarg{arg1}{Code for arg1 empty}{Code for arg1 not empty}| \\
+% This code is copied from my \Lpack{ifmtarg} package.
+%    \begin{macrocode}
+\begingroup
+\catcode`\Q=3
+\long\gdef\@ifmtarg#1{\@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil}
+\long\gdef\@xifmtarg#1#2Q#3#4#5\@nil{#4}
+\long\gdef\@ifnotmtarg#1{\@xifmtarg#1QQ\@firstofone\@gobble\@nil}
+\endgroup
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\arraytostring}
+% |\arraytostring{|\meta{arrayname}|}{|\meta{string}|}| converts the
+% characters in the \meta{arrayname} array into the parameterless macro
+% \meta{string} (e.g., |\MyString|).
+%    \begin{macrocode}
+\newcommand{\arraytostring}[2]{%
+  \def#2{}%
+  \c@chrsinstr = \@nameuse{#1-low}%
+  \@vsarraytostring{#1}{#2}%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@vsarraytostring}
+% |\@vsarraytostring{|\meta{arrayname}|}{|\meta{string}|}| recursively
+% adds the (character) elements from \meta{arrayname} to \meta{string}.
+%    \begin{macrocode}
+\newcommand{\@vsarraytostring}[2]{%
+  \ifnum\c@chrsinstr>\@nameuse{#1-high}\else
+    \protected@edef#2{#2\@nameuse{#1-\thechrsinstr}}%
+    \advance\c@chrsinstr\@ne%
+    \@vsarraytostring{#1}{#2}%
+  \fi%
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\checkifinteger}
+% |\checkifinteger{|\meta{num}|}| checks if \meta{num} is an integer.
+% If it is, then |\ifinteger| is set TRUE, otherwise it is set FALSE.
+% (Code based on Donald Arseneau's \Lpack{cite} package).
+%    \begin{macrocode}
+\newcommand{\checkifinteger}[1]{%
+  \protected@edef\@vsa{#1}%
+  \ifcat _\ifnum9<1\gobm{#1} _\else A\fi
+    \integertrue%
+  \else
+    \integerfalse%
+  \fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\gobm}
+% |\gobm{|\meta{num}|}| is defined as \meta{num}. It could be defined as: \\
+% |\newcommand{\gobm}[1]{\ifx-#1\expandafter\gobm\else#1\fi}| \\
+% which would remove a leading minus sign (hyphen) from its argument
+% (|gobm| = gobble minus sign).
+% (Code from a posting to CTT by Donald Arseneau on 1997/07/21).
+%    \begin{macrocode}
+\newcommand{\gobm}[1]{#1}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\indentpattern}
+% |\indentpattern{|\meta{digits}|}| stores \meta{digits} for use as
+% a verse indentation pattern.
+%    \begin{macrocode}
+\newcommand{\indentpattern}[1]{%
+  \stringtoarray{Array@vs}{#1}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\get@vsindent}
+% |\get@vsindent| gets the indent pattern digit for the |\thevslineno|,
+% then uses this to specify the line indentation as |digit*\vgap|.
+% \changes{v2.21}{2004/03/21}{Changed \cs{thevslineno} to
+%          \cs{number}\cs{value}\texttt{vslineno} in \cs{get@vsindent}}
+%    \begin{macrocode}
+\newcommand{\get@vsindent}{%
+  \getarrayelement{Array@vs}{\number\value{vslineno}}{\@vspat}%
+  \ifbounderror
+    \arraytostring{Array@vs}{\@vsp@t}%
+    \PackageWarning{verse}{%
+      Index `\thevslineno' for pattern `\@vsp@t' is out of bounds}%
+    \def\@vspat{0}%
+  \else
+    \checkifinteger{\@vspat}%
+    \ifinteger\else
+      \arraytostring{Array@vs}{\@vsp@t}%
+      \PackageWarning{verse}{%
+       `\@vspat' at index `\thevslineno' in pattern `\@vsp@t' is not a digit}%
+      \def\@vspat{0}%
+    \fi
+  \fi
+  \ifcase\@vspat\else\hspace*{\@vspat\vgap}\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\getstar@vsindent}
+% |\getstar@vsindent| gets the indent pattern digit for the |patverse*|
+% environment,
+% then uses this to specify the line indentation as |digit*\vgap|.
+% It lets the pattern repeat by resetting the |vslineno| counter.
+% \changes{v2.1}{2002/03/28}{Added \cs{getstar@vsindent}}
+%    \begin{macrocode}
+\newcommand{\getstar@vsindent}{%
+  \expandafter\ifx\csname Array@vs-high\endcsname\relax
+    \PackageError{verse}{A pattern has not been specified}{\@ehc}
+  \else
+    \ifnum\c@vslineno>\@nameuse{Array@vs-high}%
+      \setcounter{vslineno}{1}%
+     \fi
+     \get@vsindent
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{environment}{patverse}
+% The environment for setting verse line indents according to a pattern.
+% It starts by setting |\ifpattern| TRUE, any other flags to FALSE,
+% and initialises the line number. It ends by setting |\ifpattern| FALSE.
+% \changes{v2.1}{2002/03/28}{Added \cs{starpatternfalse} to patverse}
+%    \begin{macrocode}
+\newenvironment{patverse}%
+  {\starpatternfalse\patterntrue\altindentfalse\setcounter{vslineno}{1}}%
+  {\patternfalse}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{patverse*}
+% The environment for setting verse line indents according to a repeating
+% pattern.
+% It starts by setting |\ifstarpattern| TRUE, any other flags to FALSE,
+% and initialises the line number. It ends by setting |\ifstarpattern| FALSE.
+% \changes{v2.1}{2002/03/28}{Added patverse* environment}
+%    \begin{macrocode}
+\newenvironment{patverse*}%
+  {\starpatterntrue\patternfalse\altindentfalse\setcounter{vslineno}{1}}%
+  {\starpatternfalse}
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{Title code}
+%
+% \begin{macro}{\poemtitle}
+% Typeset a poem title (like |\section| or other). The actual work
+% is done by |\@vsptitle| (plain) or |\@vssptitle| (starred).
+%    \begin{macrocode}
+\newcommand{\poemtitle}{\par%
+  \secdef\@vsptitle\@vssptitle}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\poemtoc}
+% The kind of entry |\poemtitle| is to make in the ToC.
+%    \begin{macrocode}
+\newcommand{\poemtoc}{section}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vsptitle}
+% Typeset a |poemtitle|.
+% \changes{v2.22}{2005/08/22}{Added hyperref anchor to \cs{@vsptitle}}
+%    \begin{macrocode}
+\def\@vsptitle[#1]#2{%
+  \@nameuse{phantomsection}%
+  \addcontentsline{toc}{\poemtoc}{#1}
+  \poemtitlemark{#1}%
+  \@vstypeptitle{#2}
+  \@afterheading}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vssptitle}
+% Typeset a |\poemtitle*|.
+%    \begin{macrocode}
+\def\@vssptitle#1{%
+  \@vstypeptitle{#1}
+  \@afterheading}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@vstypeptitle}
+% This \emph{really} typesets the title.
+%    \begin{macrocode}
+\newcommand{\@vstypeptitle}[1]{%
+  \vspace{\beforepoemtitleskip}
+  {\poemtitlefont #1\par}
+  \vspace{\afterpoemtitleskip}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\poemtitlefont}
+% \begin{macro}{\poemtitlemark}
+% Sets the appearance to the title of a poem, and something for a header.
+%    \begin{macrocode}
+\newcommand{\poemtitlefont}{\normalfont\large\bfseries\centering}
+\newcommand{\poemtitlemark}[1]{}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\beforepoemtitleskip}
+% \begin{macro}{\afterpoemtitleskip}
+% Lengths before and after a poem title, using the |\section| values.
+%    \begin{macrocode}
+\newlength{\beforepoemtitleskip}
+  \setlength{\beforepoemtitleskip}{3.5ex \@plus 1ex \@minus .2ex}
+\newlength{\afterpoemtitleskip}
+  \setlength{\afterpoemtitleskip}{2.3ex \@plus.2ex}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

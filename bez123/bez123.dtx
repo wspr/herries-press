@@ -1,0 +1,1828 @@
+% \iffalse meta-comment
+% bez123.dtx
+% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%                            (or at: pandgwilson at earthlink dot net) 
+% Copyright 1998 --- 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{bez123}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{bez123.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{988}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \def\dtxfile{bez123.dtx}
+% \def\fileversion{v1.1}
+% \def\filedate{1998/10/14}
+% \def\fileversion{v1.1a}
+% \def\filedate{2004/04/16}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}        ^^A typest a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}         ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}         ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}} ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}       ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}         ^^A typeset an environment
+% \newcommand{\eqref}[1]{equation~(\ref{#1})}  ^^A typeset ref to an equation
+%
+% \title{The \Lpack{bez123} and \Lpack{multiply} packages\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, 
+%        last revised \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{After May 2004 at: \texttt{pandgwilson at earthlink dot net}}\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{bez123} package provides for the drawing of linear, cubic,
+% and rational quadratic Bezier curves. The \Lpack{multiply} package
+% provides a command to multiply a length without numerical overflow.
+% \end{abstract}
+% \tableofcontents
+% \listoftables
+% \listoffigures
+%
+% \StopEventually{}
+%
+% 
+%
+% \section{Introduction}
+%
+% This document provides the commented source for a \LaTeX{}
+% package file that extends the \LaTeX{} facilities for drawing
+% Bezier curves. The package was originally developed as part of 
+% a suite designed for the typesetting of
+% documents according to the rules for ISO international 
+% standards~\cite{PRW96i}.
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Drawing a non-rational quadratic Bezier curve is provided as part 
+% of the standard \LaTeX{} system.
+%    Section~\ref{sec:usage} provides the user manual for the new commands
+% supplied by this package for drawing a variety of Bezier curves.
+% These include commands for drawing linear and cubic non-rational Bezier 
+% curves and rational quadratic curves.
+%
+%    Section~\ref{sec:bez} describes the implementation of the package.
+% As a side-effect of the implementation, a facility is also provided
+% for performing multiplication in \TeX{} without overflow. This is
+% described in Section~\ref{sec:mnoflow}.
+%
+%
+%
+% \section{Usage} \label{sec:usage}
+%
+%    Leslie Lamport provided the means of drawing a quadratic Bezier curve
+% \emph{via} the \LaTeXe{} |\qbezier|~\cite[pp. 125--126]{LAMPORT94} command.
+% This package
+% extends the Bezier facility by providing commands to draw linear,
+% rational quadratic, and cubic Bezier curves.
+%
+%    Bezier curves are named after Pierre Bezier who invented them. They
+% are widely used within Computer Aided Design (CAD) programs and other
+% graphics systems; descriptions can be found in many places, with varying
+% degrees of mathematical complexity, such 
+% as~\cite{FandP,MORTENSON85,FARIN90}.
+%
+%    The Bezier curve is a parameterized curve of degree $n$ and can 
+% therefore be specified by $(n+1)$ points 
+% (i.e., point $p_{0}$ through $p_{n}$).
+% Among its other properties, a Bezier curve of degree $n$ passes through 
+% through the points $p_{0}$ and $p_{n}$ and passes close to the other 
+% defining points. The general equation for a Bezier curve of degree $n$ with
+% parameter $t$ is
+% \begin{equation}
+%  p(t) = a_{0} + a_{1}t + a_{2}t^{2} + \cdots + a_{n}t^{n} \label{eq:gen}
+% \end{equation}
+% where the coefficients $a_{i}$ depend on the defining points, and 
+% traditionally $0 \leq t \leq 1$.
+%
+%    For a linear (degree $1$) curve, the equation is
+% \begin{equation}
+%  p(t) = p_{0} + (p_{1} - p_{0})t  \label{eq:lin}
+% \end{equation}
+% By inspection, $p(0) = p_{0}$ and $p(1) = p_{1}$.
+%
+%    Rearranging \eqref{eq:gen} slightly we get
+% \begin{equation}
+%  p(t) - p_{0} = (p_{1} - p_{0})t  \label{eq:lin2}
+% \end{equation}
+% In other words, we can march along the curve from the starting point to
+% the ending point by evaluating the right hand side of 
+% \eqref{eq:lin2} for increasing values of the parameter $t$.
+%
+%   In order to shorten the equations slightly, and also make them more
+% convenient to work with numerically, we will use the notation
+% \begin{displaymath}
+% l_{pq} = p_{p} - p_{q}
+% \end{displaymath}
+% Thus, the final form for the linear Bezier curve is
+% \begin{equation}
+% p(t) - p_{0} = l_{10}t  \label{eq:lin3}
+% \end{equation}
+% 
+% \DescribeMacro{\lbezier}
+% The command |\lbezier[|\meta{N}|](|\meta{p0}|)(|\meta{p1}|)| draws a
+% linear Bezier curve with \meta{N} plotted points from the point \meta{p0}
+% (with coordinates \meta{x0,y0}) to the point \meta{p1} (with
+% coordinates \meta{x1,y1}). \meta{N} is an optional argument. If it is
+% either not given or is given with a value of zero, 
+% then the command will calculate the number of points to be 
+% plotted, subject to a maximum number. 
+% There must be no spaces between the arguments to the 
+% |\lbezier| command; this restriction also applies to the other Bezier
+% drawing commands provided by the \Lpack{bez123} package.
+%
+%    Figure~\ref{fig:beta} shows an example of a dotted line drawn using
+% the |\lbezier| command. The actual code used is:
+% \begin{verbatim}
+% \lbezier[50](15,30)(30,0)
+% \end{verbatim}
+% thus drawing a straight line consisting of 50 points.
+%
+% \DescribeMacro{\qbeziermax}
+%    The standard \LaTeX{} command |\qbeziermax| sets a maximum limit
+% on the number of points used to draw any of the Bezier curves.
+%
+% \DescribeMacro{\thinlines}
+% \DescribeMacro{\thicklines}
+% \DescribeMacro{\linethickness}
+%    The `points' used in drawing the Bezier curves are small squares. The
+% size of these squares are controlled by the standard \LaTeX{}
+% |\thinlines|, |\thicklines| and/or |\linethickness| commands.
+% Consult Lamport~\cite{LAMPORT94} for descriptions of these, and 
+% |\qbeziermax|, commands.
+%
+%
+%   It is convenient to introduce some general properties of Bezier curves
+% at this point.
+% \begin{itemize}
+% \item A degree $n$ Bezier curve is defined by $(n+1)$ points which we
+% will label as $p_{0}$ through $p_{n}$. The lines joining the points
+% $p_{0}, p_{1}, \ldots , p_{n}$ are called the \emph{control polygon}.
+% The Bezier curve is parameterized by a variable we will call $t$, with
+% $0 \leq t \leq 1$.
+% \item A degree $n$ Bezier curve starts at point $p_{0}$ and ends at
+% point $p_{n}$.
+% \item At $t=0$ the curve passes through $p_{0}$ and is tangent to the
+% line $l_{10} = p_{1}-p_{0}$.
+% \item At $t=1$ the curve passes through $p_{n}$ and is tangent to the
+% line $l_{(n)(n-1)} = p_{n}-p_{(n-1)}$.
+% \item A \emph{non-rational} Bezier curve lies within the \emph{convex 
+% hull}\footnote{The convex hull can be thought of as the shape that a rubber
+% band will take if it is stretched around pins placed at each point.}
+% of the points $p_{0}$ through $p_{n}$. For examples of convex hulls see
+% figure~\ref{fig:ch}. Note that the shape of a convex hull is independant
+% of the ordering of the points.
+% \end{itemize}
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(70,80)
+%  ^^A degree 3
+% \put(0,5){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0}}
+%   \put(10,30){\circle{2}}
+%   \put(8,30){\makebox(0,0)[br]{1}}
+%   \put(20,0){\circle{2}}
+%   \put(22,0){\makebox(0,0)[bl]{2}}
+%   \put(30,30){\circle{2}}
+%   \put(32,30){\makebox(0,0)[bl]{3}}
+%   ^^A convex hull
+%   \put(0,0){\line(1,0){20}}
+%   \put(20,0){\line(1,3){10}}
+%   \put(30,30){\line(-1,0){20}}
+%   \put(10,30){\line(-1,-3){10}}
+%   ^^A control polygon
+%   ^^A \put(0,0){\vector(1,3){10}}
+%   ^^A \put(10,30){\vector(1,-3){10}}
+%   ^^A \put(20,0){\vector(1,3){10}}
+%   \thicklines
+%  ^^A   \cbezier[30](0,0)(10,30)(20,0)(30,30)
+%   \thinlines
+%   \end{picture}}
+%  ^^A degree 3
+% \put(0,45){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0, 3}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{1}}
+%   \put(0,30){\circle{2}}
+%   \put(2,30){\makebox(0,0)[bl]{2}}
+%   ^^A convex hull
+%   \put(0,0){\line(1,0){30}}
+%   \put(30,0){\line(-1,1){30}}
+%   \put(0,30){\line(0,-1){30}}
+%   ^^A control polygon
+%   ^^A \put(0,0){\vector(1,0){30}}
+%   ^^A \put(30,0){\vector(-1,1){30}}
+%   ^^A \put(0,30){\vector(0,-1){30}}
+%   \thicklines
+%  ^^A \cbezier[30](0,0)(30,0)(0,30)(0,0)
+%   \thinlines
+%   \end{picture}}
+%  ^^A degree 3
+% \put(45,0){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0}}
+%   \put(10,30){\circle{2}}
+%   \put(8,30){\makebox(0,0)[br]{2}}
+%   \put(20,0){\circle{2}}
+%   \put(22,0){\makebox(0,0)[bl]{3}}
+%   \put(30,30){\circle{2}}
+%   \put(32,30){\makebox(0,0)[bl]{1}}
+%   ^^A convex hull
+%   \put(0,0){\line(1,0){20}}
+%   \put(20,0){\line(1,3){10}}
+%   \put(30,30){\line(-1,0){20}}
+%   \put(10,30){\line(-1,-3){10}}
+%   ^^A control polygon
+%   ^^A \put(0,0){\vector(1,1){30}}
+%   ^^A \put(30,30){\vector(-1,0){20}}
+%   ^^A \put(10,30){\vector(1,-3){10}}
+%   \thicklines
+%   ^^A \cbezier(0,0)(30,30)(10,30)(20,0)
+%   \thinlines
+%   \end{picture}}
+% \put(45,45){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{1}}
+%   \put(0,30){\circle{2}}
+%   \put(2,30){\makebox(0,0)[bl]{2}}
+%   \put(10,10){\circle{2}}
+%   \put(8,10){\makebox(0,0)[br]{3}}
+%   ^^A convex hull
+%   \put(0,0){\line(1,0){30}}
+%   \put(30,0){\line(-1,1){30}}
+%   \put(0,30){\line(0,-1){30}}
+%   ^^A control polygon
+%   ^^A \put(0,0){\vector(1,0){30}}
+%   ^^A \put(30,0){\vector(-1,1){30}}
+%   ^^A \put(0,30){\vector(1,-2){10}}
+%   \thicklines
+%   ^^A \cbezier(0,0)(30,0)(0,30)(10,10)
+%   \thinlines
+%   \end{picture}}
+% \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{Four sets of points and their convex hulls} \label{fig:ch} 
+% \end{figure}
+%
+%    The equation for cubic Bezier curves is
+% \begin{equation}
+% p(t) - p_{0} = 3l_{10}t + 3(l_{21} - l_{10})t^{2} + (l_{30} - 3l_{21})t^{3}
+%  \label{eq:cubic}
+% \end{equation}
+%
+% \DescribeMacro{\cbezier}
+%    The command
+% |\cbezier[|\meta{N}|](|\meta{p0}|)(|\meta{p1}|)(|\meta{p2}|)(|\meta{p3}|)|
+% draws a cubic Bezier curve, as defined by \eqref{eq:cubic},
+% from point \meta{p0} to point \meta{p3}, where \meta{p1} and \meta{p2}
+% are the intermediate points defining the control polygon.
+% 
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(70,80)
+%  ^^A degree 3
+% \put(0,5){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0}}
+%   \put(10,30){\circle{2}}
+%   \put(8,30){\makebox(0,0)[br]{1}}
+%   \put(20,0){\circle{2}}
+%   \put(22,0){\makebox(0,0)[bl]{2}}
+%   \put(30,30){\circle{2}}
+%   \put(32,30){\makebox(0,0)[bl]{3}}
+%   ^^A convex hull
+%   ^^A \put(0,0){\line(1,0){20}}
+%   ^^A \put(20,0){\line(1,3){10}}
+%   ^^A \put(30,30){\line(-1,0){20}}
+%   ^^A \put(10,30){\line(-1,-3){10}}
+%   ^^A control polygon
+%   \put(0,0){\vector(1,3){10}}
+%   \put(10,30){\vector(1,-3){10}}
+%   \put(20,0){\vector(1,3){10}}
+%   \thicklines
+%   \cbezier[30](0,0)(10,30)(20,0)(30,30)
+%   \thinlines
+%   \end{picture}}
+%  ^^A degree 3
+% \put(0,45){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0, 3}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{1}}
+%   \put(0,30){\circle{2}}
+%   \put(2,30){\makebox(0,0)[bl]{2}}
+%   ^^A convex hull
+%   ^^A \put(0,0){\line(1,0){30}}
+%   ^^A \put(30,0){\line(-1,1){30}}
+%   ^^A \put(0,30){\line(0,-1){30}}
+%   ^^A control polygon
+%   \put(0,0){\vector(1,0){30}}
+%   \put(30,0){\vector(-1,1){30}}
+%   \put(0,30){\vector(0,-1){30}}
+%   \thicklines
+%   \cbezier[30](0,0)(30,0)(0,30)(0,0)
+%   \thinlines
+%   \end{picture}}
+%  ^^A degree 3
+% \put(45,0){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0}}
+%   \put(10,30){\circle{2}}
+%   \put(8,30){\makebox(0,0)[br]{2}}
+%   \put(20,0){\circle{2}}
+%   \put(22,0){\makebox(0,0)[bl]{3}}
+%   \put(30,30){\circle{2}}
+%   \put(32,30){\makebox(0,0)[bl]{1}}
+%   ^^A convex hull
+%   ^^A \put(0,0){\line(1,0){20}}
+%   ^^A \put(20,0){\line(1,3){10}}
+%   ^^A \put(30,30){\line(-1,0){20}}
+%   ^^A \put(10,30){\line(-1,-3){10}}
+%   ^^A control polygon
+%   \put(0,0){\vector(1,1){30}}
+%   \put(30,30){\vector(-1,0){20}}
+%   \put(10,30){\vector(1,-3){10}}
+%   \thicklines
+%   \cbezier(0,0)(30,30)(10,30)(20,0)
+%   \thinlines
+%   \end{picture}}
+% \put(45,45){\begin{picture}(30,30)
+%   \thinlines
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{1}}
+%   \put(0,30){\circle{2}}
+%   \put(2,30){\makebox(0,0)[bl]{2}}
+%   \put(10,10){\circle{2}}
+%   \put(8,10){\makebox(0,0)[br]{3}}
+%   ^^A convex hull
+%   ^^A \put(0,0){\line(1,0){30}}
+%   ^^A \put(30,0){\line(-1,1){30}}
+%   ^^A \put(0,30){\line(0,-1){30}}
+%   ^^A control polygon
+%   \put(0,0){\vector(1,0){30}}
+%   \put(30,0){\vector(-1,1){30}}
+%   \put(0,30){\vector(1,-2){10}}
+%   \thicklines
+%   \cbezier(0,0)(30,0)(0,30)(10,10)
+%   \thinlines
+%   \end{picture}}
+% \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{Four sets of points, the cubic Bezier curves and their control 
+%          polygons. Left --- curves plotted with $N=30$; Right ---
+%          curves plotted with $N=0$} \label{fig:cp} 
+% \end{figure}
+% 
+%    Figure~\ref{fig:cp} shows four such cubic Bezier curves, their
+% defining points and their control polygons. These are the same points
+% that were used in figure~\ref{fig:ch} to illustrate convex hulls. It is
+% easy to verify that a cubic Bezier curve does indeed lie within the convex
+% hull of its defining points. The curves on the left of the figure were
+% specified with a value of 30 for the argument \meta{N}, while those
+% on the right had no value given for \meta{N} and thus were drawn with
+% the number of plotted points calculated by the drawing algorithm.
+% The actual drawing commands used were:
+% \begin{verbatim}
+% \cbezier[30](0,0)(10,30)(20,0)(30,30)
+% \cbezier[30](0,0)(30,0)(0,30)(0,0)
+% \cbezier(0,0)(30,30)(10,30)(20,0)
+% \cbezier(0,0)(30,0)(0,30)(10,10)
+% \end{verbatim}
+% Note that points are plotted along the curve at equidistant values of the
+% of the parameter $t$. However, as the relationship between the actual
+% distance in $(x,y)$ coordinate space is a non-linear function of $t$,
+% the seperation between the plotted points is non-uniform.
+%
+% The equation for a \emph{non-rational} quadratic Bezier curve is
+% \begin{equation}
+% p(t) - p_{0} = 2l_{10}t + (l_{20} - 2l_{10})t^{2} \label{eq:quad}
+% \end{equation}
+% Using standard \LaTeX{} this can be drawn by the |\qbezier| command.
+% There is another form of a quadratic Bezier curve called a \emph{rational}
+% quadratic Bezier curve. Its equation is
+% \begin{equation}
+% p(t) - p_{0} =  \frac^^A
+% {2w_{1}l_{10}t + (w_{2}l_{20} - 2w_{1}l_{10})t^{2}}^^A
+% {w_{0} + 2\omega_{10}t + (\omega_{20} - \omega_{10})t^{2}}
+% \label{eq:rqfull}
+% \end{equation}
+% where the $w_{i}$ are the \emph{weights} corresponding to the 
+% points $p_{i}$ and $\omega_{pq} = w_{p} - w_{q}$. The shape of a 
+% non-rational curve can be changed by changing the positions of the defining
+% points. The shape of a rational curve can also be modified by changing 
+% the values of the weights. A rational curve
+% has the same general properties, outlined above, as a non-rational curve
+% with the exception that the curve may lie outside the convex hull of the
+% control polygon.
+%
+%    For the purposes at hand, we use a more restricted form of a
+% rational quadratic Bezier curve, obtained by putting 
+% $W = w_{1}/w_{0}$ and then making
+% $w_{0} = w_{2} = 1$ in \eqref{eq:rqfull}. Performing these
+% substitutions we end up with
+% \begin{equation}
+% p(t) - p_{0} =  \frac^^A
+% {2Wl_{10}t + (l_{20} - 2Wl_{10})t^{2}}^^A
+% {1 + 2(1 - W)t + 2(1 - W)t^{2}}
+% \label{eq:rqfinal}
+% \end{equation}
+% Note that when $W=1$, (\ref{eq:rqfinal}) reduces to \eqref{eq:quad}
+% and when $W=0$ it effectively reduces to \eqref{eq:lin3}.
+%
+%    It turns out that a non-rational quadratic Bezier curve is an arc of
+% a parabola, which is one of the conic curves. All the other conic curves
+% can be represented by the rational quadratic Bezier curve described
+% by \eqref{eq:rqfinal} by suitable choices for the value of $W$.
+% From now on, we will call $W$ the \emph{weight} of the rational quadratic
+% Bezier curve. Table~\ref{tab:rq} lists the value, or value range,
+% of $W$ for the various forms of the conic curve.\footnote{We do not deal
+% with the degenerate cases.} For the case of a circle, $\beta$ is the
+% angle between the lines $l_{10} = (p_{1} - p_{0})$ and
+% $l_{20} = (p_{2} - p_{0})$, as shown in figure~\ref{fig:beta}.
+%
+% \begin{table}
+% \centering
+% \caption{Conic forms of the rational quadratic Bezier curve} \label{tab:rq}
+% \begin{tabular}{lc} \hline
+% Conic form & Weight ($W$) \\ \hline
+% Hyperbola & $\|W\| > 1$ \\
+% Parabola  & $\|W\| = 1$ \\
+% Ellipse   & $0 < \|W\| < 1$ \\
+% Circle    & $\|l_{10}\| = \|l_{21}\|$ and $W = \cos \beta$ \\
+% Straight line & $W = 0$ \\ \hline
+% \end{tabular}
+% \end{table}
+%
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(30,40)
+% \put(0,5){\begin{picture}(30,30)
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{1}}
+%   \put(15,30){\circle{2}}
+%   \put(13,30){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{2}}
+%   ^^A polygon
+%   \thicklines
+%   \put(15,30){\vector(-1,-2){15}}
+%   \put(0,0){\vector(1,0){30}}
+%   ^^A dashed line from 0 to 2
+%   ^^A \lbezier(15,30)(30,0)
+%   \lbezier[50](15,30)(30,0)
+%   \thinlines
+%   \put(15,26){\makebox(0,0){$\beta$}}
+%   \end{picture}}
+% \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{The angle $\beta$} \label{fig:beta}
+% \end{figure}
+%
+% \DescribeMacro{\rqbezier}
+% The command
+% |\rqbezier[|\meta{N}|](|\meta{p0}|)(|\meta{p1}|)(|\meta{p2}|)(|\meta{W}|)|
+% draws a rational quadratic Bezier curve from \meta{p0} to \meta{p2} with
+% weight \meta{W}, according to \eqref{eq:rqfinal}. As in the
+% other Bezier commands, \meta{N} is optional and controls the number
+% of plotted points along the curve. Figure~\ref{fig:qrb} shows several
+% rational quadratic curves, all with the same control polygon but with
+% differing values for the weight $W$. The code is:
+% \begin{verbatim}
+%   \rqbezier[100](15,30)(0,0)(30,0)(4)
+%   \rqbezier[100](15,30)(0,0)(30,0)(2)
+%   \rqbezier(15,30)(0,0)(30,0)(1)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.75)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.5)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.25)
+%   \rqbezier(15,30)(0,0)(30,0)(0)
+% \end{verbatim}
+% When $W > 1$ the curve is pulled toward the point $p_{1}$. Conversely,
+% when $W < 1$ the curve is pushed away from the point $p_{1}$. In all
+% cases, though, the curve starts and stops at $p_{0}$ and $p_{2}$
+% respectively.
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(30,40)
+% \put(0,5){\begin{picture}(30,30)
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{1}}
+%   \put(15,30){\circle{2}}
+%   \put(13,30){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{2}}
+%   ^^A polygon
+%   \thinlines
+%   \put(15,30){\vector(-1,-2){15}}
+%   \put(0,0){\vector(1,0){30}}
+%   ^^A dashed line from 0 to 2
+%   ^^A \lbezier(15,30)(30,0)
+%   ^^A \lbezier[50](15,30)(30,0)
+%   ^^A \thinlines
+%   ^^A \put(15,26){\makebox(0,0){$\beta$}}
+%   \thicklines
+%   \rqbezier[100](15,30)(0,0)(30,0)(4)
+%   \rqbezier[100](15,30)(0,0)(30,0)(2)
+%   \rqbezier(15,30)(0,0)(30,0)(1)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.75)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.5)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.25)
+%   \rqbezier(15,30)(0,0)(30,0)(0)
+%   \end{picture}}
+% \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{The effect of weight variation ($W \geq 0$)
+%          on rational quadratic Bezier curves
+%          (\texttt{weightscale = \theweightscale} (the default)) } 
+% \label{fig:qrb}
+% \end{figure}
+%
+% Like the case of the cubic curve, points are plotted at equidistant
+% values of the parameter $t$. The relationship between parameter value
+% and coordinate positions in the rational case are highly non-linear.
+% Thus the distance between the plotted points can vary quite remarkably.
+% This is an inherent disadvantage with this type of curve. The user's remedy
+% is to increase the number of points to be plotted, but this can lead to
+% \TeX{} running out of memory, not to mention the increased time to
+% generate the drawing.
+%
+% \DescribeMacro{\setweightscale}
+% \DescribeMacro{\resetweightscale}
+%    Because of the way in which \TeX{} performs arithmetic, and especially
+% division, it 
+% is necessary to perform some scaling operations on the divisor when
+% evaluating \eqref{eq:rqfinal}. The optimum value for the
+% scaling is a complex function of the weight and the size and orientation
+% of the control polygon. The algorithm uses a heuristic approach to
+% calculate a `good' value but is not always successful. The 
+% |\setweightscale{|\meta{number}|}| command can be used to specify
+% a scale factor. \meta{number} must be a positive integer. The
+% |\resetweightscale| command resets the scale factor to its default
+% value, which is currently 10000 (ten thousand).
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(70,80)
+% \put(0,5){\begin{picture}(30,30)
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{1}}
+%   \put(15,30){\circle{2}}
+%   \put(13,30){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{2}}
+%   ^^A polygon
+%   \thinlines
+%   ^^A \put(15,30){\vector(-1,-2){15}}
+%   ^^A \put(0,0){\vector(1,0){30}}
+%   ^^A dashed line from 0 to 2
+%   ^^A \lbezier(15,30)(30,0)
+%   ^^A \lbezier[50](15,30)(30,0)
+%   ^^A \thinlines
+%   ^^A \put(15,26){\makebox(0,0){$\beta$}}
+%   \thicklines
+%   \setweightscale{100}
+%   \rqbezier[100](15,30)(0,0)(30,0)(4)
+%   \rqbezier[100](15,30)(0,0)(30,0)(2)
+%   \rqbezier(15,30)(0,0)(30,0)(1)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.75)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.5)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.25)
+%   \rqbezier(15,30)(0,0)(30,0)(0)
+%   \put(15,-5){\makebox(0,0)[b]{\texttt{weightscale = \theweightscale}}}
+%   \end{picture}}
+% \put(0,45){\begin{picture}(30,30)
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{1}}
+%   \put(15,30){\circle{2}}
+%   \put(13,30){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{2}}
+%   ^^A polygon
+%   \thinlines
+%   ^^A \put(15,30){\vector(-1,-2){15}}
+%   ^^A \put(0,0){\vector(1,0){30}}
+%   ^^A dashed line from 0 to 2
+%   ^^A \lbezier(15,30)(30,0)
+%   ^^A \lbezier[50](15,30)(30,0)
+%   ^^A \thinlines
+%   ^^A \put(15,26){\makebox(0,0){$\beta$}}
+%   \thicklines
+%   \setweightscale{1000}
+%   \rqbezier[100](15,30)(0,0)(30,0)(4)
+%   \rqbezier[100](15,30)(0,0)(30,0)(2)
+%   \rqbezier(15,30)(0,0)(30,0)(1)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.75)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.5)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.25)
+%   \rqbezier(15,30)(0,0)(30,0)(0)
+%   \put(15,-5){\makebox(0,0)[b]{\texttt{weightscale = \theweightscale}}}
+%   \end{picture}}
+% \put(45,5){\begin{picture}(30,30)
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{1}}
+%   \put(15,30){\circle{2}}
+%   \put(13,30){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{2}}
+%   ^^A polygon
+%   \thinlines
+%   ^^A \put(15,30){\vector(-1,-2){15}}
+%   ^^A \put(0,0){\vector(1,0){30}}
+%   ^^A dashed line from 0 to 2
+%   ^^A \lbezier(15,30)(30,0)
+%   ^^A \lbezier[50](15,30)(30,0)
+%   ^^A \thinlines
+%   ^^A \put(15,26){\makebox(0,0){$\beta$}}
+%   \thicklines
+%   \resetweightscale
+%   \rqbezier[100](15,30)(0,0)(30,0)(4)
+%   \rqbezier[100](15,30)(0,0)(30,0)(2)
+%   \rqbezier(15,30)(0,0)(30,0)(1)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.75)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.5)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.25)
+%   \rqbezier(15,30)(0,0)(30,0)(0)
+%   \put(15,-5){\makebox(0,0)[b]{\texttt{weightscale = \theweightscale}}}
+%   \end{picture}}
+% \put(45,45){\begin{picture}(30,30)
+%   \put(0,0){\circle{2}}
+%   \put(-2,0){\makebox(0,0)[br]{1}}
+%   \put(15,30){\circle{2}}
+%   \put(13,30){\makebox(0,0)[br]{0}}
+%   \put(30,0){\circle{2}}
+%   \put(32,0){\makebox(0,0)[bl]{2}}
+%   ^^A polygon
+%   \thinlines
+%   ^^A \put(15,30){\vector(-1,-2){15}}
+%   ^^A \put(0,0){\vector(1,0){30}}
+%   ^^A dashed line from 0 to 2
+%   ^^A \lbezier(15,30)(30,0)
+%   ^^A \lbezier[50](15,30)(30,0)
+%   ^^A \thinlines
+%   ^^A \put(15,26){\makebox(0,0){$\beta$}}
+%   \thicklines
+%   \setweightscale{100000}
+%   \rqbezier[100](15,30)(0,0)(30,0)(4)
+%   \rqbezier[100](15,30)(0,0)(30,0)(2)
+%   \rqbezier(15,30)(0,0)(30,0)(1)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.75)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.5)
+%   \rqbezier[100](15,30)(0,0)(30,0)(0.25)
+%   \rqbezier(15,30)(0,0)(30,0)(0)
+%   \put(15,-5){\makebox(0,0)[b]{\texttt{weightscale = \theweightscale}}}
+%   \end{picture}}
+% \end{picture}
+% \setlength{\unitlength}{1pt}
+% \resetweightscale
+% \caption{The effect of \texttt{weightscale} on the drawing
+%          of rational quadratic Bezier curves}
+% \label{fig:qrw}
+% \end{figure}
+%
+%    Figure~\ref{fig:qrw} illustrates the effect on changing the 
+% \texttt{weightscale} used for drawing the same curves as shown
+% in figure~\ref{fig:qrb}. Note that the \texttt{weightscale}
+%  has no effect when
+% $W = 1$ or $W = 0$ as in these cases the curves are drawn using the
+% algorithms for the |\qbezier| and |\lbezier| commands respectively.
+%
+%    It is obvious that some choices give very poorly formed curves. In
+% other cases the curves may be poorly formed but do result in interesting
+% cross-stitch like patterns.
+%
+%    Table~\ref{tab:rq} indicates that it is possible to draw circular
+% arcs using a rational quadratic Bezier curves. The two legs of the
+% control polygon define the tangents to the curve at the
+% end points.
+% Therefore, to draw a circular arc the two legs must be equal in length.
+% That is, the convex hull is an isosceles triangle. In the special case
+% when the convex hull forms an equilateral triangle, the required
+% weight ($\cos \beta$, see figure~\ref{fig:beta}) for drawing a circular 
+% arc is $\cos \beta = 0.5$. Further,
+% for any given control polygon the the curves drawn with weights of
+% $\pm W$ are complementary. That is, the curve with weight $-W$ is
+% the `remainder' of the curve drawn with weight $W$. Thus, we have a
+% simple means of drawing a complete circle, as shown in figure~\ref{fig:qrc}.
+% The plotting commands of interest were:
+% \begin{verbatim}
+%     \lbezier[25](0,0)(15,26)
+%     \lbezier[25](0,0)(30,0)
+%     \setweightscale{50000}
+%     \rqbezier[100](15,26)(0,0)(30,0)(0.5)
+%     \rqbezier[200](15,26)(0,0)(30,0)(-0.5)
+%     \resetweightscale
+% \end{verbatim}
+% where the |\lbezier| drawing commands were used to draw the dotted outline
+% of the control polygon.
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \setweightscale{50000}
+% \begin{picture}(60,62)
+%   \put(0,5){\begin{picture}(30,30)
+%     \thinlines
+%     \put(0,0){\circle{2}}
+%     \put(-2,0){\makebox(0,0)[br]{1}}
+%     \put(15,26){\circle{2}}
+%     \put(13,26){\makebox(0,0)[br]{0}}
+%     \put(30,0){\circle{2}}
+%     \put(32,0){\makebox(0,0)[bl]{2}}
+%     ^^A polygon
+%     \lbezier[25](0,0)(15,26)
+%     \lbezier[25](0,0)(30,0)
+%     ^^A RQBEZIER
+%     \thicklines
+%     \rqbezier[100](15,26)(0,0)(30,0)(0.5)
+%     \rqbezier[200](15,26)(0,0)(30,0)(-0.5)
+%     \end{picture}}
+%   \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{Rational quadratics with weights of $\pm 0.5$ and an equilateral
+%          triangular convex hull
+%          (\texttt{weightscale = \theweightscale}) } \label{fig:qrc}
+% \resetweightscale
+% \end{figure}
+%
+%    A more robust picture of the same circle is shown in 
+% figure~\ref{fig:qr3c} where the complete circle is pieced together from
+% three non-complementary circular arcs. The drawing commands of interest
+% were
+% \begin{verbatim}
+%     \rqbezier[100](15,26)(0,0)(30,0)(0.5)
+%     \rqbezier[100](30,0)(60,0)(45,26)(0.5)
+%     \rqbezier[100](45,26)(30,52)(15,26)(0.5)
+% \end{verbatim}
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(60,62)
+%   \put(0,5){\begin{picture}(60,52)
+%     \thinlines
+%     \put(0,0){\circle{2}}
+% ^^A    \put(-2,0){\makebox(0,0)[br]{1}}
+%     \put(15,26){\circle{2}}
+% ^^A    \put(13,30){\makebox(0,0)[br]{0}}
+%     \put(30,0){\circle{2}}
+% ^^A    \put(32,0){\makebox(0,0)[bl]{2}}
+%     \put(60,0){\circle{2}}
+%     \put(45,26){\circle{2}}
+%     \put(30,52){\circle{2}}
+%     ^^A polygon
+%     \lbezier[50](0,0)(30,52)
+%     \lbezier[50](30,52)(60,0)
+%     \lbezier[50](0,0)(60,0)
+%     ^^A RQBEZIER
+%     \thicklines
+%     \rqbezier[100](15,26)(0,0)(30,0)(0.5)
+%     \rqbezier[100](30,0)(60,0)(45,26)(0.5)
+%     \rqbezier[100](45,26)(30,52)(15,26)(0.5)
+%     \end{picture}}
+%   \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{Three rational quadratics with weights of $0.5$ 
+%          (\texttt{weightscale = \theweightscale}) }
+% \label{fig:qr3c}
+% \end{figure}
+%
+%    The astute reader will have realised that the divisor in 
+% \eqref{eq:rqfinal} can go to zero, and can even be negative.
+% This has interesting consequences, both when trying to do computer
+% arithmetic, and also on the the kind of curve that results. Essentially,
+% the curve tends to $\infty$ as $W \rightarrow +0$. At $W = -0$ the curve
+% is at $-\infty$ and then it tends to $-0$ as $W \rightarrow -\infty$.
+% We will get a curve point at $\infty$ whenever $W = -1$ and a `negative'
+% curve for $W < -1$. 
+%
+% \begin{figure}
+% \centering
+% \setlength{\unitlength}{1mm}
+% \begin{picture}(60,60)
+%   \put(30,20){\begin{picture}(30,20)
+%     \thinlines
+%     \put(0,10){\circle{2}}
+%     \put(30,0){\circle{2}}
+%     \put(30,20){\circle{2}}
+%     ^^A polygon
+%     \lbezier[25](30,20)(0,10)
+%     \lbezier[25](0,10)(30,0)
+%     ^^A RQBEZIER
+%     \thicklines
+%     \rqbezier[100](30,20)(0,10)(30,0)(2)
+%     \rqbezier[100](30,20)(0,10)(30,0)(-2)
+%     \end{picture}}
+%   \end{picture}
+% \setlength{\unitlength}{1pt}
+% \caption{A rational quadratic that has gone negative; weights of $\pm 2$ 
+%          (\texttt{weightscale = \theweightscale}) }
+% \label{fig:neg}
+% \end{figure}
+%
+% This effect is shown in figure~\ref{fig:neg} which draws the two branches
+% of a hyperbola. The basic code for the illustration was
+% \begin{verbatim}
+%     \lbezier[25](30,20)(0,10)
+%     \lbezier[25](0,10)(30,0)
+%     \rqbezier[100](30,20)(0,10)(30,0)(2)
+%     \rqbezier[100](30,20)(0,10)(30,0)(-2)
+% \end{verbatim}
+% where the control polygon was drawn using the |\lbezier| commands.
+%
+%
+% \section{The \Lpack{bez123} package implementation} \label{sec:bez}
+%
+%    \LaTeX{} provides a facility for drawing quadratic Bezier curves.
+% This package provides additional facilities for drawing linear, 
+% rational quadratic, and cubic Bezier curves. 
+%
+%
+% Announce the name and version of the package, which requires \LaTeXe.
+%    \begin{macrocode}
+%<*bez>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bez123}[1998/10/14 v1.1 Bezier curves]
+%    \end{macrocode}
+% \changes{v1.1}{1998/10/14}{Added call to include multiply package}
+%    The package also requires the \Lpack{multiply} package.
+%    \begin{macrocode}
+\RequirePackage{multiply}[1998/10/14]
+%</bez>
+%    \end{macrocode}
+%
+%
+% \subsection{Arithmetic in \TeX}
+%
+%    All arithmetic in \TeX{} is based on integer arithmetic, with a
+% maximum integer value of $M = \number\maxdimen$. For example,
+% \setcounter{weightscale}{8}\makeatletter\divide\c@weightscale by 3\makeatother
+% $8/3 = \theweightscale$,
+% \setcounter{weightscale}{9}\makeatletter\divide\c@weightscale by 3\makeatother
+% $9/3 = \theweightscale$, and
+% \setcounter{weightscale}{10}\makeatletter\divide\c@weightscale by 3\makeatother
+% $10/3 = \theweightscale$.
+% In other words, division always reduces the absolute value of the dividend,
+% and also possibly truncates the value. One consequence of this is that the
+% ordering of multiplication and division is important. For instance,
+% \setcounter{weightscale}{8}\makeatletter\multiply\c@weightscale by 3 \divide\c@weightscale by 3\makeatother
+% $(8 \times 3)/3 = \theweightscale$ but
+% \setcounter{weightscale}{8}\makeatletter\divide\c@weightscale by 3 \multiply\c@weightscale by 3\makeatother
+% $(8/3) \times 3 = \theweightscale$!
+% Thus, in arithmetic calculations involving both multiplication and
+% division, the dividend should be maximised and the divisor minimised,
+% with multiplication preceeding division; also remembering that there
+% is a limit on the size of an integer. To avoid multiplication overflow
+% when calculating say, $a \times b$, we must ensure that 
+% $\|a\| \leq \|M/b\|$.
+%
+%    When calculating polynomials, such as that in \eqref{eq:gen},
+% we use a technique called Horner's schema, which is also known as nested
+% multiplication. A general cubic equation, for example, can be written as:
+% \begin{equation}
+% p(t) - a_{0} = t(a_{1} + t(a_{2} + ta_{3})) \label{eq:horn}
+% \end{equation}
+% The following pseudo-code shows one way to implement Horner's schema for
+% plotting $N$ points in the interval $0 \leq t \leq 1$
+% of \eqref{eq:horn} using integer arithmetic.
+% \begin{verbatim}
+% procedure plot_cubic(a0, a1, a2, a3:vector; N:integer);
+%   local p:vector; end_local;
+%   a3 := a3/N;
+%   repeat i := 0 to N by 1;
+%     p := a3*i;
+%     p := p + a2; p := p/N; p := p*i;
+%     p := p + a1; p := p/N; p := p*i;
+%     draw(p + a0);
+%   end_repeat;
+%   return;
+% end_procedure;
+% \end{verbatim}
+% We use the above algorithm, with suitable modifications according to the
+% degree of the polynomial, for plotting the points along Bezier curves.
+%
+% \subsection{Linear Bezier curves}
+%
+%    \begin{macrocode}
+%<*bez>
+%    \end{macrocode}
+%
+%    As a linear curve is simpler than a quadratic curve there is no
+% need to declare extra variables from those used in the kernel by the
+% |\qbezier| macro.
+%
+% \begin{macro}{\lbezier}
+%    The user command to draw a linear Bezier curve represented by
+% \eqref{eq:lin3}. The form of the command is:\\
+% |\lbezier[|\meta{N}|]{(|\meta{p0}|)(|\meta{p1}|)| \\
+% where \meta{pN} is the comma seperated X and Y coordinate values of
+% point \textit{pN}.
+%
+%    \begin{macrocode}
+\newcommand{\lbezier}[2][0]{\@lbez{#1}#2}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@lbez}
+%    The drawing macro.
+%    \begin{macrocode}
+\gdef\@lbez#1(#2,#3)(#4,#5){%
+%%%%\def\lbezier#1(#2,#3)(#4,#5){%
+  \ifnum #1<\@ne
+%    \end{macrocode}
+%    When the number of plotting points are not given, then we calculate
+% how many are needed. First determine the X distance between the end points.
+%    \begin{macrocode}
+    \@ovxx = #4\unitlength
+      \advance\@ovxx by -#2\unitlength
+      \ifdim \@ovxx < \z@
+        \@ovxx = -\@ovxx
+      \fi
+%    \end{macrocode}
+% Similarly calculate the Y distance.
+%    \begin{macrocode}
+    \@ovyy = #5\unitlength
+      \advance\@ovyy by -#3\unitlength
+      \ifdim \@ovyy < \z@
+        \@ovyy = -\@ovyy
+      \fi
+%    \end{macrocode}
+% Temporarily store the maximum distance in |\@multicnt|.
+%    \begin{macrocode}
+    \ifdim \@ovxx > \@ovyy
+      \@multicnt = \@ovxx
+    \else
+      \@multicnt = \@ovyy
+    \fi
+%    \end{macrocode}
+% We use a small square as the visual representation of a point.
+% Calculate the number of points required to give 50\% overlap of adjacent
+% squares, making
+% sure that it doesn't exceed the limit. Store the result in |\@multicnt|.
+%    \begin{macrocode}
+    \@ovxx = 0.5\@halfwidth
+    \divide\@multicnt by \@ovxx
+    \ifnum \qbeziermax < \@multicnt
+      \@multicnt = \qbeziermax\relax
+    \fi
+  \else
+%    \end{macrocode}
+% The number of points is given.
+%    \begin{macrocode}
+    \@multicnt = #1\relax
+  \fi
+%    \end{macrocode}
+% 
+%    Now we can prepare the constants for the plotting loop.
+%    \begin{macrocode}
+  \@tempcnta = \@multicnt
+  \advance\@tempcnta by \@ne
+  \@ovdx = #4\unitlength
+    \advance\@ovdx by -#2\unitlength
+    \divide\@ovdx by \@multicnt
+  \@ovdy = #5\unitlength
+    \advance\@ovdy by -#3\unitlength
+    \divide\@ovdy by \@multicnt
+%    \end{macrocode}
+% The next bit of code defines the size of the square representing a point.
+%    \begin{macrocode}
+  \setbox\@tempboxa\hbox{\vrule \@height\@halfwidth
+                                \@depth \@halfwidth
+                                \@width \@wholewidth}%
+%    \end{macrocode}
+% Start the plot at the first point.
+%    \begin{macrocode}
+  \put(#2,#3){%
+    \count@ = \z@
+    \@whilenum{\count@ < \@tempcnta}\do
+%    \end{macrocode}
+% Evaluate the polynomial (simple in this case) using Horner's schema.
+%    \begin{macrocode}
+      {\@xdim = \count@\@ovdx
+       \@ydim = \count@\@ovdy
+%    \end{macrocode}
+% Plot this point.
+%    \begin{macrocode}
+       \raise \@ydim
+         \hb@xt@\z@{\kern\@xdim
+                    \unhcopy\@tempboxa\hss}%
+       \advance\count@\@ne}}%
+%    \end{macrocode}
+%  The end of the definition of |\@lbez|.
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Cubic Bezier curves}
+%
+%    As cubic curves are more complex than quadratic curves we need some
+% extra variables.
+% \begin{macro}{\@wxc}
+% \begin{macro}{\@wyc}
+%    Lengths.
+%    \begin{macrocode}
+\newlength{\@wxc}
+\newlength{\@wyc}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\cbezier}
+%    The user command for drawing a cubic Bezier curve as represented
+% by \eqref{eq:cubic}. It is called as: \\
+% |\cbezier[|\meta{N}|](|\meta{p0}|)(|\meta{p1}|)(|\meta{p2}|)(|\meta{p3}|)|.
+%
+%    \begin{macrocode}
+\newcommand{\cbezier}[2][0]{\@cbez{#1}#2}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@cbez}
+%    The drawing macro for cubic Bezier curves.
+%    \begin{macrocode}
+\gdef\@cbez#1(#2,#3)(#4,#5)(#6,#7)(#8,#9){%
+  \ifnum #1<\@ne
+%    \end{macrocode}
+%    We have to calculate the number of plotting points required. We will
+% use the maximum of the box enclosing the convex hull as a measure.
+% First do the X value, using |\@ovxx| to store the maximum X coordinate
+% and |\@ovdx| the minimum.
+%    \begin{macrocode}
+    \@ovxx = #2\unitlength
+    \@ovdx = \@ovxx
+    \@ovdy = #4\unitlength
+    \ifdim \@ovdy > \@ovxx
+      \@ovxx = \@ovdy
+    \fi
+    \ifdim \@ovdy < \@ovdx
+      \@ovdx = \@ovdy
+    \fi
+    \@ovdy = #6\unitlength
+    \ifdim \@ovdy > \@ovxx
+      \@ovxx = \@ovdy
+    \fi
+    \ifdim \@ovdy < \@ovdx
+      \@ovdx = \@ovdy
+    \fi
+    \@ovdy = #8\unitlength
+    \ifdim \@ovdy > \@ovxx
+      \@ovxx = \@ovdy
+    \fi
+    \ifdim \@ovdy < \@ovdx
+      \@ovdx = \@ovdy
+    \fi
+%    \end{macrocode}
+% Store the maximum X in |\@ovxx|.
+%    \begin{macrocode}
+    \advance\@ovxx by -\@ovdx
+%    \end{macrocode}
+% Repeat the process for the maximum Y value, finally storing 
+% this in |\@ovyy|.
+%    \begin{macrocode}
+    \@ovyy = #3\unitlength
+    \@ovdy = \@ovyy
+    \@ovdx = #5\unitlength
+    \ifdim \@ovdx > \@ovyy
+      \@ovyy = \@ovdx
+    \fi
+    \ifdim \@ovdx < \@ovdy
+      \@ovdy = \@ovdx
+    \fi
+    \@ovdx = #7\unitlength
+    \ifdim \@ovdx > \@ovyy
+      \@ovyy = \@ovdx
+    \fi
+    \ifdim \@ovdx < \@ovdy
+      \@ovdy = \@ovdx
+    \fi
+    \@ovdx = #9\unitlength
+    \ifdim \@ovdx > \@ovyy
+      \@ovyy = \@ovdx
+    \fi
+    \ifdim \@ovdx < \@ovdy
+      \@ovdy = \@ovdx
+    \fi
+    \advance\@ovyy by -\@ovdy
+%    \end{macrocode}
+% Temporarily store the max of X and Y in |\@multicnt|.
+%    \begin{macrocode}
+    \ifdim \@ovxx > \@ovyy
+      \@multicnt = \@ovxx
+    \else
+      \@multicnt = \@ovyy
+    \fi
+%    \end{macrocode}
+% Calculate the number of points required to give 50\% overlap, making
+% sure that it doesn't exceed the limit. Store the number of points in
+% |\@multicnt|.
+%    \begin{macrocode}
+    \@ovxx = 0.5\@halfwidth
+    \divide\@multicnt by \@ovxx
+    \ifnum \qbeziermax < \@multicnt
+      \@multicnt = \qbeziermax\relax
+    \fi
+  \else
+%    \end{macrocode}
+% The number of points is given.
+%    \begin{macrocode}
+    \@multicnt = #1\relax
+  \fi
+%    \end{macrocode}
+%
+%    Now we can prepare the constants for the plotting loop. First the control
+% counts.
+%    \begin{macrocode}
+  \@tempcnta = \@multicnt
+  \advance\@tempcnta by \@ne
+%    \end{macrocode}
+% Then the cubic coefficients, firstly for X.
+%    \begin{macrocode}
+  \@ovdx = #4\unitlength  \advance\@ovdx by -#2\unitlength
+  \@ovxx = #6\unitlength  \advance\@ovxx by -\@ovdx
+  \multiply\@ovdx by \thr@@
+  \advance\@ovxx by -#4\unitlength  \multiply\@ovxx by \thr@@
+  \@wxc = #4\unitlength  \advance\@wxc by -#6\unitlength
+  \multiply\@wxc by \thr@@  \advance\@wxc by #8\unitlength
+  \advance\@wxc by -#2\unitlength \divide\@wxc by \@multicnt
+%    \end{macrocode}
+% And similarly for Y.
+%    \begin{macrocode}
+  \@ovdy = #5\unitlength  \advance\@ovdy by -#3\unitlength
+  \@ovyy = #7\unitlength  \advance\@ovyy by -\@ovdy
+  \multiply\@ovdy by \thr@@
+  \advance\@ovyy by -#5\unitlength  \multiply\@ovyy by \thr@@
+  \@wyc = #5\unitlength  \advance\@wyc by -#7\unitlength
+  \multiply\@wyc by \thr@@  \advance\@wyc by #9\unitlength
+  \advance\@wyc by -#3\unitlength \divide\@wyc by \@multicnt
+%    \end{macrocode}
+% Set up the plotting box.
+%    \begin{macrocode}
+  \setbox\@tempboxa\hbox{\vrule \@height\@halfwidth
+                                \@depth \@halfwidth
+                                \@width \@wholewidth}%
+%    \end{macrocode}
+% Start the plot at the first point.
+%    \begin{macrocode}
+  \put(#2,#3){%
+    \count@ = \z@
+    \@whilenum{\count@ < \@tempcnta}\do
+      {\@xdim = \count@\@wxc
+         \advance\@xdim by \@ovxx
+         \divide\@xdim by \@multicnt
+         \multiply\@xdim by \count@
+         \advance\@xdim by \@ovdx
+         \divide\@xdim by \@multicnt
+         \multiply\@xdim by \count@
+       \@ydim = \count@\@wyc
+         \advance\@ydim by \@ovyy
+         \divide\@ydim by \@multicnt
+         \multiply\@ydim by \count@
+         \advance\@ydim by \@ovdy
+         \divide\@ydim by \@multicnt
+         \multiply\@ydim by \count@
+%    \end{macrocode}
+% Plot the point.
+%    \begin{macrocode}
+       \raise \@ydim
+         \hb@xt@\z@{\kern\@xdim
+                    \unhcopy\@tempboxa\hss}%
+       \advance\count@\@ne}}% 
+%    \end{macrocode}
+% The end of the definition of |\@cbez|.
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Quadratic rational Bezier curve}
+%
+%    This is the most complex of the Bezier curves that we deal with. 
+% We need yet more variables.
+%
+% \begin{macro}{\@ww}
+% \begin{macro}{\@wwa}
+% \begin{macro}{\@wwb}
+% \begin{macro}{\@wwo}
+% \begin{macro}{\@wwi}
+% Variables for the weight calculations.
+%    \begin{macrocode}
+\newlength{\@ww}
+\newlength{\@wwa}
+\newlength{\@wwb}
+\newlength{\@wwo}
+\newlength{\@wwi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@@pntscale}
+% Scale factor for points.
+%    \begin{macrocode}
+\newcounter{@pntscale}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@weightscale}
+% Scale factor for divisor.
+%    \begin{macrocode}
+\newcounter{weightscale}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\botscale}
+% Scale factor for bottom weights.
+%    \begin{macrocode}
+\newlength{\botscale}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\setweightscale}
+% User level command |\setweightscale{|\meta{number}|}| for setting the
+% divisor scaling.
+%    \begin{macrocode}
+\newcommand{\setweightscale}[1]{\setcounter{weightscale}{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\resetweightscale}
+% User level command for setting the divisor scaling to its default
+% value ($10^{4}$). We also ensure that the scaling is set to this value.
+%    \begin{macrocode}
+\newcommand{\resetweightscale}{\setcounter{weightscale}{10000}}
+\resetweightscale
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\rqbezier}
+%    The user level command for drawing a rational quadratic Bezier curve
+% as represented by \eqref{eq:rqfinal}. The form of the command is \\
+% |\rqbezier[|\meta{N}|](|\meta{p0}|)(|\meta{p1}|)(|\meta{p2}|)(|\meta{W}|)| \\
+% where the arguments are as per the other Bezier drawing commands, but with
+% the final argument being the weight.
+%
+%    \begin{macrocode}
+\newcommand{\rqbezier}[2][0]{\@rqbez{#1}#2}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@rqbez}
+%    The drawing macro for a rational quadratic Bezier curve. If the weight
+% is such that the curve is either rational quadratic ($W = 1$) or 
+% linear ($W = 0$), we use the simpler drawing macro.
+%    \begin{macrocode}
+\gdef\@rqbez#1(#2,#3)(#4,#5)(#6,#7)(#8){%
+  \@ovxx = #8\unitlength
+  \ifdim\@ovxx = \unitlength
+    \PackageWarning{bez123}{Rational quadratic denerates to quadratic}
+    \qbezier[#1](#2,#3)(#4,#5)(#6,#7)
+  \else
+    \ifdim\@ovxx = \z@
+      \PackageWarning{bez123}{Rational quadratic degenerates to linear}
+      \lbezier[#1](#2,#3)(#6,#7)
+    \else
+%    \end{macrocode}
+% Calculate the maximum length of the control polygon's bounding box.
+% Store the result in |\@wwi|.
+%    \begin{macrocode}
+    \@ovxx = #4\unitlength
+      \advance\@ovxx by -#2\unitlength
+      \ifdim \@ovxx < \z@
+        \@ovxx = -\@ovxx
+      \fi
+    \@ovdx = #6\unitlength
+      \advance\@ovdx by -#4\unitlength
+      \ifdim \@ovdx < \z@
+        \@ovdx = -\@ovdx
+      \fi
+    \ifdim \@ovxx < \@ovdx
+      \@ovxx = \@ovdx
+    \fi
+    \@ovyy = #5\unitlength
+      \advance\@ovyy by -#3\unitlength
+      \ifdim \@ovyy < \z@
+        \@ovyy = -\@ovyy
+      \fi
+    \@ovdy = #7\unitlength
+      \advance\@ovdy by -#5\unitlength
+      \ifdim \@ovdy < \z@
+        \@ovdy = -\@ovdy
+      \fi
+    \ifdim \@ovyy < \@ovdy
+      \@ovyy = \@ovdy
+    \fi
+    \ifdim \@ovxx > \@ovyy
+      \@multicnt = \@ovxx
+    \else
+      \@multicnt = \@ovyy
+    \fi
+    \@wwi = \@multicnt sp
+%    \end{macrocode}
+% Now determine the number of points to be plotted.
+%    \begin{macrocode}
+  \ifnum #1<\@ne
+    \@ovxx = 0.5\@halfwidth
+    \divide\@multicnt by \@ovxx
+    \ifnum\qbeziermax < \@multicnt
+      \@multicnt = \qbeziermax\relax
+    \fi
+  \else
+%    \end{macrocode}
+% Number of points is a given.
+%    \begin{macrocode}
+    \@multicnt = #1\relax
+  \fi
+%    \end{macrocode}
+% We are going to plot the curve in two halves in an attempt to reduce 
+% roundoff problems. At
+% a minimum this should at least make a symmetrical curve look symmetric
+% about its mid point.
+%    \begin{macrocode}
+  \@tempcnta = \@multicnt
+  \advance\@tempcnta by \@ne
+  \divide\@tempcnta by \tw@
+  \advance\@tempcnta by \@ne
+%    \end{macrocode}
+% We now have to deal with a possible multiplication overflow problem due
+% to multiplication by the weight. In \eqref{eq:rqfinal} the potentially
+% largest term is the coefficient of $t^{2}$ (i.e., $(l_{20}-2Wl_{10})$).
+% The maximum length likely to be encountered is, say, 10 inches for a
+% drawing on either A4 or US letterpaper. This is approximately 
+% $4.8\times10^{8}$sp. Doing a little arithmetic, and remembering that the
+% maximum length in \TeX{} is $M = \number\maxdimen$sp, it means that we must
+% have $\|W\| \leq 1$ to prevent overflow. However, a typical range for
+% $W$ is $-10 \leq W \leq 10$. Therefore we might have to do some scaling.
+% Being pessimistic, we'll assume that $l_{20} = - l_{10}$ and that $l_{10}$
+% is the largest dimension in the drawing. To prevent overflow we then have to
+% meet the condition $\|W\| \leq (M - l_{20})/2l_{20}$, where all lengths are
+% positive. We will use |\c@@pntscale| as a scale factor on $W$ to meet this
+% condition. Earlier we set |\@wwi| to be the positive value of the largest
+% dimension in the drawing.
+%
+% Set the distance scale factor. First evaluating the test condition.
+%    \begin{macrocode}
+  \@wwo = \maxdimen
+    \advance\@wwo by -\@wwi
+    \divide\@wwo by \tw@
+    \divide\@wwo by \@wwi
+%    \end{macrocode}
+% Now perform the check and set the scale factor. We have to get a positive
+%  integer value for $W$ as it may be a fraction. Actually, we only need to
+% be concerned if $\|W\| > 1$.
+%    \begin{macrocode}
+  \@wwi = 10sp
+  \@wwi = #8\@wwi
+    \ifdim\@wwi < \z@
+      \@wwi = -\@wwi
+    \fi
+    \divide\@wwi by 10\relax
+  \ifdim\@wwi < \@wwo
+    \c@@pntscale = \@ne
+  \else
+    \divide\@wwi by \tw@
+    \ifdim\@wwi < \@wwo
+      \c@@pntscale = \tw@
+    \else
+      \divide\@wwi by \tw@
+      \ifdim\@wwi < \@wwo
+        \c@@pntscale = 4\relax
+      \else
+        \divide\@wwi by \tw@
+        \ifdim\@wwi < \@wwo
+          \c@@pntscale = 8\relax
+        \else
+          \c@@pntscale = 16\relax
+        \fi
+      \fi
+    \fi
+  \fi
+%    \end{macrocode}
+% Calculate the constants for the top line of the function.
+%    \begin{macrocode}
+  \@ovxx = #4\unitlength \advance\@ovxx by -#2\unitlength
+    \multiply\@ovxx by \tw@
+    \divide\@ovxx by \c@@pntscale
+    \@ovdx = #8\@ovxx
+  \@ovxx = #6\unitlength  \advance\@ovxx by -#2\unitlength
+    \divide\@ovxx by \c@@pntscale
+    \advance\@ovxx by -\@ovdx
+    \divide\@ovxx by \@multicnt
+  \@ovyy = #5\unitlength \advance\@ovyy by -#3\unitlength
+    \multiply\@ovyy by \tw@
+    \divide\@ovyy by \c@@pntscale
+    \@ovdy = #8\@ovyy
+  \@ovyy = #7\unitlength  \advance\@ovyy by -#3\unitlength
+    \divide\@ovyy by \c@@pntscale
+    \advance\@ovyy by -\@ovdy
+    \divide\@ovyy by \@multicnt
+%    \end{macrocode}
+% Now the constants for the bottom line. We also need to do some scaling
+% here. This scaling can be set by the user.
+%    \begin{macrocode}
+  \setlength{\botscale}{\c@weightscale sp}
+  \@wwo = \botscale
+  \@wwi = #8\@wwo
+  \@wwa = \@wwo  \advance\@wwa by -\@wwi
+    \multiply\@wwa by \tw@
+  \@wwb = \@wwa
+    \divide\@wwb by \@multicnt
+%    \end{macrocode}
+% Prepare for the drawing.
+%    \begin{macrocode}
+  \@wwi = \botscale
+  \setbox\@tempboxa\hbox{\vrule \@height\@halfwidth
+                                \@depth \@halfwidth
+                                \@width \@wholewidth}%
+%    \end{macrocode}
+% Draw the first half of the curve.
+%    \begin{macrocode}
+  \put(#2,#3){%
+    \count@ = \z@
+    \@whilenum{\count@ < \@tempcnta}\do
+      {\@xdim = \count@\@ovxx
+         \advance\@xdim by \@ovdx
+         \divide\@xdim by \@multicnt
+         \multiply\@xdim by \count@
+       \@ydim = \count@\@ovyy
+         \advance\@ydim by \@ovdy
+         \divide\@ydim by \@multicnt
+         \multiply\@ydim by \count@
+       \@ww = \count@\@wwb
+         \advance\@ww by -\@wwa
+         \divide\@ww by \@multicnt
+         \multiply\@ww by \count@
+         \advance\@ww by \@wwo
+         \divide\@ww by \c@@pntscale
+         \ifdim\@ww = \z@
+%    \end{macrocode}
+% We are about to divide by |\@ww| which is zero. Treat |\@ww| as unity.
+%    \begin{macrocode}
+         \else
+           \divide\@xdim by \@ww
+           \divide\@ydim by \@ww
+         \fi
+%    \end{macrocode}
+% For reasons I don't understand, the \% signs at the end of the next few
+% lines are important!
+%    \begin{macrocode}
+         \multnooverflow{\@xdim}{\botscale}%
+         \multnooverflow{\@ydim}{\botscale}%
+       \raise \@ydim
+         \hb@xt@\z@{\kern\@xdim
+                    \unhcopy\@tempboxa\hss}%
+       \advance\count@\@ne}}
+%    \end{macrocode}
+%
+%    We now repeat the above process for plotting the second half of the
+% curve, starting at the end point.
+%
+% Calculate the constants for the top line of the function.
+%    \begin{macrocode}
+  \@ovxx = #4\unitlength \advance\@ovxx by -#6\unitlength
+    \multiply\@ovxx by \tw@
+    \divide\@ovxx by \c@@pntscale
+    \@ovdx = #8\@ovxx
+  \@ovxx = #2\unitlength  \advance\@ovxx by -#6\unitlength
+    \divide\@ovxx by \c@@pntscale
+    \advance\@ovxx by -\@ovdx
+    \divide\@ovxx by \@multicnt
+  \@ovyy = #5\unitlength \advance\@ovyy by -#7\unitlength
+    \multiply\@ovyy by \tw@
+    \divide\@ovyy by \c@@pntscale
+    \@ovdy = #8\@ovyy
+  \@ovyy = #3\unitlength  \advance\@ovyy by -#7\unitlength
+    \divide\@ovyy by \c@@pntscale
+    \advance\@ovyy by -\@ovdy
+    \divide\@ovyy by \@multicnt
+%    \end{macrocode}
+% The constants for the bottom line are the same as before as the function
+% is symmetric. Similarly we don't need to recalculate the size of the
+% rule box.
+%
+% Draw the second half of the curve.
+%    \begin{macrocode}
+  \put(#6,#7){%
+    \count@ = \z@
+    \@whilenum{\count@ < \@tempcnta}\do
+      {\@xdim = \count@\@ovxx
+         \advance\@xdim by \@ovdx
+         \divide\@xdim by \@multicnt
+         \multiply\@xdim by \count@
+       \@ydim = \count@\@ovyy
+         \advance\@ydim by \@ovdy
+         \divide\@ydim by \@multicnt
+         \multiply\@ydim by \count@
+       \@ww = \count@\@wwb
+         \advance\@ww by -\@wwa
+         \divide\@ww by \@multicnt
+         \multiply\@ww by \count@
+         \advance\@ww by \@wwo
+         \divide\@ww by \c@@pntscale
+         \ifnum\@ww = \z@
+%    \end{macrocode}
+% We are about to divide by |\@ww| which is zero. Treat |\@ww| as unity.
+%    \begin{macrocode}
+         \else
+           \divide\@xdim by \@ww
+           \divide\@ydim by \@ww
+         \fi
+%    \end{macrocode}
+% For reasons I don't understand, the \% signs at the end of the next few
+% lines are important!
+%    \begin{macrocode}
+         \multnooverflow{\@xdim}{\botscale}%
+         \multnooverflow{\@ydim}{\botscale}%
+       \raise \@ydim
+         \hb@xt@\z@{\kern\@xdim
+                    \unhcopy\@tempboxa\hss}%
+       \advance\count@\@ne}}
+%    \end{macrocode}
+% End of definition of |\@rqbez|.
+%    \begin{macrocode}
+  \fi\fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</bez>
+%    \end{macrocode}
+%
+% \section{Multiplication without overflow: The \Lpack{multiply} package} \label{sec:mnoflow}
+%
+%    \TeX{} provides for integer arithmetic, subject to an upper limit
+% given by |\maxdim|. For at least the \Lpack{bez123} package we need to 
+% be able to multiply without overflow.
+%
+%    Announce the name of the package.
+% \changes{v1.1}{1998/10/14}{Put multnooverflow into a seperate package}
+%    \begin{macrocode}
+%<*mult>
+\ProvidesPackage{multiply}[1998/10/14 v1.1 Multiplication of lengths without overflow]
+%    \end{macrocode}
+%
+% \begin{macro}{\n@fl@wa}
+% \begin{macro}{\n@fl@wb}
+% \begin{macro}{\n@fl@wc}
+% \begin{macro}{\ifch@nge}
+%    We need three length variables for this function. 
+% We also need a boolean flag for dealing with negative numbers.
+%    \begin{macrocode}
+\newlength{\n@fl@wa}
+\newlength{\n@fl@wb}
+\newlength{\n@fl@wc}
+\newif\ifch@nge
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\multnooverflow}
+%
+%    The routine |\multnooverflow{|\meta{a}|}{|\meta{b}|}| sets 
+% $a$ to the minimum of $ab$ and |\maxdimen|, preserving signs. \meta{a}
+% must be a length; it must not be a number literal.
+%
+%    \begin{macrocode}
+\newcommand{\multnooverflow}[2]{%
+  \n@fl@wa = #1\relax%
+  \n@fl@wb = #2\relax%
+  \ch@ngefalse%
+%    \end{macrocode}
+% Easy if $-1 \leq b \leq 1$.
+%    \begin{macrocode}
+  \ifnum\n@fl@wb = \@ne%
+  \else%
+    \ifnum\n@fl@wb = \z@%
+      \n@fl@wa = \z@%
+    \else%
+      \ifnum\n@fl@wb = \m@ne%
+        \ch@ngetrue%
+      \else%
+%    \end{macrocode}
+% Also easy if $-1 \leq a \leq 1$.
+%    \begin{macrocode}
+        \ifnum\n@fl@wa = \z@%
+        \else%
+          \ifnum\n@fl@wa = \@ne%
+            \n@fl@wa = \n@fl@wb%
+          \else%
+            \ifnum\n@fl@wa = \m@ne%
+              \n@fl@wa = -\n@fl@wb%
+            \else%
+%    \end{macrocode}
+% We have to check for potential overflow. First make sure that we deal
+% only with positive values.
+%    \begin{macrocode}
+              \ifnum\n@fl@wa < \z@%
+                \ch@ngetrue%
+                \n@fl@wa = -\n@fl@wa%
+              \fi%
+              \ifnum\n@fl@wb < \z@%
+                \n@fl@wb = -\n@fl@wb%
+                \ifch@nge%
+                  \ch@ngefalse%
+                \else%
+                  \ch@ngetrue%
+                \fi%
+              \fi%
+%    \end{macrocode}
+% Check for overflow.
+%    \begin{macrocode}
+              \n@fl@wc = \maxdimen%
+              \divide\n@fl@wc by \n@fl@wb%
+              \advance\n@fl@wc by -1sp% \m@ne
+              \ifnum\n@fl@wa > \n@fl@wc%
+%    \end{macrocode}
+% We have overflow. Set the multiplication result to |\maxdimen|.
+%    \begin{macrocode}
+                \n@fl@wa = \maxdimen%
+                \PackageWarning{multiply}{Multiplication overflow}%
+              \else%
+%    \end{macrocode}
+% It is safe to do the multiplication.
+%    \begin{macrocode}
+                \multiply\n@fl@wa by \n@fl@wb%
+              \fi%
+            \fi%
+          \fi%
+        \fi%
+      \fi%
+    \fi%
+  \fi%
+%    \end{macrocode}
+% The result of $ab$ is in |\n@fl@wa|. Adjust the sign if necessary.
+%    \begin{macrocode}
+  \ifch@nge%
+    \n@fl@wa = -\n@fl@wa%
+  \fi%
+%    \end{macrocode}
+% Return the result in the first argument variable.
+%    \begin{macrocode}
+  #1 = \n@fl@wa%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</mult>
+%    \end{macrocode}
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[Far90]{FARIN90}
+% Gerald Farin.
+% \newblock {\em Curves and Surfaces for Computer Aided Geometric Design --- A
+%   Practical Guide}.
+% \newblock Academic Press, Inc., second edition, 1990.
+%
+% \bibitem[FP81]{FandP}
+% I.~D. Faux and M.~J. Pratt.
+% \newblock {\em Computational Geometry for Design and Manufacture}.
+% \newblock Ellis Horwood, 1981.
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[Lam94]{LAMPORT94}
+% Leslie Lamport.
+% \newblock {\em LaTeX: A Document Preparation System}.
+% \newblock Addison-Wesley Publishing Company, second edition, 1994.
+%
+% \bibitem[Mor85]{MORTENSON85}
+% Michael~E. Mortenson.
+% \newblock {\em Geometric Modeling}.
+% \newblock John Wiley \& Sons, Inc., 1985.
+%
+% \bibitem[Wil96]{PRW96i}
+% Peter~R. Wilson.
+% \newblock {\em {LaTeX for standards: The LaTeX package files user manual}}.
+% \newblock NIST Report NISTIR, June 1996.
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

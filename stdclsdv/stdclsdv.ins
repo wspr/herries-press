@@ -1,0 +1,60 @@
+%% stdclsdv.ins
+%% Copyright 1999 Peter R. Wilson
+%%
+%% This program is provided under the terms of the
+%% LaTeX Project Public License distributed from CTAN
+%% archives in directory macros/latex/base/lppl.txt.
+%%
+%% Author: Peter Wilson (CUA and NIST)
+%%         now at: peter.r.wilson@boeing.com
+%%
+%% This file will generate fast loadable files and documentation
+%% driver files from the doc files in this package when run through
+%% LaTeX or TeX.
+%% 
+%%
+%% --------------- start of docstrip commands ------------------
+%%
+\def\batchfile{stdclsdv.ins}
+\input docstrip.tex
+\preamble
+
+ Copyright 1999 Peter R. Wilson
+
+ This program is provided under the terms of the
+ LaTeX Project Public License distributed from CTAN
+ archives in directory macros/latex/base/lppl.txt.
+
+Author: Peter Wilson (CUA and NIST)
+        now at: peter.r.wilson@boeing.com
+
+\endpreamble
+
+\keepsilent
+
+%%% \Msg{*** Generating the driver file ***}
+%%% \generateFile{stdclsdv.drv}{t}{\from{stdclsdv.dtx}{driver}}
+
+\Msg{*** Generating the LaTeX2e package files ***}
+
+\generateFile{stdclsdv.sty}{t}{\from{stdclsdv.dtx}{usc}}
+
+\Msg{***********************************************************}
+\Msg{*}
+\Msg{* To finish the installation you have to move the following}
+\Msg{* file(s) into a directory searched by TeX:}
+\Msg{*}
+\Msg{* \space\space stdclsdv.sty}
+\Msg{*}
+\Msg{*}
+\Msg{* To produce the documentation run the files ending with}
+\Msg{* `.dtx' through LaTeX.}
+\Msg{* Process any name.idx file by:}
+\Msg{* \space\space\space\space makeindex -s gind.ist name}
+\Msg{* Process any name.glo file by:}
+\Msg{* \space\space\space\space makeindex -s gglo.ist -o name.gls name.glo}
+\Msg{*}
+\Msg{* Happy TeXing}
+\Msg{***********************************************************}
+
+\endinput

@@ -29,7 +29,7 @@ Changes in version 1.1
 o Added an option for a run-in heading
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson, Herries Press (herries dot press at earthlink dot net)
+  Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (wspr81 at gmail dot com)
  
   Copyright 2000 --- 2009 Peter R. Wilson
@@ -76,7 +76,6 @@ o Print abstract.pdf for a hardcopy of the user manual
 
 2009/05/23
 Peter Wilson
-herries dot press at earthlink dot net
 
 2009/06/08
 Will Robertson

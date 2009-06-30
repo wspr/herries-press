@@ -1,0 +1,96 @@
+    The tocbibind package can be used to add the ToC and/or bibliography 
+and/or the index etc., to the Table of Contents listing.
+
+Changes (2004/05/10)
+o Changed license from LPPL v1.0 to v1.3
+
+Changes in version 1.5g (2003/03/13)
+o Fixed Bibliography page headings in twocolumn book class
+
+Changes in version 1.5f (2003/02/04)
+o Fixed Index heading \MakeUppercase problem
+
+Changes in version 1.5e (2003/01/22)
+o Improved harmony with the chapterbib and natbib packages
+
+Changes in version 1.5d (2002/04/09)
+o Fixed problem with \tocchapter in non-chaptered documents
+
+Changes in version 1.5c (2002/03/11)
+o Fixed problem with \tocetcmark
+
+Changes in version 1.5b (2001/11/10)
+o Improved interface for new pagestyles
+
+Changes in version 1.5 (2001/04/17)
+o Removed requirement for the stdclsdv package
+o Fixed problem when used with the hyperref package
+
+Changes in version 1.4a (2000/03/05)
+o Improved flexibility of single line numbered chapters
+o Examples of handling additional kinds of List of...
+o Replaced command \toc@file by \tocfile
+
+Changes in version 1.4: (2000/03/04)
+o Disabled LaTeX feature (bug 3126) of change in Index title height
+o Added commands for single line numbered chapter headings
+o Added numbered List of... headings
+
+Changes in version 1.3a: (1999/09/12)
+o Fixed index numbering, options, and headings
+o Improved (warning) reporting
+
+Changes in version 1.2: (1999/01/17)
+o Operates with the tocloft package
+o Supports numbered bibliography and index headings
+
+First public release: version 1.0 (1998/10/24) 
+
+----------------------------------------------------------------- 
+  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+                             (or at: pandgwilson at earthlink dot net) 
+  Copyright 1998 --- 2004 Peter R. Wilson
+ 
+  This work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either
+  version 1.3 of this license or (at your option) any 
+  later version.
+  The latest version of the license is in
+     http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+ 
+  This work has the LPPL maintenance status "author-maintained".
+ 
+  This work consists of the files:
+README (this file)
+tocbibind.dtx
+tocbibind.ins
+  and the derived files:
+tocbibind.sty
+
+    The distribution consists of the following files:
+README (this file)
+tocbibind.dtx
+tocbibind.ins
+tocbibind.pdf (user manual)
+
+----------------------------------------------------------------- 
+
+    To install the package:
+o run: latex tocbibind.ins (which will generate tocbibind.sty)
+o Move tocbibind.sty to a location where LaTeX will find it
+  (typically in a local texmf tree at tex/latex/***) and refresh the
+  file database. See the FAQ on CTAN at help/uk-tex-faq or
+  http://www.tug.ac.uk/faq for more information on this.
+
+    To process the manual:
+o run: latex tocbibind.dtx
+o For an index, run: makeindex -s gind.ist tocbibind
+o run: latex tocbibind.dtx
+o Print tocbibind.dvi for a hardcopy of the package manual 
+
+2004/05/10
+Peter Wilson
+peter.r.wilson@boeing.com
+

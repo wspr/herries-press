@@ -1,0 +1,745 @@
+% \iffalse meta-comment
+%
+% docmfp.dtx
+% Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+% Copyright 1999 --- 2005 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+% 
+%<*driver>
+\documentclass[twoside]{ltxdoc}
+%% %% %%\usepackage{docmfp}
+\usepackage{url}
+\usepackage[draft=false,
+            plainpages=false,
+            pdfpagelabels,
+            bookmarksnumbered,
+            hyperindex=false
+           ]{hyperref}
+\makeatletter
+  \@mparswitchfalse
+\makeatother
+\renewcommand{\MakeUppercase}[1]{#1}
+\pagestyle{headings}
+\EnableCrossrefs
+\CodelineIndex
+%%% \OnlyDescription
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{docmfp.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{322}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{1999/04/11}{First public release}
+% \changes{v1.1}{2000/10/28}{Added general marking commands}
+% \changes{v1.2}{2001/02/11}{Revised the doc check sum code}
+% \changes{v1.2a}{2004/04/22}{Changed license from LPPL v1.0 to v1.3}
+% \changes{v1.2b}{2004/05/14}{Minor fix for checksum}
+% \changes{v1.2c}{2005/03/26}{Fixed some typos in the description part, no code changes}
+%
+% \def\dtxfile{docmfp.dtx}
+% \def\fileversion{v1.0} \def\filedate{1999/04/11}
+% \def\fileversion{v1.1} \def\filedate{2000/10/28}
+% \def\fileversion{v1.2} \def\filedate{2001/02/11}
+% \def\fileversion{v1.2a} \def\filedate{2004/04/22}
+% \def\fileversion{v1.2b} \def\filedate{2004/05/14}
+% \def\fileversion{v1.2c} \def\filedate{2005/03/26}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+% \newcommand*{\Mfp}{Metafont/post}
+%
+% \title{The \Lpack{docmfp} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{\texttt{herries dot press at earthlink dot net}}\\
+% Herries Press
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{docmfp} package extends the \Lpack{doc} package to cater for
+% documentation of non-\LaTeX{} code, such as Metafont and Metapost code,
+% or C or Java code.
+% \end{abstract}
+% \tableofcontents
+%
+%
+% \section{Introduction}
+%
+%     It is common practice to document \LaTeX{} packages using the
+% \Lpack{doc} system~\cite{GOOSSENS94}. 
+% The \Lpack{docmfp} package extends the \Lpack{doc}
+% package so that similar facilities are provided for the documentation
+% of non-LaTeX{} code, such as Metafont and Metapost code, or code in
+% other more common programming languages. 
+% For example, a single \file{.dtx} file
+% can contain the documented sources of both the Metafont code for a new
+% font, together with the documented \LaTeX{} code for the accompanying
+% package.
+% 
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the package.
+% Commented source code for the package is in Section~\ref{sec:code}.
+%
+% \section{The package} \label{sec:usc}
+%
+%    I have assumed that if you are reading this then you are familiar with
+% the facilities provided by the \Lpack{doc} package.
+%
+% \DescribeMacro{\DescribeRoutine}
+% The |\DescribeRoutine{|\meta{name}|}| command is equivalent to the \Lpack{doc}
+% package |\DescribeEnv{|\meta{name}|}| command, except that it
+% is intended to introduce the description of a \Mfp{} macro (or
+% character or picture ). It typesets \meta{name}
+% in the margin and also generates an index entry for \meta{name}.
+%
+% \DescribeEnv{routine}
+% The |routine| environment is equivalent to the \Lpack{doc} package
+% |macro| environment. It takes one argument, which is the name of the
+% \Mfp{} macro (or character or picture) that is being defined.
+% It typesets the argument in the margin and makes an index entry for it.
+%
+% \DescribeMacro{\routinestring}
+% \DescribeMacro{\routineheadname}
+%  These two commands contain the texts that are used in indexing 
+% routine names. They can be changed via |\renewcommand|. Their default 
+% definitions are:
+% \begin{verbatim}
+% \newcommand{\routinestring}{\space(routine)}
+% \newcommand{\routineheadname}{routines:}
+% \end{verbatim}
+% 
+% \DescribeMacro{\DescribeVariable}
+% The |\DescribeVariable{|\meta{name}|}| is like the \Lpack{doc}
+% |\DescribeMacro{|\meta{name}|}| command, except that it is intended
+% to introduce the description, and definition, of a variable
+% or parameter. It typesets \meta{name} in the margin and makes an index entry
+% for it.
+%
+% \DescribeEnv{variable}
+% The |variable| environment is equivalent to the \Lpack{doc} package
+% |macro| environment. It takes one argument, which is the name of the
+% variable or parameter that is being defined.
+% It typesets the argument in the margin and makes an index entry for it.
+%
+% \DescribeMacro{\variablestring}
+% \DescribeMacro{\variableheadname}
+%  These two commands contain the texts that are used in indexing 
+% variable names. They can be changed via |\renewcommand|. Their default 
+% definitions are:
+% \begin{verbatim}
+% \newcommand{\variablestring}{\space(variable)}
+% \newcommand{\variableheadname}{variables:}
+% \end{verbatim}
+%
+% A routine or variable \meta{name} can include the underscore and
+% hash characters (i.e., |_| and |#|), so that names like |a_variable#| can
+% be used.
+%
+% \DescribeMacro{\Describe}
+% This is a generalization of the |\Describe...| commands.
+%
+% |\Describe{|\meta{head}|}{|\meta{flag}|}{|\meta{name}|}| typesets
+% \meta{name} in the margin and makes index entries for it. One
+% entry will be a main entry as |name flag|, and the other will
+% be a subsidiary entry of |name| under the main heading |head|.
+%
+% Essentially, |\DescribeVariable{name}| is equivalent to: \\
+% |\Describe{\variableheadname}{\variablestring}{name}|
+%
+% \DescribeEnv{Code}
+% This is a generalization of the |variable| and |routine| environments.
+%
+% |\begin{Code}{|\meta{head}|}{|\meta{flag}|}{|\meta{name}|}| typesets
+% \meta{name} in the margin and makes index entries for it. One
+% entry will be a main entry as |name flag|, and the other will
+% be a subsidiary entry of |name| under the main heading |head|.
+%
+% Essentially, |\begin{routine}{name}| is equivalent to: \\
+% |\begin{Code}{\routineheadname}{\routinestring}{name}|
+%
+%    For example, if you are documenting Java code, then you may wish
+% to use commands like: \\
+% |\newcommand{\cvar}{class variables}| \\
+% |\newcommand{\fcvar}{ (variable)}| \\
+% |\newcommand{\ofield}{object fields}| \\
+% |\newcommand{\ffield}{ (field)}| \\
+% |\newcommand{\cmeth}{class methods}| \\
+% |\newcommand{\ometh}{object methods}| \\
+% |\newcommand{\meth}{ (method)}| \\
+% |\Describe{\cvar}{\fcvar}{...}| for class variables \\
+% |\Describe{\ofield}{\ffield}{...}| for object fields \\
+% |\begin{Code}{\cmeth}{\meth}{...}| for class methods \\
+% |\begin{Code}{\ometh}{\meth}{...}| for object methods. \\
+%
+%
+% 
+% \subsection{Usage with \file{.dtx} and \file{.ins} files}
+%
+%    I assume that the major use of the \Lpack{docmfp} package will be in
+% \file{.dtx} file(s) that will be processed via a corresponding \file{.ins} file.
+% The \Lpack{ltxdoc} class also automatically calls the \Lpack{doc} package.
+%
+%   As an example, if the \Lpack{docmfp} package was needed for the document
+% you are now reading, then I would have started it off like this (but look at
+% the start of the source for details that I ignore here):
+% \begin{verbatim}
+% %<*driver>
+% \documentclass{ltxdoc}
+% \usepackage{docmfp}
+% \EnableCrossrefs
+% \CodelineIndex
+% \setcounter{StandardModuleDepth}{1}
+% \begin{document}
+%   \DocInput{docmfp.dtx}
+% \end{document}
+% %</driver>
+% \end{verbatim}
+%
+%    The source of this document also includes several calls of the 
+% \Lpack{docmfp} commands, which I have commented out (use your editor
+% to look for the occurences of the string |^^A| after this point). You can
+% edit the source to include the |\usepackage{docmfp}| command and uncomment
+% the \Lpack{docmfp} commands if you want to sample the package in use.
+%
+% ^^A \DescribeVariable{a_variable#}
+% ^^A \DescribeRoutine{an_mfp_macro}
+% ^^A \DescribeVariable{aN_variable#l9e[24]}
+% ^^A \DescribeRoutine{another_macro}
+%
+%
+%   The source of an \file{.ins} file might look like this:
+% \begin{verbatim}
+% %% file myfile.ins
+% \def\batchfile{myfile.ins}
+% \input docstrip.tex
+% \preamble
+%   Copyright and other notices
+% \endpreamble
+% \generateFile{myfile.drv}{t}{\from{myfile.dtx}{driver}}
+% \generateFile{mypackage.sty}{t}{\from{myfile.dtx}{pack}}
+%
+% \endinput
+% \end{verbatim}
+%    By default, the documentation system will put an |\endinput| command
+% at the end of each file it generates (\file{myfile.drv} and \file{mypackage.sty}
+% in the example above). This is fine provided the generated files are to be
+% processed by \LaTeX{} which understands |\endinput|. If a generated file is
+% to be processed by something that treats |\endinput| as an error, as \Mfp{} 
+% will, then there is a problem.
+%
+% \DescribeMacro{\usepostamble}
+% \DescribeMacro{\empty}
+% \DescribeMacro{\defaultpostamble}
+%    The documentation system provides these three commands which can be used 
+% within an \file{.ins} file to
+% either prevent or enable the addition of |\endinput| to the generated files.
+% Extending the above example \file{.ins} file to include both Metafont and
+% and \LaTeX{} files we can have:
+% \begin{verbatim}
+% %% file myfile.ins
+% \def\batchfile{myfile.ins}
+% \input docstrip.tex
+% \preamble
+%   Copyright and other notices
+% \endpreamble
+% \generateFile{myfile.drv}{t}{\from{myfile.dtx}{driver}}
+% \usepostamble\empty                 % switch off writing \endinput
+% \generateFile{myfont.mf}{t}{\from{myfile.dtx}{font}}
+% \usepostamble\defaultpostamble      % switch on writing \endinput
+% \generateFile{mypackage.sty}{t}{\from{myfile.dtx}{pack}}
+%
+% \endinput
+% \end{verbatim}
+%
+% \DescribeMacro{\usepreamble}
+% \DescribeMacro{\defaultpreamble}
+%    The documentation system provides these commands which can be used 
+% within an \file{.ins} file to
+% either prevent or enable the addition of preamble information at the
+% beginning of the generated files. The preamble information is in
+% the form of LaTeX comment lines (i.e., lines starting with \%).
+% Other languages that you may wish to document probably have other
+% different commenting conventions, in which cases it is desireable
+% to inhibit the preamble output.
+% Extending the above example \file{.ins} file to turn off the preamble
+% for the driver file we can have:
+% \begin{verbatim}
+% %% file myfile.ins
+% \def\batchfile{myfile.ins}
+% \input docstrip.tex
+% \usepreamble\empty            % switch off all preamble info
+% \generateFile{myfile.drv}{t}{\from{myfile.dtx}{driver}}
+% \usepreamble\defaultpreamble  % switch on normal preambling
+% \preamble
+%   Copyright and other notices
+% \endpreamble
+% \usepostamble\empty                 % switch off writing \endinput
+% \generateFile{myfont.mf}{t}{\from{myfile.dtx}{font}}
+% \usepostamble\defaultpostamble      % switch on writing \endinput
+% \generateFile{mypackage.sty}{t}{\from{myfile.dtx}{pack}}
+%
+% \endinput
+% \end{verbatim}
+%
+%    There is no intrinsic reason why the use of this package should be limited
+% to documenting \Mfp{} code. It could just as well be used for documenting C,
+% C++, Java, or practically any other kind of code.
+%
+% \StopEventually{}
+%
+%
+% \section{The package code} \label{sec:code}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{docmfp}[2004/05/14 v1.2b General coding extension to the doc package]
+
+%    \end{macrocode}
+%
+% In order to try and avoid name clashes with other packages, each internal
+% name will include the character string \texttt{m@fp}.
+%
+% \begin{macro}{\m@fpmakeuscoreletter}
+% \begin{macro}{\m@fpmakehashletter}
+% \begin{macro}{\Makem@fpPrivateLetters}
+%  \Mfp{} names can include underscores and hash characters. The special
+% meanings of these have to be turned off.
+%    \begin{macrocode}
+\newcommand{\m@fpmakeuscoreletter}{\catcode`\_11\relax}
+\newcommand{\m@fpmakehashletter}{\catcode`\#11\relax}
+\newcommand{\Makem@fpPrivateLetters}{\m@fpmakeuscoreletter\m@fpmakehashletter}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% ^^A \begin{routine}{an_mfp_macro} 
+% ^^A \begin{variable}{macro_variable}
+% ^^A \begin{routine}{nested_macro}
+% ^^A \end{routine}
+% ^^A \end{variable}
+% ^^A \end{routine}
+%
+%
+% \begin{environment}{routine}
+%  The |routine| environment code is similar to the \Lpack{doc} package's
+% |environment| code.
+%    \begin{macrocode}
+\def\routine{\begingroup
+  \catcode`\\12
+  \Makem@fpPrivateLetters \m@fpm@cro@ \iffalse}
+\let\endroutine\endtrivlist
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{variable}
+%  The |variable| environment code is almost identical to the code for the
+% |routine| environment.
+%    \begin{macrocode}
+\def\variable{\begingroup
+  \catcode`\\12
+  \Makem@fpPrivateLetters \m@fpm@cro@ \iftrue}
+\let\endvariable\endroutine
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\m@fpm@cro@}
+%  This command does all the work for both the |routine| and |variable|
+% environments. The first part is a straight copy of the \Lpack{doc} 
+% package |\m@cro@| command.
+%    \begin{macrocode}
+\long\def\m@fpm@cro@#1#2{\endgroup \topsep\MacroTopsep \trivlist
+  \def\makelabel##1{\llap{##1}}%
+  \if@inlabel
+    \let\@tempa\@empty \count@\macro@cnt
+    \loop \ifnum\count@>\z@
+      \edef\@tempa{\@tempa\hbox{\strut}}\advance\count@\m@ne \repeat
+    \edef\makelabel##1{\llap{\vtop to\baselineskip
+                              {\@tempa\hbox{##1}\vss}}}%
+    \advance \macro@cnt \@ne
+  \else
+    \macro@cnt\@ne
+  \fi
+%    \end{macrocode}
+% The rest of the code is for this package, and is a simplified and modified
+% version of the corresponding code for |\m@cro@|.
+%    \begin{macrocode}
+  \edef\@tempa{\noexpand\item[\noexpand\PrintMfpName{\string#2}]}%
+  \@tempa
+  \global\advance\c@CodelineNo\@ne
+  #1%
+%    \end{macrocode}
+% Do the indexing for the |variable| environment.
+%    \begin{macrocode}
+    \SpecialMainMfpIndex{#2}{\variablestring}{\variableheadname}\nobreak
+  \else
+%    \end{macrocode}
+% Do the indexing for the |routine| environment.
+%    \begin{macrocode}
+    \SpecialMainMfpIndex{#2}{\routinestring}{\routineheadname}\nobreak
+  \fi
+%    \end{macrocode}
+% and finish off the definition.
+%    \begin{macrocode}
+  \global\advance\c@CodelineNo\m@ne
+  \ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\routinestring}
+% \begin{macro}{\routineheadname}
+%  These two commands store the default indexing strings for routines.
+%    \begin{macrocode}
+\newcommand{\routinestring}{\space(routine)}
+\newcommand{\routineheadname}{routines:}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\variablestring}
+% \begin{macro}{\variableheadname}
+%  These two commands store the default indexing strings for variables.
+%    \begin{macrocode}
+\newcommand{\variablestring}{\space(variable)}
+\newcommand{\variableheadname}{variables:}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\Describe}
+%    This is a generic description macro, and is similar to those
+% defined later.
+% \changes{v1.1}{2000/10/28}{Added Describe and Describem@fp macros}
+%    \begin{macrocode}
+\def\Describe{\leavevmode\@bsphack\begingroup\Makem@fpPrivateLetters
+  \Describem@fp}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\Describem@fp}
+% The workhorse for |\Describe|. It processes the three apparent arguments
+% to |\Describe|.
+%    \begin{macrocode}
+\def\Describem@fp#1#2#3{\endgroup
+  \marginpar{\raggedleft\PrintMfpName{#3}}%
+  \SpecialMfpIndex{#3}{#2}{#1}\@esphack\ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{Code}
+% This is a generalization of the previous environments.
+% \changes{v1.1}{2000/10/28}{Added m@fpm@c macro}
+%    \begin{macrocode}
+\def\Code{\begingroup
+ %%  \catcode`\\12
+  \Makem@fpPrivateLetters \m@fpm@c}
+\let\endCode\endtrivlist
+
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\m@fpm@c}
+%  This is the workhorse for the |Code| environment and processes
+% the 3 arguments apparently taken by the environment.
+%    \begin{macrocode}
+\long\def\m@fpm@c#1#2#3{\endgroup \topsep\MacroTopsep \trivlist
+  \def\makelabel##1{\llap{##1}}%
+  \if@inlabel
+    \let\@tempa\@empty \count@\macro@cnt
+    \loop \ifnum\count@>\z@
+      \edef\@tempa{\@tempa\hbox{\strut}}%
+      \advance\count@\m@ne \repeat
+    \edef\makelabel##1{\llap{\vtop to\baselineskip
+                             {\@tempa\hbox{##1}\vss}}}%
+    \advance\macro@cnt\@ne
+  \else
+    \macro@cnt\@ne
+  \fi
+  \edef\@tempa{\noexpand\item[\noexpand\PrintMfpName{\string#3}]}%
+  \@tempa
+  \global\advance\c@CodelineNo\@ne
+  \SpecialMainMfpIndex{#3}{#2}{#1}\nobreak
+  \global\advance\c@CodelineNo\m@ne
+  \ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PrintMfpName}
+% This typesets the name of a \Mfp{} routine or variable, or in general 
+% \meta{name}. If there is a pre-existing
+% definition, then the package does not modify it.
+%    \begin{macrocode}
+\providecommand{\PrintMfpName}[1]{\strut \MacroFont \string #1\ }
+
+%    \end{macrocode}
+% \end{macro}
+%
+% Now for the command that writes out the index entries for the |routine| and
+% |variable| environments. It is also used for the |Code| environment.
+%
+% \begin{macro}{\SpecialMainMfpIndex}
+% The command 
+% |\SpecialMainMfpIndex{|\meta{name}|}{|\meta{string}|}{|\meta{heading}|}|
+% writes \meta{name} to the \file{.idx} file, firstly as a `main' entry (flagged
+% with \meta{string}) and then as a subsidiary entry under \meta{heading}. 
+% Both entries are treated as definitional.
+% \changes{v1.1}{2000/10/28}{Changed subsidiary environment index entry to be definitional}
+%    \begin{macrocode}
+\newcommand{\SpecialMainMfpIndex}[3]{\@bsphack
+%    \end{macrocode}
+% Here is the main index entry.
+%    \begin{macrocode}
+  \special@index{%
+    \string#1\actualchar
+    \string\verb\quotechar*\verbatimchar\string#1\verbatimchar
+    #2 \encapchar main}%
+%    \end{macrocode}
+% Here is the subsidiary index entry.
+%    \begin{macrocode}
+  \special@index{#3\levelchar
+    \string#1\actualchar
+    \string\verb\quotechar*\verbatimchar\string#1\verbatimchar
+    \encapchar main}
+  \@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\DescribeRoutine}
+%  The command |\DescribeRoutine{|\meta{name}|}| typesets a marginal heading and
+% an index entry for the description of a routine called \meta{name}. It
+% is based on the \Lpack{doc} |\DescribeMacro| command.
+%    \begin{macrocode}
+\def\DescribeRoutine{\leavevmode\@bsphack\begingroup\Makem@fpPrivateLetters
+  \Describem@fpRoutine}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\Describem@fpRoutine}
+% This is the macro that does the work for |\DescribeRoutine|.
+%    \begin{macrocode}
+\def\Describem@fpRoutine#1{\endgroup
+  \marginpar{\raggedleft\PrintMfpName{#1}}%
+  \SpecialMfpIndex{#1}{\routinestring}{\routineheadname}\@esphack\ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\DescribeVariable}
+%  The command |\DescribeVariable{|\meta{name}|}| typesets a marginal heading and
+% an index entry for the description of a variable called \meta{name}. It
+% is based on the |\DescribeRoutine| command.
+%    \begin{macrocode}
+\def\DescribeVariable{\leavevmode\@bsphack\begingroup\Makem@fpPrivateLetters
+  \Describem@fpVariable}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\Describem@fpVariable}
+% This is the macro that does the work for |\DescribeVariable|.
+%    \begin{macrocode}
+\def\Describem@fpVariable#1{\endgroup
+  \marginpar{\raggedleft\PrintMfpName{#1}}%
+  \SpecialMfpIndex{#1}{\variablestring}{\variableheadname}\@esphack\ignorespaces}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\SpecialMfpIndex}
+% The command 
+% |\SpecialMfpIndex{|\meta{name}|}{|\meta{string}|}{|\meta{heading}|}|
+% writes \meta{name} to the \file{.idx} file, firstly as a `main' entry (flagged
+% with \meta{string}) and then as a subsidiary entry under \meta{heading}. Both
+% entries are treated as `usages' of the \meta{name}.
+%    \begin{macrocode}
+\newcommand{\SpecialMfpIndex}[3]{\@bsphack
+%    \end{macrocode}
+% Here is the main index entry.
+%    \begin{macrocode}
+  \index{%
+    \string#1\actualchar
+    \string\verb\quotechar*\verbatimchar\string#1\verbatimchar
+    #2 \encapchar usage}%
+%    \end{macrocode}
+% Here is the subsidiary index entry.
+%    \begin{macrocode}
+  \index{#3\levelchar
+    \string#1\actualchar
+    \string\verb\quotechar*\verbatimchar\string#1\verbatimchar
+    \encapchar usage}
+  \@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\check@checksum}
+% After some experience with using \Lpack{docmfp} for code that had
+% no resemblence at all to \LaTeX, I found that if there were no
+% backslashes present, then \Lpack{doc} whined about there being no
+% checksum and said that the |\CheckSum| should be set to zero, which
+% it was. This is the relevent code from the \Lpack{doc} package.
+% \changes{v1.2}{2001/02/11}{Redefined the \cs{check@checksum} command}
+% \changes{v1.2b}{2004/05/14}{Fixed \cs{checksum} typo, thanks to Dan Luecking}
+% \begin{verbatim}
+% \def\check@checksum{\relax
+%    \ifnum\check@sum=\z@
+%      \typeout{**********************************}%
+%      \typeout{* This macro file has no checksum!}%
+%      \typeout{* The checksum should be \the\bslash@cnt!}%
+%      \typeout{**********************************}%
+%    \else
+%      \ifnum\check@sum=\bslash@cnt
+%        \typeout{*******************}%
+%        \typeout{* Checksum passed *}%
+%        \typeout{*******************}%
+%      \else
+%        \PackageError{doc}{Checksum not passed
+%                   (\the\check@sum<>\the\bslash@cnt)}%
+%         {The file currently documented seems to be wrong.^^J%
+%          Try to get a correct version.}%
+%      \fi
+%    \fi
+%    \global\check@sum\z@}
+% \end{verbatim}
+% For the purposes of the \Lpack{docmfp} package this needs redefining
+% as a zero check sum is acceptable.
+%    \begin{macrocode}
+\renewcommand{\check@checksum}{\relax
+      \ifnum\check@sum=\bslash@cnt
+        \typeout{*******************}%
+        \typeout{* Checksum passed *}%
+        \typeout{*******************}%
+      \else
+        \PackageError{docmfp}{Checksum not passed
+                   (\the\check@sum<>\the\bslash@cnt)}%
+         {The file currently documented seems to be wrong.^^J%
+          Try to get a correct version.}%
+      \fi
+      \global\check@sum\z@}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

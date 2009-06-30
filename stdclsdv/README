@@ -1,0 +1,25 @@
+    The stdclsdv package is designed for package writers who need to
+know what sectioning divisions are provided by the document's class.
+
+    The distribution consists of the following files:
+README (this file)
+stdclsdv.ins
+stdclsdv.dtx
+
+    The distribution is provided under the terms of the LaTeX
+Project Public License (LPPL).
+
+Changes in version 1.1:
+o Added support for the koma classes (courtesy of Joerg Jaspert)
+
+    To install the package:
+o run: latex stdclsdv.ins (which will generate stdclsdv.sty)
+o run: latex stdclsdv.dtx
+o run: makeindex -s gind.ist stdclsdv
+o run: latex stdclsdv.dtx
+o Print stdclsdv.dvi for a hardcopy of the package manual 
+o Move stdclsdv.sty to a location where LaTeX will find it.
+
+2000/07/16
+Peter Wilson
+peter.r.wilson@boeing.com

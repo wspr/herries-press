@@ -1,0 +1,2532 @@
+% layman.tex  User Manual for layouts.sty
+%% Copyright 1998 --- 2004  Peter R. Wilson
+%% All rights reserved
+%% 
+
+\documentclass[11pt]{article}
+\usepackage{layouts}
+
+% pdfetex (which might become the base system) defines \pdfoutput
+% Thomas Esser (of teTeX fame) asked for the following to be removed (2004/04/03)
+%\newif\ifpdf
+%\makeatletter
+%\@ifundefined{pdfoutput}{\pdffalse}{\pdftrue}
+%\makeatother
+%\ifpdf
+%  \pdfoutput=1
+%\fi
+
+
+\setlength{\textheight}{8.0in}
+\setlength{\textwidth}{6.0in}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\evensidemargin}{0.25in}
+\setlength{\marginparwidth}{0.6in}
+\setlength{\parskip}{5pt}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\setlength{\columnsep}{30pt}
+
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+
+
+\newlength{\figrulesep}
+\setlength{\figrulesep}{0.5\textfloatsep}
+
+\newcommand{\topfigrule}{\vspace*{-1pt}%
+  \noindent\rule[-\figrulesep]{\columnwidth}{1pt}}
+
+\newcommand{\botfigrule}{\vspace*{-2pt}%
+  \noindent\rule[\figrulesep]{\columnwidth}{2pt}}
+
+\makeatletter
+
+\renewcommand{\subsubsection}{\@startsection%
+  {subsubsection}%
+  {3}%
+  {0mm}%
+  {-\baselineskip}%
+  {0.5\baselineskip}%
+  {\large\itshape}}
+
+
+\newcommand{\fref}[1]{Figure~\ref{#1}}
+\newcommand{\tref}[1]{Table~\ref{#1}}
+\newcommand{\T}{\texttt{true}}
+\newcommand{\F}{\texttt{false}}
+\newcommand{\TF}{\textit{true/false}}
+
+
+%%%% the \meta command
+\begingroup
+\obeyspaces%
+\catcode`\^^M\active%
+\gdef\meta{\begingroup\obeyspaces\catcode`\^^M\active%
+\let^^M\do@space\let \do@space%
+\def\-{\egroup\discretionary{-}{}{}\hbox\bgroup\it}%
+\m@ta}%
+\endgroup
+\def\m@ta#1{\leavevmode\hbox\bgroup$\langle$\it#1\/$\rangle$\egroup
+  \endgroup}
+\def\do@space{\egroup\space
+    \hbox\bgroup\it\futurelet\next\sp@ce}
+\def\sp@ce{\ifx\next\do@space\expandafter\sp@@ce\fi}
+\def\sp@@ce#1{\futurelet\next\sp@ce}
+
+\newcommand{\marg}[1]{\texttt{\{}\meta{#1}\texttt{\}}}
+
+\newcommand{\file}[1]{\textsf{#1}}
+%%%%%% indexing commands
+%\@ifundefined{bs}{\newcommand{\bs}{\textbackslash}}%
+%  {\renewcommand{\bs}{\textbackslash}}
+\@ifundefined{bs}{\newcommand{\bs}{\char '134}}%
+  {\renewcommand{\bs}{\char '134}}
+\newcommand{\tat}{@}
+
+\newcommand{\ixcom}[1]{\index{#1/ @\texttt{\protect\bs #1}}} % command
+\newcommand{\pixcom}[1]{\texttt{\bs #1}\index{#1/ @\texttt{\protect\bs #1}}}
+\newcommand{\ixatcom}[1]{\index{?#1/ @\texttt{\protect\bs\protect\tat #1}}}
+\newcommand{\pixatcom}[1]{\texttt{\bs\tat #1}\index{?#1/ @\texttt{\protect\bs\protect\tat #1}}}
+\newcommand{\ixenv}[1]{\index{#1 @\texttt{#1} (environment)}}
+\newcommand{\pixenv}[1]{\texttt{#1}\index{#1 @\texttt{#1} (environment)}}
+\newcommand{\ixpack}[1]{\index{#1 @\file{#1} (package)}}
+\newcommand{\pcom}[1]{\texttt{\bs #1}}
+\newcommand{\pixfile}[1]{\file{#1}\index{#1 @{\file{#1} (file)}}}
+\newcommand{\pixcount}[1]{\texttt{#1}\index{#1 @\texttt{#1} (counter)}}
+\newcommand{\ixsbox}[1]{\index{#1 @\texttt{#1} (save box)}}
+
+\providecommand{\indexfill}{}
+\providecommand{\sindexfill}{}
+\providecommand{\ssindexfill}{}
+\providecommand{\otherindexspace}[1]{}
+\providecommand{\alphaindexspace}[1]{\indexspace{\bfseries #1}}
+
+%%% \setlength{\parindent}{-4em}
+\makeatother
+
+\title{The \file{layouts} package: User manual}
+\author{Peter R. Wilson \\
+        Herries Press \\
+        (\texttt{herries.press@earthlink.net}) }
+\date{October 2004\thanks{Previous versions were dated 
+      November 2003, July 2002, March 2002, November 2001, July 2001 and January 1999.}}
+
+ \makeindex
+
+\begin{document}
+%%% \setuplayouts
+\bibliographystyle{alpha}
+\pagenumbering{roman}
+\maketitle
+\begin{abstract}
+    The \LaTeX{} \file{layouts} package enables the display of various 
+elements of a document's layout. The elements include the positioning
+of text on a page, the disposition of floats on a page, the geometrical
+layout of lists and footnotes, the design of section headers and their
+display in a table of contents. It also enables document designers to
+experiment with potential layout designs.
+\end{abstract}
+\tableofcontents
+\listoftables
+\listoffigures
+\clearpage
+\pagenumbering{arabic}
+
+
+\section{Introduction}
+
+    \LaTeX{} has several pre-defined styles for the layout of typeset
+documents~\cite{LAMPORT94}. Authors using \LaTeX{} sometimes wish to
+understand how these layouts are parameterised (or controlled). The
+\texttt{layouts} package enables the display of certain of these 
+parameterised layouts, showing what the parameters control. It also
+provides facilities for experimenting with different values of the
+typesetting parameters, showing the results graphically.
+
+     The \file{layouts} package was developed as an aid to the author
+when he was developing a new \LaTeX{} class for typsetting ISO standards.
+The development of the package has benefitted from
+Kent McPherson's \pixfile{layout.sty}~\cite{MCPHERSON88}.
+
+\subsection{Command types}
+
+    The majority of the commands provided fall into one of several categories.
+\begin{description}
+\item[Drawing] Commands of the form \pcom{draw}\textit{L}, 
+    \pcom{}\textit{L}\texttt{diagram}, and
+    \pcom{}\textit{L}\texttt{design}
+    generate a \LaTeX{} \texttt{picture} of the layout \textit{L}.
+
+\item[Current layout] Commands of the form \pcom{current}\textit{L} collect,
+    as far as possible, the values of the layout parameters for the current
+    \textit{L} layout environment for use by the corresponding
+    \pcom{draw}\textit{L} command. If a parameter value is not directly
+    accessible, then a typical value is provided.
+
+\item[Layout values] Commands of the form \pcom{}\textit{L}\texttt{values}
+   produce a tabular listing of the current values of the parameters 
+   controlling
+   the layout \textit{L}. As far as possible these are the actual values.
+   In some cases the values are hard-wired in the body of a macro, and in these
+   cases reasonable guesstimates are made of a `typical' value. 
+   In the printed
+   table, guesstimates are indicated by appending two question marks (??)
+   to the printed value. Note that the tabular listing produced by a 
+   \pcom{}\textit{L}\texttt{values} command is not the same as a listing
+   that might be produced by the corresponding \pcom{draw}\textit{L} command.
+   The appearance of the table may be controlled as follows.
+ \begin{itemize}
+ \item The declaration \pixcom{printheadingstrue} will cause a short title
+       to be placed above the tabular; the tabular is untitled when 
+       \pixcom{printheadingsfalse} is in effect.
+ \item The font size used for the table is specified via the 
+       \pixcom{setvaluestextsize}\marg{fontsize} macro, where
+       \meta{fontsize} is one of LaTeX's font size commands (e.g.,
+       \pixcom{footnotesize}, which is the default value.).
+ \end{itemize}
+
+\item[User-specified parameter values] Commands of the form 
+    \pcom{try}\textit{P} can be used to change the value of the layout
+    parameter \textit{P}. Note that these commands do \emph{not} affect the
+    the layout of the document, they only modify the values used in
+    displaying a layout.
+
+\item[Control] Commands of the form \verb|\|\textit{C}\texttt{true} or
+    \verb|\|\textit{C}\texttt{false} control certain aspects of the kinds of
+    layouts pictured.
+
+\end{description}
+
+\subsection{General facilities}
+
+    In order to initialize the \file{layouts} package correctly for your
+document, the command \pixcom{setuplayouts} 
+must be issued immediately
+after the \verb|\begin{document}|, or at least before any following command
+that changes font sizes or suchlike. Fortunately you don't have to concern
+youself with this as it is called automatically by the \file{layouts}
+package. However, you may call it yourself at some later point in the
+document to pick up the current value of the \pixcom{baselineskip}
+or \pixcom{parskip} if these have been modified. The \pixcom{setuplayouts}
+command also sets the \pixcom{setlayoutscale} to its default value of
+$0.5$.
+
+\subsubsection{Scaling}
+
+    A few layout pictures are drawn full size. Most are drawn less than
+full size, typically to half-scale. To make the pictures fit your
+document neatly, you may wish to change the scale. The command
+\verb|\setlayoutscale{|\meta{frac}\verb|}|,\ixcom{setlayoutscale}
+where \meta{frac} is a decimal number (e.g., $0.75$) sets the scaling.
+For example, \verb|\setlayoutscale{0.5}| will produce pictures at
+half full size, and \verb|\setlayoutscale{1.0}| will make the pictures
+full size.
+
+\subsubsection{Layout types}
+
+    In general, two kinds of layout pictures can be produced. 
+
+\begin{enumerate}
+\item A picture showing a generic layout and its controlling parameters
+   is produced by a command of the form \pcom{}\textit{L}\texttt{diagram}.
+   The same effect may be achieved by using a \pcom{draw}\textit{L} after
+   the declaration \pixcom{drawparameterstrue}.
+\item A picture showing an `actual' layout is produced by a command
+   of the form \pcom{}\textit{L}\texttt{design}.
+   The same effect may be achieved by using a \pcom{draw}\textit{L} after
+   the declaration \\
+   \pixcom{drawparametersfalse}.
+
+\begin{quote}
+\textbf{Warning:} If an actual layout differs too much
+  from a `normal' layout then LaTeX may hiccup a time or two. The
+  typical problem is when a dimension that is expected to be positive
+  is actually negative; LaTeX will respond 
+  with an error message like `Bad \pcom{line} or \pcom{vector} argument'.
+\end{quote}
+
+\end{enumerate}
+
+\begin{quote}
+    \textbf{Note:} The \pcom{}\textit{L}\texttt{diagram} and
+\pcom{}\textit{L}\texttt{design} commands were introduced in version 2.5 of
+the package. The previous method of generating pictures (via \pcom{draw}\textit{L} 
+and \verb?\drawparameters...?) is mainly retained for compatibility reasons.
+\end{quote}
+
+    Examples of both kinds of layout are shown later.
+
+    Some aspects of the appearance of the pictures can be controlled.
+The following apply to both generic and actual layouts.
+\begin{itemize}
+\item The size of the font used for displaying the parameters is specified
+  via the command: \\
+ \pixcom{setparameterstextsize}\marg{size}, 
+  where \meta{size} is
+ one of LaTeX's font size commands. \\
+ The initial setting is
+ \verb|\setparameterstextsize{\footnotesize}|.
+
+\item Some parts of the layouts are labelled, for example the footer area
+ in the page layout is labelled `footer'. The macro
+ \pixcom{setlabelfont}\marg{font} can be used to control the font used for
+ typesetting these labels. The default is \verb|\setlabelfont{\normalsize}|,
+ but can be, for example, \verb|\setlabelfont{\large\itshape}| to use
+ a large italic font instead. Note that \meta{font} must be specified as
+ a declaration(s).
+\end{itemize}
+
+    The following controls only apply to actual layouts (i.e.,
+when using \pcom{}\textit{L}\texttt{design}, or the earlier
+ \pixcom{drawparametersfalse} \pcom{draw}\textit{L} pairing is in effect).
+\begin{itemize}
+\item Some layouts have some explanatory header text. Putting
+  \pixcom{printheadingsfalse} prohibits these while 
+  \pixcom{printheadingstrue} lets them be printed.
+
+\item In the generic layouts, the lengths controlled by the various
+  parameters are indicated by dimension lines; these are not
+  normally shown in actual layouts. Using \pixcom{drawdimensionstrue}
+  will let these be shown in actual layouts.  The default
+  setting is \pixcom{drawdimensionsfalse}.
+
+\begin{quote}
+\textbf{Warning:} If you draw actual layouts with \pixcom{drawdimensionstrue}
+  the drawings may be overburdened and if the layout differs too much
+  from a `normal' layout then LaTeX may hiccup a time or two (typically
+  with an error message like `Bad \pcom{line} or \pcom{vector} argument').
+\end{quote}
+
+\item When \pixcom{printparameterstrue} is in effect, a table of the parameter
+  values will be printed below the layout. Unsurprisingly,
+  \pixcom{printparametersfalse} prohibits the table. The default is
+  \pixcom{printparameterstrue}.
+
+\end{itemize}
+
+\subsubsection{Length units}
+
+    The tabular listings of the parameter length values produced by
+the \pcom{}\textit{L}\texttt{values} macros give the lengths in TeX
+points by default. The length units may be set by the 
+\pixcom{printinunitsof}\marg{unit} command. The \meta{unit} argument
+may be any of TeX's length units, except for scaled point. That is, the
+allowable values are \texttt{pt}, \texttt{pc}, \texttt{in}, \texttt{mm}, 
+\texttt{cm}, \texttt{bp}, \texttt{dd}, or \texttt{cc}; an unkown unit is
+treated as though it were \texttt{pt}. When printing in pt units any
+stretch or shrink values are printed as well; using \texttt{PT} instead
+of \texttt{pt} eliminates these `rubber' values. The initial setting
+is \verb|\printinunitsof{pt}|.
+
+    The macro \pixcom{prntlen}\marg{length} prints the value of
+\meta{length}, where \meta{length} is a LaTeX length, using the units
+specified by \pixcom{printinunitsof}. For example, the following code
+\begin{verbatim}
+The textwidth is \printinunitsof{pt}\prntlen{\textwidth} which is also 
+\printinunitsof{in}\prntlen{\textwidth} or 
+\printinunitsof{mm}\prntlen{\textwidth}.
+\end{verbatim}
+prints out: \\
+\begingroup
+The textwidth is \printinunitsof{pt}\prntlen{\textwidth} which is also 
+\printinunitsof{in}\prntlen{\textwidth} or
+\printinunitsof{mm}\prntlen{\textwidth}.
+\endgroup
+
+\subsection{Usage}
+
+    The drawing commands (i.e., \verb|\...diagram|, \verb|\...design|
+and \verb|\draw...|)
+are typically used within a 
+\pixenv{figure} environment, although they can be used in
+running text. Internally they generate a \pixenv{picture}
+and \pixenv{tabular} environment, both enclosed in their
+own \pixenv{center} environments.
+
+    The \pixcom{setlayoutscale} command can be used anywhere in a document
+after the initial \pixcom{setuplayouts} command. Used in running text it
+will alter the scale factor for all succeeding drawing commands.
+However, if \pixcom{setlayoutscale} is called within an environment, such
+as the \pixenv{figure} environment, it will only affect
+the scale factors for succeeding drawing commands in that
+environment.
+
+    The \file{layouts} package uses many \LaTeX{} counters and lengths.
+If it is used with too many other packages, the available number of
+counters and lengths may be exhausted. Essentially, the \file{layouts}
+package is intended to be used in short documents as an exploratory tool
+when designing the typesetting rules to be embodied in a new package or 
+class file.
+
+\section{Page spread}
+\suppressfloats[t]
+
+    Book designers often start by determining the proportions of a page,
+the proportions of the text block, and the position of the text block on
+the page. Often the width of a page is taken as the starting point.
+
+    In the following let $w$ be the width of a single page; that is, 
+the distance from the
+spine to the outside of the fore edge. I also use the other symbols given in
+\tref{tab:spread}.
+\begin{table}
+\centering
+\caption{Page spread symbols} \label{tab:spread}
+\begin{tabular}{|c|l|} \hline
+Symbol & Meaning \\ \hline
+$w$ & Page width \\
+$P$ & Ratio of page height to width \\
+$T$ & Ratio of text block height to width \\
+$S$ & Ratio of spine width to page width \\
+$H$ & Ratio of top margin height to spine width \\
+$E$ & Ratio of fore edge margin width to spine width \\
+$F$ & Ratio of bottom margin height to spine width \\
+$G$ & Ratio of width of two-column gutter to spine width \\ \hline
+\end{tabular}
+\end{table}
+
+    Given values for $w$, $P$, $T$, $S$, and any two of $H$, $E$ and $F$, it
+is possible to calculate the page size, the text block size and the position
+of the text. The command \\
+\verb|\drawaspread[|\meta{F}\verb|]{|%
+    \meta{w}\verb|}{|%
+    \meta{P}\verb|}{|%
+    \meta{T}\verb|}{|%
+    \meta{S}\verb|}{|%
+    \meta{H}\verb|}{|%
+    \meta{E}\verb|}{|%
+    \meta{G}\verb|}|\ixcom{drawaspread} \\
+where the first parameter is optional, draws a two page spread with the given
+page width and proportions. If the optional \meta{F} is not provided, then the
+bottom margin is calculated from the values of other parameters. If \meta{G}
+is zero or negative, then a single column layout is shown, otherwise a double
+column layout is presented.
+
+\newlength{\pwlayi}
+\setlength{\pwlayi}{0.4375\textwidth}
+\newlength{\pwlayii}
+\setlength{\pwlayii}{0.5\pwlayi}
+
+\begin{figure}
+\centering
+\begin{minipage}[b]{\pwlayi}
+\drawaspread{\pwlayii}{1.294}{1.618}{0.176}{1.037}{1.685}{0}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{\pwlayi}
+\drawaspread{\pwlayii}{1.5}{1.5}{0.111}{1.5}{2.0}{0}
+\end{minipage}
+\caption{(Left) The \LaTeX{} book spread; 
+         (Right) Spread for many of Gutenberg's books} 
+\label{fig:spread}
+\end{figure}
+
+
+    Figure~\ref{fig:spread} shows two different spreads. This was produced 
+from the code below:
+\begin{verbatim}
+\newlength{\pwlayi}
+\setlength{\pwlayi}{0.4375\textwidth}
+\newlength{\pwlayii}
+\setlength{\pwlayii}{0.5\pwlayi}
+
+\begin{figure}
+\centering
+\begin{minipage}[b]{\pwlayi}
+\drawaspread{\pwlayii}{1.294}{1.618}{0.176}{1.037}{1.685}{0}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{\pwlayi}
+\drawaspread{\pwlayii}{1.5}{1.5}{0.111}{1.5}{2.0}{0}
+\end{minipage}
+\caption{(Left) The \LaTeX{} book spread; 
+         (Right) Spread for many of Gutenberg's books} 
+\label{fig:spread}
+\end{figure}
+\end{verbatim}
+
+    The \pixcom{drawaspread} command does not scale via the 
+\pixcom{setlayoutscale} command. The size of the illustration is controlled
+by the value given for the width of the page.
+
+
+%%%%%%%%%%%%%%%
+\clearpage
+\section{Page layout}
+\suppressfloats[t]
+
+%%\drawmarginparsfalse
+
+%%%%%%%%%%%%%%%%%%%%%
+%%\printheadingstrue
+%\printheadingsfalse
+%%\printparameterstrue
+%\printparametersfalse
+%\drawdimensionstrue
+%%\drawdimensionsfalse
+%%%%%%%%%%%%%%%%%%%%%
+
+    The layout of a single page is produced by the 
+\pixcom{pagediagram} or \pixcom{pagedesign} (or \pixcom{drawpage}) command. 
+The kind of page drawn is
+specified via three control commands\footnote{Remember that all drawing
+commands of the form \pcom{draw...}, except for \pcom{drawaspread}, are also controlled
+by the \pcom{drawparameters...} command.}.
+
+    Right- or left-hand page layouts are specified by the commands
+\pcom{oddpagelayout}\TF{} (\pixcom{oddpagelayouttrue}
+for an odd-numbered (i.e., right-hand) page, or
+\pixcom{oddpagelayoutfalse} for an even-numbered
+(i.e., left-hand or verso) page). The default is
+\pixcom{oddpagelayouttrue}.
+
+    Double or single column layouts are controlled by the commands
+\pcom{twocolumnlayout}\TF. 
+Using \pixcom{twocolumnlayouttrue}
+will result in a picture of a double column page layout and
+using \pixcom{twocolumnlayoutfalse}
+will result in a picture of a single column page layout. The default
+is \pixcom{twocolumnlayoutfalse}.
+
+   The display of marginal notes is controlled by the commands
+\pcom{drawmarginpars}\TF.
+Using \pixcom{drawmarginparstrue} rusults in representations of
+marginal notes being drawn and using \pixcom{drawmarginparsfalse}
+hides the marginal notes. The default is
+\pixcom{drawmarginparstrue}.
+
+   Normally \LaTeX{} places any marginal notes in the outside margin;
+the standard \LaTeX{} command \pixcom{reversemarginpar} causes notes
+to be placed in the opposite margin to the default one, and
+\pixcom{normalmarginpar} causes the notes to be put in the default
+margin. The package commands \pcom{reversemarginpar}\TF{} may be used
+to control the marginal note locations in the pictures.
+\pixcom{reversemarginpartrue} corresponds to \pixcom{reversemarginpar}
+and \pixcom{reversemarginparfalse} corresponds to \pixcom{normalmarginpar}.
+The package default is \pixcom{reversemarginparfalse}.
+
+    A \LaTeX{} class may always place marginal notes into the same margin.
+The package command \pcom{marginparswitch}\TF, is supplied to control
+the placement in the diagrams. \pixcom{marginparswitchtrue} will place marginal notes
+according to the class desires, while \pixcom{marginparswitchfalse} will
+always draw marginal notes in one margin.
+
+
+    As an example, \fref{fig:pplt} is produced by the following code.
+\begin{verbatim}
+\begin{figure}
+\oddpagelayoutfalse
+\twocolumnlayouttrue
+\pagediagram
+\caption{Left-hand two-column page layout parameters} \label{fig:pplt}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\oddpagelayoutfalse
+\twocolumnlayouttrue
+%\drawpage
+\pagediagram
+\caption{Left-hand two-column page layout parameters} \label{fig:pplt}
+\end{figure}
+
+    The two lines forming an inverted `L' represent the left-hand and
+top of the printed sheet.
+By default, \LaTeX{} makes all page layout measurements from a point
+located one inch in from the left-hand side of the printed sheet and one
+inch down from the top of the sheet. This point is marked with a circle.
+The dashed lines correspond to the vertical and horizontal offsets from 
+this point.
+
+
+    The command \pixcom{currentpage} collects together the page parameter
+settings for the current document for the page on which it is issued. 
+For example, it determines whether the current page is odd or even and
+in which margin any marginal notes would be placed.
+\fref{fig:ptrs} shows the odd page
+layout for the document you are now reading. It was produced by the
+following commands:
+\begin{verbatim}
+\begin{figure}
+\currentpage
+\oddpagelayouttrue
+\pagedesign
+\caption{Odd page layout for this document} \label{fig:ptrs}
+\end{figure}
+\end{verbatim}
+The resulting picture is correctly proportioned, both horizontally and 
+vertically.
+
+\begin{figure}
+\currentpage
+%\drawparametersfalse \drawpage
+\pagedesign
+\caption{Page layout for this document} \label{fig:ptrs}
+\end{figure}
+
+    When layouts are drawn with \verb|...diagram|\footnote{Or longhandedly
+with \pcom{drawparametersfalse} and \pcom{draw...}.}
+the actual values
+of the parameters used to produce the layout are normally
+listed at the bottom of the
+picture. This can be used, as in \fref{fig:ptrs}, to find out what the
+settings are for the current document.
+
+    Among other parameters that are set by 
+\pixcom{currentpage} are values for the page width and 
+height. If these have been specified by the 
+\pixcom{paperwidth} and \pixcom{paperheight} 
+commands, these values are used. Otherwise the width and height are set to
+the size of American letter paper, which is eight by eleven and a half inches.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial page parameters}\label{tab:tpage}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{trypaperwidth} & sets the \pixcom{paperwidth} value \\
+\pixcom{trypaperheight} & sets the \pixcom{paperheight} value \\
+\pixcom{tryhoffset} & sets the \pixcom{hoffset} value (usually 0pt) \\
+\pixcom{tryvoffset} & sets the \pixcom{voffset} value (usually 0pt) \\
+\pixcom{tryoddsidemargin} & sets the \pixcom{oddsidemargin} (usually 21--63pt) \\
+\pixcom{tryevensidemargin} & sets the \pixcom{evensidemargin} value (usually 39--82pt) \\
+\pixcom{trymarginparwidth} & sets the \pixcom{marginparwidth} value (usually 68--107pt) \\
+\pixcom{trymarginparsep} & sets the \pixcom{marginparsep} value (usually 10--11pt) \\
+\pixcom{trymarginparpush} & sets the \pixcom{marginparpush} value (usually 5--7pt) \\
+\pixcom{trytopmargin} & sets the \pixcom{topmargin} value (usually 27pt) \\
+\pixcom{tryheadheight} & sets the \pixcom{headheight} value (usually 12pt) \\
+\pixcom{tryheadsep} & sets the \pixcom{headsep} value (usually 25pt) \\
+\pixcom{tryfootskip} & sets the \pixcom{footskip} value (usually 30pt) \\
+\pixcom{trytextheight} & sets the \pixcom{textheight} value (usually 36--43 times the \pixcom{baselineskip}) \\
+\pixcom{trytextwidth} & sets the \pixcom{textwidth} value (usually 345--390pt) \\
+\pixcom{trycolumnsep} & sets the \pixcom{columnsep} value (usually 10pt) \\
+\pixcom{trycolumnseprule} & sets the \pixcom{columnseprule} value (usually 0pt) \\
+\hline
+\end{tabular}
+\end{table}
+
+    There are a set of commands for experimenting with the page layout
+parameters. They are listed in \tref{tab:tpage}. Each of these commands
+takes one argument which is a length value. There is, in addition, an odd
+command, 
+\pixcom{setfootbox}\verb|{|\meta{height}\verb|}{|\meta{depth}\verb|}|, 
+which may be used
+to specify the expected \meta{height} and \meta{depth} of the footer. Footers
+are typically a single line but may require more space than that. Note that
+there is no way to actually specify the vertical size of the footer in LaTeX,
+which will use as much space as it needs. If a footer is given a \meta{depth}
+then a dashed line is drawn at \pixcom{footskip} below the main text box.
+
+    The following code provides an example of the use of some of these
+commands when trying an experimental page layout. The result is shown
+in \fref{fig:pudf}. Note that 
+\pixcom{currentpage} is used to initialize all the appropriate
+parameter values before setting any trial values.
+\begin{verbatim}
+\begin{figure}
+\currentpage
+\trypaperwidth{11in}
+\trypaperheight{8.5in}
+\trytextwidth{500pt}
+\trycolumnsep{40pt}
+\trycolumnseprule{3pt}
+\tryhoffset{-0.5in}
+\tryvoffset{0.5in}
+\printheadingsfalse
+\drawdimensionstrue
+\twocolumnlayouttrue
+\pagedesign
+\caption{An experimental page layout}\label{fig:pudf}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\currentpage
+\trypaperwidth{11in}
+\trypaperheight{8.5in}
+\trytextwidth{500pt}
+\trycolumnsep{40pt}
+\trycolumnseprule{3pt}
+\tryhoffset{-0.5in}
+\tryvoffset{0.5in}
+\printheadingsfalse
+\drawdimensionstrue
+\twocolumnlayouttrue
+%\drawparametersfalse \drawpage
+\pagedesign
+\caption{An experimental page layout}\label{fig:pudf}
+\end{figure}
+
+    As can be seen, the resulting layout runs off the bottom of the 
+specified physical page; either because the page dimensions were incorrectly
+set (the designer getting a landscape page when a portrait page was desired),
+or because the text height and width parameters were set incorrectly
+for the physical page (probably 
+satisfactory for a portrait page but certainly wrong for the landscape page).
+
+    Note that \pixcom{printheadingsfalse} was used to delete the 
+explanatory heading text, and dimensions were drawn because of
+\pixcom{drawdimensionstrue}.
+
+\clearpage
+
+\subsection{Changing the page layout in your document}
+
+    You can only specify the page layout in a document's preamble. That is,
+it is set by the class, or by a package or per document via code you write
+in the preamble. To be on the safe side and avoid strange error messages 
+like \texttt{You can't use `\bs spacefactor'\ixcom{spacefactor} 
+in vertical mode}, enclose all
+your preamble commands within the command pair \pixcom{makeatletter}
+and \pixcom{makeatother}.
+
+    The page layout parameters can all be changed using the \LaTeX{}
+\pixcom{setlength} command. For example, to set the width of the text to
+3~inches, put this into the preamble:
+\begin{verbatim}
+\makeatletter
+\setlength{\textwidth}{3in}
+\makeatother
+\end{verbatim}
+
+
+    The \pixcom{pagevalues} command can be used to produce a table, 
+as shown here, of the values of the current document's page layout
+parameters. This is the default tabulation.
+
+\begin{verbatim}
+\pagevalues
+\end{verbatim}
+
+\pagevalues
+
+\begin{quote}
+\textbf{Note:} Prior to version 2.5 the tabulations were set in a 
+\pixenv{center} environment. 
+Starting with version 2.5 there is no surrounding environment.
+\end{quote}
+
+%%%%%%%%%%%%%%%
+\clearpage
+\section{The \file{memoir} class page layout}
+\suppressfloats[t]
+
+%%\drawmarginparsfalse
+
+    The \file{memoir} class~\cite{MEMOIR} provides a different set
+of page layout parameters than the standard LaTeX classes.
+
+    The layout of a single page for this class is produced by the 
+\pixcom{stockdiagram} and \pixcom{stockdesign} (or \pixcom{drawstock})
+commands. The kind of page drawn is
+specified via the same control commands that are used by
+the page drawing commands. That is: \\
+\pcom{oddpagelayout}\TF, \\
+\pcom{twocolumnlayout}\TF, \\ 
+\pcom{drawmarginpars}\TF, \\
+\pcom{reversemarginpar}\TF, and \\
+\pcom{marginparswitch}\TF.
+
+    Generally speaking, the commands for displaying and experimenting
+with the layout of a \file{memoir}
+class page are the same as, or analagous to, those for a standard page 
+layout.
+
+    As an example, \fref{fig:mempplt} is produced by the following code.
+\begin{verbatim}
+\begin{figure}
+\oddpagelayouttrue
+\twocolumnlayoutfalse
+\stockdiagram
+\caption{Right-hand page major layout parameters for 
+         the \file{memoir} class} \label{fig:mempplt}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\oddpagelayouttrue
+\twocolumnlayoutfalse
+%\drawmarginparsfalse \drawstock
+\stockdiagram
+\caption{Right-hand page major layout parameters for 
+         the \file{memoir} class} \label{fig:mempplt}
+\end{figure}
+
+
+    Like the \pixcom{currentpage} command, \pixcom{currentstock} collects 
+together the page parameter
+settings for the current \file{memoir} class document. 
+
+    For information on how to design a page layout the class
+documentation provides all the details~\cite{MEMOIR} (and uses the
+\file{layouts} package to illustrate them). 
+
+\begin{table}
+\centering
+\caption{Commands for setting trial \file{memoir} page parameters}\label{tab:tmempage}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{trystockwidth} & sets the \pixcom{stockwidth} value \\
+\pixcom{trystockheight} & sets the \pixcom{stockheight} value \\
+\pixcom{trypaperwidth} & sets the \pixcom{paperwidth} value \\
+\pixcom{trypaperheight} & sets the \pixcom{paperheight} value \\
+\pixcom{trytrimedge} & sets the \pixcom{trimedge} value \\
+\pixcom{trytrimtop} & sets the \pixcom{trimtop} value \\
+\pixcom{tryspinemargin} & sets the \pixcom{spinemargin} (usually 21--63pt) \\
+\pixcom{trymarginparwidth} & sets the \pixcom{marginparwidth} value (usually 68--107pt) \\
+\pixcom{trymarginparsep} & sets the \pixcom{marginparsep} value (usually 10--11pt) \\
+\pixcom{trymarginparpush} & sets the \pixcom{marginparpush} value (usually 5--7pt) \\
+\pixcom{tryuppermargin} & sets the \pixcom{uppermargin} value (usually 27pt) \\
+\pixcom{tryheadheight} & sets the \pixcom{headheight} value (usually 12pt) \\
+\pixcom{tryheadsep} & sets the \pixcom{headsep} value (usually 25pt) \\
+\pixcom{tryfootskip} & sets the \pixcom{footskip} value (usually 30pt) \\
+\pixcom{trytextheight} & sets the \pixcom{textheight} value (usually 36--43 times the \pixcom{baselineskip}) \\
+\pixcom{trytextwidth} & sets the \pixcom{textwidth} value (usually 345--390pt) \\
+\pixcom{trycolumnsep} & sets the \pixcom{columnsep} value (usually 10pt) \\
+\pixcom{trycolumnseprule} & sets the \pixcom{columnseprule} value (usually 0pt) \\
+\hline
+\end{tabular}
+\end{table}
+
+    There are a set of commands for experimenting with the page layout
+parameters. They are listed in \tref{tab:tmempage}. Each of these commands
+takes one argument which is a length value. The \pixcom{setfootbox} command
+may be used as well.
+
+    The following code provides an example of the use of some of these
+commands when trying an experimental page layout. The result is shown
+in \fref{fig:pmemudf}. 
+\begin{verbatim}
+\begin{figure}
+\currentstock
+\trystockheight{11in}
+\trystockwidth{8.5in}
+\trytrimtop{1in}
+\trytrimedge{1in}
+\trypaperheight{10in}
+\trypaperwidth{7.5in}
+\tryspinemargin{0.75in}
+\tryuppermargin{1.0in}
+\tryheadheight{12pt}
+\tryheadsep{24pt}
+\trytextwidth{5in}
+\trytextheight{7in}
+\tryfootskip{24pt}
+\setfootbox{50pt}{50pt}
+\trymarginparsep{17pt}
+\trymarginparwidth{62pt}
+\trymarginparpush{12pt}
+\setlabelfont{\small}
+\stockdesign
+\caption{An experimental \file{memoir} class page layout}\label{fig:pmemudf}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\currentstock
+\trystockheight{11in}
+\trystockwidth{8.5in}
+\trytrimtop{1in}
+\trytrimedge{1in}
+\trypaperheight{10in}
+\trypaperwidth{7.5in}
+\tryspinemargin{0.75in}
+\tryuppermargin{1.0in}
+\tryheadheight{12pt}
+\tryheadsep{24pt}
+\trytextwidth{5in}
+\trytextheight{7in}
+\tryfootskip{24pt}
+\setfootbox{50pt}{50pt}
+\trymarginparsep{17pt}
+\trymarginparwidth{62pt}
+\trymarginparpush{12pt}
+\printheadingsfalse
+%%\twocolumnlayouttrue
+%%\oddpagelayoutfalse
+\setlabelfont{\small}
+%\drawparametersfalse \drawstock
+\stockdesign
+\caption{An experimental \file{memoir} class page layout}\label{fig:pmemudf}
+\end{figure}
+
+    There is also a \pixcom{stockvalues} command to print a tabulation of the
+current stock specifications. 
+%  As this manual does not use the \file{memoir}
+%  class, calling it would only result in errors.
+
+
+%%%%%%%%%%
+\clearpage
+\section{Paragraph layout}
+\suppressfloats[t]
+
+    The commands \pixcom{paragraphdiagram} and \pixcom{paragraphdesign}
+(or \pixcom{drawparagraph} )
+can be used to visualize the parameters
+that affect paragraphing. This is illustrated in \fref{fig:fpara} which
+was produced by the following code:
+\begin{verbatim}
+\begin{figure}
+\paragraphdiagram
+\caption{Paragraph parameters}\label{fig:fpara}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+%\drawparagraph
+\paragraphdiagram
+\caption{Paragraph parameters}\label{fig:fpara}
+\end{figure}
+
+    The command \verb|\currentparagraph|\ixcom{currentparagraph} sets the
+drawing parameters to the settings for the current document. The commands
+listed in \tref{tab:para} can be used to set trial values for the
+relevant parameters. These commands take one argument which must be a length.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial paragraph parameters}\label{tab:para}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{tryparindent}  & sets the \pixcom{parindent} value \\
+\pixcom{tryparskip}    & sets the \pixcom{parskip} value \\
+\pixcom{tryparlinewidth} & sets the \pixcom{linewidth} value \\
+\pixcom{tryparbaselineskip} & sets the \pixcom{baselineskip} value \\ \hline
+\end{tabular}
+\end{table}
+
+    Figure~\ref{fig:dpara} shows the paragraphing as used in this document.
+It was produced with this code:
+\begin{verbatim}
+\currentparagraph
+\begin{figure}
+\paragraphdesign
+\caption{Paragraphs in this document}\label{fig:dpara}
+\end{figure}
+\end{verbatim}
+
+\currentparagraph
+\begin{figure}
+%\drawparametersfalse \drawparagraph
+\paragraphdesign
+\caption{Paragraphs in this document}\label{fig:dpara}
+\end{figure}
+
+\currentparagraph
+\begin{figure}
+\tryparindent{-4em}
+%\drawparametersfalse \drawparagraph
+\paragraphdesign
+\caption{An outset paragraph}\label{fig:mpara}
+\end{figure}
+
+    Interestingly, I found that \LaTeX{} is happy even if \pixcom{parindent}
+is set to a negative value. It isn't demonstrated in this typescript but
+you can see the effect in \fref{fig:mpara} which was produced from:
+\begin{verbatim}
+\currentparagraph
+\begin{figure}
+\tryparindent{-4em}
+\paragraphdesign
+\caption{An outset paragraph}\label{fig:mpara}
+\end{figure}
+\end{verbatim}
+
+    The \pixcom{paragraphvalues} command can be used to produce a table, 
+shown below, of the values of the current document's paragraph layout
+parameters (as set at the time that the command is used). The tabulation
+was typeset via
+\begin{verbatim}
+\begin{center}
+\printinunitsof{mm}
+\paragraphvalues
+\end{center}
+\end{verbatim}
+Note the use of \pixcom{printinunitsof} to set millimetres as the unit of 
+length.
+
+\begin{center}
+\printinunitsof{mm}
+\paragraphvalues
+\end{center}
+
+
+%%%%%%%%%
+\clearpage
+\section{Float layouts}
+\suppressfloats[t]
+
+    Two sets of commands are provided for displaying the layouts of
+\LaTeX{} floats (e.g., the \pixenv{figure} and \pixenv{table} environments).
+One set is for a macro view of floats and the other is for a more
+detailed view.
+
+\subsection{Float and text page layout}
+
+    This set of commands is for displaying the general parameters for
+the location of floats on a page and proportioning the available space
+between the floats and textual material.
+
+    The commands \pixcom{floatpagediagram} and \pixcom{floatpagedesign}
+(or \pixcom{drawfloatpage}) are used to visualize the general
+parameters. These are illustrated in \fref{fig:fpp} which was produced
+by the following code:
+\begin{verbatim}
+\begin{figure}
+\floatpagediagram
+\caption{Float and text page parameters}\label{fig:fpp}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+%\drawfloatpage
+\floatpagediagram
+\caption{Float and text page parameters}\label{fig:fpp}
+\end{figure}
+ 
+    The command \pixcom{currentfloatpage} sets the drawing parameters to the
+settings for the current document. The `standard' \LaTeX{} settings are
+shown in \fref{fig:fpstd}, produced by the code below.
+\begin{verbatim}
+\begin{figure}
+\currentfloatpage
+\trytotalnumber{3}
+\trytopnumber{2}
+\trytopfraction{0.7}
+\trytextfraction{0.2}
+\trybottomfraction{0.3}
+\trybottomnumber{1}
+\setlayoutscale{0.25}
+\floatpagedesign
+\caption{The standard \LaTeX{} float and text page settings}
+\label{fig:fpstd}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\currentfloatpage
+\trytotalnumber{3}
+\trytopnumber{2}
+\trytopfraction{0.7}
+\trytextfraction{0.2}
+\trybottomfraction{0.3}
+\trybottomnumber{1}
+\setlayoutscale{0.25}
+%\drawparametersfalse \drawfloatpage
+\floatpagedesign
+\caption{The standard \LaTeX{} float and text page settings}
+\label{fig:fpstd}
+\end{figure}
+
+    The commands listed in \tref{tab:tfloatp} can be used to set trial values
+for the relevant parameters. The commands take one argument, which is either 
+an integer number or a decimal fraction, depending on the particular command.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial float page parameters}\label{tab:tfloatp}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{trytotalnumber} & (integer) sets the \pixcom{totalnumber} (usually 3) \\
+\pixcom{trytopnumber} & (integer) sets the \pixcom{topnumber} (usually 2) \\
+\pixcom{trytopfraction} & (decimal) sets the \pixcom{topfraction} (usually 0.7) \\
+\pixcom{trytextfraction} & (decimal) sets the \pixcom{textfraction} (usually 0.2) \\
+\pixcom{trybottomnumber} & (integer) sets the \pixcom{bottomnumber} (usually 1) \\
+\pixcom{trybottomfraction} & (decimal) sets the \pixcom{bottomfraction} (usually 0.3) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\currentfloatpage
+\trytotalnumber{4}
+\trytopnumber{2}
+\trytopfraction{0.9}
+\trytextfraction{0.1}
+\trybottomnumber{2}
+\trybottomfraction{0.6}
+\setlayoutscale{0.25}
+%\drawparametersfalse \drawfloatpage
+\floatpagedesign
+\caption{Float page layout for decreasing likelihood of float-only pages}
+\label{fig:fpudf}
+\end{figure}
+
+    Figure~\ref{fig:fpudf} illustrates float page settings that increase
+the likelihood of a float remaining on a text page without being put on
+a page by itself. The figure was produced from the following code:
+\begin{verbatim}
+\begin{figure}
+\currentfloatpage
+\trytotalnumber{4}
+\trytopnumber{2}
+\trytopfraction{0.9}
+\trytextfraction{0.1}
+\trybottomnumber{2}
+\trybottomfraction{0.6}
+\setlayoutscale{0.25}
+\floatpagedesign
+\caption{Float page layout for decreasing likelihood of float-only pages}
+\label{fig:fpudf}
+\end{figure}
+\end{verbatim}
+
+
+%%%%%%%%%
+%%%%\clearpage
+\subsection{Detailed float layout}
+\suppressfloats[t]
+
+    The other view of floats concentrates on the spacing between text and
+floats on a page. The \pixcom{floatdiagram} and \pixcom{floatdesign}
+(or \pixcom{drawfloat}) commands are used to visualize this
+aspect.
+
+    The relevant parameters are shown in \fref{fig:flp}, produced from the
+following code:
+\begin{verbatim}
+\begin{figure}
+\setlayoutscale{0.9}
+\floatdiagram
+\caption{Float parameters}\label{fig:flp}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\setlayoutscale{0.9}
+%\drawfloat
+\floatdiagram
+\caption{Float parameters}\label{fig:flp}
+\end{figure}
+
+    As usual, the command \pixcom{currentfloat} sets the trial float parameters
+to those in effect for the current document.
+
+\begin{figure}
+\currentfloat
+\tryintextsep{\intextsep}
+\trytopfigrule{0.5pt}
+\trybotfigrule{1pt}
+\setlayoutscale{0.9}
+%\drawparametersfalse \drawfloat
+\floatdesign
+\caption{Float layout with rules}\label{fig:fludf}
+\end{figure}
+
+    The commands listed in \tref{tab:tfloat}, all of which take a length
+argument, set trial values for the float parameters.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial float parameters}\label{tab:tfloat}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{trytextfloatsep} & sets the \pixcom{textfloatsep} value (usually 20pt) \\
+\pixcom{tryfloatsep} & sets the \pixcom{floatsep} value (usually 12pt) \\
+\pixcom{tryintextsep} & sets the \pixcom{intextsep} value (usually 12pt) \\
+\pixcom{trytopfigrule} & sets the thickness of a \pixcom{topfigrule} (usually 0pt) \\
+\pixcom{trybotfigrule} & sets the thickness of a \pixcom{botfigrule} (usually 0pt) \\
+\hline
+\end{tabular}
+\end{table}
+
+    The following code, used to produce \fref{fig:fludf}, shows the use of
+some of these commands:
+\begin{verbatim}
+\begin{figure}
+\currentfloat
+\tryintextsep{\intextsep}
+\trytopfigrule{0.5pt}
+\trybotfigrule{1pt}
+\setlayoutscale{0.9}
+\floatdesign
+\caption{Float layout with rules}\label{fig:fludf}
+\end{figure}
+\end{verbatim}
+
+    The \pixcom{topfigrule} and \pixcom{botfigrule} are little known \LaTeX{}
+commands; they are not discussed by Lamport~\cite{LAMPORT94}
+but are described by Goossens \emph{et al}~\cite{GOOSSENS94}. They are
+like the \pixcom{footnoterule} command in that they draw a rule, or other
+decoration, below floats at the top of a page (\pixcom{topfigrule}) and
+above floats at the bottom of a page (\pixcom{botfigrule}). Both these
+commands have been defined in the preamble to this document as:
+\begin{verbatim}
+\makeatletter
+\newlength{\figrulesep}
+\setlength{\figrulesep}{0.5\textfloatsep}
+\newcommand{\topfigrule}{\vspace*{-1pt}%
+  \noindent\rule[-\figrulesep]{\columnwidth}{1pt}}
+\newcommand{\botfigrule}{\vspace*{-2pt}%
+  \noindent\rule[\figrulesep]{\columnwidth}{2pt}}
+\makeatother
+\end{verbatim}
+Their effect can be seen throughout the printed result. The typical thickness
+for a \pixcom{rule} is $0.4$pt; the thickness of these rules has been
+exagerated in order to make them more noticeable. The \pixcom{topfigrule}
+is drawn immediately after the top floats before the \pixcom{textfloatsep}
+spacing is applied. Similarly the \pixcom{botfigrule} is drawn after
+the \pixcom{textfloatsep} is applied for the bottom floats. Whatever is
+drawn as a \texttt{...figrule} should take no vertical space, hence the 
+use of negative vertical space in their definitions above. Note that the
+rules have been given either positive or negative vertical offsets to ensure
+some space between a float and the rule.
+
+\subsection{Changing the float layout in your document}
+
+    The \verb|\...number| commands are changed with the \LaTeX{}
+\pixcom{setcounter} command, while the \verb|\...fraction| commands
+have to be changed via the \pixcom{renewcommand}. For example, the preamble
+to this document contains the following (enclosed within 
+\pixcom{makeatletter} and \pixcom{makeatother} commands):
+\begin{verbatim}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}
+\end{verbatim}
+
+    Note that there are also the commands:
+\begin{itemize}
+\item \pixcom{dbltopnumber} for setting the maximum number of two-column 
+      floats at the top of a two-column page (typically 2);
+\item \pixcom{dbltopfraction} for setting the maximum fraction of a
+      two column page that can be occupied by the top two-column floats
+      (typically 0.7); and
+\item  \pixcom{dblfloatpagefraction} for setting the minimum fraction of
+      a page that has to be occupied by two-column floats before a `float
+      only' page is produced (typically 0.5).
+\end{itemize}
+
+    The \verb|\...sep| commands are changed using the \pixcom{setlength}
+command. The separation values should have a little bit of give in them,
+that is, they should be rubber lengths.
+A typical set of values might be specified as:
+\begin{verbatim}
+\setlength{\floatsep}{12pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{20pt plus 2pt minus 4pt}
+\setlength{\intextsep}{\floatsep}
+\end{verbatim}
+There are corresponding separation commands for two-column floats at the
+top or bottom of a page. These are \pixcom{dblfloatsep} for inter-float 
+separation and \pixcom{dbltextfloatsep} for spacing between a two-column
+float and the text area.
+
+
+
+\floatvalues
+
+    The \pixcom{floatvalues} command can be used to produce a table, 
+as shown here, of the values of the current document's float layout
+parameters (as set at the time that the command is used). 
+
+
+%%%%%%
+\clearpage
+\section{List layout}
+\suppressfloats[t]
+
+    The commands \pixcom{listdiagram} and \pixcom{listdesign} 
+(or \pixcom{drawlist}), as their names suggest, display the layout
+of list\ixenv{list} environments. 
+The list parameters are shown in \fref{fig:lstp},
+which was produced by the following code:
+\begin{verbatim}
+\begin{figure}
+\listdiagram
+\caption{List parameters} \label{fig:lstp}
+\end{figure}
+\end{verbatim}
+
+    The list layout may be controlled by the \verb|\listaspara|\TF{} commands.
+Use \pixcom{listasparatrue} for displaying the list when it is being 
+treated as a paragraph,
+otherwise use \pixcom{listasparafalse}. The default is \pixcom{listasparatrue}.
+
+\begin{figure}
+%\drawlist
+\listdiagram
+\caption{List parameters} \label{fig:lstp}
+\end{figure}
+
+    The command \pixcom{currentlist} extracts the list parameters from the
+current environment for display via \pixcom{drawlist}. Figure~\ref{fig:lstenum}
+graphically illustrates the layout for an \pixenv{enumerate}
+ type list.
+The figure was generated by the following code:
+\begin{verbatim}
+\begin{enumerate}
+\item Figure~\ref{fig:lstenum} illustrates the layout of an 
+      \texttt{enumerate} list.
+  \currentlist
+  \begin{figure}
+  \listdesign
+  \caption{Layout of an \texttt{enumerate} list} \label{fig:lstenum}
+  \end{figure}
+\end{enumerate}
+\end{verbatim}
+
+\begin{enumerate}
+\item Figure~\ref{fig:lstenum} illustrates the layout of an
+      \texttt{enumerate} list.
+  \currentlist
+  \begin{figure}
+%  \drawparametersfalse \drawlist
+  \listdesign
+  \caption{Layout of an \texttt{enumerate} list} \label{fig:lstenum}
+  \end{figure}
+\end{enumerate}
+    Note that \pixcom{currentlist} was called within the list environment in
+order to pick up the desired parameter values.
+
+    Table~\ref{tab:tlist} gives a listing of the commands that are provided
+for experimenting with the list layout parameters. Each of these commands
+takes a length as its argument.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial list parameters} \label{tab:tlist}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{tryitemindent} & sets the \pixcom{itemindent} value \\
+\pixcom{trylabelwidth} & sets the \pixcom{labelwidth} value \\
+\pixcom{trylabelsep} & sets the \pixcom{labelsep} value \\
+\pixcom{tryleftmargin} & sets the \pixcom{leftmargin} value \\
+\pixcom{tryrightmargin} & sets the \pixcom{rightmargin} value \\
+\pixcom{trylistparindent} & sets the \pixcom{listparindent} value \\
+\pixcom{trytopsep} & sets the \pixcom{topsep} value \\
+\pixcom{tryparskip} & sets the \pixcom{parskip} value \\
+\pixcom{trypartopsep} & sets the \pixcom{partopsep} value \\
+\pixcom{tryparsep} & sets the \pixcom{parsep} value \\
+\pixcom{tryitemsep} & sets the \pixcom{itemsep} value \\
+\hline
+\end{tabular}
+\end{table}
+
+\newenvironment{listX}%
+  {\begin{list}{item}%
+    {\setlength{\itemindent}{-30pt}%
+     \setlength{\labelwidth}{80pt}%
+     \setlength{\labelsep}{1em}%
+     \setlength{\leftmargin}{170pt}%
+     \setlength{\rightmargin}{-40pt}%
+     \setlength{\listparindent}{80pt}%
+     \setlength{\topsep}{3ex}%
+     \setlength{\partopsep}{\topsep}%
+     \setlength{\parsep}{\topsep}%
+     \setlength{\itemsep}{\topsep}%
+    }%
+  }%
+  {\end{list}}
+
+    Figure~\ref{fig:lstudf} shows the layout of a user-defined list.
+An example of the list as it would appear in a document is shown by the
+list that follows this paragraph.
+
+\begin{listX}
+\item[ListX, first item:] This is an example of a user-defined list.
+The appearance is somewhat different from that normally seen in \LaTeX{}
+lists. Note that the text extends into the normal right-hand margin.
+Also, the body of the list text is indented from the label.
+
+    No claim is made that there is anything aesthetic about the design
+of the list. In fact, I think that it is pretty awful. It is merely
+provided as an example of a non-standard list and so that the
+\pixcom{drawlist} command can be shown off.
+
+\item[ListX, second item:] Now we will draw the layout of this list from
+within itself (see \fref{fig:lstudf} for the result). The code used is:
+\begin{verbatim}
+\currentlist
+\begin{figure}
+\drawdimensionstrue
+\listdesign
+\caption{The layout of the \texttt{listX} environment}
+\label{fig:lstudf}
+\end{figure}
+\end{verbatim}
+
+\currentlist
+\begin{figure}
+\drawdimensionstrue
+%\drawparametersfalse \drawlist
+\listdesign
+\caption{The layout of the \texttt{listX} environment}
+\label{fig:lstudf}
+\end{figure}
+
+\item[ListX, third item:] The definition of this list environment is:
+\begin{verbatim}
+\newenvironment{listX}%
+  {\begin{list}{item}%
+    {\setlength{\itemindent}{-30pt}%
+     \setlength{\labelwidth}{80pt}%
+     \setlength{\labelsep}{1em}%
+     \setlength{\leftmargin}{170pt}%
+     \setlength{\rightmargin}{-40pt}%
+     \setlength{\listparindent}{80pt}%
+     \setlength{\topsep}{3ex}%
+     \setlength{\partopsep}{\topsep}%
+     \setlength{\parsep}{\topsep}%
+     \setlength{\itemsep}{\topsep}%
+    }%
+  }%
+  {\end{list}}
+\end{verbatim}
+\end{listX}
+
+    In \LaTeX{} many display environments, such as the \pixenv{quotation} 
+environment,
+are defined in terms of the generic \pixenv{list} environment, so
+the settings for these may also be explored with \pixcom{currentlist}.
+    For example, the following code shows how to determine the `list'
+settings for the \pixenv{thebibliography} 
+environment (with apologies to Leslie Lamport).
+\begin{verbatim}
+\begin{thebibliography}{Dillo 83}
+\bibitem[Knud 66]{kn:gnus} D. E. Knudson. \emph{1996 World Gnus Almanac.}
+\currentlist
+\begin{figure}
+\listdesign
+\caption{Bibliography list}
+\end{figure}
+\end{thebibliography}
+\end{verbatim}
+Running this code is left as an exercise for the reader.
+
+\subsection{Changing lists}
+
+    Many of \LaTeX's environments are defined in terms of lists, most 
+noticeably the \pixenv{description}, \pixenv{enumerate} and \pixenv{itemize}
+environments. To change any of LaTeX's predefined list environments 
+it is probably best to examine their 
+definitions in the appropriate class file (e.g., \pixfile{classes.dtx}) and
+then put your modified definitions into a package file.
+
+\begin{quote}
+\printinunitsof{pc}
+\listvalues
+\end{quote}
+
+    The \pixcom{listvalues} command can be used to produce a table, 
+as shown here, of the values of the current document's list layout
+parameters (as set at the time that the command is used). 
+This table was produced by:
+\begin{verbatim}
+\begin{quote}
+\printinunitsof{pc}
+\listvalues
+\end{quote}
+\end{verbatim}
+
+
+
+%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Sectional heading layout}
+\suppressfloats[t]
+
+    In \LaTeX{} a few headings, like \pixcom{part} and \pixcom{chapter} 
+are defined using
+special definition code. The majority, though, are defined via the internal
+\LaTeX{} \pixatcom{startsection} 
+command. This command takes 6 arguments: \\
+\verb|\@startsection{|\meta{name}\verb|}{|%
+\meta{level}\verb|}{|%
+\meta{indent}\verb|}{|%
+\meta{beforeskip}\verb|}{|%
+\meta{afterskip}\verb|}{|%
+\meta{font style}\verb|}|.
+
+    The commands 
+\verb|\headingdiagram{|\meta{font style}\verb|}|\ixcom{headingdiagram} and
+\verb|\headingdesign{|\meta{font style}\verb|}|\ixcom{headingdesign}
+(or \verb|\drawheading{|\meta{font style}\verb|}|\ixcom{drawheading})
+draw a picture of the layout for sectional headings based on the
+\pixatcom{startsection} command. Unlike the other
+drawing commands it takes one parameter, which is the specification
+of the size and/or font of the heading. For example, 
+\verb|\drawheading{\large\itshape}|. For \pixcom{headingdiagram} (or
+\pixcom{drawheading} with \pixcom{drawparameterstrue} is
+in effect) the parameter has no effect.
+
+    There are two kinds of headings:
+\begin{enumerate}
+\item Display headings, where the heading is set off from the text body, and
+\item Run-in headings, where the text body starts on the same line as 
+the heading.
+\end{enumerate}
+When \pixcom{headingdiagram} is called 
+(or \pixcom{drawheading} with \pixcom{drawparameterstrue} in effect)
+ the pair of commands \pixcom{runinheadtrue} and 
+\pixcom{runinheadfalse} control whether a run-in head or a display head 
+will be illustrated. The default is \pixcom{runinheadfalse}.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\drawdimensionsfalse
+%%%%%%%%%%%%%%%%%%%%%%
+
+    Figures~\ref{fig:hdp} and~\ref{fig:hrp} show the parameters of the two
+kinds of headings. They were produced by the following code:
+\begin{verbatim}
+\begin{figure}
+\setlayoutscale{1}
+\headingdiagram{ }
+\caption{Display heading parameters}\label{fig:hdp}
+\end{figure}
+
+\begin{figure}
+\setlayoutscale{1}
+\runinheadtrue
+\headingdiagram{ }
+\caption{Run-in heading parameters}\label{fig:hrp}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\setlayoutscale{1}
+%\drawheading{ }
+\headingdiagram{ }
+\caption{Display heading parameters}\label{fig:hdp}
+\end{figure}
+
+\begin{figure}
+\setlayoutscale{1}
+\runinheadtrue
+%\drawheading{ }
+\headingdiagram{ }
+\caption{Run-in heading parameters}\label{fig:hrp}
+\end{figure}
+
+
+    The command \pixcom{currentheading} sets up default parameter values for
+the illustration of a heading. These values are based on guesstimates
+of the values of the arguments of the \pixatcom{startsection}
+command. The commands given in \tref{tab:thead}
+can be used to explicitly set heading parameters. Each of these commands
+takes a length for its parameter value.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial heading parameters}\label{tab:thead}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{trybeforeskip} & sets the \textit{beforeskip} value \\
+\pixcom{tryafterskip} & sets the \textit{afterskip} value \\
+\pixcom{tryindent} & sets the \textit{indent} value \\
+\hline
+\end{tabular}
+\end{table}
+
+    The regular reader of \LaTeX{} documents will have noticed that the
+\pixcom{subsubsection} headings in this manual do not conform to the
+usual \LaTeX{} style. In fact, the preamble to this document contains
+the following definition:
+\begin{verbatim}
+\makeatletter
+\renewcommand{\subsubsection}{\@startsection%
+  {subsubsection}%       name
+  {3}%                   level
+  {0mm}%                 indent
+  {-\baselineskip}%      beforeskip
+  {0.5\baselineskip}%    afterskip
+  {\large\itshape}}%     style
+\makeatother
+\end{verbatim}
+Note that the \pixcom{makeatletter} and \pixcom{makeatother} commands
+are required because of the use of the \tat{} character in the
+name of the \pixatcom{startsection} command.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%\drawdimensionsfalse
+%%%%%%%%%%%%%%%%%%%%%%%
+\currentheading
+\trybeforeskip{-\baselineskip}
+\tryafterskip{0.5\baselineskip}
+\tryindent{0mm}
+\begin{figure}
+\setlayoutscale{1}
+%\drawparametersfalse \drawheading{\large\itshape}
+\headingdesign{\large\itshape}
+\caption{Subsubsection heading layout parameters for this document}
+\label{fig:hdudf}
+\end{figure}
+
+    Figure~\ref{fig:hdudf} illustrates the layout for this heading, and was
+produced by the code below.
+\begin{verbatim}
+\currentheading
+\trybeforeskip{-\baselineskip}
+\tryafterskip{0.5\baselineskip}
+\tryindent{0mm}
+\begin{figure}
+\setlayoutscale{1}
+\headingdesign{\large\itshape}
+\caption{Subsubsection layout parameters for this document}
+\label{fig:hdudf}
+\end{figure}
+\end{verbatim}
+
+\currentheading
+\trybeforeskip{-\baselineskip}
+\tryafterskip{-0.5\baselineskip}
+\tryindent{0mm}
+\begin{figure}
+\setlayoutscale{1}
+%\drawparametersfalse \drawheading{\large\itshape}
+\headingdesign{\large\itshape}
+\caption{Subsubsection layout parameters for a run-in heading}
+\label{fig:hrudf}
+\end{figure}
+
+    The same heading, but specified as a run-in heading by making the
+value of \textit{afterskip} negative rather than positive, is illustrated
+in \fref{fig:hrudf}.
+
+
+   
+%%%%%%%%%%%%%%%%
+\clearpage
+\section{Footnote layout}
+\suppressfloats[t]
+
+    Footnote layouts are produced by the commands
+\pixcom{footnotediagram} and \pixcom{footnotedesign}
+(or  \pixcom{drawfootnote}).
+The relevant footnote parameters are shown in \fref{fig:fp}, which was
+produced by the following code:
+\begin{verbatim}
+\begin{figure}
+\setlayoutscale{0.4}
+\setlabelfont{\huge\itshape}
+\footnotediagram
+\caption{The footnote parameter layout} \label{fig:fp}
+\end{figure}
+\end{verbatim}
+Note the use of \pixcom{setlabelfont} to change the font used for labelling
+(the `MAIN TEXT' in this case). 
+
+\begin{figure}
+\setlayoutscale{0.4}
+\setlabelfont{\huge\itshape}
+%\drawfootnote
+\footnotediagram
+\caption{The footnote parameter layout} \label{fig:fp}
+\end{figure}
+
+    Some of the current settings for the footnote parameters are set
+by the \pixcom{currentfootnote} command. Guesstimates are provided
+for the likely value of the \pixcom{baselineskip} that is used within
+a footnote, and also for the dimension of the footnote rule.
+
+    Figure~\ref{fig:ftry} shows the default footnote layout, and was produced
+by the following code:
+\begin{verbatim}
+\begin{figure}
+\currentfootnote
+\setlayoutscale{0.4}
+\footnotedesign
+\caption{The current footnote layout}\label{fig:ftry}
+\end{figure}
+\end{verbatim}
+The resulting picture has all vertical dimensions magnified by a factor
+of 4 with respect to the horizontal dimensions.
+
+\begin{figure}
+\currentfootnote
+\setlayoutscale{0.4}
+%\drawparametersfalse \drawfootnote
+\footnotedesign
+\caption{A footnote layout}\label{fig:ftry}
+\end{figure}
+
+    Commands for individually setting trial values for footnote parameters
+are given in \tref{tab:foot}. Except for \pixcom{tryfootrulefrac}, these all
+take a length as their parameter. The parameter value for 
+\pixcom{tryfootrulefrac} is a decimal number representing a fraction of
+the \pixcom{textwidth}. The trial length of the footnote rule is set to
+this fraction of the width of the text block.
+
+\begin{table}
+\centering
+\caption{Commands for setting trial footnote parameter values}\label{tab:foot}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{tryfootins} & sets the \pixcom{skip}\pixcom{footins} value (usually 10pt) \\
+\pixcom{tryfootnotesep} & sets the \pixcom{footnotesep} value (usually 7pt) \\
+\pixcom{tryfootnotebaseline} & sets the footnote \pixcom{baselineskip} value \\
+\pixcom{tryfootruleheight} & sets the \pixcom{footnoterule} height value (usually 0.4pt) \\
+\pixcom{tryfootrulefrac} & sets the length of the \pixcom{footnoterule} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\currentfootnote
+\tryfootins{10pt}
+\tryfootnotesep{20pt}
+\tryfootnotebaseline{15pt}
+\tryfootruleheight{1pt}
+\tryfootrulefrac{0.8}
+\setlayoutscale{0.4}
+%\drawparametersfalse \drawfootnote
+\footnotedesign
+\caption{A user-specified footnote layout}
+\label{fig:fudf}
+\end{figure}
+
+    Figure~\ref{fig:fudf}, produced from the following code, shows an
+experimental layout for footnotes.
+\begin{verbatim}
+\begin{figure}
+\currentfootnote
+\tryfootins{10pt}
+\tryfootnotesep{20pt}
+\tryfootnotebaseline{15pt}
+\tryfootruleheight{1pt}
+\tryfootrulefrac{0.8}
+\setlayoutscale{0.4}
+\footnotedesign
+\caption{A user-specified footnote layout}
+\label{fig:fudf}
+\end{figure}
+\end{verbatim}
+
+\subsection{Changing the footnote layout}
+
+   The value of \pixcom{footnotesep} is changed via the \pixcom{setlength}
+command. Spacing between the bottom of the text area and the first footnote
+is normally a rubber length. The following is a typical set of values:
+\begin{verbatim}
+\setlength{\footnotesep}{7pt}
+\setlength{\skip\footins}{10pt plus 4pt minus 2pt}
+\end{verbatim}
+
+    For changing other values, see the documented class file 
+\pixfile{classes.dtx}.
+
+\footnotevalues
+
+    The \pixcom{footnotevalues} command can be used to produce a table, 
+as shown here, of the values of the current document's footnote layout
+parameters (as set at the time that the command is used). 
+
+
+
+%%%%%%%%%%%%%%%
+\clearpage
+\section{Table of Contents layout}
+\suppressfloats[t]
+
+    The format of an entry in the Table of Contents (ToC) is usually
+specified by the internal \LaTeX{} \pixatcom{dottedtocline} command: \\
+\verb|\@dottedtocline{|%
+\meta{level}\verb|}{|%
+\meta{indent}\verb|}{|%
+\meta{numwidth}\verb|}| \\
+where \meta{indent} and \meta{numwidth} relate to the formatting, and an
+entry will be typeset only if \meta{level} is less than or equal to the
+value of the \pixcount{tocdepth} counter.
+
+    The \pixcom{tocdiagram} and \pixcom{tocdesign} (or \pixcom{drawtoc})
+ commands are used for visualizing the layout of
+section titles in a \textit{Table of Contents} listing based on the
+\verb|\@dottedtocline| command, as shown in
+\fref{fig:tocp}. This was produced by the following code:
+\begin{verbatim}
+\begin{figure}
+\setlayoutscale{0.8}
+\tocdiagram
+\caption{Table of Contents entry parameters}\label{fig:tocp}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\setlayoutscale{0.8}
+%\drawtoc
+\tocdiagram
+\caption{Table of Contents entry parameters}\label{fig:tocp}
+\end{figure}
+
+\begin{figure}
+\setlayoutscale{0.8}
+\currenttoc
+%\drawparametersfalse \drawtoc
+\tocdesign
+\caption{Typical Table of Contents entry for this document} \label{fig:thistoc}
+\end{figure}
+
+   Figure~\ref{fig:thistoc} was produced by the following 
+code:\footnote{The drawing of the dotted leader is not completely accurate
+due to scaling and rounding within the drawing algorithm.}
+\begin{verbatim}
+\begin{figure}
+\setlayoutscale{0.8}
+\currenttoc
+\tocdesign
+\caption{Typical Table of Contents entry for this document} \label{fig:thistoc}
+\end{figure}
+\end{verbatim}
+
+
+    The command \pixcom{currenttoc} sets values for the ToC parameters based
+on those for the current document. The paramaters can all be individually
+adjusted via the commands listed in \tref{tab:toc}. These commands all
+require a length as their parameter, except for the \pixcom{trytocdotsep}
+command which takes a number (integer or decimal) as its parameter value.
+This sets the trial value for the separation between dots in the leader 
+between the sectional title and the page number. The parameter is the
+separation value in \emph{mu} (math units).\footnote{There are \emph{18mu}
+units to \emph{1em} unit.}
+
+\begin{table}
+\centering
+\caption{Commands for setting trial values for ToC parameters}\label{tab:toc}
+\begin{tabular}{|l|l|} \hline
+Command & Parameter \\ \hline
+\pixcom{trytocindent} & sets the \textit{indent} value \\
+\pixcom{trytocnumwidth} & sets the \textit{numwidth} value \\
+\pixcom{trytoclinewidth} & sets the \pixcom{linewidth} value \\
+\pixcom{trytocrmarg} & sets the \pixatcom{tocrmarg} value \\
+\pixcom{trytocpnumwidth} & sets the \pixatcom{pnumwidth} value \\
+\pixcom{trytocdotsep} & sets the \pixatcom{dotsep} value \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\setlayoutscale{0.8}
+\currenttoc
+\trytocdotsep{1000}
+%\drawparametersfalse \drawtoc
+\tocdesign
+\caption{Table of Contents entry with a large value for \texttt{\bs @dotsep}}
+\label{fig:tocudf}
+\end{figure}
+
+    Figure~\ref{fig:tocudf}, which was produced by the following code,
+shows that the effect of having a large value for \pixatcom{dotsep} is to
+eliminate the dotted leader line between the title text and the page number.
+\begin{verbatim}
+\begin{figure}
+\setlayoutscale{0.8}
+\currenttoc
+\trytocdotsep{1000}
+\tocdesign
+\caption{Table of Contents entry with a large value for \texttt{\bs @dotsep}}
+\label{fig:tocudf}
+\end{figure}
+\end{verbatim}
+
+\subsection{Changing the Table of Contents, etc}
+
+    The methods of specifying the typesetting of the various entries in 
+a Table of Contents or a List of Figures (or Tables) varies from one kind
+of entry to another. For details consult
+the documented class specification file \pixfile{classes.dtx}.
+
+    However, the \pixatcom{dotsep}, \pixatcom{pnumwidth} and
+\pixatcom{tocrmarg}
+values can all be set with the \pixcom{renewcommand}. For example, in the
+preamble:
+\begin{verbatim}
+\makeatletter
+\renewcommand{\@dotsep}{4.5}
+\renewcommand{\@pnumwidth}{1.55em}
+\renewcommand{\@tocrmarg}{2.55em}
+\makeatother
+\end{verbatim}
+
+    Typically, for figure and table captions, and for sectioning commands 
+that are defined using the \pixatcom{startsection} command,
+table entry typesetting is specified via an \verb|\l@X| command, where 
+\verb|X| is \verb|figure|, \verb|table|, \verb|subsection|, etc., as
+appropriate. In turn, these commands call the \pixatcom{dottedtocline} 
+command. For example, to change the typesetting for a paragraph entry
+in the Table of Contents, and for a table caption you should do something 
+like (changing the lengths as appropriate):
+\begin{verbatim}
+\makeatletter
+\renewcommand*{\l@paragraph}{\@dottedtocline{4}{7em}{4em}}
+\renewcommand*{\l@table}{\@dottedtocline{1}{0em}{3.0em}}
+\makeatother
+\end{verbatim}
+
+
+\tocvalues
+
+    The \pixcom{tocvalues} command can be used to produce a table, 
+as shown here, of the values of the current document's Table of Contents layout
+parameters (as set at the time that the command is used). 
+
+\clearpage
+\section{Font boxing}
+
+\setlength{\unitlength}{1pt}
+
+    Sometimes it is useful to see the size of the box enclosing some text.
+Two commands are provided for this purpose.
+
+    The \verb|\drawfontframe{|\meta{text}\verb|}|\ixcom{drawfontframe}
+ produces a drawing of
+\meta{text} together with its surrounding box drawn. A bullet is placed
+at the position of the reference point and a horizontal dotted line is drawn
+along the baseline. The command can be used in normal mode 
+or can
+be \verb|\put| in a picture environment.
+\drawfontframe{\Huge\textbf{g}}
+The framed g was produced by the following code:
+\begin{verbatim}
+\drawfontframe{\Huge\textbf{g}}
+\end{verbatim}
+The command places the box inside a \texttt{picture} environment that is just
+big enough to enclose the box.
+
+    Sometimes it is useful to see the size of the box enclosing some text.
+Two commands are provided for this purpose.
+
+
+
+
+
+    The \verb|\drawfontframelabel{|\meta{text}\verb|}|\ixcom{drawfontframelabel}
+ is similar, except
+that it labels the reference point, and the width height and depth of the
+box. The box is placed inside a picture environment that is just big enough
+to enclose the box. This means that the labels extend beyond the 
+\texttt{picture}. If \verb|\printparameterstrue| is set before issuing the
+command, the actual values for the width, height and depth of the box
+are printed in a \texttt{center} environment following the drawing. 
+
+    Here is a simple example created by \verb|\drawfontframelabel{\Huge Q}|
+with \verb|\printparametersfalse|.
+\begin{center}
+\printparametersfalse%
+\drawfontframelabel{\Huge Q}
+\end{center}
+
+    This time with \verb|\printparameterstrue| and 
+\verb|\drawfontframelabel{\Huge\textbf{tangling}}|
+\begin{center}
+\printparameterstrue%
+\drawfontframelabel{\Huge\textbf{tangling}}
+\end{center}
+
+    If either of the \verb|\drawfont...| commands are used inside a
+\texttt{picture} environment, then the \verb|\unitlength| must be set
+to 1pt, as the drawings are meant to be exact size and the commands 
+assume that all
+drawing lengths are in terms of pts.
+
+    Internally, the commands typeset their argument inside a `save box' called
+\verb|\layoutsbox|\ixsbox{layoutsbox} and then perform the size 
+measurements on 
+\verb|\layoutsbox|. You can use \verb|\layoutsbox| for your own purposes, but if 
+you do so any subsequent use of a \verb|\drawfont...| command will
+overwrite anything that you might have saved in \verb|\layoutsbox|.
+
+
+%%\bibliography{refs,prw}
+\begin{thebibliography}{GMS94}
+
+\bibitem[GMS94]{GOOSSENS94}
+Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+\newblock \emph{The LaTeX Companion}.
+\newblock Addison-Wesley Publishing Company, 1994.
+
+\bibitem[Lam94]{LAMPORT94}
+Leslie Lamport.
+\newblock \emph{LaTeX: A Document Preparation System}.
+\newblock Addison-Wesley Publishing Company, second edition, 1994.
+
+\bibitem[McP88]{MCPHERSON88}
+Kent McPherson.
+\newblock `{Page Layout in LaTeX}'.
+\newblock \emph{TUGboat}, 9(1):78--82, April 1988.
+
+\bibitem[Wil02]{MEMOIR}
+Peter Wilson.
+\newblock \emph{The memoir class for configurable book typesetting}.
+\newblock November, 2002.
+\newblock (Available from CTAN in 
+           \texttt{macros/latex/contrib/memoir})
+
+\end{thebibliography}
+
+\clearpage
+%%%%%%%% THE INDEX
+%\input{laymanidx}
+%\end{document}
+
+%  laymanidx.tex
+%  Generated by GenIndex Version 1.1 from layman.idx
+% 
+\begin{theindex}
+
+
+
+\otherindexspace{?}
+% ????
+
+
+\item \texttt  {\bs \tat dotsep}  \indexfill
+   44--45
+\item \texttt  {\bs \tat dottedtocline}  \indexfill
+   43, 46
+\item \texttt  {\bs \tat pnumwidth}  \indexfill
+   44--45
+\item \texttt  {\bs \tat startsection}  \indexfill
+   35, 37, 46
+\item \texttt  {\bs \tat tocrmarg}  \indexfill
+   44--45
+
+\alphaindexspace{B}
+% BBBB
+
+
+\item \texttt  {\bs baselineskip}  \indexfill
+   2, 11, 16, 18, 39--40
+\item \texttt  {\bs botfigrule}  \indexfill
+   25, 27
+\item \texttt  {\bs bottomfraction}  \indexfill
+   22
+\item \texttt  {\bs bottomnumber}  \indexfill
+   22
+
+\alphaindexspace{C}
+% CCCC
+
+
+\item \texttt  {center} (environment)  \indexfill
+   4, 13
+\item \texttt  {\bs chapter}  \indexfill
+   35
+\item {\textsf  {classes.dtx} (file)}  \indexfill
+   34, 42, 45
+\item \texttt  {\bs columnsep}  \indexfill
+   11, 16
+\item \texttt  {\bs columnseprule}  \indexfill
+   11, 16
+\item \texttt  {\bs currentfloat}  \indexfill
+   24
+\item \texttt  {\bs currentfloatpage}  \indexfill
+   21
+\item \texttt  {\bs currentfootnote}  \indexfill
+   39
+\item \texttt  {\bs currentheading}  \indexfill
+   35
+\item \texttt  {\bs currentlist}  \indexfill
+   29, 34
+\item \texttt  {\bs currentpage}  \indexfill
+   9, 14
+\item \texttt  {\bs currentparagraph}  \indexfill
+   18
+\item \texttt  {\bs currentstock}  \indexfill
+   14
+\item \texttt  {\bs currenttoc}  \indexfill
+   44
+
+\alphaindexspace{D}
+% DDDD
+
+
+\item \texttt  {\bs dblfloatpagefraction}  \indexfill
+   28
+\item \texttt  {\bs dblfloatsep}  \indexfill
+   28
+\item \texttt  {\bs dbltextfloatsep}  \indexfill
+   28
+\item \texttt  {\bs dbltopfraction}  \indexfill
+   28
+\item \texttt  {\bs dbltopnumber}  \indexfill
+   28
+\item \texttt  {description} (environment)  \indexfill
+   34
+\item \texttt  {\bs drawaspread}  \indexfill
+   4, 6
+\item \texttt  {\bs drawdimensionsfalse}  \indexfill
+   3
+\item \texttt  {\bs drawdimensionstrue}  \indexfill
+   3, 11
+\item \texttt  {\bs drawfloat}  \indexfill
+   24
+\item \texttt  {\bs drawfloatpage}  \indexfill
+   21
+\item \texttt  {\bs drawfontframe}  \indexfill
+   47
+\item \texttt  {\bs drawfontframelabel}  \indexfill
+   47
+\item \texttt  {\bs drawfootnote}  \indexfill
+   39
+\item \texttt  {\bs drawheading}  \indexfill
+   35
+\item \texttt  {\bs drawlist}  \indexfill
+   29, 32
+\item \texttt  {\bs drawmarginparsfalse}  \indexfill
+   7
+\item \texttt  {\bs drawmarginparstrue}  \indexfill
+   7
+\item \texttt  {\bs drawpage}  \indexfill
+   7
+\item \texttt  {\bs drawparagraph}  \indexfill
+   18
+\item \texttt  {\bs drawparametersfalse}  \indexfill
+   2--3
+\item \texttt  {\bs drawparameterstrue}  \indexfill
+   2, 35
+\item \texttt  {\bs drawstock}  \indexfill
+   14
+\item \texttt  {\bs drawtoc}  \indexfill
+   43
+
+\alphaindexspace{E}
+% EEEE
+
+
+\item \texttt  {enumerate} (environment)  \indexfill
+   29, 34
+\item \texttt  {\bs evensidemargin}  \indexfill
+   11
+
+\alphaindexspace{F}
+% FFFF
+
+
+\item \texttt  {figure} (environment)  \indexfill
+   4, 21
+\item \texttt  {\bs floatdesign}  \indexfill
+   24
+\item \texttt  {\bs floatdiagram}  \indexfill
+   24
+\item \texttt  {\bs floatpagedesign}  \indexfill
+   21
+\item \texttt  {\bs floatpagediagram}  \indexfill
+   21
+\item \texttt  {\bs floatsep}  \indexfill
+   25
+\item \texttt  {\bs floatvalues}  \indexfill
+   28
+\item \texttt  {\bs footins}  \indexfill
+   40
+\item \texttt  {\bs footnotedesign}  \indexfill
+   39
+\item \texttt  {\bs footnotediagram}  \indexfill
+   39
+\item \texttt  {\bs footnoterule}  \indexfill
+   27, 40
+\item \texttt  {\bs footnotesep}  \indexfill
+   40--41
+\item \texttt  {\bs footnotesize}  \indexfill
+   1
+\item \texttt  {\bs footnotevalues}  \indexfill
+   42
+\item \texttt  {\bs footskip}  \indexfill
+   9, 11, 16
+
+\alphaindexspace{H}
+% HHHH
+
+
+\item \texttt  {\bs headheight}  \indexfill
+   11, 16
+\item \texttt  {\bs headingdesign}  \indexfill
+   35
+\item \texttt  {\bs headingdiagram}  \indexfill
+   35
+\item \texttt  {\bs headsep}  \indexfill
+   11, 16
+\item \texttt  {\bs hoffset}  \indexfill
+   11
+
+\alphaindexspace{I}
+% IIII
+
+
+\item \texttt  {\bs intextsep}  \indexfill
+   25
+\item \texttt  {\bs itemindent}  \indexfill
+   31
+\item \texttt  {itemize} (environment)  \indexfill
+   34
+\item \texttt  {\bs itemsep}  \indexfill
+   31
+
+\alphaindexspace{L}
+% LLLL
+
+
+\item \texttt  {\bs labelsep}  \indexfill
+   31
+\item \texttt  {\bs labelwidth}  \indexfill
+   31
+\item {\textsf  {layout.sty} (file)}  \indexfill
+   1
+\item \texttt  {layoutsbox} (save box)  \indexfill
+   47
+\item \texttt  {\bs leftmargin}  \indexfill
+   31
+\item \texttt  {\bs linewidth}  \indexfill
+   18, 44
+\item \texttt  {list} (environment)  \indexfill
+   29, 34
+\item \texttt  {\bs listasparafalse}  \indexfill
+   29
+\item \texttt  {\bs listasparatrue}  \indexfill
+   29
+\item \texttt  {\bs listdesign}  \indexfill
+   29
+\item \texttt  {\bs listdiagram}  \indexfill
+   29
+\item \texttt  {\bs listparindent}  \indexfill
+   31
+\item \texttt  {\bs listvalues}  \indexfill
+   34
+
+\alphaindexspace{M}
+% MMMM
+
+
+\item \texttt  {\bs makeatletter}  \indexfill
+   13, 27, 37
+\item \texttt  {\bs makeatother}  \indexfill
+   13, 27, 37
+\item \texttt  {\bs marginparpush}  \indexfill
+   11, 16
+\item \texttt  {\bs marginparsep}  \indexfill
+   11, 16
+\item \texttt  {\bs marginparswitchfalse}  \indexfill
+   7
+\item \texttt  {\bs marginparswitchtrue}  \indexfill
+   7
+\item \texttt  {\bs marginparwidth}  \indexfill
+   11, 16
+
+\alphaindexspace{N}
+% NNNN
+
+
+\item \texttt  {\bs normalmarginpar}  \indexfill
+   7
+
+\alphaindexspace{O}
+% OOOO
+
+
+\item \texttt  {\bs oddpagelayoutfalse}  \indexfill
+   7
+\item \texttt  {\bs oddpagelayouttrue}  \indexfill
+   7
+\item \texttt  {\bs oddsidemargin}  \indexfill
+   11
+
+\alphaindexspace{P}
+% PPPP
+
+
+\item \texttt  {\bs pagedesign}  \indexfill
+   7
+\item \texttt  {\bs pagediagram}  \indexfill
+   7
+\item \texttt  {\bs pagevalues}  \indexfill
+   13
+\item \texttt  {\bs paperheight}  \indexfill
+   9, 11, 16
+\item \texttt  {\bs paperwidth}  \indexfill
+   9, 11, 16
+\item \texttt  {\bs paragraphdesign}  \indexfill
+   18
+\item \texttt  {\bs paragraphdiagram}  \indexfill
+   18
+\item \texttt  {\bs paragraphvalues}  \indexfill
+   20
+\item \texttt  {\bs parindent}  \indexfill
+   18, 20
+\item \texttt  {\bs parsep}  \indexfill
+   31
+\item \texttt  {\bs parskip}  \indexfill
+   2, 18, 31
+\item \texttt  {\bs part}  \indexfill
+   35
+\item \texttt  {\bs partopsep}  \indexfill
+   31
+\item \texttt  {picture} (environment)  \indexfill
+   4
+\item \texttt  {\bs printheadingsfalse}  \indexfill
+   1, 3, 11
+\item \texttt  {\bs printheadingstrue}  \indexfill
+   1, 3
+\item \texttt  {\bs printinunitsof}  \indexfill
+   3, 20
+\item \texttt  {\bs printparametersfalse}  \indexfill
+   3
+\item \texttt  {\bs printparameterstrue}  \indexfill
+   3
+\item \texttt  {\bs prntlen}  \indexfill
+   3
+
+\alphaindexspace{Q}
+% QQQQ
+
+
+\item \texttt  {quotation} (environment)  \indexfill
+   34
+
+\alphaindexspace{R}
+% RRRR
+
+
+\item \texttt  {\bs renewcommand}  \indexfill
+   27, 45
+\item \texttt  {\bs reversemarginpar}  \indexfill
+   7
+\item \texttt  {\bs reversemarginparfalse}  \indexfill
+   7
+\item \texttt  {\bs reversemarginpartrue}  \indexfill
+   7
+\item \texttt  {\bs rightmargin}  \indexfill
+   31
+\item \texttt  {\bs rule}  \indexfill
+   27
+\item \texttt  {\bs runinheadfalse}  \indexfill
+   35
+\item \texttt  {\bs runinheadtrue}  \indexfill
+   35
+
+\alphaindexspace{S}
+% SSSS
+
+
+\item \texttt  {\bs setcounter}  \indexfill
+   27
+\item \texttt  {\bs setfootbox}  \indexfill
+   9, 14
+\item \texttt  {\bs setlabelfont}  \indexfill
+   3, 39
+\item \texttt  {\bs setlayoutscale}  \indexfill
+   2, 4, 6
+\item \texttt  {\bs setlength}  \indexfill
+   13, 28, 41
+\item \texttt  {\bs setparameterstextsize}  \indexfill
+   3
+\item \texttt  {\bs setuplayouts}  \indexfill
+   2, 4
+\item \texttt  {\bs setvaluestextsize}  \indexfill
+   1
+\item \texttt  {\bs skip}  \indexfill
+   40
+\item \texttt  {\bs spacefactor}  \indexfill
+   13
+\item \texttt  {\bs spinemargin}  \indexfill
+   16
+\item \texttt  {\bs stockdesign}  \indexfill
+   14
+\item \texttt  {\bs stockdiagram}  \indexfill
+   14
+\item \texttt  {\bs stockheight}  \indexfill
+   16
+\item \texttt  {\bs stockvalues}  \indexfill
+   16
+\item \texttt  {\bs stockwidth}  \indexfill
+   16
+\item \texttt  {\bs subsubsection}  \indexfill
+   37
+
+\alphaindexspace{T}
+% TTTT
+
+
+\item \texttt  {table} (environment)  \indexfill
+   21
+\item \texttt  {tabular} (environment)  \indexfill
+   4
+\item \texttt  {\bs textfloatsep}  \indexfill
+   25, 27
+\item \texttt  {\bs textfraction}  \indexfill
+   22
+\item \texttt  {\bs textheight}  \indexfill
+   11, 16
+\item \texttt  {\bs textwidth}  \indexfill
+   11, 16, 40
+\item \texttt  {thebibliography} (environment)  \indexfill
+   34
+\item \texttt  {tocdepth} (counter)  \indexfill
+   43
+\item \texttt  {\bs tocdesign}  \indexfill
+   43
+\item \texttt  {\bs tocdiagram}  \indexfill
+   43
+\item \texttt  {\bs tocvalues}  \indexfill
+   46
+\item \texttt  {\bs topfigrule}  \indexfill
+   25, 27
+\item \texttt  {\bs topfraction}  \indexfill
+   22
+\item \texttt  {\bs topmargin}  \indexfill
+   11
+\item \texttt  {\bs topnumber}  \indexfill
+   22
+\item \texttt  {\bs topsep}  \indexfill
+   31
+\item \texttt  {\bs totalnumber}  \indexfill
+   22
+\item \texttt  {\bs trimedge}  \indexfill
+   16
+\item \texttt  {\bs trimtop}  \indexfill
+   16
+\item \texttt  {\bs tryafterskip}  \indexfill
+   36
+\item \texttt  {\bs trybeforeskip}  \indexfill
+   36
+\item \texttt  {\bs trybotfigrule}  \indexfill
+   25
+\item \texttt  {\bs trybottomfraction}  \indexfill
+   22
+\item \texttt  {\bs trybottomnumber}  \indexfill
+   22
+\item \texttt  {\bs trycolumnsep}  \indexfill
+   11, 16
+\item \texttt  {\bs trycolumnseprule}  \indexfill
+   11, 16
+\item \texttt  {\bs tryevensidemargin}  \indexfill
+   11
+\item \texttt  {\bs tryfloatsep}  \indexfill
+   25
+\item \texttt  {\bs tryfootins}  \indexfill
+   40
+\item \texttt  {\bs tryfootnotebaseline}  \indexfill
+   40
+\item \texttt  {\bs tryfootnotesep}  \indexfill
+   40
+\item \texttt  {\bs tryfootrulefrac}  \indexfill
+   40
+\item \texttt  {\bs tryfootruleheight}  \indexfill
+   40
+\item \texttt  {\bs tryfootskip}  \indexfill
+   11, 16
+\item \texttt  {\bs tryheadheight}  \indexfill
+   11, 16
+\item \texttt  {\bs tryheadsep}  \indexfill
+   11, 16
+\item \texttt  {\bs tryhoffset}  \indexfill
+   11
+\item \texttt  {\bs tryindent}  \indexfill
+   36
+\item \texttt  {\bs tryintextsep}  \indexfill
+   25
+\item \texttt  {\bs tryitemindent}  \indexfill
+   31
+\item \texttt  {\bs tryitemsep}  \indexfill
+   31
+\item \texttt  {\bs trylabelsep}  \indexfill
+   31
+\item \texttt  {\bs trylabelwidth}  \indexfill
+   31
+\item \texttt  {\bs tryleftmargin}  \indexfill
+   31
+\item \texttt  {\bs trylistparindent}  \indexfill
+   31
+\item \texttt  {\bs trymarginparpush}  \indexfill
+   11, 16
+\item \texttt  {\bs trymarginparsep}  \indexfill
+   11, 16
+\item \texttt  {\bs trymarginparwidth}  \indexfill
+   11, 16
+\item \texttt  {\bs tryoddsidemargin}  \indexfill
+   11
+\item \texttt  {\bs trypaperheight}  \indexfill
+   11, 16
+\item \texttt  {\bs trypaperwidth}  \indexfill
+   11, 16
+\item \texttt  {\bs tryparbaselineskip}  \indexfill
+   18
+\item \texttt  {\bs tryparindent}  \indexfill
+   18
+\item \texttt  {\bs tryparlinewidth}  \indexfill
+   18
+\item \texttt  {\bs tryparsep}  \indexfill
+   31
+\item \texttt  {\bs tryparskip}  \indexfill
+   18, 31
+\item \texttt  {\bs trypartopsep}  \indexfill
+   31
+\item \texttt  {\bs tryrightmargin}  \indexfill
+   31
+\item \texttt  {\bs tryspinemargin}  \indexfill
+   16
+\item \texttt  {\bs trystockheight}  \indexfill
+   16
+\item \texttt  {\bs trystockwidth}  \indexfill
+   16
+\item \texttt  {\bs trytextfloatsep}  \indexfill
+   25
+\item \texttt  {\bs trytextfraction}  \indexfill
+   22
+\item \texttt  {\bs trytextheight}  \indexfill
+   11, 16
+\item \texttt  {\bs trytextwidth}  \indexfill
+   11, 16
+\item \texttt  {\bs trytocdotsep}  \indexfill
+   44
+\item \texttt  {\bs trytocindent}  \indexfill
+   44
+\item \texttt  {\bs trytoclinewidth}  \indexfill
+   44
+\item \texttt  {\bs trytocnumwidth}  \indexfill
+   44
+\item \texttt  {\bs trytocpnumwidth}  \indexfill
+   44
+\item \texttt  {\bs trytocrmarg}  \indexfill
+   44
+\item \texttt  {\bs trytopfigrule}  \indexfill
+   25
+\item \texttt  {\bs trytopfraction}  \indexfill
+   22
+\item \texttt  {\bs trytopmargin}  \indexfill
+   11
+\item \texttt  {\bs trytopnumber}  \indexfill
+   22
+\item \texttt  {\bs trytopsep}  \indexfill
+   31
+\item \texttt  {\bs trytotalnumber}  \indexfill
+   22
+\item \texttt  {\bs trytrimedge}  \indexfill
+   16
+\item \texttt  {\bs trytrimtop}  \indexfill
+   16
+\item \texttt  {\bs tryuppermargin}  \indexfill
+   16
+\item \texttt  {\bs tryvoffset}  \indexfill
+   11
+\item \texttt  {\bs twocolumnlayoutfalse}  \indexfill
+   7
+\item \texttt  {\bs twocolumnlayouttrue}  \indexfill
+   7
+
+\alphaindexspace{U}
+% UUUU
+
+
+\item \texttt  {\bs uppermargin}  \indexfill
+   16
+
+\alphaindexspace{V}
+% VVVV
+
+
+\item \texttt  {\bs voffset}  \indexfill
+   11
+
+\end{theindex}
+
+
+\end{document}
+

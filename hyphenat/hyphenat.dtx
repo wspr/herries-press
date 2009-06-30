@@ -1,0 +1,908 @@
+% \iffalse meta-comment
+%
+
+%
+% hyphenat.dtx
+% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%                            (or at: pandgwilson at earthlink dot net) 
+% Copyright 1998 --- 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{hyphenat.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{401}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v11}{1997/09/30}{Output character table to class and package files only}
+% \changes{v2.3}{2001/01/02}{Fixed problem with non-CMR fonts doing double hyphens}
+% \changes{v2.3b}{2004/04/22}{Updated license and contact details}
+%
+% \def\dtxfile{hyphenat.dtx}
+% ^^A \def\fileversion{v2.3}
+% ^^A \def\filedate{1999/02/13}
+% \def\fileversion{v2.3a}
+% \def\filedate{2001/01/02}
+% \def\fileversion{v2.3b}
+% \def\filedate{2004/04/22}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{hyphenat} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{After May 2004 at: \texttt{pandgwilson at earthlink dot net}}\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{hyphenat} package can be used to either disable hyphenation
+% throughout a document or to enable automatic hyphenation within words
+% that include analphabetic characters. It also provides for hyphenatable
+% monospaced fonts.
+% \end{abstract}
+% \tableofcontents
+%
+% \StopEventually{}
+%
+% 
+%
+% \section{Introduction}
+%
+% Questions about hyphenation seem to pop up fairly regularly on
+% \texttt{comp.text.tex} newsgroup. Broadly speaking the questions
+% take one of two forms:
+% \begin{itemize}
+% \item How can I disable hyphenation in my document?
+% \item How can I enable hyphenation after the character \ldots ?
+% \end{itemize}
+%  The \Lpack{hyphenat} package attempts to provide solutions for
+% both of these questions. This package is an extension of the
+% \Lpack{uschyp} package which was developed as part of a class
+% and package bundle for typesetting ISO standards~\cite{PRW96i}.
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes a package to enable `words'
+% containing analphabetic characters to be automatically hyphenated,
+% or to disable hyphenation throught a document or just disable
+% it for short pieces of text. It also enables hyphenation, if required,
+% of text typeset using monospaced (TT) fonts. For convenience I use TT
+% to mean a monospaced font; TT does \emph{not} indicate TrueType fonts.
+% Commented source code for the package is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{hyphenat} package} \label{sec:usc}
+%
+%    The \Lpack{hyphenat} package has an option called \Lopt{none}.
+% Use of this option prevents any hyphenation throughout the document.
+% If \TeX{} is prevented from hyphenating it may complain about bad
+% line breaks and you may find bits of text sticking out into the
+% margin. If you use this option you should also consider using
+% |\sloppy| and/or |\raggedright|.
+%
+% The other option, \Lopt{htt}, enables hyphenation of text typeset
+% using Computer Modern Typewriter fonts (or their equivalent, such as
+% Adobe Courier). 
+% If this option is used, then text typeset via
+% either |\texttt| or |\ttfamily| will be in the default TT font and
+% may be automatically hyphenated. Note that this will not affect any
+% TT text typeset by either |\verb| or in a |verbatim| environment
+% because they locally inhibit hyphenation. If you use this option
+% you are likely to get a lot of \texttt{Font Warning} messages about
+% being unable to load a font. It is reasonably safe to suggest that you
+% can ignore these.
+%
+% \DescribeMacro{\textnhtt}
+% \DescribeMacro{\nhttfamily}
+% The command |\textnhtt{|\meta{text}|}| will typeset \meta{text} in
+% the default TT font with no automatic hyphenation. It has the same
+% effect as |\texttt| when the \Lopt{htt} option is not used.
+% The |\nhttfamily| declaration is a companion to the |\textnhtt| command
+% and is analagous to the |\ttfamily| declaration in that it prevents
+% any hyphenation of TT fonts. For example, if the Courier font is used
+% as the monospaced font instead of the CM typewriter font, then hyphenation
+% may occur with the Courier in places where it wouldn't with CM. The command
+% or environment may be used to ensure that Courier is treated the same as
+% CM regarding hyphenation.
+%
+% \DescribeMacro{\nohyphens}
+% The command |\nohyphens{|\meta{text}|}| will typeset \meta{text} without
+% any automatic hyphenation. This is intended to be used for short pieces
+% of text.
+%
+%    An \textit{analphabetic} character is a character than does not appear
+% in the alphabet. Analphabetic characters include the numerals and 
+% punctuation characters. If a `word' contains any analphabetic characters,
+% \TeX's automatic hyphenation capability is disabled for any syllables
+% following the (first) of the analpabetic characters in the word.
+% Words containing analphabetic characters often occur as the names
+% of variables in computer programs, and of course, as URLs on the Web.
+% The \Lopt{hyphenat} package provides several commands enabling automatic
+% hyphenation of words containing analphabetics.
+%
+% \DescribeMacro{\_}
+%  In \LaTeX{} a `word' containing an underscore 
+%  (e.g., |`letters_with_underscores'|) can be hyphenated at
+%  the underscore by using a discretionary hyphen. That is, write the
+% word like |letters\_\-with\_\-underscores|. This has two potential
+% disadvantages: (a) more typing is involved, and (b) if the word is broken
+% at one underscore, hyphenation of any succeeding syllables is disabled.
+% The \Lpack{hyphenat} package redefines the |\_| command so that hyphenation
+% can automatically occur after an underscore and further hyphenation
+% within the word is not disabled. Thus, this example word can just be
+% written as |letters\_with\_underscores|.
+%
+%    Note that following the revised |\_| command with a discretionary hyphen
+% makes its behaviour revert to the \LaTeX{} default.
+%
+% \DescribeMacro{\bshyp}
+%    The |\bshyp| command can be used to print a backslash and have
+% following hyphenation.
+% 
+% \DescribeMacro{\fshyp}
+%    The |\fshyp| command can be used to print a forward slash and have
+% following hyphenation.
+% 
+% \DescribeMacro{\dothyp}
+%    The |\dothyp| command can be used to print a period (full stop) and have
+% following hyphenation.
+% 
+% \DescribeMacro{\colonhyp}
+%    The |\colonhyp| command can be used to print a colon and have
+% following hyphenation.
+%
+% 
+%    For example, to typeset |first\second/third.fourth:fifth_sixth|,
+% allowing hyphenation at the analphabetic characters the source would be:
+% \begin{verbatim}
+% first\bshyp{}second\fshyp{}third\dothyp{}fourth\colonhyp{}fifth\_sixth
+% \end{verbatim}
+%
+% \DescribeMacro{\hyp}
+%    \TeX{} does not want to hyphenate a word that appears in the source
+% already hyphenated, such as |electromagnetic-endioscopy|.
+%    The |\hyp| command is like the other |\...hyp| commands, only it
+% typesets a hyphen and allows full automatic hyphenation of the other
+% words forming the compound word. It is used like
+% |electromagnetic\hyp{}endioscopy|.
+%
+%
+% \section{The package code} \label{sec:code}
+%
+% \changes{v2.1}{1998/10/14}{Renamed the package from uschyp to hyphenat}
+% \changes{v2.2}{1998/12/31}{Added hyphenation of TT fonts}
+% \changes{v2.3}{1999/02/13}{Added hyp command}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hyphenat}[2001/01/02 v2.3a hyphenation utilities]
+%    \end{macrocode}
+%
+%    An option is provided whereby all hyphenation throught a document
+%    is disabled.
+% \changes{v2.1}{1998/10/14}{Added the `none' option}
+% Hyphenation throughout a document can be disabled in at least the following
+% ways:
+% \begin{enumerate}
+% \item Set |\exhyphenpenalty| and |\hyphenpenalty| to 10000 
+%       (the \textit{\TeX book} exercise 14.6);
+% \item Use an `unknown' language (i.e., one that has no hyphenation
+%   patterns, but for a complete document this would cause problems
+%   if a package like \Lpack{babel} was used);
+% \item Set |\lefthyphenmin| and |\righthyphenmin| to large values (see
+%   \file{lthyphen.dtx}) to prevent hypenation in the first |\lefthyphenmin|
+%    characters and in the last |\righthyphenmin| characters.
+% \end{enumerate}
+% I have chosen the \textit{\TeX book} solution for global hyphenation 
+% suppression as it is generic.
+%    \begin{macrocode}
+\DeclareOption{none}%
+    {\hyphenpenalty=10000\exhyphenpenalty=10000\relax}
+%    \end{macrocode}
+% \changes{v2.2}{1998/12/31}{Added the `htt' option}
+% \changes{v2.2a}{1999/01/30}{Added warning with the `htt' option}
+%     An option is provided whereby TT text may be hyphenated. 
+% See~\S\ref{sec:tt} for how it is implemented via the |\touchttfonts|
+% and |\touchextrattfonts| commands. At the end we have to ensure that the
+% normal text font is selected.
+%    \begin{macrocode} 
+\DeclareOption{htt}{%
+  \PackageWarningNoLine{hyphenat}{%
+      *******************************\MessageBreak
+      * You have used the htt option.\MessageBreak
+      * You are likely to get many Font Warning messages.\MessageBreak
+      * These can usually be ignored.\MessageBreak
+      *******************************}
+  \AtBeginDocument{\touchttfonts\touchextrattfonts\normalfont}}
+\ProcessOptions
+%    \end{macrocode}
+%
+% \begin{macro}{\langwohyphens}
+% We will use a non-existant language as a local means of disabling 
+% hyphenation.
+%    \begin{macrocode}
+\newlanguage\langwohyphens
+%    \end{macrocode}
+% \end{macro}
+%
+%    This package redefines the |\_| command to include a
+%    discretionary hyphen.\footnote{Thanks to Donald Arseneau for pointing
+%    the author in the right direction.} 
+%    The new definition provides for full hyphenation throughout 
+%    a construct such as |long\_identifier|.
+%    The default \LaTeX{} behaviour
+%    is that this kind of construct has to be written as
+%    as |long\_\-identifier| if hyphenation
+%    is to be enabled at the position of the underscore; this also
+%    switched off hypenation after the first use of |\_| or
+%    |_\-| within the construct.
+%
+%    Users of this package must not use a discretionary hyphen
+%    in conjunction with an underscore.
+%
+%    The behaviour of |_| as a subscript command in math mode is
+%    unaffected as is the use of a naked |_| in text (an error).
+%
+%    The original attempt was to enable a naked |_| to be used in
+%    ordinary text. The code for this follows. The problem that arose
+%    with this was that, for example, |\input{long_filename}| would
+%    fail. With the original code, a naked |_| could not be used
+%    in |\label|, |\cite| or |\ref| commands as |\protect| is not
+%    properly enabled in these commands.
+%    \begin{verbatim}
+%    % uscaslet.sty
+%    % (Email from Donald Arseneau 10 October 1997)
+%    \newcommand{\BreakableUnderscore}{\leavevmode
+%    \nobreak\hskip\z@skip
+%    \textunderscore
+%    \-\nobreak\hskip\z@skip}
+%    \def\UnderOrSub0{\ifmmode\sb\else\BreakableUnderscore\fi}
+%    \AtBeginDocument{\catcode`\_\active}
+%    \begingroup\catcode`\_\active
+%    \@firstofone{\endgroup\def_{\protect\UnderOrSub0}}
+%    \DeclareRobustCommand{\_}{%
+%      \ifmmode\nfss@text{\textunderscore}\else\BreakableUnderscore\fi}
+%    \endinput
+%    \end{verbatim}
+%  Donald Arseneau has since developed his \Lopt{underscore} package,
+%  available on CTAN, that eliminates the above problems.
+%
+% \changes{v2}{1997/11/30}{Removed the uschypne package}
+%
+%    Now for the \Lopt{hyphenat} version. This is reduced from Donald Arseneau's code 
+%    (Email from him on Friday 10 October 1997) with my comments.
+%
+%    This version includes macros for breakable backslashes,
+%    forward slashes and periods as well as underscores.
+%
+% \begin{macro}{\prw@zbreak}
+%    |\prw@zbreak| is just defined to save some potential typos further on.
+%    \begin{macrocode}
+\newcommand{\prw@zbreak}{\nobreak\hskip\z@skip}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\BreakableUnderscore}
+%    This macro adds a discretionary hyphen after an underscore. As Ray 
+% Goult discovered, using the shorthand |\-| for |\discretionary{-}{}{}|
+% causes problems in a \Lenv{tabbing} environment which modifies the
+% definition of |\-|, so we have to use the long form.
+% \changes{v2}{1997/11/30}{Changed use of \cs{-} to \cs{discretionary}}
+%    \begin{macrocode}
+\newcommand{\BreakableUnderscore}{\leavevmode%
+  \prw@zbreak\textunderscore\discretionary{-}{}{}\prw@zbreak}
+%    \end{macrocode}
+% \end{macro}
+%
+%    The next bit of Donald Arseneau's code preserves any following spaces
+%    (yes, that is a zero at the
+%    end of the command name). Unfortunately this is not required any more.
+%    \begin{verbatim}
+%    \def\UnderOrSub0{\ifmmode\sb\else\BreakableUnderscore\fi}
+%    \end{verbatim}
+%    Originally the underscore was made active only at the beginning 
+%    of the document
+%    to avoid possibly upsetting other packages that had been loaded:
+%    \begin{verbatim}
+%    \AtBeginDocument{\catcode`\_\active}
+%    \end{verbatim}
+%    but this broke input of files with names that included underscores.
+%    Next a new underscore command was defined.
+%    \begin{verbatim}
+%    \begingroup\catcode`\_\active
+%    \@firstofone{\endgroup\def_{\protect\UnderOrSub0}}
+%    \end{verbatim}
+%    but again this broke file names.
+% 
+%    And finally redefine the |\_| command.
+%    \begin{macrocode}
+\DeclareRobustCommand{\_}{%
+  \ifmmode\nfss@text{\textunderscore}\else\BreakableUnderscore\fi}
+%    \end{macrocode}
+%
+% \begin{macro}{\BreakableBackslash}
+% \begin{macro}{\BreakableSlash}
+% \begin{macro}{\BreakablePeriod}
+% \begin{macro}{\BreakableColon}
+%    We do similar breakable definitions for |\|, |/| and |.| characters.
+%    \begin{macrocode}
+\newcommand{\BreakableBackslash}{\leavevmode%
+  \prw@zbreak\textbackslash\discretionary{-}{}{}\prw@zbreak}
+\newcommand{\BreakableSlash}{\leavevmode%
+  \prw@zbreak/\discretionary{-}{}{}\prw@zbreak}
+\newcommand{\BreakablePeriod}{\leavevmode%
+  \prw@zbreak.\discretionary{-}{}{}\prw@zbreak}
+\newcommand{\BreakableColon}{\leavevmode%
+  \prw@zbreak:\discretionary{-}{}{}\prw@zbreak}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\bshyp}
+% \begin{macro}{\fshyp}
+% \begin{macro}{\dothyp}
+% \begin{macro}{\colonhyp}
+%    Now for the user commands. I was hoping to have these of the form
+%    |\\|, |\/| and |\.|, but these are all part of the basic set of
+%    commands. |\?| appears to be the only unused single
+%    analphabetic command, and I chose this for a breakable period
+%    (at least the symbol does include a dot). Normal alphabetic
+%    commands are used for the others. For the second release, I changed
+%    my mind and replaced the original |\?| command with |\dothyp|
+%    instead:
+% \begin{itemize}
+% \item |\dothyp| is more consistent with the other breakable commands;
+% \item |\?| might be used in other classes or packages;
+% \item I, or someone else, might want to later use |\?| for a breakable 
+%       question mark.
+% \end{itemize}
+%
+%    To print |first\second/third.fourth:fifth|, allowing hyphenation within
+%    each `word' and also at the |\|, |/|, |.| and |:| characters,
+%    the source should be: \\
+%    |first\bshyp{}second\fshyp{}third\dothyp{}fourth\colonhyp{}fifth|
+%
+% \changes{v2}{1997/11/30}{Added \cs{dothyp} command as synonym for \cs{?} command}
+% \changes{v2}{1997/11/30}{Deprecated the \cs{?} command}
+% \changes{v2.1}{1998/10/14}{Removed the \cs{?} command}
+%    \begin{macrocode}
+\DeclareRobustCommand{\bshyp}{%
+  \ifmmode\backslash\else\BreakableBackslash\fi}
+\DeclareRobustCommand{\fshyp}{%
+  \ifmmode/\else\BreakableSlash\fi}
+\DeclareRobustCommand{\dothyp}{%
+  \ifmmode.\else\BreakablePeriod\fi}
+\DeclareRobustCommand{\colonhyp}{%
+  \ifmmode:\else\BreakableColon\fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\BreakableHyphen}
+% \begin{macro}{\hyp}
+%  Gabriel Zachmann (\texttt{zach@igd.fhg.de}) discovered on 2000/12/21 that
+% my original code for this which included |\discretionary{-}{}{}| in some
+% circumstances and with some non-CMR fonts produced a double hyphen. The
+% revised code has not broken (yet).
+% \changes{v2.3a}{2001/01/02}{Fixed double hyphen problem}
+%    \begin{macrocode}
+\newcommand{\BreakableHyphen}{\leavevmode%
+  \prw@zbreak-\discretionary{}{}{}\prw@zbreak}
+\DeclareRobustCommand{\hyp}{%
+  \ifmmode-\else\BreakableHyphen\fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \subsection{Hyphenation of TT text} \label{sec:tt}
+%
+% The default specification for the Computer Modern Typewriter font disables
+% hyphenation by setting the |\hyphenchar| for the font to be -1 (in other
+% fonts the |\hyphenchar| is normally 45). To enable hyphenation for
+% text typeset with the cmtt font(s) we need to set the |\hyphenchar|
+% to the position of the hyphen in the font. This can be done by:
+% \begin{enumerate}
+% \item Replacing the default \file{...tt.fd} file;
+% \item Define a new virtual font with the |\hyphenchar| set;
+% \item Define a new font family based on cmtt with the |\hyphenchar| set.
+% \end{enumerate}
+% The first choice is not good because it is effectively a global change
+% to a \LaTeX{} installation. The second involves some amount of work
+% (both on the package writer's and users' parts)
+% and depends on the DVI driver being able to handle virtual fonts.
+% The third option was initially chosen as being the simplest and most portable.
+% It principally involved defining \file{.fd} files for a font family
+% that I called cmhtt, as being a hyphenatable version of cmtt.
+%
+% \begin{macro}{\textnhtt}
+% \begin{macro}{\nhttfamily}
+% |\textnhtt| is equivalent to |\texttt| but it ensures that its argument
+% will never be hyphenated. Similarly the |\nhttfamily| declaration is 
+% the corresponding equivalent to the |\ttfamily| declaration.
+% On the assumption that this will only be used for short pieces of
+% text we will implement this by using a non-existant language; this does
+% mean, however, that any language-specific typesetting (for example
+% via the \Lpack{babel} package) will be locally disabled.
+%    \begin{macrocode}
+\DeclareTextFontCommand{\textnhtt}{\nhttfamily}
+\DeclareRobustCommand{\nhttfamily}
+  {\not@math@alphabet\nhttfamily\mathtt
+   \fontfamily\ttdefault\selectfont\language\langwohyphens}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\nohyphens}
+% While we are at it, we might as well define a general command to disable
+% hyphenation of its argument text.
+%    \begin{macrocode}
+\newcommand{\nohyphens}[1]{{\language\langwohyphens #1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\touchttfonts}
+% There is a fourth way of specifying hyphenatable TT fonts that does not
+% depend on generating any extra \file{.fd} files but does depend on the fact
+% that \TeX{} only touches (loads) a font once. The method is to select
+% all likely TT fonts at the beginning of the document, and then to select
+% the normal font. When each TT font is selected its |\hyphenchar| is
+% set to the default hyphen character for the font rather than to the -1
+% as specified in the \file{.fd} files.
+% The command |\touchttfonts| selects all likely TT fonts once. (This has
+% been tested with no font packages (i.e., vanilla \LaTeX{} cmtt fonts), 
+% with the PSNFSS 
+% font packages, and with the \Lpack{pandora} package using the Pandora pntt
+% TT font).
+%
+%    \begin{macrocode}
+\newcommand{\touchttfonts}{%
+%    \end{macrocode}
+% The Medium series in Normal, Italic, Slanted and Small Caps.
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{m}\fontshape{n}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{m}\fontshape{it}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{m}\fontshape{sl}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{m}\fontshape{sc}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% The Bold series in Normal, Italic, Slanted and Small Caps.
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{b}\fontshape{n}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{b}\fontshape{it}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{b}\fontshape{sl}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{b}\fontshape{sc}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% The Bold Extended series in Normal, Italic, Slanted and Small Caps.
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{bx}\fontshape{n}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{bx}\fontshape{it}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{bx}\fontshape{sl}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{bx}\fontshape{sc}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% The Semi-bold series in Normal, Italic, Slanted and Small Caps.
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{sb}\fontshape{n}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{sb}\fontshape{it}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{sb}\fontshape{sl}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{sb}\fontshape{sc}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% The Condensed series in Normal, Italic, Slanted and Small Caps.
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{c}\fontshape{n}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{c}\fontshape{it}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{c}\fontshape{sl}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{c}\fontshape{sc}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% The Light series in Normal, Italic, Slanted and Small Caps.
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{l}\fontshape{n}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{l}\fontshape{it}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{l}\fontshape{sl}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{l}\fontshape{sc}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% Miscellaneous cmtt not covered above (from \file{cmfonts.fdd}).
+%    \begin{macrocode}
+  \fontfamily{\ttdefault}\fontseries{m}\fontshape{ui}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{bx}\fontshape{ui}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+  \fontfamily{\ttdefault}\fontseries{m}\fontshape{In}\selectfont%
+    \hyphenchar\font=\defaulthyphenchar
+%    \end{macrocode}
+% End of the definition of |\touchttfonts|.
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\touchextrattfonts}
+% This macro is provided as a hook in case |\touchttfonts| does not cover
+% the required range. It should be redefined in the preamble after loading
+% the \Lpack{hyphenat} package. The definition of |\touchttfonts| can be
+% used as a template for the new definition.
+%    \begin{macrocode}
+\newcommand{\touchextrattfonts}{}
+%    \end{macrocode}
+% \end{macro}
+%
+%    This completes the package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+% Just in case anyone is interested, the following is my original
+% specification of a hyphenatable TT font family.
+%
+% Now to specify the various \file{.fd} files for the cmhtt font.
+% These are essentially copies of the files generateable from
+% \file{cmfonts.fdd} (1998/03/27), which is part of the \LaTeX{} base
+% distribution.
+%
+%    \begin{macrocode}
+%<*ot1>
+%    \end{macrocode}
+% The OT1 coding for normal typesetting.
+%    \begin{macrocode}
+\ProvidesFile{ot1cmhtt.fd}[1998/12/31 Hyphenatable cmtt fonts]
+\DeclareFontFamily{OT1}{cmhtt}{\hyphenchar\font45}
+\DeclareFontShape{OT1}{cmhtt}{m}{n}
+  {%
+   <5><6><7><8>cmtt8<9>cmtt9%
+   <10><10.95>cmtt10%
+   <12><14.4><17.28><20.74><24.88>cmtt12%
+  }{}
+\DeclareFontShape{OT1}{cmhtt}{m}{it}
+  {%
+   <5><6><7><8><9>%
+   <10><10.95><12><14.4><17.28><20.74><24.88>cmitt10%
+  }{}
+\DeclareFontShape{OT1}{cmhtt}{m}{sl}
+  {%
+   <5><6><7><8><9>%
+   <10><10.95><12><14.4><17.28><20.74><24.88>cmsltt10%
+  }{}
+\DeclareFontShape{OT1}{cmhtt}{m}{sc}
+  {%
+   <5><6><7><8><9>%
+   <10><10.95><12><14.4><17.28><20.74><24.88>cmtcsc10%
+  }{}
+\DeclareFontShape{OT1}{cmhtt}{m}{ui}
+  {<->ssub*cmhtt/m/it}{}
+\DeclareFontShape{OT1}{cmhtt}{bx}{n}
+  {<->ssub*cmhtt/m/n}{}
+\DeclareFontShape{OT1}{cmhtt}{bx}{it}
+  {<->ssub*cmhtt/m/it}{}
+\DeclareFontShape{OT1}{cmhtt}{bx}{ui}
+  {<->ssub*cmhtt/m/it}{}
+%    \end{macrocode}
+% That's all for this file.
+%    \begin{macrocode}
+%</ot1>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*ot1slides>
+%    \end{macrocode}
+% The OT1 coding for \Lpack{slides} class.
+%    \begin{macrocode}
+\ProvidesFile{ot1lcmhtt.fd}[1998/12/31 Hyphenatable cmtt fonts for slides]
+\DeclareFontFamily{OT1}{lcmhtt}{\hyphenchar\font45}
+\DeclareFontShape{OT1}{lcmhtt}{m}{n}
+  {%
+   <13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+   cmtt8%
+  }{}
+\DeclareFontShape{OT1}{lcmhtt}{m}{In}
+  {%
+   <13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+   icmtt8%
+  }{}
+\DeclareFontShape{OT1}{lcmhtt}{m}{it}
+  {%
+   <13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+   cmitt10%
+  }{}
+\DeclareFontShape{OT1}{lcmhtt}{m}{ui}
+  {<->ssub*lcmhtt/m/it}{}
+\DeclareFontShape{OT1}{lcmhtt}{bx}{ui}
+  {<->ssub*lcmhtt/m/it}{}
+%    \end{macrocode}
+% That's all for this file.
+%    \begin{macrocode}
+%</ot1slides>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*u>
+%    \end{macrocode}
+% The U coding for normal typesetting.
+%    \begin{macrocode}
+\ProvidesFile{ucmhtt.fd}[1998/12/31 Hyphenatable cmtt fonts]
+\DeclareFontFamily{U}{cmhtt}{\hyphenchar\font45}
+\DeclareFontShape{U}{cmhtt}{m}{n}
+  {%
+   <5><6><7><8>cmtt8<9>cmtt9%
+   <10><10.95>cmtt10%
+   <12><14.4><17.28><20.74><24.88>cmtt12%
+  }{}
+\DeclareFontShape{U}{cmhtt}{m}{it}
+  {%
+   <5><6><7><8><9>%
+   <10><10.95><12><14.4><17.28><20.74><24.88>cmitt10%
+  }{}
+\DeclareFontShape{U}{cmhtt}{m}{sl}
+  {%
+   <5><6><7><8><9>%
+   <10><10.95><12><14.4><17.28><20.74><24.88>cmsltt10%
+  }{}
+\DeclareFontShape{U}{cmhtt}{m}{sc}
+  {%
+   <5><6><7><8><9>%
+   <10><10.95><12><14.4><17.28><20.74><24.88>cmtcsc10%
+  }{}
+\DeclareFontShape{U}{cmhtt}{m}{ui}
+  {<->ssub*cmhtt/m/it}{}
+\DeclareFontShape{U}{cmhtt}{bx}{n}
+  {<->ssub*cmhtt/m/n}{}
+\DeclareFontShape{U}{cmhtt}{bx}{it}
+  {<->ssub*cmhtt/m/it}{}
+\DeclareFontShape{U}{cmhtt}{bx}{ui}
+  {<->ssub*cmhtt/m/it}{}
+%    \end{macrocode}
+% That's all for this file.
+%    \begin{macrocode}
+%</u>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*t1>
+%    \end{macrocode}
+% The T1 coding for normal typesetting.
+%    \begin{macrocode}
+\ProvidesFile{t1cmhtt.fd}[1998/12/31 Hyphenatable cmtt fonts]
+\providecommand{\EC@httfamily}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}%
+  {<5><6><7><8>#50800%
+   <9><10><10.95><12><14.4><17.28><20.74><24.88><29.86>%
+   <35.83>genb*#5}{}}
+\DeclareFontFamily{T1}{cmhtt}{\hyphenchar\font45}
+\EC@httfamily{T1}{cmhtt}{m}{n}{ectt}
+\EC@httfamily{T1}{cmhtt}{m}{sl}{ecst}
+\EC@httfamily{T1}{cmhtt}{m}{it}{ecit}
+\EC@httfamily{T1}{cmhtt}{m}{sc}{ectc}
+\DeclareFontShape{T1}{cmhtt}{bx}{n}%
+  {<->ssub*cmhtt/m/n}{}
+\DeclareFontShape{T1}{cmhtt}{bx}{it}%
+  {<->ssub*cmhtt/m/it}{}
+%    \end{macrocode}
+% That's all for this file.
+%    \begin{macrocode}
+%</t1>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*t1slides>
+%    \end{macrocode}
+% The T1 coding for \Lpack{slides} class typesetting.
+%    \begin{macrocode}
+\ProvidesFile{t1lcmhtt.fd}[1998/12/31 Hyphenatable cmtt fonts for slides]
+\DeclareFontFamily{T1}{lcmhtt}{\hyphenchar\font45}
+\DeclareFontShape{T1}{lcmhtt}{m}{n}
+  {%
+   <13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+   ecltt8%
+  }{}
+\DeclareFontShape{T1}{lcmhtt}{m}{In}
+  {%
+   <13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+   iecltt8%
+  }{}
+\DeclareFontShape{T1}{lcmhtt}{m}{it}
+  {%
+   <13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+   ecit1000%
+  }{}
+%    \end{macrocode}
+% That's all for this file.
+%    \begin{macrocode}
+%</t1slides>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<*ts1>
+%    \end{macrocode}
+% The TS1 coding for normal typesetting.
+%    \begin{macrocode}
+\ProvidesFile{ts1cmhtt.fd}[1998/12/31 Hyphenatable cmtt fonts]
+\providecommand{\EC@httfamily}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}%
+  {<5><6><7><8>#50800%
+   <9><10><10.95><12><14.4><17.28><20.74><24.88><29.86>%
+   <35.83>genb*#5}{}}
+\DeclareFontFamily{TS1}{cmhtt}{\hyphenchar\font45}
+\EC@httfamily{TS1}{cmhtt}{m}{n}{tctt}
+\EC@httfamily{TS1}{cmhtt}{m}{sl}{tcst}
+\EC@httfamily{TS1}{cmhtt}{m}{it}{tcit}
+%    \end{macrocode}
+% That's all for this file.
+%    \begin{macrocode}
+%</ts1>
+%    \end{macrocode}
+%
+%
+%
+%
+%
+% \subsection{Package features and caveats}
+%
+% \begin{description}
+% \item[Features] :
+%   \begin{itemize}
+%    \item The \Lopt{none} option disables all hyphenation. If
+%          you use this option you should also consider using
+%          |\sloppy| (to reduce \TeX 's moans about bad line breaks)
+%          or |\raggedright| (to reduce moans about overfull boxes).
+%    \item |\_| prints an underscore (per the traditional command).
+%    \item |_| makes a subscript in math mode, and an error in text mode.
+%    \item Words surrounding |\_| are hyphenated normally
+%    and there is a discretionary hyphenation point immediately after
+%    the underscore.
+%    \item An underscore character is used if the font
+%       encoding has one, otherwise it uses a drawn underscore.
+%   \end{itemize}
+%
+%  \item[Caveats] :
+%    \begin{itemize}
+%    \item Using |\_\-| together disables hyphenation in any succeeding
+%          word.
+%    \item Using |\nohyphens| disables any language-specific commands
+%          within its argument. The same applies to |\textnhtt|
+%          and |\nhttfamily|.
+%    \item If the \Lopt{htt} option is used, then any resetting of
+%          the default TT font must be done in the preamble before
+%          the |\begin{document}|.
+%   \end{itemize}
+%
+% \end{description}
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[Wil96]{PRW96i}
+% Peter~R. Wilson.
+% \newblock {\em {LaTeX for standards: The LaTeX package files user manual}}.
+% \newblock NIST Report NISTIR, June 1996.
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

@@ -1,0 +1,586 @@
+% \iffalse meta-comment
+%
+% hanging.dtx
+% Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
+%                            (or at: pandgwilson at earthlink dot net) 
+% Copyright 1998 --- 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{url}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{hanging.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{308}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{1998/11/29}{First public release}
+% \changes{v1.1}{1999/05/01}{Made compatible with ltugboat.cls}
+% \changes{v1.1a}{1999/07/28}{Added text from Stefan Ulrich}
+% \changes{v1.2}{2001/03/15}{Added hanging punctuation from Stefan Ulrich}
+% \changes{v1.2a}{2004/04/22}{Updated license and contact info}
+%
+% \def\dtxfile{hanging.dtx}
+% ^^A \def\fileversion{v1.1a}
+% ^^A \def\filedate{1999/07/28}
+% \def\fileversion{v1.2}
+% \def\filedate{2001/03/15}
+% \def\fileversion{v1.2a}
+% \def\filedate{2004/04/22}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%  ^^A fake a hangpara for demo purposes
+% \newcommand{\hpdemo}[2]{\hangindent#1\hangafter#2\noindent}
+% \newcommand{\Han}{H\`{a}n \ensuremath{\mathrm{Th\acute{\hat{e}}}} Th\`{a}nh}
+%
+% \title{The \Lpack{hanging} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{After May 2004 at \texttt{pandgwilson at earthlink dot net}}\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{hanging} package provides facilities for defining hanging
+% paragraphs and hanging punctuation.
+% \end{abstract}
+% \tableofcontents
+%
+% \StopEventually{}
+%
+% 
+%
+% \section{Introduction}
+%
+% \hpdemo{3em}{2}Some authors may wish to use hanging paragraphs in 
+% their documents.
+% Normally only the first line of a paragraph is indented. A hanging paragraph
+% is a paragraph like this one where lines other than the first have indentation.
+% Other authors might wish to use hanging punctuation.
+% In this style of typesetting punctuation marks that come at either the
+% start or end of a line are typeset outside the normal text block.
+%
+% The \Lpack{hanging} package provides facilities for both hanging paragraphs
+% and hanging punctuation.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the package.
+% Commented source code for the package is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{hanging} package} \label{sec:usc}
+%
+% \subsection{Hanging paragraphs}
+%
+%    The \Lpack{hanging} package provides a command for producing
+% a single hanging paragraph and an environment for typesetting
+% a series of hanging paragraphs.
+%
+% \DescribeMacro{\hangpara}
+%  The command |\hangpara{|\meta{indent}|}{|\meta{afternum}|}| 
+% placed at the start of a paragraph will cause it to be typeset
+% as a hanging paragraph. 
+%
+% The \meta{indent} argument specifies the
+% amount of indentation. The value must be a length. A positive
+% value will indent the left hand side of the paragraph and a negative
+% value will cause the right hand side of the text to be indented.
+%
+% \hpdemo{3em}{-2}The \meta{afternum} argument controls the number of 
+% lines that will
+% be indented. The value can be a positive or negative integer, say $N$.
+% If $N > 0$ then lines \emph{after} the $N^{th}$ line (i.e., lines $N+1$ 
+% and onwards) will be indented. If $N < 0$
+% then the first $N$ lines will be indented. This paragraph has been
+% typeset according to the specification |\hangpara{3em}{-2}| whereas
+% the first paragraph in the Introduction was typeset according
+% to |\hangpara{3em}{2}|.
+%
+% A word of caution: There must be no linebreak between the |\hangpara|
+% command and the start of the paragraph text. Either put the command
+% at the start of the paragraph text, or on the previous line with a
+% following \%.
+%
+% \DescribeEnv{hangparas}
+% The |hangparas| environment can be used for typeseting a sequence of
+% hanging paragraphs. The environment takes the same two arguments as the
+% |\hangpara| command. That is,\\
+% |\begin{hangparas}{|\meta{indent}|}{|\meta{afternum}|}|.
+%
+% Another word of caution: The |hangparas| environment changes the definition
+% of |\everypar| and may have unexpected interactions with any enclosed
+% commands or environments that also change |\everypar|. If this does happen,
+% then use the |\hangpara| command for the problematic paragraph(s) instead
+% of the |hangparas| environment.
+%
+% \subsection{Hanging punctuation}
+%
+% \DescribeEnv{hangpunct}
+% Text within the |hangpunct| environment will be typeset with hanging 
+% punctuation. Personally, I think that this is more of a curiosity than
+% anything else. Others disagree and think it is an essential part
+% of fine typography.
+%
+% Use of the environment may have unpleasant side effects as the punctuation
+% characters are made active (i.e., they act as commands rather than as
+% glyphs). The hanging punctuation characters are left and right single
+% and double quotes (|`'|), period (or full stop) (|.|), exclamation
+% mark (|!|), question mark (|?|), colon and semicolon (|:;|), and
+% the comma (|,|).
+%
+%    If you really care about hanging punctuation, \Han's
+% \texttt{pdf(La)TeX} has built in support via |\pdfprotrudechars|. This
+% is implemented in the \texttt{pdfTeX} program itself~\cite{HTHESIS}, 
+% so is robust. The \texttt{pdf(La)TeX} system is available from CTAN but
+% the latest version, if not on CTAN, can be obtained from
+% \url{ftp://ftp.cstug.cz/pub/tex/lo9cal/cstug/thanh/pdftex}.
+%
+%    The package takes several options which stop punctuation characters from
+% being hung. The available options include:
+% \begin{itemize}
+% \item[\Lopt{notcomma}]  don't hang the comma (|,|)
+% \item[\Lopt{notperiod}] don't hang the period (full stop) (|.|)
+% \item[\Lopt{notquote}]  don't hang any quote marks (|` `` '' '|)
+% \item[\Lopt{notquery}]  don't hang the question mark (|?|)
+% \item[\Lopt{notexcl}]   don't hang the exclamation mark (|!|)
+% \item[\Lopt{notcolon}]  don't hang the colon (|:|)
+% \item[\Lopt{notscolon}] don't hang the semicolon (|;|)
+% \end{itemize}
+% If none of these options are given then all the available punctuation 
+% marks will be hung. 
+%
+%    There is one other option:
+% \begin{itemize}
+% \item[\Lopt{fine}] The default settings for the amount of punctuation
+% hang correspond to those given by Donald Knuth in the 
+% \textit{TeXbook}~\cite{KNUTH84a}, and are independent of the local
+% font in use (use \texttt{pdfLaTeX} for font-dependent settings).
+% Stefan Ulrich\footnote{Private email on 2001/03/14 
+%               (\texttt{ulrich@cis.uni-muenchen.de}).} 
+% suggested a less aggresive hang, which is provided by
+% the \Lopt{fine} option. This option also stops hanging question and 
+% exclamation marks.
+% \end{itemize}
+%
+% \DescribeMacro{\nhpt}
+% \DescribeMacro{\nhlq}
+% \DescribeMacro{\nhrq}
+% If a non-hanging period, or left or right quote character is required 
+% in it's character form within the |hangpunct| environment, then 
+% respectively the
+% |\nhpt|, |\nhlq| and |\nhrq| commands can be used. For example, if a
+% length is to be changed you cannot write: \\
+% |\setlength{\mylength}{2.76cm}|. Instead you must code this as: \\
+% |\setlength{\mylength}{2\nhpt76cm}|.
+%
+%
+% \section{The package code} \label{sec:code}
+%
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hanging}[2001/03/15 v1.2 hanging paragraphs and punctuation]
+%    \end{macrocode}
+%
+% \subsection{Hanging paragraphs}
+%
+% \begin{macro}{\hangpara}
+% The command for a single hanging paragraph.
+%    Just package up the \TeX{} |\hang...| commands, together with
+% |\noindent| to switch off any existing |\parindent| indentation.
+%    \begin{macrocode}
+\newcommand{\hangpara}[2]{\hangindent#1\hangafter#2\noindent}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{hangparas}
+%    The environment for typesetting multiple hanging paragraphs. It takes
+% the same arguments as the |\hangpara| command. At the start, set the
+% paragraph indent to zero, then change |\everypar| to |\hangpara|.
+% At the end of the environment make sure that the last paragraph was 
+% finished via |\par|, otherwise the user would have to leave a blank line
+% or use |\par| explicitly.
+%    \begin{macrocode}
+\newenvironment{hangparas}[2]{\setlength{\parindent}{\z@}
+  \everypar={\hangpara{#1}{#2}}}{\par}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{Hanging punctuation}
+%
+% The code for hanging punctuation is based on the Dirty Tricks example
+% on page 395 of the \TeX book~\cite{KNUTH84a}.
+%
+% I made an experimental attempt to include hanging hyphens, 
+% but this broke too many other things all over the place to be of
+% practical use. I believe Knuth when he says that
+% hanging hyphens require a font with a zero-width hyphen. I think that
+% the basic problem is that the `-' character, as input, represents both
+% a hyphen and a minus sign; diddling with a hyphen means that the minus
+% sign is similarly diddled. This package is meant to be independent of the
+% font, and following Knuth, providing a hanging hyphen is font-dependent.
+% Fortunately, most of the time \TeX{} manages to avoid hyphens at line ends.
+%
+% Stefan Ulrich (\texttt{ulrich@cis.uni-muenchen.de}) pointed out that
+% the EC fonts include a hyphen with a smaller, but non-zero, width. Using
+% this then the last non-hyphen character at the end of a hyphenated line
+% will be a little closer to the margin. To use the smaller EC hyphen, 
+% Stefan suggested doing:
+% \begin{verbatim}
+% \usepackage[T1]{fontenc}
+% \hyphenchar\font=127
+% \end{verbatim}
+%
+% \begin{macro}{\ifh@ngcomma}
+% \begin{macro}{\ifh@ngfstop}
+% \begin{macro}{\ifh@ngquote}
+% \begin{macro}{\ifh@ngquery}
+% \begin{macro}{\ifh@ngexcl}
+% \begin{macro}{\ifh@ngcolon}
+% \begin{macro}{\ifh@ngscolon}
+% \begin{macro}{\ifh@ngfine}
+%  We need some booleans for the options.
+% \changes{v1.1}{1999/05/01}{Added options to switch off hanging particular characters}
+% \changes{v1.2}{2001/03/15}{Added the fine option.}
+%    \begin{macrocode}
+\newif\ifh@ngcomma  \h@ngcommatrue
+\newif\ifh@ngfstop  \h@ngfstoptrue
+\newif\ifh@ngquote  \h@ngquotetrue
+\newif\ifh@ngquery  \h@ngquerytrue
+\newif\ifh@ngexcl   \h@ngexcltrue
+\newif\ifh@ngcolon  \h@ngcolontrue
+\newif\ifh@ngscolon \h@ngscolontrue
+\newif\ifh@ngfine   \h@ngfinefalse
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%    Now do the options.
+% 
+%    \begin{macrocode}
+\DeclareOption{notcomma}{\h@ngcommafalse}
+\DeclareOption{notperiod}{\h@ngfstopfalse}
+\DeclareOption{notquote}{\h@ngquotefalse}
+\DeclareOption{notquery}{\h@ngqueryfalse}
+\DeclareOption{notexcl}{\h@ngexclfalse}
+\DeclareOption{notcolon}{\h@ngcolonfalse}
+\DeclareOption{notscolon}{\h@ngscolonfalse}
+\DeclareOption{fine}{\h@ngfinetrue}
+\ProcessOptions\relax
+\ifh@ngfine
+  \h@ngqueryfalse \h@ngexclfalse
+\fi
+%    \end{macrocode}
+%
+% \begin{macro}{\h@ngcommawd}
+% \begin{macro}{\h@ngfstopwd}
+% \begin{macro}{\h@ngquotewd}
+% \begin{macro}{\h@ngdquotewd}
+% \begin{macro}{\h@ngquerywd}
+% \begin{macro}{\h@ngexclwd}
+% \begin{macro}{\h@ngcolonwd}
+% \begin{macro}{\h@ngscolonwd}
+% We need some lengths for kerning for each punctuation mark that might be 
+% hung. These are set to the width of the character.
+%    \begin{macrocode}
+\newlength{\h@ngcommawd}  \settowidth{\h@ngcommawd}{,}
+\newlength{\h@ngfstopwd}  \settowidth{\h@ngfstopwd}{.}
+\newlength{\h@ngquotewd}  \settowidth{\h@ngquotewd}{`}
+\newlength{\h@ngdquotewd} \settowidth{\h@ngdquotewd}{``}
+\newlength{\h@ngquerywd}  \settowidth{\h@ngquerywd}{?}
+\newlength{\h@ngexclwd}   \settowidth{\h@ngexclwd}{!}
+\newlength{\h@ngcolonwd}  \settowidth{\h@ngcolonwd}{:}
+\newlength{\h@ngscolonwd} \settowidth{\h@ngscolonwd}{;}
+%    \end{macrocode}
+%
+% These values are changed if the \Lopt{fine} option is given. The following
+% is by courtesy of Stefan Ulrich.
+%    \begin{macrocode}
+\ifh@ngfine
+  \setlength{\h@ngcommawd}{0.35\h@ngcommawd}
+  \setlength{\h@ngfstopwd}{0.30\h@ngfstopwd}
+  \setlength{\h@ngquotewd}{0.30\h@ngquotewd}
+  \setlength{\h@ngdquotewd}{0.35\h@ngdquotewd}
+  \setlength{\h@ngcolonwd}{0.20\h@ngcolonwd}
+  \setlength{\h@ngscolonwd}{0.20\h@ngscolonwd}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\h@ngallowhyphens}
+% An incantation to be used to allow hyphenation in a `word' beginning
+% with a quote mark.\footnote{Hubert Gaesslein 
+% (\texttt{hubertjg@virtualphotonics.cm})
+% pointed out that the definition of \texttt{h@ngallowhyphens} should end
+% with \texttt{z@skip} rather than my original \texttt{z@}, in case it was used
+% in situations I hadn't thought of.}
+% \changes{v1.1}{1999/05/01}{Changed allowhyphens to h@ngallowhyphens for compatibility with ltugboat.cls}
+% \changes{v1.1a}{1999/05/01}{Made h@ngallowhyphens more robust}
+%    \begin{macrocode}
+\newcommand{\h@ngallowhyphens}{\nobreak\hskip\z@skip}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\nhpt}
+% \begin{macro}{\nhlq}
+% \begin{macro}{\nhrq}
+% As the punctuation is going to be made active, we need commands for 
+% some of the characters when they will be used in constants.
+%    \begin{macrocode}
+\newcommand{\nhpt}{.}
+\newcommand{\nhlq}{`}
+\newcommand{\nhrq}{'}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\h@nglqq}
+% \begin{macro}{\h@ngrqq}
+% \begin{macro}{\h@ngrquote}
+% \begin{macro}{\h@nglquote}
+% \begin{macro}{\h@ngcomma}
+% \begin{macro}{\h@ngfstop}
+% \begin{macro}{\h@ngquery}
+% \begin{macro}{\h@ngexcl}
+% \begin{macro}{\h@ngcolon}
+% \begin{macro}{\h@ngscolon}
+% Commands for punctuation with kerning.
+%    \begin{macrocode}
+\newcommand{\h@nglqq}{``}
+\newcommand{\h@ngrqq}{''}
+\newcommand{\h@ngrquote}{'\kern-\h@ngquotewd\kern\h@ngquotewd}
+\newcommand{\h@nglquote}{\ifhmode\kern\h@ngquotewd\vadjust{}\else\leavevmode\fi
+                         \kern-\h@ngquotewd`\h@ngallowhyphens}
+\newcommand{\h@ngcomma}{,\kern-\h@ngcommawd\kern\h@ngcommawd}
+\newcommand{\h@ngfstop}{.\kern-\h@ngfstopwd\kern\h@ngfstopwd}
+\newcommand{\h@ngquery}{?\kern-\h@ngquerywd\kern\h@ngquerywd}
+\newcommand{\h@ngexcl}{!\kern-\h@ngexclwd\kern\h@ngexclwd}
+\newcommand{\h@ngcolon}{:\kern-\h@ngcolonwd\kern\h@ngcolonwd}
+\newcommand{\h@ngscolon}{;\kern-\h@ngscolonwd\kern\h@ngscolonwd}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\activatepunct}
+% At this point we make the punctuation characters 
+% active.\footnote{My thanks to Harald Hanche-Olsen 
+% \texttt{hanche@math.ntnu.no}
+% for showing me how to do this instead of my initial hack of putting
+% all the following code into a file to be input by the environment.}
+%
+% Activate the punctuation characters, leaving the left quote till last.
+%    \begin{macrocode}
+\def\activatepunct{%
+\ifh@ngcomma  \catcode`\,=\active \fi
+\ifh@ngfstop  \catcode`\.=\active \fi
+\ifh@ngquote  \catcode`\'=\active \fi
+\ifh@ngquery  \catcode`\?=\active \fi
+\ifh@ngexcl   \catcode`\!=\active \fi
+\ifh@ngcolon  \catcode`\:=\active \fi
+\ifh@ngscolon \catcode`\;=\active \fi
+\ifh@ngquote  \catcode`\`=\active \fi
+}
+%    \end{macrocode}
+% \end{macro}
+% Define the simple punctuation macros in terms of the respective 
+% |\h@ng...| commands, using |\gdef| as they are instantiated
+% in a group.
+%    \begin{macrocode}
+\begingroup
+\activatepunct
+\ifh@ngcomma  \gdef,{\h@ngcomma}  \fi
+\ifh@ngfstop  \gdef.{\h@ngfstop}  \fi
+\ifh@ngquery  \gdef?{\h@ngquery}  \fi
+\ifh@ngexcl   \gdef!{\h@ngexcl}  \fi
+\ifh@ngcolon  \gdef:{\h@ngcolon}  \fi
+\ifh@ngscolon \gdef;{\h@ngscolon}  \fi
+%    \end{macrocode}
+% Life is more complicated for quote marks as they have to check for 
+% ligatures.
+%    \begin{macrocode}
+\ifh@ngquote
+  \gdef'{\futurelet\next\h@ngrqtest}
+  \gdef`{\futurelet\next\h@nglqtest}
+%    \end{macrocode}
+%
+% \begin{macro}{\h@ngrqtest}
+% \begin{macro}{\h@nglqtest}
+% \begin{macro}{\h@ngrquotes}
+% \begin{macro}{\h@nglquotes}
+% Commands for left and right quotes ligature tests.
+%    \begin{macrocode}
+  \gdef\h@ngrqtest{\ifx\next'\let\next=\h@ngrquotes\else\let\next=\h@ngrquote\fi\next}
+  \gdef\h@nglqtest{\ifx\next`\let\next=\h@nglquotes\else\let\next=\h@nglquote\fi\next}
+  \gdef\h@ngrquotes'{\h@ngrqq\kern-\h@ngdquotewd\kern\h@ngdquotewd}
+  \gdef\h@nglquotes`{\ifhmode\kern\h@ngdquotewd\vadjust{}\else\leavevmode\fi
+    \kern-\h@ngdquotewd\h@nglqq\h@ngallowhyphens}
+\fi
+%    \end{macrocode}
+% Finally, end the group started earlier.
+%    \begin{macrocode}
+\endgroup
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% 
+% \begin{environment}{hangpunct}
+% The definition of the hanging punctuation environment is now very simple.
+% It just calls |\activatepunct|.
+%    \begin{macrocode}
+\newenvironment{hangpunct}{\activatepunct}{}
+%    \end{macrocode}
+% \end{environment}
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[Knu84]{KNUTH84a}
+% Donald~E. Knuth.
+% \newblock {\em The TeXbook}.
+% \newblock Addison-Wesley Publishing Company, 1984.
+%
+% \bibitem[Tha00]{HTHESIS}
+% \Han.
+% \newblock \emph{Micro-typographic extensions to the TeX typesetting system}.
+% \newblock Dissertation.
+% \newblock Masaryk University Brno, Faculty of Informatics, October 2000.
+% \newblock (Available as \url{http://www.fi-muni.cz/~thanh/download/thesis.pdf})
+%
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

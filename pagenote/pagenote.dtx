@@ -1,0 +1,745 @@
+% \iffalse meta-comment
+% pagenote.dtx
+% Author: Peter Wilson (The Herries Press) herries dot press at earthlink dot net 
+% Copyright 2004 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{pagenote.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{251}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2004/09/24}{First public release}
+% \changes{v1.1}{2004/09/27}{Minor additions}
+%
+% \def\dtxfile{pagenote.dtx}
+% \def\fileversion{v1.0}
+% \def\filedate{2004/09/24}
+% \def\fileversion{v1.1}
+% \def\filedate{2004/09/27}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{pagenote} package\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson \\
+% The Herries Press \\
+% \texttt{herries dot press at earthlink dot net}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{pagenote} package provides notes similar to footnotes 
+% except that they are typeset on a different page. 
+% These are often called end notes.
+%
+%     Unless the memoir class is being used, the package requires the 
+% \Lpack{ifmtarg} package.
+%
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+%     End notes are often used instead of footnotes so as not to interrupt the
+% flow of the main text. The \Lpack{pagenote} package provides for such notes.
+% Although end notes are normally put at the end of the document, they may
+% instead be put at the end of each chapter (or section if the document class
+% does not support chapters).
+%
+%    The simple use is like this:
+% \begin{verbatim}
+% \documentclass{...}
+% \usepackage{pagenote}
+% \makepagenote
+% ...
+% \begin{document}
+% ...\pagenote{An end note} ...
+% ...\pagenote{Another note} ...
+% \chapter{Notes}
+% \printnotes
+% \end{document}
+% \end{verbatim}
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{pagenote} 
+% package and 
+% commented source code is in Section~\ref{sec:code}.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+% \section{The \Lpack{pagenote} package} \label{sec:usc}
+%
+%    The general principal is that notes are written out to a file which
+% is then input at the place where the notes are to be printed. The note 
+% file has an \file{ent} extension, like the table of contents file
+% has a \texttt{toc} extension.
+%
+% \subsection{Options}
+%
+%    The package has the following options.
+%
+% \begin{description}
+% \item[\Lopt{continuous}] By default, note numbers are reset at each
+%  main division in the document. When the \Lopt{continuous} option is
+% used, the numbering is continuous throughout the document.
+%
+% \item[\Lopt{page}] By default page numbers are not available for
+% reference within the notes. When the \Lopt{page} option is used, the 
+% page number where a note was inserted is available. If this option
+% is used, there must be a page break between the last note and the 
+% printed list of notes.
+% \end{description}
+%
+% \subsection{Commands}
+%
+% Generally speaking, the following descriptions assume that a class
+% that provides |\chapter|s has been used. If you use a class
+% that only provides |\section|s, the details are in the source code
+% in Section~\ref{sec:code} (the \Lpack{memoir} class provides |\chapter|s
+% that look like |\section|s from the \Lpack{article} class).
+%
+% \DescribeMacro{\makepagenote}
+% If you want to have page/end notes, the |\makepagenote| command must be
+% put in the preamble. Among other things, this sets up the note \file{ent}
+% file.
+%
+% \DescribeMacro{\printnotes}
+% \DescribeMacro{\printnotes*}
+% The |\printnotes| command will cause the \file{ent} file to be closed for
+% any new notes, and then |\input| in order to print the collected notes.
+% After |\printnotes| no more notes will be
+% collected, so use it after all are done.
+%
+% Similarly, the starred version of the command causes the \file{ent}
+% file to be closed and the |\input|, but afterwards a new set of notes 
+% may be saved in
+% the \file{ent} file. For example, you could put |\printnotes*| at the
+% end of each chapter.
+%
+% Because of how TeX writes information to files, when the \Lopt{page}
+% option is used there must be no notes 
+% on the page where
+% |\printnotes| or |\printnotes*| closes the \file{ent} file. If necessary, 
+% a |\clearpage| or similar must be used before the |\print...|.
+%
+% \DescribeMacro{\pagenote}
+% There are two common methods of identifying an end note:
+% \begin{itemize}
+% \item Like a footnote, put a number in the text at the location 
+% of the note and use the same number to identify the note when it
+% finally gets printed.
+% \item Put no mark in the text, but when it is finally printed use a few 
+% words from the text to identify the origin of the note. The page number
+% is often used as well with this method.
+% \end{itemize}
+%
+% |\pagenote|\oarg{id}\marg{text} is used where you want a note to be inserted,
+% although it will not be printed there. The \meta{text} argument is the
+% contents of the note. The optional \meta{id} argument can be used if you
+% want to use something other than a number to identify the source of 
+% the note when it finally gets printed.
+%
+% \DescribeMacro{\notenumintext}
+% A counter, |pagenote|, may be used to indicate the location of a note
+% in the text (like the |footnote| counter). The macro
+% |\notenumintext|\marg{num} is called by |\pagenote| to print the
+% |pagenote| number. By default it is printed as a superscript, but this can 
+% be changed, or even eliminated.
+%
+% In documents with |\chapter|s, the |pagenote| counter is reset for each 
+% chapter, otherwise it is reset for each |\section|.
+%
+% \DescribeMacro{\noteentry}
+% The |\pagenote|\oarg{id}\marg{text} macro writes \\
+% |\noteentry|\marg{notenum}\marg{id}\marg{text}\marg{pagenum} \\
+% to the \file{ent} file, where \meta{notenum} is the note number (from
+% the |pagenote| counter), \meta{id} and \meta{text} are as supplied to
+% |\pagenote|, and if the \Lopt{page} option is used, \meta{pagenum} is the 
+% page number, otherwise it is empty. The |\noteentry|
+% macro controls the typesetting of the note.
+%
+% \DescribeMacro{\prenoteinnotes}
+% \DescribeMacro{\noteidinnotes}
+% \DescribeMacro{\pageinnotes}
+% \DescribeMacro{\noteinnotes}
+% \DescribeMacro{\postnoteinnotes}
+% The default definition of |\noteentry| is
+% \begin{verbatim}
+% \newcommand{\notentry}[4]{%
+%   \prenoteinnotes
+%   \noteidinnotes{#1}{#2}%
+%   \pageinnotes{#4}%
+%   \noteinnotes{#3}%
+%   \postnoteinnotes}
+% \end{verbatim}
+%   The macros |\prenoteinnotes| and |\postnoteinnotes| are used to start 
+% and end the typesetting of the note --- effectively typesetting
+% each note as a paragraph; their definitions can be changed if need be.
+%
+% The macro |\noteidinnotes|\marg{notenum}\marg{id} is designed to typeset
+% the note number and/or the note id (from the optional \meta{id} argument
+% to |\pagenote|). 
+%
+% The macro |\pageinnotes|\marg{pagenum} is used for typesetting (or ignoring)
+% the page number where the note was specified, and |\noteinnotes|\marg{text}
+% sets the actual note \meta{text}.
+%
+% Any or all of these may be changed to suit your needs.
+%
+% \DescribeMacro{\notedivision}
+% \DescribeMacro{\notesname}
+% When |\printnotes| (or |\printnotes*|) is called the first thing it does is
+% call the macro |\notedivision|. By default, for chaptered documents
+%  this is defined as: \\
+% |\newcommand*{\notedivision}{\chapter{\notesname}}| \\
+% with: \\
+% |\newcommand*{\notesname}{Notes}| \\
+% In other words, it will print out a heading for the notes that will be read
+% from the \file{ent} file. |\print...| then closes the \file{ent} file 
+% for writing and after this |\input|s it to get and process the notes.
+%
+% \DescribeMacro{\addtonotes}
+% \DescribeMacro{\pagenotesubhead}
+% The macro |\addtonotes|\marg{text} inserts \meta{text} into the \file{ent}
+% file. For example, before the first note in a chapter, |\addtonotes| is
+% used to insert |\pagenotesubhead|\marg{num}\marg{title} into the file
+% where \meta{num} is the new chapter number, and \meta{title} is either
+% empty or, if the \Lpack{memoir} class is used, is the chapter title as 
+% it appears in the table of contents. This macro is used to typeset
+% a heading for each set of notes. By default it will resolve to
+% something like: \\
+% |\subsection{Chapter 3 ...}|
+%
+% \textbf{Note:} As the argument to |\pagenote| and |\addtonotes| 
+% is moving you may have
+% to |\protect| any fragile commands. If you get strange error messages, try
+% using |\protect| and see if they go away.
+%
+% \DescribeMacro{\chaptername}
+% \DescribeMacro{\sectionname}
+% \DescribeMacro{\pagename}
+%  The command |\chaptername| is supplied by the LaTeX classes that
+% provide |\chapter| divisions and is
+% defined to produce `Chapter'. The macros |\sectionname| and 
+% |\pagename| are provided by this package, producing respectively 
+% `Section' and `page'. 
+%
+% The package is set up under the assumption that notes will only be
+% printed at the end of the document. If you intend to put them at the
+% end of each chapter, then you will probably want to change the definitions
+% of the |\notedivision| and |\pagenotesubhead| macros. For example:
+% \begin{verbatim}
+% \renewcommand*{\notedivision}{\section*{\notesname}}
+% \renewcommand*{\pagenotesubhead}[2]{}
+% \end{verbatim}
+% and remember to use |\printnotes*| at each place you want the current set
+% of notes to be printed.
+%
+%
+%
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+% \end{thebibliography}
+% }
+%
+%
+% 
+% \section{The package code} \label{sec:code}
+%
+%
+% \subsection{Preliminaries}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pagenote}[2004/09/27 v1.1 page/end notes]
+%    \end{macrocode}
+%
+% The \Lpack{ifmtarg} package is required (which is included within the
+% \Lpack{memoir} class).
+%    \begin{macrocode}
+\@ifclassloaded{memoir}{}{\RequirePackage{ifmtarg}}
+
+%    \end{macrocode}
+%
+%    The following |\if...| command is for distinguishing between
+% chaptered and simpler documents. Page/end notes are more appropriate
+% when there are chapters.
+% \begin{macro}{\ifpnhaschapter}
+%    \begin{macrocode}
+\newif\ifpnhaschapter
+\@ifundefined{chapter}{\pnhaschapterfalse}{\pnhaschaptertrue}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@rtoc}
+% In the \Lpack{memoir} class this holds the chapter title as it should 
+% appear in the ToC. We need to make sure that it is defined.
+%    \begin{macrocode}
+\providecommand{\f@rtoc}{}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Options}
+%
+% \begin{macro}{\ifpnpageopt}
+% \begin{macro}{\ifpncontopt}
+% We need two flags for the options.
+%    \begin{macrocode}
+\newif\ifpnpageopt
+  \pnpageoptfalse
+\newif\ifpncontopt
+  \pncontoptfalse
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% Process the options.
+%
+%    \begin{macrocode}
+\DeclareOption{page}{\pnpageopttrue}
+\DeclareOption{continuous}{\pncontopttrue}
+\ProcessOptions
+
+%    \end{macrocode}
+%
+% \subsection{Main code}
+%
+% \begin{macro}{\c@pagenote}
+% \begin{macro}{\thepagenote}
+% We need a counter for the notes. Just how it is defined depends on the 
+% \Lopt{continuous} option or the class.
+%    \begin{macrocode}
+\ifpncontopt
+  \newcounter{pagenote}
+\else
+  \ifpnhaschapter
+    \newcounter{pagenote}[chapter]
+  \else
+    \newcounter{pagenote}[section]
+  \fi
+\fi
+\renewcommand{\thepagenote}{\arabic{pagenote}}
+\setcounter{pagenote}{0}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@pnotesavechap}
+% We also need a counter for document divisions to check if we
+% are in a new one. Initialise it to an `impossible' value.
+%    \begin{macrocode}
+\newcounter{pnotesavechap}
+  \setcounter{pnotesavechap}{-1000}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifmakingpagenotes}
+% Need to check if notes are required.
+%    \begin{macrocode}
+\newif\ifmakingpagenotes
+  \makingpagenotesfalse
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makepagenote}
+% This sets up the note file. At the end it emasculates itself so it can only
+% be used once.
+%    \begin{macrocode}
+\newcommand*{\makepagenote}{%
+  \newwrite\@notefile
+  \immediate\openout\@notefile=\jobname.ent
+  \makingpagenotestrue
+%    \end{macrocode}
+% \begin{macro}{\pagenote}
+% Make sure that this has a useful definition.
+%    \begin{macrocode}
+  \def\pagenote{\@bsphack\begingroup
+    \@sanitize
+    \@wrpnote}%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macrocode}
+  \typeout{Writing note file \jobname.ent}%
+  \let\makepagenote\@empty}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\immediate@protected@write}
+% We might have to do some immediate writes. This is an immediate
+% version of the kernel |\protected@write|.
+%    \begin{macrocode}
+\newcommand{\immediate@protected@write}[3]{%
+  \begingroup
+  #2%
+  \let\protect\@unexpandable@protect
+  \edef\reserved@a{\immediate\write#1{#3}}%
+  \reserved@a
+  \endgroup
+  \if@nobreak\ifvmode\nobreak\fi\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@pnwrite}
+% If the \Lopt{page} option is used we cannot use an immeditae write
+% because the page number is only known in the output routine.
+%    \begin{macrocode}
+\ifpnpageopt
+  \let\@pnwrite\protected@write
+\else
+  \let\@pnwrite\immediate@protected@write
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@wrpnote}
+% This writes the note information to the note file. It first increments the
+% note counter and calls |\notenumintext| to handle its appearance in 
+% the body text.
+%    \begin{macrocode}
+\newcommand{\@wrpnote}[2][]{%
+  \refstepcounter{pagenote}%
+  \notenumintext{\thepagenote}%
+%    \end{macrocode}
+% Check if this is the first note in a division, and if so indicate this 
+% in the file.
+%    \begin{macrocode}
+  \ifpnhaschapter
+    \ifnum\value{pnotesavechap}=\value{chapter}\else
+      \setcounter{pnotesavechap}{\value{chapter}}%
+      \addtonotes{\pagenotesubhead{\thechapter}{\f@rtoc}}%
+    \fi
+  \else
+    \ifnum\value{pnotesavechap}=\value{section}\else
+      \setcounter{pnotesavechap}{\value{section}}%
+      \addtonotes{\pagenotesubhead{\thesection}{}}%
+    \fi
+  \fi
+%    \end{macrocode}
+% Finally, write the entry.
+%    \begin{macrocode}
+  \@pnwrite\@notefile{}
+    {\string\noteentry{\thepagenote}{#1}{#2}{\thepage}}%
+  \endgroup
+  \@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pagenote}
+% The user command to generate a note.
+%    \begin{macrocode}
+\def\pagenote{\@bsphack\begingroup \@sanitize\@pagenote}
+
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@pagenote}
+%    \begin{macrocode}
+\newcommand{\@pagenote}[2][]{\endgroup\@esphack}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\addtonotes}
+% |\addtonotes|\marg{text} puts \meta{text} into the notes file.
+%    \begin{macrocode}
+\newcommand{\addtonotes}[1]{%
+  \ifmakingpagenotes
+ \IfFileExists{\jobname.ent}{\@pnwrite\@notefile{}{#1}}{\pnofilewarn}%
+\fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\notenumintext}
+% \begin{macro}{\notenuminnotes}
+% |\notenumintext|\marg{notenum} typesets \meta{notenum} (in the body text).
+%    \begin{macrocode}
+\newcommand{\notenumintext}[1]{%
+  \textsuperscript{#1}}
+%    \end{macrocode}
+% |\notenuminnotes|\marg{notenum} typesets \meta{notenum} (as part of the note). 
+%    \begin{macrocode}
+\newcommand{\notenuminnotes}[1]{%
+  {\normalfont #1.} }
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\noteentry}
+% |\noteentry|\marg{notenum}\marg{id}\marg{pagenum}\marg{text}
+% typesets a note.
+%    \begin{macrocode}
+\newcommand{\noteentry}[4]{%
+  \prenoteinnotes 
+  \noteidinnotes{#1}{#2}\pageinnotes{#4}\noteinnotes{#3}%
+  \postnoteinnotes}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\textinnotes}
+% |\textinnotes|\marg{id text} typesets the note's \meta{id text}.
+%    \begin{macrocode}
+\newcommand{\textinnotes}[1]{%
+  [#1] }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\noteidinnotes}
+% |\noteidinnotes|\marg{notenum}\marg{id} is used to typeset the note 
+% identification (in the note listing). It is set so that it typesets the 
+% \meta{id} if it is not empty, otherwise it sets the \meta{notenum}.
+%    \begin{macrocode}
+\newcommand{\noteidinnotes}[2]{%
+  \@ifmtarg{#2}{%
+    \notenuminnotes{#1}}{\textinnotes{#2}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pagename}
+% \begin{macro}{\pageinnotes}
+% |\pageinnotes|\meta{pagenum} is used to typeset the originating page number
+% (in the note), but the page number is not trustworthy unless the
+% \Lopt{page} option is used.
+% \changes{v1.1}{2004/09/27}{Added \cs{pagename} for use in \cs{pageinnotes}}
+%    \begin{macrocode}
+\providecommand*{\pagename}{page}
+\newcommand{\pageinnotes}[1]{%
+  \ifpnpageopt (\pagename\ #1) \fi}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\noteinnotes}
+% |\noteinnotes|\marg{text} is used to typeset the note's text 
+% (in the note list).
+%    \begin{macrocode}
+\newcommand{\noteinnotes}[1]{#1}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\prenoteinnotes}
+% \begin{macro}{\postnoteinnotes}
+% These are called immediately before and after the note information is 
+% typeset.
+%    \begin{macrocode}
+\newcommand{\prenoteinnotes}{\par\noindent}
+\newcommand{\postnoteinnotes}{\par}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\notesname}
+% \begin{macro}{\notedivision}
+% Heading for note list.
+%    \begin{macrocode}
+\providecommand*{\notesname}{Notes}
+\ifpnhaschapter
+  \newcommand*{\notedivision}{\chapter{\notesname}}
+\else
+  \newcommand*{\notedivision}{\section{\notesname}}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\printnotes}
+% \begin{macro}{\printnotes*}
+% User commands to print the note file.
+%    \begin{macrocode}
+\newcommand*{\printnotes}{\@ifstar{\@sprintnotes}{\@printnotes}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\pnofilewarn}
+% Warning when the notes file does not exist.
+%    \begin{macrocode}
+\newcommand*{\pnofilewarn}{%
+  \PackageWarning{pagenote}{There is no .ent file}}
+%
+% \begin{macro}{\@sprintnotes}
+% Macro implementing |\printnotes*|.
+%    \begin{macrocode}
+\newcommand*{\@sprintnotes}{%
+  \ifmakingpagenotes
+  \notedivision
+\IfFileExists{\jobname.ent}{%
+  \immediate\closeout\@notefile
+  \input{\jobname.ent}%
+  \immediate\openout\@notefile=\jobname.ent%
+  }{%
+  \pnofilewarn
+}%
+\fi}
+  
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@printnotes}
+% Macro implementing |\printnotes|.
+%    \begin{macrocode}
+\newcommand*{\@printnotes}{%
+  \ifmakingpagenotes
+  \notedivision
+\IfFileExists{\jobname.ent}{%
+  \immediate\closeout\@notefile
+  \input{\jobname.ent}%
+  }{%
+  \pnofilewarn
+}
+\fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\chapterame}
+% \begin{macro}{\sectionname}
+% \begin{macro}{\pagenotesubhead}
+% The section heading before each set of notes.
+% \changes{v1.1}{2004/09/27}{Added \cs{sectionname} for use in \cs{pagenotesubhead}}
+%    \begin{macrocode}
+\providecommand*{\chaptername}{Chapter}
+\providecommand*{\sectionname}{Section}
+\ifpnhaschapter
+  \DeclareRobustCommand{\pagenotesubhead}[2]{%
+    \subsection*{\chaptername\ #1 #2}}
+\else
+  \DeclareRobustCommand{\pagenotesubhead}[2]{%
+    \subsection*{\sectionname\ #1}}
+\fi
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

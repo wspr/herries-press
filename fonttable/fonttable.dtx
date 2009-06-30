@@ -1,0 +1,1252 @@
+% \iffalse meta-comment
+%
+% fonttable.dtx
+%
+%  Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+%  Copyright 2005--2009 Peter R. Wilson
+%
+%  This work may be distributed and/or modified under the
+%  conditions of the Latex Project Public License, either
+%  version 1.3 of this license or (at your option) any
+%  later version.
+%  The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+%  and version 1.3 or later is part of all distributions of
+%  LaTeX version 2003/06/01 or later.
+%
+%  This work has the LPPL maintenance status "author-maintained".
+%
+%  This work consists of the files listed in the README file.
+%
+%
+%<*driver>
+\documentclass[twoside]{ltxdoc}
+\usepackage{url}
+\usepackage[draft=false,
+            plainpages=false,
+            pdfpagelabels,
+            bookmarksnumbered,
+            hyperindex=false
+           ]{hyperref}
+\providecommand{\phantomsection}{}
+%%\OnlyDescription %% comment this out for the full glory
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\makeatletter
+  \@mparswitchfalse
+\makeatother
+\renewcommand{\MakeUppercase}[1]{#1}
+\pagestyle{headings}
+\newenvironment{addtomargins}[1]{%
+  \begin{list}{}{%
+    \topsep 0pt%
+    \addtolength{\leftmargin}{#1}%
+    \addtolength{\rightmargin}{#1}%
+    \listparindent \parindent
+    \itemindent \parindent
+    \parsep \parskip}%
+  \item[]}{\end{list}}
+\begin{document}
+  \raggedbottom
+  \DocInput{fonttable.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{913}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2005/11/27}{First public release}
+% \changes{v1.0a}{2005/12/06}{Minor bug fix}
+% \changes{v1.1}{2006/10/02}{Minor extensions}
+% \changes{v1.2}{2006/10/02}{Minor extensions of texts}
+% \changes{v1.3}{2009/04/30}{Fix serious bug}
+% \changes{v1.4}{2009/05/06}{Added another way to select a font}
+% \changes{v1.5}{2009/05/12}{Added code for Knuth's testfont.tex}
+% \changes{v1.51}{2009/05/14}{Eliminated a clash with babel package}
+%
+% \def\fileversion{v1.0} \def\filedate{2005/11/27}
+% \def\fileversion{v1.0a} \def\filedate{2005/12/06}
+% \def\fileversion{v1.1} \def\filedate{2006/10/02}
+% \def\fileversion{v1.2} \def\filedate{2008/05/08}
+% \def\fileversion{v1.3} \def\filedate{2009/04/30}
+% \def\fileversion{v1.4} \def\filedate{2009/05/06}
+% \def\fileversion{v1.5} \def\filedate{2009/05/12}
+% \def\fileversion{v1.51} \def\filedate{2009/05/14}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+% \newcommand*{\AD}{\textsc{ad}}
+% \newcommand*{\thisfont}{OandS}
+%
+% \title{The \Lpack{fonttable} package\thanks{This
+%        file has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{\texttt{herries dot press at earthlink dot net}}\\
+% Herries Press
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The package lets you typeset the characters in a font in tabular and/or
+% running text forms.
+% \end{abstract}
+% \tableofcontents
+%
+% \section{Introduction}
+%
+%    The \Lpack{fonttable} package lets you typeset a font's character set
+% in tabular and/or running text forms.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{COMPANION}.
+%
+% \section{The package}
+%
+%    The package provides commands to typeset a table of all the glyphs in
+% a given font and to typeset an example of regular text. For font designers
+% it provides commands to typeset a `test' glyph among sets of glyphs
+% from the font.
+%
+% \DescribeMacro{\fnthours}
+% As a convenience, \cs{fnthours} prints the time of day when the file was 
+% processed; it uses the 24 hour clock notation. (The macro \cs{today} prints
+% the date when the file was processed.)
+%
+% \subsection{Table and texts}
+%
+%
+% \DescribeMacro{\fonttable}
+% The command \\
+% \cs{fonttable}\marg{testfont} \\
+% typesets a table showing all the
+% glyphs in the \meta{testfont}, where \meta{testfont} is the name of a 
+% font file\footnote{More precisely, the name of a \texttt{.tfm} file.}
+% like \texttt{cmr10} (for Computer Modern Roman) or \texttt{pzdr} 
+% (for Zapf Dingbats).
+%
+% NOTE: The \Lpack{mftinc} package~\cite{MFTINC} for pretty-printing 
+% METAFONT code also defines a \cs{fonttable} macro that is akin to this 
+% one. If you want to use both packages together then you can use the following
+% general procedure for when a macro \cs{macro} is defined in both 
+% \Lpack{packA} and \Lpack{packB} packages.
+% \begin{verbatim}
+% \usepackage{packA}
+% \let\macroA\macro%   save packA's definition
+% \let\macro\relax%    undefine \macro
+% \usepackage{packB}%  now it's packB's definition of \macro
+% ...
+% \macro %   use the packB defintion
+% \macroA %  use the packA definition   
+% \end{verbatim}
+%
+% \DescribeMacro{\xfonttable}
+% The command \\
+% \cs{xfonttable}\marg{encoding}\marg{family}\marg{series}\marg{shape} \\
+% typesets a table showing all the
+% glyphs in the font with encoding \meta{encoding} (e.g., T1 or OMS),
+% family \meta{family} (e.g., \texttt{ppl} for Palatino or \texttt{cmbrs}
+% for CM Bright Math (OMS)), font series \meta{series} (e.g., \texttt{sb}
+% for semibold of \texttt{m} for medium), and font shape \meta{shape}
+% (e.g., \texttt{n} for normal or \texttt{sc} for small caps).
+% For example: \\
+% \verb?\xfonttable{U}{pzd}{m}{n}? \\
+% for Zapf Dingbats.
+%
+% \DescribeMacro{\pikfont}
+% The command\footnote{The name was chosen in an attempt to avoid
+% clashes with other macros that might perform similar functions.}   \\
+% \cs{pikfont}\marg{encoding}\marg{family}\marg{series}\marg{shape} \\
+% selects the font with encoding \meta{encoding} (e.g., T1 or OMS),
+% family \meta{family} (e.g., \texttt{ppl} for Palatino or \texttt{cmbrs}
+% for CM Bright Math (OMS)), font series \meta{series} (e.g., \texttt{sb}
+% for semibold of \texttt{m} for medium), and font shape \meta{shape}
+% (e.g., \texttt{n} for normal or \texttt{sc} for small caps).
+% For example: \\
+% \verb?\pikfont{T1}{ppl}{m}{sc}? \\
+% for Palatino small caps.
+% The size of the font corresponds to the current setting (e.g.,
+% \cs{footnotesize}, \cs{normalsize}, \cs{Large}). It can also be
+% changed after being selected by the incantation \\
+% \cs{fontsize}\marg{size}\marg{baselineskip}\cs{selectfont} \\
+% where \meta{size} is the normal height and \meta{baselineskip} is the
+% distance between text lines; the measurement system is \texttt{pts}
+% but just use numbers with no units specified. For example: \\
+% \verb?\fontsize{12}{15}\selectfont? \\
+% for a 12pt font with 15pts between baselines.
+%
+% If you are unsure about the meaning of the various arguments 
+% of \cs{xfonttable} and \cs{pikfont} see
+% \textit{The Companion}~\cite[Chapter 7]{COMPANION} or the 
+% \textit{LaTeX2e font selection} manual (\texttt{fntguide.tex}; try
+% \verb?texdoc fntguide?).
+%
+% \DescribeMacro{\fontrange}
+% The package attempts to populate the table with a maximum of 256 glyphs,
+% numbered from 0 to 255.
+% The \cs{fontrange}\marg{low}\marg{high} declaration changes this by reducing
+% the range so that it extends from \meta{low} to \meta{high}, where \meta{low}
+% should be at least 0 and \meta{high} at most 256, and \meta{low} less than
+% \meta{high}.
+%
+%    The table is composed of blocks of sixteen characters. If necessary the
+% value of \meta{low} is adjusted lower and \meta{high} is adjusted higher
+% to match this block structure. For example, if you wanted a table of the
+% lower 128 characters then \verb?\fontrange{0}{127}? would do the job,
+% while the upper half of a 256 character font could be tabulated via
+% \verb?\fontrange{128}{255}?.
+%
+% \DescribeMacro{\decimals}
+% \DescribeMacro{\nodecimals}
+% Normally each cell in the table includes the decimal number of the position
+% in the (256) character set. \cs{nodecimals} turns off this numbering and
+% \cs{decimals} turns it on. The default is \cs{decimals}.
+%
+% \DescribeMacro{\hexoct}
+% \DescribeMacro{\nohexoct}
+% Normally the columns and rows in the table are numbered using hexadecimal 
+% and octal numbers. These can be turned off by \cs{nohexoct} and turned 
+% on again with \cs{hexoct}, which is the default.
+%
+% \DescribeMacro{\ftablewidth}
+% The font table's width is the length \cs{ftablewidth}, which by default
+% is set to the normal textwidth (or more exactly, to \cs{hsize}). The table
+% itself is left aligned. However, if \cs{nohexoct} is in effect the width of
+% the table is its natural width.
+%
+% \DescribeMacro{\fntcolwidth}
+% When \cs{nohexoct} is in effect the minimum width of a table column
+% is \cs{fntcolwidth}. This is initially declared as \\
+% \verb?\setwidth{\fntcolwidth}{0.08\ftablewidth}?
+%
+% \DescribeMacro{\fonttext}
+% The command \cs{fonttext}\marg{testfont} typesets an example text using
+% the \meta{testfont} (e.g. \texttt{cmr10}).
+%
+% \DescribeMacro{\simpletext}
+% \DescribeMacro{\fulltext}
+% The example text can be just a paragraph and a line of capitals,
+%  or include more complex accented
+% words as well. Following the declaration \cs{fulltext} the complex words are
+% included as well as the example paragraph. The default is \cs{simpletext}
+% for just the paragraph.
+%
+% \DescribeMacro{\regulartext}
+% The command \cs{regulartext}\marg{fontspec} typesets the example text
+% using \meta{fontspec}, for example \verb?\rmfamily\itshape?
+% or \verb?\pikfont{T1}{pnc}{m}{it}?.
+%
+% \DescribeMacro{\fonttexts}
+% \DescribeMacro{\regulartexts}
+% The macro \cs{fonttexts}\marg{testfont}\marg{text} typesets \meta{text} using
+% the \meta{testfont} (e.g \texttt{cmr10}). Similarly the macro
+% \cs{regulartexts}\marg{fontspec}\marg{text} typesets \meta{text}
+% using \meta{fontspec} (e.g., \verb?\rmfamily\itshape? or 
+% \verb?\pikfont{T1}{ppl}{m}{it}?).
+%
+% \DescribeMacro{\germanparatext}
+% \DescribeMacro{\latinparatext}
+% \cs{germanparatext} expands to a German language paragraph, borrowed from the 
+% \Lpack{blindtext} package~\cite{BLINDTEXT}. 
+% \cs{latinparatext} expands to one version of
+% a paragraph of the traditional \textit{lorem ipsum} dummy Latin text.
+% Either, or both, of these could be used as the \meta{text} argument
+% to \cs{fonttexts} or \cs{regulartexts}. \\
+% NOTE: These were originally called \cs{germantext} and \cs{latintext}
+%  but on 2009/05/14 I was told that the \Lpack{babel} package defines \cs{latintext}, 
+%  which causes unexpected results if it is used in the same document as this
+%  package. To try and be on the safe side I renamed \cs{germantext}
+% as well as \cs{latintext}.
+%
+% \DescribeMacro{\aztext}
+% \DescribeMacro{\AZtext}
+% \DescribeMacro{\digitstext}
+% \DescribeMacro{\punctext}
+% \cs{aztext} expands to the lowercase Latin alphabet a to z, and \cs{AZtext}
+% is the corresponding command for the uppercase A to Z. 
+% The macros \cs{digitstext} and \cs{punctext} expand respectively to the
+% digits 0 to 9, and to the typical punctuation marks. In all cases there 
+% is a space between each character. 
+%
+% \subsection{Testing a glyph}
+%
+%    The macros here are a reimplementation of Donald Knuth's 
+% \texttt{testfont.tex}, which is available from CTAN. 
+%
+%    In the following, the value of a glyph argument can be specified as
+% its location in the font (i.e., as a decimal number). With a few exceptions,
+% if the glyph is within the visible ASCII range (33--126) it may instead be 
+% specified by the ASCII character prefixed with a single open quote 
+% mark\footnote{Sometimes called a
+% `backquote'.} (`). The exceptions are nos: 37 (\verb?%?), 92 (\verb?\?)
+% 123 (\verb?{?) and 125 (\verb?}?) (but there may be others). 
+% In any case, the glyph representing the
+% character \texttt{p} can be specified either as \texttt{`p} or as 
+% \texttt{112}. 
+%
+%    The glyphs are taken from the current font. If the font does not
+% have Latin alphabet glyphs in the ASCII locations then 
+% in the descriptions below phrases like `lowercase alphabet' or `uppercase
+% alphabet' or `digits', should be taken to mean (the glyphs in) those 
+% locations.
+%
+% \DescribeMacro{\glyphmixture}
+% \cs{glyphmixture}\marg{T}\marg{S}\marg{E} typesets the \meta{T} (test) glyph 
+% between the glyphs in the range from \meta{S} (start) to \meta{E} (end).
+% For example \\
+% \verb?\glyphmixture{`e}{`f}{`g}? will produce \\
+% \texttt{efeeffeeefffef} \\
+% \texttt{egeeggeeegggeg}
+%
+% \DescribeMacro{\glyphalternation}
+% \cs{glyphalternation}\marg{T}\marg{S}\marg{E} typesets the \meta{T} 
+% glyph alternately between each glyph in the range from \meta{S} 
+% to \meta{E}.
+% For example \\
+% \verb?\glyphalternation{`e}{`f}{`g}? will produce \\
+% \texttt{efefefefefefefefe} \\
+% \texttt{egegegegegegegege}
+%
+% \DescribeMacro{\glyphseries}
+% \cs{glyphseries}\marg{T}\marg{S}\marg{E} typesets the \meta{T}
+% glyph between the glyphs in the range from \meta{S}
+% to \meta{E}.
+% For example \\
+% \verb?\glyphseries{`e}{`f}{`h}? will produce \\
+% \texttt{efegehe}
+%
+% \DescribeMacro{\glyphalphabet}
+% \DescribeMacro{\GLYPHALPHABET}
+% \cs{glyphalphabet}\marg{T} typesets the \meta{T} glyph between
+% each letter of the lowercase Latin alphabet plus a few others. 
+% \cs{GLYPHALPHABET}\marg{T}
+% does the same but using the uppercase Latin alphabet.
+% For example, the output of \\
+% \verb?\glyphalphabet}{`3}? is like \\
+% \texttt{3a3b3c3d3e3f3g\ldots3z3\char31 3}\verb?~?\texttt{3\char33 3\char34 3}
+%
+% \DescribeMacro{\glyphlowers}
+% \DescribeMacro{\glyphlowers}
+% \DescribeMacro{\glyphdigits}
+% \cs{glyphlowers} takes each character of the lowercase alphabet in turn as
+% a test glyph and sets it interpersed among the other lowercase characters.
+% \cs{glyphuppers} and \cs{glyphdigits} are similar except that they use
+% the uppercase alphabet and the ten digits instead. For example, 
+% \cs{glyphdigits} produces output like \\
+% \texttt{000102030405060708090} \\
+% \texttt{101112131415161718191} \\
+% \texttt{202122232425262728292} \\
+% \ldots \\
+% \texttt{909192939495969798999}
+%
+% \DescribeMacro{\glyphpunct}
+% \cs{glyphpunct} sets a collection of words with an assortment of
+% punctuation marks.
+%
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \renewcommand{\refname}{Bibliography}
+% \begin{thebibliography}{GMS94}
+% \addcontentsline{toc}{section}{\refname}
+%
+% \bibitem[Lik05]{BLINDTEXT}
+% Knut Lickert.
+% \newblock \emph{Blindtext.sty: Creating text for testing / Texterzeugung
+%                 zum testen}.
+% \newblock October 2005.
+% \newblock (Available from CTAN in \url{macros/latex/contrib/blindtext})
+%
+% \bibitem[MG04]{COMPANION}
+% Frank Mittelbach and Michel Goossens.
+% \newblock \emph{The LaTeX Companion}.
+% \newblock Second edition.
+% \newblock Addison-Wesley Publishing Company, 2004.
+%
+% \bibitem[Pak05]{MFTINC}
+% Scott Pakin
+% \newblock `The \Lpack{mftinc} package',
+% \newblock January 2005.
+% \newblock (Available from CTAN in \url{macros/latex/contrib/mftinc})
+%
+%
+% \end{thebibliography}
+%
+% \PrintIndex
+%
+% }
+%
+%
+%
+% \section{The code} \label{sec:mf}
+%
+%    \begin{macrocode}
+%<*pack>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fonttable}[2009/05/14 v1.51 displays a font]
+
+%    \end{macrocode}
+%
+% \subsection{Table and texts}
+%
+% Most of the code below is an edited version of code used in 
+% \texttt{nfssfont.tex} for displaying aspects of the set of glyphs in a font.
+%
+% \begin{macro}{\sevenrm}
+% A small fixed size roman font.
+%    \begin{macrocode}
+\providecommand*{\sevenrm}{\fontsize{7}{9pt}\rmfamily}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@tm}
+% \begin{macro}{\f@tn}
+% \begin{macro}{\f@tp}
+% \begin{macro}{\f@tdim}
+% Counts and a dimen.
+%    \begin{macrocode}
+\newcount\f@tm \newcount\f@tn \newcount\f@tp \newdimen\f@tdim
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\fonttable}
+% \cs{fonttable}\marg{font} typesets a table of all the glyphs in the 
+% \meta{font} (e.g., auncl10).
+%    \begin{macrocode}
+\newcommand*{\fonttable}[1]{%
+  \def\f@tfontname{#1}%
+  \bgroup
+  \f@tstartfont 
+  \ftable
+  \egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pikfont}
+% \cs{pikfont}\marg{encoding}\marg{family}\marg{series}\marg{shape} 
+% selects the font with \meta{encoding},
+% \meta{family}, \meta{series} and \meta{shape}.
+% \changes{v1.4}{2009/05/06}{Added \cs{pikfont}}
+%    \begin{macrocode}
+\DeclareRobustCommand{\pikfont}[4]{%
+  \fontencoding{#1}\fontfamily{#2}\fontseries{#3}\fontshape{#4}\selectfont}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\xfonttable}
+% \cs{xfonttable}\marg{encoding}\marg{family}\marg{series}\marg{shape} 
+% typesets a table of all the glyphs in the font with \meta{encoding},
+% \meta{family}, \meta{series} and \meta{shape}
+% (e.g., \verb?\xfonttable{T1}{pnc}{m}{it}? for New Century Schoolbook italic).
+% The original code for the macro was supplied by Enrico Gregorio.
+% \changes{v1.4}{2009/05/06}{Added \cs{xfonttable}}
+%    \begin{macrocode}
+\newcommand*{\xfonttable}[4]{\bgroup
+  \pikfont{#1}{#2}{#3}{#4}%
+  \edef\f@tfontname{\fontname\font}\normalfont
+  \f@tstartfont 
+  \ftable
+  \egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@tstartfont}
+% Sets up for a font table.
+%    \begin{macrocode}
+\newcommand*{\f@tstartfont}{\font\f@ttestfont=\f@tfontname
+  \f@ttestfont \f@tsetbaselineskip
+  \ifdim\fontdimen6\f@ttestfont<10pt \rightskip=0pt plus 20pt
+  \else\rightskip=0pt plus 2em \fi
+  \spaceskip=\fontdimen2\f@ttestfont % space between words (\raggedright)
+  \xspaceskip=\fontdimen2\f@ttestfont \advance\xspaceskip
+  by\fontdimen7\f@ttestfont}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@tsetbaselineskip}
+%    \begin{macrocode}
+\newcommand*{\f@tsetbaselineskip}{\setbox0=\hbox{\f@tn=0
+  \loop\char\f@tn \ifnum \f@tn<255 \advance\f@tn 1 \repeat}
+  \baselineskip=6pt \advance\baselineskip\ht0 \advance\baselineskip\dp0 }
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@toct}
+% \cs{f@toct}\marg{onum} typesets the octal constant \meta{onum}.
+%    \begin{macrocode}
+\newcommand*{\f@toct}[1]{\hbox{\rmfamily\'{}\kern-.2em\itshape
+           #1\/\kern.05em}} % octal constant
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@thex}
+% \cs{f@thex}\marg{hnum} typesets the hexadecimal constant \meta{hnum}.
+%    \begin{macrocode}
+\newcommand*{\f@thex}[1]{\hbox{\rmfamily\H{}\ttfamily#1}} % hexadecimal constant
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@tsetdigs}
+% \cs{f@tsetdigs}
+%    \begin{macrocode}
+\def\f@tsetdigs#1"#2{\gdef\h{#2}% \h=hex prefix; \0\1=corresponding octal
+ \f@tm=\f@tn \divide\f@tm by 64 \xdef\0{\the\f@tm}%
+ \multiply\f@tm by-64 \advance\f@tm by\f@tn \divide\f@tm by 8 \xdef\1{\the\f@tm}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@ttestrow}
+% \cs{f@ttestrow} checks if there are any characters in the next block of 
+% 16 slots.
+%    \begin{macrocode}
+\newcommand*{\f@ttestrow}{\setbox0=\hbox{\penalty 1\def\\{\char"\h}%
+ \\0\\1\\2\\3\\4\\5\\6\\7\\8\\9\\A\\B\\C\\D\\E\\F%
+ \global\f@tp=\lastpenalty}} % \f@tp=1 if none of the characters exist
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifhexoct}
+% \begin{macro}{\hexoct}
+% \begin{macro}{\nohexoct}
+% Flag for (not) setting hex and octal numbers.
+%    \begin{macrocode}
+\newif\ifhexoct
+\newcommand*{\hexoct}{\hexocttrue}
+\newcommand*{\nohexoct}{\hexoctfalse}
+\hexoct
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+%
+% \begin{macro}{\f@toddlinenum}
+% \cs{f@toddline}
+%    \begin{macrocode}
+\newcommand*{\f@toddline}{\cr
+  \noalign{\nointerlineskip}
+  \multispan{19}\hrulefill&
+  \setbox0=\hbox{\lower 2.3pt\hbox{\f@thex{\h x}}}\smash{\box0}
+  \cr
+  \noalign{\nointerlineskip}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\iff@tskipping}
+% \begin{macro}{\f@tskippingtrue}
+% \begin{macro}{\f@tskippingfalse}
+%    \begin{macrocode}
+\newif\iff@tskipping
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\fontrange}
+% \cs{fontrange}\marg{low}\marg{high} sets the character range to be 
+% output.
+%    \begin{macrocode}
+\newcommand*{\fontrange}[2]{%
+  \ifnum#1<#2\relax
+%    \end{macrocode}
+% Set \cs{f@tlow} to the nearest multiple of 16 that is at or below \meta{low},
+% but first make sure that it will be at least 0.
+%    \begin{macrocode}
+  \ifnum#1<\z@
+    \f@tm=\z@
+  \else
+    \f@tm=#1
+    \divide \f@tm \sixt@@n
+    \multiply \f@tm \sixt@@n
+  \fi
+  \edef\f@tlow{\the\f@tm}
+%    \end{macrocode}
+% Set \cs{f@thigh} to the nearest multiple of 16 at or above \meta{high},
+% finally making sure that its maximum is 256.
+%    \begin{macrocode}
+  \f@tm=#2
+  \divide \f@tm \sixt@@n
+  \advance \f@tm \@ne
+  \multiply \f@tm \sixt@@n
+  \ifnum \f@tm > \@cclvi  \f@tm=\@cclvi \fi
+  \edef\f@thigh{\the\f@tm}
+ \else
+   \PackageError{fonttable}{%
+      Improper values for fontrange. Default values substituted}{\@ehc}
+   \def\f@tlow{0} \def\f@thigh{256}
+  \fi}
+\fontrange{0}{256}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@tloopforsixteen}
+% \cs{f@tloopforsixteen} sets up a block of sixteen character slots.
+%    \begin{macrocode}
+\newcommand*{\f@tloopforsixteen}{%
+  \ifnum\f@tn<\f@tlow \global\f@tn=\f@tlow\fi
+  \loop\f@tskippingfalse
+  \ifnum\f@tn<\f@thigh \f@tm=\f@tn \divide\f@tm \sixt@@n \chardef\next=\f@tm
+  \expandafter\f@tsetdigs\meaning\next \f@ttestrow
+  \ifnum\f@tp=\@ne \f@tskippingtrue \fi\fi
+  \iff@tskipping \global\advance\f@tn \sixt@@n \repeat}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\f@tevenline}
+% \begin{macro}{\f@tevenlinenonum}
+% \cs{f@tevenline} gets next non-empty set of a block of 16 characters.
+% It either calls \cs{f@tmorechart} to print them, or \cs{f@tendchart} to
+% finish off the table if all 256 potential characters have been processed.
+%
+% \cs{f@tevenlinenonum} does something similar when no external numbers
+% are printed.
+%    \begin{macrocode}
+\newcommand*{\f@tevenline}{%
+  \f@tloopforsixteen
+  \ifnum\f@tn=\f@thigh \let\next=\f@tendchart\else\let\next=\f@tmorechart\fi
+  \next}
+\newcommand*{\f@tevenlinenonum}{%
+  \f@tloopforsixteen
+  \ifnum\f@tn=\f@thigh
+    \\\hline
+  \else
+    \\\hline
+    \f@tmorechartnonum
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tmorechart}
+% \begin{macro}{\f@tmorechartnonum}
+% \cs{f@tmorechart} sets two lines of the table, and \cs{f@tmorechartnonum}
+% does the same when there are no external numbers.
+%    \begin{macrocode}
+\newcommand*{\f@tmorechart}{\cr\noalign{\hrule\penalty5000}
+ \f@tchartline \f@toddline \f@tm=\1 \advance\f@tm 1 \xdef\1{\the\f@tm}
+ \f@tchartline \f@tevenline}
+\newcommand*{\f@tmorechartnonum}{%
+  \f@tsimpleline \\ \hline
+  \f@tsimpleline \f@tevenlinenonum}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tchartline}
+% \begin{macro}{\f@tsimpleline}
+% \cs{f@tchartline} does a line of the table, including external numbers,
+%  and \cs{f@tsimpleline} does an unnumbered line.
+%    \begin{macrocode}
+\newcommand*{\f@tchartline}{%
+  &\f@toct{\0\1x}&&\f@tpsg{}&&\f@tpsg{}&&\f@tpsg{}&&\f@tpsg{}&&\f@tpsg{}&&\f@tpsg{}&&\f@tpsg{}&&\f@tpsg{}&&}
+\newcommand*{\f@tsimpleline}{%
+  \f@tpsg{}\f@tchartstrut& \f@tpsg{} & \f@tpsg{} & \f@tpsg{} & \f@tpsg{} & \f@tpsg{} & \f@tpsg{} & \f@tpsg{}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tchartstrut}
+% \begin{macro}{\ftablewidth}
+% \begin{macro}{\fntcolwidth}
+% \cs{f@tchartstrut} is a strut used in each table line. \cs{ftablewidth} is 
+% width of an externally numbered table. \cs{fntcolwidth} is the minimum
+% width of a column in an unnumbered table.
+%    \begin{macrocode}
+\newcommand*{\f@tchartstrut}{\lower4.5pt\vbox to14pt{}}
+\newdimen\ftablewidth
+  \ftablewidth=\hsize
+\newdimen\fntcolwidth
+  \setlength{\fntcolwidth}{0.08\ftablewidth}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tcol}
+% \begin{macro}{\f@tstartchartnonum}
+% \cs{f@tstartchartnonum} is a table line of spaces, with no verticals.
+%    \begin{macrocode}
+\newcommand*{\f@tcol}{%
+  \multicolumn{1}{c}{\hspace*{\fntcolwidth}}}
+\newcommand*{\f@tstartchartnonum}{%
+  \f@tcol &\f@tcol &\f@tcol &\f@tcol &\f@tcol &\f@tcol &\f@tcol &\f@tcol}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ftable}
+% \begin{macro}{\f@tftablenum}
+% \begin{macro}{\f@tftablenonum}
+% \cs{ftable} sets a complete character table. The actual code is in either
+% \cs{f@tftablenum} or \cs{f@tftablenonum} for externally numbered or 
+% plain tables, respectively.
+% \changes{v1.0a}{2005/12/06}{Added missing zeroing of \cs{f@tn} to \cs{f@tftablenonum}}
+%    \begin{macrocode}
+\newcommand*{\f@tftablenum}{$$\global\f@tn=\z@
+  \halign to\ftablewidth\bgroup
+    \f@tchartstrut##\tabskip0pt plus10pt&
+    &\hfil##\hfil&\vrule##\cr
+    \lower6.5pt\null
+    &&&\f@toct0&&\f@toct1&&\f@toct2&&\f@toct3&&\f@toct4&&\f@toct5&&\f@toct6&&\f@toct7&%
+    \f@tevenline}
+\newcommand*{\f@tftablenonum}{%
+  \global\f@tn=\z@
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \f@tstartchartnonum
+    \f@tevenlinenonum
+  \end{tabular}}
+\newcommand*{\ftable}{\ifhexoct\f@tftablenum\else\f@tftablenonum\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tendchart}
+% \cs{f@tendchart} sets the last line of an externally numbered table with
+% the relevant hex digits.
+%    \begin{macrocode}
+\newcommand*{\f@tendchart}{\cr\noalign{\hrule}
+  \raise11.5pt\null&&&\f@thex 8&&\f@thex 9&&\f@thex A&&\f@thex B&
+  &\f@thex C&&\f@thex D&&\f@thex E&&\f@thex F&\cr
+  \egroup$$\par}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\decimals}
+% \begin{macro}{\nodecimals}
+% \begin{macro}{\f@tpsg}
+% Following \cs{decimals}, which is the default, decimal numbers are 
+% printed in the table. Following \cs{nodecimals} they are not printed.
+%
+% \cs{f@tpsg} typesets a single glyph, possibly with its decimal slot number.
+%
+% NOTE (2009/04/30): Initially \cs{f@tpsg} was called \cs{:}, which LaTeX
+% defines to be a medium space. No doubt this was OK with the interactive
+% version but can cause havoc when used in a package!
+% \changes{v1.3}{2009/04/30}{Replaced redefinition of \cs{:} by \cs{f@tpsg}}
+%    \begin{macrocode}
+\newcommand*{\nodecimals}{%
+%%% the original
+  \newcommand*{\f@tpsg}{\setbox0=\hbox{\char\f@tn}%
+    \ifdim\ht0>7.5pt\f@treposition
+    \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
+    \box0\global\advance\f@tn 1 }}
+\newcommand{\decimals}{%
+%%% mine
+  \newcommand*{\f@tpsg}{\setbox0=\hbox{\char\f@tn\,\rlap{\tiny \the\f@tn}}%
+    \ifdim\ht0>7.5pt\f@treposition
+    \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
+    \box0\global\advance\f@tn 1 }}
+\decimals
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@treposition}
+% \cs{f@treposition}
+%    \begin{macrocode}
+\newcommand*{\f@treposition}{\setbox0=\vbox{\kern2pt\box0}\f@tdim=\dp0
+  \advance\f@tdim 2pt \dp0=\f@tdim}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\fonttext}
+% \cs{fonttext}\marg{font} typesets \cs{knutext} using \meta{font} (e.g.
+% auncl10).
+%    \begin{macrocode}
+\def\fonttext#1{%
+  \def\f@tfontname{#1}%
+  \bgroup
+  \f@tstartfont
+  \knutext
+  \egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\regulartext}
+% \cs{regulartext}\marg{fontspec} typesets \cs{knutext} using \meta{fontspec} 
+% (e.g., \cs{aunclfamily}).
+%    \begin{macrocode}
+\def\regulartext#1{%
+  \bgroup
+  #1
+  \knutext
+  \egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\knutext}
+% Deathless prose from Knuth for testing a font. It includes
+% \cs{moreknutext}, \cs{capknutext}, and \cs{knunames}.
+%    \begin{macrocode}
+\def\knutext{{
+On November 14, 1885, Senator \& Mrs.~Leland Stanford called together
+at their San Francisco mansion the 24~prominent men who had been
+chosen as the first trustees of The Leland Stanford Junior University.
+They handed to the board the Founding Grant of the University, which
+they had executed three days before. This document---with various
+amendments, legislative acts, and court decrees---remains as the
+University's charter.  In bold, sweeping language it stipulates that
+the objectives of the University are ``to qualify students for
+personal success and direct usefulness in life; and to promote the
+publick welfare by exercising an influence in behalf of humanity and
+civilization, teaching the blessings of liberty regulated by law, and
+inculcating love and reverence for the great principles of government
+as derived from the inalienable rights of man to life, liberty, and
+the pursuit of happiness.'' 
+
+\moreknutext
+
+\capknutext
+
+\knunames
+\par}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@moreknutext}
+% Some more text with a variety of ligatures and accents.
+%    \begin{macrocode}
+\def\@moreknutext{?`But aren't Kafka's Schlo{\ss} and {\AE}sop's
+{\OE}uvres often na{\"\i}ve vis-\`a-vis the d{\ae}monic ph{\oe}nix's
+official r\^ole in fluffy souffl\'es? }
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@capknutext}
+% \begin{macro}{\capknutext}
+% Text using only capital letters and some punctutation.
+%    \begin{macrocode}
+\newcommand{\@capknutext}{%
+(!`THE DAZED BROWN FOX QUICKLY GAVE 12345--67890 JUMPS!)}
+\let\capknutext\@capknutext
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@knunames}
+% Lots of accents masquerading in personal names.
+%    \begin{macrocode}
+\def\@knunames{ {\AA}ngel\aa\ Beatrice Claire
+  Diana \'Erica Fran\c{c}oise Ginette H\'el\`ene Iris
+  Jackie K\=aren {\L}au\.ra Mar{\'\i}a N\H{a}ta{\l}{\u\i}e {\O}ctave
+  Pauline Qu\^eneau Roxanne Sabine T\~a{\'\j}a Ur\v{s}ula
+  Vivian Wendy Xanthippe Yv{\o}nne Z\"azilie\par}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\guillemotleft}
+% \begin{macro}{\guillemotright}
+% \begin{macro}{\flqq}
+% \begin{macro}{\frqq}
+% Just in case the french quotes are not defined, as they are called for in
+% the subsequent \cs{germantext}.
+% \changes{v1.2}{2008/05/08}{Replaced \cs{providecommand} for guillemots
+%                           by \cs{DeclareTextSymbol}}
+%    \begin{macrocode}
+\DeclareTextSymbol{\guillemotleft}{OT1}{`\'}
+\DeclareTextSymbol{\guillemotright}{OT1}{`\`}
+\providecommand{\flqq}{\guillemotleft}
+\providecommand{\frqq}{\guillemotright}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\germantext}
+% \begin{macro}{\germanparatext}
+% Text from the \Lpack{Blindtext} package.
+% \changes{v1.1}{2006/10/02}{Added \cs{germantext}}
+% \changes{v1.51}{2009/05/14}{Changed \cs{germantext} to \cs{germanparatext}}
+%    \begin{macrocode}
+\providecommand*{\germantext}{%
+  \PackageWarning{fonttable}{\protect\germantext\space is deprecated, 
+                 \MessageBreak use \protect\germanparatext\space instead}}
+\newcommand*{\germanparatext}{%
+Dies hier ist ein Blindtext zum Testen von Textausgaben. Wer
+diesen Text liest, ist selbst schuld. Der Text gibt lediglich den
+Grauwert der Schrift an. Ist das wirklich so? Ist es
+gleich\-g\"ul\-tig ob ich schreibe: \frqq Dies ist ein
+Blindtext\flqq\ oder \frqq Huardest gefburn\flqq? Kjift --
+mitnichten! Ein Blindtext bietet mir wichtige Informationen. An
+ihm messe ich die Lesbarkeit einer Schrift, ihre Anmutung, wie
+harmonisch die Figuren zueinander stehen und pr\"u\-fe, wie breit
+oder schmal sie l\"auft. Ein Blindtext sollte m\"og\-lichst viele
+verschiedene Buchstaben enthalten und in der Originalsprache
+gesetzt sein. Er mu\ss\ keinen Sinn ergeben, sollte aber lesbar
+sein. Fremdsprachige Texte wie \frqq Lorem ipsum\flqq\ dienen
+nicht dem eigentlichen Zweck, da sie eine
+falsche Anmutung vermitteln.\par}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\latintext}
+% \begin{macro}{\latinparatext}
+% The traditional printers' text.
+% \changes{v1.1}{2006/10/02}{Added \cs{latintext}}
+% \changes{v1.51}{2009/05/14}{Changed \cs{latintext} to \cs{latinparatext} 
+% because of a clash with the babel package}
+%    \begin{macrocode}
+\providecommand*{\latintext}{%
+  \PackageWarning{fonttable}{\protect\latintext\space may be overriden by the 
+   babel package \MessageBreak use
+                 \protect\latinparatext\space instead}}
+\newcommand*{\latinparatext}{%
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam
+lobortis facilisis sem. Nullam nec mi et neque pharetra
+sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper,
+felis non sodales commodo, lectus velit ultrices augue, a
+dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie
+ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in
+sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Duis fringilla tristique neque. Sed interdum libero ut metus.
+Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit
+amet ante lobortis sollicitudin. Praesent blandit blandit mauris.
+Praesent lectus tellus, aliquet aliquam, luctus a, egestas a,
+turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum
+turpis accumsan semper.\par}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\simpletext}
+% \begin{macro}{\fulltext}
+% \begin{macro}{\moreknutext}
+% \begin{macro}{\knunames}
+% \cs{simpletext} kills off \cs{moreknutext} and \cs{knunames}.
+% \cs{fulltext} restores \cs{moreknutext} and \cs{knunames}.
+% Make \cs{fulltext} the default.
+%    \begin{macrocode}
+\newcommand*{\simpletext}{\let\moreknutext\relax \let\knunames\relax}
+\newcommand*{\fulltext}{\let\moreknutext\@moreknutext \let\knunames\@knunames}
+\fulltext
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{fonttexts}
+% \cs{fonttexts}\marg{font}\marg{text} typesets \meta{text} using \meta{font} (e.g.
+% auncl10).
+% \changes{v1.1}{2006/10/02}{Added \cs{fonttexts}}
+%    \begin{macrocode}
+\def\fonttexts#1#2{%
+  \def\f@tfontname{#1}%
+  \bgroup
+  \f@tstartfont
+  #2
+  \egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\regulartexts}
+% \cs{regulartext}\marg{fontspec}\marg{text} typesets \meta{text} using \meta{fontspec} 
+% (e.g., \cs{aunclfamily}).
+% \changes{v1.1}{2006/10/02}{Added \cs{regulartexts}}
+%    \begin{macrocode}
+\def\regulartexts#1#2{%
+  \bgroup
+  #1 #2
+  \egroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\aztext}
+% \begin{macro}{\AZtext}
+% \begin{macro}{\digitstext}
+% \begin{macro}{\punctext}
+%  The various characters used for Latin texts.
+% \changes{v1.2}{2008/05/08}{Added \cs{aztext}, \cs{AZtext}, \cs{digitstext}
+%                            and \cs{punctext}}
+%    \begin{macrocode}
+\newcommand*{\aztext}{a b c d e f g h i j k l m n o p q r s t u v w x y z}
+\newcommand*{\AZtext}{A B C D E F G H I J K L M N O P Q R S T U V W X Y Z}
+\newcommand*{\digitstext}{0 1 2 3 4 5 6 7 8 9}
+\newcommand*{\punctext}{` ! @ \$ \& * ( ) \_ - + =  [ ] < > \{ \} : ; ' , . ? /}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \subsection{Testing a glyph}
+%
+% This is a reimplementation of Donald Knuth's \texttt{testfont.tex} which
+% is available from CTAN and there is also a commented version in Appendix H
+% of \textit{The METAFONT Book}.
+%
+% \begin{macro}{\fnthours}
+% \begin{macro}{\f@ttwodigits}
+% The time of day on a 24 hour clock.
+%    \begin{macrocode}
+%%%%%%%% using \@tempcnta for Knuth's \m and \@tempcntb for his \n
+\newcommand*{\fnthours}{\@tempcntb=\time \divide\@tempcntb 60
+  \@tempcnta=-\@tempcntb \multiply\@tempcnta 60 \advance\@tempcnta \time
+  \f@ttwodigits\@tempcntb:\f@ttwodigits\@tempcnta}
+\newcommand*{\f@ttwodigits}[1]{\ifnum #1<10 0\fi \number#1}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tgettsechars}
+% \begin{macro}{\f@ttchar}
+% \begin{macro}{\f@tschar}
+% \begin{macro}{\f@techar}
+% \cs{f@tgettsechars}\marg{T}\marg{S}\marg{E} gets three characters
+% and \cs{chardef}s \cs{f@ttchar} to \meta{T} (the test character),
+% \cs{f@tschar} to \meta{S} (start character) and \cs{f@techar}
+% to \meta{E} (the end character).
+%    \begin{macrocode}
+\newcommand*{\f@tgettsechars}[3]{%
+  \chardef\f@ttchar=#1 \chardef\f@tschar=#2 \chardef\f@techar=#3}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\glyphmixture}
+% \begin{macro}{\f@tmixpattern}
+% \begin{macro}{\f@tdomix}
+%  \cs{glyphmixture}\marg{T}\marg{S}\marg{E} sets a mix of \meta{T} within
+% the glyph range from \meta{S} to \meta{E} according to the pattern
+% \cs{f@tmixpattern}. The work is done by \cs{f@tdomix}.
+%    \begin{macrocode}
+\newcommand*{\glyphmixture}[3]{\f@tgettsechars{#1}{#2}{#3}%
+                               \f@tdomix\f@tmixpattern}
+\newcommand*{\f@tmixpattern}{\0\1\0\0\1\1\0\0\0\1\1\1\0\1}
+\newcommand*{\f@tdomix}[1]{\par\chardef\0=\f@ttchar \@tempcntb=\f@tschar
+   \loop \chardef\1=\@tempcntb #1\endgraf
+   \ifnum \@tempcntb<\f@techar \advance\@tempcntb \@ne \repeat}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\glyphalternation}
+% \begin{macro}{\f@taltpattern}
+% These are similar to \cs{glyphmixture} and \cs{f@tmixpattern} except
+% that the glyphs are alternated.
+%    \begin{macrocode}
+\newcommand*{\glyphalternation}[3]{\f@tgettsechars{#1}{#2}{#3}%
+                                   \f@tdomix\f@taltpattern}
+\newcommand*{\f@taltpattern}{\0\1\0\1\0\1\0\1\0\1\0\1\0\1\0\1\0}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\f@tdisc}
+% For breaking long lines so that the test character will be at the end
+% of one line and repeated at the start of the next one.
+%    \begin{macrocode}
+\newcommand*{\f@tdisc}{\discretionary{\f@ttchar}{\f@ttchar}{\f@ttchar}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\glyphseries}
+% \begin{macro}{\f@tdoseries}
+% \cs{glyphseries}\marg{T}\marg{S}\marg{E} puts the test character \meta{T}
+% between all the others in the range \meta{S} to \meta{E}. The work is
+% done by \cs{f@tdoseries}.
+%    \begin{macrocode}
+\newcommand*{\glyphseries}[3]{\f@tgettsechars{#1}{#2}{#3}%
+  \f@tdisc\f@tdoseries\f@tschar\f@techar\par}
+\newcommand*{\f@tdoseries}[2]{\@tempcntb=#1\relax
+  \loop\char\@tempcntb\f@tdisc
+    \ifnum\@tempcntb<#2\advance\@tempcntb \@ne \repeat}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\glyphalphabet}
+% \begin{macro}{\GLYPHALPHABET}
+% \begin{macro}{\f@tcomplower}
+% \begin{macro}{\f@tcompupper}
+% \cs{glyphalphabet}\marg{T} inserts the test glyph \meta{T} between the lowercase
+% alphabetic characters. Similarly \cs{GLYPHALPHABET}\marg{T} does
+% the same with the uppercase characters. The work is done by, respectively,
+% \cs{f@tcomplower} and \cs{f@tcompupper}.
+%    \begin{macrocode}
+\newcommand*{\glyphalphabet}{\f@tcomplower}
+\newcommand*{\GLYPHALPHABET}{\f@tcompupper}
+\newcommand*{\f@tcomplower}[1]{\chardef\f@ttchar=#1 
+  \f@tdisc\f@tdoseries{`a}{`z}\f@tdoseries{31}{34}\par}
+\newcommand*{\f@tcompupper}[1]{\chardef\f@ttchar=#1 
+  \f@tdisc\f@tdoseries{`A}{`Z}\f@tdoseries{35}{37}\par}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\glyphlowers}
+% \begin{macro}{\glyphuppers}
+% \begin{macro}{\glyphdigits}
+% \begin{macro}{\f@tclc}
+% \begin{macro}{\f@tcuc}
+% \begin{macro}{\f@tdgs}
+% \begin{macro}{\f@tdocomprehensive}
+% These macros generate an extended mix of characters of a particular kind.
+% The work is done by \cs{f@tdocomprensive} wih \cs{f@tclc}, \cs{f@tcuc}, and
+% \cs{f@tdgs} setting up the glyph sets.
+%    \begin{macrocode}
+\newcommand*{\glyphlowers}{\f@tdocomprehensive\f@tclc{`a}{`z}{31}{34}}
+\newcommand*{\glyphuppers}{\f@tdocomprehensive\f@tcuc{`A}{`Z}{35}{37}}
+\newcommand*{\glyphdigits}{\f@tdocomprehensive\f@tdgs{`0}{`4}{`5}{`9}}
+\newcommand*{\f@tdocomprehensive}[5]{\par\chardef\f@ttchar=#2
+  \loop{#1} \ifnum\f@ttchar<#3\@tempcnta=\f@ttchar\advance\@tempcnta \@ne
+  \chardef\f@ttchar=\@tempcnta \repeat
+  \chardef\f@ttchar=#4
+  \loop{#1} \ifnum\f@ttchar<#5\@tempcnta=\f@ttchar\advance\@tempcnta \@ne
+  \chardef\f@ttchar=\@tempcnta \repeat}
+\newcommand*{\f@tclc}{\f@tdisc\f@tdoseries{`a}{`z}\f@tdoseries{31}{34}\par}
+\newcommand*{\f@tcuc}{\f@tdisc\f@tdoseries{`A}{`Z}\f@tdoseries{35}{37}\par}
+\newcommand*{\f@tdgs}{\f@tdisc\f@tdoseries{`0}{`9}\par}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\glyphpunct}
+% \begin{macro}{\f@tdopunct}
+% \cs{glyphpunct} sets punctuation marks in combination with different
+% sorts of letters. The work is done by \cs{f@tdopunct}.
+%    \begin{macrocode}
+\newcommand*{\glyphpunct}{\par\f@tdopunct{min}\f@tdopunct{pig}\f@tdopunct{hid}
+                     \f@tdopunct{HIE}\f@tdopunct{TIP}\f@tdopunct{fluff}
+  \$1,234.56 + 7/8 = 9\% @ \#0\par}
+\newcommand*{\f@tdopunct}[1]{#1,\ #1:\ #1;\ `#1'\
+  ?`#1?\ !`#1!\ (#1)\ [#1]\ #1*\ #1.\par}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% The end of the package.
+%    \begin{macrocode}
+%</pack>
+%    \end{macrocode}
+%
+%
+%
+%
+% \Finale
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

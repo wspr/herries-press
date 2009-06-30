@@ -1,0 +1,2463 @@
+% \iffalse meta-comment
+% booklet.dtx
+% Author: Peter Wilson (Herries Press)
+% Copyright 2000 --- 2005 Peter R. Wilson
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any 
+% later version.
+% The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2003/06/01 or later.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% This work consists of the files listed in the README file.
+%
+% 
+%<*driver>
+\documentclass[twoside]{ltxdoc}
+\usepackage{url}
+\usepackage[draft=false,
+            plainpages=false,
+            pdfpagelabels,
+            bookmarksnumbered,
+            hyperindex=false
+           ]{hyperref}
+\providecommand{\phantomsection}{}
+\makeatletter
+  \@mparswitchfalse
+\makeatother
+\EnableCrossrefs
+\CodelineIndex
+%%\OnlyDescription
+\renewcommand{\MakeUppercase}[1]{#1}
+\pagestyle{headings}
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{booklet.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{629}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v0.5}{2001/08/11}{First public release}
+% \changes{v0.6}{2001/08/26}{Reduced use of boxes}
+% \changes{v0.6a}{2002/10/05}{Improved documentation, no technical changes}
+% \changes{v0.6b}{2004/04/16}{Changed license and contact details}
+% \changes{v0.7}{2005/03/23}{Improved print setup for memoir}
+% \changes{v0.7a}{2005/06/01}{Additional documentation}
+%
+% \def\dtxfile{booklet.dtx}
+% \def\fileversion{v0.5} \def\filedate{2001/08/11}
+% \def\fileversion{v0.6} \def\filedate{2001/08/26}
+% \def\fileversion{v0.6a} \def\filedate{2002/10/05}
+% \def\fileversion{v0.6b} \def\filedate{2004/04/16}
+% \def\fileversion{v0.7} \def\filedate{2005/03/23}
+% \def\fileversion{v0.7a} \def\filedate{2005/06/01}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{Printing booklets with LaTeX\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson, The Herries Press
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{booklet} package provides some aid in printing
+% simple booklets or signatures for longer books.
+%
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+%     In normal usage the \Lpack{booklet} package subverts LaTeX into
+% putting pairs of pages onto a single page. For example, the contents
+% of pairs of A4 
+% portrait pages can be rotated and printed as two A5 portrait 
+% pages side by side on an A4 landscape page.
+%
+%     In 1993 Timothy Van Zandt wrote the \Lpack{2up} generic macros 
+% for printing more than one page on a physical sheet~\cite{2UP};
+% his original code and documentation is in appendices~\ref{sec:2upcode}
+% and~\ref{sec:2updoc}.
+% The \Lpack{booklet}
+% package is a poorman's version of some of the \Lpack{2up} macros
+% specifically for (pdf)LaTeX.
+%
+%    The \Lpack{2up} and \Lpack{booklet} packages cannot be used
+% simultaneously in one document.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{booklet} 
+% package and 
+% commented source code is in Section~\ref{sec:code}. Timothy Van Zandt's
+% original macros and documentation are supplied in the appendices.
+%
+%
+%
+% \section{The \Lpack{booklet} package} \label{sec:usc}
+%
+% The code provided by the \Lpack{booklet} package is meant to help
+% with some aspects of booklet printing.
+%
+%    Basically, the pages of documents processed with the \Lpack{booklet}
+% package will be reordered and scaled so that they can be printed as
+% four pages per physical sheet of paper, two pages per side of the
+% sheet. The default expectation is that the original document is in
+% a portrait orientation and the pages are printed rotated onto a landscape
+% sheet. Folding the sheet in half will produce a half-sized document, again
+% with portrait orientation.
+%
+%    Professionally printed books have many pages printed per sheet of (large)
+% paper, which is then folded and cut where necessary to produce a 
+% \emph{signature} of several smaller sheets. Folding a sheet in
+% half produces a one sheet \emph{folio} signature with four pages. 
+% Folding it in half again and cutting
+% along the original fold gives a two sheet \emph{quarto} signature 
+% with eight pages. Folding in half again, 
+% results in a four sheet \emph{octavo} signature with 16 pages, and so on
+% through \emph{16mo}, \emph{32mo}, to \emph{64mo} with six folds and 128 pages. 
+% \emph{Octavo} is the most popular of these.
+%
+%  Other folds can produce other signatures. For example a \emph{sexto},
+% obtained by folding in half and then folding in thirds, is a three sheet
+% signature with 12 pages.
+%
+%    The main differences between the \Lpack{2up} macros and the 
+% \Lpack{booklet} package are:
+% \begin{itemize}
+% \item \Lpack{2up} is generic but \Lpack{booklet} can only be used
+%       with (pdf)LaTeX.
+% \item \Lpack{2up} can be used for more than booklets
+% \item \Lpack{booklet} adds the notion of signatures and reduces the need for |\box|es.
+% \item \Lpack{booklet} adds means of automatically controlling 
+%       portrait/landscape printing.
+% \end{itemize}
+%
+% \subsection{Options}
+%
+% When the \Lopt{noprint} option is used the package is essentially vacuous.
+% That is, it behaves as though it had not been used at all, with the
+% exception that LaTeX will not hiccup at any of the package commands that
+% may be used in the document; these commands will also do nothing.
+%
+% The \Lopt{print} option must be used if you want the package to work 
+% as advertised. The reasons for the \Lopt{print} and \Lopt{noprint}
+% options are explained later in Section~\ref{sec:usage}.
+%
+%    The \Lpack{booklet} package can also take one option from each of
+% two groups.
+%
+%    The first group of options specifies how many pages there should be
+% to a hypothetical signature. The options are: \Lopt{four}, \Lopt{eight},
+% \Lopt{sixteen}, and \Lopt{thirtytwo}. TeX has to hold all the pages
+% for a signature before it outputs any of them, and TeX is memory limited.
+%
+%     If you have a duplex printer you can print out the document double-sided
+% and then just fold the sheets forming each signature ready for binding.
+% If you don't have a duplex printer, then the sheets can be photocopied
+% (1-to-2 sided) ready for folding.
+%
+%    The second group of options are for selecting one of the package's
+% predefined layouts. These options include:
+% \begin{itemize}
+% \item[\Lopt{twouparticle}] --- for portrait pages with wide margins
+%     (similar to those in the standard LaTeX \Lpack{article}, \Lpack{book}
+%      and \Lpack{report} classes)
+%     and no marginal notes, to go on landscape sheets.
+% \item[\Lopt{largetypeblock}] --- for portrait pages with a larger
+%      (wider and/or longer) typeblock 
+%   and/or marginal notes, to go on landscape sheets.
+% \item[\Lopt{1to1}] --- for portrait pages where the original is 
+%      designed to fit on half-sized paper, to go on landscape sheets.
+% \item[\Lopt{landscape}] --- for landscape pages to go onto
+%      portrait sheets. Pairs of original landscape pages will be
+%      printed at the top and bottom of a portrait page.
+%      This option is called automatically if the
+%      \Lopt{landscape} option is used for the document class.
+%
+% \end{itemize}
+%
+%    The default options are \Lopt{noprint}, \Lopt{twouparticle} and 
+% \Lopt{thirtytwo}.
+%
+% \subsection{Commands}
+%
+% The \emph{source} is the document as it would
+% be normally typeset by LaTeX (i.e., without using the \Lpack{booklet}
+% package).
+%
+% The \emph{target} is the desired document as it should 
+% be printed
+% using the \Lpack{booklet} package.
+%
+% \DescribeMacro{\source}
+% The command |\source{|\meta{mag}|}{|\meta{width}|}{|\meta{height}|}|
+% specifies the source sheets, where
+% \meta{width} and \meta{height} are the width and height for the
+% pages of the orginal document (the document that LaTeX would process
+% without the \Lpack{booklet} package). The \meta{mag} argument is the
+% magnification factor. 
+%
+%    The default definition of |\source| is: \\
+% |\source{\magstep0}{\paperwidth}{\paperheight}| \\
+% which corresponds to a full size default page.
+%
+% \DescribeMacro{\target}
+% The command |\target{|\meta{mag}|}{|\meta{width}|}{|\meta{height}|}|
+% specifies the target sheets, where
+% \meta{width} and \meta{height} are the width and height for the
+% sheets that will be used for printing with the package. For
+% example, |\target{...}{11in}{8.5in}| would be typical for a 
+% (portrait letterpaper)
+% source being put onto a (landscape) letterpaper target.
+%
+% \DescribeMacro{\magstepN}
+% \DescribeMacro{\magstepminusN}
+% The package puts two pages onto a single sheet. It often happens that
+% in order to do this the natural size of the text pages has to be changed,
+% via the \meta{mag} argument noted above. The macro |\magstepminusN|,
+% where $0 \leq N \leq 5$ is a shrinkage factor; similary, |\magstepN|
+% specifies a magnification factor. For example, the default |\target|
+% is specified as: \\
+% |\target{\magstepminus1}{\paperheight}{\paperwidth}| \\
+% whereas the target for the \Lopt{largetypeblock} option is: \\
+% |\target{\magstepminus2}{\paperheight}{\paperwidth}| \\
+% which shrinks the original pages more than the default |\target| does.
+%
+%    The \Lpack{booklet} package uses the |\source| and |\target| 
+% specifications to decide on how to scale and position the orginal
+% full size source pages onto half of a target sheet.
+%
+%    Normally there is no need to change the default |\source| but it
+% may be useful sometimes to change the |\target|. For example, if the
+% text on source letterpages is very wide it could be useful to print
+% on legal paper instead. In this case |\target| can be defined as: \\
+% |\target{\magstepminus2}{14in}{8.5in}|
+%
+% \DescribeMacro{\pagespersignature}
+% If none of the signature options are suitable, then 
+% |\pagespersignature{|\meta{num}|}| may be used to specify \meta{num}
+% pages per signature. For example, if you wanted a \emph{sexto} signature
+% then use |\pagespersignature{12}|.
+%
+% \DescribeMacro{\ifprintoption}
+% The command |\ifprintoption| is set TRUE if the \Lopt{print} option 
+% is used otherwise it is set FALSE.
+%
+% \DescribeMacro{\setdvipstargetpages}
+% If you are using LaTeX to generate a \file{.dvi} file the
+% |\setdvipstargetpages| macro sets up the correct target page sizes 
+% in the \file{.dvi} file assuming that subsequent processing will be
+% via a program that understands \file{dvips} \cs{special} commands.
+% 
+% \DescribeMacro{\setpdftargetpages}
+% If you are using pdfLaTeX to generate a \file{.pdf} file the
+% |\setpdftargetpages| macro sets up the correct target page sizes for
+% pdfLaTeX.
+%
+% \DescribeMacro{\pagesepwidth}
+% \DescribeMacro{\pageseplength}
+% \DescribeMacro{\pagesepoffset}
+%  A line may be drawn between the output text pages. The length of
+% the line is |\pageseplength| (default 6.5in), and line starts a
+% distance |\pagesepoffset| from the bottom (side) of the printed sheet
+% (default 1in). The line thickness is specified by the length
+% |\pagesepwidth|, which is initially defined to be 0pt (i.e., the
+% line is normally invisible). To see a dividing line use |\setlength|
+% to change the value of |\pagesepwidth|; in LaTeX ruled lines normally
+% have a thickness of 0.4pt.
+%
+% \DescribeMacro{\twoupclearpage}
+% \DescribeMacro{\twoupemptypage}
+% The command |\twoupclearpage| outputs the current target page (like
+% LaTeX's |\newpage|). The command |\twoupemptypage| inserts a completely
+% empty page into the target.
+%
+% \DescribeMacro{\ifuselandscape}
+% \DescribeMacro{\ifprintoption}
+% The command |\ifuselandscape| is set TRUE if the \Lopt{landscape} option 
+% is used otherwise it is set FALSE.
+%
+% \DescribeMacro{\checkforlandscape}
+% The macro |\checkforlandscape| evaluates the value of |\ifprintoption|
+% and the current value of |\ifuselandscape| and sets |\ifuselandscape| 
+% to TRUE if the document
+% requires landscape printing (when either both the \Lopt{landscape} and 
+% \Lopt{noprint} options are used, or when just the \Lopt{print}
+% option is called for), 
+% or to FALSE if the document should be printed in the normal portrait 
+% orientation (when either both the \Lopt{landscape} and \Lopt{print}
+% options are used, or when just the \Lopt{noprint} option is used without
+% \Lopt{landscape}). 
+%
+% Note that as |\checkforlandscape| may change the value of
+% |\ifuselandscape|, the command is only guaranteed when |\ifuselandscape|
+% accurately indicates the presence or absence of the \Lopt{landscape}
+% option.
+%
+% In version 0.7 of the package the macro \cs{setdvipstargetpages} was
+% introduced and the macro \cs{setpdftargetpages} was modified with the
+% result that \cs{checkforlandscape} was effectively
+% no longer needed. It is left to maintain upward compatibilty for
+% older documents.
+%
+%
+% \subsection{Usage} \label{sec:usage}
+%
+%     You use the \Lpack{booklet} package just like any other package: \\
+% |\usepackage[<options>]{booklet}| \\
+% but some other things need taking care of as well.
+%
+%    If you are making any changes to the values of |\paperwidth| or
+% |\paperheight|, say through the \Lpack{geometry} package or the
+% \Lpack{memoir} class, then the \Lpack{booklet} package must be called
+% \emph{after} those changes have been made. In this case you may have
+% to specify a different |\source| than usual, but I think that this
+% is probably unlikely.
+%
+%
+% \DescribeMacro{\special}
+%    Under normal circumstances printing should be done onto landscape
+% oriented paper instead of the usual portrait orientation. If you are
+% using the \file{dvips} program for transformation from the \file{.dvi}
+% to a \file{.ps} file, then you can use the command |\special{landscape}|
+% in the preamble so that the output is organised for landscape. Other
+% drivers may support similar commands, or command line options for
+% accomplishing this.
+%
+%    For example, it may happen that if you use \file{ghostview} (or
+% \file{gsview}) to look at \file{dvips} PostScript output of the final
+% printing that the text appears upside down. Putting: \\
+% \verb?\special{!TeXDict begin /landplus90{true}store end}? \\
+% just before the \verb?\begin{document}? may cure this.
+%
+%    I use a LaserJet printer with a duplex printing capability (i.e.,
+% printing can be done on both sides of a sheet in one pass). When
+% printing in duplex mode I also found that it was very convenient
+% to change the binding from the long to the short side of the paper;
+% the sheets were then all set for folding. Using \file{dvips} and
+% the 5SiMx LaserJet I found that the following commands in the
+% preamble let me change the printer settings from the document.
+% \begin{verbatim}
+% \special{!TeXDict begin <</Duplex true>> setpagedevice end} % duplex
+% \special{!TeXDict begin <</Tumble true>> setpagedevice end} % short binding
+% \end{verbatim}
+% How these would fare with another printer or program, I have no idea.
+% The CTAN subdirectory \texttt{/dviware/dvipsconfig} contains a
+% set of files for performing the above operations, and more, 
+% as command line options for \file{dvips}.
+%
+%    If you can only do simplex printing (one side only), then when
+% photocopying from one-sided to two-sided, alternate printed pages
+% need to be rotated 180 degrees before being fed into the copier.
+%
+%    The following physical analogy of how the package works with
+% portrait pages may help in achieving results that you want.
+%
+% \begin{itemize}
+% \item Write the original text on portrait oriented transparent 
+%       material (e.g., viewfoils) which is the same size as that 
+%       specified by the |\source| macro. Mark the centre --- the 
+%       point where the diagonals intersect --- of each original page.
+%
+% \item Take a sheet of paper the same size as that specified by
+%       the |\target| macro and in landscape orientation. Mentally
+%       divide this in half by a vertical line and then mark the centre
+%       points of the two (left and right) halves.
+% \item Take an even numbered original sheet, portrait orientaion,
+%       and place it on top of the landscape oriented target sheet
+%       with its centre point coincident with the left half centre
+%       point. Do the same with an odd numbered original sheet except
+%       that its centre is coincident with the right half centre point.
+% \item Take the assembly to a photocopier and make a copy onto a target
+%       sized sheet. This is the final result.
+% \end{itemize}
+% The analogy for landscape originals is similar with the obvious changes
+% in the orientations.
+%
+%    Not that the analogy does not include any scaling. If the size of 
+% the target is relatively small then the texts on the original sheets
+% may overlap or extend outside the physical target sheet. If the target
+% is relatively large then there may be too much white space around the
+% texts. The \meta{mag} arguments to the |\source| and |\target| macros
+% are provided to adjust the source/target text sizes. Scaling does
+% not affect the positions of the texts.
+%
+%    If you are planning to produce a booklet in the first place, then
+% design the initial page layout as though it would be printed on half-sized
+% paper. This will produce a better end result as no scaling will
+% be necessary. The \Lopt{1to1} option is provided for just this case.
+%
+%   If the original pages look too crowded after printing, you can specify
+% another |\target| with a larger shrink factor (e.g., |\magstepminus3|
+% instead of |\magstepminus2|). Conversely, too much white space can be
+% countered by decreasing the shrink factor (e.g., |\magstepminus1|
+% instead of |\magstepminus2|).
+%
+% The following are the default settings of |\source| and |\target| (the
+% source and target sheets are the same size) for the different layout 
+% options.
+% \begin{itemize}
+% \item[\Lopt{twouparticle:}] \mbox{} \\
+%    |\source{\magstep0}{\paperwidth}{\paperheight}| \\
+%    |\target{\magstepminus1}{\paperheight}{\paperwidth}| \\
+% \item[\Lopt{largetypeblock:}] \mbox{} \\
+%    |\source{\magstep0}{\paperwidth}{\paperheight}| \\
+%    |\target{\magstepminus2}{\paperheight}{\paperwidth}| \\
+% \item[\Lopt{1to1:}] \mbox{} \\
+%    |\source{\magstep0}{\paperwidth}{\paperheight}| \\
+%    |\target{\magstep0}{\paperheight}{\paperwidth}| \\
+% \end{itemize}
+%
+%    If the original is not planned to be produced as a booklet, then
+% obtaining respectable looking full size and booklet results may
+% require some trial and error in determining good values for 
+% magnifications and/or target paper sizes. The original page margins
+% may also need changing for the booklet output.
+%
+%    LaTeX is not very happy if it is forced to save some pages instead
+% of outputting each one as it is finished. It shows its displeasure
+% by messing up any internal references in the document, for example
+% a Table of Contents or an Index. To counter this, run LaTeX on the
+% document \emph{without} the \Lopt{print} package option
+% until all references
+% have stabilised. Then put the command |\nofiles| in the preamble, use
+% the \Lopt{print} option, 
+% and run LaTeX a final time before printing.
+% (The |\nofiles| command stops LaTeX from generating new \file{.aux},
+% \file{.toc} files, etc., but it will still use any old versions).
+%
+% The following gives an indication of how the relevant portion of
+% a preamble may look.
+% \begin{verbatim}
+% % possibly change default \paperwidth and/or \paperheight
+% % \usepackage[noprint,...]{booklet}         % use this 
+% % \usepackage[...]{booklet}                 % or this for initial runs
+% % \usepackage[print, ...]{booklet} \nofiles % use this for final run
+% % perhaps change \target
+% \ifpdf                         % from the ifpdf package
+%   \pdfoutput = 1               % generate pdf output
+%   \setpdftargetpages           % set output page size
+% \else
+%   \setdvipstargetpages         % use this for dvi output
+% \fi
+% ...
+% \end{verbatim}
+% It is safer to use the package without the \Lopt{print} option for
+% the initial runs rather than not using the package at all; doing it
+% this way will stop LaTeX from complaining if you happened to have
+% used any of the \Lpack{booklet} commands in the document.
+%
+%    TeX allocates a new box for each page in the first signature and then these
+% are reused for each subsequent signature. Large
+% signatures may use up all available boxes in which case
+% TeX will tell you. It is much more probable, though, that TeX will
+% run out of memory before this happens. 
+%
+%     Here is a real example of one booklet setup for typesetting a 68 page
+% book. I used the \Lpack{memoir}
+% class but afterwards I'll point out how to do the equivalent with the
+% \Lpack{book} class.
+% \begin{verbatim}
+% \documentclass[letterpaper,11pt]{memoir}
+% % typeblock size of 5.5+ by 4 inches
+% \settypeblocksize{5.5in}{4in}{*}
+% \addtolength{\textheight}{\onelineskip}
+% \setlrmargins{2in}{*}{*}
+% \setulmargins{2.25in}{*}{*}
+% \checkandfixthelayout
+% 
+% % \usepackage[noprint]{booklet}
+% \usepackage[print,1to1]{booklet} \nofiles 
+% \pagespersignature{16} % 16 pages per signature
+% 
+% \ifpdf
+%   \setpdftargetpages
+% \else
+%   \setdvipstargetpages
+% \fi
+% \ifprintoption  % tweak dvi output only for final printing
+%   \special{!TeXDict begin /landplus90{true}store end}
+%   \special{!TeXDict begin <</Tumble true>> setpagedevice end}
+% \fi
+%
+% \begin{document}
+% \pagestyle{empty}
+% % Want a blank sheet before the title page
+% \hbox{}\cleardoublepage
+% % half-title page here
+% \cleardoublepage
+% 
+% % title page here
+% \clearpage
+% 
+% % copyright page here
+% \cleardoublepage
+% 
+% \pagestyle{plain}
+% \pagenumbering{roman}
+% \tableofcontents*
+% \cleardoublepage
+% \pagenumbering{arabic}
+% \pagestyle{headings}
+% 
+% \chapter{First}
+% % and so on
+% 
+% % want some blank endpapers to get enough pages into
+% % the last signature for easy binding
+% \clearpage
+% \hbox{}\clearpage\hbox{}\cleardoublepage
+% \end{document}
+% \end{verbatim}
+%
+% Using the \Lpack{book} class just involves changing how the page layout
+% is specified:
+% \begin{verbatim}
+% \documentclass[letterpaper,11pt]{book}
+% % typeblock size of 5.5 by 4 inches
+% \setlength{\textheight}{419pt} \setlength{\textwidth}{289pt}
+% \setlength{\oddsidemargin}{72pt} \setlength{\evensidemargin}{108pt} 
+% \setlength{\topmargin}{55.9pt} \setlength{\footskip}{27.5pt} 
+% \setlength{\headheight}{14.6pt} \setlength{\headsep}{19.9pt} 
+%
+% % \usepackage[noprint]{booklet}
+% ...
+% \end{verbatim}
+%
+%    If you try and use a non-zero magnification with a document that
+% has any `true' lengths, for example the \Lpack{amsbook} class, 
+% TeX itself will complain with an error message
+% of the form: \\
+% |!Incompatible magnification (833);| \\
+% |the previous value will be retained|\\
+% Try forcing LaTeX to continue and check the output because you might
+% be lucky and it looks alright.
+%
+% \changes{v0.7a}{2005/06/01}{Added Gordo's example}
+%    Here is another example from a posting to \texttt{comp.text.tex} by
+% Gordo in the thread \textit{booklet problem}, 2005/05/26.
+% \begin{verbatim}
+% \documentclass[twoside,10pt]{article}
+% \setlength{\paperwidth}{5.5in}
+% \setlength{\paperheight}{8.5in}
+% \setlength{\topmargin}{-0.3in}
+% \setlength{\textheight}{6.9in}
+% \setlength{\oddsidemargin}{0.0in}
+% \setlength{\evensidemargin}{-0.5in}
+% \setlength{\textwidth}{4.0in}
+% \usepackage{makeidx}
+% %\usepackage[noprint,1to1]{booklet} % initial runs for ToC and index
+% \usepackage[noprint,1to1]{booklet} \nofiles % final printing run
+% \source{\magstep0}{5.5in}{8.5in}
+% \target{\magstep0}{11in}{8.5in}
+% \setpdftargetpages
+% \pagespersignature{120}
+% \makeindex
+% \begin{document}
+% \pagenumbering{roman}
+% \begin{titlepage} ... \end{titlepage} % the title
+% ...
+% \newpage
+% \begin{titlepage} \mbox{} \end{titlepage} % back cover
+% \end{document}     
+% \end{verbatim}
+%
+%
+% \changes{v0.7a}{2005/06/01}{Added example for bookleting the manual}
+% As yet another example, you can produce this manual as a booklet. Change
+% the first part of this file to read:
+% \begin{verbatim}
+% \documentclass[twoside]{ltxdoc}
+% \usepackage{url}
+% \usepackage{ifpdf}
+% \addtolength{\evensidemargin}{-0.75in}
+% % \usepackage[noprint]{booklet} % initial runs
+% \usepackage[print,largetypeblock]{booklet}\nofiles\pagespersignature{48} % final run
+% %\usepackage[draft=false,
+% %            plainpages=false,
+% %            pdfpagelabels,
+% %            bookmarksnumbered,
+% %            hyperindex=false
+% %           ]{hyperref}
+% \ifpdf
+%   \setpdftargetpages
+% \else
+%   \setdvipstargetpages
+% \fi
+% \providecommand{\phantomsection}{}
+% \makeatletter
+%   \@mparswitchfalse
+% \makeatother
+% ...
+% \end{verbatim}
+% The \Lpack{hyperref} package interferes with the \cs{setpdftargetpages}
+% macro so it is commented out. The \Lopt{largetypeblock} option is used
+% otherwise the marginal notes can fall off the edges of the pages in the
+% final printing; the \cs{evensidemargin} is also altered for the same reason.
+% The value for \cs{pagespersignature} is to ensure that
+% only a single signature is produced (you can decrease this if you are
+% willing to bind multiple signatures).
+%
+%
+%    The original source of the \Lpack{2up} package is included at
+% the end of this manual. It may provide some more insights into how to
+% use the \Lpack{booklet} package. Be careful, though, as the two packages
+% differ in some significant details.
+%
+%
+%
+% \StopEventually{
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock \emph{The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+% \bibitem[Zan93]{2UP}
+% Timothy Van Zandt.
+% \newblock \emph{Two-up printing for Generic TeX}.
+% \newblock January 1993.
+% \newblock (Available from CTAN in \texttt{macros/generic/2up})
+% \end{thebibliography}
+% }
+%
+%
+% \section{The package code} \label{sec:code}
+%
+% The package code essentially consists of modifications to the \Lpack{2up}
+% macros, which are given in section~\ref{sec:2upcode}. I could not
+% have written the \Lpack{booklet} package without Timothy Van Zandt's
+% \Lpack{2up} macros.
+%
+%    As much as possible I have tried to keep to the original
+% \Lpack{2up} macro names. However, the \Lpack{2up} and \Lpack{booklet}
+% packages cannot be used in the same document.
+%
+%    The code is actually in two packages, \file{booklet.sty} which 
+% provides the commands that 
+% the user sees, and \file{bkltprnt.sty} which is used by 
+% \file{booklet.sty} to do all the hard work.
+%
+% \subsection{Preliminaries}
+%
+%    Announce the name and version of the packages, which require
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{booklet}[2005/03/23 v0.7 booklet printing]
+
+%</usc>
+%<*prnt>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bkltprnt}[2005/03/23 v0.7 support for booklet printing]
+
+%</prnt>
+%    \end{macrocode}
+%
+% \subsection{The main \Lpack{booklet} code}
+%
+%    The \Lpack{booklet} package provides the user commands. Then, if
+% the \Lopt{print} option is used it calls the \Lpack{bkltprnt}
+% package to do the work.
+%
+%    \begin{macrocode}
+%<*usc>
+%    \end{macrocode}
+%
+% \begin{macro}{\twoup@end}
+%  For the \Lopt{print} and \Lopt{noprint} options.
+%    \begin{macrocode}
+\newcommand*{\twoup@end}{\endinput}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pageseplength}
+% \begin{macro}{\pagesepwidth}
+% \begin{macro}{\pagesepoffset}
+% Lengths for the dividing rule.
+%    \begin{macrocode}
+\newdimen\pageseplength
+\newdimen\pagesepwidth
+\newdimen\pagesepoffset
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ifsidebyside}
+% TRUE if pages are to be placed side-by-side on the sheet. I have changed
+% the original |\if@sidebyside| to |\ifsidebyside| so that a user can
+% call it easily. I don't
+% don't implement the |\if@twosided|.
+%    \begin{macrocode}
+\newif\ifsidebyside
+  \sidebysidetrue
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifuselandscape}
+% \begin{macro}{\ifprintoption}
+% Booleans for some options and for if the final printing should be landscape.
+%    \begin{macrocode}
+\newif\ifuselandscape
+  \uselandscapefalse
+\newif\ifprintoption
+  \printoptionfalse
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@signature}
+% \begin{macro}{\c@sigcount}
+% Counters for signature handling.
+%    \begin{macrocode}
+\newcounter{signature}
+\newcounter{sigcount}
+  \setcounter{sigcount}{0}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\pagespersignature}
+% A user-level command for setting the number of pages wanted
+% in a signature. I initialise these to 32.
+%    \begin{macrocode}
+\newcommand*{\pagespersignature}[1]{\setcounter{signature}{#1}}
+  \pagespersignature{32}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\magstepminus}
+% A useful extension of the |\magstep| macro.
+%    \begin{macrocode}
+\def\magstepminus#1{%
+  \ifcase#1 \@m\or 833\or 694\or 579\or 482\or 401\fi\relax}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\target}
+% \begin{macro}{\source}
+% \begin{macro}{\setpdftargetpages}
+% \begin{macro}{\setdvipstargetpages}
+% Vacuous versions of the user-level macros.
+% \changes{v0.7}{3005/03/23}{Added \cs{setdvipstargetpages}}
+%    \begin{macrocode}
+\newcommand*{\target}[3]{}
+\newcommand*{\source}[3]{}
+\newcommand*{\setpdftargetpages}{}
+\newcommand*{\setdvipstargetpages}{}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\targettopbottom}
+% Vacuous version of the user command.
+%    \begin{macrocode}
+\newcommand*{\targettopbottom}{}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\twoupemptypage}
+% \begin{macro}{\twoupclearpage}
+% vacuous versions of the user commands.
+%    \begin{macrocode}
+\newcommand*{\twoupemptypage}{}
+\newcommand*{\twoupclearpage}{}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\checkforlandscape}
+% Sets the value of |\ifuselandscape| to 
+% (|\ifuselandscape| XOR |\ifprintoption|).
+%    \begin{macrocode}
+\newcommand*{\checkforlandscape}{%
+  \ifx\ifuselandscape\ifprintoption
+    \uselandscapefalse\else\uselandscapetrue\fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%    Now declare the \Lopt{print}, \Lopt{noprint} and \Lopt{landscape}
+% options, 
+% prepare to pass any other
+% options to \Lpack{bkltprnt}, and execute the options.
+%    \begin{macrocode}
+\DeclareOption{print}{\printoptiontrue\def\twoup@end{}}
+\DeclareOption{noprint}{\printoptionfalse\def\twoup@end{\endinput}}
+\DeclareOption{landscape}{\uselandscapetrue}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{bkltprnt}}
+\ProcessOptions\relax
+\ifuselandscape
+  \PassOptionsToPackage{landscape}{bkltprnt}
+\fi
+
+%    \end{macrocode}
+%
+%  Now call |\twoup@end|, which is either |\endinput| or vacuous, after
+% which the \Lpack{bkltprnt} package is called (if |\twoup@end| was vacuous).
+%    \begin{macrocode}
+\twoup@end
+
+\RequirePackage{bkltprnt}
+
+%    \end{macrocode}
+%
+%
+%    The end of this package.
+%
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+% \subsection{The main \Lpack{bkltprnt} code}
+%
+%    \begin{macrocode}
+%<*prnt>
+%    \end{macrocode}
+%
+% \begin{macro}{\@targetwidth}
+% \begin{macro}{\@targetheight}
+% \begin{macro}{\@sourcewidth}
+% \begin{macro}{\@sourceheight}
+% Parameter registers.
+%    \begin{macrocode}
+\newdimen\@targetwidth
+\newdimen\@targetheight
+\newdimen\@sourcewidth
+\newdimen\@sourceheight
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\if@leftpage}
+% \begin{macro}{\@leftpage}
+% \begin{macro}{\@rightpage}
+% \begin{macro}{\@physicalpage}
+% Registers used by output routine.
+%    \begin{macrocode}
+\newif\if@leftpage
+  \@leftpagetrue
+\newbox\@leftpage
+\newbox\@rightpage
+\newcount\@physicalpage
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% Since pages are both stored and shipped out half as often:
+%    \begin{macrocode}
+\multiply\maxdeadcycles by 40\relax
+
+%    \end{macrocode}
+%
+% \begin{macro}{\bookletpage}
+% \begin{macro}{\leftpagenumber}
+% \begin{macro}{\rightpagenumber}
+% Registers used only for booklet layout. These are specified directly
+% as this is the only layout.
+%    \begin{macrocode}
+\newcount\bookletpage
+  \bookletpage=0
+\newcount\leftpagenumber
+\newcount\rightpagenumber
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\twoupp@geboxes}
+% I have added this macro so that only the boxes required for a signature
+% are created. The original \Lpack{2up} code creates a new box for each output page.
+% \changes{v0.6}{2001/08/26}{Added \cs{twoupp@geboxes}}
+%    \begin{macrocode}
+\newcommand*{\twoupp@geboxes}{%
+  \advance\bookletpage\@ne
+  \expandafter\newbox\csname bookletbox\the\bookletpage\endcsname
+  \ifnum \bookletpage < \c@signature
+    \twoupp@geboxes
+  \fi}
+\AtBeginDocument{\twoupp@geboxes\bookletpage=\z@}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\target}
+% \begin{macro}{\inv@targetmag}
+% |\@targetwidth| and |\@targetheight| are set to the \emph{unmagnified} 
+% dimensions
+% of the target page. |\inv@targetmag| is the inverse of the target
+% magnification.
+%    \begin{macrocode}
+{\catcode`\p=12\catcode`\t=12\gdef\@@inv@@mag#1pt#2{\def#2{#1}}}
+\def\target#1#2#3{%
+  \mag #1\relax
+  \@targetwidth=1000pt
+  \divide\@targetwidth by #1\relax
+  \expandafter\@@inv@@mag\the\@targetwidth\inv@targetmag
+  \@targetwidth=#2\relax
+  \@targetwidth=\inv@targetmag\@targetwidth
+  \@targetheight=#3\relax
+  \@targetheight=\inv@targetmag\@targetheight}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\source}
+% Like |\target|, but for the source:
+%    \begin{macrocode}
+\def\source#1#2#3{%
+  \@sourcewidth=1000pt
+  \divide\@sourcewidth by #1\relax
+  \expandafter\@@inv@@mag\the\@sourcewidth\inv@sourcemag
+  \@sourcewidth=#2\relax
+  \@sourcewidth=\inv@sourcemag\@sourcewidth
+  \@sourceheight=#3\relax
+  \@sourceheight=\inv@sourcemag\@sourceheight}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\setpdftargetpages}
+% This macro specifies the size of the target page for pdfLaTeX.
+% It ensures that \Lpack{memoir}'s version (\cs{fixpdflayout}) does nothing.
+% \changes{v0.7}{2005/03/23}{Modified \cs{setpdftargetpages} to cater for memoir}
+%    \begin{macrocode}
+\renewcommand*{\setpdftargetpages}{%
+  \ifprintoption
+    \setlength{\pdfpageheight}{\@targetheight}%
+    \setlength{\pdfpagewidth}{\@targetwidth}%
+    \let\fixpdflayout\relax
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\setdvipstargetpages}
+% This macro specifies the size of the target page fow when dvips is
+% used. It ensures that \Lpack{memoir}'s version (\cs{fixdvipslayout}) 
+% does nothing.
+% \changes{v0.7}{2005/03/23}{Implemented \cs{setdvipstargetpages}}
+%    \begin{macrocode}
+\renewcommand*{\setdvipstargetpages}{%
+  \ifprintoption
+    \AtBeginDvi{\special{papersize=\the\@targetwidth,\the\@targetheight}}%
+    \let\fixdvipslayout\relax
+  \fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\targetBooklet}
+% \begin{macro}{\ship@@@leftpage}
+% \begin{macro}{\ship@@@rightpage}
+% I only provide the original \Lpack{2up} Booklet, not booklet. For
+% the \Lpack{booklet} package the Booklet code can be processed
+% immediately. The code in this chunk is equvalent to the original
+% |\target@Booklet|.
+%    \begin{macrocode}
+\def\targetBooklet{%
+  \def\ship@@@leftpage{\save@booklet\@leftpage}%
+  \def\ship@@@rightpage{\save@booklet\@rightpage}%
+  \@leftpagefalse}
+\targetBooklet
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\targettopbottom}
+% \begin{macro}{\make@@halfpage}
+% \begin{macro}{\make@fullpage}
+% I have renamed the original |\target@topbottom| to |\targettopbottom|
+%    \begin{macrocode}
+\def\targettopbottom{%
+  \def\make@@halfpage{\make@@halftopbottom}%
+  \def\make@fullpage{\make@fulltopbottom}%
+  \sidebysidefalse}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% Specify the options. There are new ones for signature sizes, and some
+% of the original \Lpack{2up} source/targets are now treated as options.
+%    \begin{macrocode}
+\DeclareOption{four}{\setcounter{signature}{4}}
+\DeclareOption{eight}{\setcounter{signature}{8}}
+\DeclareOption{sixteen}{\setcounter{signature}{16}}
+\DeclareOption{thirtytwo}{\setcounter{signature}{32}}
+\DeclareOption{twouparticle}{\twouparticle}
+\DeclareOption{landscape}{\twouplandscape}
+\DeclareOption{largetypeblock}{\twoupplain}
+\DeclareOption{1to1}{\twouponetoone}
+
+%    \end{macrocode}
+%
+% \begin{macro}{\shipout}
+% TeX's |\shipout| primitive is saved as |\&normal@shipout|, 
+% and then |\shipout|
+% is defined to save each page to |\@leftpage| or |\@rightpage| 
+% and to print out every two. There is no twosided layout in this version.
+%    \begin{macrocode}
+\expandafter\let\csname &normal@shipout\endcsname\shipout
+\def\shipout{%
+  \if@leftpage
+    \global\@leftpagefalse
+    \def\next{\afterassignment\ship@leftpage\global\setbox\@leftpage=}%
+  \else
+    \global\@leftpagetrue
+    \def\next{\afterassignment\ship@rightpage\global\setbox\@rightpage=}%
+  \fi
+  \next}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ship@leftpage}
+% \begin{macro}{\ship@rightpage}
+% The job of |\ship@leftpage| and |\ship@rightpage| is to invoke 
+% |\ship@@leftpage| or |\ship@@rightpage| at the right time. 
+% |\shipout| is followed either:
+% \begin{enumerate}
+% \item by an |\hbox|, |\vbox| or |\vtop|, in which case 
+% |\ship@leftpage| is invoked after the opening |{|; 
+% |\@leftpage| is void, and |\ship@leftpage| invokes
+% |\ship@@leftpage| after the closing |}|: or
+%
+% \item by a |\box| or |\copy|, in which case |\ship@leftpage| is invoked after
+% the full assignment; |\@leftpage| is not void, and |\ship@leftpage| invokes
+% |\ship@@leftpage| immediately.
+% \end{enumerate}
+%
+%    \begin{macrocode}
+\def\ship@leftpage{%
+  \ifvoid\@leftpage\aftergroup\ship@@leftpage\else\ship@@leftpage\fi}
+\def\ship@rightpage{%
+  \ifvoid\@rightpage\aftergroup\ship@@rightpage\else\ship@@rightpage\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ship@@leftpage}
+% \begin{macro}{\ship@@rightpage}
+%     |\ship@@leftpage|/|\ship@@rightpage| take the output box, 
+% and first make it
+% into a fully-size source page (with |\make@halfpage|) and then this is
+% centered horizontally and vertically in half of a target page (with
+% |\make@@halfpage|). Then they are shipped individually or together.
+%    \begin{macrocode}
+\def\ship@@leftpage{\make@halfpage\@leftpage\ship@@@leftpage}
+\def\ship@@rightpage{\make@halfpage\@rightpage\ship@@@rightpage}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\make@halfpage}
+%    \begin{macrocode}
+\def\make@halfpage#1{%
+  \dp#1=\z@
+  \setbox#1=\vbox to\@sourceheight{%
+    \vskip \inv@sourcemag in
+    \vskip \voffset
+    \hbox to\@sourcewidth{\hskip\inv@sourcemag in\hskip\hoffset\box#1\hss}%
+    \vss}%
+  \make@@halfpage#1}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\make@@halfsidebyside}
+% \begin{macro}{\make@@halfpage}
+% The definition of |\make@@halfpage| depends on the target layout.
+%    \begin{macrocode}
+\def\make@@halfsidebyside#1{%
+  \global\setbox#1=\vbox to\@targetheight{\vss
+    \hbox to.5\@targetwidth{\hss\box#1\hss}\vss}}
+\def\make@@halfpage{\make@@halfsidebyside}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\make@@halftopbottom}
+%    \begin{macrocode}
+\def\make@@halftopbottom#1{%
+  \global\setbox#1=\vbox to.5\@targetheight{\vss
+    \hbox to\@targetwidth{\hss\box#1\hss}\vss}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ship@twoup}
+% The pages are generaly shipped in pairs:
+%    \begin{macrocode}
+\def\ship@twoup{%
+  \begingroup
+    \voffset=-\inv@targetmag in
+    \hoffset=\voffset
+    \global\advance\@physicalpage by 1
+    \count\z@=\@physicalpage
+    \csname &normal@shipout\endcsname\make@fullpage
+  \endgroup}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\make@fullsidebyside}
+% \begin{macro}{\make@fulltopbottom}
+%    \begin{macrocode}
+\def\make@fullsidebyside{%
+  \hbox{\box\@leftpage\pagesep@sidebyside\box\@rightpage}}
+\def\make@fulltopbottom{%
+  \vbox{\offinterlineskip\box\@leftpage\pagesep@topbottom\box\@rightpage}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\make@fullpage}
+% The definition of |\make@fullpage| depends on the layout:
+%    \begin{macrocode}
+\def\make@fullpage{\make@fullsidebyside}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\pagesep@sidebyside}
+% \begin{macro}{\pagesep@topbottom}
+% A vertical or horizontal rule can be inserted. These can be redefined
+% for other tricks:
+%    \begin{macrocode}
+\def\pagesep@sidebyside{%
+  \begingroup
+    \advance\pageseplength by \pagesepoffset
+    \pagesepwidth=\inv@targetmag\pagesepwidth
+    \kern -.5\pagesepwidth
+    \vrule height \inv@targetmag\pageseplength
+           depth -\inv@targetmag\pagesepoffset
+           width \pagesepwidth
+    \kern -.5\pagesepwidth
+  \endgroup}
+\def\pagesep@topbottom{%
+  \begingroup
+    \pagesepwidth=\inv@targetmag\pagesepwidth
+    \vskip -.5\pagesepwidth
+    \moveright\inv@targetmag\pagesepoffset\hbox{%
+      \vrule height\pagesepwidth width\inv@targetmag\pageseplength}%
+    \vskip -.5\pagesepwidth
+  \endgroup}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \changes{v0.7a}{2005/06/01}{Added sewing example}
+%    For example it may be helpful to mark the positions of sewing holes
+% along the spine of your booklet. For \Lopt{landscape} this can be done 
+% by redefining \cs{pagesep@topbottom} and for the more typical portrait 
+% style booklet by changing \cs{pagesep@sidebyside}. The general technique
+% is to use a zero-sized picture which \LaTeX{} will think takes up no space.
+% For instance, for letterpaper (11in by 8.5in) you can do something
+% like this in your preamble:
+% \begin{verbatim}
+% \makeatletter
+% \renewcommand*{\pagesep@sidebyside}{%
+%   \begingroup
+%   \setlength{\unitlength}{1in}%      measurements in inches
+%   \begin{picture}(0,0)(0,-8.5)%      zero-sized picture, origin at page top
+%     \put(0,-1){\makebox(0,0){.}}%    mark 1in down from top
+%     \put(0,-4.25){\makebox(0,0){.}}% mark at page center
+%     \put(0,-7.5){\makebox(0,0){.}}%   mark 1in up from bottom
+%   \end{picture}%
+%   \endgroup}
+% \makeatother
+% \end{verbatim}
+%
+% \begin{macro}{\save@booklet}
+% With the Booklet layout, the pages are saved rather than
+% shipped. I have added the signature code to the original macro. This
+% outputs all the pages making up a signature even if there are still more
+% to come. The page boxes used in |\save@booklet| are assigned initially
+% by |\twoupp@geboxes|.
+% \changes{v0.6}{2001/08/26}{Modified \cs{save@booklet}}
+%    \begin{macrocode}
+\begingroup
+\let\newbox\relax
+\gdef\save@booklet#1{%
+  \begingroup
+    \globaldefs=1
+    \ifnum\c@sigcount=\z@\bookletpage=0\fi
+    \advance\bookletpage by 1
+    \addtocounter{sigcount}{1}
+%%%%    \expandafter\newbox\csname bookletbox\the\bookletpage\endcsname
+    \expandafter\setbox\csname bookletbox\the\bookletpage\endcsname\box#1%
+  \endgroup
+  \ifnum\c@sigcount=\c@signature     %%% PW
+    \twoup@eject%           
+    \setcounter{sigcount}{0}%
+  \fi}
+\endgroup
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\make@bookletpage}
+% \begin{macro}{\booklet@loop}
+% \begin{macro}{\Booklet@@loop}
+% The pages are then printed at the end with the following macros:
+%    \begin{macrocode}
+\def\make@bookletpage#1{%
+  \setbox\ifodd#1\@rightpage\else\@leftpage\fi=%
+    \expandafter\box\csname bookletbox\the#1\endcsname}
+
+\def\booklet@loop{%
+  \count\z@\rightpagenumber
+  \make@bookletpage\leftpagenumber
+  \make@bookletpage\rightpagenumber
+  \ship@twoup
+  \Booklet@@loop
+}
+
+\def\Booklet@@loop{%
+  \advance\rightpagenumber by 1
+  \advance\leftpagenumber by -1
+  \ifnum\leftpagenumber<\rightpagenumber\else\expandafter\booklet@loop\fi}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\twoupemptypage}
+% This one is easy:
+%    \begin{macrocode}
+\def\twoupemptypage{\shipout\hbox{}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\twoup@eject}
+% This clears a whole target page if there is a saved left page. Note that
+% this does not invoke the output routine; i.e., it is not like |\clearpage|
+% or |\supereject|. See |\twoupclearpage| below. (The \Lpack{booklet}
+% package doesn't need |\twoupeject| which is for non-LaTeX systems).
+%
+% This is the definition of |\twoup@eject| with the Booklet layout.
+%    \begin{macrocode}
+\def\twoup@eject{
+  \leftpagenumber\bookletpage
+  \advance\leftpagenumber by 3
+  \divide\leftpagenumber by 4
+  \multiply\leftpagenumber by 4
+  \rightpagenumber=1
+  \ifnum\leftpagenumber>\bookletpage
+    \setbox\@leftpage\hbox{}%
+    \make@@halfpage\@leftpage
+    \loop
+      \setbox\@rightpage\copy\@leftpage
+      \save@booklet\@rightpage
+    \ifnum\leftpagenumber>\bookletpage
+    \repeat
+  \fi
+  \booklet@loop}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\twoupclearpage}
+% This modification is needed for LaTeX in order to get the last page
+% printed out if the final page is a left page (the catcode business is
+% because |\enddocument| is |\let| to |\bye| in amstex):
+%    \begin{macrocode}
+\begingroup
+\catcode`\>=9\relax
+>>\gdef\twoupclearpage{\clearpage\twoup@eject}
+>>\expandafter\@temptokena\expandafter{\enddocument}
+>>\xdef\enddocument{\noexpand\twoupclearpage\the\@temptokena}
+\endgroup
+
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\TwoupWrites}
+% This is one workaround for the page cross-references problem
+%    \begin{macrocode}
+\def\TwoupWrites{%
+  \let\TwoupSaved@write\write
+  \let\TwoupSaved@read\read
+  \let\TwoupSaved@openout\openout
+  \let\TwoupSaved@closeout\closeout
+  \def\write{\TwoupSaved@write-1{}\immediate\TwoupSaved@write}%
+  \def\read{\TwoupSaved@write-1{}\immediate\TwoupSaved@read}%
+  \def\openout{\TwoupSaved@write-1{}\immediate\TwoupSaved@openout}%
+  \def\closeout{\TwoupSaved@write-1{}\immediate\TwoupSaved@closeout}%
+  \let\TwoupWrites\relax}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\twouparticle}
+% \begin{macro}{\twoupplain}
+% \begin{macro}{\twouplandscape}
+% \begin{macro}{\twouponetoone}
+% The pre-defined layouts. I have taken advantage of LaTeX2e's
+% paper size lengths to generalise.
+%    \begin{macrocode}
+\def\twouparticle{\target{\magstepminus1}{\paperheight}{\paperwidth}}
+\def\twoupplain{\target{\magstepminus2}{\paperheight}{\paperwidth}}
+\def\twouplandscape{\target{\magstepminus2}{\paperwidth}{\paperheight}%
+  \targettopbottom}
+\def\twouponetoone{\target{\magstep0}{\paperheight}{\paperwidth}}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% Set the default for the source.
+%    \begin{macrocode}
+\source{\magstep0}{\paperwidth}{\paperheight}
+%    \end{macrocode}
+%
+% Set the defaults for the rule.
+%    \begin{macrocode}
+\pagesepwidth 0pt
+\pageseplength 6.5in
+\pagesepoffset 1in
+%    \end{macrocode}
+%
+% I also found that |\TwoupWrites| was really not optional.
+%    \begin{macrocode}
+\TwoupWrites
+
+%    \end{macrocode}
+%
+% The default options are \Lopt{twouparticle} and \Lopt{thirtytwo} pages
+% per signature.
+%    \begin{macrocode}
+\ExecuteOptions{twouparticle,thirtytwo}
+\ProcessOptions
+
+%    \end{macrocode}
+%
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</prnt>
+%    \end{macrocode}
+%
+%
+% \appendix
+%
+% \section{The code for 2up} \label{sec:2upcode}
+%
+%    Following is a verbatim copy of Timothy Van Zandt's \Lpack{2up} code.
+% I hope that by including this I have partly met his COPYING conditions.
+%
+% \begin{verbatim}
+% 
+% %% BEGIN 2up.tex/2up.sty
+% %%
+% \def\fileversion{1.2}
+% \def\filedate{93/01/28}
+% %%
+% %% COPYRIGHT 1992, 1993 by Timothy Van Zandt, tvz@Princeton.EDU
+% %%
+% %% DESCRIPTION:
+% %%   2up.tex/2up.sty provides two-up printing for Generic TeX (e.g.,
+% %%   Plain, LaTeX, AmSTeX and AmS-LaTeX). It produces a standard dvi file,
+% %%   and does not involve an additional dvi or PostScript filter. It has a
+% %%   flexible interface for specifying paper size and layout.
+% %%
+% %% INSTALLATION:
+% %%   Put this file where your TeX looks for inputs, under the name 2up.tex.
+% %%   Name a copy 2up.sty to use as a LaTeX style option, or create a file
+% %%   2up.sty with the lines:
+% %%     \input 2up.tex
+% %%     \endinput
+% %%
+% %% DOCUMENTATION:
+% %%   Input 2up.tex, or include 2up as a LaTeX style option. There is a
+% %%   good chance you will get the desired layout. (But you will probably
+% %%   need to generate new font bitmaps to get high quality output.) See
+% %%   2up.doc, which might be appended to this file, for detailed
+% %%   documentation.
+% %%
+% %% COPYING:
+% %%   Copying of part or all of this file is allowed under the following
+% %%   conditions only:
+% %%   (1) You may freely distribute unchanged copies of the file. Please
+% %%       include the documentation when you do so.
+% %%   (2) You may modify a renamed copy of the file, but only for personal
+% %%       use or use within an organization.
+% %%   (3) You may copy fragments from the file, for personal use or for use
+% %%       in a macro package for distribution, as long as credit is given
+% %%       where credit is due.
+% %%
+% %%   You are NOT ALLOWED to take money for the distribution or use of
+% %%   this file or modified versions or fragments thereof, except for
+% %%   a nominal charge for copying etc.
+% %%
+% %% CODE:
+% %
+% \csname TwoUpLoaded\endcsname
+% \let\TwoUpLoaded\endinput
+% %
+% \edef\TheAtCode{\the\catcode`\@}
+% \catcode`\@=11\relax
+% \message{\space\space v\fileversion\space\space \filedate\space\space <tvz>}
+% %
+% % Parameter registers:
+% \newdimen\@targetwidth
+% \newdimen\@targetheight
+% \newdimen\@sourcewidth
+% \newdimen\@sourceheight
+% \newdimen\pageseplength
+% \newdimen\pagesepwidth
+% \newdimen\pagesepoffset
+% \newif\if@sidebyside
+% \@sidebysidetrue
+% \newif\if@twosided
+% %
+% % Registers used by output routine.
+% \newif\if@leftpage
+% \@leftpagetrue
+% \newbox\@leftpage
+% \newbox\@rightpage
+% \newcount\@physicalpage
+% %
+% % Since pages are shipped out half as often:
+% \multiply\maxdeadcycles by 2
+% %
+% % Registers used only for booklet layout:
+% \begingroup
+%   \let\newcount\relax
+%   \gdef\booklet@registers{%
+%     \newcount\bookletpage
+%     \bookletpage=0
+%     \newcount\leftpagenumber
+%     \newcount\rightpagenumber
+%     \multiply\maxdeadcycles by 20}
+% \endgroup
+% %
+% % A useful extension of the \magstep macro.
+% \def\magstepminus#1{%
+%   \ifcase#1 \@m\or 833\or 694\or 579\or 482\or 401\fi\relax}
+% %
+% % \@targetwidth and \@targetheight are set to the *unmagnified* dimensions
+% % of the target page. \inv@targetmag is the inverse of the target
+% % magnification.
+% {\catcode`\p=12\catcode`\t=12\gdef\@@inv@@mag#1pt#2{\def#2{#1}}}
+% \def\target#1#2#3{%
+%   \mag #1\relax
+%   \@targetwidth=1000pt
+%   \divide\@targetwidth by #1\relax
+%   \expandafter\@@inv@@mag\the\@targetwidth\inv@targetmag
+%   \@targetwidth=#2\relax
+%   \@targetwidth=\inv@targetmag\@targetwidth
+%   \@targetheight=#3\relax
+%   \@targetheight=\inv@targetmag\@targetheight}
+% %
+% % Like \target, but for the source:
+% \def\source#1#2#3{%
+%   \@sourcewidth=1000pt
+%   \divide\@sourcewidth by #1\relax
+%   \expandafter\@@inv@@mag\the\@sourcewidth\inv@sourcemag
+%   \@sourcewidth=#2\relax
+%   \@sourcewidth=\inv@sourcemag\@sourcewidth
+%   \@sourceheight=#3\relax
+%   \@sourceheight=\inv@sourcemag\@sourceheight}
+% %
+% % \targetlayout does a loop that reads the comma separated arguments.
+% % There can be no extraneous spaces.
+% \def\targetlayout#1{\process@targetlayout#1,stop,}
+% \def\process@targetlayout#1,{%
+%   \expandafter\let\expandafter\next\csname target@#1\endcsname
+%   \ifx\next\relax
+%     \begingroup
+%       \errhelp{Valid target layouts are "topbottom", "twosided",
+%         "booklet", "Booklet" and "dvidvi".}%
+%       \errmessage{`#1' is invalid 2up target layout - ignored.}%
+%     \endgroup
+%     \expandafter\process@targetlayout
+%   \else
+%     \next
+%   \fi}
+% \def\target@stop{}
+% \def\target@booklet{%
+%   \booklet@registers
+%   \def\ship@@@leftpage{\save@booklet\@leftpage}%
+%   \def\ship@@@rightpage{\save@booklet\@rightpage}%
+%   \@leftpagefalse
+%   \def\twoup@eject{\twoup@eject@booklet}%
+%   \expandafter\process@targetlayout}
+% \def\target@Booklet{%
+%   \def\booklet@@loop{\Booklet@@loop}%
+%   \target@booklet}
+% \def\target@twosided{%
+%   \@twosidedtrue
+%   \expandafter\process@targetlayout}
+% \def\target@topbottom{%
+%   \def\make@@halfpage{\make@@halftopbottom}%
+%   \def\make@fullpage{\make@fulltopbottom}%
+%   \@sidebysidefalse
+%   \expandafter\process@targetlayout}
+% \def\target@dvidvi{%
+%   \def\ship@@@leftpage{\ship@dvidvi\@leftpage}%
+%   \def\ship@@@rightpage{\ship@dvidvi\@rightpage}%
+%   \expandafter\process@targetlayout}
+% %
+% % TeX's \shipout primitive is saved as \&normal@shipout, and then \shipout
+% % is defined to save each page to \@leftpage or \@rightpage and to print out
+% % every two. With the twosided layout, filler pages are added when needed.
+% \expandafter\let\csname &normal@shipout\endcsname\shipout
+% \def\shipout{%
+%   \if@leftpage
+%     \global\@leftpagefalse
+%     \def\next{\afterassignment\ship@leftpage\global\setbox\@leftpage=}%
+%     \if@twosided
+%       \ifodd\count\z@
+%         \global\setbox\@leftpage=\hbox{}%
+%         \make@@halfpage\@leftpage\ship@@@leftpage
+%         \def\next{\shipout}%
+%       \fi
+%     \fi
+%   \else
+%     \global\@leftpagetrue
+%     \def\next{\afterassignment\ship@rightpage\global\setbox\@rightpage=}%
+%     \if@twosided
+%       \ifodd\count\z@
+%       \else
+%         \global\setbox\@rightpage=\hbox{}%
+%         \make@@halfpage\@rightpage\ship@@@rightpage
+%         \def\next{\shipout}%
+%       \fi
+%     \fi
+%   \fi
+%   \next}
+% %
+% % The job of \ship@leftpage and \ship@rightpage is to invoke \ship@@leftpage
+% % or \ship@@rightpage at the right time. \shipout is followed either
+% % (i) by an \hbox, \vbox or \vtop, in which case \ship@leftpage is invoked
+% % after the opening {. \@leftpage is void, and \ship@leftpage invokes
+% % \ship@@leftpage after the closing }, or
+% % (ii) by a \box or \copy, in which case \ship@leftpage is invoked after
+% % the full assignment. \@leftpage is not voide, and \ship@leftpage invokes
+% % \ship@@leftpage immediately.
+% \def\ship@leftpage{%
+%   \ifvoid\@leftpage\aftergroup\ship@@leftpage\else\ship@@leftpage\fi}
+% \def\ship@rightpage{%
+%   \ifvoid\@rightpage\aftergroup\ship@@rightpage\else\ship@@rightpage\fi}
+% %
+% % \ship@@leftpage/\ship@@rightpage take the output box, and first make it
+% % into a fully-size source page (with \make@halfpage) and then this is
+% % centered horizontally and vertically in half of a target page (with
+% % \make@@halfpage). Then they are shipped individually or together.
+% \def\ship@@leftpage{\make@halfpage\@leftpage\ship@@@leftpage}
+% \def\ship@@rightpage{\make@halfpage\@rightpage\ship@@@rightpage}
+% \def\make@halfpage#1{%
+%   \dp#1=\z@
+%   \setbox#1=\vbox to\@sourceheight{%
+%     \vskip \inv@sourcemag in
+%     \vskip \voffset
+%     \hbox to\@sourcewidth{\hskip\inv@sourcemag in\hskip\hoffset\box#1\hss}%
+%     \vss}%
+%   \make@@halfpage#1}
+% %
+% % The definition of \make@@halfpage depends on the target layout.
+% \def\make@@halfsidebyside#1{%
+%   \global\setbox#1=\vbox to\@targetheight{\vss
+%     \hbox to.5\@targetwidth{\hss\box#1\hss}\vss}}
+% \def\make@@halftopbottom#1{%
+%   \global\setbox#1=\vbox to.5\@targetheight{\vss
+%     \hbox to\@targetwidth{\hss\box#1\hss}\vss}}
+% \def\make@@halfpage{\make@@halfsidebyside}
+% %
+% % The pages are generaly shipped in pairs:
+% \def\ship@twoup{%
+%   \begingroup
+%     \voffset=-\inv@targetmag in
+%     \hoffset=\voffset
+%     \global\advance\@physicalpage by 1
+%     \count\z@=\@physicalpage
+%     \csname &normal@shipout\endcsname\make@fullpage
+%   \endgroup}
+% \let\ship@@@leftpage\relax
+% \def\ship@@@rightpage{\ship@twoup}
+% %
+% % The definition of \make@fullpage depends on the layout:
+% \def\make@fullsidebyside{%
+%   \hbox{\box\@leftpage\pagesep@sidebyside\box\@rightpage}}
+% \def\make@fulltopbottom{%
+%   \vbox{\offinterlineskip\box\@leftpage\pagesep@topbottom\box\@rightpage}}
+% \def\make@fullpage{\make@fullsidebyside}
+% %
+% % A vertical or horizontal rule can be inserted. These can be redefined
+% % for other tricks:
+% \def\pagesep@sidebyside{%
+%   \begingroup
+%     \advance\pageseplength by \pagesepoffset
+%     \pagesepwidth=\inv@targetmag\pagesepwidth
+%     \kern -.5\pagesepwidth
+%     \vrule height \inv@targetmag\pageseplength
+%            depth -\inv@targetmag\pagesepoffset
+%            width \pagesepwidth
+%     \kern -.5\pagesepwidth
+%   \endgroup}
+% \def\pagesep@topbottom{%
+%   \begingroup
+%     \pagesepwidth=\inv@targetmag\pagesepwidth
+%     \vskip -.5\pagesepwidth
+%     \moveright\inv@targetmag\pagesepoffset\hbox{%
+%       \vrule height\pagesepwidth width\inv@targetmag\pageseplength}%
+%     \vskip -.5\pagesepwidth
+%   \endgroup}
+% %
+% % With the dvidvi layout, the pages are shipped individually:
+% \def\ship@dvidvi#1{%
+%   \begingroup
+%     \voffset=-\inv@targetmag in
+%     \hoffset=\voffset
+%     \csname &normal@shipout\endcsname\box#1%
+%   \endgroup}
+% %
+% % With the booklet or Booklet layout, the pages are saved rather than
+% % shipped.
+% \begingroup
+% \let\newbox\relax
+% \gdef\save@booklet#1{%
+%   \begingroup
+%     \globaldefs=1
+%     \advance\bookletpage by 1
+%     \expandafter\newbox\csname bookletbox\the\bookletpage\endcsname
+%     \expandafter\setbox\csname bookletbox\the\bookletpage\endcsname\box#1%
+%   \endgroup}
+% \endgroup
+% %
+% % The pages are then printed at the end with the following macros:
+% \def\make@bookletpage#1{%
+%   \setbox\ifodd#1\@rightpage\else\@leftpage\fi=%
+%     \expandafter\box\csname bookletbox\the#1\endcsname}
+% \def\booklet@loop{%
+%   \count\z@\rightpagenumber
+%   \make@bookletpage\leftpagenumber
+%   \make@bookletpage\rightpagenumber
+%   \ship@twoup
+%   \booklet@@loop}
+% \def\booklet@@loop{%
+%   \advance\rightpagenumber by 2
+%   \advance\leftpagenumber by -2
+%   \ifnum\leftpagenumber<1\else\expandafter\booklet@loop\fi}
+% \def\Booklet@@loop{%
+%   \advance\rightpagenumber by 1
+%   \advance\leftpagenumber by -1
+%   \ifnum\leftpagenumber<\rightpagenumber\else\expandafter\booklet@loop\fi}
+% %
+% % This one is easy:
+% \def\twoupemptypage{\shipout\hbox{}}
+% %
+% % This clears a whole target page if there is a saved left page. Note that
+% % this does not invoke the output routine; i.e., it is not like \clearpage
+% % or \supereject. See \twoupclearpage and \twoupeject below.
+% \def\twoup@eject{%
+%   \if@leftpage\else
+%     \global\setbox\@rightpage\hbox{}%
+%     \make@@halfpage\@rightpage\ship@@@rightpage
+%     \global\@leftpagetrue
+%   \fi}
+% %
+% % This is the definition of \twoup@eject with the booklet option:
+% \def\twoup@eject@booklet{%
+%   \leftpagenumber\bookletpage
+%   \advance\leftpagenumber by 3
+%   \divide\leftpagenumber by 4
+%   \multiply\leftpagenumber by 4
+%   \rightpagenumber=1
+%   \ifnum\leftpagenumber>\bookletpage
+%     \setbox\@leftpage\hbox{}%
+%     \make@@halfpage\@leftpage
+%     \loop
+%       \setbox\@rightpage\copy\@leftpage
+%       \save@booklet\@rightpage
+%     \ifnum\leftpagenumber>\bookletpage
+%     \repeat
+%   \fi
+%   \booklet@loop}
+% %
+% % This modification is needed for \LaTeX in order to get the last page
+% % printed out if the final page is a left page (the catcode business is
+% % because \enddocument is \let to \bye in amstex):
+% \begingroup
+% \expandafter\ifx\csname @latexerr\endcsname\relax
+%   \catcode`\>=14\else\catcode`\>=9\fi\relax
+% >>\gdef\twoupclearpage{\clearpage\twoup@eject}
+% >>\expandafter\@temptokena\expandafter{\enddocument}
+% >>\xdef\enddocument{\noexpand\twoupclearpage\the\@temptokena}
+% \endgroup
+% %
+% % For most other macro packages we could just leave be and all pages would
+% % always be printed because of the way the \end primitive works (except that
+% % TeX will go bonkers with the booklet layout). However,
+% % sometimes a blank filler page would be printed *with* headings. We prefer
+% % the filler page to be truly blank. To achieve this,  we hack the definition
+% % of \end. This may cause problems with some macros.
+% \expandafter\ifx\csname @latexerr\endcsname\relax
+%   \let\twoup@@@end\end
+%   \def\end{\twoup@eject\twoup@@@end}
+%   \def\twoupeject{\par\vfil\supereject\twoup@eject}
+% \fi
+% %
+% % This is one workaround for the page cross-references problem
+% \def\TwoupWrites{%
+%   \let\TwoupSaved@write\write
+%   \let\TwoupSaved@read\read
+%   \let\TwoupSaved@openout\openout
+%   \let\TwoupSaved@closeout\closeout
+%   \def\write{\TwoupSaved@write-1{}\immediate\TwoupSaved@write}%
+%   \def\read{\TwoupSaved@write-1{}\immediate\TwoupSaved@read}%
+%   \def\openout{\TwoupSaved@write-1{}\immediate\TwoupSaved@openout}%
+%   \def\closeout{\TwoupSaved@write-1{}\immediate\TwoupSaved@closeout}%
+%   \let\TwoupWrites\relax}
+% %
+% %  Defaults:
+% \def\twouparticle{%
+%   \target{\magstepminus1}{11in}{8.5in}%
+%   \source{\magstep0}{8.5in}{11in}}
+% \def\twoupplain{%
+%   \target{\magstepminus2}{11in}{8.5in}%
+%   \source{\magstep0}{8.5in}{11in}}
+% \def\twouplegaltarget{%
+%   \target{\magstepminus1}{14in}{8.5in}%
+%   \source{\magstep0}{8.5in}{11in}}%
+% \def\twouplandscape{%
+%   \target{\magstepminus2}{8.5in}{11in}%
+%   \source{\magstep0}{11in}{8.5in}%
+%   \targetlayout{topbottom}}
+% \expandafter\ifx\csname @latexerr\endcsname\relax
+%   \twoupplain\else\twouparticle\fi
+% \pagesepwidth 0pt
+% \pageseplength 6.5in
+% \pagesepoffset 1in
+% %
+% \expandafter\catcode`\@=\TheAtCode\relax
+% \endinput
+% %% END 2up.tex/2up.sty
+% 
+% \end{verbatim}
+%
+%
+% \section{The documentation for 2up} \label{sec:2updoc}
+%
+%    Following is an almost verbatim copy of the documentation for Timothy
+% Van Zandt's \Lpack{2up}. I hope that by including this I have 
+% now completely met his COPYING conditions. The only change that
+% I have made to the original is replacing every occurrence of `|{verbatim}|'
+% by `|{verbtm}|', so LaTeX does not get confused when processing the
+% current document.
+%
+% \begin{verbatim}
+% 
+% %% BEGIN 2up.doc
+% %%
+% %% Documentation for 2up.tex/2up.sty.
+% %% Run through LaTeX, with or without the NFSS.
+% %%
+% %% See below if you want to try out two-up printing.
+% %%
+% %% LaTeX version of this documentation courtesy of
+% %%    H. David Todd <hdtodd@mockingbird.wesleyan.edu>
+% %%
+% %%
+% \documentstyle[12pt,twoside]{article}
+% 
+% \def\FileDate{January 28, 1993}
+% \def\FileVersion{1.2}
+% 
+% %% INSTRUCTIONS FOR TWO-UP PRINTING.
+% %% 1. Change \iffalse below to \iftrue.
+% %% 2. Uncomment \special{landscape} if using Rokicki's dvips, or otherwise
+% %%      remember to print the document out in landscape mode.
+% %% 3. Uncomment one of the booklet options, if desired.
+% %%
+% \iffalse
+%   \input 2up.tex
+%   \targetlayout{twosided}
+%   \TwoupWrites
+%   % \special{landscape}     %% This works with Rokicki's dvips
+%   % \targetlayout{Booklet}  %% Booklet printing with 2-sided printer/copier.
+%   % \targetlayout{booklet}  %% Booklet printing with 1-sided printer/copier.
+% \fi
+% 
+% \makeatletter
+% 
+% %% PAGE NUMBERING:
+% %% Adjust page numbering if using booklet layout option.
+% \setcounter{page}{0}
+% \def\next{\if@leftpage\else\stepcounter{page}\fi}
+% \@ifundefined{target@stop}{}{\next}
+% 
+% %% CONTENTS:
+% \def\tableofcontents{%
+%   \par\begin{center}
+%   \large\bf Contents
+%   \end{center}
+%   \begin{quote}\@starttoc{toc}\end{quote}}
+% 
+% %% PAGE PARAMETERS:
+% \setlength{\parindent}{0pt}          % paragraph indent
+% \setlength{\parskip}{4pt plus 1pt minus 1pt}
+% \setlength{\topmargin}{0pt}
+% \setlength{\headheight}{12pt}        % height of running head
+% \setlength{\headsep}{30pt}           % distance between header and text
+% \setlength{\textheight}{8.2in}        % height of text on page
+% 
+% %% DATES, VERSIONS AND TITLES:
+% \def\@maketitle{%
+%  \begin{center}
+%    {\Large\bf \@title \par}
+%    \vskip 1.2em {\lineskip .5em
+%    \begin{tabular}[t]{c}\@author\end{tabular}\par}
+%    \vskip .8em {\@date}%
+%   \end{center}
+%   \par
+%   \vskip .5em}
+% 
+% %% Page Style:
+% \pagestyle{myheadings}
+% \markboth{Two-Up Style Guide}{Version \FileVersion, \FileDate}
+% 
+% %% Special list:
+% \newcommand{\namelistlabel}[1]{\mbox{\bf #1}\hfil}
+% \newenvironment{namelist}[1]%
+%   {\begin{list}{}%
+%     {\let\makelabel\namelistlabel
+%     \settowidth{\labelwidth}{#1}
+%     \setlength{\leftmargin}{1.1\labelwidth}}}%
+%  {\end{list}}
+% 
+% %% VERBATIM:
+% %%
+% \begingroup
+%   \catcode`\{=12 \catcode`\}=12
+%   \catcode`\(=1 \catcode`\)=2
+%   \catcode`\+=0 \catcode`\\=12
+%   +gdef+|(\)          % \| = character \
+%   +gdef+{({)          % \{ = character {
+%   +gdef+}(})          % \} = character }
+% +endgroup
+% \def\Backslash{\protect\|}
+% %%
+% %% Define some functional font commands:
+% %%
+% \def\MainFont{\tt}      % For macro definitions.
+% \def\UsageFont{\tt}           % For in-line macro names.
+% \def\InlineFont{\tt}          % For other in-line snipets of code.
+% \def\MetaFont{\rm\it}            % For meta arguments.
+% %%
+% %% Short-cuts for font commands:
+% %%
+% \def\s#1{\string#1}
+% \def\t#1{{\InlineFont\string#1}}   % For other in-line code.
+% \def\m#1{{\MetaFont #1\/}}         % For just putting things in italics
+% \def\M#1{{\InlineFont\{\m{#1}\}}}  % Arg is in italic, enclosed in tt braces.
+% \let\N\t                           % For in-line macro names.
+% \catcode`\<=13 \def<#1>{\m{#1}}    % <meta>
+% \catcode`\"=13\def"{\verb"}        % Short verb
+% %%
+% %% This is for listing macro definitions in a quote-like environment.
+% %%
+% \begingroup
+%   \catcode`\[=1 \catcode`\]=2
+%   \catcode`\{=13 \catcode`\}=12
+%   \gdef\@MD[%
+%     \catcode`\{=13 \catcode`\}=12
+%     \def{##1}[\{[\MetaFont ##1]\}]]
+% \endgroup
+% \def\MD{%
+%   \quote
+%   \begingroup
+%     \@MD
+%     \def\end{\endgroup\end}%
+%     \def\\{\@centercr\s}%
+%     \MainFont
+%     \s}
+% \def\endMD{\endquote}
+% %%
+% 
+% %% End preamble.
+% \catcode`\@=12
+% 
+% \begin{document}
+% 
+% \title{Documentation for 2up.tex:\\
+%   Two-up printing for Generic TeX}
+% \author{Timothy Van Zandt\thanks{The documentation was put into
+%   \LaTeX\ format by David Todd.}\\ tvz@Princeton.EDU}
+% \date{Version \FileVersion\\[3pt] \FileDate}
+% 
+% \maketitle
+% \thispagestyle{empty}
+% 
+%   "2up.tex"/"2up.sty" allows one to print a document two-up, with
+% considerable flexibility as to paper size and layout. It produces a standard
+% dvi file, and does not involve an additional dvi or PostScript filter. It
+% should work with most \TeX\ macro packages.
+% 
+%   {\bf Usage:} Input "2up.tex", or include "2up" as a LaTeX style option.
+% There is a good chance you will get the desired layout. (But you will probably
+% need to generate new font bitmaps to get high quality output.) See the rest of
+% this documentation for detailed information on controlling 2up.tex.
+% 
+% \begingroup
+% \def\baselinestretch{.8}\large\normalsize
+% \tableofcontents
+% \endgroup
+% \clearpage
+% 
+% \section{Comparison with other methods}
+% 
+% There are other tools for two-up printing:
+% \begin{description}
+% \item[PostScript filters]
+% These work well as long as you only use PostScript fonts (as opposed to the
+% usual Metafont fonts). Otherwise, the PostScript filter scales bitmapped
+% fonts, and the quality is lower than with "2up.tex".
+% 
+% \item[Rokicki's dvidvi]
+% "dvidvi" is a versatil tool that does much more than
+% 2up printing. However, if only rearranges the pages, and does not adjust the
+% magnification to ensure that the pages fit properly in a two-up format. It
+% also adds one more step to the \TeX-dvi-printer cycle. "2up.tex", on the other
+% hand, combines the changes to \TeX's magnification and page layout with the
+% rearranging of the pages, all with an easy-to-use interface and from within
+% your \TeX\ document. (See Section \ref{dvidvi} on using both "2up.tex" and
+% "dvidvi" together.)
+% \end{description}
+% 
+% \section{A warning about fonts}
+% 
+% Two-up printing generally involves reducing a document, and thus using fonts
+% sizes that are not typically found on your system. If you are using bitmapped
+% fonts (standard for \TeX\ users), and you do not have and cannot generate the
+% extra fonts bitmaps, you will find 2up.sty (and any other method of two-up
+% printing) to give very poor quality output.
+% 
+% If you are using a program like Rokicki's "dvips" that can generate extra font
+% bitmaps as needed, you will find that it takes a long time to print your 2up
+% document the first few times, as "dvips" is busy making the extra fonts. This
+% problem will go away. Be thankful you have such an easy way to get extra font
+% bitmaps.
+% 
+% \section{Usage}
+% 
+% Input "2up.tex". \LaTeX\ users can include "2up" as a style option.
+% 
+% Then set the target and source layout:
+% \begin{MD}
+%   \source{mag}{width}{height}\\
+%   \target{mag}{width}{height}
+% \end{MD}
+% 
+% \begin{itemize}
+% \item The ``source'' layout is the layout of your document
+% the way it is usually printed.  The ``target'' layout is the layout when it
+% is printed two-up.
+% 
+% \item <width> and <height> are the true width and height of the paper,
+% when looking at the output right-side-up.
+% 
+% \item <mag> refers to the source and target magnification. It should be an
+% integer, equal to 1000 times the magnification factor. There are also some
+% magic magnification numbers:
+% \begin{description}
+% \item[$\setminus$magstep<n>] for a magnification of 1.2$^n$ (n=0,...,5), or
+% 
+% \item[$\setminus$magstepminus<n>] for a magnification of 1.2$^{-n}$
+% (n=0,...,5).
+% \end{description}
+% Using these magnification values will make best use of the available fonts on
+% your system.
+% \end{itemize}
+% 
+% "2up.tex" takes each source page, and centers in half a target page. To get
+% the pages to fit, the magnification of the document typically has to be
+% reduced. If you find that the pages are too crowded, try reducing the target
+% magnification. If they are too lonely, try increasing the target
+% magnification.
+% 
+% If you want to adjust the positioning of the scaled pages, try changing the
+% values of "\hoffset" or "\voffset" with "\advance" or \LaTeX's "\addtolength".
+% 
+% Don't change the magnification of your document after using the "\target"
+% command, as you will override the settings made by 2up.tex.
+% 
+% You can also specify some options:
+% \begin{MD}
+%   \targetlayout{options}
+% \end{MD}
+% where <options> is a comma separated list with no spaces. Valid
+% options are:
+% \begin{namelist}{topbottomxxx}
+% 
+% \item [topbottom] The two source pages are printed one on top of the other.
+% \item [twosided]  Odd pages are always printed on the right or the bottom.
+% \item [booklet]   Pages are printed like a booklet. See Section \ref{booklet}.
+% \item [Booklet]   Like "booklet", but for two-sided printers/copiers.
+% \item [dvidvi]    For arranging in two-up layout with "dvidvi". See Section
+% \ref{dvidvi}.
+% 
+% \end{namelist}
+% 
+% The only other changes you might want to make to your document are the
+% following:
+% \begin{itemize}
+% \item You have to see to it that the target output is printed with the
+% correct orientation (landscape or portrait). See the documentation for your
+% dvi driver for details.
+% 
+% \item "2up.tex" will inserts a line between pages if you change the following
+% dimensions:
+% \begin{namelist}{pagesepwidthxxx}
+% \item [$\setminus$pagesepwidth]   Thickness of line. (Default 0pt)
+% \item [$\setminus$pageseplength]  Length of line. (Default 6.5in)
+% \item [$\setminus$pagesepoffset]  Distance from bottom of page to bottom of
+% line, or (with "topbottom" layout) from side of page to beginning of line.
+% (Default 1in)
+% \end{namelist}
+% 
+% \item You can, but do not need to, use the following commands:
+% \begin{namelist}{twoupemptypagexxx}
+% 
+% \item [$\setminus$twoupemptypage] inserts a completely blank half page
+% in the target.
+% 
+% \item [$\setminus$twoupclearpage] \LaTeX\ users: ejects a complete target
+% page.
+% 
+% \item [$\setminus$twoupeject] Plain \TeX users: ejects a complete target
+% page.
+% 
+% \end{namelist}
+% \end{itemize}
+% 
+% \section{Defaults}
+% 
+%   The following commands set the parameters for some common sources and
+% targets. The definitions of these commands are also useful examples.
+% 
+%   For A4 paper, just replace "8.5in" and "11in" in the definitions below by
+% the width and height of A4 paper.
+% 
+% \begin{description}
+% 
+% \item [$\setminus$twouparticle]
+% 
+% This is the default for \LaTeX.
+% \begin{namelist}{Sourcexx}
+% 
+% \item [Source:] A portrait document on 8.5x11 inch paper with wide margins as
+% used in \LaTeX's article style, and without marginal notes.
+% 
+% \item [Target:] A landscape document on the same size paper, with the source
+% pages printed side by side.
+% 
+% \item [Definition:]\hspace{1pt}
+% \begin{verbtm}
+% \target{\magstepminus1}{11in}{8.5in}
+% \source{\magstep0}{8.5in}{11in}}
+% \end{verbtm}
+% \end{namelist}
+% 
+% If you use narrower side margins, or if you use marginal notes, then you
+% will need to use "\twoupplain" or \\ "\twouplegaltarget", defined below.
+% 
+% \item [$\setminus$twoupplain]
+% 
+% This is the default for non-\LaTeX.
+% 
+% It is the same as "\twouparticle", but for source documents with narrower
+% margins.
+% \begin{namelist}{Sourcexxx}
+% 
+% \item [Definition:]\hspace{1pt}
+% \begin{verbtm}
+% \target{\magstepminus2}{11in}{8.5in}
+% \source{\magstep0}{8.5in}{11in}
+% \end{verbtm}
+% \end{namelist}
+% 
+% \item [$\setminus$twouplegaltarget]
+% 
+% \begin{namelist}{Sourcexxx}
+% \item [Source:] A portrait document on 8.5x11 inch paper with just about any
+% margins and perhaps with marginal notes.
+% 
+% \item [Target:] A landscape document on legal size paper (8.5x14 inches),
+% with the source pages printed side by side.
+% 
+% \item [Definition:]\hspace{1pt}
+% \begin{verbtm}
+% \target{\magstepminus1}{14in}{8.5in}
+% \source{\magstep0}{8.5in}{11in}\
+% end{verbtm}
+% \end{namelist}
+% 
+% \item [$\setminus$twouplandscape]\hspace{1pt}
+% \begin{namelist}{Sourcexxx}
+% 
+% \item [Source:] A landscape document on 8.5x11 inch paper with just about any
+% margins.
+% 
+% \item [Target:] A portrait document on the same size paper, with the
+% source pages stacked vertically.
+% 
+% \item [Definition:]\hspace{1pt}
+% \begin{verbtm}
+% \target{\magstepminus2}{8.5in}{11in}
+% \source{\magstep0}{11in}{8.5in}
+% \targetlayout{topbottom}
+% \end{verbtm}
+% \end{namelist}
+% 
+% \end{description}
+% 
+% 
+% \section{True Dimensions}
+% 
+% \TeX\ lets you use `true' dimensions, as in
+% \begin{verbtm}
+%     \topmargin 1truein
+%     \setlength{\topmargin}{1truein}
+% \end{verbtm}
+% This sets the length to 1 inch
+% as it appears on the page, no matter what the magnification.
+% 
+% Once you use `true' dimensions, it is impossible to change the
+% magnification of your document, and hence it is almost impossible
+% to use 2up.tex. You will get an error like:
+% \begin{verbtm}
+%     ! Incompatible magnification (833);
+%       the previous value will be retained (2000).
+% \end{verbtm}%
+% 
+% The use of `true' dimensions might be hiding in macros or style files
+% you are using. For example, Plain \TeX's "\magnification" command uses
+% true dimensions; use "\mag" instead, and then set "\hsize" and
+% "\vsize" appropriately scaled. If you can't find the culprit `true'
+% dimension in your document or input files, try putting this on the
+% (very) first line of your document:
+% \begin{verbtm}
+%     \mag 143 \voffset 1truein \mag 1000
+% \end{verbtm}
+% 
+% You will get the error listed above wherever true dimensions are used
+% (and in some other places as well).
+% 
+% 
+% \section{Page Cross-References}
+% 
+%   Page cross-references (e.g., in an index or table of contents) will not be
+% accurate with "2up.tex", because finished pages are not immediately shipped
+% out. This can also cause problems with some special \LaTeX\ styles that have
+% multiple ".aux" files (e.g., for each chapter).
+% 
+%   To get better, but not perfect, page cross-references, try putting the
+% command
+% \begin{verbtm}
+%     \TwoupWrites
+% \end{verbtm}
+% at the beginning of your document, after inputting "2up.tex". This is good for
+% drafts, and may fix problems with \LaTeX\ styles that have multiple ".aux"
+% files. "\TwoupWrites" makes "\write" and "\read" "\immediate", if you know
+% what that means. It might cause problems of its own, but try it and see.
+% 
+%   To get accurate page cross-references:
+% \begin{enumerate}
+% \item Run the job without "2up.tex", until all cross-references
+% are properly resolved. Run any index utility at this point.
+% 
+% \item Run the job ONE MORE TIME with "2up.tex"; it will use the
+% correct cross-references from the previous runs. (In \LaTeX\ documents,
+% it is useful at this point to include the "\nofiles" command, so that
+% the correct cross-references are preserved.)
+% \end{enumerate}
+% 
+% \section{Booklets\label{booklet}}
+% 
+% Here are some special considerations for making booklets:
+% 
+% \begin{itemize}
+% 
+% \item  Use the "booklet" target layout if your printer or copier cannot print
+% two
+% sides directly. "2up.tex" prints out the ``tops'' of the pages, and then the
+% ``bottoms'', so that you can copy or print on both sides by doing one side,
+% flipping the output over, and doing the other side.
+% 
+% \item Use "Booklet" if your printer or copier can print directly on two sides.
+% 
+% \item You must have enough memory and box registers to hold all the pages in
+% the document. A Big\TeX\ should be able to handle at least a 32-page booklet.
+% 
+% \item Sometimes booklet printing is part of the design of a document, rather
+% than an afterthought. In this case, you should set up the margins for the
+% target half-page rather than using "2up.tex" to scale the document. For
+% example, if using \LaTeX, 8.5x11 inch paper, \LaTeX's twoside style option,
+% and headings, try the following page parameter changes:
+% \begin{verbtm}
+%     \setlength{\oddsidemargin}{-0.2in}
+%     \setlength{\evensidemargin}{-0.5in}
+%     \setlength{\textwidth}{4.2in}
+%     \setlength{\textheight}{6.5in}
+%     \setlength{\topmargin}{-.4in}
+% \end{verbtm}
+% If you do this, "2up.tex" isn't adjusting margins or scaling the
+% document. You coould therefore get by without "2up.tex" by using "dvidvi".
+% \end{itemize}
+% 
+% \section{Using dvidvi\label{dvidvi}}
+% 
+%   With the "dvidvi" layout option, "2up.tex" takes care of adjusting the
+% margins, and you then use "dvidvi" to arrange the pages in a two-up
+% format. The advantage is that cross referencing comes out right.
+% The disadvantage is that it involves one more step.
+% 
+% Start by \TeX ing your document with "2up.tex" and the "dvidvi" layout option.
+% Then run the dvi file through "dvidvi". Specify the offsets for "dvidvi" at
+% the middle of the page. E.g., for
+% a side-by-side layout on 8.5x11in paper, use
+% \begin{verbtm}
+%     dvidvi '2:0,1(5.5in,0in)' foo bar
+% \end{verbtm}
+% For other paper sizes, replace "5.5in" by half the target paper width. For the
+% "topbottom" layout, reverse the dimensions, e.g.,
+% (0in,5.5in). For booklet printing, see the
+% the documentation for "dvidvi".
+% 
+% 
+% \section{Compatibility\label{compatibility}}
+% 
+%   These macros should work with most \TeX\ macro packages, except for
+% the following possible but unlikely compatibility problems:
+% 
+% \begin{itemize}
+% 
+% \item If you use a macro package other than \LaTeX\ that does unusual things
+% to end a document and/or that modifies the definition of "\end", you may
+% find that the last page is nor printed or that an extra page with headings
+% is inserted at the end of the document. This is fixable on a case-by-case
+% basis. See the redefinition of "\end" in "2up.tex".
+% 
+% \item "2up.tex" might not work if you meddle with \TeX's "\shipout" primitive
+% after loading "2up.tex".
+% 
+% \item If the first page of the source document is not on the first two-up
+% target
+% page (possible, for example, with two-sided printing and the "booklet"
+% option, but generally unlikely), "\special"'s that come at the beginning
+% of the document also do not get onto the first page of output. This can mess
+% up "\special"'s for landscape printing or
+% including a PostScript header file. In this case, you have to specify
+% these things as command line options when using your dvi driver.
+% 
+% \end{itemize}
+% 
+% 
+% \section{Changes}
+% \begin{namelist}{V0.9xxx}
+% \raggedright
+% 
+% \item [V0.9a] Everything redone. Too many differences to point out.
+% 
+% \item [V0.9b] Interface redone again. "booklet" option added.
+% 
+% \item [V0.9c] Pages ship out a little earlier. A few bugs fixed.
+% 
+%   Parameters "\pageseplength" and "\pagesepthickness" added.
+% 
+% \item [V0.9d] Fixed bug with "\twoupclearpage" and "\twoupeject".
+% 
+% \item [V0.9e] Made pages be counted (from dvi driver's viewpoint) by the
+% physical page number.
+% 
+% \item [V0.9f] Parameter "\pagesepoffset" added, and "\pagesepthickness"
+% changed to "\pagesepwidth".
+% 
+% \item [V1.0]  None. Just seemed seemed like it was time to call it 1.0
+% 
+% \item [V1.1] Added "Booklet" and "dvidvi" target layouts.
+% 
+%   "\hoffset" and "\voffset" in source document now have expected effect.
+% 
+% \item[V1.2] Fixed incompatibility problem with AmS-\TeX/AmS-\LaTeX.
+% 
+%   Added "\TwoupWrites" command.
+% 
+% \end{namelist}
+% \end{document}
+% % END 2up.doc
+% 
+% \end{verbatim}
+%
+%    I used a slightly modified version of \file{2up.doc} as one of the
+% test documents for the \Lpack{booklet} package. First, to get a baseline,
+% I followed the instructions in \file{2up.doc} and edited and printed
+% it using \Lpack{2up} to get a booklet.
+%
+%    I then copied \file{2up.doc} to \file{2updoc.tex} and then edited
+% the new file so that the first part of the preamble became:
+% \begin{verbatim}
+% %% BEGIN 2updoc.tex
+% %% ....
+% \documentclass[12pt,twoside]{article}
+% \usepackage[print,four]{booklet}  % change options to suit
+% \usepackage{ifpdf}                % from CTAN
+%
+% \ifpdf
+%   \pdfoutput=1
+%   \setpdftargetpages
+% \else
+%   \checkforlandscape
+%   \ifuselandscape
+%     \special{dvips}
+%     \ifprintoption
+%       \special{!TeXDict begin <</Duplex true /Tumble true>> setpagedevice end}
+%     \fi
+%   \fi
+% \fi
+% 
+% \def\FileDate....
+% ...
+% \iffalse
+%   \input 2up.tex
+%   ...
+%    % \fi and \makeatletter were here
+% %% PAGE NUMBERING:
+% ...
+% \@ifundefined{target@stop}...
+% \fi     % this \fi and \makeatletter moved down from before NUMBERING
+% \makeatletter
+%
+% %% CONTENTS     % no changes after this
+% ... 
+% \end{verbatim}
+%
+% Processing, printing and folding this to make a booklet enabled me to
+% determine if the package effectively produced the same final result
+% as \Lpack{2up}. 
+% 
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+

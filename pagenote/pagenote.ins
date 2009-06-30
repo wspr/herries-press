@@ -1,7 +1,6 @@
-%% abstract.ins
-%% Author: Peter Wilson, Herries Press
-%% Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-%% Copyright 2000 --- 2009 Peter R. Wilson
+%% pagenote.ins
+%% Author: Peter Wilson (The Herries Press) herries dot press at earthlink dot net 
+%% Copyright 2004 Peter R. Wilson
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either
@@ -12,29 +11,23 @@
 %% and version 1.3 or later is part of all distributions of
 %% LaTeX version 2003/06/01 or later.
 %%
-%% This work has the LPPL maintenance status "maintained".
-%% The Current Maintainer of this work is Will Robertson.
+%% This work has the LPPL maintenance status "author-maintained".
 %%
 %% This work consists of the files listed in the README file.
-%%
 %%
 %% This file will generate fast loadable files and documentation
 %% driver files from the doc files in this work when run through
 %% LaTeX.
 %%
-%%
-%%
-%%
 %% --------------- start of docstrip commands ------------------
 %%
-\def\batchfile{abstract.ins}
+\def\batchfile{pagenote.ins}
 \input docstrip.tex
 \preamble
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson, Herries Press
-  Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-  Copyright 2000 --- 2009 Peter R. Wilson
+  Author: Peter Wilson (The Herries Press) herries dot press at earthlink dot net 
+  Copyright 2004 Peter R. Wilson
  
   This work may be distributed and/or modified under the
   conditions of the LaTeX Project Public License, either
@@ -45,8 +38,7 @@
   and version 1.3 or later is part of all distributions of
   LaTeX version 2003/06/01 or later.
  
-  This work has the LPPL maintenance status "maintained".
-  The Current Maintainer of this work is Will Robertson.
+  This work has the LPPL maintenance status "author-maintained".
  
   This work consists of the files listed in the README file.
 ----------------------------------------------------------------- 
@@ -54,15 +46,20 @@
 \endpreamble
 
 \keepsilent
-\askforoverwritefalse
-\generate{\file{abstract.sty}{\from{abstract.dtx}{usc}}}
+
+%%% \Msg{*** Generating the driver file ***}
+%%% \generateFile{pagenote.drv}{t}{\from{pagenote.dtx}{driver}}
+
+\Msg{*** Generating the LaTeX2e package files ***}
+
+\generateFile{pagenote.sty}{t}{\from{pagenote.dtx}{usc}}
 
 \Msg{***********************************************************}
 \Msg{*}
 \Msg{* To finish the installation you have to move the following}
 \Msg{* file(s) into a directory searched by TeX:}
 \Msg{*}
-\Msg{* \space\space abstract.sty}
+\Msg{* \space\space pagenote.sty}
 \Msg{*}
 \Msg{*}
 \Msg{* To produce the documentation run the files ending with}

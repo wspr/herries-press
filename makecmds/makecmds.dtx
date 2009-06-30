@@ -1,0 +1,409 @@
+% \iffalse meta-comment
+%
+% makecmds.dtx
+% Copyright 2000 Peter R. Wilson
+%
+% This program is provided under the terms of the
+% LaTeX Project Public License distributed from CTAN
+% archives in directory macros/latex/base/lppl.txt.
+%
+% Author: Peter Wilson (CUA) (now at: peter.r.wilson@boeing.com)
+% 
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+\begin{document}
+  \DocInput{makecmds.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{113}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+%
+% \changes{v1.0}{2000/05/27}{First public release}
+%
+% \def\fileversion{v1.0}
+% \def\filedate{2000/05/27}
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+%
+% \title{The \Lpack{makecmds} package\thanks{This
+%        file has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\\
+% Catholic University of America \\
+% Now at \texttt{peter.r.wilson@boeing.com}
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{makecmds} package provides several additional commands 
+% along the lines of the traditional |\(re)newcommand| and friends.
+% \end{abstract}
+% \tableofcontents
+%
+% \StopEventually{}
+%
+% \section{Introduction}
+%
+% \LaTeX{} provides commands like |\newcommand|, |\renewcommand| and
+% |\providecommand|. Similarly there are the |\newenvironment| and
+% |\renewenvironment| commands but no matching |\provideenvironment|
+% command. This package provides additional command making commands
+% like |\makecommand|, which is equivalent to the pair |\providecommand|
+% and |\renewcommand|, or |\provideenvironment| to match with
+% |\providecommand|.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{makecmds} 
+% package and 
+% commented source code is in Section~\ref{sec:code}.
+%
+% \section{The \Lpack{makecmds} package} \label{sec:usc}
+%
+% Table~\ref{tab:newc} shows the general kinds of macro making commands
+% that are available in \LaTeX{} and the additional forms
+% provided by the \Lpack{makecmds} package.
+%
+%    This package extends the basic commands with |\make...| versions
+% of |command|, |environment|, |length| and |counter| macros, and 
+% |\provide...| versions for |environment|, |length| and |counter| macros.
+%
+% \begin{table}
+% \centering
+% \caption{Macro making commands} \label{tab:newc}
+% \begin{tabular}{lp{0.3\textwidth}p{0.3\textwidth}} \hline
+% Command & Action & Condition \\ \hline
+% |\new...{|\meta{name}|}|\meta{...} & 
+% Creates new macro definition for \meta{name} &
+% \meta{name} must not have been previously defined \\
+% |\renew...{|\meta{name}|}|\meta{...} & 
+% Redefines the macro definition for \meta{name} &
+% \meta{name} must have been previously defined \\
+% |\provide...{|\meta{name}|}|\meta{...} & 
+% If \meta{name} has not been previously defined, creates new macro 
+% definition for \meta{name} otherwise does nothing &  \\
+% |\make...{|\meta{name}|}|\meta{...} & 
+% Creates or changes the macro definition for \meta{name} & \\ \hline
+% \end{tabular}
+% \end{table}
+%
+% \subsection{Options}
+%
+%    Several commands of the form |\make...| are provided by the package.
+% For example, |\makecommand{\foo}{...}| will define a new command
+% |\foo| if it does not already exist, otherwise it will silently
+% redefine |\foo|. The package takes a single option, namely \Lopt{warn}. 
+% This option will generate a warning message whenever one of the
+% |\make...| commands redefines an existing definition.
+%
+% \subsection{Commands}
+%
+% \DescribeMacro{\makecommand}
+%  The |\makecommand| command takes the same arguments as the 
+% |\(re)newcommand| family does, and likewise there is also a starred
+% version of the command. |\makecommand{\foo}...}| is equivalent to
+% first calling |\providecommand{\foo}{}| and then |\renewcommand{\foo}...}|.
+% That is, it defines |\foo| irrespective of whether or not |\foo| has been
+% previously defined.
+%
+% \DescribeMacro{\provideenvironment}
+% \DescribeMacro{\makeenvironment}
+%    The |\provideenvironment| macro is like |\providecommand| except 
+% that it applies
+% to an environment instead of a command. Similarly |\makeenvironment|
+% is analagous to |\makecommand|. Both macros take the same arguments
+% as the |\newenvironment| command.
+%
+% \DescribeMacro{\providelength}
+% \DescribeMacro{\makelength}
+%    These are |\provide...| and |\make...| versions of the |\newlength| 
+% command. They take the same argument as |\newlength|.
+%
+% \DescribeMacro{\providecounter}
+% \DescribeMacro{\makecounter}
+%     These are |\provide...| and |\make...| versions of the |\newcounter|
+% command. They take the same arguments as |\newcounter|.
+%
+%
+% 
+% \section{The class code} \label{sec:code}
+%
+%    To try and avoid name clashes, all the internal commands include
+% the string |m@k|. I have used |\def| instead of |\newcommand| in the
+% following code as I have previously coded variants of the new commands in
+% some \LaTeX{} classes and packages, and therefore want to overwrite
+% those if this package happens to be used in conjunction with the
+% pre-existing macro definitions.
+%
+% \subsection{Preliminaries}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe.
+%    \begin{macrocode}
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{makecmds}[2000/05/27 v1.0 extra command making commands]
+
+%    \end{macrocode}
+%
+% \begin{macro}{\ifm@kwarn}
+% This is used for implementing the \Lopt{warn} option.
+%    \begin{macrocode}
+\newif\ifm@kwarn
+  \m@kwarnfalse
+%    \end{macrocode}
+% \end{macro}
+%
+% Now declare and process the options.
+%    \begin{macrocode}
+\DeclareOption{warn}{\m@kwarntrue}
+\ProcessOptions\relax
+
+%    \end{macrocode}
+% 
+% \subsection{The commands}
+%
+%    Much of the code consists of copying and then making minor alterations
+% to the code in the \LaTeX{} kernel.
+%
+% \begin{macro}{\makecommand}
+% \begin{macro}{\m@ke@command}
+% The |\make...| version of |\newcommand|, originally defined in 
+% \file{ltdefns.dtx}. |\m@ke@command| is the internal code that does the work.
+%    \begin{macrocode}
+\def\makecommand{\@star@or@long\m@ke@command}
+\def\m@ke@command#1{%
+  \ifx #1\undefined\else
+    \ifm@kwarn
+      \PackageWarning{makecmds}{Redefining command `\protect#1'}
+    \fi
+  \fi
+  \let\@ifdefinable\@rc@ifdefinable
+  \new@command#1}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\provideenvironment}
+% \begin{macro}{\m@kprovide@environment}
+%     The environment version of |\providecommand|, and is based
+% on the code in \file{ltdefns.dtx}. The internal version is 
+% |\m@kprovide@environment|. The kernel command |\new@environment| actually
+% creates a new environment.
+%    \begin{macrocode}
+\def\provideenvironment{%
+  \@star@or@long\m@kprovide@environment}
+\def\m@kprovide@environment#1{%
+  \@ifundefined{#1}{%
+    \expandafter\let\csname#1\endcsname\relax
+    \expandafter\let\csname end#1\endcsname\relax
+    \new@environment{#1}}{\m@kdiscardenvargs{#1}}
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\m@kdiscardenvargs}
+% \begin{macro}{\m@kenva}
+% \begin{macro}{\m@kenvb}
+% |\m@kdiscardenvargs| gathers up the arguments to |\provideenvironment|, and
+% then proceeds to discard them.
+%    \begin{macrocode}
+\def\m@kdiscardenvargs#1{%
+  \@testopt{\m@kenva#1}0}
+\def\m@kenva#1[#2]{%
+  \@ifnextchar [{\m@kenvb#1[#2]}{\m@kthrowenv{#1}{[#2]}}}
+\def\m@kenvb#1[#2][#3]{\m@kthrowenv{#1}{[#2][#3]}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\m@kthrowenv}
+%  |\m@kthrowenv| takes all the possible (4) arguments to a |\(re)newenvironment|
+% command and throws them away.
+%    \begin{macrocode}
+\def\m@kthrowenv#1#2#3#4{}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makeenvironment}
+% \begin{macro}{\m@ke@environment}
+% The |\make...| version of |\newenvironment|, originally defined in 
+% \file{ltdefns.dtx}. |\m@ke@environment| is the internal code that does the work.
+%    \begin{macrocode}
+\def\makeenvironment{\@star@or@long\m@ke@environment}
+\def\m@ke@environment#1{%
+  \@ifundefined{#1}{\new@environment{#1}}{%
+    \ifm@kwarn
+      \PackageWarning{makecmds}{Redefining environment `#1'}
+    \fi
+    \renew@environment{#1}}
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\providelength}
+% \begin{macro}{\makelength}
+%  These are |\provide...| and |\make...| versions of |\newlength| 
+% (from \file{ltlength.dtx}).
+%    \begin{macrocode}
+\def\providelength#1{%
+  \ifx #1\undefined
+    \newlength{#1}
+  \fi
+}
+\def\makelength#1{%
+  \ifx #1\undefined
+    \newlength{#1}
+  \else
+    \ifm@kwarn
+      \PackageWarning{makecmds}{Redefining length `\protect#1'}
+    \fi
+    \newskip#1
+  \fi
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\providecounter}
+% \begin{macro}{\makecounter}
+%  These are |\provide...| and |\make...| versions of |\newcounter| 
+% (from \file{ltcounts.dtx}).
+%    \begin{macrocode}
+\def\providecounter#1{%
+  \@ifundefined{c@#1}{\newcounter{#1}}{%
+    \@ifnextchar[{\m@k@gobbleendoptarg}{}}%
+}
+\def\makecounter#1{%
+  \expandafter\ifx \csname c@#1\endcsname \undefined
+  \else
+    \ifm@kwarn
+      \PackageWarning{makecmds}{Redefining counter `#1'}
+    \fi
+  \fi
+  \@definecounter{#1}%
+  \@ifnextchar[{\@newctr{#1}}{}
+}
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\m@k@gobbleendoptarg}
+%    A macro that discards an optional argument coming at the end of
+% a list of (optional) arguments (i.e., the tokens |...[optarg]|).
+%    \begin{macrocode}
+\def\m@k@gobbleendoptarg[#1]{}
+
+%    \end{macrocode}
+% \end{macro}
+%
+%    The end of this package.
+%    \begin{macrocode}
+%</usc>
+%    \end{macrocode}
+%
+%
+%
+%
+% \bibliographystyle{alpha}
+%
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock {\em The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% ^^A \bibitem[Wil96]{PRW96i}
+% ^^A Peter~R. Wilson.
+% ^^A \newblock {\em {LaTeX for standards: The LaTeX package files user manual}}.
+% ^^A \newblock NIST Report NISTIR, June 1996.
+%
+% \end{thebibliography}
+%
+%
+% \Finale
+% \PrintIndex
+%
+\endinput
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+
+
