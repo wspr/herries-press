@@ -16,39 +16,36 @@ The packages in this repository are:
 
  - [abstract](http://tug.ctan.org/pkg/abstract)
  - [tocloft](http://tug.ctan.org/pkg/tocloft)
-
-Packages that will become part of this repository are:
-
- - anonchap
- - appendix
- - bez123 & multiply
- - booklet
- - ccaption
- - chngcntr
- - chngpage/changepage
- - combine
- - docmfp
- - epigraph
- - fonttable
- - hanging
- - hyphenat
- - ifmtarg
- - layouts
- - makecmds
- - midpage
- - needspace
- - newfile
- - nextpage
- - pagenote
- - printlen
- - romannum
- - stdclsdv
- - titling
- - tocbibind
- - tocvsec2
- - verse
- - vertbars
- - xtab
+ - [anonchap](http://tug.ctan.org/pkg/anonchap)
+ - [appendix](http://tug.ctan.org/pkg/appendix)
+ - [bez123 & multiply](http://tug.ctan.org/pkg/bez123)
+ - [booklet](http://tug.ctan.org/pkg/booklet)
+ - [ccaption](http://tug.ctan.org/pkg/ccaption)
+ - [chngcntr](http://tug.ctan.org/pkg/chngcntr)
+ - [chngpage](http://tug.ctan.org/pkg/chngpage)/[changepage](http://tug.ctan.org/pkg/changepage)
+ - [combine](http://tug.ctan.org/pkg/combine)
+ - [docmfp](http://tug.ctan.org/pkg/docmfp)
+ - [epigraph](http://tug.ctan.org/pkg/epigraph)
+ - [fonttable](http://tug.ctan.org/pkg/fonttable)
+ - [hanging](http://tug.ctan.org/pkg/hanging)
+ - [hyphenat](http://tug.ctan.org/pkg/hyphenat)
+ - [ifmtarg](http://tug.ctan.org/pkg/ifmtarg)
+ - [layouts](http://tug.ctan.org/pkg/layouts)
+ - [makecmds](http://tug.ctan.org/pkg/makecmds)
+ - [midpage](http://tug.ctan.org/pkg/midpage)
+ - [needspace](http://tug.ctan.org/pkg/needspace)
+ - [newfile](http://tug.ctan.org/pkg/newfile)
+ - [nextpage](http://tug.ctan.org/pkg/nextpage)
+ - [pagenote](http://tug.ctan.org/pkg/pagenote)
+ - [printlen](http://tug.ctan.org/pkg/printlen)
+ - [romannum](http://tug.ctan.org/pkg/romannum)
+ - [stdclsdv](http://tug.ctan.org/pkg/stdclsdv)
+ - [titling](http://tug.ctan.org/pkg/titling)
+ - [tocbibind](http://tug.ctan.org/pkg/tocbibind)
+ - [tocvsec2](http://tug.ctan.org/pkg/tocvsec2)
+ - [verse](http://tug.ctan.org/pkg/verse)
+ - [vertbars](http://tug.ctan.org/pkg/vertbars)
+ - [xtab](http://tug.ctan.org/pkg/xtab)
 
 Other packages and classes by Peter Wilson that are not contained within this repository (and not maintained by Will Robertson) include:
 
