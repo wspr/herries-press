@@ -4,7 +4,8 @@ This repository contains a collection of LaTeX packages originally written by
 Peter Wilson. These packages are now maintained by Will Robertson, who hopes
 that they won't require too much upkeep.
 
-Please direct all bug reports and feature requests to the [GitHub issue tracker][1].
+Please direct all bug reports and feature requests to the [GitHub issue 
+tracker][1].
 
 [1]: http://github.com/wspr/herries-press/issues
 
@@ -22,7 +23,8 @@ The packages in this repository are:
  - [booklet](http://tug.ctan.org/pkg/booklet)
  - [ccaption](http://tug.ctan.org/pkg/ccaption)
  - [chngcntr](http://tug.ctan.org/pkg/chngcntr)
- - [chngpage](http://tug.ctan.org/pkg/chngpage)/[changepage](http://tug.ctan.org/pkg/changepage)
+ - [chngpage](http://tug.ctan.org/pkg/chngpage) and
+   [changepage](http://tug.ctan.org/pkg/changepage)
  - [combine](http://tug.ctan.org/pkg/combine)
  - [docmfp](http://tug.ctan.org/pkg/docmfp)
  - [epigraph](http://tug.ctan.org/pkg/epigraph)
@@ -47,7 +49,8 @@ The packages in this repository are:
  - [vertbars](http://tug.ctan.org/pkg/vertbars)
  - [xtab](http://tug.ctan.org/pkg/xtab)
 
-Other packages and classes by Peter Wilson that are not contained within this repository (and not maintained by Will Robertson) include:
+Other packages and classes by Peter Wilson that are not contained within this 
+repository (and not maintained by Will Robertson) include:
 
  - [memoir](http://tug.ctan.org/pkg/memoir) 
    (soon to be maintained by Lars Madsen)
