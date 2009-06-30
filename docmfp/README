@@ -12,7 +12,7 @@ o Added a general \Describe macro
 o Added a general Code environment
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+  Author: Peter Wilson (Herries Press)
   Copyright 1999 --- 2005 Peter R. Wilson
  
   This work may be distributed and/or modified under the
@@ -57,6 +57,5 @@ o Print docmfp.dvi for a hardcopy of the package manual
 
 2005/03/23
 Peter Wilson
-herries dot press at earthlink dot net
 
 
