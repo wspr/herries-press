@@ -10,8 +10,7 @@ o Should now work with the ltugboat class
 o Takes options to exclude punctuations characters from being hung
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
-                             (or at: pandgwilson at earthlink dot net) 
+  Author: Peter Wilson (CUA)
   Copyright 1998 --- 2004 Peter R. Wilson
  
   This work may be distributed and/or modified under the
@@ -56,4 +55,3 @@ o Print hanging.dvi for a hardcopy of the package manual
 
 2004/04/22
 Peter Wilson
-peter.r.wilson@boeing.com

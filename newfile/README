@@ -12,8 +12,7 @@ Changes in version 1.0 (2002/06/22)
 o First public release
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
-                             (or at: pandgwilson at earthlink dot net) 
+  Author: Peter Wilson (CUA)
   Copyright 2001, 2002, 2003, 2004 Peter R. Wilson
  
   This work may be distributed and/or modified under the
@@ -56,4 +55,3 @@ o Move newfile.sty to a location where LaTeX will find it.
 
 2004/05/10
 Peter Wilson
-peter.r.wilson@boeing.com

@@ -65,9 +65,8 @@ Changes in version 0.1 (1998/12/31)
 o First public beta release
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com
-                             (or pandgwilson@earthlink.net) 
-  Maintainer: Will Robertson (wspr81 at gmail dot com)
+  Author: Peter Wilson (CUA)
+  Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998-2003 Peter R. Wilson
   Copyright 2009 Will Robertson
  
@@ -112,7 +111,6 @@ o Print tocloft.pdf for a hardcopy of the package manual
 
 2003/09/26
 Peter Wilson
-peter.r.wilson@boeing.com
 
 2009/06/09
 Will Robertson

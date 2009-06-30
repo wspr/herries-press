@@ -47,8 +47,7 @@ o Supports numbered bibliography and index headings
 First public release: version 1.0 (1998/10/24) 
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA) now at peter.r.wilson@boeing.com until June 2004
-                             (or at: pandgwilson at earthlink dot net) 
+  Author: Peter Wilson (CUA)
   Copyright 1998 --- 2004 Peter R. Wilson
  
   This work may be distributed and/or modified under the
@@ -92,5 +91,4 @@ o Print tocbibind.dvi for a hardcopy of the package manual
 
 2004/05/10
 Peter Wilson
-peter.r.wilson@boeing.com
 
