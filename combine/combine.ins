@@ -49,17 +49,17 @@
 \keepsilent
 
 %%% \Msg{*** Generating the driver file ***}
-%%% \generateFile{combine.drv}{t}{\from{combine.dtx}{driver}}
+%%% \generate{\file{combine.drv}{\from{combine.dtx}{driver}}}
 
 \Msg{*** Generating the LaTeX2e class file ***}
 
-\generateFile{combine.cls}{t}{\from{combine.dtx}{usc}}
+\generate{\file{combine.cls}{\from{combine.dtx}{usc}}}
 
 \Msg{*** Generating the LaTeX2e package files ***}
 
-\generateFile{combinet.sty}{t}{\from{combine.dtx}{pck}}
-\generateFile{combnat.sty}{t}{\from{combine.dtx}{natpack}}
-\generateFile{combcite.sty}{t}{\from{combine.dtx}{citepack}}
+\generate{\file{combinet.sty}{\from{combine.dtx}{pck}}}
+\generate{\file{combnat.sty}{\from{combine.dtx}{natpack}}}
+\generate{\file{combcite.sty}{\from{combine.dtx}{citepack}}}
 
 \Msg{***********************************************************}
 \Msg{*}

@@ -283,8 +283,8 @@
 % \preamble
 %   Copyright and other notices
 % \endpreamble
-% \generateFile{myfile.drv}{t}{\from{myfile.dtx}{driver}}
-% \generateFile{mypackage.sty}{t}{\from{myfile.dtx}{pack}}
+% \generate{\file{myfile.drv}{\from{myfile.dtx}{driver}}}
+% \generate{\file{mypackage.sty}{\from{myfile.dtx}{pack}}}
 %
 % \endinput
 % \end{verbatim}
@@ -310,11 +310,11 @@
 % \preamble
 %   Copyright and other notices
 % \endpreamble
-% \generateFile{myfile.drv}{t}{\from{myfile.dtx}{driver}}
+% \generate{\file{myfile.drv}{\from{myfile.dtx}{driver}}}
 % \usepostamble\empty                 % switch off writing \endinput
-% \generateFile{myfont.mf}{t}{\from{myfile.dtx}{font}}
+% \generate{\file{myfont.mf}{\from{myfile.dtx}{font}}}
 % \usepostamble\defaultpostamble      % switch on writing \endinput
-% \generateFile{mypackage.sty}{t}{\from{myfile.dtx}{pack}}
+% \generate{\file{mypackage.sty}{\from{myfile.dtx}{pack}}}
 %
 % \endinput
 % \end{verbatim}
@@ -336,15 +336,15 @@
 % \def\batchfile{myfile.ins}
 % \input docstrip.tex
 % \usepreamble\empty            % switch off all preamble info
-% \generateFile{myfile.drv}{t}{\from{myfile.dtx}{driver}}
+% \generate{\file{myfile.drv}{\from{myfile.dtx}{driver}}}
 % \usepreamble\defaultpreamble  % switch on normal preambling
 % \preamble
 %   Copyright and other notices
 % \endpreamble
 % \usepostamble\empty                 % switch off writing \endinput
-% \generateFile{myfont.mf}{t}{\from{myfile.dtx}{font}}
+% \generate{\file{myfont.mf}{\from{myfile.dtx}{font}}}
 % \usepostamble\defaultpostamble      % switch on writing \endinput
-% \generateFile{mypackage.sty}{t}{\from{myfile.dtx}{pack}}
+% \generate{\file{mypackage.sty}{\from{myfile.dtx}{pack}}}
 %
 % \endinput
 % \end{verbatim}

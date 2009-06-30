@@ -48,12 +48,12 @@
 \keepsilent
 
 %%% \Msg{*** Generating the driver file ***}
-%%% \generateFile{bez123.drv}{t}{\from{bez123.dtx}{driver}}
+%%% \generate{\file{bez123.drv}{\from{bez123.dtx}{driver}}}
 
 \Msg{*** Generating the LaTeX2e package files ***}
 
-\generateFile{bez123.sty}{t}{\from{bez123.dtx}{bez}}
-\generateFile{multiply.sty}{t}{\from{bez123.dtx}{mult}}
+\generate{\file{bez123.sty}{\from{bez123.dtx}{bez}}}
+\generate{\file{multiply.sty}{\from{bez123.dtx}{mult}}}
 
 \Msg{***********************************************************}
 \Msg{*}

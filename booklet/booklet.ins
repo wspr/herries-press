@@ -49,12 +49,12 @@
 \keepsilent
 
 %%% \Msg{*** Generating the driver file ***}
-%%% \generateFile{booklet.drv}{t}{\from{booklet.dtx}{driver}}
+%%% \generate{\file{booklet.drv}{\from{booklet.dtx}{driver}}}
 
 \Msg{*** Generating the LaTeX2e package files ***}
 
-\generateFile{booklet.sty}{t}{\from{booklet.dtx}{usc}}
-\generateFile{bkltprnt.sty}{t}{\from{booklet.dtx}{prnt}}
+\generate{\file{booklet.sty}{\from{booklet.dtx}{usc}}}
+\generate{\file{bkltprnt.sty}{\from{booklet.dtx}{prnt}}}
 
 \Msg{***********************************************************}
 \Msg{*}
