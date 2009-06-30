@@ -118,7 +118,7 @@
 % \end{abstract}
 % \tableofcontents
 %
-% 
+%
 %
 % \section{Introduction}
 %
@@ -135,28 +135,28 @@
 % \LaTeX{} \textsc{docstrip} utility which enables the automatic
 % extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
 %
-%    Section~\ref{sec:usc} describes the usage of the \Lpack{abstract} 
-% package and 
+%    Section~\ref{sec:usc} describes the usage of the \Lpack{abstract}
+% package and
 % commented source code is in Section~\ref{sec:code}.
 %
 % \section{The \Lpack{abstract} package} \label{sec:usc}
 %
-%    The typeset format of the |abstract| in a \Lpack{report} or 
-% \Lpack{article} class\footnote{The \texttt{abstract} environment is not 
+%    The typeset format of the |abstract| in a \Lpack{report} or
+% \Lpack{article} class\footnote{The \texttt{abstract} environment is not
 % available for the \Lpack{book} class.} document depends on the class
 % options. The formats are:
 % \begin{itemize}
-% \item \Lopt{titlepage} class option: The abstract heading (i.e., value of 
+% \item \Lopt{titlepage} class option: The abstract heading (i.e., value of
 %    |\abstractname|) is typeset centered in a bold font; the text is set in
 %    the normal font and to the normal width.
 % \item \Lopt{twocolumn} class option: The abstract heading is typeset like
 %    an unnumbered section; the text is set in the normal font and to the
-%    normal width (of a single column). 
+%    normal width (of a single column).
 % \item Default (neither of the above class options): The abstract heading
 %    is typeset centered in a small bold font; the text is set in a small
 %    font and indented like the |quotation| environment.
 % \end{itemize}
-% Note that the \Lopt{titlepage} option takes precedence over the 
+% Note that the \Lopt{titlepage} option takes precedence over the
 % \Lopt{twocolumn} option.
 %
 %    The \Lpack{abstract} package provides handles to modify the typesetting
@@ -173,7 +173,7 @@
 %       two column document (i.e., section heading and normal sized text).
 % \item \Lopt{addtotoc}. The abstract title (the value of |\abstractname|)
 %       is added to the Table of Contents.
-% \item \Lopt{number}. The abstract title will be typeset as a 
+% \item \Lopt{number}. The abstract title will be typeset as a
 % numbered |\chapter|
 % or as a |\section|, depending on whether the document class supports
 % chapters or not.
@@ -182,14 +182,14 @@
 % does not apply if you use the \Lopt{style} option.
 % \item \Lopt{runin}. The abstract title is typeset as a run-in\footnote{This
 % option was suggested by R.~Chandrasekhar (\texttt{chandra@ee.uwa.edu.au}).} heading.
-% Note that the \Lopt{number} and \Lopt{style} options are ignored if the 
-% \Lopt{runin} option is used, and the \Lopt{number} and \Lopt{addtotoc} 
+% Note that the \Lopt{number} and \Lopt{style} options are ignored if the
+% \Lopt{runin} option is used, and the \Lopt{number} and \Lopt{addtotoc}
 % options are ignored if the \Lopt{style} option is given.
 % \end{itemize}
 %
 %    When the \Lopt{number} option is used with a class that provides chapters,
 % the usual |\chapter| command is used for typesetting the title. If you
-% do not want the word `Chapter' (or its equivalent) to appear, 
+% do not want the word `Chapter' (or its equivalent) to appear,
 % you can use the \Lpack{anonchap}
 % package to suppress this.
 %
@@ -237,13 +237,13 @@
 %
 % \DescribeMacro{\abstractnamefont}
 % \DescribeMacro{\abstracttextfont}
-%    These two commands can be redefined to change the fonts used for 
-% typesetting the heading (defined via |\abstractname|) of the |abstract| 
+%    These two commands can be redefined to change the fonts used for
+% typesetting the heading (defined via |\abstractname|) of the |abstract|
 % environment and the font for typesetting the text of the abstract,
 % respectively. The default definitions for these are designed to mimic
 % the traditional |abstract| typesetting. Different values are used
 % depending on whether the document uses the \Lopt{titlepage} and/or
-% \Lopt{twocolumn} options. For example, in a non-titlepage 
+% \Lopt{twocolumn} options. For example, in a non-titlepage
 % one-column paper, their definitions are:
 % \par\begin{small}\begin{verbatim}
 % \newcommand{\abstractnamefont}{\normalfont\small\bfseries}
@@ -268,7 +268,7 @@
 %    The amended version of |abstract| uses a list environment for typesetting
 % the text. These four lengths can be changed (via |\setlength|) to adjust
 % the left and right margins, the paragraph indentation, and the vertical skip
-% between paragraphs in this environment. 
+% between paragraphs in this environment.
 % The default values depend on the document class options in
 % effect.
 %
@@ -282,7 +282,7 @@
 %
 % \DescribeMacro{\absnamepos}
 %    If the \Lopt{runin} option is not used then the heading is typeset
-% in its own environment. |\absnamepos| specifies the name of the environment 
+% in its own environment. |\absnamepos| specifies the name of the environment
 % in which the abstract
 % name is typeset. It can be redefined to be one of |flushleft|, |center|,
 % or |flushright| to give a left, centered or right aligned heading; or to any
@@ -295,13 +295,13 @@
 % |\setlength{\abstitleskip}{-\absparindent}| \\
 %  will typeset the heading flush left.
 %
-% Without the \Lopt{runin} option |\abstitleskip| is aditional vertical 
+% Without the \Lopt{runin} option |\abstitleskip| is aditional vertical
 % space (either positive
 % or negative) that is inserted between the abstract name and the text of
 % the abstract.
 %
 % \DescribeMacro{\appendiargdef}
-%    The (internal) command |\appendiargdef{|\meta{macro}|}{|\meta{stuff}|}| 
+%    The (internal) command |\appendiargdef{|\meta{macro}|}{|\meta{stuff}|}|
 % will append
 % \meta{stuff} at the end of the current definition of \meta{macro}, where
 % \meta{macro} is the name of a macro (including the backslash) which takes
@@ -330,7 +330,7 @@
 % }
 %
 %
-% 
+%
 % \section{The package code} \label{sec:code}
 %
 %    To try and avoid name clashes, all the internal commands include
@@ -344,7 +344,6 @@
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{abstract}[2009/06/08 v1.2a configurable abstracts]
-
 %    \end{macrocode}
 %
 %
@@ -367,7 +366,6 @@
   \@bsruninfalse
 \newif\if@bsstyle
   \@bsstylefalse
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -385,20 +383,19 @@
 \DeclareOption{style}{\@bsstyletrue}
 \ProcessOptions\relax
 %    \end{macrocode}
-% Disable the \Lopt{number} and \Lopt{addtotoc} option if \Lopt{style} is 
+% Disable the \Lopt{number} and \Lopt{addtotoc} option if \Lopt{style} is
 % specified.
-% Make sure that the \Lopt{number} option is disabled 
+% Make sure that the \Lopt{number} option is disabled
 % if \Lopt{runin} is used (otherwise the \Lopt{addtotoc} option
 % may not work as expected) and also disable the \Lopt{style} option.
 %    \begin{macrocode}
 \if@bsstyle\number@bsfalse\add@bstotocfalse\fi
 \if@bsrunin\number@bsfalse\@bsstylefalse\fi
-
 %    \end{macrocode}
-% 
+%
 % \subsection{Abstracts}
 %
-%  The original definition of the |abstract| environment given in 
+%  The original definition of the |abstract| environment given in
 % \file{ltclasses.dtx} is:
 % \par\begin{small}\begin{verbatim}
 % \if@titlepage
@@ -411,7 +408,7 @@
 %       \@endparpenalty\@M
 %     \end{center}}%
 %     {\par\vfil\null\endtitlepage}
-% \else 
+% \else
 %   \renewenvironment{abstract}{%
 %     \if@twocolumn
 %       \section*{\abstractname}%
@@ -426,7 +423,7 @@
 % \fi
 % \end{verbatim}
 % \end{small}\par
-%    The next set of macros comprise the \Lpack{abstract} package 
+%    The next set of macros comprise the \Lpack{abstract} package
 % reimplementation of the |abstract| environment.
 %
 % \begin{macro}{\abstractnamefont}
@@ -437,7 +434,6 @@
 %    \begin{macrocode}
 \newcommand{\abstractnamefont}{\normalfont\small\bfseries}
 \newcommand{\abstracttextfont}{\normalfont\small}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -459,16 +455,15 @@
 % \begin{macro}{\absrightindent}
 % \begin{macro}{\absparindent}
 % \begin{macro}{\absparsep}
-%    The abstract's text is typeset as a single item list, called 
+%    The abstract's text is typeset as a single item list, called
 % |@bstr@ctlist|. These lengths set the left and right margin indents, the
 % paragraph indentation, and the inter-paragraph vertical space. Their
 % initial values are all class option-dependent.
 %    \begin{macrocode}
-\newlength{\absleftindent} 
+\newlength{\absleftindent}
 \newlength{\absrightindent}
 \newlength{\absparindent}
 \newlength{\absparsep}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -492,7 +487,6 @@
 %    \begin{macrocode}
 \newcommand{\@bsrunintitle}{%
   \hspace*{\abstitleskip}{\abstractnamefont\abstractname\@bslabeldelim}}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -512,7 +506,7 @@
 %    \end{macrocode}
 % Values for the \Lopt{twocolumn} class option.
 %    \begin{macrocode}
-    \if@bsonecol 
+    \if@bsonecol
       \setlength{\absleftindent}{\leftmargin}
     \else
       \setlength{\absleftindent}{\z@}
@@ -534,7 +528,6 @@
 \setlength{\absrightindent}{\absleftindent}
 \AtBeginDocument{\setlength{\absparindent}{\parindent}
                  \setlength{\absparsep}{\parskip}}
-
 %    \end{macrocode}
 %
 % \begin{environment}{@bstr@ctlist}
@@ -551,7 +544,6 @@
           \parsep        \absparsep}%
   \item\relax}
   {\endlist}
-
 %    \end{macrocode}
 % \end{environment}
 %
@@ -566,7 +558,6 @@
                              \addcontentsline{toc}{chapter}{\abstractname}}
     \fi
   \fi}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -577,17 +568,15 @@
   \@ifundefined{chapter}{\section{\abstractname}}{%
                          \chapter{\abstractname}}
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\abstitlestyle}
-%    When the \Lopt{style} option is called this macro is called to typeset 
-% the abstract 
+%    When the \Lopt{style} option is called this macro is called to typeset
+% the abstract
 % heading; it should be redefined by the user to suit.
 %    \begin{macrocode}
 \newcommand*{\abstitlestyle}[1]{#1}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -607,22 +596,22 @@
     \if@bsrunin
     \else
 %    \end{macrocode}
-% If the \Lopt{runin} option is not used: 
+% If the \Lopt{runin} option is not used:
 % number the title, if called for, otherwise typeset the title in the
 % specified (via |\absnamepos|) environment and adjust the following vertical
 % spacing.
 % \changes{v1.2}{2009/05/22}{Made \cs{abstitleskip} behave to match the manual}
 %    \begin{macrocode}
-      \if@bsstyle 
-        \abstitlestyle{\abstractname} 
+      \if@bsstyle
+        \abstitlestyle{\abstractname}
       \else
-        \ifnumber@bs 
-          \num@bs 
+        \ifnumber@bs
+          \num@bs
         \else
-          \begin{\absnamepos}% 
+          \begin{\absnamepos}%
             \abstractnamefont \abstractname
             \@endparpenalty\@M
-          \end\absnamepos% 
+          \end\absnamepos%
 %%        \vspace{\abstitleskip}%
         \fi
       \fi
@@ -647,11 +636,11 @@
   \renewenvironment{abstract}{%
     \if@bsrunin
     \else
-      \if@bsstyle 
+      \if@bsstyle
         \abstitlestyle{\abstractname}
       \else
-        \ifnumber@bs 
-          \num@bs 
+        \ifnumber@bs
+          \num@bs
         \else
           \begin{\absnamepos}\abstractnamefont\abstractname\end\absnamepos%
 %%        \vspace{\abstitleskip}%
@@ -663,19 +652,17 @@
     \begin{@bstr@ctlist}\if@bsrunin\@bsrunintitle\fi\abstracttextfont}%
     {\par\end{@bstr@ctlist}}
 \fi
-
 %    \end{macrocode}
 % \end{environment}
 %
 % \begin{environment}{onecolabstract}
-%  An environment for typesetting a single column abstract, 
+%  An environment for typesetting a single column abstract,
 % particularly as the optional
 % argument to the |\twocolumn| command.
 %    \begin{macrocode}
 \newenvironment{onecolabstract}{%
   \begin{@twocolumnfalse}\begin{abstract}}{%
   \end{abstract}\end{@twocolumnfalse}}
-
 %    \end{macrocode}
 % \end{environment}
 %
@@ -683,14 +670,13 @@
 % |\appendiargdef{\macro}{Additional stuff}| will add |Additional stuff| at
 % the end of the definition of |\macro|, where |\macro| is a macro that has
 % one argument.\footnote{Code suggestions for this were made by Michael Downes
-% (\texttt{epsmjd@ams.org}) and Heiko Oberdiek 
+% (\texttt{epsmjd@ams.org}) and Heiko Oberdiek
 % (\texttt{oberdiek@ruf.uni-freiburg.de}) on \texttt{ctt}.}
 %    \begin{macrocode}
 \providecommand{\appendiargdef}[2]{\begingroup
   \toks@\expandafter{#1{##1}#2}%
   \edef\@bsx{\endgroup \def\noexpand#1####1{\the\toks@}}%
   \@bsx}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -698,7 +684,7 @@
 % \begin{macro}{\@bs@thanks}
 %    We have to keep the contents of the |\thanks| commands as normally these
 % are emptied by the |\maketitle| command. I do this by extending the definition
-% of the |\thanks| (from \file{ltsect.dtx}) command, 
+% of the |\thanks| (from \file{ltsect.dtx}) command,
 % so that |\@bs@thanks| has a copy of the contents
 % of |\@thanks|.
 %    \begin{macrocode}
@@ -707,19 +693,17 @@
     \protect\footnotetext[\the\c@footnote]{#1}}%
 }
 \let\@bs@thanks\@empty
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 %
 % \begin{macro}{\saythanks}
-% This macro typesets any |\thanks| commands \emph{after} using 
-% |onecolabstract|. 
+% This macro typesets any |\thanks| commands \emph{after} using
+% |onecolabstract|.
 %    \begin{macrocode}
 \newcommand{\saythanks}{\begingroup
   \renewcommand{\thefootnote}{\fnsymbol{footnote}}\@bs@thanks
   \endgroup\global\let\@bs@thanks\@empty}
-  
 %    \end{macrocode}
 % \end{macro}
 %
@@ -736,7 +720,6 @@
 % \PrintIndex
 %
 \endinput
-
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
