@@ -3,7 +3,7 @@ entries in the Table of Contents on a section by section basis.
 NB. The package also requires the ifthen package.
 
 Changes in version 1.2 (2004/05/24)
-o The stdclsdv package is no longer required
+- The stdclsdv package is no longer required
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -33,17 +33,17 @@ tocvsec2.pdf (user manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex tocvsec2.ins (which will generate tocvsec2.sty)
-o Move tocvsec2.sty to a location where LaTeX will find it.
+- run: latex tocvsec2.ins (which will generate tocvsec2.sty)
+- Move tocvsec2.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/tocvsec2) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
     To regenerate the user manual:
-o run: latex tocvsec2.dtx
-o run: makeindex -s gind.ist tocvsec2
-o run: latex tocvsec2.dtx
-o Print tocvsec2.dvi for a hardcopy of the package manual 
+- run: latex tocvsec2.dtx
+- run: makeindex -s gind.ist tocvsec2
+- run: latex tocvsec2.dtx
+- Print tocvsec2.dvi for a hardcopy of the package manual 
 
 2004/05/24
 Peter Wilson

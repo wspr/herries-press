@@ -5,10 +5,10 @@ characters (e.g., that include underscores), and hyphenation of
 text typeset in monospaced (e.g., CM typewriter) fonts.
 
 Changes in version 2.3a
-o Fixed a double hyphenation problem with some non-CM fonts.
+- Fixed a double hyphenation problem with some non-CM fonts.
 
 Changes in version 2.3
-o Added \hyp command for hyphenation of compound hyphenated words.
+- Added \hyp command for hyphenation of compound hyphenated words.
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -39,17 +39,17 @@ hyphenat.pdf
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex hyphenat.ins (which will generate hyphenat.sty)
-o Move hyphenat.sty to a location where LaTeX will find it
+- run: latex hyphenat.ins (which will generate hyphenat.sty)
+- Move hyphenat.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/hyphenat) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
     To process the user manual:
-o run: latex hyphenat.dtx
-o (for an index run: makeindex -s gind.ist hyphenat)
-o run: latex hyphenat.dtx
-o Print hyphenat.dvi for a hardcopy of the package manual 
+- run: latex hyphenat.dtx
+- (for an index run: makeindex -s gind.ist hyphenat)
+- run: latex hyphenat.dtx
+- Print hyphenat.dvi for a hardcopy of the package manual 
 
 2004/04/22
 Peter Wilson

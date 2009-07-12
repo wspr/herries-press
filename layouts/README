@@ -6,35 +6,35 @@ Facilities are provided for a document designer to experiment with
 the layout parameters.
 
 Changes in version v2.6c (2004/10/25)
-o Privatised some internal macro names (no change in functionality)
+- Privatised some internal macro names (no change in functionality)
 
 Changes in version v2.6b (2003/11/25)
-o Fixed some spelling and gramatical errors
+- Fixed some spelling and gramatical errors
 
 Changes in version v2.6a (2002/12/12)
-o Fixed problem with negative length in list layout
-o NO CHANGE TO THE MANUAL
+- Fixed problem with negative length in list layout
+- NO CHANGE TO THE MANUAL
 
 Changes in version v2.6 (2002/06/09)
-o Expanded page layout options
+- Expanded page layout options
 
 Changes in version v2.5a (2002/03/24)
-o Fixed problem with footer size on page diagrams
+- Fixed problem with footer size on page diagrams
 
 Changes in version v2.5 (2001/11/11)
-o Cleaner seperation between generic and designed layouts
-o Added controls over the appearance of pictures
-o Lengths may be printed using any TeX unit (except scaled point)
+- Cleaner seperation between generic and designed layouts
+- Added controls over the appearance of pictures
+- Lengths may be printed using any TeX unit (except scaled point)
 
 Changes in version v2.4 (2001/04/30)
-o Added switch for drawing marginal notes
-o Added support for the memoir class page layout
+- Added switch for drawing marginal notes
+- Added support for the memoir class page layout
 
 
 Changes in version v2.3 (1999/03/06)
-o Added tabulation of actual layout values.
-o Corrected the ToC layout.
-o Reduced the number of counters used.
+- Added tabulation of actual layout values.
+- Corrected the ToC layout.
+- Reduced the number of counters used.
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (Herries Press)
@@ -65,21 +65,21 @@ layman.pdf      (User Manual in PDF)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex layouts.ins (which will generate layouts.sty)
-o Move layouts.sty to a location where LaTeX will find it
+- run: latex layouts.ins (which will generate layouts.sty)
+- Move layouts.sty to a location where LaTeX will find it
   (typically in a local texmf tree at /tex/latex/layouts)
   and refresh the file database. See the FAQ on CTAN at
   /help/uk-tex-faq or http://www.tex.ac.uk/faq for more 
   information on this.
 
     To process the user manual:
-o run: latex layman (twice) and print for the user manual
+- run: latex layman (twice) and print for the user manual
   
     For a printed version of the package source:
-o run: latex layouts.dtx
+- run: latex layouts.dtx
   If you want an index run: makeindex -s gind.ist layouts
-o run: latex layouts.dtx
-o Print layouts.dvi for a hardcopy of the package source
+- run: latex layouts.dtx
+- Print layouts.dvi for a hardcopy of the package source
 
 2004/10/25
 Peter Wilson

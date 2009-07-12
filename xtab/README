@@ -8,7 +8,7 @@ NOTE: If you have any questions please ask them on the comp.text.tex
       than trying to contact me directly as I am away more than I am here.
 
 Changes (2008/07/26)
-o v2.3c released, hopefully with all extraneous spaces eliminated
+- v2.3c released, hopefully with all extraneous spaces eliminated
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson 
@@ -38,17 +38,17 @@ xtab.pdf (user manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex xtab.ins (which will generate xtab.sty)
-o Move xtab.sty to a location where LaTeX will find it.
+- run: latex xtab.ins (which will generate xtab.sty)
+- Move xtab.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/xtab) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
     To regenerate the user manual:
-o run: (pdf)latex xtab.dtx
-o run: makeindex -s gind.ist xtab
-o run: latex xtab.dtx
-o Print xtab.(pdf|dvi) for a hardcopy of the package manual 
+- run: (pdf)latex xtab.dtx
+- run: makeindex -s gind.ist xtab
+- run: latex xtab.dtx
+- Print xtab.(pdf|dvi) for a hardcopy of the package manual 
 
 2008/07/26
 Peter Wilson

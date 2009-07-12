@@ -30,17 +30,17 @@ romannum.pdf (User manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex romannum.ins (which will generate romannum.sty)
-o Move romannum.sty to a location where LaTeX will find it.
+- run: latex romannum.ins (which will generate romannum.sty)
+- Move romannum.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
     To regenerate the user manual
-o run: latex romannum.dtx
-o if you want an index, then run: makeindex -s gind.ist romannum
-o run: latex romannum.dtx
-o Print romannum.dvi for a hardcopy of the package manual 
+- run: latex romannum.dtx
+- if you want an index, then run: makeindex -s gind.ist romannum
+- run: latex romannum.dtx
+- Print romannum.dvi for a hardcopy of the package manual 
 
 200/05/24
 Peter Wilson

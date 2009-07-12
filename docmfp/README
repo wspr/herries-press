@@ -3,13 +3,13 @@ non-LaTeX code, such as Metafont and Metapost, or even C code.
 
 Changes in version 1.2a/b
 ----------------------
-o Changed license from LPPL v1.0 to v1.3
-o Fixed minor typos
+- Changed license from LPPL v1.0 to v1.3
+- Fixed minor typos
 
 Changes in version 1.1
 ----------------------
-o Added a general \Describe macro
-o Added a general Code environment
+- Added a general \Describe macro
+- Added a general Code environment
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (Herries Press)
@@ -40,17 +40,17 @@ docmfp.pdf
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex docmfp.ins (which will generate docmfp.sty)
-o Move docmfp.sty to a location where LaTeX will find it
+- run: latex docmfp.ins (which will generate docmfp.sty)
+- Move docmfp.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/docmfp) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
     To process the user manual:
-o run: latex docmfp.dtx
-o run: makeindex -s gind.ist docmfp
-o run: latex docmfp.dtx
-o Print docmfp.dvi for a hardcopy of the package manual 
+- run: latex docmfp.dtx
+- run: makeindex -s gind.ist docmfp
+- run: latex docmfp.dtx
+- Print docmfp.dvi for a hardcopy of the package manual 
 
 2005/03/23
 Peter Wilson

@@ -6,20 +6,19 @@ of appendices. Also (sub)appendices environments are provided that can be
 used, for example, for per chapter/section appendices.
 
 Changes (2004/04/16)
-o Updated contact details 
-o Changed license from LPPL v1.0 to LPPL v1.3
+- Updated contact details 
+- Changed license from LPPL v1.0 to LPPL v1.3
 
 Changes in version 1.2 (2002/08/06)
-o The ifthen package is not required.
-o Supports hyperref bookmarks
-
+- The ifthen package is not required.
+- Supports hyperref bookmarks
 
 Changes in version 1.1a (2001/03/15)
-o Fixed unfortunate interaction between \addappheadtotoc and \appendixpage
+- Fixed unfortunate interaction between \addappheadtotoc and \appendixpage
 
 Changes in version 1.1 (2000/02/29)
-o Addition of a subappendices environment for per chapter/section appendices
-o Appendices environment now restores chapter/section numbering at the end
+- Addition of a subappendices environment for per chapter/section appendices
+- Appendices environment now restores chapter/section numbering at the end
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -44,12 +43,12 @@ appendix.sty
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex appendix.ins (which will generate appendix.sty)
-o Move appendix.sty to a location where LaTeX will find it
+- run: latex appendix.ins (which will generate appendix.sty)
+- Move appendix.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/appendix) and refresh
   the file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
-o To obtain the user manual:
+- To obtain the user manual:
   o run: latex appendix.dtx
   o run: makeindex -s gind.ist appendix
   o run: latex appendix.dtx

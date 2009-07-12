@@ -4,11 +4,11 @@ rational quadratic Bezier curves. The multiply package provides a
 command for multiplication of a length without numerical overflow.
 
 Changes (2004/04/16)
-o Changed license from LPPL v1.0 to v1.3
-o Updated contact information
+- Changed license from LPPL v1.0 to v1.3
+- Updated contact information
 
 Changes v1.1 (1998/10/14)
-o Put the multiplication code into a separate package
+- Put the multiplication code into a separate package
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -34,18 +34,18 @@ multiply.sty
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex bez123.ins (which will generate bez123.sty and multiply.sty)
-o Move bez123.sty and multiply.sty to a location where LaTeX will find them
+- run: latex bez123.ins (which will generate bez123.sty and multiply.sty)
+- Move bez123.sty and multiply.sty to a location where LaTeX will find them
   (typically in a local texmf tree at tex/latex/bez123) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the manual:
-o run: latex bez123.dtx (Note that bez123.dtx requires bez123.sty.
+- run: latex bez123.dtx (Note that bez123.dtx requires bez123.sty.
                          Several Package Warning messages will occur, but
                          these can be ignored.)
-o run: makeindex -s gind.ist bez123
-o run: latex bez123.dtx
-o Print bez123.dvi for a hardcopy of the package manual 
+- run: makeindex -s gind.ist bez123
+- run: latex bez123.dtx
+- Print bez123.dvi for a hardcopy of the package manual 
 
 2004/04/16
 Peter Wilson

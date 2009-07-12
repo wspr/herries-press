@@ -4,24 +4,24 @@ single epigraphs and lists of epigraphs are catered for. Various aspects
 are easily configurable.
 
 Changes in Version 1.5a (2002/10/22)
-o Replaced flushleftright environment by flushepinormal environment
+- Replaced flushleftright environment by flushepinormal environment
   to avoid clash with the ccaption package's \flushleftright
 
 Changes in Version 1.5 (2000/02/20)
-o Generalised \cleartoevenpage command
+- Generalised \cleartoevenpage command
 
 Changes in Version 1.4 (2000/01/16)
-o Added flushleftright environment
+- Added flushleftright environment
 
 Changes in Version 1.3 (1999/12/01)
-o Added \dropchapter and \undodrop commands
+- Added \dropchapter and \undodrop commands
 
 Changes in Version 1.2 (1999/09/12)
-o Added \cleartoevenpage command
-o Improved documentation
+- Added \cleartoevenpage command
+- Improved documentation
 
 Changes in Version 1.1: (1998/11/29)
-o Added support for epigraphs above chapter titles.
+- Added support for epigraphs above chapter titles.
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -52,17 +52,17 @@ epigraph.pdf (user manual)
 ----------------------------------------------------------------- 
 
 To install the package:
-o run: latex epigraph.ins (which will generate epigraph.sty)
-o Move epigraph.sty to a location where LaTeX will find it
+- run: latex epigraph.ins (which will generate epigraph.sty)
+- Move epigraph.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
 To process the user manual:
-o run: latex epigraph.dtx
-o run: makeindex -s gind.ist epigraph
-o run: latex epigraph.dtx
-o Print epigraph.dvi for a hardcopy of the package manual 
+- run: latex epigraph.dtx
+- run: makeindex -s gind.ist epigraph
+- run: latex epigraph.dtx
+- Print epigraph.dvi for a hardcopy of the package manual 
 
 2004/04/22
 Peter Wilson

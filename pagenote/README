@@ -3,11 +3,11 @@
 the ifmtarg package.
 
 Changes in v1.1 (2004/09/27)
-o Some support added for babel
-o Warning message if the notes file is missing
+- Some support added for babel
+- Warning message if the notes file is missing
 
 Changes (2004/09/24) 
-o First public release
+- First public release
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (The Herries Press) 
@@ -32,16 +32,16 @@ pagenote.sty
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex pagenote.ins (which will generate pagenote.sty)
-o Move pagenote.sty to a location where LaTeX will find it (typically
+- run: latex pagenote.ins (which will generate pagenote.sty)
+- Move pagenote.sty to a location where LaTeX will find it (typically
   in a local texmf tree at tex/latex/pagenote) and refresh the 
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the user manual
-o run: latex pagenote.dtx
-o For an index, run: makeindex -s gind.ist pagenote
-o run: latex pagenote.dtx
-o Print pagenote.dvi for a hardcopy of the user manual 
+- run: latex pagenote.dtx
+- For an index, run: makeindex -s gind.ist pagenote
+- run: latex pagenote.dtx
+- Print pagenote.dvi for a hardcopy of the user manual 
 
 
 2004/09/27

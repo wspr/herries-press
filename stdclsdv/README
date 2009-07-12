@@ -10,15 +10,15 @@ stdclsdv.dtx
 Project Public License (LPPL).
 
 Changes in version 1.1:
-o Added support for the koma classes (courtesy of Joerg Jaspert)
+- Added support for the koma classes (courtesy of Joerg Jaspert)
 
     To install the package:
-o run: latex stdclsdv.ins (which will generate stdclsdv.sty)
-o run: latex stdclsdv.dtx
-o run: makeindex -s gind.ist stdclsdv
-o run: latex stdclsdv.dtx
-o Print stdclsdv.dvi for a hardcopy of the package manual 
-o Move stdclsdv.sty to a location where LaTeX will find it.
+- run: latex stdclsdv.ins (which will generate stdclsdv.sty)
+- run: latex stdclsdv.dtx
+- run: makeindex -s gind.ist stdclsdv
+- run: latex stdclsdv.dtx
+- Print stdclsdv.dvi for a hardcopy of the package manual 
+- Move stdclsdv.sty to a location where LaTeX will find it.
 
 2000/07/16
 Peter Wilson

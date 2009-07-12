@@ -3,13 +3,13 @@ and writing new files during a LaTeX run. The package requires the standard
 verbatim package. 
 
 Changes (2004/05/10)
-o Changed license from LPPL v1.0 to v1.3
+- Changed license from LPPL v1.0 to v1.3
 
 Changes in version 1.0a (2002/07/07)
-o Corrected aspects of the documentation, no technical changes
+- Corrected aspects of the documentation, no technical changes
 
 Changes in version 1.0 (2002/06/22)
-o First public release
+- First public release
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -39,13 +39,13 @@ newfile.pdf (User manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex newfile.ins (which will generate newfile.sty)
+- run: latex newfile.ins (which will generate newfile.sty)
     To process the user manual
-o run: latex newfile.dtx
-o run: makeindex -s gind.ist newfile
-o run: latex newfile.dtx
-o Print newfile.dvi for a hardcopy of the package manual 
-o Move newfile.sty to a location where LaTeX will find it.
+- run: latex newfile.dtx
+- run: makeindex -s gind.ist newfile
+- run: latex newfile.dtx
+- Print newfile.dvi for a hardcopy of the package manual 
+- Move newfile.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/newfile) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.

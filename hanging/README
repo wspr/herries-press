@@ -3,11 +3,11 @@ It also enables typesetting with hanging punctuation; I don't necessarily
 recommend this.
 
 Changes in version 1.2
-o Option for less aggressive hanging punctuation
+- Option for less aggressive hanging punctuation
 
 Changes in version 1.1
-o Should now work with the ltugboat class
-o Takes options to exclude punctuations characters from being hung
+- Should now work with the ltugboat class
+- Takes options to exclude punctuations characters from being hung
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -38,17 +38,17 @@ hanging.pdf (user manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex hanging.ins (which will generate hanging.sty)
-o Move hanging.sty to a location where LaTeX will find it
+- run: latex hanging.ins (which will generate hanging.sty)
+- Move hanging.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/hanging) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
 
    To process the user manual:
-o run: latex hanging.dtx
-o If you want an index then run: makeindex -s gind.ist hanging
-o run: latex hanging.dtx
-o Print hanging.dvi for a hardcopy of the package manual 
+- run: latex hanging.dtx
+- If you want an index then run: makeindex -s gind.ist hanging
+- run: latex hanging.dtx
+- Print hanging.dvi for a hardcopy of the package manual 
 
 2004/04/22
 Peter Wilson

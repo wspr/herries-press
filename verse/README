@@ -1,41 +1,41 @@
     verse provides some aids for typesetting simple verse (poems).
 
 Changes in version 2.4 (2007/01/10)
-o Can specify the number of the first verse line and the line number
+- Can specify the number of the first verse line and the line number
   where the first of the line numbers will be displayed
 
 Changes in version 2.3 (2006/01/14)
-o Fixed small hiccup in \\>[...]
-o Added possibilty of putting line numbers at the left
-o Improved method of changing the font used for line numbers
+- Fixed small hiccup in \\>[...]
+- Added possibilty of putting line numbers at the left
+- Improved method of changing the font used for line numbers
 
 Changes in version 2.22 (2005/08/22)
-o Improved cooperation with hyperref
+- Improved cooperation with hyperref
 
 Changes in version 2.21 (2004/03/1)
-o Removed an incompatibility with the hangul package
+- Removed an incompatibility with the hangul package
 
 Changes in version 2.2 (2002/07/18)
-o Adjustable spacing between stanzas
+- Adjustable spacing between stanzas
 
 Changes in version 2.1 (2002/03/28)
-o Added repeating patterns
-o Added \\> as a linebreaking command
-o Fixed \label when used with the first line of a poem
+- Added repeating patterns
+- Added \\> as a linebreaking command
+- Fixed \label when used with the first line of a poem
 
 Changes in version 2.0 (2002/03/24)
-o Lines in a poem may be numbered
-o Verses may be numbered, or otherwise distinguished
-o Line-ending macros (\\ and friends) work as advertised
+- Lines in a poem may be numbered
+- Verses may be numbered, or otherwise distinguished
+- Line-ending macros (\\ and friends) work as advertised
 
 Changes in version 1.2 (2001/10/28)
-o Vertical spacing matches the original verse environment
+- Vertical spacing matches the original verse environment
 
 Changes in version 1.1 (2001/08/03)
-o Added pattern-based line indents 
+- Added pattern-based line indents 
 
 Changes in version 1.0 (2001/07/21)
-o First public release
+- First public release
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson
@@ -66,15 +66,15 @@ verse.pdf (user manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex verse.ins (which will generate verse.sty)
-o Move verse.sty to a location where LaTeX will find it (see the FAQ 
+- run: latex verse.ins (which will generate verse.sty)
+- Move verse.sty to a location where LaTeX will find it (see the FAQ 
                  on CTAN at help/uk-tex-faq for more information on this).
 
     To regenerate the user manual
-o run: latex verse.dtx
+- run: latex verse.dtx
        For an index run: makeindex -s gind.ist verse
-o run: latex verse.dtx
-o Print verse.dvi for a hardcopy of the user manual and documented code
+- run: latex verse.dtx
+- Print verse.dvi for a hardcopy of the user manual and documented code
 
 
 2007/01/10

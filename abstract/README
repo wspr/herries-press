@@ -13,20 +13,20 @@ _______________
 Change history:
 
 Version 1.2a (2009/06/08)
-o New package maintainer (Will)
+- New package maintainer (Will)
 
 Peter's change history:
 
 Changes in version 1.2 (2009/05/23)
-o Added style option
-o \abstitleskip now works as described
+- Added style option
+- \abstitleskip now works as described
 
 Changes (2004/04/16) 
-o Changed license from LPPL v1.0 to v1.3
-o Updated contact details
+- Changed license from LPPL v1.0 to v1.3
+- Updated contact details
 
 Changes in version 1.1
-o Added an option for a run-in heading
+- Added an option for a run-in heading
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson, Herries Press
@@ -58,16 +58,16 @@ abstract.pdf (the user manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex abstract.ins (which will generate abstract.sty)
-o Move abstract.sty to a location where LaTeX will find it (typically
+- run: latex abstract.ins (which will generate abstract.sty)
+- Move abstract.sty to a location where LaTeX will find it (typically
   in a local texmf tree at tex/latex/abstract) and refresh the 
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the user manual
-o run: pdflatex abstract.dtx
-o For an index, run: makeindex -s gind.ist abstract
-o run: pdflatex abstract.dtx
-o Print abstract.pdf for a hardcopy of the user manual 
+- run: pdflatex abstract.dtx
+- For an index, run: makeindex -s gind.ist abstract
+- run: pdflatex abstract.dtx
+- Print abstract.pdf for a hardcopy of the user manual 
 
 
 2009/05/23

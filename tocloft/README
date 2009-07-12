@@ -13,56 +13,56 @@ _______________
 Change history:
 
 Version 2.3d (2009/06/09)
-o  New package maintainer (Will) and small bug fix
+-  New package maintainer (Will) and small bug fix
 
 Peter's change history:
 
 Changes in version 2.3c (2003/09/26)
-o Another fix for the hyperref package
+- Another fix for the hyperref package
 
 Changes in version 2.3b (2003/01/20)
-o Again made Part commands work as advertised
+- Again made Part commands work as advertised
 
 Changes in version 2.3a (2002/10/03)
-o Made Part commands work as advertised or deleted them
-o Added examples for page break control in the ToC, etc
+- Made Part commands work as advertised or deleted them
+- Added examples for page break control in the ToC, etc
 
 Changes in version 2.3 (2002/06/15)
-o Made compatible with the koma classes
-o Added control over the pagestyle
+- Made compatible with the koma classes
+- Added control over the pagestyle
 
 Changes in version 2.2 (2001/04/17)
-o Stitched up another wound inflicted by the hyperref package
+- Stitched up another wound inflicted by the hyperref package
 
 Changes in version 2.1 (2001/04/08)
-o Added command to change the ToC parskip
+- Added command to change the ToC parskip
 
 Changes in version 2.0 (2001/03/15)
-o Added commands to create new kinds of `List of ...'
-o Can eliminate page numbers from list entries
-o Removed the requirement for the stdclsdv package
-o Removed the requirement for the hyperref package
+- Added commands to create new kinds of `List of ...'
+- Can eliminate page numbers from list entries
+- Removed the requirement for the stdclsdv package
+- Removed the requirement for the hyperref package
 
 Changes in version 1.1 (2000/02/11)
-o Upgraded to work with the minitoc and subfigure packages
-o Fixed slight problem with multiline ToC/LoF/LoT entries
-o Documentation includes more examples
+- Upgraded to work with the minitoc and subfigure packages
+- Fixed slight problem with multiline ToC/LoF/LoT entries
+- Documentation includes more examples
 
 Changes in version 1.0 (1999/09/19)
-o Changed from beta to production release
-o Improved (warning) reporting 
+- Changed from beta to production release
+- Improved (warning) reporting 
 
 Changes in version 0.3 (1999/08/22)
-o Added option to use default headings, so that packages like
+- Added option to use default headings, so that packages like
   fncychap can be used for ToC, etc headings
 
 Changes in version 0.2 (1999/01/17)
-o Now works with the tocbibind package
-o Improved documentation
-o Now doesn't fail with packages like float
+- Now works with the tocbibind package
+- Improved documentation
+- Now doesn't fail with packages like float
 
 Changes in version 0.1 (1998/12/31)
-o First public beta release
+- First public beta release
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (CUA)
@@ -94,16 +94,16 @@ tocloft.pdf (user manual)
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex tocloft.ins (which will generate tocloft.sty)
-o Move tocloft.sty to a location where LaTeX will find it.
+- run: latex tocloft.ins (which will generate tocloft.sty)
+- Move tocloft.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the manual
-o run: pdflatex tocloft.dtx
-o run: makeindex -s gind.ist tocloft
-o run: pdflatex tocloft.dtx
-o Print tocloft.pdf for a hardcopy of the package manual 
+- run: pdflatex tocloft.dtx
+- run: makeindex -s gind.ist tocloft
+- run: pdflatex tocloft.dtx
+- Print tocloft.pdf for a hardcopy of the package manual 
 
 2003/09/26
 Peter Wilson

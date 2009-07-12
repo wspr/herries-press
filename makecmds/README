@@ -14,12 +14,12 @@ makecmds.ins
 Project Public License (LPPL).
 
     To install the class:
-o run: latex makecmds.ins (which will generate makecmds.sty)
-o run: latex makecmds.dtx
-o For an index, run: makeindex -s gind.ist makecmds
-o run: latex makecmds.dtx
-o Print makecmds.dvi for a hardcopy of the user manual 
-o Move makecmds.sty to a location where LaTeX will find it.
+- run: latex makecmds.ins (which will generate makecmds.sty)
+- run: latex makecmds.dtx
+- For an index, run: makeindex -s gind.ist makecmds
+- run: latex makecmds.dtx
+- Print makecmds.dvi for a hardcopy of the user manual 
+- Move makecmds.sty to a location where LaTeX will find it.
 
 
 2000/05/27

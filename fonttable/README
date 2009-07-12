@@ -10,33 +10,33 @@ AS I AM AWAY MORE OFTEN THAN NOT.
 
 
 Changes in version 1.51 (2009/05/14)
-o Eliminated a clash with the babel package.
-o Described how to avoid a clash with the mftinc package.
+- Eliminated a clash with the babel package.
+- Described how to avoid a clash with the mftinc package.
 
 Changes in version 1.5 (2009/05/12)
-o Added code providing a packaged version of Donald Knuth's testfont.tex,
+- Added code providing a packaged version of Donald Knuth's testfont.tex,
   principally as an aid for font designers in testing their font.
 
 Changes in version 1.4 (2009/05/06)
-o Added a second method for specifying a font.
+- Added a second method for specifying a font.
 
 Changes in version 1.3c (2009/04/30)
-o Fixed a major bug relating to redefining \:
+- Fixed a major bug relating to redefining \:
 
 Changes in version 1.2 (2008/05/08)
-o Minor extensions providing more text examples
+- Minor extensions providing more text examples
 
 Changes in version 1.1 (2006/10/02)
-o Minor extensions providing more text examples
+- Minor extensions providing more text examples
 
 Changes in version 1.1 (2006/10/02)
-o Minor extensions providing more text examples
+- Minor extensions providing more text examples
 
 Changes in version 1.0a (2005/12/06)
-o Fixed bug preventing multiple unnumbered tables
+- Fixed bug preventing multiple unnumbered tables
 
 Changes in version 1.0 (2005/11/27)
-o First public release
+- First public release
 
 ------------------------------------------------------------------
   Author: Peter Wilson (Herries Press)
@@ -71,16 +71,16 @@ fonttable.pdf
 
 
     To install the package:
-o run: latex fonttable.ins (which will generate fonttable.sty)
-o Move fonttable.sty to a location where LaTeX will find it,
+- run: latex fonttable.ins (which will generate fonttable.sty)
+- Move fonttable.sty to a location where LaTeX will find it,
   for example /usr/TeX/texmf-local/tex/latex/fonttable/fonttable.sty
   (for more information on installation see the FAQ).
 
     To generate a second copy of the manual (which is already supplied as a PDF file):
-o run: latex fonttable.dtx
-o (for an index run: makeindex -s gind.ist fonttable.idx)
-o run: latex fonttable.dtx
-o Print *.dvi for a hardcopy of the package manual
+- run: latex fonttable.dtx
+- (for an index run: makeindex -s gind.ist fonttable.idx)
+- run: latex fonttable.dtx
+- Print *.dvi for a hardcopy of the package manual
 
 2009/05/14
 Peter Wilson

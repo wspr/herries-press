@@ -2,23 +2,23 @@
 for longer books.
 
 Changes in version 0.7a (2005/06/01)
-o Additional examples, no code changes
+- Additional examples, no code changes
 
 Changes in version 0.7 (2005/03/23)
-o Cleaner interface with the memoir class
+- Cleaner interface with the memoir class
 
 Changes (2004/04/16)
-o Changed license from LPPL v1.0 to v1.3
-o Updated contact details
+- Changed license from LPPL v1.0 to v1.3
+- Updated contact details
 
 Changes (2002/10/05)
-o Expanded and improved documentation. No changes to any code.
+- Expanded and improved documentation. No changes to any code.
 
 Changes in version 0.6 of bkltprnt.sty (2001/08/26)
-o Minimised the number of \box es
+- Minimised the number of \box es
 
 Changes in version 0.5 (2001/08/11)
-o First public release
+- First public release
 
 ----------------------------------------------------------------- 
   Author: Peter Wilson (Herries Press)
@@ -44,16 +44,16 @@ bkltprnt.sty
 ----------------------------------------------------------------- 
 
     To install the package:
-o run: latex booklet.ins (which will generate booklet.sty & bkltprnt.sty)
-o Move booklet.sty and bkltprnt.sty to a location where LaTeX will find them
+- run: latex booklet.ins (which will generate booklet.sty & bkltprnt.sty)
+- Move booklet.sty and bkltprnt.sty to a location where LaTeX will find them
   (typically in a local texmf tree at tex/latex/booklet) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
     To process the user manual:
-o run: latex booklet.dtx
+- run: latex booklet.dtx
        For an index run: makeindex -s gind.ist booklet
-o run: latex booklet.dtx
-o Print booklet.dvi for a hardcopy of the user manual and documented code
+- run: latex booklet.dtx
+- Print booklet.dvi for a hardcopy of the user manual and documented code
 
 2005/06/01
 Peter Wilson
