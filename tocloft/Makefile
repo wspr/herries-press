@@ -11,3 +11,6 @@ $(PKG).pdf: $(PKG).dtx
 
 $(PKG).sty: $(FILES)
 	tex $(PKG).ins
+
+clean:
+	latexmk -c ${PKG}.dtx
