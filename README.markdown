@@ -52,8 +52,7 @@ The packages in this repository are:
 Other packages and classes by Peter Wilson that are not contained within this 
 repository (and not maintained by Will Robertson) include:
 
- - [memoir](http://tug.ctan.org/pkg/memoir) 
-   (soon to be maintained by Lars Madsen)
+ - [memoir](http://tug.ctan.org/pkg/memoir) (now maintained by Lars Madsen)
  - [ledmac/ledpar/ledarab](http://tug.ctan.org/pkg/ledmac)
    (now maintained by Vafa Khalighi)
  - [expressg](http://tug.ctan.org/pkg/expressg)
