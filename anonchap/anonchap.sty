@@ -3,14 +3,20 @@
 % Provides commands to make \chapter typeset like \section
 % DO NOT USE WITH THE TOCBIBIND PACKAGE (which also supplies these commands)
 %
+% Usage of this package is described after the source code, below.
+%
 % Author: Peter Wilson (CUA)
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-% Copyright 1996
-% Released under the LaTeX Project Public License
+% Copyright 1996--2000 Peter Wilson
 %
+% Released under the LaTeX Project Public License, v1.3c or later.
+% The current maintainer of this work is Will Robertson.
+%
+% CHANGE HISTORY
+% v1.1a - New maintainer (Will Robertson)
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{anonchap}[2000/04/01 v1.1 typeset chapter like section]
+\ProvidesPackage{anonchap}[2009/08/03 v1.1a typeset chapter like section]
 
 \newcommand{\simplechapter}[1][\@empty]{%
   \let\@tbiold@makechapterhead\@makechapterhead
