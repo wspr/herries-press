@@ -16,4 +16,4 @@ $(PKG).sty: $(FILES)
 	tex $(PKG).ins
 
 clean:
-	rm -f $(PKG).sty $(PKG).tar.gz
+	git clean -dfx
