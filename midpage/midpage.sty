@@ -1,0 +1,23 @@
+% midpage.sty
+%
+% Provides a midpage environment for vertical centering
+%
+% Author: Peter Wilson, Herries Press
+% Maintainer: Will Robertson (will dot robertson at latex-project dot org)
+% Copyright 1996
+% Released under the LaTeX Project Public License
+%
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{midpage}[2000/02/20 v1.1 vertical centering]
+\newenvironment{midpage}{\vspace*{\fill}}{\vspace*{\fill}}
+
+\endinput
+
+% Example use:
+% \clearpage
+% \begin{midpage}
+%  Vertically Centered Title
+% \end{midpage}
+% \clearpage
+%

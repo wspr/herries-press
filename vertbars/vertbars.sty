@@ -1,0 +1,90 @@
+% vertbars.sty  The VERTical BARS package
+%               An extension to the lineno package
+%               to put vertical rules at left (right)
+%               of lines instead of numbers
+%    The package requires the lineno package
+% Author: Peter Wilson, CUA
+% Maintainer: Will Robertson (will dot robertson at latex-project dot org)
+% Copyright Peter R Wilson 2000
+% released under the LaTeX Project Public License
+%
+% Instructions are at the end of this file, after \endinput
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vertbars}[2000/07/25 v1.0 vertical bars]
+
+\newcommand{\LNenv}{runninglinenumbers}
+\DeclareOption{switch}{%
+  \renewcommand{\LNenv}{runningpagewiselinenumbers}
+  \PassOptionsToPackage{\CurrentOption}{lineno}
+}
+
+\DeclareOption{switch*}{%
+  \renewcommand{\LNenv}{runningpagewiselinenumbers}
+  \PassOptionsToPackage{\CurrentOption}{lineno}
+}
+
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{lineno}}
+\ProcessOptions\relax
+\RequirePackage{lineno}
+
+%%% code to add stuff at start and end of a pre-existing zero argument macro
+\newcommand{\addtodef}[3]{\begingroup
+  \@temptokena{#2}%
+  \toks@\expandafter{#1#3}%
+  \edef\x{\endgroup
+    \def\noexpand#1{\the\@temptokena \the\toks@}}%
+  \x
+}
+
+\newlength{\pwvbbl}
+\setlength{\pwvbbl}{\baselineskip}  % it's useful to preserve \baselineskip
+\newlength{\barwidth}         % width of bars
+\setlength{\barwidth}{0.4pt}
+\newlength{\barspace}         % horizontal space between bars
+\setlength{\barspace}{0.5\linenumbersep}
+
+\newcommand{\addtomakeLNL}{{\rule[-0.25\pwvbbl]{\barwidth}{1.1\pwvbbl}\hskip\barspace\relax}}
+\newcommand{\pwvbLNL}{}
+\newenvironment{vertbar}{\begin{\LNenv}%
+  \addtodef{\pwvbLNL}{}{\addtomakeLNL}%
+  \let\LineNumber\pwvbLNL%
+  }{\end{\LNenv}}
+
+\endinput
+
+% Instructions:
+%
+%    Read the documentation for the lineno package.
+%
+%    The vertbars package takes the same options as the lineno package.
+% In particular, the switch and switch* options control which side
+% of the page any bars will be printed. The package automatically
+% calls the lineno package, so you just need:
+% \usepackage[...]{vertbars}
+%
+%    The package provides one environment, namely the vertbar environment.
+% The vertbar environment is equivalent to the linenumbers environment
+% except that a vertical bar replaces the line number. Text paragraphs 
+% within a vertbar environment will be marked with a vertical bar in 
+% the margin. Nested environments generate multiple marginal bars.
+%
+%    The width of the bars is controlled by the value of \barwidth, which 
+% is initialised to 0.4pt, and can be changed via \setlength.
+%
+%    The horizontal seperation between adjacent bars is controlled by
+% the value of \barspace, which is initialised to 0.5\linenumbersep, and can
+% be changed via \setlength. (\linenumbersep is a command from the
+% lineno package that controls the spacing between line numbers and the
+% text body).
+%
+% NOTE: Bars can only be applied to complete paragraphs. For bars 
+% between arbitrary points, use the changebar package. Any limitations
+% of the lineno package apply equally to the vertbars package.
+%
+% Peter W.
+%
+
+
+
+
