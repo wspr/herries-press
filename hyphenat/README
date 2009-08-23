@@ -11,7 +11,7 @@ Changes in version 2.3
 - Added \hyp command for hyphenation of compound hyphenated words.
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA)
+  Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998--2004 Peter R. Wilson
  

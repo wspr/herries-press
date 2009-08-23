@@ -21,7 +21,7 @@ Changes in version 1.1 (2000/02/29)
 - Appendices environment now restores chapter/section numbering at the end
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA)
+  Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998--2004 Peter R. Wilson
  

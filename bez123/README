@@ -11,7 +11,7 @@ Changes v1.1 (1998/10/14)
 - Put the multiplication code into a separate package
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson (CUA)
+  Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998--2004 Peter R. Wilson
  
