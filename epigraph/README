@@ -1,7 +1,16 @@
+____________________
+The EPIGRAPH package
+
     The epigraph package is designed for typesetting epigraphs --- the
 pithy quotations often found at the start (or end) of a chapter. Both
 single epigraphs and lists of epigraphs are catered for. Various aspects 
 are easily configurable.
+
+______________
+Change History
+
+Version 1.5c (2009/09/02)
+- New maintainer (Will Robertson)
 
 Changes in Version 1.5a (2002/10/22)
 - Replaced flushleftright environment by flushepinormal environment
