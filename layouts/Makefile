@@ -1,14 +1,21 @@
 
 PKG = $(shell basename `pwd`)
-FILES = README $(PKG).ins $(PKG.dtx)
-RESULTS = $(PKG).pdf $(PKG).sty
+DOC = layman
+FILES = README $(PKG).ins $(PKG).dtx ${DOC}.tex
+RESULTS = $(PKG).pdf $(PKG).sty  ${DOC}.pdf
 
 $(PKG).tar.gz: $(FILES) $(RESULTS)
-	ctanify $(PKG).ins $(PKG).pdf README
+	ctanify ${DOC}.tex=source/latex/$(PKG) ${DOC}.pdf $(PKG).ins $(PKG).pdf README
 
 $(PKG).pdf: $(PKG).dtx
 	pdflatex $<;
 	makeindex -s gind.ist $(PKG);
+	pdflatex $<;
+	pdflatex $<;
+
+$(DOC).pdf: $(DOC).tex
+	pdflatex $<;
+	makeindex -s gind.ist $(DOC);
 	pdflatex $<;
 	pdflatex $<;
 
