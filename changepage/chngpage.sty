@@ -4,6 +4,13 @@
 % and to robustly check for typesetting on odd or even pages.
 % Instructions for use are at the end of this file.
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLEASE NOTE:
+% THIS PACKAGE IS DEPRECATED IN FAVOUR OF CHANGEPAGE.STY FOR REASONS
+% OF COMPATIBILITY WITH THE MEMOIR CLASS. The two are equivalent;
+% please do not use this one for new documents or packages.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 2000, 2001, 2003 Peter R. Wilson
@@ -21,7 +28,7 @@
 %
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{chngpage}[2003/08/10 v1.2 change page layout]
+\ProvidesPackage{chngpage}[2009/09/02 v1.2a change page layout]
 
 %% Note: internal package commands all include the string `cp@'
 %% new \if for the strict option
@@ -306,32 +313,32 @@
 % defined as `^_', can be changed in the preamble if it will cause
 % a clash with any author-defined labels. The default labels will
 % be of the form `^_N' where N is a positive integer.
+%
+%
+% 
+% Changes in version 1.2a (2009/09/02)
+% - New maintainer (Will Robertson)
 % 
 % Changes in version 1.2 (2003/08/10)
-% ----------------------
-% o Fixed \checkoddpage to handle page numbers other than arabic
-% o Eliminated special \checkoddpage code for hyperref
+% - Fixed \checkoddpage to handle page numbers other than arabic
+% - Eliminated special \checkoddpage code for hyperref
 %
 % Changes in version 1.1c (2001/02/24)
-% -----------------------
-% o Fixed problem when used with the calc package
+% - Fixed problem when used with the calc package
 %   (can't do \setcounter{cp@tempcnt}{\cp@pageref{....}}
-% o Fixed problem when used with the hyperef package
+% - Fixed problem when used with the hyperef package
 %   (hyperref adds new arguments to \newlabel in the *.aux file)
 %
 % Changes in version 1.1b (2001/01/31)
-% -----------------------
-% o Added strict option for robust adjustwidth; checks odd/even
+% - Added strict option for robust adjustwidth; checks odd/even
 %   pages via labels instead of by the page counter.
 % 
 % Changes in version 1.1a (2001/01/18)
-% -----------------------
-% o Added missing {} in last 4 arguments of \changepage
+% - Added missing {} in last 4 arguments of \changepage
 % 
 % Changes in version 1.1 (2000/07/22)
-% ----------------------
-% o Empty arguments made available
-% o Added adjustwidth environment
+% - Empty arguments made available
+% - Added adjustwidth environment
 % 
 % 
 % Peter W.
