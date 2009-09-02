@@ -1,13 +1,23 @@
+____________________
+The HYPHENAT package
+
     The hyphenat package can be used to disable all hyphenation
 in a document or in selected text within the document. It also 
 enables hyphenation within `words' that contain analphabetic 
 characters (e.g., that include underscores), and hyphenation of
 text typeset in monospaced (e.g., CM typewriter) fonts.
 
-Changes in version 2.3a
+
+______________
+Change history
+
+Version 2.3c
+- New maintainer (Will Robertson)
+
+Version 2.3a
 - Fixed a double hyphenation problem with some non-CM fonts.
 
-Changes in version 2.3
+Version 2.3
 - Added \hyp command for hyphenation of compound hyphenated words.
 
 ----------------------------------------------------------------- 
