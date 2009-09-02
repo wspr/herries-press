@@ -1,5 +1,14 @@
+___________________
+The BOOKLET package
+
     booklet provides some aids for printing simple booklets or signatures
 for longer books.
+
+______________
+Change History
+
+Changes in version 0.7b (2009/09/02)
+- New maintainer (Will Robertson)
 
 Changes in version 0.7a (2005/06/01)
 - Additional examples, no code changes
