@@ -7,10 +7,13 @@ $(PKG).tar.gz: $(FILES) $(RESULTS)
 	ctanify $(PKG).ins $(PKG).pdf README
 
 $(PKG).pdf: $(PKG).dtx
-	latexmk -pdf $<;
+	pdflatex $<;
+	makeindex -s gind.ist $(PKG);
+	pdflatex $<;
+	pdflatex $<;
 
 $(PKG).sty: $(FILES)
 	tex $(PKG).ins
 
 clean:
-	latexmk -c ${PKG}.dtx
+	git clean -dfx
