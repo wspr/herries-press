@@ -1,3 +1,6 @@
+____________________
+The CCAPTION package
+
     The ccaption package provides commands for `continuation captions',
 unnumbered captions, and a legend heading for any environment. 
 Methods are provided to define captions for use outside float 
@@ -6,6 +9,13 @@ Tools are provided for defining your own captioning styles.
 
     The packagehas been tested in conjunction with the rotating, caption2, 
 subfigure, sidecap, endfloat, longtable, xtab, tocloft and hyperref packages.
+
+
+Change History
+______________
+
+Changes in version 3.2b (2009/09/02)
+- New maintainer (Will Robertson)
 
 Changes in version 3.2a (2005/03/29)
 - Fixed a labelling problem with bilingual captions
