@@ -1,3 +1,6 @@
+_____________________
+The FONTTABLE package
+
     The fonttable package enables you to print a table of the characters
 in a font (a font table), and/or some example text, and/or individual
 glyphs in a variety of settings.
@@ -5,9 +8,11 @@ glyphs in a variety of settings.
     This, in a package form, is a poor man's version of nfssfont.tex and
 testfont.tex.
 
-    IF THERE ARE ANY QUESTIONS PLEASE ASK THEM ON THE COMP.TEXT.TEX NEWSGROUP
-AS I AM AWAY MORE OFTEN THAN NOT.
+______________
+Change History
 
+Version 1.5b (2009/09/02)
+- New maintainer (Will Robertson)
 
 Changes in version 1.51 (2009/05/14)
 - Eliminated a clash with the babel package.
