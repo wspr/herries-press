@@ -1,13 +1,22 @@
+________________________________
+The BEZ123 and MULTIPLY packages
+
     LaTeX can be used for drawing quadratic Bezier curves. The bez123 
 package provides additional facilities for drawing linear, cubic, and
 rational quadratic Bezier curves. The multiply package provides a
 command for multiplication of a length without numerical overflow.
 
-Changes (2004/04/16)
+______________
+Change History
+
+Version 1.1b (2009/09/02)
+- New maintainer (Will Robertson)
+
+Version 1.1a (2004/04/16)
 - Changed license from LPPL v1.0 to v1.3
 - Updated contact information
 
-Changes v1.1 (1998/10/14)
+Version 1.1 (1998/10/14)
 - Put the multiplication code into a separate package
 
 ----------------------------------------------------------------- 
