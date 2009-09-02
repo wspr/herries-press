@@ -1,11 +1,20 @@
+___________________
+The HANGING package
+
     The hanging package facilitates the typesetting of hanging paragraphs.
 It also enables typesetting with hanging punctuation; I don't necessarily
 recommend this.
 
-Changes in version 1.2
+______________
+Change History
+
+Version 1.2b (2009/09/02)
+- New maintainer (Will Robertson)
+
+Version 1.2
 - Option for less aggressive hanging punctuation
 
-Changes in version 1.1
+Version 1.1
 - Should now work with the ltugboat class
 - Takes options to exclude punctuations characters from being hung
 
