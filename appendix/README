@@ -5,7 +5,10 @@ The APPENDIX package
 of appendices. Also (sub)appendices environments are provided that can be
 used, for example, for per chapter/section appendices.
 
-Changes (2004/04/16)
+Changes v1.2b (2009/09/02)
+- New maintainer (Will Robertson)
+
+Changes v1.2a (2004/04/16)
 - Updated contact details 
 - Changed license from LPPL v1.0 to LPPL v1.3
 
