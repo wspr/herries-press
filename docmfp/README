@@ -1,13 +1,20 @@
+__________________
+The DOCMFP package
+
     The docmfp package extends the doc package to cater for documenting 
 non-LaTeX code, such as Metafont and Metapost, or even C code.
 
-Changes in version 1.2a/b
-----------------------
+______________
+Change History
+
+Version 1.2d
+- New maintainer (Will Robertson)
+
+Version 1.2a/b
 - Changed license from LPPL v1.0 to v1.3
 - Fixed minor typos
 
-Changes in version 1.1
-----------------------
+Version 1.1
 - Added a general \Describe macro
 - Added a general Code environment
 
