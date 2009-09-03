@@ -6,12 +6,12 @@
 %
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-% Copyright 1996
+% Copyright 1996--2003 Peter Wilson
 % Released under the LaTeX Project Public License
 %
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{needspace}[2003/02/18 v1.3a reserve vertical space]
+\ProvidesPackage{needspace}[2009/09/03 v1.3b reserve vertical space]
 
 \newcommand{\needspace}[1]{\begingroup\setlength{\dimen@}{#1}%
   \vskip\z@\@plus\dimen@ \penalty -100\vskip\z@\@plus -\dimen@
@@ -60,17 +60,20 @@
 % \Needspace{<length>} will be ragged bottom but short pages produced by 
 % \Needspace*{<length>} will be flush bottom if \flushbottom is in effect.
 %
+% Changes v1.3b (2009/09/03)
+%   New maintainer (Will Robertson)
+%
 % Changes v1.3a (2003/02/18)
-% o At the suggestion of Donald Arseneau (private emails) changed guts of
+%   At the suggestion of Donald Arseneau (private emails) changed guts of
 %   \needspace from 
 %   ... \vskip\z@\@plus\dimen@\pagebreak[3]\vskip\z@\@plus-\dimen@\endgroup}
 %
 % Changes v1.3 (2003/02/07)
-% o Added \Needspace (an extended version of postings by Donald Arseneau 
+%   Added \Needspace (an extended version of postings by Donald Arseneau 
 %   to comp.text.tex e.g., in November 1993, August 1995, September 1997, ...)
 %
 % Changes v1.2 (2002/09/11)
-% o At the suggestion of Robin Fairbairns, added use of \dimen@ to capture 
+%   At the suggestion of Robin Fairbairns, added use of \dimen@ to capture 
 %   the argument so that calc package commands can be used in the argument.
 %
 % 
