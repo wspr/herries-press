@@ -1,14 +1,20 @@
+___________________
+The NEWFILE package
+
     The newfile package provides convenient user level commands for reading
 and writing new files during a LaTeX run. The package requires the standard
 verbatim package. 
 
-Changes (2004/05/10)
+Version 1.0c (2009/09/03)
+- New maintainer (Will Robertson)
+
+Version 1.0b (2004/05/10) 
 - Changed license from LPPL v1.0 to v1.3
 
-Changes in version 1.0a (2002/07/07)
+Version 1.0a (2002/07/07)
 - Corrected aspects of the documentation, no technical changes
 
-Changes in version 1.0 (2002/06/22)
+Version 1.0 (2002/06/22) 
 - First public release
 
 ----------------------------------------------------------------- 
@@ -50,6 +56,3 @@ newfile.pdf (User manual)
   (typically in a local texmf tree at tex/latex/newfile) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
-
-2004/05/10
-Peter Wilson
