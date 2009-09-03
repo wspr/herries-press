@@ -1,3 +1,6 @@
+____________________
+The ROMANNUM package
+
     The romannum package changes LaTeX generated numbers to be printed
 with roman numerals instead of arabic digits. This package requires the
 stdclsdv package.
@@ -30,6 +33,10 @@ romannum.pdf (User manual)
 
 ----------------------------------------------------------------- 
 
+v1.0b (2009/09/03) - New maintainer (Will Robertson)
+
+----------------------------------------------------------------- 
+
     To install the package:
 - run: latex romannum.ins (which will generate romannum.sty)
 - Move romannum.sty to a location where LaTeX will find it.
@@ -42,6 +49,3 @@ romannum.pdf (User manual)
 - if you want an index, then run: makeindex -s gind.ist romannum
 - run: latex romannum.dtx
 - Print romannum.dvi for a hardcopy of the package manual 
-
-200/05/24
-Peter Wilson
