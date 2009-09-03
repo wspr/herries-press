@@ -1,12 +1,21 @@
+____________________
+The PAGENOTE package
+
     The pagenote package provides tagged notes on a separate page 
 (aka end notes). Unless the memoir class is used, the package requires
 the ifmtarg package.
 
-Changes in v1.1 (2004/09/27)
+______________
+Change History
+
+v1.1a (2009/09/27)
+- New maintainer (Will Robertson)
+
+v1.1 (2004/09/27)
 - Some support added for babel
 - Warning message if the notes file is missing
 
-Changes (2004/09/24) 
+v1.0 (2004/09/24) 
 - First public release
 
 ----------------------------------------------------------------- 
@@ -43,7 +52,3 @@ pagenote.sty
 - For an index, run: makeindex -s gind.ist pagenote
 - run: latex pagenote.dtx
 - Print pagenote.dvi for a hardcopy of the user manual 
-
-
-2004/09/27
-Peter Wilson
