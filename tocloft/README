@@ -5,17 +5,11 @@ The TOCLOFT package
 Table of Contents, List of Figures, and List of Tables. You can also
 define your own kinds of `List of ...'
 
-    Will Robertson is now maintaining this package. Please contact him
-in preference to the original author, Peter Wilson, for feature requests
-and bug reports.
-
 _______________
 Change history:
 
-Version 2.3d (2009/09/04)
--  New package maintainer (Will) and small bug fix
-
-Peter's change history:
+Changes in version 2.3d (2009/09/04)
+-  New package maintainer (Will Robertson) and small bug fix
 
 Changes in version 2.3c (2003/09/26)
 - Another fix for the hyperref package
@@ -104,10 +98,3 @@ tocloft.pdf (user manual)
 - run: makeindex -s gind.ist tocloft
 - run: pdflatex tocloft.dtx
 - Print tocloft.pdf for a hardcopy of the package manual 
-
-2003/09/26
-Peter Wilson
-
-2009/06/09
-Will Robertson
-will dot robertson at latex-project dot org

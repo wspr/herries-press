@@ -1,6 +1,12 @@
+____________________
+The TOCVSEC2 package
+
     The tocvsec2 package provides control over sectional numbering and/or the
 entries in the Table of Contents on a section by section basis. 
 NB. The package also requires the ifthen package.
+
+Changes in version 1.2a (2009/09/04)
+- New maintainer (Will Robertson)
 
 Changes in version 1.2 (2004/05/24)
 - The stdclsdv package is no longer required
@@ -45,6 +51,3 @@ tocvsec2.pdf (user manual)
 - run: makeindex -s gind.ist tocvsec2
 - run: latex tocvsec2.dtx
 - Print tocvsec2.dvi for a hardcopy of the package manual 
-
-2004/05/24
-Peter Wilson
