@@ -1,7 +1,14 @@
+___________________
+The TITLING package
+
     The titling package provides controls over the typesetting of the
 \maketitle and \thanks commands, makes the \title, \author and \date 
 information permanantly available, and allows multiple titles in
 a single document.
+
+
+Changes in version 2.1d (2009/09/04)
+- New maintainer (Will Robertson)
 
 Changes in version 2.1c (2004/09/26)
 - No technical change, deleted mention of non-existing command
@@ -69,7 +76,3 @@ titling.pdf (user manual)
 - For an index, run: makeindex -s gind.ist titling
 - run: latex titling.dtx
 - Print titling.dvi for a hardcopy of the user manual 
-
-
-2004/09/26
-Peter Wilson
