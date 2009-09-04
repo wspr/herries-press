@@ -1,7 +1,13 @@
+_____________________
+The TOCBIBIND package
+
     The tocbibind package can be used to add the ToC and/or bibliography 
 and/or the index etc., to the Table of Contents listing.
 
-Changes (2004/05/10)
+Changes in version 1.5i (2009/09/04)
+- New maintainer (Will Robertson)
+
+Changes in version 1.5h (2004/05/10)
 - Changed license from LPPL v1.0 to v1.3
 
 Changes in version 1.5g (2003/03/13)
@@ -86,7 +92,3 @@ tocbibind.pdf (user manual)
 - For an index, run: makeindex -s gind.ist tocbibind
 - run: latex tocbibind.dtx
 - Print tocbibind.dvi for a hardcopy of the package manual 
-
-2004/05/10
-Peter Wilson
-
