@@ -7,9 +7,9 @@
 % LaTeX Project Public License distributed from CTAN
 % archives in directory macros/latex/base/lppl.txt.
 %
-% Author: Peter Wilson (CUA and NIST)
+% Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-% 
+%
 %<*driver>
 \documentclass{ltxdoc}
 \EnableCrossrefs
@@ -68,11 +68,11 @@
 %
 % \changes{v1.0}{1999/01/17}{First public release}
 % \changes{v1.1}{2000/07/16}{Added koma classes}
+% \changes{v1.1a}{2009/09/04}{New maintainer (Will Robertson)}
 %
-% ^^A \def\fileversion{v1.0}
-% ^^A \def\filedate{1999/01/17}
-% \def\fileversion{v1.1}
-% \def\filedate{2000/07/16}
+% \def\fileversion{v1.0}  \def\filedate{1999/01/17}
+% \def\fileversion{v1.1}  \def\filedate{2000/07/16}
+% \def\fileversion{v1.1a} \def\filedate{2009/09/04}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -100,7 +100,7 @@
 % \end{abstract}
 % \tableofcontents
 %
-% 
+%
 %
 % \section{Introduction}
 %
@@ -110,7 +110,7 @@
 %  The \Lpack{stdclsdv} package provides a solution for
 % for the case when the document class is one of the \LaTeX{} standard
 % classes (i.e., \Lpack{book}, \Lpack{report}, \Lpack{article},
-% \Lpack{letter}, \Lpack{slides}, and classes derived from the 
+% \Lpack{letter}, \Lpack{slides}, and classes derived from the
 % \Lpack{article} class, namely \Lpack{ltxdoc} and \Lpack{proc}).
 % It also handles the \Lpack{koma} classes.\footnote{Courtesy of
 % Joerg Jaspert \texttt{Joerg.Jaspert@informatik.fh-fulda.de}.}
@@ -136,8 +136,8 @@
 % \DescribeMacro{\ifSCDknownclass}
 % |\ifSCDknownclass| is TRUE iff the document class is one of:
 % \Lpack{book}, \Lpack{report}, \Lpack{article}, \Lpack{letter},
-% \Lpack{slides}, \Lpack{proc}, \Lpack{ltxdoc}, 
-% \Lpack{scrbook}, \Lpack{scrreprt}, \Lpack{scrartcl} or \Lpack{scrlettr}. 
+% \Lpack{slides}, \Lpack{proc}, \Lpack{ltxdoc},
+% \Lpack{scrbook}, \Lpack{scrreprt}, \Lpack{scrartcl} or \Lpack{scrlettr}.
 % Otherwise it is FALSE.
 %
 % \DescribeMacro{\ifSCDchapter}
@@ -166,11 +166,11 @@
 %   % normal processing
 % \else % just before end of package file
 %   % error/warning message about unknown class
-% \fi 
+% \fi
 % \endinput
 % \end{verbatim}
 % Alternatively, using the |\SCDQuit| command provides a clearer means
-% of accomplishing this. The |\SCDquit| macro is defined to do nothing. 
+% of accomplishing this. The |\SCDquit| macro is defined to do nothing.
 % It is intended to
 % be used for prematurely ending a package file in the following manner:
 % \begin{verbatim}
@@ -206,7 +206,7 @@
 %   \end{thebibliography}
 % }
 %
-% 
+%
 % \section{The package code} \label{sec:code}
 %
 %    Announce the name and version of the package, which requires
@@ -214,7 +214,7 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{stdclsdv}[2000/07/16 v1.1 Sectional divisions]
+\ProvidesPackage{stdclsdv}[2009/09/04 v1.1a Sectional divisions]
 %    \end{macrocode}
 %
 % In order to try and avoid name clashes with other packages, each macro
