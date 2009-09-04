@@ -1,5 +1,11 @@
+_________________
+The VERSE package
+
     verse provides some aids for typesetting simple verse (poems).
 
+Changes in version 2.4a (2009/09/04)
+- New maintainer (Will Robertson)
+  
 Changes in version 2.4 (2007/01/10)
 - Can specify the number of the first verse line and the line number
   where the first of the line numbers will be displayed
@@ -76,8 +82,3 @@ verse.pdf (user manual)
        For an index run: makeindex -s gind.ist verse
 - run: latex verse.dtx
 - Print verse.dvi for a hardcopy of the user manual and documented code
-
-
-2007/01/10
-Peter Wilson
-
