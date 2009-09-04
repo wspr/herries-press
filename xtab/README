@@ -1,17 +1,19 @@
+________________
+The XTAB package
+
     The xtab package automatically breaks long tables so that they can
 span multiple pages. It is an extension of the supertabular package,
 providing additional functionality and reducing some of the weaknesses.
 Alternatively, you may find the longtable package fits your needs better.
 
-NOTE: If you have any questions please ask them on the comp.text.tex
-      newsgroup where you are likely to get better and faster responses
-      than trying to contact me directly as I am away more than I am here.
+______________
+Change History
 
-Changes (2008/07/26)
-- v2.3c released, hopefully with all extraneous spaces eliminated
+v2.3d (2009/09/04) - New maintainer (Will Robertson)
+v2.3c (2008/07/26) - hopefully all extraneous spaces eliminated
 
 ----------------------------------------------------------------- 
-  Author: Peter Wilson 
+  Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998 -- 2008 Peter R. Wilson
  
@@ -50,6 +52,3 @@ xtab.pdf (user manual)
 - run: makeindex -s gind.ist xtab
 - run: latex xtab.dtx
 - Print xtab.(pdf|dvi) for a hardcopy of the package manual 
-
-2008/07/26
-Peter Wilson
