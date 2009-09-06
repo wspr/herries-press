@@ -1,5 +1,5 @@
 \documentclass{ltugboat}
-\usepackage{url}
+\usepackage{enumitem,microtype,url}
 \title{Peter Wilson's Herries Press}
 \author{Will Robertson}
 \begin{document}
@@ -41,49 +41,64 @@ Peter's packages date from at least 1996 and fall into several groups.
 Rather than linking each of these packages to their \acro{CTAN} location, simply use the \acro{URL} to access them:\\ \centerline{\url{http://tug.ctan.org/pkg/}\meta{package name}}
 They are all included in recent (and not so recent) \TeX\ distributions.
 
+Following are a brief description of those I am now maintaining, concluding with a short list of Peter's works that I am \emph{not} responsible.
+
 \subsection{Standard class improvements}
 
- abstract
- appendix
- ccaption
- tocloft
- layouts
- titling
- tocbibind
- tocvsec2
+The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) are notoriously inflexible. You would like to change how the abstract appears? Then redefine the \texttt{abstract} environment. Sooner or later, someone writes a package that provides a more convenient interface; here are those of Peter's.
+
+\begin{description}[font=\normalfont\sffamily]
+\item [abstract] Easily customise the \texttt{abstract} environment for one- or two-column typesetting.
+\item [appendix] Provides additional appendixing\footnote{I think Peter invented this word.} capabilities.
+\item [ccaption] Provides many features for customising and extending captions in floating and non-floating environments.
+\item [romannum] Tools to typeset roman numerals and change various document counters (such as captions, sections, etc.) to roman.
+\item [tocloft] Easily customise the table of contents and other `List of \dots' sections.
+\item [titling] Easily customise the document title produced with \cs{maketitle}.
+\item [tocbibind] Add the table of contents, index, etc., to the actual table of contents.
+\item [tocvsec2] Adjust the relationship between section headings and table of contents listing.
+\end{description}
 
 \subsection{Programming features}
 
- chngcntr
- chngpage \& changepage
- ifmtarg
- makecmds
- needspace
- newfile
- nextpage
- printlen
- romannum
- stdclsdv
+\begin{description}[font=\normalfont\sffamily]
+\item [chngcntr] Change the scoping rules for the resetting of counters.
+\item [chngpage \& changepage] Tools to locally change the size of the typesetting space and to detect robustly whether a page is even or odd.
+\item [ifmtarg] Robust and expandable test for `emptiness' of a macro argument.
+\item [makecmds] \LaTeX\ equivalent for \cs{def} with the syntax of \cs{newcommand} and \cs{newenvironment}.
+\item [needspace] Reserve a certain amount of space on a page (when you want to insert some material without breaking it over pages).
+\item [newfile]
+\item [nextpage] Extending the family of \cs{clearpage} commands.
+\item [printlen] Print lengths of counters in specified units (as opposed to points, the \TeX\ default).
+\item [stdclsdv] Detect whether the class provides \cs{chapter}, and other sectional divisions.
+\end{description}
 
 \subsection{New stuff}
 
- anonchap
- booklet
- combine
- epigraph
- hanging
- pagenote
- verse
- xtab
- 
+\begin{description}[font=\normalfont\sffamily]
+\item [anonchap] Makes \cs{chapter} typeset like \cs{section}.
+\item [booklet]  Typeset documents arranged on paper to be folded into booklets.
+\item [combine]  Combine multiple entire \LaTeX\ documents into a single output file.
+\item [epigraph] Add quotation-like material at the beginning/end of chapters.
+\item [hanging]  Typeset paragraphs with various shapes (particularly hanging lines).
+\item [pagenote] A package for end notes.
+\item [verse] Typeset verse material.
+\item [xtab] Improve \textsf{supertabular}.
+\end{description}
+
 \subsection{Assorted}
 
- bez123 \& multiply
- docmfp
- fonttable
- hyphenat
- midpage
- vertbars
+\begin{description}[font=\normalfont\sffamily]
+\item [bez123 \& multiply] Draw (more) bezier curves in \LaTeX.
+\item [docmfp] Use \textsf{doc} to document other programming languages.
+\item [fonttable] Visualise a font's glyph repertoire
+\item [hyphenat] Control hyphenation: turn it off or use analphabetic symbols.
+\item [layouts] Visualise the document layout.
+\item [midpage] An environment to vertical center its contents.
+\item [vertbars] Place vertical bars in the margin of paragraph text.
+\end{description}
+
+
+\subsection{Classes and packages that I do not maintain}
 
 
 \end{document}
