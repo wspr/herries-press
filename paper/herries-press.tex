@@ -1,0 +1,89 @@
+\documentclass{ltugboat}
+\usepackage{url}
+\title{Peter Wilson's Herries Press}
+\author{Will Robertson}
+\begin{document}
+\maketitle
+\begin{abstract}
+In September 2009 I became the maintainer of the majority of Peter Wilson's \LaTeX\ code. This short article describes how this came about and what the different packages are.
+\end{abstract}
+
+\section{Introduction}
+
+Earlier this year I was writing a class file for a local conference, and wrote to Peter Wilson about a minor feature request in his \textsf{abstract} package. He replied quickly accepting the modifications I'd suggested, adding at the end `Would you like to take over the package? I'm slowly retiring from LaTeX (age is calling) and trying to pass things off to others for support.'
+
+Knowing of Peter's wide variety of packages on \acro{CTAN}, it didn't make sense to me that each package should end up being sent to whomever next sent a support email. Instead, I offered to take on maintainership of the whole lot. After all, Peter is a well regarded figure in the community and surely his packages don't receive very many bug reports? (As far as I know, this is indeed the case. Ask me again in a few months.) Peter seemed to like this idea and promptly sent me a complete list of his packages. I knew he'd written a lot, but I didn't quite realise the full extent of what I was taking on. A total of thirty-two packages ended up with my name in them, which involved a good deal of tedium for both me updating the contact details for each one and for the tireless \acro{CTAN} members responsible for uploading the new versions.
+
+In this report, I'll discuss briefly what it means to be the `maintainer' for a package, the full extent of Peter's packages, and probably through in a digression or two along the way.
+
+\section{Maintainership}
+
+\LaTeX\ itself and the majority of the third party contributed software for it are open source software, licensed under the `LaTeX Project Public Licence'\footnote{\url{http://www.latex-project.org/lppl/}} (\acro{LPPL}). The LPPL is similar to other well-known free software licences such as the BSD licence or the Apache Licence in that software may be freely distributed and modified. The \acro{LPPL} includes some slight restrictions on how modified versions of software can then by distributed, such as including clear notices that it is a changed version of the original.
+
+The \acro{LPPL} also contains an interesting component that I have not seen in other free software licences: the concept of an explicit `maintainer' for the software who is responsible for keeping it up-to-date and for receiving bug reports. Usually the author of the software will be the maintainer of the work, but people change and move on and often lose interest in dealing with code they wrote long ago and no longer use. The \acro{LPPL} formalises the process for new people to come along and adopt old code, especially `orphaned' code for which the original authors can no longer be contacted.
+
+Maintainership becomes an important aspect of the code when software repositories collate software and bundle it up for distribution. In the \LaTeX\ world, \acro{CTAN} is the first port of call for third party software; if it has not been uploaded there, it won't be available in \TeX\ Live. (I'm not sure if MiK\TeX\ has such stringent requirements but I presume so.) Having explicit maintainers for the software they collate, the \acro{CTAN} team can theoretically ensure an unbroken chain of command for any software they distribute.
+
+Were Peter to simply abandon his packages and no longer maintain them, I wouldn't simply be able to come along and upload new versions of his packages to \acro{CTAN} without going through the formal `maintainership' process. Otherwise chaos could ensue.
+
+Interestingly, Peter himself was maintaining a number of packages for authors pre-dating his own work. This puts me in the dubious category of third generation of \LaTeX\ package maintainership.
+
+\section{The Herries Press}
+
+Peter's packages date from at least 1996 and fall into several groups.
+\begin{itemize}
+\item Replacements for functionality in the standard classes
+\item Programming features to ease \LaTeX\ development
+\item New functionality for \LaTeX\ documents
+\item New \LaTeX\ classes
+\item Miscellaneous
+\end{itemize}
+Rather than linking each of these packages to their \acro{CTAN} location, simply use the \acro{URL} to access them:\\ \centerline{\url{http://tug.ctan.org/pkg/}\meta{package name}}
+They are all included in recent (and not so recent) \TeX\ distributions.
+
+\subsection{Standard class improvements}
+
+ abstract
+ appendix
+ ccaption
+ tocloft
+ layouts
+ titling
+ tocbibind
+ tocvsec2
+
+\subsection{Programming features}
+
+ chngcntr
+ chngpage \& changepage
+ ifmtarg
+ makecmds
+ needspace
+ newfile
+ nextpage
+ printlen
+ romannum
+ stdclsdv
+
+\subsection{New stuff}
+
+ anonchap
+ booklet
+ combine
+ epigraph
+ hanging
+ pagenote
+ verse
+ xtab
+ 
+\subsection{Assorted}
+
+ bez123 \& multiply
+ docmfp
+ fonttable
+ hyphenat
+ midpage
+ vertbars
+
+
+\end{document}
