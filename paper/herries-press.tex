@@ -30,16 +30,15 @@ Interestingly, Peter himself was maintaining a number of packages for authors pr
 
 \section{The Herries Press}
 
-Peter's packages date from at least 1996 and fall into several groups.
+Peter's packages date from at least 1996 and fall into several rough groups.
 \begin{itemize}
 \item Replacements for functionality in the standard classes
 \item Programming features to ease \LaTeX\ development
 \item New functionality for \LaTeX\ documents
-\item New \LaTeX\ classes
 \item Miscellaneous
 \end{itemize}
 Rather than linking each of these packages to their \acro{CTAN} location, simply use the \acro{URL} to access them:\\ \centerline{\url{http://tug.ctan.org/pkg/}\meta{package name}}
-They are all included in recent (and not so recent) \TeX\ distributions.
+They are all included in recent (and not so recent) \TeX\ distributions. The majority of them are also loaded/emulated by Peter's \textsf{memoir} class.
 
 Following are a brief description of those I am now maintaining, concluding with a short list of Peter's works that I am \emph{not} responsible.
 
@@ -51,7 +50,7 @@ The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) 
 \item [abstract] Easily customise the \texttt{abstract} environment for one- or two-column typesetting.
 \item [appendix] Provides additional appendixing\footnote{I think Peter invented this word.} capabilities.
 \item [ccaption] Provides many features for customising and extending captions in floating and non-floating environments.
-\item [romannum] Tools to typeset roman numerals and change various document counters (such as captions, sections, etc.) to roman.
+\item [romannum] Tools to typeset roman numerals and change various document counters (such as captions, sections, etc.) to use roman numerals.
 \item [tocloft] Easily customise the table of contents and other `List of \dots' sections.
 \item [titling] Easily customise the document title produced with \cs{maketitle}.
 \item [tocbibind] Add the table of contents, index, etc., to the actual table of contents.
@@ -61,12 +60,12 @@ The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) 
 \subsection{Programming features}
 
 \begin{description}[font=\normalfont\sffamily]
-\item [chngcntr] Change the scoping rules for the resetting of counters.
+\item [chngcntr] Change the scoping rules for the resetting of counters, such as numbering equations per-chapter or per-document.
 \item [chngpage \& changepage] Tools to locally change the size of the typesetting space and to detect robustly whether a page is even or odd.
 \item [ifmtarg] Robust and expandable test for `emptiness' of a macro argument.
-\item [makecmds] \LaTeX\ equivalent for \cs{def} with the syntax of \cs{newcommand} and \cs{newenvironment}.
+\item [makecmds] \LaTeX\ equivalent for \cs{def} with the syntax of \cs{newcommand} and \cs{newenvironment} (i.e., creates or overwrites the definition with equal abandon).
 \item [needspace] Reserve a certain amount of space on a page (when you want to insert some material without breaking it over pages).
-\item [newfile]
+\item [newfile]  Methods to work around \TeX's limitations of reading/writing to at most sixteen files at once.
 \item [nextpage] Extending the family of \cs{clearpage} commands.
 \item [printlen] Print lengths of counters in specified units (as opposed to points, the \TeX\ default).
 \item [stdclsdv] Detect whether the class provides \cs{chapter}, and other sectional divisions.
@@ -79,7 +78,7 @@ The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) 
 \item [booklet]  Typeset documents arranged on paper to be folded into booklets.
 \item [combine]  Combine multiple entire \LaTeX\ documents into a single output file.
 \item [epigraph] Add quotation-like material at the beginning/end of chapters.
-\item [hanging]  Typeset paragraphs with various shapes (particularly hanging lines).
+\item [hanging]  Typeset paragraphs with hanging indents.
 \item [pagenote] A package for end notes.
 \item [verse] Typeset verse material.
 \item [xtab] Improve \textsf{supertabular}.
@@ -88,7 +87,7 @@ The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) 
 \subsection{Assorted}
 
 \begin{description}[font=\normalfont\sffamily]
-\item [bez123 \& multiply] Draw (more) bezier curves in \LaTeX.
+\item [bez123 \& multiply] Draw (more) bezier curves in \LaTeX, and multipy lengths without overflow.
 \item [docmfp] Use \textsf{doc} to document other programming languages.
 \item [fonttable] Visualise a font's glyph repertoire
 \item [hyphenat] Control hyphenation: turn it off or use analphabetic symbols.
@@ -99,6 +98,20 @@ The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) 
 
 
 \subsection{Classes and packages that I do not maintain}
+
+\begin{description}[font=\normalfont\sffamily]
+\item [memoir] Peter's \emph{tour de force} class file incorporating most of the packages mentioned above and suite of new functionality, with an excellent manual. Now maintained by Lars Madsen.
+\item [ledmac/ledpar/ledarab]  For typesetting critical editions, based on plain \TeX\ code `\textsf{edmac}' and others. Now maintained by Vafa Khalighi.
+\item [expressg] \MP\ package for drawing diagrams that consist of boxes, lines, and annotations.
+\item [iso \& iso10303] \LaTeX\ packages and classes for typesetting \acro{ISO} standards. Possibly out of date with respect to the current typesetting standards.
+\item [isorot] Rotate document elements and paragraph text. Perhaps I should maintain this one as well; it seems to be of more general interest than the other `\textsf{iso}' packages.
+\end{description}
+
+\section{Conclusion}
+
+I think it's important for members of open source communities to pass down their work as they start to retire from the field. Having a succession of maintainers allows bugs to be fixed and removes any confusion about how updates to their work should be named and distributed.
+
+Would I continue to take on maintainership of yet more packages? Generally speaking, yes. Of course, we can't continue working with older and older packages indefinitely; at some stage a new solution to the problem will be created that supercedes the old work (cue my current work with the \LaTeX3 project). But while Peter's packages continue to be used, I believe they deserve at least enough attention to keep them ticking along smoothly.
 
 
 \end{document}
