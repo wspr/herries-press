@@ -58,5 +58,3 @@ appendix.sty
   o run: latex appendix.dtx
   o Print appendix.dvi for a hardcopy of the package manual 
 
-2004/04/16
-Peter Wilson

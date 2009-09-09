@@ -65,5 +65,3 @@ bkltprnt.sty
 - run: latex booklet.dtx
 - Print booklet.dvi for a hardcopy of the user manual and documented code
 
-2005/06/01
-Peter Wilson

@@ -121,8 +121,3 @@ ccaption.pdf
 - Move ccaption.sty to a location where LaTeX will find it
        (see the FAQ http://www.tex.ac.uk/faq for more about this).
 
-2005/03/29
-Peter Wilson
-
-
-
