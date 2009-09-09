@@ -1,5 +1,9 @@
 \documentclass{ltugboat}
 \usepackage{enumitem,microtype,metalogo,url}
+\DeclareUrlCommand\breakingurl{%
+  % this command allows urls to break after hyphens: (normally not allowed)
+  \edef\UrlBreaks{\unexpanded\expandafter{\UrlBreaks\do\-}}%
+}
 \title{Peter Wilson's Herries Press}
 \author{Will Robertson}
 \begin{document}
@@ -10,7 +14,7 @@ In September 2009 I became the maintainer of the majority of Peter Wilson's \LaT
 
 \section{Who is Peter Wilson?}
 
-Frequent readers will be familiar with his name. An active member of the \LaTeX\ community with ten TUGboat publications in the last eight years. Most well known for his prodigous \textsf{memoir} class.
+Frequent readers will be familiar with his name. An active member of the \LaTeX\ community with ten TUGboat publications in the last eight years. Most well known for his prodigous \textsf{memoir} class. He also gave the keynote address at TUG~2007\footnote{\breakingurl{http://river-valley.tv/keynote-address-between-then-and-now-a-meandering-memoir/}}.
 
 \section{Introduction}
 
@@ -26,15 +30,15 @@ In this report, I'll discuss what it means to be the `maintainer' for a package 
 
 The \acro{LPPL} also contains an interesting component that I have not seen in any other free software licences: the concept of an explicit `maintainer' for the work who is responsible for keeping it up-to-date and for receiving bug reports. Usually the author of the software will be the maintainer of the work, but people change and move on and often lose interest in dealing with code they wrote long ago and no longer use. The \acro{LPPL} formalises the process for new people to come along and adopt old code, especially `orphaned' works for which the original authors can no longer be contacted.
 
-The idea of explicit maintainership solves a real problem in the long term. In the \LaTeX\ world, \acro{CTAN} is the first port of call for contributed software; if it has not been uploaded there, it won't be available in \TeX\ Live. (I'm not sure if MiK\TeX\ has such stringent requirements but I presume so.) When package authors lose interest in their code and abandon their work, it is not clear how fixes or additions to their packages should be handled.\footnote{There are interesting things going on at the moment with distributed version control systems (e.g., git) that will eventually run into the same problem; when multiple forks of some code exist in GitHub, how will new users of that code decide which version to use?}
+The idea of explicit maintainership solves a real problem in the long term. In the \LaTeX\ world, \acro{CTAN} is the first port of call for contributed software; if it has not been uploaded there, it won't be available in \TeX\ Live. (I'm not sure if MiK\TeX\ has such stringent requirements but I presume so.) When package authors lose interest in their code and abandon their work, it is not clear how fixes or additions to their packages should be handled.\footnote{There are interesting things going on at the moment with distributed version control systems (e.g., Git, Mercurial, and Bazaar) that will eventually run into the same problem; when multiple forks of some code exist in GitHub, how will newcomers to that code decide which version to use?}
+
+Were someone to simply abandon their packages and no longer maintain them, one couldn't upload new versions of his packages to \acro{CTAN} without going through the formal `maintainership' process. Otherwise, the \acro{CTAN} maintainers themselves would have to vet each new update, in effect acting as \emph{de facto} maintainers for all orphaned code~--- certainly out of the question.
 
 Having explicit maintainers for the software they administer, the \acro{CTAN} team can theoretically ensure an unbroken chain of command for any software they distribute.
 
-Were Peter to simply abandon his packages and no longer maintain them, one wouldn't simply be able to come along and upload new versions of his packages to \acro{CTAN} without going through the formal `maintainership' process. Otherwise chaos could ensue.
+Peter himself was maintaining a number of packages for authors pre-dating his own involvement with \LaTeX. This puts me in the dubious category of being in a third generation of \LaTeX\ package maintainers.
 
-Interestingly, Peter himself was maintaining a number of packages for authors pre-dating his own involvement with \LaTeX. This puts me in the dubious category of third generation of \LaTeX\ package maintainership.
-
-\section{The Herries Press}
+\section{The Herries Press packages}
 
 Peter's packages date from at least as far back as 1996 and fall into several rough groups.
 \begin{itemize}
@@ -45,7 +49,7 @@ Peter's packages date from at least as far back as 1996 and fall into several ro
 \acro{CTAN} holds the definitive version of each package, of course. Rather than linking each of these packages to their \acro{CTAN} location, simply use this \acro{URL} to access them: \url{http://tug.ctan.org/pkg/}\meta{package name}
 They are all included in recent (and not so recent) \TeX\ distributions.
 
-Development versions of the Herries Press packages are available at GitHub, where bugs and feature requests may be filed: \url{http://github.com/wspr/herries-press/}. The adventurous may even wish to fork the code there in order to suggest code changes, which I will most probably accept without too much question.
+Development versions of the Herries Press packages are available at GitHub, where bugs and feature requests may be filed: \url{http://wspr.github.com/herries-press/}. The adventurous may even wish to fork the code there in order to suggest code changes, which I will most probably accept without too much question.
 
 Following are a brief description of those I am now maintaining, concluding with a short list of Peter's works for which I am \emph{not} responsible. Where other packages exist with similar functionality, I've listed them as well (the best of my knowledge~--- no doubt I've forgotten some). Just because I'm maintaining Peter's packages doesn't mean I won't necessary recommend another solution.
 
