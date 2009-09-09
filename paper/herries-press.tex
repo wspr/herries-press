@@ -1,9 +1,17 @@
 \documentclass{ltugboat}
-\usepackage{enumitem,microtype,metalogo,url}
+
+\usepackage{enumitem}% you may yell at me for this
+\usepackage{metalogo}% for \XeTeX
+\usepackage{microtype}% because it's better
+\usepackage{url}
+% goes without saying; but should I be loading hyperref as well?
+% And hyperlinking all the packages referenced below? I guess I should.
+
 \DeclareUrlCommand\breakingurl{%
   % this command allows urls to break after hyphens: (normally not allowed)
   \edef\UrlBreaks{\unexpanded\expandafter{\UrlBreaks\do\-}}%
 }
+
 \title{Peter Wilson's Herries Press}
 \author{Will Robertson}
 \begin{document}
@@ -14,106 +22,119 @@ In September 2009 I became the maintainer of the majority of Peter Wilson's \LaT
 
 \section{Who is Peter Wilson?}
 
-Frequent readers will be familiar with his name. An active member of the \LaTeX\ community with ten TUGboat publications in the last eight years. Most well known for his prodigous \textsf{memoir} class. He also gave the keynote address at TUG~2007\footnote{\breakingurl{http://river-valley.tv/keynote-address-between-then-and-now-a-meandering-memoir/}}.
+Frequent readers will be familiar with his name as an active member of the \LaTeX\ community with ten TUGboat publications in the last eight years. Most well known for his prodigous \textsf{memoir} class. He also gave the keynote address at TUG~2007.\footnote{\breakingurl{http://river-valley.tv/keynote-address-between-then-and-now-a-meandering-memoir/}}
 
 \section{Introduction}
 
-Earlier this year I was writing a class file for a local conference, and wrote to Peter Wilson about a minor feature request in his \textsf{abstract} package. He replied quickly accepting the modifications I'd suggested, adding at the end `{Would you like to take over the package? I'm slowly retiring from \LaTeX\ (age is calling) and trying to pass things off to others for support.}'
+Earlier this year I was writing a class file for a local conference and wrote to Peter Wilson about a minor feature request in his \textsf{abstract} package. He replied, quickly accepting the modifications I'd suggested, adding at the end `{Would you like to take over the package? I'm slowly retiring from \LaTeX\ (age is calling) and trying to pass things off to others for support.}'
 
-Knowing of Peter's wide variety of packages on \acro{CTAN}, it didn't make sense to me that each package should end up being sent to whomever next sent a support email. Instead, I presumptuously offered to take on maintainership of the whole lot. After all, Peter is a well regarded figure in the community and surely his packages don't receive very many bug reports? (As far as I know, this is indeed the case. Ask me again in a few months.) Peter seemed to like this idea and promptly sent me a complete list of his packages. I knew he was prolific, but I didn't quite realise the full extent of what I was taking on. A total of thirty-two packages ended up with my name in them, which involved a certain amount of tedium for both me updating the contact details for each one and for the tireless \acro{CTAN} members responsible for uploading the new versions.
+Knowing of Peter's wide variety of packages on \acro{CTAN}, it didn't make sense to me that each package should end up being maintained by whoever next sent a support email. Instead, I presumptuously offered to take on maintainership for the whole lot. After all, Peter is a well regarded figure in the community and surely his packages don't receive very many bug reports? (As far as I know, this is indeed the case. Ask me again in a few months.) Peter seemed to like this idea and promptly sent me a complete list of his packages. I knew he was prolific, but I didn't quite realise the full extent of what I was taking on. A total of thirty-two packages ended up with my name in them, which involved a certain amount of tedium for both me updating the contact details for each one and for the tireless \acro{CTAN} administrators responsible for uploading new versions of each.
 
 In this report, I'll discuss what it means to be the `maintainer' for a package and list the range and capabilities of Peter's packages.
 
-\section{Maintainership}
+\section{Author versus maintainer}
 
-\LaTeX\ itself and the majority of the third party contributed software for it are open source software, licensed under the `\LaTeX\ Project Public Licence'\footnote{\url{http://www.latex-project.org/lppl/}} (\acro{LPPL}). The LPPL is similar to other well-known free software licences such as the BSD licence or the Apache Licence in that software may be freely distributed and modified, including under a different licence if you so desire. The \acro{LPPL} includes some slight restrictions on how modified versions of software can then by distributed, such as including clear notices that it is a changed version of the original; the easiest and most fail-proof way to do this is to simply change the name of the package you are modifying.
+\LaTeX\ itself and the majority of the third party contributed software for it are open source software, licensed under the `\LaTeX\ Project Public Licence'\footnote{\url{http://www.latex-project.org/lppl/}} (\acro{LPPL}). The LPPL is similar to other well-known free software licences such as the BSD licence or the Apache Licence in that software may be freely distributed and modified, including under a different licence if you so desire. The only restriction on redistribution is that the modified software must be clearly differentiable from the original by \emph{users} of the code (not just people who read the code for fun). The easiest and most fail-safe way of doing this is simply by changing the name of the new package.
 
 The \acro{LPPL} also contains an interesting component that I have not seen in any other free software licences: the concept of an explicit `maintainer' for the work who is responsible for keeping it up-to-date and for receiving bug reports. Usually the author of the software will be the maintainer of the work, but people change and move on and often lose interest in dealing with code they wrote long ago and no longer use. The \acro{LPPL} formalises the process for new people to come along and adopt old code, especially `orphaned' works for which the original authors can no longer be contacted.
 
-The idea of explicit maintainership solves a real problem in the long term. In the \LaTeX\ world, \acro{CTAN} is the first port of call for contributed software; if it has not been uploaded there, it won't be available in \TeX\ Live. (I'm not sure if MiK\TeX\ has such stringent requirements but I presume so.) When package authors lose interest in their code and abandon their work, it is not clear how fixes or additions to their packages should be handled.\footnote{There are interesting things going on at the moment with distributed version control systems (e.g., Git, Mercurial, and Bazaar) that will eventually run into the same problem; when multiple forks of some code exist in GitHub, how will newcomers to that code decide which version to use?}
+This idea of explicit maintainership solves a real problem in the long term. In the \LaTeX\ world, \acro{CTAN} is the first port of call for contributed software; if it has not been uploaded there, it won't be available in \TeX\ Live. (I'm not sure if MiK\TeX\ has such stringent requirements but I presume so.) When package authors lose interest in their code and abandon their work, it is not clear how fixes or additions to their packages should be handled.\footnote{There are interesting things going on at the moment with distributed version control systems (e.g., Git, Mercurial, and Bazaar) that will eventually run into the same problem; when multiple forks of some code exist in `in the wild', how will new users of that code decide which version to use?}
 
-Were someone to simply abandon their packages and no longer maintain them, one couldn't upload new versions of his packages to \acro{CTAN} without going through the formal `maintainership' process. Otherwise, the \acro{CTAN} maintainers themselves would have to vet each new update, in effect acting as \emph{de facto} maintainers for all orphaned code~--- certainly out of the question.
+One can't simply upload patched versions of other people's code to \acro{CTAN}, even if the original author is no longer around. If this were not the case, the \acro{CTAN} team themselves would have to vet each new `unofficial' update, in effect acting as \emph{de facto} maintainers for all orphaned code~--- a preposterous idea considering the amount of work they already do, and certainly out of the question. Having explicit maintainers for the software they administer, the \acro{CTAN} team can theoretically ensure that someone, somewhere, is responsible for each and every piece of software they (re-)distribute.
 
-Having explicit maintainers for the software they administer, the \acro{CTAN} team can theoretically ensure an unbroken chain of command for any software they distribute.
-
-Peter himself was maintaining a number of packages for authors pre-dating his own involvement with \LaTeX. This puts me in the dubious category of being in a third generation of \LaTeX\ package maintainers.
+Peter himself was maintaining a number of packages for authors pre-dating his own involvement with \LaTeX. This puts me in the dubious category of being a `third generation \LaTeX\ package maintainer'. (I take comfort in knowing that I'm not the only one.)
 
 \section{The Herries Press packages}
 
-Peter's packages date from at least as far back as 1996 and fall into several rough groups.
+Peter's packages date from at least as far back as 1996 and fall into several rough groups:
 \begin{itemize}
-\item Replacements for functionality in the standard classes.
-\item Programming features to ease \LaTeX\ development.
-\item New and assorted features.
+\item Replacements and better interfaces for functionality in the standard classes.
+\item Features to ease programming in \LaTeX.
+\item New and assorted document features.
 \end{itemize}
-\acro{CTAN} holds the definitive version of each package, of course. Rather than linking each of these packages to their \acro{CTAN} location, simply use this \acro{URL} to access them: \url{http://tug.ctan.org/pkg/}\meta{package name}
+In the remainder of this section are a brief description of the packages I am now maintaining, concluding with a short list of Peter's works for which I am \emph{not} responsible. Where other packages exist with similar functionality, I've listed them as well (to the best of my knowledge~--- no doubt I've forgotten some).
+
+\acro{CTAN} holds the definitive version of each package, of course. Rather than linking each of these packages to their \acro{CTAN} location, simply use this \acro{URL} to access them:\\
+\centerline{\url{http://tug.ctan.org/pkg/}\meta{package name}}\\
 They are all included in recent (and not so recent) \TeX\ distributions.
 
-Development versions of the Herries Press packages are available at GitHub, where bugs and feature requests may be filed: \url{http://wspr.github.com/herries-press/}. The adventurous may even wish to fork the code there in order to suggest code changes, which I will most probably accept without too much question.
-
-Following are a brief description of those I am now maintaining, concluding with a short list of Peter's works for which I am \emph{not} responsible. Where other packages exist with similar functionality, I've listed them as well (the best of my knowledge~--- no doubt I've forgotten some). Just because I'm maintaining Peter's packages doesn't mean I won't necessary recommend another solution.
+Development or pre-release versions of these packages are available at GitHub, where bugs and feature requests may be filed:\\
+\centerline{\url{http://wspr.github.com/herries-press/}}\\
+The adventurous may even wish to fork the code there in order to suggest code changes, which I will probably accept without too much question.%
+\footnote{I don't really want to raise this question, but is forking on GitHub incompatible with the \acro{LPPL}? I suspect so.}
 
 \subsection{Standard class improvements}
 
-The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) are notoriously inflexible. You would like to change how the abstract appears? Then redefine the \texttt{abstract} environment. Sooner or later, someone writes a package that provides a more convenient interface; here are those of Peter's.
+The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) are notoriously inflexible. You would like to change how the abstract appears, say? Then redefine the \texttt{abstract} environment. Same thing with figure captions, and document titles, and so on. Sooner or later, someone writes a package that provides a convenient user interface; here are those of Peter's.
 
 \begin{description}[font=\normalfont\sffamily]
 \item [abstract] Easily customise the \texttt{abstract} environment for one- or two-column typesetting.
 \item [appendix] Provides additional appendixing\footnote{I think Peter invented this word.} capabilities.
 \item [ccaption] Provides many features for customising and extending captions in floating and non-floating environments. See also the \textsf{caption} package.
-\item [romannum] Tools to typeset roman numerals and change various document counters (such as captions, sections, etc.) to use roman numerals.
+\item [romannum] Change (any combination of) various document counters, such as captions, sections, equations, etc., to use roman numerals.
 \item [tocloft] Easily customise the table of contents and other `List of \dots' sections. See also the \textsf{titletoc} package.
 \item [titling] Easily customise the document title produced with \cs{maketitle}.
-\item [tocbibind] Add the table of contents, index, etc., to the actual table of contents.
-\item [tocvsec2] Adjust the relationship between section headings and table of contents listing.
+\item [tocbibind] Add and/or customise the table of contents, bibliography, index, etc., to the actual table of contents.
+\item [tocvsec2] Adjust the relationship between section headings and table of contents listing, and adjust automatic section numbering, mid-document.
+
+For example, remove the number from a group of subsections and suppress their appearance in the table of contents without changing their markup.
 \end{description}
 
-\subsection{Programming tools}
+\subsection{\LaTeX\ programming tools}
 
-\LaTeX's programming interface is rather limited by the standards of the day.
+\LaTeXe's programming interface is often limited, offering little more in some areas than plain \TeX's `primitive' functionality. Peter's packages in this area tend to provide abstractions for specific tasks in \LaTeX, useful for other class or package authors.
 
 \begin{description}[font=\normalfont\sffamily]
-\item [chngcntr] Change the scoping rules for the resetting of counters, such as numbering equations per-chapter or per-document.
+\item [bez123 \& multiply] Draw generalised bezier curves in \LaTeX, and multipy lengths without overflow. See also \textsf{pict2e} and the more ambitious drawing packages \textsf{PSTricks} and \textsf{pgf/TikZ}.
+
+\item [chngcntr] Change the rules for the resetting of counters, such as numbering equations per-chapter or per-document.
 \item [chngpage \& changepage] Tools to locally change the size of the typesetting space and to detect robustly whether a page is even or odd.
+
+N.B.: The two packages perform the same tasks, but \textsf{changepage} is interface-compatible with \textsf{memoir} and should be used for all new code that require these features. \textsf{chngpage} is an older version that is \emph{incompatible} with \textsf{memoir}.
+
+\item [docmfp] Extend \textsf{doc} to aid documentation of code in other programming languages. See also \textsf{xdoc2} and (more recently) \textsf{gmdoc}.
+
 \item [ifmtarg] Robust and expandable test for `emptiness' of a macro argument.
 \item [makecmds] \LaTeX\ equivalent for \cs{def} with the syntax of \cs{newcommand} and \cs{newenvironment} (i.e., creates or overwrites the definition with equal abandon).
-\item [needspace] Reserve a certain amount of space on a page (when you want to insert some material without breaking it over pages).
-\item [newfile]  Methods to work around \TeX's limitations of reading/writing to at most sixteen files at once.
-\item [nextpage] Extending the family of \cs{clearpage} commands.
+\item [newfile]  Convenient interface to \TeX's file reading and writing commands.
+\item [nextpage] Extending the family of \cs{clearpage} commands. (E.g., \cs{cleartooddpage}.)
 \item [printlen] Print lengths of counters in specified units (as opposed to points, the \TeX\ default).
 \item [stdclsdv] Detect whether the class provides \cs{chapter}, and other sectional divisions.
 \end{description}
 
 \subsection{New and assorted features}
 
-\begin{description}[font=\normalfont\sffamily]
-\item [anonchap] Makes \cs{chapter} typeset like \cs{section}.
+The final section contains packages that provide document authors with features not offered by standard \LaTeX\ classes or packages.
 
-\item [bez123 \& multiply] Draw generalised bezier curves in \LaTeX, and multipy lengths without overflow. See also \textsf{pict2e} and the more ambitious drawing packages \textsf{PSTricks} and \textsf{pgf/TikZ}.
+\begin{description}[font=\normalfont\sffamily]
+\item [anonchap] Makes \cs{chapter} typeset like \cs{section}. (E.g., for converting a book chapter into an article without changing the sectioning markup.)
 
 \item [booklet]  Typeset documents arranged on paper to be folded into booklets.
 \item [combine]  Combine multiple entire \LaTeX\ documents into a single output file.
-
-\item [docmfp] Extend \textsf{doc} to aid documentation of code in other programming languages. See also \textsf{xdoc2} and (more recently) \textsf{gmdoc}.
 
 \item [epigraph] Add quotation-like material at the beginning/end of sections or chapters.
 
 \item [fonttable] Visualise a font's glyph repertoire.
 
-\item [hanging]  Typeset paragraphs with hanging indents, and enable hanging punctuation using active characters. For hanging punctuation, the \textsf{microtype} package for pdf\/\TeX\ is recommended instead (although I may, in time, update \textsf{hanging} to work without active characters in \XeTeX, using the latter's \cs{inter\-char\-toks} feature).
-\item [hyphenat] Control hyphenation: turn it off entirely or allow the use analphabetic symbols in hyphenated words.\footnote{Good spot for a hyphen, there, hey?}
-\item [layouts] Visualise the document layout.
-\item [midpage] An environment to vertically centre its contents.
+\item [hanging]  Typeset paragraphs with hanging indents, and enable hanging punctuation using active characters.
+
+For hanging punctuation, the \textsf{microtype} package for pdf\/\TeX\ is recommended instead (although I may, in time, update \textsf{hanging} to work without active characters in \XeTeX, using the latter's \cs{inter\-char\-toks} feature).
+\item [hyphenat] Control hyphenation: turn it off entirely or allow the use of analphabetic symbols in hyphenated words.\footnote{Good spot for a hyphen, there, hey?}
+\item [layouts] Visualise the design of the page layout.
+\item [midpage] An environment to vertically centre its contents in the text block.
+\item [needspace] Reserve a certain amount of space on a page when you want to insert some material without breaking it over pages; if it cannot fit it will be forced it to the next page if necessary (ending the current page prematurely).
 \item [pagenote] Typeset end notes per chapter or per document. See also the \textsf{endnotes} package.
-\item [verse] Typeset verse material. Also see \textsf{poemscol}.
+\item [verse] Typeset verse material. See also \textsf{poemscol}.
 \item [vertbars] Place vertical bars in the margin of paragraph text. Based on \textsf{lineno}, with the same caveats. See also the \textsf{changebar} package.
-\item [xtab] Extension to the \textsf{supertabular} package for multipage tables.
+\item [xtab] Extensions and improvements to the package \textsf{supertabular} for multipage tables.
 \end{description}
 
 \subsection{Classes and packages that I do not maintain}
 
 \begin{description}[font=\normalfont\sffamily]
-\item [memoir] Peter's \emph{tour de force} class file incorporating most of the packages mentioned above and a suite of new functionality, with an excellent manual covering both use of the class and the typography of book design. (The latter is worth reading even if you're not interested in using the class.) Now maintained by Lars Madsen.
+\item [memoir] Arguably Peter's single most influential contribution to \LaTeX; \textsf{memoir} is a class incorporating many of the packages mentioned above and a suite of new functionality, all with a consistent interface. The manual covers both use of the class and the typography of book design. (The latter is worth reading even if you're not interested in using the class.)
+See also the \textsf{komascript} classes.
+Now maintained by Lars Madsen.
 \item [ledmac/ledpar/ledarab]  For typesetting critical editions, based on plain \TeX\ code `\textsf{edmac}' and others. Now maintained by Vafa Khalighi.
 \item [expressg] \MP\ package for drawing diagrams that consist of boxes, lines, and annotations.
 \item [iso \& iso10303] \LaTeX\ packages and classes for typesetting \acro{ISO} standards. Possibly out of date with respect to the current typesetting standards.
@@ -124,7 +145,9 @@ The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) 
 
 I think it's important for members of open source communities to pass down their work as they start to retire from the field. Having a succession of maintainers allows bugs to be fixed and removes any confusion about how updates to their work should be named and distributed.
 
-Would I continue to take on maintainership of yet more packages? Generally speaking, yes. Of course, we can't continue working with older and older packages indefinitely; at some stage a new solution to the problem will be created that supercedes the old work (cue my current work with the \LaTeX3 project). But while Peter's packages continue to be used, I believe they deserve at least enough attention to keep them ticking along smoothly.
+Would I continue to take on maintainership of yet more packages? Generally speaking, yes, provided the workload doesn't increase too much. Of course, we can't continue working with older and older packages indefinitely; at some stage new solutions to old problems will be created that supercedes the old work. (Cue my current involvement with the \LaTeX3 Project.) In which case, old bugs in old code don't really need to be fixed.
+
+But while Peter's packages continue to be useful (and most of them certainly are), I believe they deserve at least enough attention to keep them ticking along smoothly.
 
 
 \end{document}
