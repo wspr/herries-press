@@ -2,12 +2,17 @@
 
 \usepackage{graphicx}
 \usepackage{enumitem}% you may yell at me for this
-%\usepackage{metalogo}% for \XeTeX
 \usepackage{microtype}% because it's better
 \usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,
             urlcolor=black]{hyperref}
-% goes without saying; but should I be loading hyperref as well?
-% And hyperlinking all the packages referenced below? I guess I should.
+
+\newcommand\pkg[2][]{%
+  \ifx&#1&%
+    \href{http://tug.ctan.org/pkg/#2}{\textsf{#2}}%
+  \else
+    \href{http://tug.ctan.org/pkg/#1}{\textsf{#2}}%
+  \fi
+}
 
 \DeclareUrlCommand\breakingurl{%
   % this command allows urls to break after hyphens: (normally not allowed)
@@ -26,13 +31,13 @@ In September 2009 I became the maintainer of the majority of Peter Wilson's \LaT
 
 \section{Who is Peter Wilson?}
 
-Frequent readers will be familiar with his name as an active member of the \LaTeX\ community with ten \TUB\ publications in the last eight years. He is most well known for his prodigious \textsf{memoir} class. He also gave the keynote address at \acro{TUG}~2007.\footnote{%
+Frequent readers will be familiar with his name as an active member of the \LaTeX\ community with ten \TUB\ publications in the last eight years. He is most well known for his prodigious \pkg{memoir} class. He also gave the keynote address at \acro{TUG}~2007.\footnote{%
 ``Between then and now\Dash A meandering memoir'', \TUB\ 28:3, 2007, \url{http://tug.org/TUGboat/Articles/tb28-3/tb90wilson.pdf},
 \breakingurl{http://river-valley.tv/keynote-address-between-then-and-now-a-meandering-memoir/}.}
 
 \section{Introduction}
 
-Earlier this year I was writing a class file for a local conference and wrote to Peter about a minor feature request in his \textsf{abstract} package. He replied, quickly accepting the modifications I'd suggested, adding at the end `{Would you like to take over the package? I'm slowly retiring from \LaTeX\ (age is calling) and trying to pass things off to others for support.}'
+Earlier this year I was writing a class file for a local conference and wrote to Peter about a minor feature request in his \pkg{abstract} package. He replied, quickly accepting the modifications I'd suggested, adding at the end `{Would you like to take over the package? I'm slowly retiring from \LaTeX\ (age is calling) and trying to pass things off to others for support.}'
 
 Knowing of Peter's wide variety of packages on \acro{CTAN}, it didn't make sense to me that each package should end up being maintained by whoever next sent a support email. Instead, I presumptuously offered to take on maintainership for the whole lot. After all, Peter is a well-regarded figure in the community and surely his packages don't receive very many bug reports? (As far as I know, this is indeed the case. Ask me again in a few months.) Peter seemed to like this idea and promptly sent me a complete list of his packages. I knew he was prolific, but I didn't quite realise the full extent of what I was taking on. Thirty-two packages ended up with my name in them, which involved a certain amount of tedium for both me updating the contact details for each and for the tireless \acro{CTAN} administrators responsible for uploading the new versions.
 
@@ -60,7 +65,10 @@ Peter's packages date from at least as far back as 1996 and fall into several ro
 \end{itemize}
 In the remainder of this section are brief descriptions of the packages I am now maintaining, concluding with a short list of Peter's works for which I am \emph{not} responsible. Where other packages exist with similar functionality, I've listed them as well (to the best of my knowledge\Dash no doubt I've forgotten some).
 
-\acro{CTAN} holds the definitive version of each package, of course. Rather than linking each of these packages to their \acro{CTAN} location, simply use this \acro{URL} to access them:\par
+\acro{CTAN} holds the definitive version of each package, of course.
+Rather than printing a link for each of these packages to their \acro{CTAN} location, simply use this \acro{URL} to access them:%
+\footnote{Having said this, each package name is hyperlinked if you're reading this electronically.}%
+\par
 \url{http://tug.ctan.org/pkg/}\meta{package name}\\
 They are all included in recent (and not so recent) \TeX\ distributions.
 
@@ -72,15 +80,15 @@ The adventurous may even wish to fork the code there in order to suggest code ch
 
 The standard \LaTeX\ classes (\textsf{article}, \textsf{book}, \textsf{report}) are notoriously inflexible. You would like to change how the abstract appears, say? Then redefine the \texttt{abstract} environment. Same thing with figure captions, and document titles, and so on. Sooner or later, someone writes a package that provides a convenient user interface; here are those of Peter's.
 
-\begin{description}[font=\normalfont\sffamily]
-\item [abstract] Easily customise the \texttt{abstract} environment for one- or two-column typesetting.
-\item [appendix] Provides additional appendixing\footnote{I think Peter invented this word.} capabilities.
-\item [ccaption] Provides many features for customising and extending captions in floating and non-floating environments. See also the \textsf{caption} package.
-\item [romannum] Change (any combination of) various document counters, such as captions, sections, equations, etc., to use roman numerals.
-\item [tocloft] Easily customise the table of contents and other `List of \dots' sections. See also the \textsf{titletoc} package.
-\item [titling] Easily customise the document title produced with \cs{maketitle}.
-\item [tocbibind] Add (perhaps with customizations) the table of contents, bibliography, index, etc., to the actual table of contents.
-\item [tocvsec2] Adjust the relationship between section headings and table of contents listing, and adjust automatic section numbering, mid-document.
+\begin{description}[font=\normalfont]
+\item [\pkg{abstract}] Easily customise the \texttt{abstract} environment for one- or two-column typesetting.
+\item [\pkg{appendix}] Provides additional appendixing\footnote{I think Peter invented this word.} capabilities.
+\item [\pkg{ccaption}] Provides many features for customising and extending captions in floating and non-floating environments. See also the \pkg{caption} package.
+\item [\pkg{romannum}] Change (any combination of) various document counters, such as captions, sections, equations, etc., to use roman numerals.
+\item [\pkg{tocloft}] Easily customise the table of contents and other `List of \dots' sections. See also the \pkg{titletoc} package.
+\item [\pkg{titling}] Easily customise the document title produced with \cs{maketitle}.
+\item [\pkg{tocbibind}] Add (perhaps with customizations) the table of contents, bibliography, index, etc., to the actual table of contents.
+\item [\pkg{tocvsec2}] Adjust the relationship between section headings and table of contents listing, and adjust automatic section numbering, mid-document.
 
 For example, remove the number from a group of subsections and suppress their appearance in the table of contents without changing their markup.
 \end{description}
@@ -89,22 +97,22 @@ For example, remove the number from a group of subsections and suppress their ap
 
 \LaTeXe's programming interface is often limited, offering little more in some areas than plain \TeX's `primitive' functionality. Peter's packages in this area tend to provide abstractions for specific tasks in \LaTeX, useful for other class or package authors.
 
-\begin{description}[font=\normalfont\sffamily]
-\item [bez123 \& multiply] Draw generalised bezier curves in \LaTeX, and multiply lengths without overflow. See also \textsf{pict2e} and the more ambitious drawing packages \textsf{\PSTricks} and \textsf{pgf/\TikZ}.
+\begin{description}[font=\normalfont]
+\item [{\pkg[bez123]{bez123 \& multiply}}] Draw generalised bezier curves in \LaTeX, and multiply lengths without overflow. See also \pkg{pict2e} and the more ambitious drawing packages \pkg[pstricks]{\PSTricks} and \pkg[pgf]{pgf/\TikZ}.
 
-\item [chngcntr] Change the rules for the resetting of counters, such as numbering equations per-chapter or per-document.
-\item [chngpage \& changepage] Tools to locally change the size of the typesetting space and to detect robustly whether a page is even or odd.
+\item [\pkg{chngcntr}] Change the rules for the resetting of counters, such as numbering equations per-chapter or per-document.
+\item [\pkg{chngpage} and \pkg{changepage}] Tools to locally change the size of the typesetting space and to detect robustly whether a page is even or odd.
 
-N.B.: The two packages perform the same tasks, but \textsf{changepage} is interface-compatible with \textsf{memoir} and should be used for all new code that require these features. \textsf{chngpage} is an older version that is \emph{incompatible} with \textsf{memoir}.
+N.B. that the two packages perform the same tasks, but \pkg{changepage} is interface-compatible with \pkg{memoir} and should be used for all new code that require these features. \pkg{chngpage} is an older version that is \emph{incompatible} with \pkg{memoir}.
 
-\item [docmfp] Extend \textsf{doc} to aid documentation of code in other programming languages. See also \textsf{xdoc2} and (more recently) \textsf{gmdoc}.
+\item [\pkg{docmfp}] Extend \pkg{doc} to aid documentation of code in other programming languages. See also \pkg{xdoc2} and (more recently) \pkg{gmdoc}.
 
-\item [ifmtarg] Robust and expandable test for `emptiness' of a macro argument.
-\item [makecmds] \LaTeX\ equivalent for \cs{def} with the syntax of \cs{newcommand} and \cs{newenvironment} (i.e., creates or overwrites the definition with equal abandon).
-\item [newfile]  Convenient interface to \TeX's file reading and writing commands.
-\item [nextpage] Extending the family of \cs{clearpage} commands. (E.g., \cs{cleartoevenpage}.)
-\item [printlen] Print lengths of counters in specified units (as opposed to points, the \TeX\ default).
-\item [stdclsdv] Detect whether the class provides \cs{chapter}, and other sectional divisions.
+\item [\pkg{ifmtarg}] Robust and expandable test for `emptiness' of a macro argument.
+\item [\pkg{makecmds}] \LaTeX\ equivalent for \cs{def} with the syntax of \cs{newcommand} and \cs{newenvironment} (i.e., creates or overwrites the definition with equal abandon).
+\item [\pkg{newfile}]  Convenient interface to \TeX's file reading and writing commands.
+\item [\pkg{nextpage}] Extending the family of \cs{clearpage} commands. (E.g., \cs{cleartoevenpage}.)
+\item [\pkg{printlen}] Print lengths of counters in specified units (as opposed to points, the \TeX\ default).
+\item [\pkg{stdclsdv}] Detect whether the class provides \cs{chapter}, and other sectional divisions.
 \end{description}
 
 \subsection{New and assorted features}
@@ -112,40 +120,44 @@ N.B.: The two packages perform the same tasks, but \textsf{changepage} is interf
 The final section contains packages that provide document authors with features not offered by standard \LaTeX\ classes or packages.
 
 \enlargethispage{-5pc}
-\begin{description}[font=\normalfont\sffamily]
-\item [anonchap] Makes \cs{chapter} typeset like \cs{section}. (E.g., for converting a book chapter into an article without changing the sectioning markup.)
+\begin{description}[font=\normalfont]
+\item [\pkg{anonchap}] Makes \cs{chapter} typeset like \cs{section}. (E.g., for converting a book chapter into an article without changing the sectioning markup.)
 
-\item [booklet]  Typeset documents arranged on paper to be folded into booklets.
-\item [combine]  Combine multiple entire \LaTeX\ documents into a single output file.
+\item [\pkg{booklet}]  Typeset documents arranged on paper to be folded into booklets.
+\item [\pkg{combine}]  Combine multiple entire \LaTeX\ documents into a single output file.
 
-\item [epigraph] Add quotation-like material at the beginning\slash{}end of sections or chapters.
+\item [\pkg{epigraph}] Add quotation-like material at the beginning\slash{}end of sections or chapters.
 
-\item [fonttable] Visualise a font's glyph repertoire.
+\item [\pkg{fonttable}] Visualise a font's glyph repertoire.
 
-\item [hanging]  Typeset paragraphs with hanging indents, and enable hanging punctuation using active characters.
+\item [\pkg{hanging}]  Typeset paragraphs with hanging indents, and enable hanging punctuation using active characters.
 
-For hanging punctuation, the \textsf{microtype} package for pdf\/\TeX\ is recommended instead (although I may, in time, update \textsf{hanging} to work without active characters in \XeTeX, using the latter's \cs{inter\-char\-toks} feature).
-\item [hyphenat] Control hyphenation: turn it off entirely or allow the use of analphabetic symbols in hyphenated words.\footnote{Good spot for a hyphen, there, hey?}
-\item [layouts] Visualise the design of the page layout.
-\item [midpage] An environment to vertically centre its contents in the text block.
-\item [needspace] Reserve a certain amount of space on a page when you want to insert some material without breaking it over pages; if it cannot fit it will be forced it to the next page if necessary (ending the current page prematurely).
-\item [pagenote] Typeset end notes per chapter or per document. See also the \textsf{endnotes} package.
-\item [verse] Typeset verse material. See also \textsf{poemscol}.
-\item [vertbars] Place vertical bars in the margin of paragraph text. Based on \textsf{lineno}, with the same caveats. See also the \textsf{changebar} package.
-\item [xtab] Extensions and improvements to the package \textsf{supertabular} for multipage tables.
+For hanging punctuation, the \pkg{microtype} package for pdf\/\TeX\ is recommended instead (although I may, in time, update \pkg{hanging} to work without active characters in \XeTeX, using the latter's \cs{inter\-char\-toks} feature).
+
+\item [\pkg{hyphenat}] Control hyphenation: turn it off entirely or allow the use of analphabetic symbols in hyphenated words.\footnote{Good spot for a hyphen, there, hey?}
+
+\item [\pkg{layouts}] Visualise the design of the page layout.
+\item [\pkg{midpage}] An environment to vertically centre its contents in the text block.
+
+\item [\pkg{needspace}] Reserve a certain amount of space on a page when you want to insert some material without breaking it over pages; if it cannot fit it will be forced it to the next page if necessary (ending the current page prematurely).
+
+\item [\pkg{pagenote}] Typeset end notes per chapter or per document. See also the \pkg{endnotes} package.
+\item [\pkg{verse}] Typeset verse material. See also \pkg{poemscol}.
+\item [\pkg{vertbars}] Place vertical bars in the margin of paragraph text. Based on \pkg{lineno}, with the same caveats. See also the \pkg{changebar} package.
+\item [\pkg{xtab}] Extensions and improvements to the package \pkg{supertabular} for multipage tables.
 \end{description}
 
 \subsection{Classes and packages that I do not~maintain}
 
-\begin{description}[font=\normalfont\sffamily]
-\item [memoir] Arguably Peter's single most influential contribution to \LaTeX; the \textsf{memoir} class incorporates
+\begin{description}[font=\normalfont]
+\item [\pkg{memoir}] Arguably Peter's single most influential contribution to \LaTeX; the \pkg{memoir} class incorporates
 many of the packages mentioned above and contains a suite of new functionality, all with a consistent interface for creating new document designs.
 Now maintained by Lars Madsen.
-See also the \textsf{KOMA-Script} classes.
-\item [ledmac/ledpar/ledarab]  For typesetting critical editions, based on plain \TeX\ code `\textsf{edmac}' and others. Now maintained by Vafa Khalighi.
-\item [expressg] \MP\ package for drawing diagrams that consist of boxes, lines, and annotations.
-\item [iso \& iso10303] \LaTeX\ packages and classes for typesetting \acro{ISO} standards. Possibly out of date with respect to the current typesetting standards.
-\item [isorot] Rotate document elements and paragraph text. Perhaps I should maintain this one as well; it seems to be of more general interest than the other `\textsf{iso}' packages.
+See also the \pkg[koma-script]{KOMA-Script} classes.
+\item [\pkg{ledmac}, \pkg{ledpar}, and \pkg{ledarab}]  For typesetting critical editions, based on plain \TeX\ code `\pkg{edmac}' and others. Now maintained by Vafa Khalighi.
+\item [\pkg{expressg}] \MP\ package for drawing diagrams that consist of boxes, lines, and annotations.
+\item [\pkg{iso} and \pkg{iso10303}] \LaTeX\ packages and classes for typesetting \acro{ISO} standards. Possibly out of date with respect to the current typesetting standards.
+\item [\pkg{isorot}] Rotate document elements and paragraph text. Perhaps I should maintain this one as well; it seems to be of more general interest than the other `\pkg{iso}' packages.
 \end{description}
 
 \medskip
