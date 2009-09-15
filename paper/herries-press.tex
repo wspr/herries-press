@@ -119,7 +119,7 @@ N.B. that the two packages perform the same tasks, but \pkg{changepage} is inter
 
 The final section contains packages that provide document authors with features not offered by standard \LaTeX\ classes or packages.
 
-\enlargethispage{-5pc}
+\enlargethispage{-4pc}
 \begin{description}[font=\normalfont]
 \item [\pkg{anonchap}] Makes \cs{chapter} typeset like \cs{section}. (E.g., for converting a book chapter into an article without changing the sectioning markup.)
 
@@ -150,10 +150,11 @@ For hanging punctuation, the \pkg{microtype} package for pdf\/\TeX\ is recommend
 \subsection{Classes and packages that I do not~maintain}
 
 \begin{description}[font=\normalfont]
-\item [\pkg{memoir}] Arguably Peter's single most influential contribution to \LaTeX; the \pkg{memoir} class incorporates
-many of the packages mentioned above and contains a suite of new functionality, all with a consistent interface for creating new document designs.
+\item [\pkg{memoir}] Arguably Peter's single most influential contribution to \LaTeX; \pkg{memoir} is a complete replacement for the standard document classes.
+It incorporates many of the packages mentioned above and contains a suite of new functionality, all with a consistent interface for creating new document designs.
 Now maintained by Lars Madsen.
 See also the \pkg[koma-script]{KOMA-Script} classes.
+\item [\pkg{memdesign}] Originally the first half of the \pkg{memoir} manual. While this document is titled `A Few Notes on Book Design', it's actually an excellent primer on typesetting and typography in general. Essential reading.
 \item [\pkg{ledmac}, \pkg{ledpar}, and \pkg{ledarab}]  For typesetting critical editions, based on plain \TeX\ code `\pkg{edmac}' and others. Now maintained by Vafa Khalighi.
 \item [\pkg{expressg}] \MP\ package for drawing diagrams that consist of boxes, lines, and annotations.
 \item [\pkg{iso} and \pkg{iso10303}] \LaTeX\ packages and classes for typesetting \acro{ISO} standards. Possibly out of date with respect to the current typesetting standards.
