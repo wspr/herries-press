@@ -11,42 +11,29 @@ testfont.tex.
 ______________
 Change History
 
-Version 1.5b (2009/09/02)
-- New maintainer (Will Robertson)
-
-Changes in version 1.51 (2009/05/14)
+1.5c (2009/09/20) - Bug fix with \nodecimals
+1.5b (2009/09/02) - New maintainer (Will Robertson)
+1.51 (2009/05/14)
 - Eliminated a clash with the babel package.
 - Described how to avoid a clash with the mftinc package.
 
-Changes in version 1.5 (2009/05/12)
-- Added code providing a packaged version of Donald Knuth's testfont.tex,
-  principally as an aid for font designers in testing their font.
+1.5  (2009/05/12) 
+- Added code providing a packaged version of Donald Knuth's
+  testfont.tex, principally as an aid for font designers in
+  testing their font.
 
-Changes in version 1.4 (2009/05/06)
-- Added a second method for specifying a font.
-
-Changes in version 1.3c (2009/04/30)
-- Fixed a major bug relating to redefining \:
-
-Changes in version 1.2 (2008/05/08)
-- Minor extensions providing more text examples
-
-Changes in version 1.1 (2006/10/02)
-- Minor extensions providing more text examples
-
-Changes in version 1.1 (2006/10/02)
-- Minor extensions providing more text examples
-
-Changes in version 1.0a (2005/12/06)
-- Fixed bug preventing multiple unnumbered tables
-
-Changes in version 1.0 (2005/11/27)
-- First public release
+1.4  (2009/05/06) - Added a second method for specifying a font.
+1.3c (2009/04/30) - Fixed a major bug relating to redefining \:
+1.2  (2008/05/08) - Minor extensions providing more text examples
+1.1  (2006/10/02) - Minor extensions providing more text examples
+1.0a (2005/12/06) - Fixed bug preventing multiple unnumbered tables
+1.0  (2005/11/27) - First public release
 
 ------------------------------------------------------------------
   Author: Peter Wilson (Herries Press)
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 2005--2009 Peter R. Wilson
+  Copyright 2009 Will Robertson
 
   This work may be distributed and/or modified under the
   conditions of the Latex Project Public License, either
@@ -61,30 +48,26 @@ Changes in version 1.0 (2005/11/27)
     fonttable.dtx
     fonttable.ins
     fonttable.pdf
-  and the derived files
+  and the derived file
     fonttable.sty
 
 ------------------------------------------------------------------
-     The distribution consists of the following files:
-README (this file)
-fonttable.dtx
-fonttable.ins
-fonttable.pdf
+The distribution consists of the following files:
+
+- README (this file)
+- fonttable.dtx
+- fonttable.ins
+- fonttable.pdf
 
 
-    To install the package:
+To install the package:
+
 - run: latex fonttable.ins (which will generate fonttable.sty)
-- Move fonttable.sty to a location where LaTeX will find it,
-  for example /usr/TeX/texmf-local/tex/latex/fonttable/fonttable.sty
-  (for more information on installation see the FAQ).
+- Move fonttable.sty to a location where LaTeX will find it, for example:
+    /usr/local/texlive/texmf-local/tex/latex/fonttable/fonttable.sty
 
-    To generate a second copy of the manual (which is already supplied as a PDF file):
-- run: latex fonttable.dtx
-- (for an index run: makeindex -s gind.ist fonttable.idx)
-- run: latex fonttable.dtx
-- Print *.dvi for a hardcopy of the package manual
+To manually generate the manual, run:
 
-2009/05/14
-Peter Wilson
-
- 
+    pdflatex fonttable.dtx
+    makeindex -s gind.ist fonttable.idx
+    pdflatex fonttable.dtx

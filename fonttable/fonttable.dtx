@@ -24,7 +24,8 @@
             plainpages=false,
             pdfpagelabels,
             bookmarksnumbered,
-            hyperindex=false
+            hyperindex=false,
+            colorlinks,linktocpage
            ]{hyperref}
 \providecommand{\phantomsection}{}
 %%\OnlyDescription %% comment this out for the full glory
@@ -115,6 +116,7 @@
 % \def\fileversion{v1.5} \def\filedate{2009/05/12}
 % \def\fileversion{v1.51} \def\filedate{2009/05/14}
 % \def\fileversion{v1.5b} \def\filedate{2009/09/02}
+% \def\fileversion{v1.5c} \def\filedate{2009/09/20}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -432,7 +434,7 @@
 %    \begin{macrocode}
 %<*pack>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fonttable}[2009/09/02 v1.5b displays a font]
+\ProvidesPackage{fonttable}[2009/09/20 v1.5c displays a font]
 
 %    \end{macrocode}
 %
@@ -794,21 +796,28 @@
 % defines to be a medium space. No doubt this was OK with the interactive
 % version but can cause havoc when used in a package!
 % \changes{v1.3}{2009/04/30}{Replaced redefinition of \cs{:} by \cs{f@tpsg}}
+% \changes{v1.5c}{2009/09/20}{\cs{renewcommand}\cs{f@tpsg} instead (props Michael Niedermair)}
 %    \begin{macrocode}
 \newcommand*{\nodecimals}{%
-%%% the original
-  \newcommand*{\f@tpsg}{\setbox0=\hbox{\char\f@tn}%
+  \newcommand*{\f@tpsg}{%
+    \setbox0=\hbox{\char\f@tn}%
     \ifdim\ht0>7.5pt\f@treposition
     \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
-    \box0\global\advance\f@tn 1 }}
+    \box0\global\advance\f@tn 1 %
+  }%
+}
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
 \newcommand{\decimals}{%
-%%% mine
-  \newcommand*{\f@tpsg}{\setbox0=\hbox{\char\f@tn\,\rlap{\tiny \the\f@tn}}%
+  \renewcommand*{\f@tpsg}{%
+    \setbox0=\hbox{\char\f@tn\,\rlap{\tiny \the\f@tn}}%
     \ifdim\ht0>7.5pt\f@treposition
     \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
-    \box0\global\advance\f@tn 1 }}
+    \box0\global\advance\f@tn 1 %
+  }%
+}
 \decimals
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
