@@ -54,7 +54,7 @@
 %
 % \fi
 %
-% \CheckSum{913}
+% \CheckSum{915}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -117,6 +117,7 @@
 % \def\fileversion{v1.51} \def\filedate{2009/05/14}
 % \def\fileversion{v1.5b} \def\filedate{2009/09/02}
 % \def\fileversion{v1.5c} \def\filedate{2009/09/20}
+% \def\fileversion{v1.5d} \def\filedate{2009/09/22}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -434,7 +435,7 @@
 %    \begin{macrocode}
 %<*pack>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fonttable}[2009/09/20 v1.5c displays a font]
+\ProvidesPackage{fonttable}[2009/09/22 v1.5d displays a font]
 
 %    \end{macrocode}
 %
@@ -797,9 +798,11 @@
 % version but can cause havoc when used in a package!
 % \changes{v1.3}{2009/04/30}{Replaced redefinition of \cs{:} by \cs{f@tpsg}}
 % \changes{v1.5c}{2009/09/20}{\cs{renewcommand}\cs{f@tpsg} instead (props Michael Niedermair)}
+% \changes{v1.5d}{2009/09/22}{Fix the bug for real this time}
 %    \begin{macrocode}
+\newcommand*\f@tpsg{}
 \newcommand*{\nodecimals}{%
-  \newcommand*{\f@tpsg}{%
+  \renewcommand*\f@tpsg{%
     \setbox0=\hbox{\char\f@tn}%
     \ifdim\ht0>7.5pt\f@treposition
     \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
@@ -810,7 +813,7 @@
 % 
 %    \begin{macrocode}
 \newcommand{\decimals}{%
-  \renewcommand*{\f@tpsg}{%
+  \renewcommand*\f@tpsg{%
     \setbox0=\hbox{\char\f@tn\,\rlap{\tiny \the\f@tn}}%
     \ifdim\ht0>7.5pt\f@treposition
     \else\ifdim\dp0>2.5pt\f@treposition\fi\fi

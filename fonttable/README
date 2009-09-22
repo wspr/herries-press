@@ -1,16 +1,17 @@
 _____________________
 The FONTTABLE package
 
-    The fonttable package enables you to print a table of the characters
+The fonttable package enables you to print a table of the characters
 in a font (a font table), and/or some example text, and/or individual
 glyphs in a variety of settings.
 
-    This, in a package form, is a poor man's version of nfssfont.tex and
+This, in a package form, is a poor man's version of nfssfont.tex and
 testfont.tex.
 
 ______________
 Change History
 
+1.5d (2009/09/22) - Fix the bug for real, this time
 1.5c (2009/09/20) - Bug fix with \nodecimals
 1.5b (2009/09/02) - New maintainer (Will Robertson)
 1.51 (2009/05/14)
@@ -44,12 +45,12 @@ Change History
   The Current Maintainer of this work is Will Robertson.
 
   This work consists of the files:
-    README (this file)
-    fonttable.dtx
-    fonttable.ins
-    fonttable.pdf
+   - README (this file)
+   - fonttable.dtx
+   - fonttable.ins
+   - fonttable.pdf
   and the derived file
-    fonttable.sty
+   - fonttable.sty
 
 ------------------------------------------------------------------
 The distribution consists of the following files:
@@ -62,12 +63,13 @@ The distribution consists of the following files:
 
 To install the package:
 
-- run: latex fonttable.ins (which will generate fonttable.sty)
+- To generate fonttable.sty run: 
+    tex fonttable.ins
 - Move fonttable.sty to a location where LaTeX will find it, for example:
-    /usr/local/texlive/texmf-local/tex/latex/fonttable/fonttable.sty
+    /usr/local/texlive/texmf-local/tex/latex/fonttable.sty
 
 To manually generate the manual, run:
 
     pdflatex fonttable.dtx
-    makeindex -s gind.ist fonttable.idx
+    makeindex -s gind.ist fonttable.idx # optional
     pdflatex fonttable.dtx
