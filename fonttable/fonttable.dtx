@@ -54,7 +54,7 @@
 %
 % \fi
 %
-% \CheckSum{915}
+% \CheckSum{911}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -106,6 +106,7 @@
 % \changes{v1.5}{2009/05/12}{Added code for Knuth's testfont.tex}
 % \changes{v1.51}{2009/05/14}{Eliminated a clash with babel package}
 % \changes{v1.5b}{2009/09/02}{New maintainer (Will Robertson)}
+% \changes{v1.6}{2009/10/15}{New spacing of the decimals from Peter Wilson}
 %
 % \def\fileversion{v1.0} \def\filedate{2005/11/27}
 % \def\fileversion{v1.0a} \def\filedate{2005/12/06}
@@ -118,6 +119,7 @@
 % \def\fileversion{v1.5b} \def\filedate{2009/09/02}
 % \def\fileversion{v1.5c} \def\filedate{2009/09/20}
 % \def\fileversion{v1.5d} \def\filedate{2009/09/22}
+% \def\fileversion{v1.6} \def\filedate{2009/10/15}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -435,7 +437,7 @@
 %    \begin{macrocode}
 %<*pack>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fonttable}[2009/09/22 v1.5d displays a font]
+\ProvidesPackage{fonttable}[2009/10/15 v1.6 displays a font]
 
 %    \end{macrocode}
 %
@@ -785,44 +787,54 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\decimals}
-% \begin{macro}{\nodecimals}
 % \begin{macro}{\f@tpsg}
-% Following \cs{decimals}, which is the default, decimal numbers are 
-% printed in the table. Following \cs{nodecimals} they are not printed.
-%
-% \cs{f@tpsg} typesets a single glyph, possibly with its decimal slot number.
-%
-% NOTE (2009/04/30): Initially \cs{f@tpsg} was called \cs{:}, which LaTeX
-% defines to be a medium space. No doubt this was OK with the interactive
-% version but can cause havoc when used in a package!
 % \changes{v1.3}{2009/04/30}{Replaced redefinition of \cs{:} by \cs{f@tpsg}}
 % \changes{v1.5c}{2009/09/20}{\cs{renewcommand}\cs{f@tpsg} instead (props Michael Niedermair)}
 % \changes{v1.5d}{2009/09/22}{Fix the bug for real this time}
+% \begin{macro}{\f@placechar}
+% \begin{macro}{\f@placedecimal}
+% \cs{f@tpsg} typesets a single glyph, possibly with its decimal slot number.
+% \cs{f@placechar} is the function to typeset the glyph with its number that is
+% internally defined as \cs{f@placedecimal} if decimals are to be shown.
 %    \begin{macrocode}
-\newcommand*\f@tpsg{}
+\newcommand*{\f@tpsg}{%
+  \setbox\z@=\hbox{\f@placechar{\char\f@tn}{\the\f@tn}}%
+  \ifdim\ht\z@>7.5pt\relax
+    \f@treposition
+  \else
+    \ifdim\dp\z@>2.5pt\relax
+      \f@treposition
+    \fi
+  \fi
+  \box\z@
+  \global\advance\f@tn\@ne
+}
+%    \end{macrocode}
+% Change this definition to adjust the typesetting of the decimal numbers:
+%    \begin{macrocode}
+\newcommand*\f@placedecimal[2]{#1\ {\tiny #2}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\decimals}
+% \begin{macro}{\nodecimals}
+% Following \cs{decimals}, which is the default, decimal numbers are
+% printed in the table. Following \cs{nodecimals} they are not printed.
+%    \begin{macrocode}
 \newcommand*{\nodecimals}{%
-  \renewcommand*\f@tpsg{%
-    \setbox0=\hbox{\char\f@tn}%
-    \ifdim\ht0>7.5pt\f@treposition
-    \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
-    \box0\global\advance\f@tn 1 %
-  }%
+  \renewcommand*\f@placechar{\@firstoftwo}%
 }
 %    \end{macrocode}
 % 
 %    \begin{macrocode}
 \newcommand{\decimals}{%
-  \renewcommand*\f@tpsg{%
-    \setbox0=\hbox{\char\f@tn\,\rlap{\tiny \the\f@tn}}%
-    \ifdim\ht0>7.5pt\f@treposition
-    \else\ifdim\dp0>2.5pt\f@treposition\fi\fi
-    \box0\global\advance\f@tn 1 %
-  }%
+  \renewcommand*\f@placechar{\f@placedecimal}%
 }
+\newcommand*\f@placechar{}
 \decimals
 %    \end{macrocode}
-% \end{macro}
 % \end{macro}
 % \end{macro}
 %
