@@ -1,0 +1,592 @@
+
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+% Please see the accompanying README for author,
+% license, documentation and installation information
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+
+\RequirePackage{filecontents}
+\begin{filecontents}{changepage.sty}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{changepage}[2009/10/20 v1.0c check page and change page layout]
+
+% Don't use this with memoir
+\newcommand*{\cp@whoopsusingmemoir}{}
+\@ifclassloaded{memoir}{\def\cp@whoopsusingmemoir{\endinput}}
+\cp@whoopsusingmemoir
+
+% New \verb|\if| for the strict option
+\newif\ifstrictpagecheck
+  \strictpagecheckfalse
+
+% User commands for switching strict page checking on/off
+\newcommand*{\strictpagecheck}{\strictpagechecktrue}
+\newcommand*{\easypagecheck}{\strictpagecheckfalse}
+
+% Declare and process options
+\DeclareOption{strict}{\strictpagechecktrue}
+\ProcessOptions\relax
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% New commands for strict checking of odd/even page.
+%% Works by writing a label and then checking its pageref.
+
+\newif\ifoddpage
+\newcounter{cp@cntr}
+\newcount\cp@tempcnt % instead of  \verb|\@memcnta|
+\newcommand{\cplabel}{^_}
+
+\gdef\thepmemc@@page{\the\c@page}
+
+\long\def\pmemprotected@write#1#2#3{% modified  \verb|\protected@write|
+  \begingroup
+  \let\thepmemc@@page\relax
+  #2%
+  \let\protect\@unexpandable@protect
+  \edef\reserved@a{\write#1{#3}}%
+  \reserved@a
+  \endgroup
+  \if@nobreak\ifvmode\nobreak\fi\fi}
+
+\newcommand*{\pmemlabel}[1]{\@bsphack
+  \pmemprotected@write\@auxout{}%
+    {\string\newpmemlabel{#1}{\thepmemc@@page}}%
+  \@esphack}
+
+\newcommand*{\newpmemlabel}[2]{{\global\@namedef{m@#1}{#2}}}
+\newcommand*{\pmemlabelref}[1]{%
+  \expandafter\ifx\csname m@#1\endcsname\relax
+    0%   % 0 if there is no label yet in the aux file
+  \else
+    \csname m@#1\endcsname
+  \fi}
+
+\DeclareRobustCommand{\checkoddpage}{%
+  \oddpagefalse%
+  \ifstrictpagecheck%
+    \stepcounter{cp@cntr}\pmemlabel{\cplabel\thecp@cntr}%
+    \cp@tempcnt=\pmemlabelref{\cplabel\thecp@cntr}\relax
+    \ifodd\cp@tempcnt\oddpagetrue\fi
+  \else
+    \ifodd\c@page\oddpagetrue\fi
+  \fi}
+
+% End newcommands for strict checking of odd/even page.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Copy of some of the code from the ifmtarg package to save requiring ifmtarg
+\begingroup
+\catcode`\Q=3
+\long\gdef\@ifmtarg#1{\@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil}
+\long\gdef\@xifmtarg#1#2Q#3#4#5\@nil{#4}
+\endgroup
+
+% Set the page output parameters
+\DeclareRobustCommand{\ch@ngetext}{%
+  \setlength{\@colht}{\textheight}\setlength{\@colroom}{\textheight}%
+  \setlength{\vsize}{\textheight}\setlength{\columnwidth}{\textwidth}%
+  \if@twocolumn%
+    \advance\columnwidth-\columnsep \divide\columnwidth\tw@%
+    \@firstcolumntrue%
+  \fi%
+  \setlength{\hsize}{\columnwidth}%
+  \setlength{\linewidth}{\hsize}}
+
+\DeclareRobustCommand{\changetext}[5]{%
+  \@ifmtarg{#1}{}{\addtolength{\textheight}{#1}}%
+  \@ifmtarg{#2}{}{\addtolength{\textwidth}{#2}}%
+  \@ifmtarg{#3}{}{\addtolength{\evensidemargin}{#3}}%
+  \@ifmtarg{#4}{}{\addtolength{\oddsidemargin}{#4}}%
+  \@ifmtarg{#5}{}{\addtolength{\columnsep}{#5}}%
+  \ch@ngetext}
+
+\DeclareRobustCommand{\changepage}[9]{%
+  \@ifmtarg{#1}{}{\addtolength{\textheight}{#1}}%
+  \@ifmtarg{#2}{}{\addtolength{\textwidth}{#2}}%
+  \@ifmtarg{#3}{}{\addtolength{\evensidemargin}{#3}}%
+  \@ifmtarg{#4}{}{\addtolength{\oddsidemargin}{#4}}%
+  \@ifmtarg{#5}{}{\addtolength{\columnsep}{#5}}%
+  \ch@ngetext%
+  \@ifmtarg{#6}{}{\addtolength{\topmargin}{#6}}%
+  \@ifmtarg{#7}{}{\addtolength{\headheight}{#7}}%
+  \@ifmtarg{#8}{}{\addtolength{\headsep}{#8}}%
+  \@ifmtarg{#9}{}{\addtolength{\footskip}{#9}}}
+
+\newenvironment{adjustwidth}[2]{%
+  \begin{list}{}{%
+    \topsep\z@%
+    \listparindent\parindent%
+    \parsep\parskip%
+    \@ifmtarg{#1}{\setlength{\leftmargin}{\z@}}%
+                 {\setlength{\leftmargin}{#1}}%
+    \@ifmtarg{#2}{\setlength{\rightmargin}{\z@}}%
+                 {\setlength{\rightmargin}{#2}}%
+    }
+    \item[]}{\end{list}}
+
+\newenvironment{adjustwidth*}[2]{%
+  \begin{list}{}{%
+    \topsep\z@%
+    \listparindent\parindent%
+    \parsep\parskip%
+    \checkoddpage
+    \ifoddpage%     odd numbered page
+      \@ifmtarg{#1}{\setlength{\leftmargin}{\z@}}%
+                   {\setlength{\leftmargin}{#1}}%
+      \@ifmtarg{#2}{\setlength{\rightmargin}{\z@}}%
+                   {\setlength{\rightmargin}{#2}}%
+    \else%          even numbered page
+      \@ifmtarg{#2}{\setlength{\leftmargin}{\z@}}%
+                   {\setlength{\leftmargin}{#2}}%
+      \@ifmtarg{#1}{\setlength{\rightmargin}{\z@}}%
+                   {\setlength{\rightmargin}{#1}}%
+    \fi}
+    \item[]}{\end{list}}
+
+\endinput
+
+\end{filecontents}
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+
+
+
+
+\begin{filecontents}{chngpage.sty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLEASE NOTE:
+% THIS PACKAGE IS DEPRECATED IN FAVOUR OF CHANGEPAGE.STY FOR REASONS
+% OF COMPATIBILITY WITH THE MEMOIR CLASS. The two are equivalent;
+% please do not use this one for new documents or packages.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{chngpage}[2009/10/20 v1.2b change page layout]
+
+%% Note: internal package commands all include the string |cp@|.
+%% New \cs{if} for the strict option.
+\newif\ifcpstrict
+  \cpstrictfalse
+
+%% Declare and process options.
+\DeclareOption{strict}{\cpstricttrue}
+\ProcessOptions\relax
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New commands for strict checking of odd/even page.
+% Works by writing a label and then checking its pageref.
+%
+% Rewritten in v1.2 to handle roman, Roman, etc page numbers
+% as well as arabic; also eliminates special code to handle
+% hyperref. Based on the code in the memoir class.
+
+\newif\ifcpoddpage
+\newcounter{cp@cnt}
+\newcounter{cp@tempcnt}
+\newcommand{\cplabelprefix}{^_}
+
+\gdef\thecp@page{\the\c@page}
+\long\def\cp@protected@write#1#2#3{%  % modified \cs{protected@write}
+  \begingroup
+  \let\thecp@page\relax
+  #2%
+  \let\protect\@unexpandable@protect
+  \edef\reserved@a{\write#1{#3}}%
+  \reserved@a
+  \endgroup
+  \if@nobreak\ifvmode\nobreak\fi\fi}
+
+\DeclareRobustCommand{\checkoddpage}{%
+  \cpoddpagefalse
+  \stepcounter{cp@cnt}\cplabel{\cplabelprefix\thecp@cnt}%
+  \c@cp@tempcnt=\cp@labelref{\cplabelprefix\thecp@cnt}\relax
+  \ifodd\c@cp@tempcnt\cpoddpagetrue\fi}
+
+\newcommand{\cplabel}[1]{\@bsphack
+  \cp@protected@write\@auxout{}%
+    {\string\newcplabel{#1}{\thecp@page}}%
+  \@esphack}
+
+\newcommand{\newcplabel}[2]{{\global\@namedef{p@#1}{#2}}}
+
+\newcommand{\cp@labelref}[1]{%
+  \expandafter\ifx\csname p@#1\endcsname\relax
+    0%  % 0 if there is no label yet in aux file
+  \else
+    \csname p@#1\endcsname
+  \fi}
+
+% End newcommands for strict checking of odd/even page.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Copy of some of the code from the ifmtarg package to save requiring ifmtarg.
+\begingroup
+\catcode`\Q=3
+\long\gdef\@ifmtarg#1{\@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil}
+\long\gdef\@xifmtarg#1#2Q#3#4#5\@nil{#4}
+\endgroup
+
+% Set the page output parameters.
+\DeclareRobustCommand{\ch@ngetext}{%
+  \setlength{\@colht}{\textheight}\setlength{\@colroom}{\textheight}%
+  \setlength{\vsize}{\textheight}\setlength{\columnwidth}{\textwidth}%
+  \if@twocolumn%
+    \advance\columnwidth-\columnsep \divide\columnwidth\tw@%
+    \@firstcolumntrue%
+  \fi%
+  \setlength{\hsize}{\columnwidth}%
+  \setlength{\linewidth}{\hsize}%
+}
+
+\DeclareRobustCommand{\changetext}[5]{%
+  \@ifmtarg{#1}{}{\addtolength{\textheight}{#1}}%
+  \@ifmtarg{#2}{}{\addtolength{\textwidth}{#2}}%
+  \@ifmtarg{#3}{}{\addtolength{\evensidemargin}{#3}}%
+  \@ifmtarg{#4}{}{\addtolength{\oddsidemargin}{#4}}%
+  \@ifmtarg{#5}{}{\addtolength{\columnsep}{#5}}%
+  \ch@ngetext%
+}
+
+\DeclareRobustCommand{\changepage}[9]{%
+  \@ifmtarg{#1}{}{\addtolength{\textheight}{#1}}%
+  \@ifmtarg{#2}{}{\addtolength{\textwidth}{#2}}%
+  \@ifmtarg{#3}{}{\addtolength{\evensidemargin}{#3}}%
+  \@ifmtarg{#4}{}{\addtolength{\oddsidemargin}{#4}}%
+  \@ifmtarg{#5}{}{\addtolength{\columnsep}{#5}}%
+  \ch@ngetext%
+  \@ifmtarg{#6}{}{\addtolength{\topmargin}{#6}}%
+  \@ifmtarg{#7}{}{\addtolength{\headheight}{#7}}%
+  \@ifmtarg{#8}{}{\addtolength{\headsep}{#8}}%
+  \@ifmtarg{#9}{}{\addtolength{\footskip}{#9}}%
+}
+
+
+\newenvironment{adjustwidth}[3][\@empty]{%
+  \begin{list}{}{%
+    \topsep\z@%
+    \listparindent\parindent%
+    \parsep\parskip%
+    \@ifmtarg{#2}{\setlength{\leftmargin}{\z@}}{\setlength{\leftmargin}{#2}}%
+    \@ifmtarg{#3}{\setlength{\rightmargin}{\z@}}{\setlength{\rightmargin}{#3}}%
+    \ifx\@empty #1\relax \else
+      \cpoddpagefalse
+      \ifcpstrict\checkoddpage\else
+        \ifodd\c@page\cpoddpagetrue\fi
+      \fi
+      \ifcpoddpage\else  % even numbered page
+        \@ifmtarg{#3}{\setlength{\leftmargin}{\z@}}{\setlength{\leftmargin}{#3}}%
+        \@ifmtarg{#2}{\setlength{\rightmargin}{\z@}}{\setlength{\rightmargin}{#2}}%
+      \fi
+    \fi}
+    \item[]}{\end{list}}
+
+\endinput
+\end{filecontents}
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+
+
+
+% Conditionally compile the documentation & generate the .ins file:
+\providecommand\changepageCompile{Y}
+\makeatletter
+\if\changepageCompile N
+  \expandafter\@@end
+\fi
+
+
+
+\begin{filecontents*}{changepage.ins}
+%&latex
+\def\changepageCompile{N}
+\input changepage.tex
+\csname@@end\endcsname
+\end{filecontents*}
+
+
+
+
+\makeatletter
+\documentclass{article}
+
+\usepackage[it,medium]{titlesec}
+
+\usepackage{bigfoot,xcolor}
+\usepackage[colorlinks,linktocpage]{hyperref}
+
+\usepackage{gmdoc}
+\usepackage{gmverb}
+\dekclubs
+\stanzaskip=\bigskipamount 
+\CodeSpacesGrey
+
+\usepackage{tocloft,varwidth}
+\setcounter{tocdepth}{1}
+\def\tocwidthA{0.55}
+\def\tocwidthB{0.44}
+\def\cftpartfont{\scshape}
+\def\cftsecfont{\small}
+\cftbeforesecskip=0pt
+\def\cftpartleader{}
+\def\cftpartafterpnum{\cftparfillskip}
+\def\cftsecleader{}
+\def\cftsecafterpnum{\cftparfillskip}
+
+\DeclareRobustCommand\pkg{\textsf}
+\def\pkgopt#1{\texttt{[#1]}}
+\newcommand\chng[1]{\marginpar{\footnotesize\raggedright\textsf{#1}}}
+
+\def\PDF{\textsc{pdf}}
+\def\PS{\textsc{ps}}
+\def\DVI{\textsc{dvi}}
+\def\EPS{\textsc{eps}}
+
+\usepackage{amsmath,listings}
+\lstset{basicstyle=\ttfamily,columns=fullflexible}
+
+\begingroup
+  \usepackage{chngpage}
+  \GetFileInfo{chngpage.sty}
+  \global\let\chngpagev\fileversion
+\endgroup
+\usepackage{changepage}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[sc,osf]{mathpazo}
+\linespread{1.1}
+\frenchspacing
+
+\GetFileInfo{changepage.sty}
+\begin{document}
+{\addtocontents{toc}{\protect\begin{varwidth}[t]{\tocwidthA\linewidth}}}
+
+\title{The \pkg{changepage} and \pkg{chngpage} packages}
+\author{%
+ Author: Peter Wilson, Herries Press\\
+ Maintainer: Will Robertson\\
+ \texttt{will dot robertson at latex-project dot org}%
+}
+\date{\chngpagev\ and \fileversion, \filedate}
+
+\maketitle
+
+\begin{abstract}
+\noindent Provides command
+|\ifoddpage| to detect the current page `side',
+environment |adjustwidth| to locally change the margins of the text,
+and commands |\changetext| and |\changepage| for more
+radical changes to the page design mid-way through a document.
+
+\pkg{changepage} is the new version of \pkg{chngpage} to be
+compatible with \pkg{memoir}. \pkg{chngpage} is now deprecated
+for this reason.
+\end{abstract}
+
+\tableofcontents
+
+\part{User documentation}
+
+Load the package like this:
+\begin{verbatim}
+\usepackage[strict]{changepage}
+\end{verbatim}
+Or for deprecated uses:
+\begin{verbatim}
+\usepackage[strict]{chngpage}
+\end{verbatim}
+
+\section{Detecting odd or even pages}
+
+The |\checkoddpage| command can be used anywhere in the body of
+a document to determine if \TeX\ is typesetting on an odd or
+even numbered page. If on an odd page then |\ifoddpage| is
+set \meta{true}, otherwise (on an even page) |\ifoddpage| is set
+\meta{false}.
+
+\chng{Use \cs{ifcpoddpage} instead if you're using chngpage.}
+
+Strict page checking works by the |\checkoddpage| command generating 
+a label and then checking the |\pageref| for the label (actually, a special 
+version of |\pageref| is required and is used internally by |\checkoddpage|). 
+This mechanism requires at least two \LaTeX\ passes to ensure that 
+the labels have settled (on the initial pass there will be no labels
+in the *.aux file to be checked).
+
+The label identifier is composed of the command |\cplabel|
+and an automatically generated number. |\cplabel|, initially
+defined as `|^_|', can be changed in the preamble if it will cause
+a clash with any author-defined labels. The default labels will
+be of the form `|^_|\meta{N}' where \meta{N} is a positive integer.
+
+\chng{For chngpage, use \cs{cplabelprefix} instead of \cs{cplabel}.}
+
+The package option `strict' turns on strict page checking --- the default
+is not to use strict checking. Strict page checking can be turned on or 
+off at any time by the commands |\strictpagecheck| or |\easypagecheck|.
+The easy page check just tests the page number to see if it is odd or even, 
+which does not always give the correct result because of \TeX's asynchronous
+output mechanism.
+
+
+\section{Adjusting the margins}
+
+Within an |adjustwidth| environment the left and right margins can be
+adjusted. The environment takes two required length arguments: 
+\begin{quote}
+\cs{begin}|{adjustwidth}|\marg{leftmargin}\marg{rightmargin}
+\end{quote}
+A positive length value will increase the relevant margin (shortening
+the text lines) while a negative length value will decrease the margin
+(lengthening text lines). An empty length argument means no change
+to the margin. At the end of the environment the margins revert to
+their original values.
+
+For example, to extend the text into the right margin:
+\begin{quote}
+|\begin{adjustwidth}{}{-8em}|
+\end{quote}
+The starred version, |adjustwidth*|, causes the values of the
+margins to switch between odd and even pages.
+
+\chng{For chngpage use \cs{begin}\texttt{\{adjustwidth\}[]}
+instead of \cs{begin}\texttt{\{adjustwidth*\}}.}
+
+For example, if the document is being set twosided it might be
+advantageous to have any wider text extending into the outside
+margin:
+\begin{quote}
+|\begin{adjustwidth*}{}{-8em}|
+\end{quote}
+To have the adjusted text horizontally centered with respect to
+any surrounding text, the margins should be adjusted equally:
+\begin{quote}
+|\begin{adjustwidth}{-4em}{-4em}|
+\end{quote}
+For interest, \cs{begin}|{quotation}| is pretty much equivalent to 
+\begin{quote}
+|\begin{adjustwidth}{2.5em}{2.5em}|
+\end{quote}
+The environment may also be used inside a float if the contents are
+a bit too wide for the text block, but can still fit within the physical
+page:
+\begin{verbatim}
+\begin{figure}
+  \begin{adjustwidth}{-2em}{-2em}
+     \includegraphics{wide}
+     \caption{Wide figure}
+  \end{adjustwidth}
+\end{figure}
+\end{verbatim}
+Sometimes, because of the asynchronous nature of the TeX output
+routine, the margin switching may be incorrect (like |\marginpar| sometimes)
+near the top of a page. This can be corrected by using the package
+option `strict' (i.e., |\usepackage[strict]{chngpage}|), which causes
+adjustwidth to use the |\checkoddpage| command (see below).
+
+A disadvantage of the strict option is that the package generates
+a new label for each adjustwidth environment, and \TeX\ may run out
+of space if there are an excessive number of labels in the document.
+
+Whether or not the strict option is used, `strict adjustwidths'
+can be turned on by putting the command |\strictpagecheck| before
+the environment, and turned off by using |\easypagecheck|.
+
+\chng{In chngpage, use \cs{cpstricttrue} and \cs{cpstricttrue}
+instead of \cs{strictpagecheck} and \cs{easypagecheck}.}
+
+\textsc{note:}
+In a twocolumn document, the adjustwidth environment 
+treats both columns equally. For example, if the width is meant
+to be wider at the outer margin, then on odd pages the extra width
+will be at the right of any column, and on even pages the extra
+will be at the left of any column. You can get interesting effects
+by careful hand tuning on two column pages.
+
+
+\section{Changing the text block}
+
+The |\changetext| command is for changing the size and horizontal position
+of the text block on a page. The command takes 5 arguments, each of which 
+is a length or is empty. i.e.,
+\begin{quote}
+\cmd\changetext\marg{text height}\marg{text width}\marg{even-side margin}
+\newline\null\hfill\marg{odd-side margin}\marg{column sep.}
+\end{quote}
+The given lengths are added to the corresponding current lengths and
+the remainder of the current page is typeset using the changed text block 
+layout. The new layout remains in effect until another |\change...| command 
+is issued.
+
+
+\section{Changing the entire page design}
+
+The |\changepage| command is for changing the general layout of
+a page. The command takes 9 arguments, each of which is a length or is empty. 
+The first 5 arguments are the same as for |\changetext| and have the same effect.
+The last four arguments are:
+\begin{quote}
+\cmd\changepage\meta{5 args}\marg{topmargin}\marg{headheight}\marg{headsep}\marg{footskip}
+\end{quote}
+These lengths are added to the corresponding current lengths and
+thus modify the vertical positions of the elements of the page. The
+remainder of the current page is typeset using the changed text block 
+and page layout. The new layout remains in effect until another 
+|\change...| command is issued.
+
+\begin{itemize}
+\item[\textsc{note} 1] Not supplying a value for a length argument is equivalent
+         to giving it a zero length value.
+
+\item[\textsc{note} 2] For any given page, everything is constant except for the textwidth
+         and columnsep (for example, what is the meaning of two
+         topmargins on a single column page?).
+         It is therefore best to change anything else at the
+         start of a new page. Further, any changes only apply to whole
+         paragraphs. If you want an odd shaped paragraph use either
+         the \pkg{hanging} package or the \TeX\ |\parshape| command.
+\end{itemize}
+For example, to change from single column pages to double column
+pages where the text block is both shorter and wider, then to revert
+back to the initial layout:
+\begin{verbatim}
+... single column normal page
+\newpage % or \clearpage
+\changetext{-5\baselineskip}{10em}{-5em}{-5em}{}
+\twocolumn
+... two column pages
+\clearpage 
+\changetext{5\baselineskip}{-10em}{5em}{5em}{}
+\onecolumn
+... normal pages
+\end{verbatim}
+Note the adjustments to the margins which will keep the vertical centerline
+of the textblock at the same position on the page.
+
+As another example, to increase the width of a single paragraph:
+\begin{verbatim}
+\changetext{0pt}{5em}{}{}{}%
+Start of wider paragraph text ...
+... end of paragraph.
+
+\changetext{0pt}{-5em}{}{}{}
+Start of a normal paragraph ...
+\end{verbatim}
+Under some circumstances you can include a |\change...| command as part of
+the argument to |\afterpage| (from the \pkg{afterpage} package) and it may work.
+Similarly it may work in a heading style used for |\thispagestyle| to change
+a single page.
+
+{\addtocontents{toc}{\protect\end{varwidth}\protect\hfill}}
+{\addtocontents{toc}{\protect\begin{varwidth}[t]{\protect\tocwidthB\protect\linewidth}}}
+\clearpage
+\parindent=0pt
+
+\part{Implementation}
+\section{The \pkg{changepage} package}
+\DocInput{changepage.sty}
+
+\clearpage
+\section{The \pkg{chngpage} package}
+\DocInput{chngpage.sty}
+
+{\addtocontents{toc}{\protect\end{varwidth}}}
+
+\end{document}
