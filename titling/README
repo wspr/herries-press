@@ -6,8 +6,14 @@ The TITLING package
 information permanantly available, and allows multiple titles in
 a single document.
 
+______________
+Change History
 
-Changes in version 2.1d (2009/09/04)
+Version 2.1e (2009/12/29)
+- Defaults adjusted to produce identical results to the
+  standard classes in non-titlepage mode.
+
+Version 2.1d (2009/09/04)
 - New maintainer (Will Robertson)
 
 Changes in version 2.1c (2004/09/26)

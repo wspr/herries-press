@@ -3,6 +3,7 @@
 % Author: Peter Wilson (Herries Press)
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 2000--2004 Peter R. Wilson
+% Copyright 2009 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -28,7 +29,7 @@
 %
 % \fi
 %
-% \CheckSum{490}
+% \CheckSum{493}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -81,22 +82,15 @@
 % \changes{v2.1d}{2009/09/04}{New maintainer (Will Robertson)}
 %
 % \def\dtxfile{titling.dtx}
-% ^^A \def\fileversion{v0.3}
-% ^^A \def\filedate{2000/05/20}
-% ^^A \def\fileversion{v1.0}
-% ^^A \def\filedate{2000/06/11}
-% ^^A \def\fileversion{v2.0}
-% ^^A \def\filedate{2001/02/24}
-% ^^A \def\fileversion{v2.1}
-% ^^A \def\filedate{2001/03/23}
-% \def\fileversion{v2.1a}
-% \def\filedate{2002/02/19}
-% \def\fileversion{v2.1b}
-% \def\filedate{2004/05/10}
-% \def\fileversion{v2.1c}
-% \def\filedate{2004/09/26}
-% \def\fileversion{v2.1d}
-% \def\filedate{2009/09/04}
+% \def\fileversion{v0.3} \def\filedate{2000/05/20}
+% \def\fileversion{v1.0} \def\filedate{2000/06/11}
+% \def\fileversion{v2.0} \def\filedate{2001/02/24}
+% \def\fileversion{v2.1} \def\filedate{2001/03/23}
+% \def\fileversion{v2.1a} \def\filedate{2002/02/19}
+% \def\fileversion{v2.1b} \def\filedate{2004/05/10}
+% \def\fileversion{v2.1c} \def\filedate{2004/09/26}
+% \def\fileversion{v2.1d} \def\filedate{2009/09/04}
+% \def\fileversion{v2.1e} \def\filedate{2009/12/28}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -862,7 +856,7 @@
   \postdate{\par\end{center}}
 \else
   \pretitle{\begin{center}\LARGE}
-  \posttitle{\par\end{center}\vskip 0.5em}
+  \posttitle{\par\end{center}\vskip 1.5em}
   \preauthor{\begin{center}
     \large \lineskip .5em%
     \begin{tabular}[t]{c}}
@@ -1143,13 +1137,16 @@
 % gets overridden.
 % \changes{v1.2}{2001/03/23}{Added the four \cs{maketitlehook} commands
 % to \cs{@maketitle}}
+%
+% The trivlist environment is added to eliminate extra padding introduced by \verb|\begin{center}...\end{center}| in the default definitions of \cmd\@bspretitle\ etc. (In the standard classes the center environment wraps the entire thing.)
+% \changes{v1.2e}{2009/12/28}{Add trivlist to remove extra padding.}
 %    \begin{macrocode}
-
   \def\@maketitle{%               
     \newpage
     \null
+    \vspace*{\droptitle}
     \vskip 2em%
-          \vspace*{\droptitle}
+    \begin{trivlist}\item[]
     \maketitlehooka
     {\@bspretitle \@title \@bsposttitle}
     \maketitlehookb
@@ -1157,10 +1154,10 @@
     \maketitlehookc
     {\@bspredate \@date \@bspostdate}
     \maketitlehookd
+    \end{trivlist}
     \par
     \vskip 1.5em}
 \fi
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
