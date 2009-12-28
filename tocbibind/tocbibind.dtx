@@ -27,7 +27,7 @@
 %
 % \fi
 %
-% \CheckSum{471}
+% \CheckSum{464}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -113,6 +113,8 @@
 % \def\filedate{2004/05/10}
 % \def\fileversion{v1.5i}
 % \def\filedate{2009/09/04}
+% \def\fileversion{v1.5j}
+% \def\filedate{2009/12/28}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -149,7 +151,7 @@
 % 
 %
 % \section{Introduction}
-%n
+%
 % Questions about adding the bibliography to the Table of Contents
 % seem to pop up fairly regularly on the
 % \texttt{comp.text.tex} newsgroup. 
@@ -648,17 +650,6 @@
 % \end{macro}
 % \end{macro}
 %
-% \begin{macro}{\phantomsection}
-% |\phantomsection| is needed if the \Lpack{hyperref} package is used to
-% give some sort of mark for |\addcontentsline|. Read the \Lpack{hyperref}
-% documentation to see if you can work out why.
-% \changes{v1.5}{2001/04/17}{Provided \cs{phantomsection} for use with hyperref package}
-%    \begin{macrocode}
-\providecommand{\phantomsection}{}
-
-%    \end{macrocode}
-% \end{macro}
-%
 % \begin{macro}{\tocetcmark}
 % \begin{macro}{\prw@mkboth}
 % \begin{macro}{\toc@section}
@@ -682,7 +673,6 @@
 %     \cs{tocetcmark}}
 %    \begin{macrocode}
 \newcommand{\prw@mkboth}[1]{\tocetcmark{#1}}
-
 %    \end{macrocode}
 %
 % |\toc@section{|\meta{sec}|}{|\meta{text}|}| is a generalised version
@@ -692,15 +682,13 @@
 % that it makes no entry into the ToC.
 % \changes{v1.5}{2001/04/17}{Added \cs{phantomsection} to \cs{toc@section}
 %          and \cs{toc@chapter}}
+% \changes{v1.5j}{2009/12/28}{Removed \cs{phantomsection}}
 %    \begin{macrocode}
 \newcommand{\toc@section}[2]{%
   \@nameuse{#1}*{#2\prw@mkboth{#2}}
-  \phantomsection
   \addcontentsline{toc}{#1}{#2}}
-
 \newcommand{\toc@headstar}[2]{%
   \@nameuse{#1}*{{#2}}}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -723,12 +711,11 @@
 % well. 
 %
 % \changes{v1.5g}{2003/03/13}{Minor, but vital, change to \cs{toc@chapter}}
+% \changes{v1.5j}{2009/12/28}{Removed \cs{phantomsection}}
 %    \begin{macrocode}
 \newcommand{\toc@chapter}[1]{%
   \chapter*{#1}\prw@mkboth{#1}
-  \phantomsection
   \addcontentsline{toc}{chapter}{#1}}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -745,7 +732,6 @@
 \else
   \newcommand{\tocbibname}{\bibname}
 \fi
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -769,7 +755,6 @@
 \providecommand{\listfigurename}{List of Figures}
 \newcommand{\setlofname}[1]{\renewcommand{\listfigurename}{#1}}
 \newcommand{\settocbibname}[1]{\renewcommand{\tocbibname}{#1}}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -962,13 +947,13 @@
 % \changes{v1.3}{1999/08/22}{Assorted changes for the index}
 % \changes{v1.5}{2001/04/17}{Added \cs{phantomsection} to the theindex environment}
 % \changes{v1.5f}{2003/02/04}{Replaced \cs{MakeUppercase} code from theindex environment}
+% \changes{v1.5j}{2009/12/28}{Removed \cs{phantomsection}}
 %    \begin{macrocode}
      \if@bibchapter
         \if@donumindex
           \refstepcounter{chapter}
           \twocolumn[\vspace*{2\topskip}%
                      \@makechapterhead{\indexname}]%
-          \phantomsection
           \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}\indexname}
           \chaptermark{\indexname}
         \else
@@ -976,7 +961,6 @@
             \twocolumn[\vspace*{2\topskip}%
                        \@makeschapterhead{\indexname}]%
             \prw@mkboth{\indexname}
-            \phantomsection
             \addcontentsline{toc}{chapter}{\indexname}
           \else
             \twocolumn[\vspace*{2\topskip}%
@@ -994,7 +978,6 @@
             \twocolumn[\vspace*{-1.5\topskip}%
                        \toc@headstar{\@tocextra}{\indexname}]%
             \prw@mkboth{\indexname}
-            \phantomsection
             \addcontentsline{toc}{\@tocextra}{\indexname}
           \else
             \twocolumn[\vspace*{-1.5\topskip}%
@@ -1033,7 +1016,6 @@
   \if@bibchapter
     \if@restonecol\twocolumn\fi
   \fi}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}

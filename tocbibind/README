@@ -4,7 +4,14 @@ The TOCBIBIND package
     The tocbibind package can be used to add the ToC and/or bibliography 
 and/or the index etc., to the Table of Contents listing.
 
-Changes in version 1.5i (2009/09/04)
+______________
+Change History
+
+Version 1.5j (2009/12/28)
+- Internal changes: \phantomsection is no longer needed
+  for hyperref support
+
+Version 1.5i (2009/09/04)
 - New maintainer (Will Robertson)
 
 Changes in version 1.5h (2004/05/10)
