@@ -990,6 +990,7 @@
 %
 %    All redefined macros have names that are similar to the original
 %    names, except with a leading `ST'.
+% \changes{v2.3e}{2010/02/06}{Allow calc use.}
 %    \begin{macrocode}
 \def\ST@tabularcr{%
   {\ifnum0=`}\fi
@@ -1000,7 +1001,8 @@
     {\ifnum0=`{\fi}\cr\ST@cr}}
 \def\ST@argtabularcr[#1]{%
   \ifnum0=`{\fi}%
-  \ifdim #1>\z@
+  \setlength\@tempdima{#1}%
+  \ifdim \@tempdima>\z@
     \unskip\ST@xargarraycr{#1}%
   \else
     \ST@yargarraycr{#1}%
@@ -1013,20 +1015,26 @@
 %
 % \begin{macro}{\ST@xargarraycr}
 % \begin{macro}{\ST@yargarraycr}
+% \changes{v2.3e}{2010/02/06}{Allow calc use.}
 %    In this case we need to copy the value of the optional argument
 %    of |\\| in our private register |\ST@toadd|.
 %    \begin{macrocode}
 \def\ST@xargarraycr#1{%
-  \@tempdima #1\advance\@tempdima \dp \@arstrutbox
+  \setlength\@tempdima{#1}%
+  \advance\@tempdima \dp \@arstrutbox
   \vrule \@height\z@ \@depth\@tempdima \@width\z@ \cr
-  \noalign{\global\ST@toadd=#1}\ST@cr}
+  \noalign{\setlength{\global\ST@toadd}{#1}}\ST@cr
+}
 %    \end{macrocode}
 %
 %    Here we need to insert |\ST@cr|
 %    \begin{macrocode}
 \def\ST@yargarraycr#1{%
-  \cr\noalign{\vskip #1\global\ST@toadd=#1}\ST@cr}
-
+  \cr\noalign{%
+    \setlength{\global\ST@toadd}{#1}%
+    \vskip\ST@toadd
+  }\ST@cr
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1048,10 +1056,11 @@
 % \end{macro}
 %
 % \begin{macro}{\ST@astartpbox}
+% \changes{v2.3e}{2010/02/06}{Allow calc use.}
 %    supertabular version of |\@astartpbox|.
 %    \begin{macrocode}
 \def\ST@astartpbox#1{%
-  \bgroup\hsize#1%
+  \bgroup\setlength\hsize{#1}%
 %%%%  \setbox\ST@pbox\vtop\bgroup\hsize#1\@arrayparboxrestore}
   \setbox\ST@pbox\vtop\bgroup\setlength\hsize{#1}\@arrayparboxrestore}
 %    \end{macrocode}
