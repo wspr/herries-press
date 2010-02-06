@@ -9,6 +9,10 @@ Alternatively, you may find the longtable package fits your needs better.
 ______________
 Change History
 
+v2.3e (2010/02/06)
+ - Allow "calc" input in columns widths and row separations (with \\[...]);
+   thanks to Martin Reinders for the error report and diagnosis.
+   
 v2.3d (2009/09/04) - New maintainer (Will Robertson)
 v2.3c (2008/07/26) - hopefully all extraneous spaces eliminated
 
@@ -16,6 +20,7 @@ v2.3c (2008/07/26) - hopefully all extraneous spaces eliminated
   Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998 -- 2008 Peter R. Wilson
+  Copyright 2010 Will Robertson
  
   This work may be distributed and/or modified under the
   conditions of the LaTeX Project Public License, either

@@ -4,6 +4,7 @@
 % Author: Peter Wilson (herries dot press (at) earthlink dor net)
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1998 -- 2008 Peter R. Wilson
+% Copyright 2010 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -15,6 +16,13 @@
 %
 % This work consists of the files listed in the README file.
 %
+%<*driver>
+\ProvidesFile{xtab.dtx}
+%</driver>
+%<xtab>\ProvidesPackage{xtab}
+%<*xtab>
+    [2010/02/06 v2.3e Extended supertabular package]
+%</xtab>
 % 
 %<*driver>
 \documentclass{ltxdoc}
@@ -30,7 +38,7 @@
 %</driver>
 % 
 % \fi
-% \CheckSum{1521}
+% \CheckSum{1527}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -74,11 +82,7 @@
 % \DoNotIndex{\wd,\xiipt,\year,\z@}
 %
 % \def\dtxfile{xtab.dtx}
-% \def\fileversion{v2.3}  \def\filedate{2000/04/09}
-% \def\fileversion{v2.3a} \def\filedate{2004/05/24}
-% \def\fileversion{v2.3b} \def\filedate{2007/03/24}
-% \def\fileversion{v2.3c} \def\filedate{2008/07/26}
-% \def\fileversion{v2.3d} \def\filedate{2009/09/04}
+% \GetFileInfo{\dtxfile}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -522,9 +526,6 @@
 % \changes{v2.3d}{2009/09/04}{New maintainer (Will Robertson)}
 %    \begin{macrocode}
 %<*xtab>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{xtab}[2009/09/04 v2.3d Extended supertabular package]
-
 %    \end{macrocode}
 %
 % \begin{macro}{\c@tracingst}
