@@ -10,6 +10,8 @@ Change history
 
 version 1.2b (2010/02/27)
 - Bug fix for extraneous vertical space before sections
+  (This may change the typesetting of documents that use
+   this package. The price of a bug fix, unfortunately.)
 
 version 1.2a (2009/09/04)
 - New maintainer (Will Robertson)

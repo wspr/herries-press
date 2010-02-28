@@ -1,6 +1,6 @@
 
 PKG = $(shell basename `pwd`)
-FILES = README $(PKG).ins $(PKG.dtx)
+FILES = README $(PKG).ins $(PKG).dtx
 RESULTS = $(PKG).pdf $(PKG).sty
 
 $(PKG).tar.gz: $(FILES) $(RESULTS)
