@@ -5,10 +5,16 @@ The TOCVSEC2 package
 entries in the Table of Contents on a section by section basis. 
 NB. The package also requires the ifthen package.
 
-Changes in version 1.2a (2009/09/04)
+______________
+Change history
+
+version 1.2b (2010/02/27)
+- Bug fix for extraneous vertical space before sections
+
+version 1.2a (2009/09/04)
 - New maintainer (Will Robertson)
 
-Changes in version 1.2 (2004/05/24)
+version 1.2 (2004/05/24)
 - The stdclsdv package is no longer required
 
 ----------------------------------------------------------------- 

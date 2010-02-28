@@ -4,6 +4,7 @@
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1999--2004 Peter R. Wilson
+% Copyright 2010 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -15,7 +16,14 @@
 %
 % This work consists of the files listed in the README file.
 %
-% 
+%
+%<*driver>
+\ProvidesFile{tocvsec2.dtx}
+%</driver>
+%<usc>\ProvidesPackage{tocvsec2}
+%<*usc>
+    [2010/02/27 v1.2b variable ToC section entries]    
+%</usc>
 % 
 %<*driver>
 \documentclass{ltxdoc}
@@ -80,14 +88,7 @@
 % \changes{v1.2a}{2009/09/04}{New maintainer (Will Robertson)}
 %
 % \def\dtxfile{tocvsec2.dtx}
-% \def\fileversion{v1.1}
-% \def\filedate{1999/01/24}
-% \def\fileversion{v1.1a}
-% \def\filedate{2004/05/10}
-% \def\fileversion{v1.2}
-% \def\filedate{2004/05/24}
-% \def\fileversion{v1.2a}
-% \def\filedate{2009/09/04}
+% \GetFileInfo{\dtxfile}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -445,10 +446,11 @@
 % \end{macro}
 %
 % \begin{macro}{\setsecnumdepth}
+% \changes{v1.2b}{2010/02/27}{Remove occasional extraneous vertical space}
 % |\setsecnumdepth{|\meta{sec}|}| is the user command for setting 
 % \Lcount{secnumdepth} to the value corresponding to \meta{sec}.
 %    \begin{macrocode}
-\newcommand{\setsecnumdepth}[1]{\leavevmode%
+\newcommand{\setsecnumdepth}[1]{%
   \@setseccntt@c{#1}{secnumdepth}}
 %    \end{macrocode}
 % \end{macro}
