@@ -13,6 +13,14 @@ provides a version of the cite package for use with the combine class.
 ______________
 Change History
 
+Version 0.7 (2010/03/22)
+
+- Consolidate fileversion and filedate for all derived files
+  I.e., combine.cls, combinet.sty, combcite.sty, combnat.sty are all now v0.7
+  This is simply to make book-keeping easier
+  
+- Bug fix for combnat thanks to Nicola Talbot
+
 Changes in version 0.64b of combine.dtx (2009/09/02)
 - New maintainer (Will Robertson)
 

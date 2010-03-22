@@ -4,6 +4,7 @@
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 2000, 2001, 2002, 2003, 2004 Peter R. Wilson
+% Copyright 2010 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -15,7 +16,23 @@
 %
 % This work consists of the files listed in the README file.
 %
-% 
+%<*driver>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{combine.dtx}
+%</driver>
+%<usc>\ProvidesClass{combine}
+%<pck>\ProvidesPackage{combinet}
+%<natpack>\ProvidesPackage{combnat}
+%<citepack>\ProvidesPackage{combcite}
+%<*usc|pck|natpack|citepack>
+  [2010/03/22 v0.7
+%</usc|pck|natpack|citepack>
+%<usc>              collection of documents]
+%<pck>              document titles in ToC]
+%<natpack>          combine version of natbib package]
+%<citepack>         combine version of cite package]
+  source file for the combine class]
+%
 %<*driver>
 \documentclass[twoside]{ltxdoc}
 \makeatletter \@mparswitchfalse \makeatother
@@ -32,7 +49,7 @@
 %
 % \fi
 %
-% \CheckSum{3866}
+% \CheckSum{3858}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -97,28 +114,10 @@
 % \changes{v0.64}{2004/03/06}{Minor change to combinet package}
 % \changes{v0.64a}{2004/05/07}{Minor change to the abstract}
 % \changes{v0.64b}{2009/09/02}{New maintainer (Will Robertson)}
+% \changes{v0.7}{2010/03/22}{Bug fix and new (simpler) file versioning scheme}
 %
-% \def\dtxfilename{\texttt{combine.dtx}}
-% ^^A \def\fileversion{v0.3}
-% ^^A \def\filedate{2000/05/20}
-% ^^A \def\fileversion{v0.4}
-% ^^A \def\filedate{2000/05/27}
-% ^^A \def\fileversion{v0.41}
-% ^^A \def\filedate{2000/06/18}
-% ^^A \def\fileversion{v0.42}
-% ^^A \def\filedate{2001/04/04}
-% ^^A \def\fileversion{v0.51}
-% ^^A \def\filedate{2001/07/09}
-% ^^A \def\fileversion{v0.52}
-% ^^A \def\filedate{2001/08/25}
-% \def\fileversion{v0.53} \def\filedate{2001/09/05}
-% \def\fileversion{v0.6} \def\filedate{2002/08/24}
-% \def\fileversion{v0.61} \def\filedate{2003/05/22}
-% \def\fileversion{v0.62} \def\filedate{2003/07/19}
-% \def\fileversion{v0.63} \def\filedate{2003/11/09}
-% \def\fileversion{v0.64} \def\filedate{2004/03/06}
-% \def\fileversion{v0.64a} \def\filedate{2004/05/07}
-% \def\fileversion{v0.64b} \def\filedate{2009/09/02}
+% \GetFileInfo{combine.dtx}
+%
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -126,8 +125,8 @@
 % \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
 % \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
 %
-% \title{The \Lpack{combine} class and the \Lpack{combinet}, 
-%       \Lpack{combnat} and \Lpack{combcite} packages\thanks{This file (\dtxfilename)
+% \title{The \Lpack{combine} class and the packages\\ \Lpack{combinet}, 
+%       \Lpack{combnat} and \Lpack{combcite}\thanks{This file (\texttt{combine.dtx})
 %       has version number \fileversion, last revised \filedate.}}
 %
 % \author{%
@@ -969,15 +968,13 @@
 %
 %    Announce the name and version of the class, which requires
 % \LaTeXe{} and the \Lpack{keyval} package.
+% (This now happens at the top of DTX file so doesn't appear here.)
 % \changes{v0.53}{2001/09/05}{Class is now v0.45}
 % \changes{v0.6}{2002/08/24}{Class is now v0.5}
 % \changes{v0.63}{2003/11/09}{Class is now v0.52}
 %    \begin{macrocode}
 %<*usc>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{combine}[2003/11/09 v0.52 collection of documents]
 \RequirePackage{keyval}
-
 %    \end{macrocode}
 %
 % \begin{macro}{\c@lclass}
@@ -2794,8 +2791,6 @@
 % \changes{v0.53}{2001/09/05}{combinet package now version 0.2}
 % \changes{v0.64}{2004/03/06}{combinet package now version 0.2a}
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{combinet}[2004/03/06 v0.2a document titles in ToC]
 \@ifclassloaded{combine}{}{%
   \PackageError{combinet}{The `combine' class is expected}{\@ehc}%
 }
@@ -3006,13 +3001,11 @@
 % \changes{v0.6}{2002/08/24}{combnat package is now version 0.2}
 % \changes{v0.61}{2003/05/22}{combnat package is now version 0.21}
 % \changes{v0.61}{2003/05/22}{Somehow removed extraneous space from combnat package}
+% \changes{v0.7}{2010/03/22}{combnat bug fix thanks to Nicola Talbot}
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{combnat}[2003/05/22 v0.21 combined natbib package]
 \@ifclassloaded{combine}{}{%
   \PackageError{combnat}{The `combine' class is expected}{\@ehc}}
 \RequirePackageWithOptions{natbib}
-
 %    \end{macrocode}
 %
 % For multiple bibliographies (|\c@lonebibfalse|)
@@ -3706,11 +3699,8 @@
 % The usual preliminaries. The \Lpack{cite} package is required
 % and all options are passed to it to deal with.
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{combcite}[2003/11/09 v1.0 combine version of cite package]
 \@ifclassloaded{combine}{}{%
   \PackageError{combcite}{The `combine' class is expected}{\@ehc}}
-
 %    \end{macrocode}
 % By definition, we need the \Lpack{cite} package, but first have
 % to set up some option handling.
