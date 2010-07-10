@@ -13,6 +13,9 @@ provides a version of the cite package for use with the combine class.
 ______________
 Change History
 
+Version 0.7a (2010/07/10)
+- Previous version had a major typo, preventing the class from loading!
+
 Version 0.7 (2010/03/22)
 
 - Consolidate fileversion and filedate for all derived files
