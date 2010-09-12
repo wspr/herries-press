@@ -1,0 +1,163 @@
+
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5%%%%%%%%%6
+% Bundled source file for the NEEDSPACE package
+%--------1---------2---------3---------4---------5---------6
+% Please see the accompanying README for author,
+% license, documentation and installation information
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5%%%%%%%%%6
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% PACKAGE SOURCE %%
+%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{filecontents}
+\begin{filecontents}{needspace.sty}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{needspace}[2010/09/12 v1.3c reserve vertical space]
+
+\newcommand{\needspace}[1]{%
+  \begingroup
+    \setlength{\dimen@}{#1}%
+    \vskip\z@\@plus\dimen@
+    \penalty -100\vskip\z@\@plus -\dimen@
+    \vskip\dimen@
+    \penalty 9999%
+    \vskip -\dimen@
+    \vskip\z@skip % hide the previous |\vskip| from |\addvspace|
+  \endgroup
+}
+
+\newcommand{\Needspace}{\@ifstar{\@sneedsp@}{\@needsp@}}
+
+\newcommand{\@sneedsp@}[1]{\par \penalty-100\begingroup
+  \setlength{\dimen@}{#1}%
+  \dimen@ii\pagegoal \advance\dimen@ii-\pagetotal
+  \ifdim \dimen@>\dimen@ii
+    \break
+  \fi\endgroup}
+
+\newcommand{\@needsp@}[1]{\par \penalty-100\begingroup
+  \setlength{\dimen@}{#1}%
+  \dimen@ii\pagegoal \advance\dimen@ii-\pagetotal
+  \ifdim \dimen@>\dimen@ii
+    \ifdim \dimen@ii>\z@
+      \vfil
+    \fi
+    \break
+  \fi\endgroup}
+
+\end{filecontents}
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+
+
+% Conditionally compile the documentation & generate the .ins file:
+\providecommand\documentationCompile{Y}
+\makeatletter
+\if\documentationCompile N
+  \expandafter\@@end
+\fi
+
+
+\begin{filecontents*}{needspace.ins}
+%&latex
+\def\documentationCompile{N}
+\input needspace.tex
+\csname@@end\endcsname
+\end{filecontents*}
+
+
+%%%%%%%%%%%%%%%%%%%
+%% DOCUMENTATION %%
+%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\usepackage[it,medium]{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[sc,osf]{mathpazo}
+\linespread{1.1}
+\frenchspacing
+
+\usepackage[svgnames]{xcolor}
+\usepackage[colorlinks,linktocpage]{hyperref}
+\usepackage{gmdoc}
+\usepackage{gmverb}
+\dekclubs
+\stanzaskip=\bigskipamount
+\CodeSpacesGrey
+\DeclareRobustCommand\pkg{\textsf}
+
+\usepackage{needspace}
+\GetFileInfo{needspace.sty}
+
+\begin{document}
+
+\title{The \pkg{needspace} package}
+\author{%
+ Author: Peter Wilson, Herries Press\\
+ Maintainer: Will Robertson\\
+ \texttt{will dot robertson at latex-project dot org}%
+}
+\date{\fileversion \qquad \filedate}
+
+\maketitle
+
+\section{Documentation}
+
+This packages two commands, \cs{needspace} and \cs{Needspace}, for reserving
+space to keep a certain amount of material from being split over a page break.
+If there is not enough space, a `\newpage' is automatically inserted.
+
+The \cs{needspace}\meta{length} macro reserves an \emph{approximate} amount of space \meta{length} for
+the material following to be kept on the same page. The accuracy of its
+calculations depend on what penalties are in effect, but is efficient and
+normally adequate. A short page will be ragged bottom even if \cs{flushbottom}
+is in effect.
+
+\cs{Needspace}\marg{length} is less efficient but reserves the requested space \meta{length} exactly. It
+should only be used between paragraphs. Short pages that are produced by
+\cs{Needspace} will be ragged bottom but short pages produced by
+\cs{Needspace*}\marg{length} will be flush bottom if \cs{flushbottom} is in
+effect.
+
+\section{Examples}
+
+Here, we request that we need next five lines on a single page/column:
+\begin{verbatim}
+... previous text.
+
+\needspace{5\baselineskip}
+The next five lines ...
+\end{verbatim}
+In this case, the space is reserved more accurately:
+\begin{verbatim}
+... previous text.
+
+\Needspace*{4\baselineskip}
+   The major principles are:
+\begin{itemize}
+\item ...
+\end{verbatim}
+
+
+\section*{Licence and copyright}
+
+This work may be modified and/or distributed under the terms and
+conditions of the \LaTeX\ Project Public License\footnote{\url{http://www.latex-project.org/lppl.txt}}, version~1.3c or later (your choice).
+The current maintainer of this work is Will Robertson.
+
+\bigskip
+  \noindent
+  Copyright Peter Wilson, 1996--2003 \\
+  Copyright Will Robertson, 2010
+
+\clearpage
+\parindent=0pt
+
+\section{Implementation}
+\DocInput{needspace.sty}
+
+\end{document}
