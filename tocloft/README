@@ -8,6 +8,10 @@ define your own kinds of `List of ...'
 _______________
 Change history:
 
+Changes in version 2.3e (2010/10/13)
+-  Remove a superfluous message from the console output:  
+   "The document has [section|chapter] divisions"
+
 Changes in version 2.3d (2009/09/04)
 -  New package maintainer (Will Robertson) and small bug fix
 

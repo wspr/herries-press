@@ -29,7 +29,7 @@
 %
 % \fi
 %
-% \CheckSum{2208}
+% \CheckSum{2197}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -93,6 +93,7 @@
 % \changes{v2.3b}{2003/01/20}{More fixes for Part changes}
 % \changes{v2.3c}{2003/09/26}{More fixes for hyperref}
 % \changes{v2.3d}{2009/09/04}{New maintainer and tiny bug fix}
+% \changes{v2.3e}{2010/10/13}{Remove a message from the console output}
 %
 % \def\dtxfile{\texttt{tocloft.dtx}}
 % \def\fileversion{v1.1a}  \def\filedate{2000/02/11}
@@ -104,6 +105,7 @@
 % \def\fileversion{v2.3b} \def\filedate{2003/01/20}
 % \def\fileversion{v2.3c} \def\filedate{2003/09/26}
 % \def\fileversion{v2.3d} \def\filedate{2009/09/04}
+% \def\fileversion{v2.3e} \def\filedate{2010/10/13}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -1214,33 +1216,8 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocloft}[2009/09/04 v2.3d parameterised ToC, etc., typesetting]
+\ProvidesPackage{tocloft}[2010/10/13 v2.3e parameterised ToC, etc., typesetting]
 %    \end{macrocode}
-%
-% \begin{macro}{\PRWPackageNote}
-% \begin{macro}{\PRWPackageNoteNoLine}
-% These two commands write a Package Note to the terminal and the log file.
-% Use as: |\PRWPackageNote{|\meta{package name}|}{|\meta{note text}|}|.
-% The NoLine version does not show the line number. The commands are intermediate
-% between the kernel |\PackageWarning| and |\PackageInfo| commands.
-% I have |\provide|d the |\PRW...| commands as other packages (of mine)
-% may also incorporate them. The code is based on \file{lterror.dtx}.
-% \changes{v1.0}{1999/09/19}{Added PRWPackageNote and PRWPackageNoteNoLine
-%                            commands}
-%    \begin{macrocode}
-\providecommand{\PRWPackageNote}[2]{%
-  \GenericWarning{%
-    (#1)\@spaces\@spaces\@spaces\@spaces
-  }{%
-   Package #1 Note: #2%
-   }%
-}
-\providecommand{\PRWPackageNoteNoLine}[2]{%
-  \PRWPackageNote{#1}{#2\@gobble}%
-}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
 %
 % In order to try and avoid name clashes with other packages, each internal
 % name will include the character string \texttt{@cft}.
@@ -1280,9 +1257,9 @@
     \PackageWarning{tocloft}%
       {I don't recognize any sectional divisions so I'll do nothing}
     \renewcommand{\@cftquit}{\endinput}
-    }{\PRWPackageNoteNoLine{tocloft}{The document has section divisions}} 
+    }{\PackageInfo{tocloft}{The document has section divisions}}
   }{\@cfthaschaptertrue
-    \PRWPackageNoteNoLine{tocloft}{The document has chapter divisions}}
+    \PackageInfo{tocloft}{The document has chapter divisions}}
 %    \end{macrocode}
 % Perhaps quit now.
 %    \begin{macrocode}

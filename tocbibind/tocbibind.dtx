@@ -89,6 +89,7 @@
 % \changes{v1.5f}{2003/02/04}{Changed theindex}
 % \changes{v1.5h}{2004/05/10}{Changed license from LPPL v1.0 to v1.3}
 % \changes{v1.5i}{2009/09/04}{New maintainer (Will Robertson)}
+% \changes{v1.5k}{2010/10/13}{Remove a message in the console output}
 %
 % \def\dtxfile{tocbibind.dtx}
 % \def\fileversion{v1.4a} \def\filedate{2000/03/05}
@@ -103,6 +104,7 @@
 % \def\fileversion{v1.5h} \def\filedate{2004/05/10}
 % \def\fileversion{v1.5i} \def\filedate{2009/09/04}
 % \def\fileversion{v1.5j} \def\filedate{2009/12/28}
+% \def\fileversion{v1.5k} \def\filedate{2010/10/13}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -447,7 +449,7 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocbibind}[2009/12/28 v1.5j extra ToC listings]
+\ProvidesPackage{tocbibind}[2010/10/13 v1.5k extra ToC listings]
 %    \end{macrocode}
 %
 % \begin{macro}{\PRWPackageNote}
@@ -491,9 +493,9 @@
        I hope you have used the `other' option\MessageBreak
        otherwise I'll ignore the package}
     \renewcommand{\@bibquit}{\endinput}
-    }{\PRWPackageNoteNoLine{tocbibind}{The document has section divisions}}
+    }{\PackageInfo{tocbibind}{The document has section divisions}}
   }{\@bibchaptertrue
-    \PRWPackageNoteNoLine{tocbibind}{The document has chapter divisions}}
+    \PackageInfo{tocbibind}{The document has chapter divisions}}
 
 %    \end{macrocode}
 % \end{macro}

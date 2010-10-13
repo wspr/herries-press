@@ -7,6 +7,10 @@ and/or the index etc., to the Table of Contents listing.
 ______________
 Change History
 
+Version 1.5k (2010/10/13)
+-  Remove a superfluous message from the console output:  
+   "The document has [section|chapter] divisions"
+
 Version 1.5j (2009/12/28)
 - Internal changes: \phantomsection is no longer needed
   for hyperref support
