@@ -1,0 +1,204 @@
+
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+% Bundled source file for the VERTBARS package 
+%--------1---------2---------3---------4---------5
+% Please see the accompanying README for author,
+% license, documentation and installation information
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+
+\RequirePackage{filecontents}
+\begin{filecontents}{vertbars.sty}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vertbars}[2010/11/27 v1.0b vertical bars in the margin]
+
+\newcommand{\LNenv}{runninglinenumbers}
+\DeclareOption{switch}{%
+  \renewcommand{\LNenv}{runningpagewiselinenumbers}
+  \PassOptionsToPackage{\CurrentOption}{lineno}
+}
+
+\DeclareOption{switch*}{%
+  \renewcommand{\LNenv}{runningpagewiselinenumbers}
+  \PassOptionsToPackage{\CurrentOption}{lineno}
+}
+
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{lineno}}
+\ProcessOptions\relax
+\RequirePackage{lineno}
+
+% Code to add stuff at start and end of a pre-existing zero argument macro:
+\newcommand{\addtodef}[3]{\begingroup
+  \@temptokena{#2}%
+  \toks@\expandafter{#1#3}%
+  \edef\x{\endgroup
+    \def\noexpand#1{\the\@temptokena \the\toks@}}%
+  \x
+}
+
+% It's useful to preserve \cmd\baselineskip:
+\newlength{\pwvbbl}
+\setlength{\pwvbbl}{\baselineskip}
+
+% Width of bars:
+\newlength{\barwidth}
+\setlength{\barwidth}{0.4pt}
+
+% Horizontal space between bars:
+\newlength{\barspace}
+\setlength{\barspace}{0.5\linenumbersep}
+
+\newcommand{\addtomakeLNL}{{\rule[-0.25\pwvbbl]{\barwidth}{1.1\pwvbbl}\hskip\barspace\relax}}
+\newcommand{\pwvbLNL}{}
+
+\newenvironment{vertbar}{%
+  \pagewiselinenumbers % <= added v1.0b
+  \begin{\LNenv}%
+    \addtodef{\pwvbLNL}{}{\addtomakeLNL}%
+    \let\LineNumber\pwvbLNL
+}{%
+  \end{\LNenv}%
+}
+
+\end{filecontents}
+%%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
+
+
+% Conditionally compile the documentation & generate the .ins file:
+\providecommand\documentationCompile{Y}
+\makeatletter
+\if\documentationCompile N
+  \expandafter\@@end
+\fi
+
+
+\begin{filecontents*}{vertbars.ins}
+%&latex
+\def\documentationCompile{N}
+\input vertbars.tex
+\csname@@end\endcsname
+\end{filecontents*}
+
+
+
+
+\makeatletter
+\documentclass{article}
+
+\usepackage[it,medium]{titlesec}
+
+\usepackage{array,bigfoot,vertbars}
+\usepackage[svgnames]{xcolor}
+\usepackage[colorlinks,linktocpage]{hyperref}
+
+\usepackage{geometry}
+\geometry{b5paper}
+
+\usepackage{gmdoc}
+\usepackage{gmverb}
+\dekclubs
+\stanzaskip=\bigskipamount 
+\CodeSpacesGrey
+
+\usepackage{tocloft,varwidth}
+\setcounter{tocdepth}{1}
+\def\tocwidthA{0.55}
+\def\tocwidthB{0.44}
+\def\cftpartfont{\scshape}
+\def\cftsecfont{\small}
+\cftbeforesecskip=0pt
+\def\cftpartleader{}
+\def\cftpartafterpnum{\cftparfillskip}
+\def\cftsecleader{}
+\def\cftsecafterpnum{\cftparfillskip}
+
+\DeclareRobustCommand\pkg{\textsf}
+\def\pkgopt#1{\texttt{[#1]}}
+\newcommand\chng[1]{\marginpar{\footnotesize\raggedright\textsf{#1}}}
+
+\def\PDF{\textsc{pdf}}
+\def\PS{\textsc{ps}}
+\def\DVI{\textsc{dvi}}
+\def\EPS{\textsc{eps}}
+
+\usepackage{amsmath,listings}
+\lstset{basicstyle=\ttfamily,columns=fullflexible}
+
+\usepackage{changepage}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[sc,osf]{mathpazo}
+\linespread{1.1}
+\frenchspacing
+
+\GetFileInfo{vertbars.sty}
+\begin{document}
+{\addtocontents{toc}{\protect\begin{varwidth}[t]{\tocwidthA\linewidth}}}
+
+\title{The \pkg{vertbars} package}
+\author{%
+ Author: Peter Wilson, Herries Press\\
+ Maintainer: Will Robertson\\
+ \texttt{will dot robertson at latex-project dot org}%
+}
+\date{\fileversion \qquad \filedate}
+
+\maketitle
+
+\section{Documentation}
+
+Because this package uses \textsf{lineno} as a driver,
+please read the documentation of that package first to
+understand the mechanisms used here.
+
+The \textsf{vertbars} package takes the same options as the \textsf{lineno} package.
+In particular, the switch and switch* options control which side of the page any bars will be printed.
+The package automatically calls the lineno package, so you just need to write:
+\begin{verbatim}
+    \usepackage[...]{vertbars}
+\end{verbatim}
+
+The package provides the \texttt{vertbar} environment, which is equivalent to the linenumbers environment except that a vertical bar replaces the line number.
+Text paragraphs within a vertbar environment will be marked with a vertical bar in the margin. 
+Nested environments generate multiple marginal bars.
+
+The width of the bars is controlled by the value of \cmd\barwidth, which is initialised to \verb|0.4pt|, and can be changed via \cmd\setlength.
+
+The horizontal seperation between adjacent bars is controlled by the value of \cmd\barspace, which is initialised to \verb|0.5\linenumbersep|, and can be changed via \cmd\setlength.
+(\cmd\linenumbersep is a command from the lineno package that controls the spacing between line numbers and the text body).
+
+Note: Bars can only be applied to complete paragraphs.
+For bars between arbitrary points, use the \textsf{changebar} package.
+Any limitations of the \textsf{lineno} package apply equally to the \textsf{vertbars} package.
+
+\section*{Change History}
+
+\begin{itemize}
+\item[v1.0b] 2010/11/27 Fix behaviour with \texttt{switch} option
+\item[v1.0a] 2009/09/04 New maintainer (Will Robertson)
+\end{itemize}
+
+
+
+\section*{Licence and copyright}
+  
+This work may be modified and/or distributed under the terms and
+conditions of the \LaTeX\ Project Public License\footnote{\url{http://www.latex-project.org/lppl.txt}}, version~1.3c or later (your choice).
+The current maintainer of this work is Will Robertson.
+
+\bigskip
+  \noindent
+  Copyright Peter Wilson, 2000 \\
+  Copyright Will Robertson, 2010 \\
+
+{\addtocontents{toc}{\protect\end{varwidth}\protect\hfill}}
+{\addtocontents{toc}{\protect\begin{varwidth}[t]{\protect\tocwidthB\protect\linewidth}}}
+\clearpage
+\parindent=0pt
+
+\section{Implementation}
+\DocInput{vertbars.sty}
+
+{\addtocontents{toc}{\protect\end{varwidth}}}
+
+\end{document}
