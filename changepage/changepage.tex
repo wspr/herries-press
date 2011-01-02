@@ -420,7 +420,7 @@ be of the form `|^_|\meta{N}' where \meta{N} is a positive integer.
 \chng{For chngpage, use \cs{cplabelprefix} instead of \cs{cplabel}.}
 
 The package option `strict' turns on strict page checking --- the default
-is not to use strict checking. Strict page checking can be turned on or 
+is not to use strict checking. Strict page checking can be turned on or
 off at any time by the commands |\strictpagecheck| or |\easypagecheck|.
 The easy page check just tests the page number to see if it is odd or even, 
 which does not always give the correct result because of \TeX's asynchronous
@@ -490,11 +490,11 @@ Whether or not the strict option is used, `strict adjustwidths'
 can be turned on by putting the command |\strictpagecheck| before
 the environment, and turned off by using |\easypagecheck|.
 
-\chng{In chngpage, use \cs{cpstricttrue} and \cs{cpstricttrue}
+\chng{In chngpage, use \cs{cpstricttrue} and \cs{cpstrictfalse}
 instead of \cs{strictpagecheck} and \cs{easypagecheck}.}
 
 \textsc{note:}
-In a twocolumn document, the adjustwidth environment 
+In a twocolumn document, the |adjustwidth| environment 
 treats both columns equally. For example, if the width is meant
 to be wider at the outer margin, then on odd pages the extra width
 will be at the right of any column, and on even pages the extra
