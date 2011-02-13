@@ -7,9 +7,9 @@ $(PKG).tar.gz: $(FILES) $(RESULTS)
 	ctanify $(PKG).ins $(PKG).pdf README
 
 $(PKG).pdf: $(PKG).dtx
-	pdflatex $<;
+	pdflatex -draftmode $<;
 	makeindex -s gind.ist $(PKG);
-	pdflatex $<;
+	pdflatex -draftmode $<;
 	pdflatex $<;
 
 $(PKG).sty: $(FILES)

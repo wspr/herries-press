@@ -11,7 +11,8 @@ testfont.tex.
 ------------------------------------------------------------------
 Change History
 
-1.6 (2009/10/15)
+1.6b (2011/02/13) - Fix bug with Spanish babel
+1.6  (2009/10/15)
 - New spacing behaviour of the decimal numbers, courtesy Peter Wilson
 
 1.5d (2009/09/22) - Fix the bug for real, this time
@@ -38,7 +39,7 @@ Change History
   Author: Peter Wilson (Herries Press)
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 2005--2009 Peter R. Wilson
-  Copyright 2009 Will Robertson
+  Copyright 2009--2011 Will Robertson
 
   This work may be distributed and/or modified under the
   conditions of the Latex Project Public License, either

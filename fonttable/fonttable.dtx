@@ -5,6 +5,7 @@
 %  Author: Peter Wilson (Herries Press)
 %  Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 %  Copyright 2005--2009 Peter R. Wilson
+%            2009--2011 Will Robertson
 %
 %  This work may be distributed and/or modified under the
 %  conditions of the Latex Project Public License, either
@@ -16,6 +17,14 @@
 %
 %  This work consists of the files listed in the README file.
 %
+%<pack>\NeedsTeXFormat{LaTeX2e}
+%<pack>\ProvidesPackage{fonttable}
+%<*driver>
+\ProvidesFile{fonttable.dtx}
+%</driver>
+%<*driver|pack>
+  [2011/02/13 v1.6b displays a font]
+%</driver|pack>
 %
 %<*driver>
 \documentclass[twoside]{ltxdoc}
@@ -54,7 +63,7 @@
 %
 % \fi
 %
-% \CheckSum{911}
+% \CheckSum{945}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -107,19 +116,8 @@
 % \changes{v1.51}{2009/05/14}{Eliminated a clash with babel package}
 % \changes{v1.5b}{2009/09/02}{New maintainer (Will Robertson)}
 % \changes{v1.6}{2009/10/15}{New spacing of the decimals from Peter Wilson}
+% \changes{v1.6b}{2011/02/13}{Fix bug with Spanish babel}
 %
-% \def\fileversion{v1.0} \def\filedate{2005/11/27}
-% \def\fileversion{v1.0a} \def\filedate{2005/12/06}
-% \def\fileversion{v1.1} \def\filedate{2006/10/02}
-% \def\fileversion{v1.2} \def\filedate{2008/05/08}
-% \def\fileversion{v1.3} \def\filedate{2009/04/30}
-% \def\fileversion{v1.4} \def\filedate{2009/05/06}
-% \def\fileversion{v1.5} \def\filedate{2009/05/12}
-% \def\fileversion{v1.51} \def\filedate{2009/05/14}
-% \def\fileversion{v1.5b} \def\filedate{2009/09/02}
-% \def\fileversion{v1.5c} \def\filedate{2009/09/20}
-% \def\fileversion{v1.5d} \def\filedate{2009/09/22}
-% \def\fileversion{v1.6} \def\filedate{2009/10/15}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -129,16 +127,15 @@
 % \newcommand*{\AD}{\textsc{ad}}
 % \newcommand*{\thisfont}{OandS}
 %
-% \title{The \Lpack{fonttable} package\thanks{This
-%        file has version number \fileversion, last revised
-%        \filedate.}}
+% \GetFileInfo{fonttable.dtx}
+% \title{The \Lpack{fonttable} package}
 %
 % \author{%
 % Author: Peter Wilson, Herries Press\\
 % Maintainer: Will Robertson\\
 % \texttt{will dot robertson at latex-project dot org}%
 % }
-% \date{\filedate}
+% \date{\fileversion\qquad \filedate}
 % \maketitle
 % \begin{abstract}
 %    The package lets you typeset the characters in a font in tabular and/or
@@ -436,9 +433,6 @@
 %
 %    \begin{macrocode}
 %<*pack>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fonttable}[2009/10/15 v1.6 displays a font]
-
 %    \end{macrocode}
 %
 % \subsection{Table and texts}
