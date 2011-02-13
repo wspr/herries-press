@@ -501,27 +501,73 @@
 % The original code for the macro was supplied by Enrico Gregorio.
 % \changes{v1.4}{2009/05/06}{Added \cs{xfonttable}}
 %    \begin{macrocode}
-\newcommand*{\xfonttable}[4]{\bgroup
-  \pikfont{#1}{#2}{#3}{#4}%
-  \edef\f@tfontname{\fontname\font}\normalfont
-  \f@tstartfont 
-  \ftable
-  \egroup}
-
+\newcommand*{\xfonttable}[4]{%
+  \begingroup
+    \pikfont{#1}{#2}{#3}{#4}%
+    \edef\f@tfontname{\fontname\font}%
+%    \end{macrocode}
+% New: strip any size information from the fontname (which could be, e.g.,
+% either `\verb*|cmr10|' or `\verb*|cmr10 at 10pt|'.)
+% This wasn't necessary before because we didn't explicitly choose the font
+% size; it was inferred automatically.
+%    \begin{macrocode}
+    \edef\@tempa{\string a\string t}%
+    \edef\@tempb{\noexpand\in@{\@tempa}{\f@tfontname}}%
+    \@tempb
+    \ifin@
+      \edef\f@tfontname{\expandafter\f@tstripsize\f@tfontname}%
+    \fi
+%    \end{macrocode}
+% End new code, and finish as before:
+%    \begin{macrocode}
+    \normalfont
+    \f@tstartfont
+    \ftable
+  \endgroup
+}
 %    \end{macrocode}
 % \end{macro}
+%
+%
+% \begin{macro}{\f@tstripsize}
+% Needed above.
+%    \begin{macrocode}
+\edef\@tempa{%
+  \def\noexpand\f@tstripsize
+    ##1\string a\string t##2\string p\string t{##1}%
+}
+\@tempa
+%    \end{macrocode}
+% \end{macro}
+%
 %
 % \begin{macro}{\f@tstartfont}
 % Sets up for a font table.
 %    \begin{macrocode}
-\newcommand*{\f@tstartfont}{\font\f@ttestfont=\f@tfontname
+\newcommand*{\f@tstartfont}{%
+%    \end{macrocode}
+% New: scale the font by 0.01\% to (attempt to) avoid TeX's font optimisation.
+% This becomes a problem in Spanish babel, say, when \verb|\textfont\fam|
+% changes when \verb|cmr10| has been loaded under a different name, here.
+% (And the \verb|\textfont| can no longer be parsed correctly. See:
+% \url{http://latex-alive.tumblr.com/post/3229118083/texs-font-loading-optimisation}
+% )
+%    \begin{macrocode}
+  \@tempdima=\f@size pt
+  \font\f@ttestfont=\f@tfontname\space at 0.9999\@tempdima\relax
+%    \end{macrocode}
+% Continue as before:
+%    \begin{macrocode}
   \f@ttestfont \f@tsetbaselineskip
-  \ifdim\fontdimen6\f@ttestfont<10pt \rightskip=0pt plus 20pt
-  \else\rightskip=0pt plus 2em \fi
+  \ifdim\fontdimen6\f@ttestfont<10pt\relax
+    \rightskip=0pt plus 20pt\relax
+  \else
+    \rightskip=0pt plus 2em\relax
+  \fi
   \spaceskip=\fontdimen2\f@ttestfont % space between words (\raggedright)
-  \xspaceskip=\fontdimen2\f@ttestfont \advance\xspaceskip
-  by\fontdimen7\f@ttestfont}
-
+  \xspaceskip=\fontdimen2\f@ttestfont
+  \advance\xspaceskip by\fontdimen7\f@ttestfont
+}
 %    \end{macrocode}
 % \end{macro}
 %
