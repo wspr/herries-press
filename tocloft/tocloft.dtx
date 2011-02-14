@@ -1704,7 +1704,12 @@ Consider installing the current version of tocbibind.}}
        \let\@cftasnum \cftpartaftersnum
        \let\@cftasnumb \cftpartaftersnumb
        \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-       {\cftpartfont \cftpartpresnum #1}%
+%    \end{macrocode}
+% In default \LaTeX, the part ToC entry is written without \verb|\numberline|
+% and hence the `presnum' needs to be inserted manually.
+% In Koma-Script, however, this is not the case.
+%    \begin{macrocode}
+       {\cftpartfont \if@cftkoma\else\cftpartpresnum\fi #1}%
        \cftpartfillnum{#2}}
       \nobreak
       \if@cfthaschapter
