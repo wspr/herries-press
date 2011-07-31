@@ -360,7 +360,7 @@
 %
 %    Documents with sections, but not chapters, can be treated in a similar
 % manner by redefining |\tocetcmark| appropriately.
-% 
+%
 %
 %
 % \subsection{Package Defined Listof...}
@@ -372,12 +372,12 @@
 %
 %    The \Lpack{listings} package version 0.2 provides a |\lstlistoflistings|
 % command to print a list of listings. The header name for this list
-% is in |\lstlistingname| and the listing file has the extension |lol|.
+% is in |\lstlistlistingname| and the listing file has the extension |lol|.
 % This can be treated just like the |\listoffigure|, etc., commands.
 % To add the List of Listings header to the ToC do:
 % \begin{verbatim}
 % \renewcommand{\lstlistoflistings}{\begingroup
-%    \tocfile{\lstlistingname}{lol}
+%    \tocfile{\lstlistlistingname}{lol}
 % \endgroup}
 % \end{verbatim}
 % and to number the Listof heading do:
@@ -385,7 +385,7 @@
 % \renewcommand{\lstlistoflistings}{\begingroup
 %    \tocsection
 %    \tocchapter
-%    \tocfile{\lstlistingname}{lol}
+%    \tocfile{\lstlistlistingname}{lol}
 % \endgroup}
 % \end{verbatim}
 %
