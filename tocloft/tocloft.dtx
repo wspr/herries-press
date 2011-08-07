@@ -1469,13 +1469,13 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\@cftmaketoctitle}{%
   \addpenalty\@secpenalty
   \if@cfthaschapter
-    \vspace*{\cftbeforetoctitleskip}
+    \vspace*{\cftbeforetoctitleskip}%
   \else
-    \vspace{\cftbeforetoctitleskip}
+    \vspace{\cftbeforetoctitleskip}%
   \fi
   \@cftpagestyle
   {\interlinepenalty\@M
-  {\cfttoctitlefont\contentsname}{\cftaftertoctitle}
+  {\cfttoctitlefont\contentsname}{\cftaftertoctitle}%
   \cftmarktoc
   \par\nobreak
   \vskip \cftaftertoctitleskip
@@ -3184,16 +3184,16 @@ Consider installing the current version of tocbibind.}}
   \@namedef{@cftmake#3title}{%
     \addpenalty\@secpenalty
     \if@cfthaschapter
-      \vspace*{\@nameuse{cftbefore#3titleskip}}
+      \vspace*{\@nameuse{cftbefore#3titleskip}}%
     \else
-      \vspace{\@nameuse{cftbefore#3titleskip}}
+      \vspace{\@nameuse{cftbefore#3titleskip}}%
     \fi
     \@cftpagestyle
     {\interlinepenalty\@M
-    {\@nameuse{cft#3titlefont}#4}{\@nameuse{cftafter#3title}}
-    \@nameuse{cftmark#3}
+    {\@nameuse{cft#3titlefont}#4}{\@nameuse{cftafter#3title}}%
+    \@nameuse{cftmark#3}%
     \par\nobreak
-    \vskip \@nameuse{cftafter#3titleskip}
+    \vskip \@nameuse{cftafter#3titleskip}%
     \@afterheading}}
 
 %    \end{macrocode}
