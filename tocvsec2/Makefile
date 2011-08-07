@@ -4,7 +4,7 @@ FILES = README $(PKG).ins $(PKG).dtx
 RESULTS = $(PKG).pdf $(PKG).sty
 
 $(PKG).tar.gz: $(FILES) $(RESULTS)
-	ctanify $(PKG).ins $(PKG).pdf README
+	ctanify $(PKG).ins $(PKG).pdf README $(PKG)-example.tex=doc/latex/$(PKG)
 
 $(PKG).pdf: $(PKG).dtx
 	pdflatex $<;
