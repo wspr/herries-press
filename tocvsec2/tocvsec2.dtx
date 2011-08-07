@@ -113,7 +113,7 @@
 % in the Table of Contents on a section by section basis.
 % It is a replacement for the \Lpack{tocvsec} package, which should 
 % not be used.
-% Use of the package requires the \Lpack{ifthen} package to be available.
+% Use of the package requires e\TeX\ and the \Lpack{ifthen} package to be available.
 % \end{abstract}
 % \tableofcontents
 %
@@ -226,6 +226,8 @@
 % The package also provides some utility commands so you don't have to remember
 % the level numbers of the sectioning commands.
 %
+% \subsection{Changing ToC appearances}
+%
 % \DescribeMacro{\maxtocdepth}
 % The |\maxtocdepth{|\meta{sec}|}| command can be used after the preamble
 % (and before the |\tableofcontents| command) to set the global value
@@ -250,9 +252,18 @@
 % to the least 
 % significant sectional unit
 % that should be in the printed ToC.
-% Later, after the |\tableofcontents| command,  it is possible to 
-% to use |\settocdepth| to reset \Lcount{tocdepth} to a more significant
-% sectional level (and to reset it back again). As an example, assume that
+% Later, after the |\tableofcontents| command,  it is possible to
+% to use |\settocdepth| to change \Lcount{tocdepth} to a different
+% sectional level.
+%
+% \DescribeMacro{\resettocdepth}
+% After \Lcount{tocdepth} has been changed with |\settocdepth|, it is
+% possible to reset it to its previous value with |\resettocdepth|, which
+% takes no arguments. In fact, you may use |\resettocdepth| multiple times
+% to reset multiple uses of |\settocdepth|. (It behaves like a stack, for
+% you computer-science-types.)
+%
+% As an example, assume that
 % the ToC should list subsections and above, but there is one particular
 % section in the document which consists of a set of definitions, each of
 % which is presented as a subsection, but these should not appear in the
@@ -270,10 +281,12 @@
 %       \settocdepth{section}
 % \subsection{Definition 1}
 %  ...
-%       \settocdepth{subsection}
+%       \resettocdepth %% equivalent to "\settocdepth{subsection}"
 % \section{After definitions}
 % ...
 % \end{verbatim}
+%
+% \section{Changing section numbering}
 %
 % \DescribeMacro{\setsecnumdepth}
 % The |\setsecnumdepth{|\meta{sec}|}| command is similar to |\settocdepth| 
@@ -286,10 +299,18 @@
 % \DescribeMacro{\maxsecnumdepth}
 % The |\maxsecnumdepth{|\meta{sec}|}| command is similar to |\maxtocdepth|
 % except that it is for setting the default value for \Lcount{secnumdepth}
-% after the preamble. If you used |\setsecnumdepth| for this purpose
-% you might find an extra blank page in the typeset manuscript.
+% after the preamble.
+% In previous versions of the package if you used |\setsecnumdepth| for this
+% purpose you might find an extra blank page in the typeset manuscript, but
+% nowadays the two commands are interchangeable.
 %
-% For example, assume that in a document the sectional divisions are 
+% \DescribeMacro{\resetsecnumdepth}
+% Similarly to |\resettocdepth|, this command cycles back through previous
+% values for \Lcount{secnumdepth} so you don't have to keep track of them
+% yourself if you need to change its value for only a short component of a
+% manuscript.
+%
+% For example, assume that in a document the sectional divisions are
 % normally numbered down to the sub-subsection level, but within a particular
 % section, they should only be numbered to the subsection level. Also,
 % all sectional divisions within the appendices are to be numbered.
@@ -308,7 +329,7 @@
 % \section{Reduce numbering} 
 %       \setsecnumdepth{subsection}
 % ...
-%       \setsecnumdepth{subsubsection}
+%       \resetsecnumdepth %% equivalent to "\setsecnumdepth{subsubsection}"
 % \section{Another normal section}
 %  ...
 % \appendix
@@ -393,35 +414,35 @@
 \newcommand{\settocdepth}[1]{%
   \@knownsect@cfalse
   \ifthenelse{\equal{#1}{none}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{-10}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{part}}{%
     \ift@cchapter
-      \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+      \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{-1}}
     \else
-      \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+      \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{0}}
     \fi
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{chapter}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{0}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{section}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{1}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{subsection}}{
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{2}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{subsubsection}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{3}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{paragraph}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{4}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{4}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{subparagraph}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{5}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{5}}
     \@knownsect@ctrue}{}
   \ifthenelse{\equal{#1}{all}}{%
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{100}}
+    \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{100}}
     \@knownsect@ctrue}{}
   \if@knownsect@c\else
     \PackageError{tocvsec2}{%
@@ -443,21 +464,83 @@
 %
 % \begin{macro}{\setsecnumdepth}
 % \changes{v1.2b}{2010/02/27}{Remove occasional extraneous vertical space}
-% |\setsecnumdepth{|\meta{sec}|}| is the user command for setting 
+% |\setsecnumdepth{|\meta{sec}|}| is the user command for setting
 % \Lcount{secnumdepth} to the value corresponding to \meta{sec}.
 %    \begin{macrocode}
 \newcommand{\setsecnumdepth}[1]{%
+  \save@secnumdepth
   \@setseccntt@c{#1}{secnumdepth}}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\maxsecnumdepth}
 % |\maxsecnumdepth{|\meta{sec}|}| is the user command to initialise
-% \Lcount{secnumdepth} after the preamble 
+% \Lcount{secnumdepth} after the preamble
 % to the value corresponding to \meta{sec}.
 %    \begin{macrocode}
 \newcommand{\maxsecnumdepth}[1]{%
+  \save@secnumdepth
   \@setseccntt@c{#1}{secnumdepth}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Resetting and returning to previous values}
+%
+%
+% \begin{macro}{\resetsecnumdepth}
+% It would be nice to be able to `reset' the tocdepth or secnumdepth
+% to a previous value.
+% Unfortunately this can't be done with grouping so we use a stack-based
+% approach.
+%    \begin{macrocode}
+\let\stack@secnumdepth\@empty
+\def\save@secnumdepth{%
+  \edef\stack@secnumdepth{\stack@secnumdepth\the\c@secnumdepth\relax}%
+}
+\def\gobble@secnumdepth#1\@nil{\edef\stack@secnumdepth{#1}}
+%    \end{macrocode}
+% The idea of the stack is
+%  \verb|{|$x_1$\verb|\relax|$x_2$\verb|\relax|\dots\verb|}|;
+% prepending new values with \cs{edef} and using assignment and
+% \cs{afterassignment} to push an entry off the front.
+%    \begin{macrocode}
+\def\resetsecnumdepth{%
+  \ifx\stack@secnumdepth\@empty
+    \PackageWarning{tocvsec2}{There is no previous value for secnumdepth}%
+  \else
+    \afterassignment\gobble@secnumdepth
+    \expandafter\c@secnumdepth\expandafter\numexpr\stack@secnumdepth\@nil
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\resettocdepth}
+% The idea the same is as above but because it all happens inside an auxiliary
+% file there's a couple of extra steps.
+%    \begin{macrocode}
+\let\stack@tocdepth\@empty
+\protected\def\save@tocdepth{%
+  \edef\stack@tocdepth{\stack@tocdepth\the\c@tocdepth\relax}%
+}
+%    \end{macrocode}
+% Ensure errant \cs{save@tocdepth} won't cause problems:
+%    \begin{macrocode}
+\addtocontents{toc}{\@ifundefined{save@tocdepth}{\let\save@tocdepth\relax}{}}
+\def\gobble@tocdepth#1\@nil{\edef\stack@tocdepth{#1}}
+%    \end{macrocode}
+% Resetting is done in the \verb|.toc| file:
+%    \begin{macrocode}
+\def\resettocdepth{\addtocontents{toc}{\reset@tocdepth}}
+\protected\def\reset@tocdepth{%
+  \ifx\stack@tocdepth\@empty
+    \PackageWarning{tocvsec2}{There is no previous value for tocdepth}%
+  \else
+    \afterassignment\gobble@tocdepth
+    \expandafter\c@tocdepth\expandafter\numexpr\stack@tocdepth\@nil
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
