@@ -3,11 +3,12 @@
 % ccaption.dtx
 % Author: Peter Wilson (Herries Press)
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-% Copyright 1998 -- 2005 Peter R. Wilson
+% Copyright 1998-2005 Peter R. Wilson
+% Copyright 2011 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
-% version 1.3c of this license or (at your option) any 
+% version 1.3c of this license or (at your option) any
 % later version: <http://www.latex-project.org/lppl.txt>
 %
 % This work has the LPPL maintenance status "maintained".
@@ -15,7 +16,15 @@
 %
 % This work consists of the files listed in the README file.
 %
-% 
+%
+%<*driver>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{ccaption.dtx}
+%</driver>
+%<usc>\ProvidesPackage{ccaption}
+%<*usc>
+  [2011/08/07 v3.2c Extended captioning and new floats]
+%</usc>
 %<*driver>
 \documentclass[twoside]{ltxdoc}
 \usepackage{url}
@@ -23,7 +32,8 @@
               plainpages=false,
               pdfpagelabels,
               bookmarksnumbered,
-              hyperindex=false
+              hyperindex=false,
+              linktocpage=true,
              ]{hyperref}
 \providecommand{\phantomsection}{}
 \makeatletter
@@ -45,6 +55,7 @@
 %%\usepackage{subfigure}
 \EnableCrossrefs
 \CodelineIndex
+\RecordChanges
 \renewcommand{\MakeUppercase}[1]{#1}
 \pagestyle{headings}
 \setcounter{StandardModuleDepth}{1}
@@ -57,7 +68,7 @@
 %
 % \fi
 %
-% \CheckSum{1461}
+% \CheckSum{1457}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -128,19 +139,7 @@
 % \changes{v3.2b}{2009/09/02}{New maintainer (Will Robertson)}
 %
 % \def\dtxfile{ccaption.dtx}
-% \def\fileversion{v2.6c} \def\filedate{2000/03/15}
-% \def\fileversion{v2.6d} \def\filedate{2001/01/02}
-% \def\fileversion{v2.6e} \def\filedate{2001/01/12}
-% \def\fileversion{v2.7} \def\filedate{2001/02/24}
-% \def\fileversion{v3.0} \def\filedate{2001/03/15}
-% \def\fileversion{v3.0a} \def\filedate{2001/08/15}
-% \def\fileversion{v3.1} \def\filedate{2002/02/20}
-% \def\fileversion{v3.1a} \def\filedate{2002/04/01}
-% \def\fileversion{v3.1b} \def\filedate{2002/10/18}
-% \def\fileversion{v3.1c} \def\filedate{2003/11/14}
-% \def\fileversion{v3.2} \def\filedate{2005/03/21}
-% \def\fileversion{v3.2a} \def\filedate{2005/03/29}
-% \def\fileversion{v3.2b} \def\filedate{2009/09/02}
+% \GetFileInfo{\dtxfile}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -149,16 +148,13 @@
 % \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
 % \newcommand*{\pname}{ccaption}                    ^^A name of the package
 %
-% \title{The \Lpack{\pname} package\thanks{This
-%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
-%        \filedate.}}
-%
+% \title{The \Lpack{\pname} package}
 % \author{%
 % Author: Peter Wilson, Herries Press\\
 % Maintainer: Will Robertson\\
 % \texttt{will dot robertson at latex-project dot org}
 % }
-% \date{\filedate}
+% \date{\fileversion\qquad\filedate}
 % \maketitle
 % \begin{abstract}
 %  The \Lpack{\pname} package enables restyling of captions and
@@ -166,15 +162,13 @@
 %  unnumbered captions, bilingual captions, and
 %  an `anonymous' caption (a legend) that can be used in any
 %  environment. It also provides commands to define captions
-%  that can be used outside float environments as well as 
+%  that can be used outside float environments as well as
 %  a mechanism for creating new types of float environments and subfloats.
 %
-%  The package has been tested in conjunction with the 
-% \Lpack{tocloft}
-% \Lpack{rotating},
+%  The package has been tested in conjunction with the
+%  \Lpack{tocloft}, \Lpack{rotating},
 %  \Lpack{caption2}, \Lpack{sidecap}, \Lpack{subfigure}, \Lpack{endfloat},
-% \Lpack{longtable}, \Lpack{xtab} 
-% and \Lpack{hyperref}
+%  \Lpack{longtable}, \Lpack{xtab} and \Lpack{hyperref}
 %  packages.
 % \end{abstract}
 % \tableofcontents
@@ -182,8 +176,6 @@
 % \listoffigures
 %
 % \StopEventually{}
-%
-% 
 %
 % \section{Introduction}
 %
@@ -194,8 +186,7 @@
 % Some publishers require that documents that include multi-part
 % tables use a \textit{continuation caption} on all but the first
 % part of the multi-part table. For the times where such a table
-% is specified by the author as a set of tables, the 
-% \Lpack{\pname} package
+% is specified by the author as a set of tables, the \Lpack{\pname} package
 % provides a simple `continuation' caption command to meet this 
 % requirement. It also provides
 % a facility for an `anonymous' caption which can be used in any
@@ -1890,13 +1881,8 @@
 %
 % \section{The package code} \label{sec:code}
 %
-%    Announce the name and version of the package, which requires
-% LaTeX2e.
 %    \begin{macrocode}
 %<*usc>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ccaption}[2009/09/02 v3.2b Extended captioning and new floats]
-
 %    \end{macrocode}
 %   In an attempt to avoid name clashes with other packages, all internal
 % commands include the string |@cont|.
@@ -2579,25 +2565,26 @@
 % \subsection{The code for the \Lpack{longtable} package}
 %
 % \begin{macro}{\LT@makecaption}
-% This is defined in the \Lpack{longtable} package and sets a caption 
+% This is defined in the \Lpack{longtable} package and sets a caption
 % essentially as a centered multicolumn entry in the table. To utilize
 % \Lpack{ccaption}'s font settings it has to be modified.
+% N.B. that |#1| is either |\@firstofone| or |\@gobble| so we need double
+% braces to protect the font change.
 % \changes{v3.2}{2005/03/21}{Added \cs{LT@makecaption}}
+% \changes{v3.2c}{2011/08/07}{Fix bug in longtable compatibility.}
 %    \begin{macrocode}
-\providecommand*{\LT@makecaption}[3]{}
-\renewcommand*{\LT@makecaption}[3]{%
+\def\LT@makecaption#1#2#3{%
   \LT@mcol\LT@cols c{\hb@xt@ \z@{\hss\parbox[t]\LTcapwidth{%
-    \sbox\@tempboxa{#1{\@contnfont #2\@contdelim}\@conttfont #3}%
+    \sbox\@tempboxa{#1{{\@contnfont #2\@contdelim}}\@conttfont #3}%
     \ifdim\wd\@tempboxa>\hsize
-      #1{\@contnfont #2\@contdelim}\@conttfont #3%
+      #1{{\@contnfont #2\@contdelim}}\@conttfont #3%
     \else
       \hb@xt@ \hsize{\hfil\box\@tempboxa\hfil}%
     \fi
     \endgraf\vskip\belowcaptionskip}%
   \hss}}}
-
 %    \end{macrocode}
-% \end{macro}   
+% \end{macro}
 %
 % \begin{macro}{\longbitwonumcaption}
 % A version of \cs{bitwonumcaption} for use in a |longtable|.
@@ -3886,9 +3873,9 @@
 %
 % \end{thebibliography}
 %
-% 
 % \Finale
 % \PrintIndex
+% \PrintChanges
 %
 \endinput
 
