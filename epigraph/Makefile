@@ -12,6 +12,8 @@ $(PKG).pdf: $(PKG).dtx
 	pdflatex $<;
 	pdflatex $<;
 
+sty: $(PKG).sty
+
 $(PKG).sty: $(FILES)
 	tex $(PKG).ins
 

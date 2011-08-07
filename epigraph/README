@@ -9,6 +9,10 @@ are easily configurable.
 ______________
 Change History
 
+Version 1.5d (2011/08/07)
+- Load the nextpage package for \cleartoevenpage
+  (this avoids loading order conflicts)
+
 Version 1.5c (2009/09/02)
 - New maintainer (Will Robertson)
 

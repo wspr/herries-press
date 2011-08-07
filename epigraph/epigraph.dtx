@@ -3,6 +3,7 @@
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1998--2004 Peter R. Wilson
+% Copyright 2011 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -80,12 +81,14 @@
 % \changes{v1.5a}{2002/10/22}{Fixed class with ccaption package}
 % \changes{v1.5b}{2004/04/22}{Updated license and contact details}
 % \changes{v1.5c}{2009/09/02}{New maintainer (Will Robertson)}
+% \changes{v1.5d}{2011/08/07}{Load package `nextpage' for \cs{cleartoevenpage}}
 %
 % \def\dtxfile{epigraph.dtx}
 % \def\fileversion{v1.5}  \def\filedate{2000/02/20}
 % \def\fileversion{v1.5a} \def\filedate{2002/10/22}
 % \def\fileversion{v1.5b} \def\filedate{2004/04/22}
 % \def\fileversion{v1.5c} \def\filedate{2009/09/02}
+% \def\fileversion{v1.5d} \def\filedate{2011/08/07}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -353,6 +356,7 @@
 % that the page following the command will be an even numbered page, and the
 % command takes an optional argument, i.e., |\cleartoevenpage{|[arg|]|,
 % which is applied to the skipped page (if any).
+% This command is provided by the \texttt{nextpage} package.
 %
 %    Here is an example:
 % \begin{verbatim}
@@ -485,6 +489,7 @@
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{epigraph}[2009/09/02 v1.5c typesetting epigraphs]
+\RequirePackage{nextpage}
 %    \end{macrocode}
 %
 % \begin{macro}{\beforeepigraphskip}
@@ -648,19 +653,6 @@
 % \end{environment}
 %
 % \subsection{Epigraphs before a chapter title}
-%
-% \begin{macro}{\cleartoevenpage}
-% Like |\cleardoublepage| except that it skips pages until an even one, and
-% its optional argument is applied to the skipped page, if any.
-% The code is based on the kernel |\cleardoublepage| in \file{ltoutput.dtx}.
-% \changes{v1.2}{1999/09/12}{Added \cs{cleartoevenpage} command}
-% \changes{v1.5}{2000/02/20}{Added optional arg to \cs{cleartoevenpage}}
-%    \begin{macrocode}
-\providecommand{\cleartoevenpage}[1][\@empty]{%
-  \clearpage%
-  \ifodd\c@page\hbox{}#1\clearpage\fi}
-%    \end{macrocode}
-% \end{macro}
 %
 % \begin{macro}{\@epichapapp}
 % \begin{macro}{\dropchapter}
