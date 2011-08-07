@@ -234,7 +234,12 @@
 % for the \Lcount{tocdepth}. \meta{sec} is the name of a sectioning
 % division (e.g., |part| or |paragraph|). You can also use |all|,
 % meaning all sectioning divisions, or |none|, meaning no sectioning divisions.
-% 
+%
+% \textbf{Note well}: after \cs{tableofcontents}, the \Lcount{tocdepth}
+% is reset to the value specified by \cs{maxtocdepth} in case that counter is
+% used by a subsequent `List of Figures' or `List of Tables', as in the
+% standard \LaTeX\ classes.
+%
 %
 % \DescribeMacro{\settocdepth}
 % The |\settocdepth{|\meta{sec}|}| command can be used to change the value of
@@ -258,10 +263,12 @@
 %
 % \DescribeMacro{\resettocdepth}
 % After \Lcount{tocdepth} has been changed with |\settocdepth|, it is
-% possible to reset it to its previous value with |\resettocdepth|, which
-% takes no arguments. In fact, you may use |\resettocdepth| multiple times
+% possible to reset it to its previous value with |\resettocdepth|.
+% In fact, you may use |\resettocdepth| multiple times
 % to reset multiple uses of |\settocdepth|. (It behaves like a stack, for
 % you computer-science-types.)
+% If you wish to reset \Lcount{tocdepth} to its original value completely,
+% use |\resettocdepth*|.
 %
 % As an example, assume that
 % the ToC should list subsections and above, but there is one particular
@@ -308,7 +315,8 @@
 % Similarly to |\resettocdepth|, this command cycles back through previous
 % values for \Lcount{secnumdepth} so you don't have to keep track of them
 % yourself if you need to change its value for only a short component of a
-% manuscript.
+% manuscript. By writing |\resetsecnumdepth*|, you can reset entirely back
+% to a clean state with \Lcount{secnumdepth} set to its original value.
 %
 % For example, assume that in a document the sectional divisions are
 % normally numbered down to the sub-subsection level, but within a particular
@@ -457,8 +465,16 @@
 % |\maxtocdepth{|\meta{sec}|}| can be used to initialise \Lcount{tocdepth}
 % between the end of the preamble and the |\tableofcontents| command.
 %    \begin{macrocode}
-\newcommand{\maxtocdepth}[1]{
-  \@setseccntt@c{#1}{tocdepth}}
+\newcounter{max@tocdepth}
+\setcounter{max@tocdepth}{\value{tocdepth}}
+\newcommand{\maxtocdepth}[1]{%
+  \save@tocdepth
+  \@setseccntt@c{#1}{max@tocdepth}%
+  \@setseccntt@c{#1}{tocdepth}%
+}
+\g@addto@macro\tableofcontents{%
+  \setcounter{tocdepth}{\value{max@tocdepth}}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -478,9 +494,13 @@
 % \Lcount{secnumdepth} after the preamble
 % to the value corresponding to \meta{sec}.
 %    \begin{macrocode}
+\newcounter{max@secnumdepth}
+\setcounter{max@secnumdepth}{\value{secnumdepth}}
 \newcommand{\maxsecnumdepth}[1]{%
   \save@secnumdepth
-  \@setseccntt@c{#1}{secnumdepth}}
+  \@setseccntt@c{#1}{max@secnumdepth}%
+  \@setseccntt@c{#1}{secnumdepth}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -505,13 +525,18 @@
 % prepending new values with \cs{edef} and using assignment and
 % \cs{afterassignment} to push an entry off the front.
 %    \begin{macrocode}
-\def\resetsecnumdepth{%
-  \ifx\stack@secnumdepth\@empty
-    \PackageWarning{tocvsec2}{There is no previous value for secnumdepth}%
-  \else
-    \afterassignment\gobble@secnumdepth
-    \expandafter\c@secnumdepth\expandafter\numexpr\stack@secnumdepth\@nil
-  \fi
+\newcommand\resetsecnumdepth{%
+  \@ifstar{%
+    \setcounter{secnumdepth}{\value{max@secnumdepth}}%
+    \edef\stack@secnumdepth{\the\c@secnumdepth\relax}%
+  }{%
+    \ifx\stack@secnumdepth\@empty
+      \PackageWarning{tocvsec2}{There is no previous value for secnumdepth}%
+    \else
+      \afterassignment\gobble@secnumdepth
+      \expandafter\c@secnumdepth\expandafter\numexpr\stack@secnumdepth\@nil
+    \fi
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -524,15 +549,24 @@
 \protected\def\save@tocdepth{%
   \edef\stack@tocdepth{\the\c@tocdepth\relax\stack@tocdepth}%
 }
-%    \end{macrocode}
-% Ensure errant \cs{save@tocdepth} won't cause problems:
-%    \begin{macrocode}
-\addtocontents{toc}{\@ifundefined{save@tocdepth}{\let\save@tocdepth\relax}{}}
 \def\gobble@tocdepth#1\@nil{\edef\stack@tocdepth{#1}}
 %    \end{macrocode}
 % Resetting is done in the \verb|.toc| file:
 %    \begin{macrocode}
-\def\resettocdepth{\addtocontents{toc}{\reset@tocdepth}}
+\newcommand\resettocdepth{\@ifstar
+  {\addtocontents{toc}{\remax@tocdepth}}
+  {\addtocontents{toc}{\reset@tocdepth}}%
+}
+%    \end{macrocode}
+% Reset back to the initial state (and clear the stack):
+%    \begin{macrocode}
+\protected\def\remax@tocdepth{%
+  \setcounter{tocdepth}{\value{max@tocdepth}}%
+  \edef\stack@secnumdepth{\the\c@tocdepth\relax}%
+}
+%    \end{macrocode}
+% Reset to the previous state on the stack:
+%    \begin{macrocode}
 \protected\def\reset@tocdepth{%
   \ifx\stack@tocdepth\@empty
     \PackageWarning{tocvsec2}{There is no previous value for tocdepth}%
@@ -540,6 +574,16 @@
     \afterassignment\gobble@tocdepth
     \expandafter\c@tocdepth\expandafter\numexpr\stack@tocdepth\@nil
   \fi
+}
+%    \end{macrocode}
+% Ensure errant commands in the ToC won't cause problems:
+%    \begin{macrocode}
+\addtocontents{toc}{%
+  \@ifundefined{save@tocdepth}{%
+    \let\save@tocdepth\relax
+    \let\reset@tocdepth\relax
+    \let\remax@tocdepth\relax
+  }{}%
 }
 %    \end{macrocode}
 % \end{macro}
