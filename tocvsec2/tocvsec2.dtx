@@ -495,8 +495,8 @@
 % approach.
 %    \begin{macrocode}
 \let\stack@secnumdepth\@empty
-\def\save@secnumdepth{%
-  \edef\stack@secnumdepth{\stack@secnumdepth\the\c@secnumdepth\relax}%
+\newcommand\save@secnumdepth{%
+  \edef\stack@secnumdepth{\the\c@secnumdepth\relax\stack@secnumdepth}%
 }
 \def\gobble@secnumdepth#1\@nil{\edef\stack@secnumdepth{#1}}
 %    \end{macrocode}
@@ -522,7 +522,7 @@
 %    \begin{macrocode}
 \let\stack@tocdepth\@empty
 \protected\def\save@tocdepth{%
-  \edef\stack@tocdepth{\stack@tocdepth\the\c@tocdepth\relax}%
+  \edef\stack@tocdepth{\the\c@tocdepth\relax\stack@tocdepth}%
 }
 %    \end{macrocode}
 % Ensure errant \cs{save@tocdepth} won't cause problems:
