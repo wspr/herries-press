@@ -357,8 +357,21 @@
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{appendix}[2009/09/02 v1.2b extra appendix facilities]
-
 %    \end{macrocode}
+%
+% Check that an \cs{appendix} command is actually defined and emit a warning
+% if not.
+%    \begin{macrocode}
+\begingroup\expandafter\expandafter\expandafter\endgroup
+  \expandafter\ifx\csname appendix\endcsname\relax
+    \PackageWarningNoLine{appendix}{%
+      No \protect\appendix\space command in this document class!%
+      \MessageBreak
+      Trying to create an appendix will probably fail%
+    }%
+  \fi
+%    \end{macrocode}
+%
 %
 % In order to try and avoid name clashes with other packages, each internal
 % name will include the character string |@pp|.
