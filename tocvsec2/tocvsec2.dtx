@@ -3,8 +3,8 @@
 % tocvsec2.dtx
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-% Copyright 1999--2004 Peter R. Wilson
-% Copyright 2010 Will Robertson
+% Copyright 1999-2004 Peter R. Wilson
+% Copyright 2010-2011 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -22,7 +22,7 @@
 %</driver>
 %<usc>\ProvidesPackage{tocvsec2}
 %<*usc>
-    [2010/02/27 v1.2b variable ToC section entries]    
+    [2011/08/07 v1.3 variable ToC section entries]    
 %</usc>
 % 
 %<*driver>
@@ -139,8 +139,6 @@
 % \LaTeX{} \textsc{docstrip} utility which enables the automatic
 % extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
 %
-% \clearpage
-% 
 %    Section~\ref{sec:usc} describes the usage of the package.
 % Commented source code for the package is in Section~\ref{sec:code}.
 %
@@ -472,11 +470,19 @@
   \@setseccntt@c{#1}{max@tocdepth}%
   \@setseccntt@c{#1}{tocdepth}%
 }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\tableofcontents}
+% \changes{v1.3}{2011/08/07}{Patch to reset \Lcount{tocdepth}}
+%    \begin{macrocode}
 \g@addto@macro\tableofcontents{%
   \setcounter{tocdepth}{\value{max@tocdepth}}%
 }
 %    \end{macrocode}
 % \end{macro}
+%
 %
 % \begin{macro}{\setsecnumdepth}
 % \changes{v1.2b}{2010/02/27}{Remove occasional extraneous vertical space}
@@ -509,6 +515,7 @@
 %
 %
 % \begin{macro}{\resetsecnumdepth}
+% \changes{v1.3}{2011/08/07}{New command}
 % It would be nice to be able to `reset' the tocdepth or secnumdepth
 % to a previous value.
 % Unfortunately this can't be done with grouping so we use a stack-based
@@ -521,7 +528,7 @@
 \def\gobble@secnumdepth#1\@nil{\edef\stack@secnumdepth{#1}}
 %    \end{macrocode}
 % The idea of the stack is
-%  \verb|{|$x_1$\verb|\relax|$x_2$\verb|\relax|\dots\verb|}|;
+%  |{|$x_n$|\relax| $x_{n-1}$|\relax| \dots$x_0$|\relax}|;
 % prepending new values with \cs{edef} and using assignment and
 % \cs{afterassignment} to push an entry off the front.
 %    \begin{macrocode}
@@ -542,6 +549,7 @@
 % \end{macro}
 %
 % \begin{macro}{\resettocdepth}
+% \changes{v1.3}{2011/08/07}{New command}
 % The idea the same is as above but because it all happens inside an auxiliary
 % file there's a couple of extra steps.
 %    \begin{macrocode}
