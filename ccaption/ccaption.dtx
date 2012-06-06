@@ -265,20 +265,20 @@
 % and the facilities described in this section are unavailable.}
 %
 % \DescribeMacro{\captiondelim}
-% The default captioning style is to put a delimeter in the form
+% The default captioning style is to put a delimiter in the form
 % of a colon between the caption
 % number and the caption title. The command |\captiondelim{|\meta{delim}|}|
-% can be used to change the delimeter. For example, to have an en-dash instead
+% can be used to change the delimiter. For example, to have an en-dash instead
 % \verb*?\captiondelim{-- }? will do the trick. Notice that no space is
-% put between the delimeter and the title unless it is specified in the
+% put between the delimiter and the title unless it is specified in the
 % \meta{delim} parameter. 
 % The package initially specifies |\captiondelim{: }|
-% to give the normal delimeter.
+% to give the normal delimiter.
 %
 % \DescribeMacro{\captionnamefont}
 % The \meta{font} specified by |\captionnamefont{|\meta{font}|}| is used
 % for typesetting the caption name; that is, the first part of the caption
-% upto and including the delimeter (e.g., the portion `Table 3:').
+% up to and including the delimiter (e.g., the portion `Table 3:').
 % \meta{font} can be any kind of font specification and/or command and/or 
 % text. This first part of the caption is treated like: |{<font> Table 3; }|,
 % so font declarations, not font text-style commands, are needed,
@@ -348,7 +348,7 @@
 % their effect is limited to the environment. If they are used in the preamble
 % or the main text, their effect persists until replaced by a similar
 % command with a different parameter value. The commands do not affect the
-% apperance of the title in any \textbf{List of\ldots}.
+% appearance of the title in any \textbf{List of\ldots}.
 %
 % \DescribeMacro{\\}
 % The normal LaTeX command |\\[|\meta{length}|]| can be used within the
@@ -450,7 +450,7 @@
 % worked for a single line caption but not for a multiline caption.
 % The additional commands makes it work in both cases, forcing the
 % name to be centered as well as the last line of a multiline title,
-% thus giving a balanced appearence.
+% thus giving a balanced appearance.
 %
 % 
 %
@@ -694,7 +694,7 @@
 % as \meta{capcommand}.
 %
 % The |\renewfixedcaption| and |\providefixedcaption| commands take the same 
-% arguments as |\newfixedcaption|; the three commands are analagous
+% arguments as |\newfixedcaption|; the three commands are analogous
 % to those in the |\newcommand| family.
 %
 % For example, to define a new |\figcaption| command for captioning pictures
@@ -915,7 +915,7 @@
 %
 %     The \Lpack{subfigure} package enables the captioning of sub-figures
 % within a larger figure, and similarly for tables. If a figure that
-% includes sub-figures is itself continued then it may be desireable to
+% includes sub-figures is itself continued then it may be desirable to
 % continue the captioning of the sub-figures. For example, if Figure~3
 % has three sub-figures, say A, B and C, and Figure~3 is continued then
 % the sub-figures in the continuation should be D, E, etc.
@@ -1055,7 +1055,7 @@
 % The \Lpack{float} package, developed by Anselm Lingnau~\cite{LINGNAU95},
 %  provides a simple scheme for creating new kinds
 % of floats with a variety of captioning styles. Unfortunately the package
-% does not effectively seperate the float creation aspects and the captioning
+% does not effectively separate the float creation aspects and the captioning
 % styles.  I have therefore included in the \Lpack{\pname} package a
 % poor man's version of some aspects of the float creation elements that are
 % in \Lpack{float}. Both the commands and their coding differ from those
@@ -1136,7 +1136,7 @@
 % \end{verbatim}
 % The default definition of |\cftZtitlefont| is for a bold font. If,
 % for example, you would prefer the title to be in a large italic font
-% and set flushright you could: \\
+% and set flush right you could: \\
 % |\renewcommand{\cftZtitlefont}{\hfill\Large\itshape}| \\
 % By default |\cftafterZtitle| is defined to do nothing; you can
 % change it to serve your own purposes. For example: \\
@@ -1220,7 +1220,7 @@
 % |\cftXleader| defines the leader between the text and the page number; it can be
 % changed by |\renewcommand|. By default it produces a dotted leader with 
 % |\cftXdotsep| space between the dots. It default definition is \\
-% |\newcommand{\cftXdotsep}{4.5}| which gives a 4.5mu (math units) seperation.
+% |\newcommand{\cftXdotsep}{4.5}| which gives a 4.5mu (math units) separation.
 % In spite of it appearing to be a length, changes to |\cftXdotsep| must be
 % made by |\renewcommand|.
 %
@@ -1372,7 +1372,7 @@
 % Putting these three commands together results in the user's view of the caption
 % command as |\caption[|\meta{short-title}|]{|\meta{full-title}|}|.
 %
-% It is the responsibilty of the class (or package) which defines floats
+% It is the responsibility of the class (or package) which defines floats
 % to provide definitions for |\ext@type|, |\fnum@type| and |\@makecaption|
 % which appear in the definition of |\@caption| (in the lines marked
 % |<----| above).
@@ -1653,7 +1653,7 @@
 % be used instead of the |{ILLUSTRATION N}| text.
 %
 %    The following code produces Figures~\ref{fig:mult2} and~\ref{fig:mult3}
-% which are examples of two seperately captioned illustrations in one
+% which are examples of two separately captioned illustrations in one
 % float.
 % \begin{verbatim}
 % \begin{figure}
@@ -1672,7 +1672,7 @@
 % \end{figure}
 % \end{verbatim}
 % In this case the illustrations (or graphics or tabulars) are put into
-% seperate |minipage| environments within the float, and the captions
+% separate |minipage| environments within the float, and the captions
 % are also put within the |minipage|s. Note that any required |\label|
 % must also be inside the |minipage|. If you wished, you could add yet
 % another caption after the end of the two |minipage|s.
@@ -1713,7 +1713,7 @@
 % to double column floats as they may only be placed at the top of a page.
 % \item[\texttt{h}] \textit{here}: if possible exactly where the float environment
 % is defined. It does not apply to double column floats.
-% \item[\texttt{p}] \textit{page}: on a seperate page containing only 
+% \item[\texttt{p}] \textit{page}: on a separate page containing only 
 % floats (no text).
 % \item[\texttt{t}] \textit{top}: at the top of a page. 
 % \item[\texttt{!}] make an extra effort to place the float at the earliest place
@@ -1730,10 +1730,10 @@
 % A float is never put on
 % an earlier page than its definition but may be put on the same or later page
 % of its definition. If a float cannot be placed, all
-% suceeding floats will be held up, and LaTeX can store no more than 16 held
+% succeeding floats will be held up, and LaTeX can store no more than 16 held
 % up floats. A float cannot
 % be placed if it would cause an overfull page, or it otherwise cannot be fitted
-% according the the float parameters.
+% according the float parameters.
 % A |\clearpage| or |\cleardoublepage| or |\end{document}| flushes
 % out all unprocessed floats, irrespective of the \meta{loc} and float
 % parameters, putting them on float-only pages. 
@@ -1774,7 +1774,7 @@
 % |\dblfloatpagefraction| & like |\floatpagefraction| for double column floats & 0.5 \\ \hline
 % \multicolumn{3}{c}{Text page lengths --- change with \cs{setlength} } \\ \hline
 % |\floatsep| & vertical space between floats & 12pt \\
-% |\textfloatsep| & vertical space between a top (bottom) float and suceeding (preceeding) text & 20pt  \\
+% |\textfloatsep| & vertical space between a top (bottom) float and succeeding (preceding) text & 20pt  \\
 % |\intextsep| & vertical space above and below an \texttt{h} float & 12pt \\
 % |\dblfloatsep| & like |\floatsep| for double column floats & 12pt \\
 % |\dbltextfloatsep| & like  |\textfloatsep| for double column floats & 20pt \\ \hline
@@ -1876,7 +1876,7 @@
 % \meta{loc} of |[tbp]| at least one of the text page float fractions 
 % (|\topfraction| and/or |\bottomfraction|) must be
 % larger than the |\floatpagefraction| by an amount sufficient to take account
-% of the maximum text page seperation value.
+% of the maximum text page separation value.
 %
 %
 % \section{The package code} \label{sec:code}
@@ -1986,7 +1986,7 @@
 %
 % \begin{macro}{\captiondelim}
 % \begin{macro}{\@contdelim}
-%  For the caption delimeter.
+%  For the caption delimiter.
 %    \begin{macrocode}
 \newcommand{\captiondelim}[1]{\def\@contdelim{#1}}
 \captiondelim{: }
@@ -2264,7 +2264,7 @@
 % \begin{macro}{\abovelegendskip}
 % \begin{macro}{\belowlegendskip}
 %    These two lengths control the vertical spacing before and after a
-% legend. We will give these values such that a legend will ocupy an
+% legend. We will give these values such that a legend will occupy an
 % integral number of lines.
 %    \begin{macrocode}
 \newlength{\abovelegendskip}
@@ -2282,7 +2282,7 @@
 % used anywhere.
 %
 %    The implementation is similar to the |\caption| command but we have
-% to eliminate printing of a delimeter.
+% to eliminate printing of a delimiter.
 % \changes{v2.7}{2001/01/27}{Changed \cs{legend} to use \cs{@makecaption} instead of \cs{@makelegend}}
 % \changes{v2.7}{2001/01/27}{Deleted \cs{@makelegend} and \cs{formatlegend}}
 %    \begin{macrocode}
@@ -2317,7 +2317,7 @@
 % |\@makelegend|. It requires two commands to have been defined, namely
 % |\flegtoc@type| and |\fleg@type|. The command |\flegtoc@type{|\meta{text}|}|
 % is responsible for writing a title text to the appropriate listof file.
-% |\fleg@type| is responsible for typeseting the name of the legend.
+% |\fleg@type| is responsible for typesetting the name of the legend.
 % \changes{v2.7}{2001/01/27}{Changed \cs{@legend} to use \cs{@makecaption}
 % instead of \cs{@makelegend}}
 %    \begin{macrocode}
@@ -2352,7 +2352,7 @@
 % \begin{macro}{\fleg@figure}
 %  These macros typeset the name before the title of a |\namedlegend|. By
 % default they are defined to mimic the normal captioning style.
-% \changes{v2.7}{2001/01/27}{Deleted the : delimeter from \cs{fleg@table}
+% \changes{v2.7}{2001/01/27}{Deleted the : delimiter from \cs{fleg@table}
 % and \cs{fleg@figure}}
 %    \begin{macrocode}
 \newcommand{\fleg@table}{\tablename}
@@ -2435,7 +2435,7 @@
 %    \end{macrocode}
 % Remove any extra spacing between the captions, and set the
 % NAME for the second caption. Use a command to transfer
-% the NAME to the renewell code to avoid circularity if
+% the NAME to the renewal code to avoid circularity if
 % for example, we are trying to redefine |\tablename| as
 % |\tablename|. Decrement the caption counter.
 %    \begin{macrocode}
@@ -2971,7 +2971,7 @@
 % |\if@contmaincaption|. The (cont)caption commands set it to TRUE and the
 % float commands set it FALSE. Additionally, the |\@float| and |\@dbflt|
 % commands are modified to zero the subfloat counter, if it is defined.
-% \changes{v3.1a}{2002/04/01}{Added changes to \cs{@float}, etc, to
+% \changes{v3.1a}{2002/04/01}{Added changes to \cs{@float}, etc., to
 % subfigure (21) option code}
 %    \begin{macrocode}
 \if@contsubfigxxi
@@ -3550,7 +3550,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@cftmakeZtitle}
-% |\@cftmakeZtitle| typeset the title heading for the liusting.
+% |\@cftmakeZtitle| typeset the title heading for the listing.
 %    \begin{macrocode}
   \@namedef{@cftmake#3title}{%
     \@ifundefined{chapter}{%

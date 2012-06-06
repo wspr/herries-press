@@ -7,7 +7,7 @@ Methods are provided to define captions for use outside float
 environments, and to define new float environments and subfloats. 
 Tools are provided for defining your own captioning styles.
 
-    The packagehas been tested in conjunction with the rotating, caption2, 
+    The package has been tested in conjunction with the rotating, caption2, 
 subfigure, sidecap, endfloat, longtable, xtab, tocloft and hyperref packages.
 
 
