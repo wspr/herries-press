@@ -79,7 +79,7 @@
 % \def\filedate{2004/04/16}
 % \def\fileversion{v1.1b}
 % \def\filedate{2009/09/02}
-% \newcommand*{\Lpack}[1]{\textsf {#1}}        ^^A typest a package
+% \newcommand*{\Lpack}[1]{\textsf {#1}}        ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}         ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}         ^^A typeset a file
 % \newcommand*{\Lcount}[1]{\textsl {\small#1}} ^^A typeset a counter
@@ -239,7 +239,7 @@
 % hull}\footnote{The convex hull can be thought of as the shape that a rubber
 % band will take if it is stretched around pins placed at each point.}
 % of the points $p_{0}$ through $p_{n}$. For examples of convex hulls see
-% figure~\ref{fig:ch}. Note that the shape of a convex hull is independant
+% figure~\ref{fig:ch}. Note that the shape of a convex hull is independent
 % of the ordering of the points.
 % \end{itemize}
 %
@@ -476,7 +476,7 @@
 % Note that points are plotted along the curve at equidistant values of the
 % of the parameter $t$. However, as the relationship between the actual
 % distance in $(x,y)$ coordinate space is a non-linear function of $t$,
-% the seperation between the plotted points is non-uniform.
+% the separation between the plotted points is non-uniform.
 %
 % The equation for a \emph{non-rational} quadratic Bezier curve is
 % \begin{equation}
@@ -788,7 +788,7 @@
 % when the convex hull forms an equilateral triangle, the required
 % weight ($\cos \beta$, see figure~\ref{fig:beta}) for drawing a circular 
 % arc is $\cos \beta = 0.5$. Further,
-% for any given control polygon the the curves drawn with weights of
+% for any given control polygon the curves drawn with weights of
 % $\pm W$ are complementary. That is, the curve with weight $-W$ is
 % the `remainder' of the curve drawn with weight $W$. Thus, we have a
 % simple means of drawing a complete circle, as shown in figure~\ref{fig:qrc}.
@@ -878,7 +878,7 @@
 %    The astute reader will have realised that the divisor in 
 % \eqref{eq:rqfinal} can go to zero, and can even be negative.
 % This has interesting consequences, both when trying to do computer
-% arithmetic, and also on the the kind of curve that results. Essentially,
+% arithmetic, and also on the kind of curve that results. Essentially,
 % the curve tends to $\infty$ as $W \rightarrow +0$. At $W = -0$ the curve
 % is at $-\infty$ and then it tends to $-0$ as $W \rightarrow -\infty$.
 % We will get a curve point at $\infty$ whenever $W = -1$ and a `negative'
@@ -959,7 +959,7 @@
 % $(8/3) \times 3 = \theweightscale$!
 % Thus, in arithmetic calculations involving both multiplication and
 % division, the dividend should be maximised and the divisor minimised,
-% with multiplication preceeding division; also remembering that there
+% with multiplication preceding division; also remembering that there
 % is a limit on the size of an integer. To avoid multiplication overflow
 % when calculating say, $a \times b$, we must ensure that 
 % $\|a\| \leq \|M/b\|$.
@@ -1003,7 +1003,7 @@
 %    The user command to draw a linear Bezier curve represented by
 % \eqref{eq:lin3}. The form of the command is:\\
 % |\lbezier[|\meta{N}|]{(|\meta{p0}|)(|\meta{p1}|)| \\
-% where \meta{pN} is the comma seperated X and Y coordinate values of
+% where \meta{pN} is the comma separated X and Y coordinate values of
 % point \textit{pN}.
 %
 %    \begin{macrocode}
@@ -1367,7 +1367,7 @@
 \gdef\@rqbez#1(#2,#3)(#4,#5)(#6,#7)(#8){%
   \@ovxx = #8\unitlength
   \ifdim\@ovxx = \unitlength
-    \PackageWarning{bez123}{Rational quadratic denerates to quadratic}
+    \PackageWarning{bez123}{Rational quadratic degenerates to quadratic}
     \qbezier[#1](#2,#3)(#4,#5)(#6,#7)
   \else
     \ifdim\@ovxx = \z@
@@ -1648,7 +1648,7 @@
 % be able to multiply without overflow.
 %
 %    Announce the name of the package.
-% \changes{v1.1}{1998/10/14}{Put multnooverflow into a seperate package}
+% \changes{v1.1}{1998/10/14}{Put multnooverflow into a separate package}
 %    \begin{macrocode}
 %<*mult>
 \ProvidesPackage{multiply}[1998/10/14 v1.1 Multiplication of lengths without overflow]
