@@ -533,7 +533,7 @@
 % |\newcommand{\tocpubfont}{\normalfont}|  % normal font for published 
 %
 %    The class tries to keep any group of title/author/published entries 
-% in the ToC on one page, but sometimes TeX will insert a pagebreak anyway.
+% in the ToC on one page, but sometimes TeX will insert a page break anyway.
 % The way of combating this is to make sure that the ToC page is broken
 % \emph{before} the group. You can do this like: \\
 % |\addtocontents{toc}{\protect\pagebreak}| \\
@@ -563,8 +563,8 @@
 %    You can, of course, define your own heading styles; I recommend
 % the \Lpack{fancyhdr} package~\cite{FANCYHDR} if you do this. For example,
 % if you had a collection of papers and you wanted to have the
-% headers on the lefthand pages to have the title of the collection
-% and the righthand pages to have the name of the current author(s), you
+% headers on the left-hand pages to have the title of the collection
+% and the right-hand pages to have the name of the current author(s), you
 % can do this along the following lines.
 % \begin{verbatim}
 % \documentclass[report,twoside]{combine}
@@ -853,7 +853,7 @@
 %
 % \item An imported document does not form a group (if it did, then only
 %       a single letter could be imported into an article class collection).
-%       If two imports in a single |papers| seperately use |\new...|
+%       If two imports in a single |papers| separately use |\new...|
 %       commands
 %       with the same \meta{name}, then these \meta{name}s will be 
 %       visible throughout
@@ -881,7 +881,7 @@
 % are handled in the same manner. There is no equivalent for |\newtheorem|,
 % but instead the |\newtheorem| command has been made local instead
 % of global, so cunning use of grouping should be able to circumvent the
-% problem of two seperate authors creating identically named
+% problem of two separate authors creating identically named
 % theorems.
 %
 %
@@ -945,7 +945,7 @@
 % \end{itemize}
 %
 %    A design goal for \Lpack{combine} is that virtually any kind
-% of document should be importable and should be processible without
+% of document should be importable and should be processable without
 % have to make any changes to it. To completely satisfy this would
 % require a rewrite of much of the \LaTeX{} kernel, which is out
 % of the question. Of necessity some changes have had to be made but
@@ -961,7 +961,7 @@
 % complains and I see no way of getting around this without rewriting
 % all the classes and kernel to use |\def| instead of |\newcommand|.
 % In any event, if this happens, try responding to the errors by hitting
-% `q' to put \LaTeX{} into a batch mode. The typeset result may be useable.
+% `q' to put \LaTeX{} into a batch mode. The typeset result may be usable.
 %
 %    To try and avoid name clashes, all the internal commands include
 % the string |c@l|.
@@ -1637,7 +1637,7 @@
 % \end{macro}
 %
 % \begin{macro}{\zeroextracounters}
-%    This is a user-level macro that can be renewed to reset addtional
+%    This is a user-level macro that can be renewed to reset additional
 % counters to zero at the beginning of an imported document.
 %    \begin{macrocode}
 \newcommand{\zeroextracounters}{}
@@ -1752,7 +1752,7 @@
 % \begin{macro}{\postmainauthor}
 % \begin{macro}{\maindatefont}
 % \begin{macro}{\postmaindate}
-%    To provide some flexibilty in the titling style of the main document,
+%    To provide some flexibility in the titling style of the main document,
 % user level commands are provided that can be changed to reconfigure
 % the appearance resulting from |\maketitle|. These are defined initially
 % to approximately mimic the normal \LaTeX{} style.
@@ -1916,7 +1916,7 @@
 % code for implementing the \Lopt{nodate}, \Lopt{notitle} and \Lopt{noauthor}
 % options. The vertical spacing is reduced slightly from normal. 
 % The title and author texts are set with |\importtitlefont| and
-% |\importauthorfont| respectiveley. The date is set with |\importdatefont|.
+% |\importauthorfont| respectively. The date is set with |\importdatefont|.
 %    \begin{macrocode}
 \newcommand{\c@lb@maketitle}{%
 %%  \newpage
@@ -2115,7 +2115,7 @@
 %
 % \begin{macro}{\c@lwritemainbib}
 % \begin{macro}{\c@lwritelocalbib}
-% For citatations we may be writing to either the main bibliography
+% For citations we may be writing to either the main bibliography
 % or to a local bibliography. For local bibliographies I use the
 % |\jobname| as a distinguishing characteristic.
 % \changes{v0.6}{2002/08/24}{Added \cs{c@lwritemainbib} and \cs{c@lwritelocalbib}}
@@ -2516,8 +2516,8 @@
 %    \end{macrocode}
 %
 %    We want to arrange it so that if the title is near the bottom of a
-% page in the ToC, have the pagebreak before rather than after the title.
-% \changes{v0.42}{2001/04/04}{Changed pagebreak penalties in \cs{l@coltoctitle}}
+% page in the ToC, have the page break before rather than after the title.
+% \changes{v0.42}{2001/04/04}{Changed page break penalties in \cs{l@coltoctitle}}
 % \changes{v0.53}{2001/09/05}{Fixed extraneous space in \cs{l@coltoctitle}}
 %    \begin{macrocode}
 \ifc@lhaschapter
@@ -2565,7 +2565,7 @@
 %    \end{macrocode}
 % As it is unlikely that the author will be in the ToC without the title,
 % don't encourage a page break beforehand.
-% \changes{v0.42}{2001/04/04}{Changed pagebreak penalties in \cs{l@coltocauthor}}
+% \changes{v0.42}{2001/04/04}{Changed page break penalties in \cs{l@coltocauthor}}
 % \changes{v0.53}{2001/09/05}{Fixed extraneous space in \cs{l@coltocauthor}}
 %
 %    \begin{macrocode}
@@ -2627,7 +2627,7 @@
 % As the published information is unlikely to be in the ToC without
 % prior title or author information, don't encourage a prior break,
 % but also don't try and prevent one afterwards either.
-% \changes{v0.42}{2001/04/04}{Changed pagebreak penalties in \cs{l@published}}
+% \changes{v0.42}{2001/04/04}{Changed page break penalties in \cs{l@published}}
 % \changes{v0.53}{2001/09/05}{Fixed extraneous space in \cs{l@published}}
 %
 %    \begin{macrocode}
@@ -2873,7 +2873,7 @@
 % and Donald Arseneau\footnote{At \texttt{asnd@triumf.ca}.} 
 % both pointed out the use of |\protected@xdef|.
 % Barbara Beeton\footnote{\texttt{bnb@ams.org}} suggested adding the |\unskip|
-% to the redefinition of |\and| in order to remove any preceeding spaces when
+% to the redefinition of |\and| in order to remove any preceding spaces when
 % it gets printed in the ToC.
 % \changes{v0.4}{2000/06/09}{Added \cs{unskip} to \cs{and} redefinition}
 % \changes{v0.41}{2000/06/18}{Appended to \cs{title} and \cs{author} definitions}

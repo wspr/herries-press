@@ -290,7 +290,7 @@
 % \DescribeMacro{\fonttexts}
 % \DescribeMacro{\regulartexts}
 % The macro \cs{fonttexts}\marg{testfont}\marg{text} typesets \meta{text} using
-% the \meta{testfont} (e.g \texttt{cmr10}). Similarly the macro
+% the \meta{testfont} (e.g., \texttt{cmr10}). Similarly the macro
 % \cs{regulartexts}\marg{fontspec}\marg{text} typesets \meta{text}
 % using \meta{fontspec} (e.g., \verb?\rmfamily\itshape? or 
 % \verb?\pikfont{T1}{ppl}{m}{it}?).
@@ -380,7 +380,7 @@
 % \DescribeMacro{\glyphlowers}
 % \DescribeMacro{\glyphdigits}
 % \cs{glyphlowers} takes each character of the lowercase alphabet in turn as
-% a test glyph and sets it interpersed among the other lowercase characters.
+% a test glyph and sets it interspersed among the other lowercase characters.
 % \cs{glyphuppers} and \cs{glyphdigits} are similar except that they use
 % the uppercase alphabet and the ten digits instead. For example, 
 % \cs{glyphdigits} produces output like \\
@@ -956,7 +956,7 @@ official r\^ole in fluffy souffl\'es? }
 %
 % \begin{macro}{\@capknutext}
 % \begin{macro}{\capknutext}
-% Text using only capital letters and some punctutation.
+% Text using only capital letters and some punctuation.
 %    \begin{macrocode}
 \newcommand{\@capknutext}{%
 (!`THE DAZED BROWN FOX QUICKLY GAVE 12345--67890 JUMPS!)}
@@ -982,7 +982,7 @@ official r\^ole in fluffy souffl\'es? }
 % \begin{macro}{\guillemotright}
 % \begin{macro}{\flqq}
 % \begin{macro}{\frqq}
-% Just in case the french quotes are not defined, as they are called for in
+% Just in case the French quotes are not defined, as they are called for in
 % the subsequent \cs{germantext}.
 % \changes{v1.2}{2008/05/08}{Replaced \cs{providecommand} for guillemots
 %                           by \cs{DeclareTextSymbol}}
@@ -1035,7 +1035,7 @@ falsche Anmutung vermitteln.\par}
 % because of a clash with the babel package}
 %    \begin{macrocode}
 \providecommand*{\latintext}{%
-  \PackageWarning{fonttable}{\protect\latintext\space may be overriden by the 
+  \PackageWarning{fonttable}{\protect\latintext\space may be overridden by the 
    babel package \MessageBreak use
                  \protect\latinparatext\space instead}}
 \newcommand*{\latinparatext}{%
@@ -1247,7 +1247,7 @@ turpis accumsan semper.\par}
 % \begin{macro}{\f@tdgs}
 % \begin{macro}{\f@tdocomprehensive}
 % These macros generate an extended mix of characters of a particular kind.
-% The work is done by \cs{f@tdocomprensive} wih \cs{f@tclc}, \cs{f@tcuc}, and
+% The work is done by \cs{f@tdocomprensive} with \cs{f@tclc}, \cs{f@tcuc}, and
 % \cs{f@tdgs} setting up the glyph sets.
 %    \begin{macrocode}
 \newcommand*{\glyphlowers}{\f@tdocomprehensive\f@tclc{`a}{`z}{31}{34}}

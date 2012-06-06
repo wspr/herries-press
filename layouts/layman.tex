@@ -152,8 +152,8 @@ provides facilities for experimenting with different values of the
 typesetting parameters, showing the results graphically.
 
      The \file{layouts} package was developed as an aid to the author
-when he was developing a new \LaTeX{} class for typsetting ISO standards.
-The development of the package has benefitted from
+when he was developing a new \LaTeX{} class for typesetting ISO standards.
+The development of the package has benefited from
 Kent McPherson's \pixfile{layout.sty}~\cite{MCPHERSON88}.
 
 \subsection{Command types}
@@ -195,7 +195,7 @@ Kent McPherson's \pixfile{layout.sty}~\cite{MCPHERSON88}.
 
 \item[User-specified parameter values] Commands of the form 
     \pcom{try}\textit{P} can be used to change the value of the layout
-    parameter \textit{P}. Note that these commands do \emph{not} affect the
+    parameter \textit{P}. Note that these commands do \emph{not} affect
     the layout of the document, they only modify the values used in
     displaying a layout.
 
@@ -212,7 +212,7 @@ document, the command \pixcom{setuplayouts}
 must be issued immediately
 after the \verb|\begin{document}|, or at least before any following command
 that changes font sizes or suchlike. Fortunately you don't have to concern
-youself with this as it is called automatically by the \file{layouts}
+yourself with this as it is called automatically by the \file{layouts}
 package. However, you may call it yourself at some later point in the
 document to pick up the current value of the \pixcom{baselineskip}
 or \pixcom{parskip} if these have been modified. The \pixcom{setuplayouts}
@@ -320,7 +320,7 @@ points by default. The length units may be set by the
 \pixcom{printinunitsof}\marg{unit} command. The \meta{unit} argument
 may be any of TeX's length units, except for scaled point. That is, the
 allowable values are \texttt{pt}, \texttt{pc}, \texttt{in}, \texttt{mm}, 
-\texttt{cm}, \texttt{bp}, \texttt{dd}, or \texttt{cc}; an unkown unit is
+\texttt{cm}, \texttt{bp}, \texttt{dd}, or \texttt{cc}; an unknown unit is
 treated as though it were \texttt{pt}. When printing in pt units any
 stretch or shrink values are printed as well; using \texttt{PT} instead
 of \texttt{pt} eliminates these `rubber' values. The initial setting
@@ -498,7 +498,7 @@ is \pixcom{twocolumnlayoutfalse}.
 
    The display of marginal notes is controlled by the commands
 \pcom{drawmarginpars}\TF.
-Using \pixcom{drawmarginparstrue} rusults in representations of
+Using \pixcom{drawmarginparstrue} results in representations of
 marginal notes being drawn and using \pixcom{drawmarginparsfalse}
 hides the marginal notes. The default is
 \pixcom{drawmarginparstrue}.
@@ -572,7 +572,7 @@ vertically.
 \caption{Page layout for this document} \label{fig:ptrs}
 \end{figure}
 
-    When layouts are drawn with \verb|...diagram|\footnote{Or longhandedly
+    When layouts are drawn with \verb|...diagram|\footnote{Or long-handedly
 with \pcom{drawparametersfalse} and \pcom{draw...}.}
 the actual values
 of the parameters used to produce the layout are normally
@@ -737,7 +737,7 @@ the page drawing commands. That is: \\
 
     Generally speaking, the commands for displaying and experimenting
 with the layout of a \file{memoir}
-class page are the same as, or analagous to, those for a standard page 
+class page are the same as, or analogous to, those for a standard page 
 layout.
 
     As an example, \fref{fig:mempplt} is produced by the following code.
@@ -1781,7 +1781,7 @@ due to scaling and rounding within the drawing algorithm.}
 
 
     The command \pixcom{currenttoc} sets values for the ToC parameters based
-on those for the current document. The paramaters can all be individually
+on those for the current document. The parameters can all be individually
 adjusted via the commands listed in \tref{tab:toc}. These commands all
 require a length as their parameter, except for the \pixcom{trytocdotsep}
 command which takes a number (integer or decimal) as its parameter value.
@@ -1829,7 +1829,7 @@ eliminate the dotted leader line between the title text and the page number.
 \end{figure}
 \end{verbatim}
 
-\subsection{Changing the Table of Contents, etc}
+\subsection{Changing the Table of Contents, etc.}
 
     The methods of specifying the typesetting of the various entries in 
 a Table of Contents or a List of Figures (or Tables) varies from one kind

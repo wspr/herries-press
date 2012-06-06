@@ -134,7 +134,7 @@
 %
 %    Section~\ref{sec:usc} describes a package to enable `words'
 % containing analphabetic characters to be automatically hyphenated,
-% or to disable hyphenation throught a document or just disable
+% or to disable hyphenation throughout a document or just disable
 % it for short pieces of text. It also enables hyphenation, if required,
 % of text typeset using monospaced (TT) fonts. For convenience I use TT
 % to mean a monospaced font; TT does \emph{not} indicate TrueType fonts.
@@ -167,7 +167,7 @@
 % the default TT font with no automatic hyphenation. It has the same
 % effect as |\texttt| when the \Lopt{htt} option is not used.
 % The |\nhttfamily| declaration is a companion to the |\textnhtt| command
-% and is analagous to the |\ttfamily| declaration in that it prevents
+% and is analogous to the |\ttfamily| declaration in that it prevents
 % any hyphenation of TT fonts. For example, if the Courier font is used
 % as the monospaced font instead of the CM typewriter font, then hyphenation
 % may occur with the Courier in places where it wouldn't with CM. The command
@@ -183,7 +183,7 @@
 % in the alphabet. Analphabetic characters include the numerals and 
 % punctuation characters. If a `word' contains any analphabetic characters,
 % \TeX's automatic hyphenation capability is disabled for any syllables
-% following the (first) of the analpabetic characters in the word.
+% following the (first) of the analphabetic characters in the word.
 % Words containing analphabetic characters often occur as the names
 % of variables in computer programs, and of course, as URLs on the Web.
 % The \Lopt{hyphenat} package provides several commands enabling automatic
@@ -229,11 +229,11 @@
 %
 % \DescribeMacro{\hyp}
 %    \TeX{} does not want to hyphenate a word that appears in the source
-% already hyphenated, such as |electromagnetic-endioscopy|.
+% already hyphenated, such as |electromagnetic-endoscopy|.
 %    The |\hyp| command is like the other |\...hyp| commands, only it
 % typesets a hyphen and allows full automatic hyphenation of the other
 % words forming the compound word. It is used like
-% |electromagnetic\hyp{}endioscopy|.
+% |electromagnetic\hyp{}endoscopy|.
 %
 %
 % \section{The package code} \label{sec:code}
@@ -250,7 +250,7 @@
 \ProvidesPackage{hyphenat}[2009/09/02 v2.3c hyphenation utilities]
 %    \end{macrocode}
 %
-%    An option is provided whereby all hyphenation throught a document
+%    An option is provided whereby all hyphenation throughout a document
 %    is disabled.
 % \changes{v2.1}{1998/10/14}{Added the `none' option}
 % Hyphenation throughout a document can be disabled in at least the following
@@ -262,7 +262,7 @@
 %   patterns, but for a complete document this would cause problems
 %   if a package like \Lpack{babel} was used);
 % \item Set |\lefthyphenmin| and |\righthyphenmin| to large values (see
-%   \file{lthyphen.dtx}) to prevent hypenation in the first |\lefthyphenmin|
+%   \file{lthyphen.dtx}) to prevent hyphenation in the first |\lefthyphenmin|
 %    characters and in the last |\righthyphenmin| characters.
 % \end{enumerate}
 % I have chosen the \textit{\TeX book} solution for global hyphenation 
@@ -290,7 +290,7 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\langwohyphens}
-% We will use a non-existant language as a local means of disabling 
+% We will use a non-existent language as a local means of disabling 
 % hyphenation.
 %    \begin{macrocode}
 \newlanguage\langwohyphens
@@ -306,7 +306,7 @@
 %    is that this kind of construct has to be written as
 %    as |long\_\-identifier| if hyphenation
 %    is to be enabled at the position of the underscore; this also
-%    switched off hypenation after the first use of |\_| or
+%    switched off hyphenation after the first use of |\_| or
 %    |_\-| within the construct.
 %
 %    Users of this package must not use a discretionary hyphen
@@ -496,7 +496,7 @@
 % will never be hyphenated. Similarly the |\nhttfamily| declaration is 
 % the corresponding equivalent to the |\ttfamily| declaration.
 % On the assumption that this will only be used for short pieces of
-% text we will implement this by using a non-existant language; this does
+% text we will implement this by using a non-existent language; this does
 % mean, however, that any language-specific typesetting (for example
 % via the \Lpack{babel} package) will be locally disabled.
 %    \begin{macrocode}
@@ -633,7 +633,7 @@
 % specification of a hyphenatable TT font family.
 %
 % Now to specify the various \file{.fd} files for the cmhtt font.
-% These are essentially copies of the files generateable from
+% These are essentially copies of the files generatable from
 % \file{cmfonts.fdd} (1998/03/27), which is part of the \LaTeX{} base
 % distribution.
 %

@@ -140,7 +140,7 @@
 % his original code and documentation is in appendices~\ref{sec:2upcode}
 % and~\ref{sec:2updoc}.
 % The \Lpack{booklet}
-% package is a poorman's version of some of the \Lpack{2up} macros
+% package is a poor man's version of some of the \Lpack{2up} macros
 % specifically for (pdf)LaTeX.
 %
 %    The \Lpack{2up} and \Lpack{booklet} packages cannot be used
@@ -257,7 +257,7 @@
 % The command |\source{|\meta{mag}|}{|\meta{width}|}{|\meta{height}|}|
 % specifies the source sheets, where
 % \meta{width} and \meta{height} are the width and height for the
-% pages of the orginal document (the document that LaTeX would process
+% pages of the original document (the document that LaTeX would process
 % without the \Lpack{booklet} package). The \meta{mag} argument is the
 % magnification factor. 
 %
@@ -279,7 +279,7 @@
 % The package puts two pages onto a single sheet. It often happens that
 % in order to do this the natural size of the text pages has to be changed,
 % via the \meta{mag} argument noted above. The macro |\magstepminusN|,
-% where $0 \leq N \leq 5$ is a shrinkage factor; similary, |\magstepN|
+% where $0 \leq N \leq 5$ is a shrinkage factor; similarly, |\magstepN|
 % specifies a magnification factor. For example, the default |\target|
 % is specified as: \\
 % |\target{\magstepminus1}{\paperheight}{\paperwidth}| \\
@@ -288,7 +288,7 @@
 % which shrinks the original pages more than the default |\target| does.
 %
 %    The \Lpack{booklet} package uses the |\source| and |\target| 
-% specifications to decide on how to scale and position the orginal
+% specifications to decide on how to scale and position the original
 % full size source pages onto half of a target sheet.
 %
 %    Normally there is no need to change the default |\source| but it
@@ -361,7 +361,7 @@
 % In version 0.7 of the package the macro \cs{setdvipstargetpages} was
 % introduced and the macro \cs{setpdftargetpages} was modified with the
 % result that \cs{checkforlandscape} was effectively
-% no longer needed. It is left to maintain upward compatibilty for
+% no longer needed. It is left to maintain upward compatibility for
 % older documents.
 %
 %
@@ -427,7 +427,7 @@
 %       the |\target| macro and in landscape orientation. Mentally
 %       divide this in half by a vertical line and then mark the centre
 %       points of the two (left and right) halves.
-% \item Take an even numbered original sheet, portrait orientaion,
+% \item Take an even numbered original sheet, portrait orientation,
 %       and place it on top of the landscape oriented target sheet
 %       with its centre point coincident with the left half centre
 %       point. Do the same with an odd numbered original sheet except
@@ -627,7 +627,7 @@
 % \end{verbatim}
 %
 %
-% \changes{v0.7a}{2005/06/01}{Added example for bookleting the manual}
+% \changes{v0.7a}{2005/06/01}{Added example for bookletting the manual}
 % As yet another example, you can produce this manual as a booklet. Change
 % the first part of this file to read:
 % \begin{verbatim}
@@ -1020,7 +1020,7 @@
 % \end{macro}
 %
 % \begin{macro}{\setdvipstargetpages}
-% This macro specifies the size of the target page fow when dvips is
+% This macro specifies the size of the target page for when dvips is
 % used. It ensures that \Lpack{memoir}'s version (\cs{fixdvipslayout}) 
 % does nothing.
 % \changes{v0.7}{2005/03/23}{Implemented \cs{setdvipstargetpages}}
@@ -1039,7 +1039,7 @@
 % \begin{macro}{\ship@@@rightpage}
 % I only provide the original \Lpack{2up} Booklet, not booklet. For
 % the \Lpack{booklet} package the Booklet code can be processed
-% immediately. The code in this chunk is equvalent to the original
+% immediately. The code in this chunk is equivalent to the original
 % |\target@Booklet|.
 %    \begin{macrocode}
 \def\targetBooklet{%
@@ -1086,7 +1086,7 @@
 % TeX's |\shipout| primitive is saved as |\&normal@shipout|, 
 % and then |\shipout|
 % is defined to save each page to |\@leftpage| or |\@rightpage| 
-% and to print out every two. There is no twosided layout in this version.
+% and to print out every two. There is no two-sided layout in this version.
 %    \begin{macrocode}
 \expandafter\let\csname &normal@shipout\endcsname\shipout
 \def\shipout{%
@@ -1180,7 +1180,7 @@
 % \end{macro}
 %
 % \begin{macro}{\ship@twoup}
-% The pages are generaly shipped in pairs:
+% The pages are generally shipped in pairs:
 %    \begin{macrocode}
 \def\ship@twoup{%
   \begingroup
