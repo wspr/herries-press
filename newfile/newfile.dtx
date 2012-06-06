@@ -155,7 +155,7 @@
 % The macro |\openoutputfile|\marg{filename}\marg{stream} opens the
 % file called \meta{filename} and the output stream \meta{stream}. It
 % then attaches the file to the stream for writing and calls the macro
-% |\atstreamopen<stream>|. Any pre-existing contents of \meta{filname}
+% |\atstreamopen<stream>|. Any pre-existing contents of \meta{filename}
 % are deleted.
 %
 % \DescribeMacro{\closeoutputstream}
@@ -424,7 +424,7 @@ An answer
 %    \end{macrocode}
 % There is a slight difficulty with this example, as in the \Lpack{book}
 % class, figures and table numbers start anew with each chapter and the
-% chapter number is preprended to the sequence number. We can make a
+% chapter number is prepended to the sequence number. We can make a
 % start on solving this by creating a new pseudo chapter number and changing
 % the default definitions of the figure and table numbers (which are
 % |\renewcommand{\thefigure}{\thechapter.\arabic{figure}}| and similarly
