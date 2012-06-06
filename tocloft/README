@@ -23,7 +23,7 @@ Changes in version 2.3b (2003/01/20)
 
 Changes in version 2.3a (2002/10/03)
 - Made Part commands work as advertised or deleted them
-- Added examples for page break control in the ToC, etc
+- Added examples for page break control in the ToC, etc.
 
 Changes in version 2.3 (2002/06/15)
 - Made compatible with the koma classes
@@ -52,7 +52,7 @@ Changes in version 1.0 (1999/09/19)
 
 Changes in version 0.3 (1999/08/22)
 - Added option to use default headings, so that packages like
-  fncychap can be used for ToC, etc headings
+  fncychap can be used for ToC, etc. headings
 
 Changes in version 0.2 (1999/01/17)
 - Now works with the tocbibind package

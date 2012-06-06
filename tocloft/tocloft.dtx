@@ -423,7 +423,7 @@
 % Note that as both |\addtocontents| and |\addcontentsline| write their
 % arguments to a file, it means that any \emph{fragile} commands in
 % their arguments must be protected
-% by preceeding each fragile command with |\protect|. 
+% by preceding each fragile command with |\protect|. 
 % The result of the example above
 % would be the following two lines in the \file{.toc} file (assuming that it
 % is the second Part and is on page 34):
@@ -582,7 +582,7 @@
 % Figure~\ref{fig:ltoc}.
 %
 % \DescribeMacro{\cftdot}
-%  In the default ToC typsetting only the more minor entries have dotted
+%  In the default ToC typesetting only the more minor entries have dotted
 % leader lines between the sectioning title and the page number. The
 % \Lpack{tocloft} package provides for general leaders for all entries.
 % The `dot' in a leader is given by the value of |\cftdot|. Its default
@@ -596,13 +596,13 @@
 %
 % \DescribeMacro{\cftdotsep}
 % \DescribeMacro{\cftnodots}
-%    Each kind of entry can control the seperation between the dots
+%    Each kind of entry can control the separation between the dots
 % in its leader (see below). For consistency though, all dotted leaders
 % should use the same spacing. The macro |\cftdotsep| specifies the
 % default spacing. Its value is a number. 
-% However, if the seperation is too large
+% However, if the separation is too large
 % then no dots will be actually typeset. The macro |\cftnodots| is
-% a seperation value that is `too large'.
+% a separation value that is `too large'.
 %
 % \DescribeMacro{\cftsetpnumwidth}
 % \DescribeMacro{\cftsetrmarg}
@@ -671,7 +671,7 @@
 % is typeset within a box of width |\cftXnumwidth|.
 %
 % \DescribeMacro{\cftXfont}
-% This controls the appearance of the title (and its preceeding number, 
+% This controls the appearance of the title (and its preceding number, 
 % if any). It may be changed using |\renewcommand|.
 %
 % \DescribeMacro{\cftXpresnum}
@@ -828,7 +828,7 @@
 % \meta{entry} is the name of one of the standard
 % kinds of entries (e.g., |subsection|, or |figure| --- including |subfigure|
 % if the \Lpack{subfigure} package is used --- etc.), or the name of a
-% new entry defined wih the \Lpack{tocloft} package. 
+% new entry defined with the \Lpack{tocloft} package. 
 %
 %    The command |\cftpagenumberson{|\meta{entry}|}| reverses
 % the effect of a corresponding |\cftpagenumbersoff|.
@@ -907,7 +907,7 @@
 % |\cftafterZtitleskip|, 
 % |\cftZtitlefont|, and
 % |\cftafterZtitle|, 
-% are analagous to the commands of the same names
+% are analogous to the commands of the same names
 % described in section~\ref{sec:titles}.
 %
 % \DescribeMacro{\listofX}
@@ -916,7 +916,7 @@
 % the new listing at the point where it is called.
 %
 % \DescribeMacro{\Zdepth}
-% The command |\Zdepth{|\meta{number}|}| is analagous to the standard
+% The command |\Zdepth{|\meta{number}|}| is analogous to the standard
 % |\tocdepth{|\meta{number}|}| command, in that it specifies that entries
 % in the new listing should not be typeset if their numbering level 
 % is greater
@@ -960,7 +960,7 @@
 % |\cftXdotsep|, 
 % |\cftXpagefont|, and
 % |\cftXafterpnum|,
-%  are analagous to the commands of the same names
+%  are analogous to the commands of the same names
 % described in section~\ref{sec:entries}. Their default values are also
 % as described earlier.
 %
@@ -1046,7 +1046,7 @@
 % files must remain open for writing throughout the document processing.
 % TeX has only a limited number of files that it can keep open, and this
 % puts a limit on the number of listings that can be used. For a document
-% that includes a ToC but no other extra ancilliary files (e.g., no
+% that includes a ToC but no other extra ancillary files (e.g., no
 % index or bibliography output files) the maximum number of LoX's, including
 % a LoF and LoT, is no more than about eleven. If you try and create too many
 % new listings LaTeX will respond with the error message: 
@@ -1136,7 +1136,7 @@
 % \end{verbatim}
 %    Recall that a |\caption| command will put an entry in the \file{.lof}
 % file, which is not wanted here. If a caption is required, then you can 
-% either craft one youself or, assuming that your general captions are not
+% either craft one yourself or, assuming that your general captions are not
 % too exotic, use the |\legend| command from the
 % \Lpack{ccaption} package. If the illustration is numbered, use the
 % |\cftaddnumtitleline| command instead of |\cftaddtitleline|.
@@ -1157,7 +1157,7 @@
 % such as |\tocotherhead{clause}|,
 % then this will almost certainly cause a problem (as the \Lpack{tocloft}
 % package will not know how to define the corresponding |\l@clause| command).
-% In such a case you will have to supply the appropriate macros youself.
+% In such a case you will have to supply the appropriate macros yourself.
 % \end{itemize}
 %
 % \DescribeMacro{\@cftbsnum}
@@ -1413,7 +1413,7 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\cftparskip}
 % The |\parskip| local to the ToC, etc., is set to the length |\cftparskip|.
-% \changes{v2.1}{2001/04/08}{Added \cs{cftparskip} for local parskip in ToC, etc}
+% \changes{v2.1}{2001/04/08}{Added \cs{cftparskip} for local parskip in ToC, etc.}
 %    \begin{macrocode}
 \newlength{\cftparskip}
 \setlength{\cftparskip}{0pt}
@@ -1543,7 +1543,7 @@ Consider installing the current version of tocbibind.}}
 % a title and the page number. The definition of this leader is buried
 % in the |\@dottedtocline| command. The |\cftdotfill{|\meta{sep}|}|
 % command provides a parameterised version of the leader code, where
-% \meta{sep} is the seperation between the dots in mu units.
+% \meta{sep} is the separation between the dots in mu units.
 % The symbol used for the `dots' in the leader is given by the value
 % of |\cftdot|. These macros are also provided by the \Lpack{ccaption} package.
 %    \begin{macrocode}
@@ -1556,7 +1556,7 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\cftdotsep}
 % \begin{macro}{\cftnodots}
-% |\cftdotsep| holds the default dot seperation, and is also provided
+% |\cftdotsep| holds the default dot separation, and is also provided
 % by the \Lpack{ccaption} package.
 % If the kerns in |\cftdotfill| are large enough, then no dots will
 % be printed. |\cftnodots| should be `large enough'.
@@ -1589,9 +1589,9 @@ Consider installing the current version of tocbibind.}}
 %
 %     For the purposes at hand it is generally impossible to treat 
 % the typesetting
-% of a title and its number seperately, as both are bundled into the
+% of a title and its number separately, as both are bundled into the
 % \meta{title} argument within |\contentsline|. They could be handled
-% seperately if the |\contentsline| command was suitably modified. If
+% separately if the |\contentsline| command was suitably modified. If
 % this was done, then the |\addtocontentsline| command would also need
 % to be changed which would then require the sectioning and captioning
 % commands to be modified as well. This is certainly possible, but would
