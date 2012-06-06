@@ -12,7 +12,7 @@ Changes in version 2.4 (2007/01/10)
 
 Changes in version 2.3 (2006/01/14)
 - Fixed small hiccup in \\>[...]
-- Added possibilty of putting line numbers at the left
+- Added possibility of putting line numbers at the left
 - Improved method of changing the font used for line numbers
 
 Changes in version 2.22 (2005/08/22)
