@@ -3,7 +3,7 @@ The TITLING package
 
     The titling package provides controls over the typesetting of the
 \maketitle and \thanks commands, makes the \title, \author and \date 
-information permanantly available, and allows multiple titles in
+information permanently available, and allows multiple titles in
 a single document.
 
 ______________
