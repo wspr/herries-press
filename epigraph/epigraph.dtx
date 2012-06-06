@@ -154,7 +154,7 @@
 %    The \Lpack{epigraph} package provides commands for typesetting
 % a single epigraph and environments for typesetting a list of epigraphs.
 % Epigraphs can be typeset at either the left, the center or the right of 
-% the typeblock. A few example eipgraphs are exhibited here, and
+% the typeblock. A few example epigraphs are exhibited here, and
 % others can be found in an article by
 % Christina Thiele~\cite{TTC199}.
 %
@@ -184,7 +184,7 @@
 %
 % \DescribeMacro{\qitem}
 %  Each epigraph in the list is specified by a 
-% |\qitem{|\meta{text}|}{|\meta{source}|}| command (analagous to the |\item|
+% |\qitem{|\meta{text}|}{|\meta{source}|}| command (analogous to the |\item|
 % command in ordinary list environments).
 % By default, the \meta{source} is typeset at the bottom right of the
 % \meta{text}. 
@@ -206,13 +206,13 @@
 % \DescribeMacro{\textflush}
 %  The epigraphs are typeset in a minipage of width |\epigraphwidth|. The default
 % value for this can be changed using the |\setlength| command. Typically,
-% epigraphs are typset in a measure much less than the width of the textblock.
+% epigraphs are typeset in a measure much less than the width of the textblock.
 % In order to avoid bad line breaks, the \meta{text} is normally typeset 
-% raggedright. 
+% ragged right. 
 % The |\textflush| command controls the \meta{text} typesetting style,
 % and it can be redefined from its default value of
-% \texttt{flushleft} (which produces raggedright). The sensible values
-% are \texttt{center} for centered text, \texttt{flushright} for raggedleft
+% \texttt{flushleft} (which produces ragged right). The sensible values
+% are \texttt{center} for centered text, \texttt{flushright} for ragged left
 % text, and \texttt{flushepinormal} for normal justified text.
 %
 %    If by any chance you want the \meta{text} to be typeset in some
@@ -264,7 +264,7 @@
 % \DescribeMacro{\afterepigraphskip}
 % The two |...skip| commands specify the amount of vertical space inserted
 % before and after typeset epigraphs. Again, these can be changed by
-% |\setlength|. It is desireable that the sum of their values should be an 
+% |\setlength|. It is desirable that the sum of their values should be an 
 % integer multiple of the |\baselineskip|.
 %
 % Note that you can use normal \LaTeX{} commands in the \meta{text} and
@@ -291,8 +291,8 @@
 % for printing at \meta{distance} below the header on a page.
 % \meta{text} can be ordinary text or, more likely, can be either an
 % |\epigraph| command or an |epigraphs| environment. By default, the 
-% epigraph will be typeset at the righthand margin.
-% If the command is immediately preceeded by a |\chapter| or |\chapter*| 
+% epigraph will be typeset at the right-hand margin.
+% If the command is immediately preceded by a |\chapter| or |\chapter*| 
 % command, the epigraph is typeset on the chapter title page.
 %
 %    The default value for the optional \meta{distance} argument is set so
@@ -350,8 +350,8 @@
 % of a chapter, where the something belongs to the chapter that is about to 
 % start rather than the chapter that has just ended. In order to do this 
 % in a document that is going to be printed
-% doublesided, the chapter must start on an odd numbered page and the 
-% pre-chapter material put on the immediately preceeding even numbered page.
+% double-sided, the chapter must start on an odd numbered page and the 
+% pre-chapter material put on the immediately preceding even numbered page.
 % The |\cleartoevenpage| command is like the |\cleardoublepage| except
 % that the page following the command will be an even numbered page, and the
 % command takes an optional argument, i.e., |\cleartoevenpage{|[arg|]|,
@@ -425,7 +425,7 @@
 % The value of the optional argument may need changing to vertically adjust
 % the position of the epigraph. If there is any |\part| that does not have an
 % epigraph then an empty |\epigraphhead| command (i.e., |\epigraphhead{}|)
-% must be placed immediately befor the |\part| command.
+% must be placed immediately before the |\part| command.
 %
 % \end{itemize}
 %
