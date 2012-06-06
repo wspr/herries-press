@@ -19,7 +19,7 @@ Changes in version v2.6c (2004/10/25)
 - Privatised some internal macro names (no change in functionality)
 
 Changes in version v2.6b (2003/11/25)
-- Fixed some spelling and gramatical errors
+- Fixed some spelling and grammatical errors
 
 Changes in version v2.6a (2002/12/12)
 - Fixed problem with negative length in list layout
@@ -32,7 +32,7 @@ Changes in version v2.5a (2002/03/24)
 - Fixed problem with footer size on page diagrams
 
 Changes in version v2.5 (2001/11/11)
-- Cleaner seperation between generic and designed layouts
+- Cleaner separation between generic and designed layouts
 - Added controls over the appearance of pictures
 - Lengths may be printed using any TeX unit (except scaled point)
 
