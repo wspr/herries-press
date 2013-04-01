@@ -12,10 +12,10 @@
 %%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{filecontents}
-\begin{filecontents}{needspace.sty}
+\begin{filecontents*}{needspace.sty}
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{needspace}[2010/09/12 v1.3c reserve vertical space]
+\ProvidesPackage{needspace}[2010/09/12 v1.3d reserve vertical space]
 
 \newcommand{\needspace}[1]{%
   \begingroup
@@ -48,7 +48,7 @@
     \break
   \fi\endgroup}
 
-\end{filecontents}
+\end{filecontents*}
 %%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
 
 
@@ -72,7 +72,7 @@
 %% DOCUMENTATION %%
 %%%%%%%%%%%%%%%%%%%
 
-\documentclass{article}
+\documentclass{ltxdoc}
 \usepackage[it,medium]{titlesec}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
@@ -81,13 +81,10 @@
 \linespread{1.1}
 \frenchspacing
 
+\usepackage{fancyvrb}
+
 \usepackage[svgnames]{xcolor}
 \usepackage[colorlinks,linktocpage]{hyperref}
-\usepackage{gmdoc}
-\usepackage{gmverb}
-\dekclubs
-\stanzaskip=\bigskipamount
-\CodeSpacesGrey
 \DeclareRobustCommand\pkg{\textsf}
 
 \usepackage{needspace}
@@ -109,7 +106,7 @@
 
 This packages two commands, \cs{needspace} and \cs{Needspace}, for reserving
 space to keep a certain amount of material from being split over a page break.
-If there is not enough space, a `\newpage' is automatically inserted.
+If there is not enough space, a \verb|\newpage| is automatically inserted.
 
 The \cs{needspace}\meta{length} macro reserves an \emph{approximate} amount of space \meta{length} for
 the material following to be kept on the same page. The accuracy of its
@@ -132,6 +129,9 @@ Here, we request that we need next five lines on a single page/column:
 \needspace{5\baselineskip}
 The next five lines ...
 \end{verbatim}
+
+\newpage
+\noindent
 In this case, the space is reserved more accurately:
 \begin{verbatim}
 ... previous text.
@@ -152,12 +152,12 @@ The current maintainer of this work is Will Robertson.
 \bigskip
   \noindent
   Copyright Peter Wilson, 1996--2003 \\
-  Copyright Will Robertson, 2010
+  Copyright Will Robertson, 2010, 2013
 
 \clearpage
 \parindent=0pt
 
 \section{Implementation}
-\DocInput{needspace.sty}
+\VerbatimInput{needspace.sty}
 
 \end{document}
