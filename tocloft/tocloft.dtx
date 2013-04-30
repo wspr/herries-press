@@ -3094,13 +3094,12 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 % This ends the definition of |\newlistentry|.
 %    \begin{macrocode}
-} % end \newlistentry
-
+}
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\newlistof}
-% |\newlistof[|\meta{within}|]{|\meta{counter}|}{|\meta{ext}|}{|\meta{listofname}|}|
+% |\newlistof[|\meta{within}|]{|\meta{entry}|}{|\meta{ext}|}{|\meta{listofname}|}|
 % creates the commands for a new List of.
 %    \begin{macrocode}
 \newcommand{\newlistof}[4][\@empty]{%
@@ -3112,17 +3111,15 @@ Consider installing the current version of tocbibind.}}
   \else
     \newlistentry[#1]{#2}{#3}{0}
   \fi
-
 %    \end{macrocode}
 %
 % \begin{macro}{\ext@Z}
 % \begin{macro}{\Zdepth}
 % The file extension and listing depth.
 %    \begin{macrocode}
-  \@namedef{ext@#3}{#3}
+  \@namedef{ext@#2}{#3}
   \newcounter{#3depth}
   \setcounter{#3depth}{1}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -3240,8 +3237,7 @@ Consider installing the current version of tocbibind.}}
 %
 % This is the end of the definition of |\newlistof|.
 %    \begin{macrocode}
-} % end \newlistof
-
+}
 %    \end{macrocode}
 % \end{macro}
 %
