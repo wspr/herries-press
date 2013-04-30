@@ -1563,8 +1563,16 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
 \providecommand{\cftdot}{.}
 \providecommand{\cftdotfill}[1]{%
-  \leaders\hbox{$\m@th\mkern #1 mu\hbox{\cftdot}\mkern #1 mu$}\hfill}
+  \def\@tempa{#1}%
+  \def\@tempb{\cftnodots}%
+  \ifx\@tempa\@tempb
+    \hfill
+  \else
+    \leaders\hbox{$\m@th\mkern #1 mu\hbox{\cftdot}\mkern #1 mu$}\hfill
+  \fi
+}
 %    \end{macrocode}
+% \changes{v2.3f}{2013/04/30}{Specifically avoid placing dots when \cs{cftnodots} is used}
 % \end{macro}
 % \end{macro}
 %
