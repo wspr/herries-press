@@ -692,8 +692,14 @@
 % In the standard classes the ToC entry for a |\part| is just typeset as
 % the number and title, followed by the page number, with the 
 % |\cftpartpresnum|
-% macro being called before typesetting the number and title. When a 
-% standard class is used the |\cftpartaftersnum| and 
+% macro being called before typesetting the number and title.
+% Due to \LaTeX\ ideosyncracies, |\cftpartpresnum| may become doubled in the output
+% if a third-party package behaves differently to that of the default internal \LaTeX\ commands.
+% The |tocloft| package contains specific code to prevent this in the case of
+% the KomaScript classes and for the |titlesec| package; please contact the maintainer
+% to add further corrections if you discover other packages which also exhibit this mis-behaviour.
+%
+% When a standard class is used the |\cftpartaftersnum| and
 % |\cftpartaftersnumb| macros have no effect, but they may do something
 % if a non-standard class is used.
 %
@@ -1241,11 +1247,18 @@
 % \changes{v2.3}{2002/06/15}{Added check for a koma class}
 %    \begin{macrocode}
 \newif\if@cftkoma
-  \@cftkomafalse
+\@cftkomafalse
 \@ifclassloaded{scrartcl}{\@cftkomatrue}{}
 \@ifclassloaded{scrreprt}{\@cftkomatrue}{}
 \@ifclassloaded{scrbook}{\@cftkomatrue}{}
-
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\if@cfttitlesec}
+% \changes{v2.3e}{2013/04/30}{Added check for titlesec package}
+%    \begin{macrocode}
+\newif\if@cfttitlesec
+\AtBeginDocument{\@ifpackageloaded{titlesec}{\@cfttitlesectrue}{}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1708,9 +1721,9 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % In default \LaTeX, the part ToC entry is written without \verb|\numberline|
 % and hence the `presnum' needs to be inserted manually.
-% In Koma-Script, however, this is not the case.
+% In Koma-Script and titlesec (and probably others---let me know!), however, this is not the case.
 %    \begin{macrocode}
-       {\cftpartfont \if@cftkoma\else\cftpartpresnum\fi #1}%
+       {\cftpartfont \if@cftkoma\else\if@cfttitlesec\else\cftpartpresnum\fi\fi #1}%
        \cftpartfillnum{#2}}
       \nobreak
       \if@cfthaschapter
