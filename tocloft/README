@@ -8,15 +8,22 @@ define your own kinds of `List of ...'
 _______________
 Change history:
 
-Changes in version 2.3f (2013/04/10)
-- 
+Changes in version 2.3f (2013/05/02)
+- (Try to) support KOMA and titlesec packages w.r.t. \part entries
+- Extraneous whitespace fixes
+- Doc explanation of removing between-chapter space in LoF, LoT
+- Add \cftpnumalign to specify alignment of the page number in its box
+- Prevent some "Dimension too large" issues with large font sizes and a "no dots" ToC design.
+- Bug fix for the macro used to store the extension filename for new "lists of"
+
+Thanks to Andre Pinkert, Florent Chervet, Stephan Stiller, Matthew Skala, Simon Verleger, Leo Liu, Haruyuki Kawabe, and Axel Sommerfeldt for suggesting all of the changes above and my apologies for the slow turn-around releasing the package.
 
 Changes in version 2.3e (2010/10/13)
--  Remove a superfluous message from the console output:  
+- Remove a superfluous message from the console output:  
    "The document has [section|chapter] divisions"
 
 Changes in version 2.3d (2009/09/04)
--  New package maintainer (Will Robertson) and small bug fix
+- New package maintainer (Will Robertson) and small bug fix
 
 Changes in version 2.3c (2003/09/26)
 - Another fix for the hyperref package

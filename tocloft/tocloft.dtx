@@ -19,6 +19,7 @@
 % 
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage{hypdoc}
 \EnableCrossrefs
 \CodelineIndex
 \setcounter{StandardModuleDepth}{1}
@@ -29,7 +30,7 @@
 %
 % \fi
 %
-% \CheckSum{2197}
+% \CheckSum{2219}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -106,7 +107,7 @@
 % \def\fileversion{v2.3c} \def\filedate{2003/09/26}
 % \def\fileversion{v2.3d} \def\filedate{2009/09/04}
 % \def\fileversion{v2.3e} \def\filedate{2010/10/13}
-% \def\fileversion{v2.3f} \def\filedate{2013/04/30}
+% \def\fileversion{v2.3f} \def\filedate{2013/05/02}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -1243,7 +1244,7 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocloft}[2010/10/13 v2.3e parameterised ToC, etc., typesetting]
+\ProvidesPackage{tocloft}[2013/05/02 v2.3f parameterised ToC, etc., typesetting]
 %    \end{macrocode}
 %
 % In order to try and avoid name clashes with other packages, each internal
@@ -1275,7 +1276,7 @@
 % \end{macro}
 %
 % \begin{macro}{\if@cfttitlesec}
-% \changes{v2.3e}{2013/04/30}{Added check for titlesec package}
+% \changes{v2.3f}{2013/04/30}{Added check for titlesec package}
 %    \begin{macrocode}
 \newif\if@cfttitlesec
 \AtBeginDocument{\@ifpackageloaded{titlesec}{\@cfttitlesectrue}{}}
