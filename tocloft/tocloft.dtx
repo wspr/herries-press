@@ -609,13 +609,22 @@
 % \DescribeMacro{\cftsetrmarg}
 % The page numbers are typeset in a fixed width box. The command
 % |\cftsetpnumwidth{|\meta{length}|}| can be used to change the width
-% of the box (\LaTeX 's internal |\@pnumwidth|). 
+% of the box (\LaTeX 's internal |\@pnumwidth|).
 % The title texts will end before reaching the righthand margin.
 % |\cftsetrmarg{|\meta{length}|}| can be used to set this distance 
 % (\LaTeX 's internal |\@tocrmarg|).
 % Note that the length used in |\cftsetrmarg| should be greater
 % than the length set in |\cftsetpnumwidth|. These values should remain
 % constant in any given document.
+%
+% \DescribeMacro{\cftpnumalign}
+% The page numbers are typeset in a box as described above.
+% By default they are right-aligned which is suitable when the page numbers are aligned vertically on the page so their digits line up.
+% For a design with fixed width between a ToC entry and its page number, say, a left alignment may be more suitable.
+% This can be controlled by setting the \cs{cftpnumalign} macro to \verb|l|, \verb|c|, or \verb|r| (just like \cs{makebox}):
+% \begin{verbatim}
+%   \renewcommand{\cftpnumalign}{l}
+% \end{verbatim}
 %
 % \DescribeMacro{\cftparskip}
 % Normally the |\parskip| in the ToC, etc., is zero. This may be changed
@@ -819,6 +828,7 @@
 % \begin{verbatim}
 % \renewcommand{\cftXleader}{}
 % \renewcommand{\cftXafterpnum}{\cftparfillskip}
+% \renewcommand{\cftpnumalign}{l}
 % \end{verbatim}
 % By default the |\parfillskip| value is locally set to fill up the last
 % line of a paragraph. Just changing |\cftXleader| puts horrible interword
@@ -1551,6 +1561,14 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 % \end{macro}
 %
+% \begin{macro}{\cftpnumalign}
+% \changes{v2.3f}{2013/05/02}{Add \cs{cftpnumalign} for page number alignment}
+% Alignment string (as input to \cs{makebox} for the page number box.
+%    \begin{macrocode}
+\newcommand{\cftpnumalign}{r}
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\cftdot}
 % \begin{macro}{\cftdotfill}
 % In the default ToC, a dotted line can be used to provide a leader between
@@ -1582,6 +1600,7 @@ Consider installing the current version of tocbibind.}}
 % by the \Lpack{ccaption} package.
 % If the kerns in |\cftdotfill| are large enough, then no dots will
 % be printed. |\cftnodots| should be `large enough'.
+% (Actually, |\cftnodots| is now used as a flag for a conditional branch, so its numerical value isn't as important now.)
 %    \begin{macrocode}
 \providecommand{\cftdotsep}{4.5}
 \newcommand{\cftnodots}{5000}
@@ -1785,7 +1804,8 @@ Consider installing the current version of tocbibind.}}
     \setlength{\cftpartindent}{0em}
   \newcommand{\cftpartfillnum}[1]{%
     {\cftpartleader}%
-    {\hb@xt@\@pnumwidth{\hss {\cftpartpagefont #1}}}\cftpartafterpnum\par}
+    {\makebox[\@pnumwidth][\cftpnumalign]{\cftpartpagefont #1}\cftpartafterpnum\par}%
+  }
 %    \end{macrocode}
 % \Lpack{koma} classes use some different settings.
 % \changes{v2.3}{2002/06/15}{koma has different part settings}
@@ -1796,7 +1816,6 @@ Consider installing the current version of tocbibind.}}
     \renewcommand{\cftpartpagefont}{\sectfont\large}
   \fi
 \fi
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1872,7 +1891,8 @@ Consider installing the current version of tocbibind.}}
   \newcommand{\cftchapafterpnum}{}
   \newcommand{\cftchapfillnum}[1]{%
     {\cftchapleader}\nobreak
-    \hb@xt@\@pnumwidth{\hfil\cftchappagefont #1}\cftchapafterpnum\par}
+    \makebox[\@pnumwidth][\cftpnumalign]{\cftchappagefont #1}\cftchapafterpnum\par
+  }
 %    \end{macrocode}
 % \Lpack{koma} classes have different chapter settings.
 % \changes{v2.3}{2002/06/15}{koma has different chapter settings}
@@ -1967,8 +1987,8 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\cftsecafterpnum}{}
 \newcommand{\cftsecfillnum}[1]{%
   {\cftsecleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftsecpagefont #1}\cftsecafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftsecpagefont #1}\cftsecafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2106,8 +2126,8 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
 \newcommand{\cftsubsecfillnum}[1]{%
   {\cftsubsecleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftsubsecpagefont #1}\cftsubsecafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftsubsecpagefont #1}\cftsubsecafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2173,8 +2193,8 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\cftsubsubsecafterpnum}{}
 \newcommand{\cftsubsubsecfillnum}[1]{%
   {\cftsubsubsecleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftsubsubsecpagefont #1}\cftsubsubsecafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftsubsubsecpagefont #1}\cftsubsubsecafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2251,8 +2271,8 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\cftparaafterpnum}{}
 \newcommand{\cftparafillnum}[1]{%
   {\cftparaleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftparapagefont #1}\cftparaafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftparapagefont #1}\cftparaafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2329,8 +2349,8 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\cftsubparaafterpnum}{}
 \newcommand{\cftsubparafillnum}[1]{%
   {\cftsubparaleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftsubparapagefont #1}\cftsubparaafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftsubparapagefont #1}\cftsubparaafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2527,8 +2547,8 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\cftfigafterpnum}{}
 \newcommand{\cftfigfillnum}[1]{%
   {\cftfigleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftfigpagefont #1}\cftfigafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftfigpagefont #1}\cftfigafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2740,8 +2760,8 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\cfttabafterpnum}{}
 \newcommand{\cfttabfillnum}[1]{%
   {\cfttableader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cfttabpagefont #1}\cfttabafterpnum\par}
-
+  \makebox[\@pnumwidth][\cftpnumalign]{\cfttabpagefont #1}\cfttabafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2835,7 +2855,8 @@ Consider installing the current version of tocbibind.}}
 \providecommand{\toclevel@subfigure}{1}
 \newcommand{\cftsubfigfillnum}[1]{%
   {\cftsubfigleader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftsubfigpagefont ##1}\cftsubfigafterpnum\par}
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftsubfigpagefont ##1}\cftsubfigafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2930,7 +2951,8 @@ Consider installing the current version of tocbibind.}}
 \providecommand{\toclevel@subtable}{1}
 \newcommand{\cftsubtabfillnum}[1]{%
   {\cftsubtableader}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\cftsubtabpagefont ##1}\cftsubtabafterpnum\par}
+  \makebox[\@pnumwidth][\cftpnumalign]{\cftsubtabpagefont ##1}\cftsubtabafterpnum\par
+}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -3111,7 +3133,8 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
   \@namedef{cft#2fillnum}##1{%
     {\@nameuse{cft#2leader}}\nobreak
-    \hb@xt@\@pnumwidth{\hfil\@nameuse{cft#2pagefont}##1}\@nameuse{cft#2afterpnum}\par}
+    \makebox[\@pnumwidth][\cftpnumalign]{\@nameuse{cft#2pagefont}##1}\@nameuse{cft#2afterpnum}\par
+  }
 %    \end{macrocode}
 % \end{macro}
 % This ends the definition of |\newlistentry|.
@@ -3477,8 +3500,9 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\@cftpnumon}[1]{%
   \@namedef{cft#1fillnum}##1{%
     {\@nameuse{cft#1leader}}\nobreak
-    \hb@xt@\@pnumwidth{\hfil\@nameuse{cft#1pagefont}##1}\@nameuse{cft#1afterpnum}\par}}
-    
+    \makebox[\@pnumwidth][\cftpnumalign]{\@nameuse{cft#1pagefont}##1}\@nameuse{cft#1afterpnum}\par
+  }%
+}
 %    \end{macrocode}
 % \end{macro}  
 %
