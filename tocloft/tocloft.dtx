@@ -836,6 +836,16 @@
 % command
 % is part of the \Lpack{tocloft} package and is provided just so that
 % the above effect can be achieved.
+% In addition, this is a good example of when it would be suitable to change the alignment of the page number box.
+%
+% \item To remove the space inserted between table and figure caption entries between chapters:
+% \begin{verbatim}
+% \begingroup
+%   \renewcommand*{\addvspace}[1]{}
+%   \listoftables
+%   \listoffigures
+% \endgroup
+% \end{verbatim}
 % \end{itemize}
 %
 % \DescribeMacro{\cftpagenumbersoff}
