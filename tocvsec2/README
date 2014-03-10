@@ -8,6 +8,10 @@ NB. The package also requires the ifthen package.
 ______________
 Change history
 
+version 1.3a (2014/03/10)
+- Missing % in a definition was causing a spacing issue.
+  Thanks: http://tex.stackexchange.com/a/164612
+
 version 1.3 (2011/08/07)
 - New commands \resettocdepth and \resetsecnumdepth
   used for resetting to previous values of the tocdepth
@@ -16,7 +20,7 @@ version 1.3 (2011/08/07)
   `max' values.
 
 - Bug fix that resets "tocdepth" to its original value after
-  the \tableofcontents -- els it will adversely affect
+  the \tableofcontents -- else it will adversely affect
   subsequent List of Figures/Tables (or cause no harm,
   either way).
 
