@@ -22,7 +22,7 @@
 %</driver>
 %<usc>\ProvidesPackage{tocvsec2}
 %<*usc>
-    [2011/08/07 v1.3 variable ToC section entries]    
+    [2014/03/10 v1.3a variable ToC section entries]    
 %</usc>
 % 
 %<*driver>
@@ -86,6 +86,7 @@
 % \changes{v1.1a}{2004/05/10}{Changed license from LPPL v1.0 to v1.3}
 % \changes{v1.2}{2004/05/24}{Eliminated requirement for stdclsdv package}
 % \changes{v1.2a}{2009/09/04}{New maintainer (Will Robertson)}
+% \changes{v1.3a}{2011/03/10}{Some missing comment chars causing space issues}
 %
 % \def\dtxfile{tocvsec2.dtx}
 % \GetFileInfo{\dtxfile}
@@ -375,36 +376,36 @@
 % \Lcount{counter} to the level of \meta{sec}.
 %    \begin{macrocode}
 \newif\if@knownsect@c
-\newcommand{\@setseccntt@c}[2]{
+\newcommand{\@setseccntt@c}[2]{%
   \@knownsect@cfalse
   \ifthenelse{\equal{#1}{none}}{\setcounter{#2}{-10}
-                                \@knownsect@ctrue}{}
+                                \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{part}}{\ift@cchapter
                                   \setcounter{#2}{-1} 
                                 \else
                                   \setcounter{#2}{0}
                                 \fi
-                                \@knownsect@ctrue}{}
+                                \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{chapter}}{\setcounter{#2}{0}
-                                   \@knownsect@ctrue}{}
+                                   \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{section}}{\setcounter{#2}{1}
-                                   \@knownsect@ctrue}{}
+                                   \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{subsection}}{\setcounter{#2}{2}
-                                      \@knownsect@ctrue}{}
+                                      \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{subsubsection}}{\setcounter{#2}{3}
-                                         \@knownsect@ctrue}{}
+                                         \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{paragraph}}{\setcounter{#2}{4}
-                                     \@knownsect@ctrue}{}
+                                     \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{subparagraph}}{\setcounter{#2}{5}
-                                        \@knownsect@ctrue}{}
+                                        \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{all}}{\setcounter{#2}{100}
-                                \@knownsect@ctrue}{}
+                                \@knownsect@ctrue}{}%
   \if@knownsect@c\else
     \PackageError{tocvsec2}{%
       Unknown sectioning command name (#1)
     }{%
       I'll ignore it. Type \space <return> and I'll continue.\MessageBreak
-      If you haven't mistyped the name then use \protect\setcounter\space instead.}
+      If you haven't mistyped the name then use \protect\setcounter\space instead.}%
   \fi
 }
 %    \end{macrocode}
@@ -421,39 +422,39 @@
   \@knownsect@cfalse
   \ifthenelse{\equal{#1}{none}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{-10}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{part}}{%
     \ift@cchapter
       \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{-1}}
     \else
       \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{0}}
     \fi
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{chapter}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{0}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{section}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{1}}
-    \@knownsect@ctrue}{}
-  \ifthenelse{\equal{#1}{subsection}}{
+    \@knownsect@ctrue}{}%
+  \ifthenelse{\equal{#1}{subsection}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{2}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{subsubsection}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{3}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{paragraph}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{4}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{subparagraph}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{5}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \ifthenelse{\equal{#1}{all}}{%
     \addtocontents{toc}{\save@tocdepth\protect\setcounter{tocdepth}{100}}
-    \@knownsect@ctrue}{}
+    \@knownsect@ctrue}{}%
   \if@knownsect@c\else
     \PackageError{tocvsec2}{%
       Unknown sectioning command name (#1)}%
-     {I'll ignore it. Type \space <return> and I'll continue.}
+     {I'll ignore it. Type \space <return> and I'll continue.}%
   \fi
 }
 %    \end{macrocode}
@@ -491,7 +492,8 @@
 %    \begin{macrocode}
 \newcommand{\setsecnumdepth}[1]{%
   \save@secnumdepth
-  \@setseccntt@c{#1}{secnumdepth}}
+  \@setseccntt@c{#1}{secnumdepth}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -543,7 +545,7 @@
       \afterassignment\gobble@secnumdepth
       \expandafter\c@secnumdepth\expandafter\numexpr\stack@secnumdepth\@nil
     \fi
-  }
+  }%
 }
 %    \end{macrocode}
 % \end{macro}
