@@ -60,7 +60,7 @@
 %
 % \fi
 %
-% \CheckSum{555}
+% \CheckSum{551}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -924,12 +924,11 @@
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{verse}[2009/09/04 v2.4a verse typesetting]
-
 %    \end{macrocode}
 %
 % For reference, here is the original definition of the |verse| environment
 % from \file{classes.dtx}, based on |\let|ting |\\| equal |\@centercr|.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \newenvironment{verse}
 %    {\let\\\@centercr
 %     \list{}{\itemsep      \z@
@@ -939,7 +938,7 @@
 %             \advance\leftmargin 1.5em}%
 %    \item\relax}
 %    {\endlist}
-% \end{verbatim}
+% \end{lstlisting}
 %
 % \subsection{Verse code}
 %
@@ -965,7 +964,6 @@
 \newcounter{modulo@vs}
 \newcounter{verse@envctr}\setcounter{verse@envctr}{0}
 \newcommand*{\theHpoemline}{\arabic{verse@envctr}.\arabic{poemline}}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -981,13 +979,12 @@
 %    \begin{macrocode}
 \newcommand{\poemlines}[1]{%
   \ifnum#1>\z@
-    \setcounter{modulo@vs}{#1}
+    \setcounter{modulo@vs}{#1}%
   \else
-    \setcounter{modulo@vs}{0}
+    \setcounter{modulo@vs}{0}%
   \fi
 }
 \poemlines{0}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -998,7 +995,6 @@
 %    \begin{macrocode}
 \newcommand*{\verselinenumfont}[1]{\def\vlnumfont{#1}}
 \verselinenumfont{\rmfamily}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1026,8 +1022,8 @@
     \multiply\@tempcnta\c@modulo@vs
     \c@fvsline #2\relax
     \advance\c@fvsline-\@tempcnta
-  \fi}
-
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1038,9 +1034,9 @@
 %                            of line numbers}
 %    \begin{macrocode}
 \newcommand{\getmodulo@vs}{\bgroup
-  \ifnum\c@modulo@vs<\@ne%   no line numbers
+  \ifnum\c@modulo@vs<\@ne   % no line numbers
   \else
-    \ifnum\c@modulo@vs<\tw@% every line numbered
+    \ifnum\c@modulo@vs<\tw@ % every line numbered
       \vlnumfont\thepoemline
     \else
       \@tempcnta\c@poemline
@@ -1052,7 +1048,6 @@
     \fi
   \fi
 \egroup}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1060,7 +1055,6 @@
 % This should be set TRUE for indenting alternate lines.
 %    \begin{macrocode}
 \newif\ifaltindent
-  \altindentfalse
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1068,7 +1062,6 @@
 % This should be set TRUE for indenting lines according to a pattern.
 %    \begin{macrocode}
 \newif\ifpattern
-  \patternfalse
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1078,8 +1071,6 @@
 % \changes{v2.1}{2002/03/8}{Added \cs{ifstarpattern}}
 %    \begin{macrocode}
 \newif\ifstarpattern
-  \starpatternfalse
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1087,7 +1078,6 @@
 % |\versewidth| is a convenience length for the user.
 %    \begin{macrocode}
 \newlength{\versewidth}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1101,11 +1091,13 @@
 % between stanzas.
 % \changes{v2.2}{2002/07/18}{Added \cs{stanzaskip}}
 %    \begin{macrocode}
-\newlength{\vgap} \setlength{\vgap}{1.5em}
+\newlength{\vgap}
+\setlength{\vgap}{1.5em}
 \newcommand{\vin}{\hspace*{\vgap}}
-\newlength{\vindent} \setlength{\vindent}{2\vgap}
-\newlength{\stanzaskip} \setlength{\stanzaskip}{0.75\baselineskip}
-
+\newlength{\vindent}
+\setlength{\vindent}{2\vgap}
+\newlength{\stanzaskip}
+\setlength{\stanzaskip}{0.75\baselineskip}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1118,10 +1110,9 @@
 % \changes{v2.0}{2002/03/24}{Added \cs{vleftksip} and \cs{vrightskip}}
 %    \begin{macrocode}
 \newlength{\vleftskip}
-  \setlength{\vleftskip}{30pt}
+\setlength{\vleftskip}{30pt}
 \newlength{\vrightskip}
-  \setlength{\vrightskip}{10pt}
-
+\setlength{\vrightskip}{10pt}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1130,8 +1121,10 @@
 % |\flagverse{|\meta{flag}|}| inserts \meta{flag} at the left (of a line).
 % \changes{v2.0}{2002/03/24}{Added \cs{flagverse}}
 %    \begin{macrocode}
-\newcommand{\flagverse}[1]{\hskip-\vleftskip\llap{#1}\hskip\vleftskip\ignorespaces}
-
+\newcommand{\flagverse}[1]{%
+  \hskip-\vleftskip\llap{#1}\hskip\vleftskip
+  \ignorespaces
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1143,7 +1136,10 @@
 % \changes{v2.1}{2002/03/28}{Modified \cs{verselinebreak}}
 % \changes{v2.3}{2006/01/14}{Added \cs{ignorespaces} to \cs{verselinebreak}}
 %    \begin{macrocode}
-\newcommand*{\verselinebreak}[1][\z@]{\newline\hspace*{#1}\ignorespaces}
+\newcommand*{\verselinebreak}[1][\z@]{%
+  \newline\hspace*{#1}%
+  \ignorespaces
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1153,8 +1149,8 @@
 %    \begin{macrocode}
 \newcommand{\incr@vsline}{%
   \refstepcounter{poemline}%
-  \stepcounter{vslineno}}
-
+  \stepcounter{vslineno}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1171,7 +1167,6 @@
 % \changes{v2.1}{2002/03/28}{Added \cs{@vsifgt}}
 %    \begin{macrocode}
 \newcommand{\@vsifgt}[1]{\@ifnextchar >{\@firstoftwo{#1}}}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1185,13 +1180,14 @@
 % \changes{v2.3}{2006/01/14}{Added left/right switching line numbers}
 %    \begin{macrocode}
 \newcommand*{\@vstypelinenumright}{%
-  \hfill\rlap{\kern\vrightskip\kern\rightmargin\getmodulo@vs}}
+  \hfill\rlap{\kern\vrightskip\kern\rightmargin\getmodulo@vs}%
+}
 \newcommand*{\@vstypelinenumleft}{%
-  \hfill\rlap{\kern-\textwidth\kern-\vrightskip\getmodulo@vs}}
+  \hfill\rlap{\kern-\textwidth\kern-\vrightskip\getmodulo@vs}%
+}
 \newcommand*{\verselinenumbersright}{\def\@vstypelinenum{\@vstypelinenumright}}
-\newcommand*{\verselinenumbersleft}{\def\@vstypelinenum{\@vstypelinenumleft}}
+\newcommand*{\verselinenumbersleft} {\def\@vstypelinenum{\@vstypelinenumleft}}
 \verselinenumbersright
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1212,23 +1208,24 @@
 %    \begin{macrocode}
 \newcommand{\@vscentercr}{%
   \ifhmode \unskip\else \@nolnerr\fi
-  \@vstypelinenum%
+  \@vstypelinenum
 %%%%  \hfill\rlap{\kern\vrightskip\kern\rightmargin\getmodulo@vs}%
 %    \end{macrocode}
 % For |>| call |\verselinebreak| to process it.
 %    \begin{macrocode}
   \@vsifgt{\verselinebreak}{%
-  \incr@vsline
+    \incr@vsline
 %    \end{macrocode}
 % If the call is |\\*...| call |\@vsxcentercr| to handle the |*...|.
 % If the call is |\\!|, do nothing.
 % If the call is |\\![...]|, call |\@vsicentercr| to handle the |[...]|.
 % Otherwise, call |\@vsxcentercr|.
 %    \begin{macrocode}
-  \par\@ifstar{\nobreak\@vsxcentercr}{%
-%    \end{macrocode}
-%    \begin{macrocode}
-    \@vsifbang{\@ifnextchar[ {\@vsicentercr}{}}{\@vsxcentercr}}}}
+    \par\@ifstar{\nobreak\@vsxcentercr}{%
+      \@vsifbang{\@ifnextchar[ {\@vsicentercr}{}}{\@vsxcentercr}%
+    }%
+  }%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1237,8 +1234,10 @@
 % or |\start@vsline|.
 % \changes{v2.0}{2002/03/24}{Added \cs{@vsxcentercr}}
 %    \begin{macrocode}
-\newcommand{\@vsxcentercr}{\addvspace{-\parskip}%
-  \@ifnextchar[ {\@vsicentercr}{\start@vsline}}
+\newcommand{\@vsxcentercr}{%
+  \addvspace{-\parskip}%
+  \@ifnextchar[ {\@vsicentercr}{\start@vsline}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1260,8 +1259,8 @@
 \newcommand{\start@vsline}{%
   \ifaltindent\ifodd\c@vslineno\else\vin\fi\fi%
   \ifpattern\get@vsindent\fi%
-  \ifstarpattern\getstar@vsindent\fi}
-
+  \ifstarpattern\getstar@vsindent\fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1278,7 +1277,7 @@
 % \changes{v2.2}{2002/07/18}{Added \cs{stanzaskip} to the verse environment}
 % \changes{v2.22}{2005/08/22}{Added verse@envctr to the verse environment}
 %    \begin{macrocode}
-\renewenvironment{verse}[1][\linewidth]{
+\renewenvironment{verse}[1][\linewidth]{%
   \stepcounter{verse@envctr}%
   \setcounter{poemline}{0}\refstepcounter{poemline}%
   \setcounter{vslineno}{1}%
@@ -1295,9 +1294,10 @@
           \else
             \rightmargin        \leftmargin
           \fi
-          \addtolength{\leftmargin}{\vindent}}
-  \item[]}{\endlist}
-
+          \addtolength{\leftmargin}{\vindent}}%
+  \item[]%
+}
+{\endlist}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -1308,7 +1308,6 @@
 \newenvironment{altverse}%
   {\starpatternfalse\patternfalse\altindenttrue\setcounter{vslineno}{1}}%
   {\altindentfalse}
-
 %    \end{macrocode}
 % \end{environment}
 %
@@ -1319,12 +1318,12 @@
 % digit at a particular position in the array.
 % \changes{v1.1}{2001/08/03}{Added all the pattern code}
 %
-% \begin{macro}{\@nameedef}
+% \begin{macro}{\vs@nameedef}
 % A shorthand for using |\protected@edef|.
 %    \begin{macrocode}
-\newcommand{\@nameedef}[1]{
-  \expandafter\protected@edef\csname #1\endcsname}
-
+\newcommand{\vs@nameedef}[1]{%
+  \expandafter\protected@edef\csname #1\endcsname
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1334,7 +1333,6 @@
 % the array limits.
 %    \begin{macrocode}
 \newif\ifbounderror
-  \bounderrorfalse
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1342,7 +1340,6 @@
 %  A flag to indicate if a `number' is an integer (TRUE) or not (FALSE).
 %    \begin{macrocode}
 \newif\ifinteger
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1350,7 +1347,6 @@
 % A counter for the number of characters.
 %    \begin{macrocode}
 \newcounter{chrsinstr}  % CHARactersINSTRing
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1361,13 +1357,12 @@
 % with low and high limits \meta{low} and \meta{high}.
 %    \begin{macrocode}
 \newcommand{\newarray}[3]{%
-  \@nameedef{#1-low}{#2}%
-  \@nameedef{#1-high}{#3}%
+  \vs@nameedef{#1-low}{#2}%
+  \vs@nameedef{#1-high}{#3}%
   \ifnum #3<#2
     \PackageError{verse}{Limits for array #1 are in reverse order}{\@ehc}%
   \fi
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1384,13 +1379,12 @@
   \newarray{\@vsarrayname}{1}{1}%
   \@ifmtarg{#2}{%
     \c@chrsinstr \z@
-    \@namedef{\@vsarrayname-1}{}
+    \@namedef{\@vsarrayname-1}{}%
   }{%
     \c@chrsinstr \@ne
     \expandafter\@vsstringtoarray \the@vsstring\@vsend
-  }
+  }%
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1400,8 +1394,8 @@
 % the array's high limit.
 %    \begin{macrocode}
 \def\@vsstringtoarray #1#2\@vsend{%
-  \@namedef{\@vsarrayname-\the\c@chrsinstr}{#1}
-  \@nameedef{\@vsarrayname-high}{\the\c@chrsinstr}
+  \@namedef{\@vsarrayname-\the\c@chrsinstr}{#1}%
+  \vs@nameedef{\@vsarrayname-high}{\the\c@chrsinstr}%
   \@ifmtarg{#2}{%
     \def\@vsinext{}%
   }{%
@@ -1409,10 +1403,9 @@
     \def\@vsinext{%
       \@vsstringtoarray #2\@vsend%
     }%
-  }
+  }%
   \@vsinext
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1423,9 +1416,8 @@
 %    \begin{macrocode}
 \newcommand{\setarrayelement}[3]{%
   \checkarrayindex{#1}{#2}%
-  \@nameedef{#1-#2}{#3}%
+  \vs@nameedef{#1-#2}{#3}%
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1439,7 +1431,6 @@
   \checkarrayindex{#1}{#2}%
   \protected@edef#3{\@nameuse{#1-#2}}%
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1451,26 +1442,25 @@
 %    \begin{macrocode}
 \newcommand{\checkarrayindex}[2]{%
   \bounderrorfalse
-  \expandafter\ifx\csname #1-low\endcsname\relax%
+  \expandafter\ifx\csname #1-low\endcsname\relax
     \ifpattern\else
       \PackageError{verse}{No array called #1}{\@ehc}%
     \fi
     \bounderrortrue
   \fi
-  \ifnum #2<\@nameuse{#1-low}\relax%
+  \ifnum #2<\@nameuse{#1-low}\relax
     \ifpattern\else
       \PackageError{verse}{Index #2 outside limits for array #1}{\@ehc}%
     \fi
     \bounderrortrue
   \fi
-  \ifnum #2>\@nameuse{#1-high}\relax%
+  \ifnum #2>\@nameuse{#1-high}\relax
     \ifpattern\else
       \PackageError{verse}{Index #2 outside limits for array #1}{\@ehc}%
     \fi
     \bounderrortrue
   \fi
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1487,7 +1477,6 @@
 \long\gdef\@xifmtarg#1#2Q#3#4#5\@nil{#4}
 \long\gdef\@ifnotmtarg#1{\@xifmtarg#1QQ\@firstofone\@gobble\@nil}
 \endgroup
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1502,7 +1491,6 @@
   \c@chrsinstr = \@nameuse{#1-low}%
   \@vsarraytostring{#1}{#2}%
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1518,7 +1506,6 @@
     \@vsarraytostring{#1}{#2}%
   \fi%
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1531,10 +1518,10 @@
 \newcommand{\checkifinteger}[1]{%
   \protected@edef\@vsa{#1}%
   \ifcat _\ifnum9<1\gobm{#1} _\else A\fi
-    \integertrue%
+    \integertrue
   \else
-    \integerfalse%
-  \fi%
+    \integerfalse
+  \fi
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1548,7 +1535,6 @@
 % (Code from a posting to CTT by Donald Arseneau on 1997/07/21).
 %    \begin{macrocode}
 \newcommand{\gobm}[1]{#1}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1557,8 +1543,8 @@
 % a verse indentation pattern.
 %    \begin{macrocode}
 \newcommand{\indentpattern}[1]{%
-  \stringtoarray{Array@vs}{#1}}
-
+  \stringtoarray{Array@vs}{#1}%
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1585,7 +1571,8 @@
       \def\@vspat{0}%
     \fi
   \fi
-  \ifcase\@vspat\else\hspace*{\@vspat\vgap}\fi}
+  \ifcase\@vspat\else\hspace*{\@vspat\vgap}\fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1598,14 +1585,14 @@
 %    \begin{macrocode}
 \newcommand{\getstar@vsindent}{%
   \expandafter\ifx\csname Array@vs-high\endcsname\relax
-    \PackageError{verse}{A pattern has not been specified}{\@ehc}
+    \PackageError{verse}{A pattern has not been specified}{\@ehc}%
   \else
     \ifnum\c@vslineno>\@nameuse{Array@vs-high}%
       \setcounter{vslineno}{1}%
      \fi
      \get@vsindent
-  \fi}
-
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1616,10 +1603,9 @@
 % and initialises the line number. It ends by setting |\ifpattern| FALSE.
 % \changes{v2.1}{2002/03/28}{Added \cs{starpatternfalse} to patverse}
 %    \begin{macrocode}
-\newenvironment{patverse}%
-  {\starpatternfalse\patterntrue\altindentfalse\setcounter{vslineno}{1}}%
+\newenvironment{patverse}
+  {\starpatternfalse\patterntrue\altindentfalse\setcounter{vslineno}{1}}
   {\patternfalse}
-
 %    \end{macrocode}
 % \end{environment}
 %
@@ -1630,10 +1616,9 @@
 % and initialises the line number. It ends by setting |\ifstarpattern| FALSE.
 % \changes{v2.1}{2002/03/28}{Added patverse* environment}
 %    \begin{macrocode}
-\newenvironment{patverse*}%
-  {\starpatterntrue\patternfalse\altindentfalse\setcounter{vslineno}{1}}%
+\newenvironment{patverse*}
+  {\starpatterntrue\patternfalse\altindentfalse\setcounter{vslineno}{1}}
   {\starpatternfalse}
-
 %    \end{macrocode}
 % \end{environment}
 %
@@ -1643,8 +1628,10 @@
 % Typeset a poem title (like |\section| or other). The actual work
 % is done by |\@vsptitle| (plain) or |\@vssptitle| (starred).
 %    \begin{macrocode}
-\newcommand{\poemtitle}{\par%
-  \secdef\@vsptitle\@vssptitle}
+\newcommand{\poemtitle}{%
+  \par
+  \secdef\@vsptitle\@vssptitle
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1652,7 +1639,6 @@
 % The kind of entry |\poemtitle| is to make in the ToC.
 %    \begin{macrocode}
 \newcommand{\poemtoc}{section}
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1662,11 +1648,11 @@
 %    \begin{macrocode}
 \def\@vsptitle[#1]#2{%
   \@nameuse{phantomsection}%
-  \addcontentsline{toc}{\poemtoc}{#1}
+  \addcontentsline{toc}{\poemtoc}{#1}%
   \poemtitlemark{#1}%
-  \@vstypeptitle{#2}
-  \@afterheading}
-
+  \@vstypeptitle{#2}%
+  \@afterheading
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1675,8 +1661,8 @@
 %    \begin{macrocode}
 \def\@vssptitle#1{%
   \@vstypeptitle{#1}
-  \@afterheading}
-
+  \@afterheading
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1684,11 +1670,10 @@
 % This \emph{really} typesets the title.
 %    \begin{macrocode}
 \newcommand{\@vstypeptitle}[1]{%
-  \vspace{\beforepoemtitleskip}
-  {\poemtitlefont #1\par}
-  \vspace{\afterpoemtitleskip}
+  \vspace{\beforepoemtitleskip}%
+  {\poemtitlefont #1\par}%
+  \vspace{\afterpoemtitleskip}%
 }
-
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1698,7 +1683,6 @@
 %    \begin{macrocode}
 \newcommand{\poemtitlefont}{\normalfont\large\bfseries\centering}
 \newcommand{\poemtitlemark}[1]{}
-
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1708,28 +1692,22 @@
 % Lengths before and after a poem title, using the |\section| values.
 %    \begin{macrocode}
 \newlength{\beforepoemtitleskip}
-  \setlength{\beforepoemtitleskip}{3.5ex \@plus 1ex \@minus .2ex}
+\setlength{\beforepoemtitleskip}{3.5ex \@plus 1ex \@minus .2ex}
 \newlength{\afterpoemtitleskip}
-  \setlength{\afterpoemtitleskip}{2.3ex \@plus.2ex}
-
+\setlength{\afterpoemtitleskip}{2.3ex \@plus.2ex}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-%
 %
 %    The end of this package.
 %    \begin{macrocode}
 %</usc>
 %    \end{macrocode}
 %
-%
-%
-%
 % \Finale
 % \PrintIndex
 %
 \endinput
-
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
