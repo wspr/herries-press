@@ -114,6 +114,7 @@
 % \changes{v2.3}{2006/01/14}{Added switch for linenumber side}
 % \changes{v2.4}{2007/01/10}{Added code to start numbering at a given line}
 % \changes{v2.4a}{2009/09/04}{New maintainer (Will Robertson)}
+% \changes{v2.4b}{2014/05/10}{Documentation updates}
 %
 % \def\dtxfile{verse.dtx}
 % ^^A \def\fileversion{v1.0}
@@ -131,6 +132,7 @@
 % \def\fileversion{v2.3} \def\filedate{2006/01/14}
 % \def\fileversion{v2.4} \def\filedate{2007/01/10}
 % \def\fileversion{v2.4a} \def\filedate{2009/09/04}
+% \def\fileversion{v2.4b} \def\filedate{2014/05/10}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -139,16 +141,15 @@
 % \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
 % \newcommand*{\ablankline}{\vspace{\baselineskip}}
 %
-% \title{Typesetting simple verse with LaTeX\thanks{This
-%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
-%        \filedate.}}
+% \title{Typesetting simple verse with \LaTeX}
 %
 % \author{
 %   Author: Peter Wilson, Herries Press \\
 %   Maintainer: Will Robertson \\
-%   \texttt{will dot robertson at latex-project dot org}
+%   \large
+%   \texttt{http://github.com/wspr/herries-press/}
 % }
-% \date{\filedate}
+% \date{\fileversion\qquad\filedate}
 % \maketitle
 % \begin{abstract}
 %    The \Lpack{verse} package provides some aids for the typesetting
@@ -379,18 +380,30 @@
 % \DescribeMacro{\\}
 % Within the |verse| environment, the macro |\\| must be used at the
 % end of each line of a verse, except for the last line in each stanza.
-% If the lines in a poem are to be numbered then |\\!| must be used at the 
+% If the lines in a poem are to be numbered then
+% \DescribeMacro{\\!}
+% |\\!| must be used at the 
 % end of the last line in each stanza (the |\\| macro increments the line
-% numbers). The starred version, |\\*|, prohibits a page break after the
-% line. The |\\>| version causes a linebreak within a verse line.
+% numbers).
+%
+% \DescribeMacro{\\*}
+% The starred version, |\\*|, prohibits a page break after the
+% line.
+% \DescribeMacro{\\>}
+% The |\\>| version causes a linebreak within a verse line.
+%
 % The |\\| macro in its various forms can also take an optional length 
 % argument, like |\\[30pt]|
 % which will insert |30pt| of vertical space; in the case of |\\>[30pt]|
 % an additional 30pt of horizontal space will be inserted after the
 % linebreak (effectively |\\>| is shorthand for |\verselinebreak|).
+%
 % The allowable forms of the
-% macro are: |\\|, |\\*|. |\\!|, |\\>|, |\\[...]|, |\\*[...]|, |\\![...]|,
+% macro are:
+% \begin{center}
+% |\\|, |\\*|. |\\!|, |\\>|, |\\[...]|, |\\*[...]|, |\\![...]|,
 % and |\\>[...]|.
+% \end{center}
 %
 % \DescribeMacro{\vin}
 % \DescribeMacro{\vgap}
@@ -459,9 +472,8 @@
 % or if it was line 115 that was first numbered: \\
 % \verb?\setverselinenums{112}{115}? 
 %
-% Note that the numbers must be such that the relationship \\
-% \verb?firstlinenum <= startnumsat < firstlinenum + poemlines? \\
-% holds.
+% Note that the numbers must be such that the following relationship holds: \\
+% \verb?firstlinenum <= startnumsat < firstlinenum + poemlines?
 %
 %
 % \DescribeMacro{\thepoemline}
@@ -469,8 +481,8 @@
 % Lines are numbered via \cs{thepoemline} which defaults to typesetting 
 % arabic numerals via: \\
 % \verb?\renewcommand*{\thepoemline}{\arabic{poemline}}? \\
-% The particular font is defined by \cs{verselinenumfont}\marg{font-spec}.
-% The default is: \\
+% The particular font is defined by \cs{verselinenumfont}\marg{font-spec},
+% with default: \\
 % \verb?\verselinenumfont{\rmfamily}? \\
 %
 % \DescribeMacro{\vrightskip}
@@ -672,13 +684,13 @@
 % \poemtitle{In the beginning}
 % \settowidth{\versewidth}{And objects at rest tended to remain at rest}
 % \begin{verse}[\versewidth]
-% Then God created Newton, \\*
-% And objects at rest tended to remain at rest, \\*
-% And objects in motion tended to remain in motion, \\*
+% Then God created Newton, \\
+% And objects at rest tended to remain at rest, \\
+% And objects in motion tended to remain in motion, \\
 % And energy was conserved
 %    and momentum was conserved
-%    and matter was conserved \\*
-% And God saw that it was conservative. \\*
+%    and matter was conserved \\
+% And God saw that it was conservative. \\
 % \end{verse}
 % \attrib{Possibly from \textit{Analog}, circa 1950}
 % \end{lstlisting}
@@ -687,13 +699,13 @@
 % \poemtitle{In the beginning}
 % \settowidth{\versewidth}{And objects at rest tended to remain at rest}
 % \begin{verse}[\versewidth]
-% Then God created Newton, \\*
-% And objects at rest tended to remain at rest, \\*
-% And objects in motion tended to remain in motion, \\*
+% Then God created Newton, \\
+% And objects at rest tended to remain at rest, \\
+% And objects in motion tended to remain in motion, \\
 % And energy was conserved
 %    and momentum was conserved
-%    and matter was conserved \\*
-% And God saw that it was conservative. \\*
+%    and matter was conserved \\
+% And God saw that it was conservative. \\
 % \end{verse}
 % \attrib{Possibly from \textit{Analog}, circa 1950}
 % \end{ltxoutput}

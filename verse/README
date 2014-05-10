@@ -3,6 +3,10 @@ The VERSE package
 
     verse provides some aids for typesetting simple verse (poems).
 
+Changes in version 2.4b (2014/05/10)
+- Documentation updates
+- Minor, largely cosmetic, code changes
+
 Changes in version 2.4a (2009/09/04)
 - New maintainer (Will Robertson)
   
