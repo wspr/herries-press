@@ -20,12 +20,28 @@
 \documentclass[twoside]{ltxdoc}
 \usepackage{alltt}
 \usepackage{verse}
+\usepackage{xcolor}
 \usepackage[draft=false,
             plainpages=false,
             pdfpagelabels,
             bookmarksnumbered,
             hyperindex=false
            ]{hyperref}
+\usepackage{listings}
+\lstset{
+ basicstyle=\small\ttfamily,
+ columns=fullflexible,
+ backgroundcolor=\color[rgb]{0.97,0.97,1},
+ gobble=2,
+}
+\newsavebox\ltxbox
+\newenvironment{ltxoutput*}
+ {\fboxsep=0pt\noindent\begin{lrbox}{\ltxbox}\begin{minipage}{\textwidth}}
+ {\end{minipage}\end{lrbox}\begin{center}\colorbox[rgb]{0.97,1,0.97}{\usebox\ltxbox\par}\end{center}}
+\newenvironment{ltxoutput}
+ {\par\begin{ltxoutput*}}
+ {\end{ltxoutput*}}
+
 \providecommand{\phantomsection}
 \show\makeatletter
 \makeatletter
@@ -158,22 +174,25 @@
 %    Section~\ref{sec:usc} describes the usage of the \Lpack{verse} 
 % package and 
 % commented source code is in Section~\ref{sec:code}.
+% Colour is used to indicate input and output material; a \colorbox[rgb]{0.97,0.97,1}{blue} background indicates \LaTeX\ input source, and a \colorbox[rgb]{0.97,1,0.97}{green} background shows the corresponding output one should expect.
 %
 % The doggerel used as illustrative material has been taken 
 % from~\cite{RUMOUR}.
+%
+% \section{Verses in \LaTeX\ \emph{without} this package}
 %
 % LaTeX provides the |verse| environment which is defined as a particular
 % kind of list. Within the environment you use |\\| to end a line
 % and a blank line will end a stanza. For example, here is a single
 % stanza poem:
-% \begin{verbatim}
+% \begin{lstlisting}
 % \newcommand{\garden}{
-% I used to love my garden \\
-% But now my love is dead \\
-% For I found a bachelor's button \\
-% In black-eyed Susan's bed.
+%   I used to love my garden \\
+%   But now my love is dead \\
+%   For I found a bachelor's button \\
+%   In black-eyed Susan's bed.
 % }
-% \end{verbatim}
+% \end{lstlisting}
 % \newcommand{\garden}{
 % I used to love my garden \\
 % But now my love is dead \\
@@ -181,41 +200,38 @@
 % In black-eyed Susan's bed.
 % }
 % When this is typeset as a normal LaTeX paragraph (with no paragraph
-% indentation) it looks like: \\[\baselineskip]
+% indentation) it looks like:
+% \begin{ltxoutput}
 % \garden{}
-%
-% \ablankline
-%
-%    Typesetting it within the |verse| environment produces: \\[\baselineskip]
+% \end{ltxoutput}
+% Typesetting it within \LaTeX's |verse| environment produces:
+% \begin{ltxoutput}
 % \begin{verse}  
 % \garden
 % \end{verse}
-%
-% \ablankline
-%
+% \end{ltxoutput}
 % The stanza could also be typeset within the |alltt| environment, defined
 % in the standard \Lpack{alltt} package, using a normal font and no |\\|
 % line endings.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \begin{alltt}\normalfont
 % I used to love my garden 
 % But now my love is dead 
 % For I found a bachelor's button 
 % In black-eyed Susan's bed.
-% \end{alltt}
-% \end{verbatim}
+% \end{alltt}\end{lstlisting}
 % which produces:
-% \begin{alltt}
-% \normalfont
-% I used to love my garden 
-% But now my love is dead 
-% For I found a bachelor's button 
-% In black-eyed Susan's bed.
+% \begin{ltxoutput}
+% \begin{alltt}\catcode\%=9
+%\normalfont
+%I used to love my garden 
+%But now my love is dead 
+%For I found a bachelor's button 
+%In black-eyed Susan's bed.
 % \end{alltt}
+% \end{ltxoutput}
 % The |alltt| environment is like the |verbatim| environment except that
-% you can use LaTeX macros inside it. Note that the \% characters are
-% an artifact of an interaction between this document's class and
-% the |alltt| environment that I have not been able to eliminate.
+% you can use LaTeX macros inside it.
 %
 %    In the |verse| environment long lines will be wrapped and indented
 % but in the |alltt| environment there is no indentation. 
@@ -223,7 +239,7 @@
 % Some stanzas have certain lines indented, often alternate ones. To
 % typeset stanzas like this you have to add your own spacing. For
 % instance:
-% \begin{verbatim}
+% \begin{lstlisting}
 % \begin{verse}
 % There was an old party of Lyme \\
 % Who married three wives at one time. \\
@@ -231,8 +247,9 @@
 % \hspace{2em} He replied: `One's absurd, \\
 % And bigamy, sir, is a crime.'
 % \end{verse}
-% \end{verbatim}
+% \end{lstlisting}
 % will be typeset in a verse environment as: 
+% \begin{ltxoutput}
 % \begin{verse}
 % There was an old party of Lyme \\
 % Who married three wives at one time. \\
@@ -240,12 +257,10 @@
 % \hspace{2em} He replied: `One's absurd, \\
 % And bigamy, sir, is a crime.'
 % \end{verse}
-%
-% \ablankline
-%
+% \end{ltxoutput}
 % Using the |alltt| environment you can put in the spacing via ordinary
 % spaces. That is, this
-% \begin{verbatim}
+% \begin{lstlisting}
 % \begin{alltt}\normalfont
 % There was an old party of Lyme
 % Who married three wives at one time.
@@ -253,19 +268,20 @@
 %       He replied: `One's absurd, 
 % And bigamy, sir, is a crime.'
 % \end{alltt}
-% \end{verbatim}
+% \end{lstlisting}
 % is typeset as
-% \begin{alltt}
-% \normalfont
-% There was an old party of Lyme
-% Who married three wives at one time.
-%       When asked: `Why the third?' 
-%       He replied: `One's absurd, 
-% And bigamy, sir, is a crime.'
+% \begin{ltxoutput}
+% \begin{alltt}\catcode\%=9\normalfont
+%There was an old party of Lyme
+%Who married three wives at one time.
+%      When asked: `Why the third?' 
+%      He replied: `One's absurd, 
+%And bigamy, sir, is a crime.'
 % \end{alltt}
+% \end{ltxoutput}
 %
 % More exotically you could use the TeX |\parshape| command:
-% \begin{verbatim}
+% \begin{lstlisting}
 % \parshape = 5 0pt \linewidth 0pt \linewidth 
 %               2em \linewidth 2em \linewidth 0pt \linewidth
 % \noindent There was an old party of Lyme \\
@@ -273,11 +289,9 @@
 % When asked: `Why the third?' \\
 % He replied: `One's absurd, \\
 % And bigamy, sir, is a crime.' \par
-% \end{verbatim}
+% \end{lstlisting}
 % which will be typeset as:
-%
-% \ablankline
-%
+% \begin{ltxoutput*}
 % \parshape = 5 0pt \linewidth 0pt \linewidth 
 %               2em \linewidth 2em \linewidth 0pt \linewidth
 % \noindent There was an old party of Lyme \\
@@ -285,10 +299,8 @@
 % When asked: `Why the third?' \\
 % He replied: `One's absurd, \\
 % And bigamy, sir, is a crime.' \par
-%
-% \ablankline
-% 
-%    This is about as much assistance as standard (La)TeX provides.
+% \end{ltxoutput*}
+%    All of this is about as much assistance as standard (La)TeX provides.
 %
 %
 % \clearpage
@@ -298,6 +310,25 @@
 % with some aspects of typesetting poetry but does not, and cannot,
 % provide a comprehensive solution to all the requirements that
 % will arise.
+%
+% A brief introduction is included to get started quickly; see the examples in Section~\ref{sec:ex} for more context.
+%
+% \subsection{Brief introduction}
+%
+% The \Lpack{verse} package provides the |verse| environment for typesetting verses, overwriting \LaTeX's original definition.
+% Every line in a verse environment must end with |\\|, and every stanza within a verse should end with |\\!| (an empty line afterwards is optional for readability).
+% These requirements allow line numbering to work correctly in all cases.
+% Use the \cs{poemlines}\marg{N} command to number every \meta{N}th line of a poem.
+%
+% Use the \cs{poemtitle}\marg{title} command (just before the |verse| environment) to give each poem a title; commands are provided to adjust the formatting and include the poem into the standard table of contents.
+%
+% Each stanza within a verse may optionally be surrounded by either an |altverse| or |patverse| environment to effect specific typesetting; |altverse| indents every second line of a stanza, and |patverse| allows arbitrary indentation based on the \meta{pattern} given by \cs{indentpattern}\marg{pattern}.
+% The command \cs{flagverse}, placed at the very beginning of a stanza places a `title'; e.g., for numbering and otherwise labelling stanzas.
+%
+%
+% \subsection{Comprehensive documentation}
+%
+% \subsubsection{Main verse environments}
 %
 % \DescribeEnv{verse}
 % The |verse| environment provided by the package is an extension
@@ -314,10 +345,10 @@
 % The length |\versewidth| is provided as a convenience. It may be used,
 % for example, to calculate the length of a line of text for use
 % as the optional argument to the |verse| environment: 
-% \begin{verbatim}
+% \begin{lstlisting}
 % \settowidth{\versewidth}{This is the average line,}
 % \begin{verse}[\versewidth]
-% \end{verbatim}
+% \end{lstlisting}
 %
 % \DescribeEnv{altverse}
 % Within the |verse| environment verses are separated by a blank line
@@ -343,6 +374,24 @@
 % shorter than the number of lines in a verse, the trailing lines will
 % not be indented.
 %
+% \subsubsection{Other verse commands}
+%
+% \DescribeMacro{\\}
+% Within the |verse| environment, the macro |\\| must be used at the
+% end of each line of a verse, except for the last line in each stanza.
+% If the lines in a poem are to be numbered then |\\!| must be used at the 
+% end of the last line in each stanza (the |\\| macro increments the line
+% numbers). The starred version, |\\*|, prohibits a page break after the
+% line. The |\\>| version causes a linebreak within a verse line.
+% The |\\| macro in its various forms can also take an optional length 
+% argument, like |\\[30pt]|
+% which will insert |30pt| of vertical space; in the case of |\\>[30pt]|
+% an additional 30pt of horizontal space will be inserted after the
+% linebreak (effectively |\\>| is shorthand for |\verselinebreak|).
+% The allowable forms of the
+% macro are: |\\|, |\\*|. |\\!|, |\\>|, |\\[...]|, |\\*[...]|, |\\![...]|,
+% and |\\>[...]|.
+%
 % \DescribeMacro{\vin}
 % \DescribeMacro{\vgap}
 % The command |\vin| is shorthand for |\hspace{\vgap}| for use
@@ -353,22 +402,6 @@
 % When a verse line is too long to fit within the typeblock it is
 % wrapped onto the next line with a space, given by the value of the
 % length \cs{vindent}.
-%
-% \DescribeMacro{\leftmargini}
-% All verse lines have a minimum indent given by the length \cs{leftmargini}
-% which also applies to any list environment. To change the minimum
-% indent for verses do something along the lines:
-% \begin{verbatim}
-% \newlength{\saveleftmargini}
-% \setlength{\saveleftmargini}{\leftmargini}
-% \setlength{\leftmargini}{-1em}% for example to outdent verse
-% %  verses
-% \setlength{\leftmargini}{\saveleftmargini}% restore original value
-% \end{verbatim}
-%
-% \DescribeMacro{\stanzaskip}
-% The length |\stanzaskip| controls the spacing between stanzas.
-% It may be changed like any other length.
 %
 % \DescribeMacro{\verselinebreak}
 % Using the command |\verselinebreak[|\meta{length}|]| will cause 
@@ -385,6 +418,27 @@
 % Putting the command |\flagverse{|\meta{flag}|}| at the start of a line
 % of verse will typeset \meta{flag} towards the left margin, ending
 % a distance |\vleftskip| before the verse line.
+%
+% \subsubsection{Generic verse formatting}
+%
+% \DescribeMacro{\stanzaskip}
+% The length |\stanzaskip| controls the spacing between stanzas.
+% It may be changed like any other length.
+%
+% \DescribeMacro{\leftmargini}
+% All verse lines have a minimum indent given by the length \cs{leftmargini}
+% which also applies to any list environment. To change the minimum
+% indent for verses do something along the lines:
+% \begin{lstlisting}
+% \newlength{\saveleftmargini}
+% \setlength{\saveleftmargini}{\leftmargini}
+% \setlength{\leftmargini}{-1em}% for example to outdent verse
+% %  verses
+% \setlength{\leftmargini}{\saveleftmargini}% restore original value
+% \end{lstlisting}
+%
+%
+% \subsubsection{Line numbering}
 %
 % \DescribeMacro{\poemlines}
 % The declaration |\poemlines{|\meta{nth}|}| will cause every \meta{nth}
@@ -428,22 +482,6 @@
 % declaration. To revert to the default use \cs{verselinenumbersright}.
 %
 %
-% \DescribeMacro{\\}
-% Within the |verse| environment, the macro |\\| must be used at the
-% end of each line of a verse, except for the last line in each stanza.
-% If the lines in a poem are to be numbered then |\\!| must be used at the 
-% end of the last line in each stanza (the |\\| macro increments the line
-% numbers). The starred version, |\\*|, prohibits a page break after the
-% line. The |\\>| version causes a linebreak within a verse line.
-% The |\\| macro in its various forms can also take an optional length 
-% argument, like |\\[30pt]|
-% which will insert |30pt| of vertical space; in the case of |\\>[30pt]|
-% an additional 30pt of horizontal space will be inserted after the
-% linebreak (effectively |\\>| is shorthand for |\verselinebreak|).
-% The allowable forms of the
-% macro are: |\\|, |\\*|. |\\!|, |\\>|, |\\[...]|, |\\*[...]|, |\\![...]|,
-% and |\\>[...]|.
-%
 % \DescribeMacro{\label}
 % \DescribeMacro{\ref}
 % The standard |\label{|meta{key}|}| command
@@ -451,6 +489,8 @@
 % of a line and the line-ending |\\|, to grab that line number, no matter 
 % what the setting of |\poemlines|. Elsewhere the standard
 % |\ref{|\meta{key}|}| command can be used to refer to the line number.
+%
+% \subsubsection{Titles}
 %
 % \DescribeMacro{\poemtitle}
 % |\poemtitle[|\meta{short}|}{|\meta{long}|}| typesets the title
@@ -532,12 +572,12 @@
 % than zero). If it is then |\ifinteger| is set TRUE, otherwise it is set 
 % FALSE.
 %
-% \clearpage
 % \subsection{Examples}
+% \label{sec:ex}
 %
 %    Here are some sample verses using the package facilities.
 % First our old Limerick friend, but titled and centered:
-% \begin{verbatim}
+% \begin{lstlisting}
 % \renewcommand{\poemtoc}{subsection}
 % \poemtitle{A Limerick}
 % \settowidth{\versewidth}{There was an old party of Lyme}
@@ -546,13 +586,13 @@
 % Who married three wives at one time. \\
 % \vin When asked: `Why the third?' \\
 % \vin He replied: `One's absurd, \\
-% And bigamy, sir, is a crime.'
+% And bigamy, sir, is a crime.' \\
 % \end{verse}
-% \end{verbatim}
+% \end{lstlisting}
 % which gets typeset as below. The default |\poemtoc| is redefined
 % to |subsection| so the
 % title is entered into the ToC as an unnumbered |\subsection|.
-%
+% \begin{ltxoutput}
 % \renewcommand{\poemtoc}{subsection}
 % \poemtitle{A Limerick}
 % \settowidth{\versewidth}{There was an old party of Lyme}
@@ -561,14 +601,15 @@
 % Who married three wives at one time. \\
 % \vin When asked: `Why the third?' \\
 % \vin He replied: `One's absurd, \\
-% And bigamy, sir, is a crime.'
+% And bigamy, sir, is a crime.' \\
 % \end{verse}
+% \end{ltxoutput}
 %
 % \ablankline
 %
 %     Next is the Garden verse within the |altverse| environment. It
 % is titled and centered.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \settowidth{\versewidth}{But now my love is dead}
 % \poemtitle{Love's lost}
 % \begin{verse}[\versewidth]
@@ -576,8 +617,9 @@
 % \garden
 % \end{altverse}
 % \end{verse}
-% \end{verbatim}
+% \end{lstlisting}
 % which produces:
+% \begin{ltxoutput}
 % \settowidth{\versewidth}{But now my love is dead}
 % \poemtitle{Love's lost}
 % \begin{verse}[\versewidth]
@@ -585,45 +627,48 @@
 % \garden
 % \end{altverse}
 % \end{verse}
+% \end{ltxoutput}
 %
 %  \ablankline
 %
 % It is left up to you how you might want to add information about
 % the author of a poem. Here is one example of a macro for this:
-% \begin{verbatim}
+% \begin{lstlisting}
 % \newcommand{\attrib}[1]{%
 %    \nopagebreak{\raggedleft\footnotesize #1\par}}
-% \end{verbatim}
+% \end{lstlisting}
 % \newcommand{\attrib}[1]{%
 %    \nopagebreak{\raggedleft\footnotesize #1\par}}
 %
 %    This can be used as in the next bit of doggerel.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \poemtitle{Fleas}
 % \settowidth{\versewidth}{What a funny thing is a flea}
 % \begin{verse}[\versewidth]
 % What a funny thing is a flea. \\
 % You can't tell a he from a she. \\
 % But he can. And she can. \\
-% Whoopee!
+% Whoopee! \\
 % \end{verse}
 % \attrib{Anonymous}
-% \end{verbatim}
+% \end{lstlisting}
 %
+% \begin{ltxoutput}
 % \poemtitle{Fleas}
 % \settowidth{\versewidth}{What a funny thing is a flea}
 % \begin{verse}[\versewidth]
 % What a funny thing is a flea. \\
 % You can't tell a he from a she. \\
 % But he can. And she can. \\
-% Whoopee!
+% Whoopee! \\
 % \end{verse}
 % \attrib{Anonymous}
+% \end{ltxoutput}
 %
 % \ablankline
 %
 % Here is an example of line wrapping.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \poemtitle{In the beginning}
 % \settowidth{\versewidth}{And objects at rest tended to remain at rest}
 % \begin{verse}[\versewidth]
@@ -633,12 +678,12 @@
 % And energy was conserved
 %    and momentum was conserved
 %    and matter was conserved \\*
-% And God saw that it was conservative.
+% And God saw that it was conservative. \\*
 % \end{verse}
 % \attrib{Possibly from \textit{Analog}, circa 1950}
-% \end{verbatim}
+% \end{lstlisting}
 %
-% \clearpage
+% \begin{ltxoutput}
 % \poemtitle{In the beginning}
 % \settowidth{\versewidth}{And objects at rest tended to remain at rest}
 % \begin{verse}[\versewidth]
@@ -648,14 +693,15 @@
 % And energy was conserved
 %    and momentum was conserved
 %    and matter was conserved \\*
-% And God saw that it was conservative.
+% And God saw that it was conservative. \\*
 % \end{verse}
 % \attrib{Possibly from \textit{Analog}, circa 1950}
+% \end{ltxoutput}
 %
 % \ablankline
 %
 % Here is one with a forced line break and a slightly different title style.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \renewcommand{\poemtitlefont}{\normalfont\large\itshape\centering}
 % \poemtitle{Mathematics}
 % \settowidth{\versewidth}{Than Tycho Brahe, or Erra Pater:}
@@ -667,11 +713,12 @@
 % Resolve, by sines \\>[\versewidth] and tangents straight, \\
 % If bread or butter wanted weight; \\
 % And wisely tell what hour o' the day \\
-% The clock does strike, by Algebra.
+% The clock does strike, by Algebra. \\
 % \end{verse}
 % \attrib{Samuel Butler (1612--1680)}
-% \end{verbatim}
+% \end{lstlisting}
 %
+% \begin{ltxoutput}
 % \renewcommand{\poemtitlefont}{\normalfont\large\itshape\centering}
 % \poemtitle{Mathematics}
 % \settowidth{\versewidth}{Than Tycho Brahe, or Erra Pater:}
@@ -683,16 +730,16 @@
 % Resolve, by sines \\>[\versewidth] and tangents straight, \\
 % If bread or butter wanted weight; \\
 % And wisely tell what hour o' the day \\
-% The clock does strike, by Algebra.
+% The clock does strike, by Algebra. \\
 % \end{verse}
 % \attrib{Samuel Butler (1612--1680)}
+% \end{ltxoutput}
 %
 % \ablankline
-% \clearpage
 %
 % Another limerick, but this time taking advantage of the |patverse|
 % environment and numbering every third line.
-% \begin{verbatim}
+% \begin{lstlisting}
 % \settowidth{\versewidth}{There was a young lady of Ryde}
 % \poemtitle{The Young Lady of Ryde}
 % \begin{verse}[\versewidth]
@@ -703,12 +750,13 @@
 % Who ate some apples and died. \\
 % The apples fermented \\
 % Inside the lamented \\
-% And made cider inside her inside.
+% And made cider inside her inside. \\
 % \end{patverse}
 % \poemlines{0}
 % \end{verse}
-% \end{verbatim}
+% \end{lstlisting}
 %
+% \begin{ltxoutput}
 % \settowidth{\versewidth}{There was a young lady of Ryde}
 % \poemtitle{The Young Lady of Ryde}
 % \begin{verse}[\versewidth]
@@ -719,17 +767,18 @@
 % Who ate some apples and died. \\
 % The apples fermented \\
 % Inside the lamented \\
-% And made cider inside her inside.
+% And made cider inside her inside. \\
 % \end{patverse}
 % \poemlines{0}
 % \end{verse}
+% \end{ltxoutput}
 %
 % \ablankline
 %
 % The next example is a song you may have heard of. The `forty-niner' in
 % line \ref{vs:49} refers to the gold rush  of 1849.
 %
-% \begin{verbatim}
+% \begin{lstlisting}
 % \settowidth{\versewidth}{In a cavern, in a canyon,}
 % \poemtitle{Clementine}
 % \begin{verse}[\versewidth]
@@ -745,13 +794,14 @@
 % \flagverse{\textsc{chorus}} Oh my darling, Oh my darling, \\
 % Oh my darling Clementine. \\
 % Thou art lost and gone forever, \\
-% Oh my darling Clementine
+% Oh my darling Clementine \\!
 % \end{altverse}
 % \poemlines{0}
 % \end{verse}
-% \end{verbatim}
+% \end{lstlisting}
 %
 %
+% \begin{ltxoutput}
 % \settowidth{\versewidth}{In a cavern, in a canyon,}
 % \poemtitle{Clementine}
 % \begin{verse}[\versewidth]
@@ -767,10 +817,11 @@
 % \flagverse{\textsc{chorus}} Oh my darling, Oh my darling, \\
 % Oh my darling Clementine. \\
 % Thou art lost and gone forever, \\
-% Oh my darling Clementine
+% Oh my darling Clementine \\!
 % \end{altverse}
 % \poemlines{0}
 % \end{verse}
+% \end{ltxoutput}
 %
 %
 %  The last example is a much more ambitious use of |\indentpattern|. In
@@ -780,6 +831,7 @@
 %
 %
 % \clearpage
+% \begin{ltxoutput}
 % \poemtitle{Mouse's Tale}
 % \settowidth{\versewidth}{a mouse that morning}
 % \indentpattern{0135554322112346898779775545653222345544456688778899}
@@ -840,7 +892,7 @@
 % \end{patverse}
 % \end{verse}
 % \attrib{Lewis Carrol, \textit{Alice's Adventures in Wonderland}, 1865}
-% 
+% \end{ltxoutput}
 %
 %
 % \StopEventually{
