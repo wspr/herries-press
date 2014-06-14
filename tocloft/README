@@ -8,6 +8,10 @@ define your own kinds of `List of ...'
 _______________
 Change history:
 
+v2.3g
+- Add \cftZprehook / \cftZposthook to support multicol ToCs, etc.
+  Listed as experimental.
+
 Changes in version 2.3f (2013/05/02)
 - (Try to) support KOMA and titlesec packages w.r.t. \part entries
 - Extraneous whitespace fixes

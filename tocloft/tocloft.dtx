@@ -108,6 +108,7 @@
 % \def\fileversion{v2.3d} \def\filedate{2009/09/04}
 % \def\fileversion{v2.3e} \def\filedate{2010/10/13}
 % \def\fileversion{v2.3f} \def\filedate{2013/05/02}
+% \def\fileversion{v2.3g} \def\filedate{2014/06/14}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -1168,6 +1169,31 @@
 % too exotic, use the |\legend| command from the
 % \Lpack{ccaption} package. If the illustration is numbered, use the
 % |\cftaddnumtitleline| command instead of |\cftaddtitleline|.
+%
+% \DescribeMacro{\cftZprehook}
+% \DescribeMacro{\cftZposthook}
+% It's surprisingly difficult to achieve multicolumn ToCs; can you guess what the problem is to write the following?
+% \begin{verbatim}
+% \begin{multicols}{2}
+% \tableofcontents
+% \end{multicols}
+% \end{verbatim}
+% Probably the easiest way to do it in regular \LaTeX{} is something like
+% \begin{verbatim}
+% \RequirePackage{multicol}
+% \AtBeginDocument{\addtocontents{toc}{\protect\begin{multicols}{2}}}
+% \AtEndDocument  {\addtocontents{toc}{\protect\end  {multicols}}}
+% \end{verbatim}
+% This method of writing to the |.toc| file is most flexible for trying to control the typesetting output within the table of contents.
+%
+% To make this \emph{slightly} easier with \Lpack{tocloft}, the following macros are available: \cs{cftZprehook} and \cs{cftZprehook}, where |Z| is |toc|, |lof|, |lot|, etc.
+% If these are defined, they insert material just before the actual typesetting of the entries of the table of contents and so on.
+% A multicolumn ToC can therefore be achieved with this:
+% \begin{verbatim}
+% \RequirePackage{multicol}
+% \renewcommand\cfttocprehook{\begin{multicols}{2}}
+% \renewcommand\cfttocposthook{\end{multicols}}
+% \end{verbatim}
 %
 % \subsection{Usage with other packages}
 %
@@ -3291,6 +3317,15 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\cftZprehook}
+% \begin{macro}{\cftZposthook}
+% Hooks before and after the list of entries.
+%    \begin{macrocode}
+    \@namedef{cft#3prehook}{}
+    \@namedef{cft#3posthook}{}
+%    \end{macrocode}
+% \end{macro}
+%
 % This is the end of the definition of |\newlistof|.
 %    \begin{macrocode}
 }
@@ -3624,6 +3659,58 @@ Consider installing the current version of tocbibind.}}
 }
 
 %    \end{macrocode}
+%
+%
+% \begin{macro}{\@starttoc}
+%
+% Okay, here's a roughly-comprehensive list where \cs{@starttoc} is redefined in \TeX{} Live 2014.
+% \begin{itemize}
+% \item amsart, amsbook, amsdtx, amsproc
+% \item asect
+% \item latx.ltx (of course)
+% \item newfloat
+% \item flowfram
+% \item gmampulex (?), gmtypos
+% \item hyperref, memhfixc
+% \item ijmart
+% \item scrartcl, scrbook, scrreprt
+% \item scrwtfile
+% \item tocbasic
+% \item tocstyle
+% \item memoir
+% \item multitoc
+% \item nccsect
+% \item notoccite
+% \item artikel3, boek3, rapport3, 
+% \item rerunfilecheck
+% \item parskip
+% \item pdfwin
+% \item revtex4
+% \item devanagari
+% \end{itemize}
+% This makes things difficult if we want to redefine \cs{@starttoc} here.
+% Many of the packages/classes above will not be used in conjunction with tocloft; on the other hand, we don't want to trample too much on others' code.
+%
+% So for our own work here, let's be extra conservative, at least for now, and only hook into \cs{starttoc} if it's the standard \LaTeX{} version.
+%    \begin{macrocode}
+\def\@starttoc@latex@orig#1{%
+ \begingroup   \makeatletter   \@input{\jobname.#1}%   \if@filesw     \expandafter\newwrite\csname tf@#1\endcsname     \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax   \fi  \@nobreakfalse\endgroup}
+\ifx\@starttoc\@starttoc@latex@orig
+  \def\@starttoc#1{%
+    \csname cft#1prehook\endcsname
+    \begingroup      \makeatletter      \@input{\jobname.#1}%      \if@filesw        \expandafter\newwrite\csname tf@#1\endcsname        \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax      \fi      \@nobreakfalse    \endgroup
+    \csname cft#1posthook\endcsname}
+  \newcommand\cfttocprehook{}
+  \newcommand\cftlofprehook{}
+  \newcommand\cftlotprehook{}
+  \newcommand\cfttocposthook{}
+  \newcommand\cftlofposthook{}
+  \newcommand\cftlotposthook{}
+\else
+  \PackageWarning{tocloft}{\string\@starttoc\space has already been redefined; tocloft bailing out.}
+\fi
+%    \end{macrocode}
+% \end{macro}
 %
 %
 %
