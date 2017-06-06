@@ -23,7 +23,7 @@
 \ProvidesFile{fonttable.dtx}
 %</driver>
 %<*driver|pack>
-  [2011/02/13 v1.6b displays a font]
+  [2017/06/06 v1.6c displays a font]
 %</driver|pack>
 %
 %<*driver>
@@ -117,6 +117,7 @@
 % \changes{v1.5b}{2009/09/02}{New maintainer (Will Robertson)}
 % \changes{v1.6}{2009/10/15}{New spacing of the decimals from Peter Wilson}
 % \changes{v1.6b}{2011/02/13}{Fix bug with Spanish babel}
+% \changes{v1.6c}{2017/06/06}{Fix bug with fonts with `at' in their name}
 %
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
@@ -505,7 +506,7 @@
 % This wasn't necessary before because we didn't explicitly choose the font
 % size; it was inferred automatically.
 %    \begin{macrocode}
-    \edef\@tempa{\string a\string t}%
+    \edef\@tempa{ \string a\string t}%
     \edef\@tempb{\noexpand\in@{\@tempa}{\f@tfontname}}%
     \@tempb
     \ifin@
@@ -528,7 +529,7 @@
 %    \begin{macrocode}
 \edef\@tempa{%
   \def\noexpand\f@tstripsize
-    ##1\string a\string t##2\string p\string t{##1}%
+    ##1 \string a\string t##2\string p\string t{##1}%
 }
 \@tempa
 %    \end{macrocode}
