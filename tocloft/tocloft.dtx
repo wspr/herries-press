@@ -4,7 +4,7 @@
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1998-2003 Peter R. Wilson
-% Copyright 2009 Will Robertson
+% Copyright 2009-2017 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -30,7 +30,7 @@
 %
 % \fi
 %
-% \CheckSum{2219}
+% \CheckSum{2303}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -109,6 +109,7 @@
 % \def\fileversion{v2.3e} \def\filedate{2010/10/13}
 % \def\fileversion{v2.3f} \def\filedate{2013/05/02}
 % \def\fileversion{v2.3g} \def\filedate{2014/06/14}
+% \def\fileversion{v2.3h} \def\filedate{2017/08/29}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -1270,11 +1271,24 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocloft}[2013/05/02 v2.3f parameterised ToC, etc., typesetting]
+\ProvidesPackage{tocloft}[2017/08/29 v2.3h parameterised ToC, etc., typesetting]
 %    \end{macrocode}
 %
 % In order to try and avoid name clashes with other packages, each internal
 % name will include the character string \texttt{@cft}.
+%
+% \begin{macro}{\@cftifundefined}
+% \changes{v2.3h}{2017/08/29}{Use internal ifundefined macro to fix conflict with fancyhdr}
+% Due to a conflict with how this package and fancyhdr checked for undefinedness.
+%    \begin{macrocode}
+\newcommand\@cftifundefined[1]{%
+  \begingroup\expandafter\expandafter\expandafter\endgroup\ifx\csname #1\endcsname\relax
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+%    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{\@cftquit}
 % \begin{macro}{\if@cfthaschapter}
@@ -1312,9 +1326,9 @@
 % Issue a warning if there are no recognised sectional divisions 
 % and then skip the rest of the package code.
 %    \begin{macrocode}
-\@ifundefined{chapter}{%
+\@cftifundefined{chapter}{%
   \@cfthaschapterfalse
-  \@ifundefined{section}{%
+  \@cftifundefined{section}{%
     \PackageWarning{tocloft}%
       {I don't recognize any sectional divisions so I'll do nothing}
     \renewcommand{\@cftquit}{\endinput}
@@ -1750,7 +1764,7 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
 \newif\if@cftdopart
 \newif\if@cfthaspart
-\@ifundefined{part}{\@cfthaspartfalse}{\@cfthasparttrue}
+\@cftifundefined{part}{\@cfthaspartfalse}{\@cfthasparttrue}
 \if@cfthaspart
 \renewcommand*{\l@part}[2]{%
   \@cftdopartfalse
@@ -3194,6 +3208,7 @@ Consider installing the current version of tocbibind.}}
     \newlistentry[#1]{#2}{#3}{0}
   \fi
 %    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{\ext@Z}
 % \begin{macro}{\Zdepth}
@@ -3694,11 +3709,27 @@ Consider installing the current version of tocbibind.}}
 % So for our own work here, let's be extra conservative, at least for now, and only hook into \cs{starttoc} if it's the standard \LaTeX{} version.
 %    \begin{macrocode}
 \def\@starttoc@latex@orig#1{%
- \begingroup   \makeatletter   \@input{\jobname.#1}%   \if@filesw     \expandafter\newwrite\csname tf@#1\endcsname     \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax   \fi  \@nobreakfalse\endgroup}
+ \begingroup
+   \makeatletter
+   \@input{\jobname.#1}%
+   \if@filesw
+     \expandafter\newwrite\csname tf@#1\endcsname
+     \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+   \fi
+  \@nobreakfalse
+\endgroup}
 \ifx\@starttoc\@starttoc@latex@orig
   \def\@starttoc#1{%
     \csname cft#1prehook\endcsname
-    \begingroup      \makeatletter      \@input{\jobname.#1}%      \if@filesw        \expandafter\newwrite\csname tf@#1\endcsname        \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax      \fi      \@nobreakfalse    \endgroup
+    \begingroup
+      \makeatletter
+      \@input{\jobname.#1}%
+      \if@filesw
+        \expandafter\newwrite\csname tf@#1\endcsname
+        \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+      \fi
+      \@nobreakfalse
+    \endgroup
     \csname cft#1posthook\endcsname}
   \newcommand\cfttocprehook{}
   \newcommand\cftlofprehook{}

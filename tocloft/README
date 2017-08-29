@@ -8,6 +8,9 @@ define your own kinds of `List of ...'
 _______________
 Change history:
 
+v2.3h
+- Fix conflict with fancyhdr not checking for \chapter in the same tocloft does
+
 v2.3g
 - Add \cftZprehook / \cftZposthook to support multicol ToCs, etc.
   Listed as experimental.
