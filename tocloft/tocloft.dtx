@@ -28,9 +28,53 @@
 \end{document}
 %</driver>
 %
+%<*usc>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tocloft}[2017/08/31 v2.3i parameterised ToC, etc., typesetting]
+%</usc>
+%
 % \fi
 %
-% \CheckSum{2304}
+% \changes{v0.1}{1998/12/31}{First public (alpha) release}
+% \changes{v0.1a}{1999/01/15}{Improved documentation}
+% \changes{v0.2}{1999/01/17}{Uses the stdclsdv package}
+% \changes{v0.2a}{1999/01/17}{Interfaced with the tocbibind package}
+% \changes{v0.2b}{1999/03/07}{Corrected failure when used with float package}
+% \changes{v0.2c}{1999/06/30}{Added raggedright example}
+% \changes{v0.3}{1999/08/22}{Added option to prevent ToC head change}
+% \changes{v1.0}{1999/09/19}{Added PackageNote reporting}
+% \changes{v1.1}{2000/02/11}{Added cftXpresnum commands}
+% \changes{v1.1}{2000/02/11}{Added support for subfigure package}
+% \changes{v1.1a}{2000/02/11}{Changed X to Z in section 2.2}
+% \changes{v2.0}{2001/03/03}{Added command for new list of...}
+% \changes{v2.0}{2001/03/03}{Removed requirement for stdclsdv package}
+% \changes{v2.0}{2001/03/15}{Removed requirement for hyperref option}
+% \changes{v2.1}{2001/04/08}{Added control over parskip in ToC etc.}
+% \changes{v2.2}{2001/04/17}{Another fix for hyperref}
+% \changes{v2.3}{2002/06/15}{Made to work with the koma classes}
+% \changes{v2.3a}{2002/10/03}{Partial fix for Part changes}
+% \changes{v2.3b}{2003/01/20}{More fixes for Part changes}
+% \changes{v2.3c}{2003/09/26}{More fixes for hyperref}
+% \changes{v2.3d}{2009/09/04}{New maintainer and tiny bug fix}
+% \changes{v2.3e}{2010/10/13}{Remove a message from the console output}
+%
+% \def\dtxfile{\texttt{tocloft.dtx}}
+% \def\fileversion{v1.1a} \def\filedate{2000/02/11}
+% \def\fileversion{v2.0}  \def\filedate{2001/03/15}
+% \def\fileversion{v2.1}  \def\filedate{2001/04/08}
+% \def\fileversion{v2.2}  \def\filedate{2001/04/17}
+% \def\fileversion{v2.3}  \def\filedate{2002/06/15}
+% \def\fileversion{v2.3a} \def\filedate{2002/10/03}
+% \def\fileversion{v2.3b} \def\filedate{2003/01/20}
+% \def\fileversion{v2.3c} \def\filedate{2003/09/26}
+% \def\fileversion{v2.3d} \def\filedate{2009/09/04}
+% \def\fileversion{v2.3e} \def\filedate{2010/10/13}
+% \def\fileversion{v2.3f} \def\filedate{2013/05/02}
+% \def\fileversion{v2.3g} \def\filedate{2014/06/14}
+% \def\fileversion{v2.3h} \def\filedate{2017/08/29}
+% \def\fileversion{v2.3i} \def\filedate{2017/08/31}
+%
+% \CheckSum{2302}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -73,43 +117,6 @@
 % \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
 % \DoNotIndex{\wd,\xiipt,\year,\z@}
 %
-% \changes{v0.1}{1998/12/31}{First public (alpha) release}
-% \changes{v0.1a}{1999/01/15}{Improved documentation}
-% \changes{v0.2}{1999/01/17}{Uses the stdclsdv package}
-% \changes{v0.2a}{1999/01/17}{Interfaced with the tocbibind package}
-% \changes{v0.2b}{1999/03/07}{Corrected failure when used with float package}
-% \changes{v0.2c}{1999/06/30}{Added raggedright example}
-% \changes{v0.3}{1999/08/22}{Added option to prevent ToC head change}
-% \changes{v1.0}{1999/09/19}{Added PackageNote reporting}
-% \changes{v1.1}{2000/02/11}{Added cftXpresnum commands}
-% \changes{v1.1}{2000/02/11}{Added support for subfigure package}
-% \changes{v1.1a}{2000/02/11}{Changed X to Z in section 2.2}
-% \changes{v2.0}{2001/03/03}{Added command for new list of...}
-% \changes{v2.0}{2001/03/03}{Removed requirement for stdclsdv package}
-% \changes{v2.0}{2001/03/15}{Removed requirement for hyperref option}
-% \changes{v2.1}{2001/04/08}{Added control over parskip in ToC etc.}
-% \changes{v2.2}{2001/04/17}{Another fix for hyperref}
-% \changes{v2.3}{2002/06/15}{Made to work with the koma classes}
-% \changes{v2.3a}{2002/10/03}{Partial fix for Part changes}
-% \changes{v2.3b}{2003/01/20}{More fixes for Part changes}
-% \changes{v2.3c}{2003/09/26}{More fixes for hyperref}
-% \changes{v2.3d}{2009/09/04}{New maintainer and tiny bug fix}
-% \changes{v2.3e}{2010/10/13}{Remove a message from the console output}
-%
-% \def\dtxfile{\texttt{tocloft.dtx}}
-% \def\fileversion{v1.1a}  \def\filedate{2000/02/11}
-% \def\fileversion{v2.0} \def\filedate{2001/03/15}
-% \def\fileversion{v2.1} \def\filedate{2001/04/08}
-% \def\fileversion{v2.2} \def\filedate{2001/04/17}
-% \def\fileversion{v2.3} \def\filedate{2002/06/15}
-% \def\fileversion{v2.3a} \def\filedate{2002/10/03}
-% \def\fileversion{v2.3b} \def\filedate{2003/01/20}
-% \def\fileversion{v2.3c} \def\filedate{2003/09/26}
-% \def\fileversion{v2.3d} \def\filedate{2009/09/04}
-% \def\fileversion{v2.3e} \def\filedate{2010/10/13}
-% \def\fileversion{v2.3f} \def\filedate{2013/05/02}
-% \def\fileversion{v2.3g} \def\filedate{2014/06/14}
-% \def\fileversion{v2.3i} \def\filedate{2017/08/31}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -1266,12 +1273,8 @@
 %
 % \section{The package code} \label{sec:code}
 %
-%    Announce the name and version of the package, which requires
-% \LaTeXe{} but no extra packages.
 %    \begin{macrocode}
 %<*usc>
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocloft}[2017/08/31 v2.3i parameterised ToC, etc., typesetting]
 %    \end{macrocode}
 %
 % In order to try and avoid name clashes with other packages, each internal
