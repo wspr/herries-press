@@ -8,6 +8,10 @@ define your own kinds of `List of ...'
 _______________
 Change history:
 
+v2.3i
+- Last release was broken! Embarrassing mistake with \expandafter.
+  Shouldn’t rush these things, sorry.
+
 v2.3h
 - Fix conflict with fancyhdr not checking for \chapter in the same tocloft does
 
