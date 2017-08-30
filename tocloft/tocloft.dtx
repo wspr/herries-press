@@ -30,7 +30,7 @@
 %
 % \fi
 %
-% \CheckSum{2303}
+% \CheckSum{2304}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -109,7 +109,7 @@
 % \def\fileversion{v2.3e} \def\filedate{2010/10/13}
 % \def\fileversion{v2.3f} \def\filedate{2013/05/02}
 % \def\fileversion{v2.3g} \def\filedate{2014/06/14}
-% \def\fileversion{v2.3h} \def\filedate{2017/08/29}
+% \def\fileversion{v2.3i} \def\filedate{2017/08/31}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -1271,7 +1271,7 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocloft}[2017/08/29 v2.3h parameterised ToC, etc., typesetting]
+\ProvidesPackage{tocloft}[2017/08/31 v2.3i parameterised ToC, etc., typesetting]
 %    \end{macrocode}
 %
 % In order to try and avoid name clashes with other packages, each internal
@@ -1282,7 +1282,8 @@
 % Due to a conflict with how this package and fancyhdr checked for undefinedness.
 %    \begin{macrocode}
 \newcommand\@cftifundefined[1]{%
-  \begingroup\expandafter\expandafter\expandafter\endgroup\ifx\csname #1\endcsname\relax
+  \begingroup\expandafter\expandafter\expandafter\endgroup
+  \expandafter\ifx\csname #1\endcsname\relax
     \expandafter\@firstoftwo
   \else
     \expandafter\@secondoftwo
