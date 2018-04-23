@@ -7,9 +7,9 @@
 %%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
 
 \RequirePackage{filecontents}
-\begin{filecontents}{ifmtarg.sty}
+\begin{filecontents*}{ifmtarg.sty}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ifmtarg}[2009/09/02 v1.2a check for an empty argument]
+\ProvidesPackage{ifmtarg}[2018/04/16 v1.2b check for an empty argument]
 \begingroup
 \catcode`\Q=3
 \long\gdef\@ifmtarg#1{\@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil}
@@ -17,7 +17,7 @@
 \long\gdef\@ifnotmtarg#1{\@xifmtarg#1QQ\@firstofone\@gobble\@nil}
 \endgroup
 \endinput
-\end{filecontents}
+\end{filecontents*}
 %%%%%%%%%1%%%%%%%%%2%%%%%%%%%3%%%%%%%%%4%%%%%%%%%5
 
 
@@ -40,22 +40,18 @@
 
 
 \makeatletter
-\documentclass{article}
+\documentclass[twocolumn]{ltxdoc}
 
+\usepackage{shortvrb}
+\MakeShortVerb\|
 \usepackage[it,medium]{titlesec}
 
-\usepackage{array,bigfoot,ifmtarg}
+\usepackage{array,ifmtarg,bigfoot,fancyvrb}
 \usepackage[svgnames]{xcolor}
 \usepackage[colorlinks,linktocpage]{hyperref}
 
 \usepackage{geometry}
 \geometry{margin=2cm}
-
-\usepackage{gmdoc}
-\usepackage{gmverb}
-\dekclubs
-\stanzaskip=\bigskipamount 
-\CodeSpacesGrey
 
 \usepackage{tocloft,varwidth}
 \setcounter{tocdepth}{1}
@@ -101,7 +97,7 @@
 }
 \date{\fileversion \qquad \filedate}
 
-\twocolumn[\maketitle]
+\maketitle
 
 \section{Documentation}
 
@@ -117,14 +113,13 @@ The command is fully expandable; its syntax is:
 A variation is provided, \cmd{\@ifnotmtarg}, to be used when only the `false' branch is required.
 It is slightly more efficient when code is only required for a non-empty argument.
 \begin{quote}
-\cmd{\@ifnotmtarg}\marg{arg}\marg{Code for arg not empty}
+\cmd{\@ifnotmtarg}\marg{arg}\marg{Code for not empty}
 \end{quote}
 
 \section{Examples}
 
 \begin{verbatim}
-\newcommand{\isempty}[1]{%
-  \@ifmtarg{#1}{YES}{NO}}
+\newcommand\isempty[1]{\@ifmtarg{#1}{YES}{NO}}
 \end{verbatim}
 \nobreak
 \begin{tabular}{@{\hspace{1.8em}}>{\color{SeaGreen}}l@{$\quad\to\quad$}>{\ttfamily}l@{}}
@@ -135,8 +130,7 @@ It is slightly more efficient when code is only required for a non-empty argumen
 \end{tabular}
 
 \begin{verbatim}
-\newcommand{\isnotempty}[1]{%
-   \@ifnotmtarg{#1}{YES}}
+\newcommand\isnotempty[1]{\@ifnotmtarg{#1}{YES}}
 \end{verbatim}
 \nobreak
 \begin{tabular}{@{\hspace{1.8em}}>{\color{SeaGreen}}l@{$\quad\to\quad$}>{\ttfamily}l@{}}
@@ -170,6 +164,7 @@ see \href{http://www.ctan.org/pub/tex-archive/info/aro-bend/answer.002}{\texttt{
 
 \begin{itemize}
 \item[v1.2a] New maintainer (Will Robertson)
+\item[v1.2b] Typo in documentation example code
 \end{itemize}
 
 
@@ -191,7 +186,7 @@ The current maintainer of this work is Will Robertson.
 \parindent=0pt
 
 \section{Implementation}
-\DocInput{ifmtarg.sty}
+\VerbatimInput{ifmtarg.sty}
 
 {\addtocontents{toc}{\protect\end{varwidth}}}
 
