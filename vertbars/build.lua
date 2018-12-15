@@ -20,8 +20,8 @@ uploaddata = {
 }
 
 uploaddata.description = [[
-  This pack­age is an ex­ten­sion to lineno, re­plac­ing that
-  pack­age's line num­bers with bars to the left or right
+  This package is an extension to lineno, replacing that
+  package's line numbers with bars to the left or right
   of the text.
 ]]
 
