@@ -9,7 +9,7 @@ pkgdate = "2018/12/16"
 gittag  = module.."-v"..version
 
 uploaddata = {
-  version     = vers,
+  version     = version,
   author      = "Peter R Wilson; Will Robertson",
   license     = "lppl1.3c",
   summary     = "Mark vertical rules in margin of text",
