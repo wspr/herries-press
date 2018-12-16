@@ -1,6 +1,6 @@
 
 \makeatletter
-\documentclass{article}
+\documentclass{ltxdoc}
 
 \usepackage[it,medium]{titlesec}
 
@@ -11,37 +11,10 @@
 \usepackage{geometry}
 \geometry{b5paper}
 
-\usepackage{gmdoc}
-\usepackage{gmverb}
-\dekclubs
-\stanzaskip=\bigskipamount
-\CodeSpacesGrey
-
-\usepackage{tocloft,varwidth}
-\setcounter{tocdepth}{1}
-\def\tocwidthA{0.55}
-\def\tocwidthB{0.44}
-\def\cftpartfont{\scshape}
-\def\cftsecfont{\small}
-\cftbeforesecskip=0pt
-\def\cftpartleader{}
-\def\cftpartafterpnum{\cftparfillskip}
-\def\cftsecleader{}
-\def\cftsecafterpnum{\cftparfillskip}
-
 \DeclareRobustCommand\pkg{\textsf}
 \def\pkgopt#1{\texttt{[#1]}}
-\newcommand\chng[1]{\marginpar{\footnotesize\raggedright\textsf{#1}}}
 
-\def\PDF{\textsc{pdf}}
-\def\PS{\textsc{ps}}
-\def\DVI{\textsc{dvi}}
-\def\EPS{\textsc{eps}}
 
-\usepackage{amsmath,listings}
-\lstset{basicstyle=\ttfamily,columns=fullflexible}
-
-\usepackage{changepage}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
 \usepackage{lmodern}
@@ -51,7 +24,6 @@
 
 \GetFileInfo{vertbars.sty}
 \begin{document}
-{\addtocontents{toc}{\protect\begin{varwidth}[t]{\tocwidthA\linewidth}}}
 
 \title{The \pkg{vertbars} package}
 \author{%
