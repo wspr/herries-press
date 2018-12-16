@@ -25,8 +25,7 @@ later version: <http://www.latex-project.org/lppl.txt>
 This work has the LPPL maintenance status "maintained".
 The Current Maintainer of this work is Will Robertson.
 
-This work consists of the files vertbars.tex and the
-derived files vertbars.sty and vertbars.ins.
+This work consists of the files vertbars.tex and vertbars.sty.
 
 
 
@@ -40,5 +39,5 @@ Developmental and historical versions:
   <http://github.com/wspr/herries-press>
 
 Current release version:
-  <http://ctan.tug.org/pkg/vertbars>
+  <http://ctan.org/pkg/vertbars>
 
