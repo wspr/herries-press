@@ -17,13 +17,12 @@ uploaddata = {
   ctanPath    = "/macros/latex/contrib/vertbars",
   repository  = "https://github.com/wspr/herries-press/",
   bugtracker  = "https://github.com/wspr/herries-press/issues",
+  description = [[
+    This package is an extension to lineno, replacing that
+    package's line numbers with bars to the left or right
+    of the text.
+  ]]
 }
-
-uploaddata.description = [[
-  This package is an extension to lineno, replacing that
-  package's line numbers with bars to the left or right
-  of the text.
-]]
 
 sourcefiles  = {"*.sty"}
 typesetfiles = {"*.tex"}
