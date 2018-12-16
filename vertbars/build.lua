@@ -1,12 +1,11 @@
---[[
-     =========================
-     L3BUILD FILE FOR VERTBARS
-     =========================
---]]
 
-module = "vertbars"
+--[=========================[--
+   L3BUILD FILE FOR VERTBARS
+--]=========================]--
+
+module  = "vertbars"
 version = "1.0c"
-pkgdate = "2018/12/13"
+pkgdate = "2018/12/16"
 gittag  = module.."-v"..version
 
 uploaddata = {
@@ -29,13 +28,23 @@ typesetfiles = {"*.tex"}
 installfiles = {"*.sty"}
 tagfiles     = {"*.sty"}
 
-uploaddata.update = true
+--[=================[--
+     CUSTOMISATION
+--]=================]--
+
+today = os.date("%Y/%m/%d")
+if pkgdate ~= today then
+  print("Warning: package date is not today:")
+  print("Pkg date: "..pkgdate)
+  print("Today:    "..today)
+  return
+end
+
 require("l3build-wspr.lua")
 
---[[
-     -------
+--[===========[--
      TAGGING
---]]
+--]===========]--
 
 status_bool = false
 
