@@ -23,6 +23,13 @@ uploaddata = {
   ]]
 }
 
+announce = {}
+announce["1.0c"] = [[
+  Add \par before and after the vertbar environment to avoid incorrect
+  behaviour if erroneously used within a paragraph.
+]]
+uploaddata.announcement = announce[version]
+
 sourcefiles  = {"*.sty"}
 typesetfiles = {"*.tex"}
 installfiles = {"*.sty"}
@@ -34,9 +41,9 @@ tagfiles     = {"*.sty"}
 
 today = os.date("%Y/%m/%d")
 if pkgdate ~= today then
-  print("Warning: package date is not today:")
-  print("Pkg date: "..pkgdate)
-  print("Today:    "..today)
+  error("Package date is not today:"..
+        "\nPkg date: "..pkgdate..
+        "\nToday:    "..today)
   return
 end
 
