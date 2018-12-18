@@ -8,7 +8,7 @@ version = "1.0c"
 pkgdate = "2018/12/16"
 gittag  = module.."-v"..version
 
-uploaddata = {
+uploadconfig = {
   version     = version,
   author      = "Peter R Wilson; Will Robertson",
   license     = "lppl1.3c",
@@ -28,7 +28,7 @@ announce["1.0c"] = [[
   Add \par before and after the vertbar environment to avoid incorrect
   behaviour if erroneously used within a paragraph.
 ]]
-uploaddata.announcement = announce[version]
+uploadconfig.announcement = announce[version]
 
 sourcefiles  = {"*.sty"}
 typesetfiles = {"*.tex"}
