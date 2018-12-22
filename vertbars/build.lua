@@ -41,10 +41,9 @@ tagfiles     = {"*.sty"}
 
 today = os.date("%Y/%m/%d")
 if pkgdate ~= today then
-  error("Package date is not today:"..
+  print("Package date is not today:"..
         "\nPkg date: "..pkgdate..
         "\nToday:    "..today)
-  return
 end
 
 require("l3build-wspr.lua")
