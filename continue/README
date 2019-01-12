@@ -1,0 +1,68 @@
+    The continue package provides for a variety of continuation indicators
+by default on recto (odd numbered) pages in a twosided document when the text 
+continues on the following (verso) page. All pages may be marked and the marking 
+stopped and started. 
+
+Changes in version 0.1 (2015/12/09)
+o First public release
+Changes in version 0.2 (2018/12/09)
+o Second public release
+o All pages may be marked
+o Marking can be stopped and started
+
+
+------------------------------------------------------------------
+  Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+          with Donald Arseneau and Luca Merciadri
+  Copyright 2015, 2018 Peter R. Wilson, Donald Arseneau, Luca Merciadri
+
+  This work may be distributed and/or modified under the
+  conditions of the Latex Project Public License, either
+  version 1.3 of this license or (at your option) any
+  later version.
+  The latest version of the license is in
+    http://www.latex-project.org/lppl.txt
+  and version 1.3 or later is part of all distributions of
+  LaTeX version 2003/06/01 or later.
+
+  This work has the LPPL maintenance status "unmaintained".
+
+  This work consists of the files:
+    README (this file)
+    continue.dtx
+    continue.ins
+    continue.pdf
+  and the derived files
+    continue.sty
+    trycontinue.tex
+
+------------------------------------------------------------------
+     The distribution consists of the following files:
+README (this file)
+continue.dtx
+continue.ins
+continue.pdf         (user manual)
+trycontinue.tex      (example usage)
+trycontinue.pdf
+
+    To install the package:
+o run: latex continue.ins, which will generate:
+       continue.sty
+       trycontinue.tex
+o Move *.sty files to a location where LaTeX will find them
+    e.g., .../texmf-local/tex/latex/continue
+o Refresh the database
+ (for more information on the above see the FAQ).
+
+o run: (pdf)latex trycontinue for a test of the package
+
+    To generate a second copy of the manual (which is already supplied as a PDF file):
+o run: (pdf)latex continue.dtx
+o (for an index run: makeindex -s gind.ist *.idx)
+o run: (pdf)latex *.dtx
+o Print *.(pdf|dvi) for a hardcopy of the package manual
+
+2018/12/09
+Peter Wilson
+herries dot press at earthlink dot net
+

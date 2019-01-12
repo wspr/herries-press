@@ -1,0 +1,726 @@
+% \iffalse meta-comment
+%
+% continue.dtx
+%
+%  Author: Peter Wilson (Herries Press) herries dot press at earthlink dot net
+%  Copyright 2015, 2018 Peter R. Wilson, Donald Arseneau and Merciadri Luca
+%
+%  This work may be distributed and/or modified under the
+%  conditions of the Latex Project Public License, either
+%  version 1.3 of this license or (at your option) any
+%  later version.
+%  The latest version of the license is in
+%    http://www.latex-project.org/lppl.txt
+%  and version 1.3 or later is part of all distributions of
+%  LaTeX version 2003/06/01 or later.
+%
+%  This work has the LPPL maintenance status "unmaintained".
+%
+%  This work consists of the files listed in the README file.
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\setcounter{StandardModuleDepth}{1}
+%%%\usepackage{url}
+%%%\usepackage[draft=false,
+%%%            plainpages=false,
+%%%            pdfpagelabels,
+%%%            bookmarksnumbered,
+%%%            hyperindex=false
+%%%           ]{hyperref}
+ \begin{document}
+   \DocInput{continue.dtx}
+ \end{document}
+%</driver>
+%
+% \fi
+%
+% \CheckSum{12458}
+%
+% \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
+% \DoNotIndex{\@centercr,\@cite}
+% \DoNotIndex{\@dotsep,\@empty,\@float,\@gobble,\@gobbletwo,\@ignoretrue}
+% \DoNotIndex{\@input,\@ixpt,\@m}
+% \DoNotIndex{\@minus,\@mkboth,\@ne,\@nil,\@nomath,\@plus,\@set@topoint}
+% \DoNotIndex{\@tempboxa,\@tempcnta,\@tempdima,\@tempdimb}
+% \DoNotIndex{\@tempswafalse,\@tempswatrue,\@viipt,\@viiipt,\@vipt}
+% \DoNotIndex{\@vpt,\@warning,\@xiipt,\@xipt,\@xivpt,\@xpt,\@xviipt}
+% \DoNotIndex{\@xxpt,\@xxvpt,\\,\ ,\addpenalty,\addtolength,\addvspace}
+% \DoNotIndex{\advance,\Alph,\alph}
+% \DoNotIndex{\arabic,\ast,\begin,\begingroup,\bfseries,\bgroup,\box}
+% \DoNotIndex{\bullet}
+% \DoNotIndex{\cdot,\cite,\CodelineIndex,\cr,\day,\DeclareOption}
+% \DoNotIndex{\def,\DisableCrossrefs,\divide,\DocInput,\documentclass}
+% \DoNotIndex{\DoNotIndex,\egroup,\ifdim,\else,\fi,\em,\endtrivlist}
+% \DoNotIndex{\EnableCrossrefs,\end,\end@dblfloat,\end@float,\endgroup}
+% \DoNotIndex{\endlist,\everycr,\everypar,\ExecuteOptions,\expandafter}
+% \DoNotIndex{\fbox}
+% \DoNotIndex{\filedate,\filename,\fileversion,\fontsize,\framebox,\gdef}
+% \DoNotIndex{\global,\halign,\hangindent,\hbox,\hfil,\hfill,\hrule}
+% \DoNotIndex{\hsize,\hskip,\hspace,\hss,\if@tempswa,\ifcase,\or,\fi,\fi}
+% \DoNotIndex{\ifhmode,\ifvmode,\ifnum,\iftrue,\ifx,\fi,\fi,\fi,\fi,\fi}
+% \DoNotIndex{\input}
+% \DoNotIndex{\jobname,\kern,\leavevmode,\let,\leftmark}
+% \DoNotIndex{\list,\llap,\long,\m@ne,\m@th,\mark,\markboth,\markright}
+% \DoNotIndex{\month,\newcommand,\newcounter,\newenvironment}
+% \DoNotIndex{\NeedsTeXFormat,\newdimen}
+% \DoNotIndex{\newlength,\newpage,\nobreak,\noindent,\null,\number}
+% \DoNotIndex{\numberline,\OldMakeindex,\OnlyDescription,\p@}
+% \DoNotIndex{\pagestyle,\par,\paragraph,\paragraphmark,\parfillskip}
+% \DoNotIndex{\penalty,\PrintChanges,\PrintIndex,\ProcessOptions}
+% \DoNotIndex{\protect,\ProvidesClass,\raggedbottom,\raggedright}
+% \DoNotIndex{\refstepcounter,\relax,\renewcommand,\reset@font}
+% \DoNotIndex{\rightmargin,\rightmark,\rightskip,\rlap,\rmfamily,\roman}
+% \DoNotIndex{\roman,\secdef,\selectfont,\setbox,\setcounter,\setlength}
+% \DoNotIndex{\settowidth,\sfcode,\skip,\sloppy,\slshape,\space}
+% \DoNotIndex{\symbol,\the,\trivlist,\typeout,\tw@,\undefined,\uppercase}
+% \DoNotIndex{\usecounter,\usefont,\usepackage,\vfil,\vfill,\viiipt}
+% \DoNotIndex{\viipt,\vipt,\vskip,\vspace}
+% \DoNotIndex{\wd,\xiipt,\year,\z@}
+% \DoNotIndex{\0,\1,\2,\3,\4,\5,\6,\7,\8,\9}
+%
+% \def\dtxfile{continue.dtx}
+% \changes{v0.1}{2015/12/09}{First trial release}
+% \def\fileversion{v0.1} \def\filedate{2015/12/09}
+% \changes{v0.2}{2018/12/09}{Second trial release, markers can be on all pages and stopped and started at will}
+% \def\fileversion{v0.2} \def\filedate{2018/12/09}
+
+% ^^A Flag an option
+% \makeatletter
+% \newcommand{\OptFont}{\fontencoding\encodingdefault
+%   \fontfamily\sfdefault
+%   \fontseries\mddefault
+%   \fontshape\updefault
+%   \small}
+% 
+% \newcommand{\DescribeOption}{\leavevmode\@bsphack
+%   \begingroup\MakePrivateLetters\Describe@Opt}
+% \newcommand{\Describe@Opt}[1]{\endgroup
+%   \marginpar{\raggedleft\PrintDescribeOption{#1}}%
+%   \SpecialOptIndex{#1}\@esphack\ignorespaces}
+%   \newcommand*{\PrintDescribeOption}[1]{\strut \OptFont #1\ }
+%   \newcommand*{\PrintOptionName}[1]{\strut \OptFont #1\ }
+% \newcommand*{\SpecialOptIndex}[1]{\@bsphack
+%   \index{#1\actualchar{\protect\sffamily#1}
+%     (option)\encapchar usage}%
+%   \index{options:\levelchar#1\actualchar
+%     {\protect\sffamily#1}\encapchar usage}\@esphack}
+% 
+% \makeatother
+% 
+% \providecommand{\phantomsection}{}
+% %\OnlyDescription ^^A comment this out for the full glory
+% \setcounter{StandardModuleDepth}{1}
+% \makeatletter
+%   \@mparswitchfalse
+% \makeatother
+% \renewcommand{\MakeUppercase}[1]{#1}
+% \pagestyle{headings}
+% \newenvironment{addtomargins}[1]{%
+%   \begin{list}{}{%
+%     \topsep 0pt%
+%     \addtolength{\leftmargin}{#1}%
+%     \addtolength{\rightmargin}{#1}%
+%     \listparindent \parindent
+%     \itemindent \parindent
+%     \parsep \parskip}%
+%   \item[]}{\end{list}}
+% \MakeShortVerb{\|}
+%
+% \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
+% \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
+% \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
+% \newcommand*{\Lcount}[1]{\textsl {\small#1}}    ^^A typeset a counter
+% \newcommand*{\pstyle}[1]{\textsl {#1}}          ^^A typeset a pagestyle
+% \newcommand*{\Lenv}[1]{\texttt {#1}}            ^^A typeset an environment
+% \newcommand{\BC}{\textsc{bc}}
+% \newcommand{\AD}{\textsc{ad}}
+%
+% \title{\Lpack{Continue}: Continuation marks on (by default odd) pages\thanks{This
+%        file (\texttt{\dtxfile}) has version number \fileversion, last revised
+%        \filedate.}}
+%
+% \author{%
+% Peter Wilson\thanks{\texttt{herries dot press at earthlink dot net}} with 
+% Donald Arseneau and Merciadri Luca \\
+% Herries Press
+% }
+% \date{\filedate}
+% \maketitle
+% \begin{abstract}
+%    The \Lpack{continue} package provides for a variety of continuation indicators on
+% pages in a twosided document when the text continues on the following
+% page. The default is to only mark odd pages but all pages can be marked or marking
+% can be stopped or started at any point.  
+% \end{abstract}
+% \tableofcontents
+%
+% 
+%
+% \section{Introduction}
+%
+%    In some types of documents it is customary or convenient to indicate at the
+% bottom of a page that the text continues on the following page. For example, when
+% a two page exam sheet is printed twosided it could be advantageous for the student
+% to have an indication on the first page that there are further questions on the back 
+% of the page. Another instance is when documents are printed in the expectation
+% that they will be read by someone in front of an audience, so in order to minimise
+% any hesitation as a page is turned over, the first word on the following page is printed
+% at the bottom of the preceeding page.
+%
+% This manual is typeset according to the conventions of the
+% \LaTeX{} \textsc{docstrip} utility which enables the automatic
+% extraction of the \LaTeX{} macro source files~\cite{GOOSSENS94}.
+%
+%    Section~\ref{sec:usc} describes the usage of the package.
+% Commented package code may be in later sections.
+%
+%
+% \section{The \Lpack{continue} package} \label{sec:usc}
+%
+%    The \Lpack{continue} package is an amalgam of modified versions of
+% two packages --- \Lpack{fwlw} (First Word, Last Word) by Donald 
+% Arseneau~\cite{FWLW} which% among other things gets the first word
+% on the next page and \Lpack{turnpageetex} by Merciadri Luca~\cite{TURNPAGEETEX}
+% for placing something at the bottom of the text block. 
+%
+% The \Lpack{fwlw} package includes the following statement:
+%
+%     Copyright (C) 1993,1995 by Donald Arseneau
+%     Vancouver, Canada, email asnd@triumf.ca
+%     This software package may be freely used, transmitted, reproduced,
+%     or modified provided that this notice is left intact.
+%
+% In this instance I have modified the original package as allowed above.
+%
+%    With respect to the \Lpack{turnpageetex} package this was released under the
+% LaTeX Project Public License and I have taken the liberty of extending its functionality
+% slightly, as allowed.
+%
+%
+%
+% \subsection{Options}
+%
+%     There are three options that can be used when calling the package denoting the
+% kind and position of the continuation marker.
+%
+% \DescribeOption{margin}
+%    With this option the continuation marker is placed in the margin aligned with
+% the bottom of the text block. If the option is not used then the continuation
+% marker is placed below the text text block ending at the outer margin.
+%
+% \DescribeOption{word}
+%    With this option the package attempts to use the first `word' on the following
+% verso page as the continuation marker. If the option is not used then a user
+% specified marker is employed.
+%
+% \DescribeOption{allpages}
+%    With this option the package tries to provide a marker on each page, whether 
+% odd or even.
+% The default is to only provide markers on odd pages.
+%
+%  The relevant portions of the introduction to the \Lpack{fwlw} package are: \\
+% \begin{quotation}
+%  The \Lpack{fwlw} package provides a mechanism to determine ...
+%  the first word on the \textit{next} page.  The `words'
+%  you see may not be real words, but any unbreakable object.
+%
+% ...
+%
+%  ... labelling does not make much sense when |\chapter| generates a page
+%  break, so the last page before a |\chapter| (or any |\clearpage|) gets 
+%  a blank "next word" ...
+%
+%  Note that `words' may unfortunately be things like:
+% \begin{itemize}
+%    \item two~words
+%    \item |[ ]|Word  ( |[ ]| represents a parindent box)
+%    \item a whole displayed equation
+%    \item the first column of an aligned equation
+%    \item anomalously blank, if there are |\write|s or split footnotes etc.
+%    \item partial words like  par-  or  -tial due to hyphenation.
+% \end{itemize}
+% \end{quotation}
+%
+%    In essence, the `word' might not be what you might expect, but for most documents
+% the results are good. However, page~3 of the example file |trycontinue.tex| prints
+% a blank word as the continuation marker because the first line on the following
+% page is the start of a paragraph which starts with a space.
+%
+%
+%
+% \subsection{Macros}
+%
+% When the \Lopt{word} option is not used the following macros are available:
+%
+% \DescribeMacro{\flagcont}
+%    This command defines the continuation mark. Its default specification is: \\
+%    |\newcommand*{\flagcont}{Continued}| \\
+% It can be changed in the document's preamble to, perhaps: \\
+%    |\renewcommand*{\flagcont}{---$>$}| \\
+% to print a right pointing arrow.
+%
+% \DescribeMacro{\flagend}
+%    This command defines the continuation mark when the last odd page is the final
+% page (i.e. when there is no following recto page). Its default specification is: \\
+%    |\newcommand*{\flagend}{End}| \\
+% but it can be changed in the document's preamble.
+%
+% When the \Lopt{word} option is used the following macros are available:
+%
+% \DescribeMacro{\flagword}
+%     This command specifies how the continuation word is formated. Its definition is: \\
+%    |\newcommand*{\flagword}{\preflagword\usebox\NextWordBox\postflagword}| \\
+% where |\NextWordBox| holds the first word on the next recto page (empty if there
+% is no next recto page).
+%
+% \DescribeMacro{\preflagword}
+%    This command is printed before the word continuation marker. Its default definition is: \\
+%    |\newcommand*{\preflagword}{}| \\
+% but can be redefined in the document preamble to put, perhaps, an opening brace
+% before the word like: \\
+%    |\renewcommand*{\preflagword}{[}|
+%
+% \DescribeMacro{\postflagword}
+%    Similar to |\preflagword| except that it is printed after the marker. Its default 
+%  definition is: \\
+%    |\newcommand*{\postflagword}{}| \\
+%
+% \DescribeMacro{\contsep}
+% \DescribeMacro{\contdrop}
+%     When the \Lopt{margin} option is used the continuation marker is set a distance
+% |\contsep| to the right of the textblock. When \Lopt{margin} is not used then the
+% marker is set a distance |\contdrop| below the textblock. Their default values
+% are set by: \\
+% |\setlength{\contsep}{\marginparsep}| and |\setlength{\contdrop}{0.5\footskip}|
+%
+% \section{An example document}
+%
+% You can use the document |trycontinue.tex| to experiment with the options.
+% It may take two (pdf)LaTeX runs for the continuation marks to settle down to their
+% final values and positions.
+%
+%    \begin{macrocode}
+%<*try>
+%% trycontinue.tex  An example usage of the continue package (2018/12/09)
+%%
+%% The document is set with footnotes on A6 paper (I wanted
+%% to get many pages from little text). It is not pretty but does shows 
+%% some of the continue package's capabilities. Try modifying it by changing 
+%% options, etc., and see what happens.
+%% 
+%% You can try and contact me, Peter Wilson at herries.press@earthlink.net, if there
+%% are problems other than the aesthetics.
+%%
+\documentclass[%
+  twoside,
+  a6paper
+  ]%
+  {memoir}
+
+\usepackage%
+%%  [margin]%
+%%  [word]%
+%%  [margin,word]%
+  [margin,word,allpages]%
+  {continue}
+\usepackage{lipsum}
+%%  try this without the word option
+%%\renewcommand{\flagcont}{---$>$}
+
+\renewcommand*{\preflagword}{[}
+
+\begin{document}
+
+First\footnote{Foot 1} \lipsum[1]
+
+Second\footnote{Foot 2} \lipsum[2]
+
+Third\footnote{Foot 3} \lipsum[3]
+
+\contstop % stop marking
+
+Fourth\footnote{Foot 4} \lipsum[4]
+
+Fifth\footnote{Foot 5} \lipsum[5]
+
+\contgo % start marking
+
+Sixth\footnote{Foot 6} \lipsum[6]
+
+\end{document}
+
+%</try>
+%    \end{macrocode}
+%
+% \section{The \Lpack{continue} code} \label{sec:code}
+%
+%    Announce the name and version of the package, which requires
+% \LaTeXe{} and the \Lpack{atbegshi}, \Lpack{picture}, \Lpack{zref-abspage} and
+% \Lpack{zref-lastpage} packages and has options \Lopt{margin}, \Lopt{word} and \Lopt{allpages}
+% (added \Lopt{allpages} 2018/11/30).
+%    \begin{macrocode}
+%<*usc>
+ \NeedsTeXFormat{LaTeX2e}
+ \ProvidesPackage{continue}[2018/12/09 v0.2 Continues on the following page]
+ \PackageInfo{continue}{This is continue using e-TeX.}
+
+%    \end{macrocode}
+% \begin{macro}{\ifcontmargin}
+% \begin{macro}{\ifcontword}
+% Now for the options.
+%    \begin{macrocode}
+ \newif{\ifcontmargin} \contmarginfalse
+ \newif{\ifcontword}   \contwordfalse
+ \newif{\ifcontallpages} \contallpagesfalse
+ \DeclareOption{margin}{\contmargintrue}
+ \DeclareOption{word}{\contwordtrue}
+ \DeclareOption{allpages}{\contallpagestrue}
+ \ProcessOptions
+
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ifc@go}
+% \begin{macro}{\contgo}
+% \begin{macro}{\contstop}
+% Continuation marks will stop after |\contstop| but will continue after |\contgo| 
+% (the default)
+%    \begin{macrocode}
+\newif{\ifc@go} \c@gotrue
+\newcommand{\contgo}{\c@gotrue}
+\newcommand{\contstop}{\c@gofalse}
+
+%    \end{macrocode}%
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% And the required packages needed by the original \Lpack{turnpageetex} package.
+%
+%    \begin{macrocode}
+ \RequirePackage{atbegshi}
+ \RequirePackage{picture}
+ \RequirePackage{zref-abspage}
+ \RequirePackage{zref-lastpage}
+
+%    \end{macrocode}
+%
+% The next chunk of code is a revised version of the \Lpack{fwlw} package. I don't
+% really understand it but I have a feeling that certain parts are irrelevant
+% to the purposes at hand.
+%
+%    \begin{macrocode}
+% --------------------------------------------------------------------------
+%
+%    \end{macrocode}
+%
+% \begin{macro}{\LWC@pen}
+% Declare a \textit{unique} penalty flag as a value.
+%    \begin{macrocode}
+ \mathchardef\LWC@pen 13452
+%    \end{macrocode} 
+% \end{macro}
+%
+% \begin{macro}{\FirstWordBox}
+% \begin{macro}{\NextWordBox}
+% \begin{macro}{\LastWordBox}
+% \begin{macro}{\LWC@box}
+% \begin{macro}{\LWC@saved}
+% Allocate box registers
+%    \begin{macrocode}
+ \newbox\FirstWordBox     \global\setbox\FirstWordBox\hbox{}
+ \newbox\NextWordBox      \global\setbox\NextWordBox\hbox{}
+ \newbox\LastWordBox      \global\setbox\LastWordBox\hbox{}
+ \newbox\LWC@box           \global\setbox\LWC@box\hbox{}
+ \newbox\LWC@saved
+%    \end{macrocode} 
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\FWLWCnormal@L@output}
+%  Shell around old output routine.  Gets first word from next page by
+%  letting TeX continue with |\vsize=0| to get a look at the next line.
+%  Values of |\outputpenalty| for |\specialoutput| ( -10001 to -19999 ) are
+%  simply run through the output routine.
+%  |\supereject| and |\clearpage| give a blank "next word".
+%  When called after making a stub-page the stub is returned to the
+%  vertical list, the previous page is restored and shipped out normally,
+%  but knowing what the next word will be.
+%    \begin{macrocode}
+ \edef\FWLWCnorm@L@output{\the\output}
+
+ \output{\@tempswafalse
+ \ifnum \outputpenalty>-\@MM \ifnum\outputpenalty<-\@M \@tempswatrue\fi\fi
+ \if@tempswa % special (float) output
+%  \message{Float handler: penalty=\the\outputpenalty}%
+    \FWLWCnorm@L@output
+ \else
+   \ifvoid\LWC@saved % end of real page
+%    \message{End of real page}%
+      \global\setbox\LWC@saved\copy\@cclv % save page
+%\begin{comment}
+      \setbox\@tempboxa\vbox{\unvbox\@cclv \unskip\unkern\unpenalty%     
+       \unskip\unkern\unpenalty \unskip\unkern\unpenalty
+        \setbox\@tempboxa\lastbox
+        \LWC@getlast@word\@tempboxa\LastWordBox
+      }
+%\end{comment}
+      \ifnum\outputpenalty>-\@MM % not \supereject
+        \xdef\LWC@vsize{\global\vsize\the\vsize 
+           \global\holdinginserts\the\holdinginserts}%
+        \global\vsize\z@ \global\holdinginserts\@ne 
+      \else % \supereject, just output, don't look for word on next page
+%      \message{caused by super-eject.}
+        \global\setbox\@cclv\box\LWC@saved
+        \global\setbox\NextWordBox\hbox{}%
+        \FWLWCnorm@L@output
+        \global\setbox\FirstWordBox\box\NextWordBox
+      \fi
+   \else % saved page => just did tiny page to get next word
+%    \message{Just got next line:}{\tracingall\showboxdepth2 \showbox\@cclv}%
+      \setbox\@tempboxa\vbox{\penalty\LWC@pen\unvcopy\@cclv \LWC@getall@boxes
+        \ifvbox\LWC@box \penalty\LWC@pen\unvbox\LWC@box \LWC@getall@boxes\fi
+        \ifvbox\LWC@box \global\setbox\NextWordBox\hbox{}\else
+          \LWC@getfirst@word\LWC@box\NextWordBox
+        \fi}%  Return tiny page to page list:
+      \unvbox\@cclv \ifnum\outputpenalty<\@M \penalty\outputpenalty\fi
+      \LWC@vsize\relax
+      \global\setbox\@cclv\box\LWC@saved
+      \FWLWCnorm@L@output
+      \global\setbox\FirstWordBox\box\NextWordBox
+ \fi\fi}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LWC@getlast@word}
+% Globally get last "word" from a box |#1| into another box |#2|
+%
+%    \begin{macrocode}
+ \def\LWC@getlast@word#1#2{\setbox\@tempboxa\vbox{\hsize\maxdimen \@parboxrestore
+   \hyphenpenalty\@M \exhyphenpenalty\@M 
+   \rightskip\fill \looseness\@M \linepenalty\z@
+   \noindent\unhbox#1\endgraf
+   \unskip\unkern\unpenalty \global\setbox\LWC@box\lastbox
+   }\LWC@repack{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\LWC@getfirst@word}
+% Globally get first "word" from a box |#1| into another box |#2|
+%
+%    \begin{macrocode}
+ \def\LWC@getfirst@word#1#2{\setbox\@tempboxa\vbox{\@parboxrestore
+   \parshape\thr@@ \z@\z@ \z@\z@ \z@\maxdimen \parfillskip\fill
+   \hyphenpenalty\@M \exhyphenpenalty\@M 
+   \hbadness\@MM \overfullrule\z@ \hfuzz\maxdimen
+   \ifhbox#1\noindent
+    \vadjust{\penalty\LWC@pen}\penalty-\@M\unhbox#1% eliminate previous \leftskip
+   \else\ifvbox#1\penalty\LWC@pen\unvbox#1\fi\fi
+   \endgraf
+   \@tempcnta\z@  \LWC@getall@boxes}\LWC@repack{#2}}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LWC@getall@boxes}
+% Go through a vertical list that starts with special penalty
+%
+%    \begin{macrocode}
+ \def\LWC@getall@boxes{\global\setbox\LWC@box\lastbox \unskip\unkern \unskip\unkern
+   \let\@tempa\relax
+   \ifvoid \LWC@box \advance\@tempcnta\@ne \else \@tempcnta\z@ \fi
+   \ifnum\lastpenalty=\LWC@pen \else \unpenalty\fi
+   \ifnum\lastpenalty=\LWC@pen \else \unpenalty\fi
+   \ifnum\lastpenalty=\LWC@pen \else \ifnum\@tempcnta<5
+     \let\@tempa\LWC@getall@boxes \fi \fi \unpenalty \@tempa}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\LWC@repack}
+% Put contents of |\LWC@box| into hbox |#1|
+%
+%    \begin{macrocode}
+ \def\LWC@repack#1{\global\setbox#1\hbox{\ifhbox\LWC@box
+    \unhbox\LWC@box\unskip\unskip\unpenalty\unskip
+   \else\ifvbox\LWC@box\box\LWC@box\fi\fi}}
+%    \end{macrocode} 
+% \end{macro}
+%
+% The next chunk of code is a revised version of the original \Lpack{turnpageetex} package.
+%    \begin{macrocode}
+% --------------------------------------------------------------------------
+%
+%    \end{macrocode}
+%
+% \begin{macro}{\preflagword}
+% \begin{macro}{\postflagword}
+% \begin{macro}{\flagcont}
+% \begin{macro}{\flagend}
+% \begin{macro}{\flagword}
+% \begin{macro}{\contsep}
+% \begin{macro}{\contdrop}
+% The user's macros
+%
+%    \begin{macrocode}
+
+ \newcommand*{\preflagword}{}
+ \newcommand*{\postflagword}{}
+ \newcommand*{\flagcont}{Continued}
+ \newcommand*{\flagend}{End}
+ \newcommand*{\flagword}{\preflagword\usebox\NextWordBox\postflagword}
+ \newlength{\contsep}\setlength{\contsep}{\marginparsep}
+ \newlength{\contdrop}\setlength{\contdrop}{0.5\footskip}
+%    \end{macrocode}
+% Adjust |\flagcont| when the \Lopt{word} option is used.
+%    \begin{macrocode}
+ \ifcontword
+  \let\flagcont\flagword
+ \fi
+%    \end{macrocode}
+%
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@ntoddpagepos}
+% |\c@ntoddpagepos| calculates the position of the marker on odd pages.
+%    \begin{macrocode}
+ \newcommand{\c@ntoddpagepos}{%
+     \dimen1=1in
+     \advance\dimen1 by \textwidth
+     \advance\dimen1 by \oddsidemargin
+     \dimen3=1in
+     \advance\dimen3 by \topmargin
+     \advance\dimen3 by \headheight
+     \advance\dimen3 by \headsep
+     \advance\dimen3 by \textheight
+     \ifcontmargin
+       \advance\dimen1 by \contsep
+     \else
+       \advance\dimen3 by \contdrop
+     \fi
+ }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@ntevenpagepos}
+% |\c@ntevenpagepos| calculates the position of the marker on even pages.
+%    \begin{macrocode}
+ \newcommand{\c@ntevenpagepos}{%
+     \dimen1=1in
+     \advance\dimen1 by \textwidth
+     \advance\dimen1 by \evensidemargin
+     \dimen3=1in
+     \advance\dimen3 by \topmargin
+     \advance\dimen3 by \headheight
+     \advance\dimen3 by \headsep
+     \advance\dimen3 by \textheight
+     \ifcontmargin
+       \advance\dimen1 by \contsep
+     \else
+       \advance\dimen3 by \contdrop
+     \fi
+ }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\c@outcontpage}
+% Output continued marked page.
+%    \begin{macrocode}
+\newcommand{\c@outcontpage}{%
+  \ifnum\zref@extract{LastPage}{abspage}>\c@abspage
+    \ifcontmargin
+      \put(\dimen1,-\dimen3){{\flagcont}}%
+    \else
+      \put(\dimen1,-\dimen3){\llap{\flagcont}}%
+    \fi
+  \else
+    \ifcontmargin
+      \put(\dimen1,-\dimen3){{\flagend}}%
+    \else
+      \put(\dimen1,-\dimen3){\llap{\flagend}}%
+    \fi
+  \fi
+}% end of \c@outcontpage
+%    \end{macrocode}
+% \end{macro}
+%
+% Output the page and marks.
+%    \begin{macrocode}
+\AtBeginShipout{%
+\AtBeginShipoutUpperLeft{%
+ \ifc@go
+  \ifodd\c@page
+    \c@ntoddpagepos
+    \c@outcontpage
+  \else
+    \ifcontallpages
+      \c@ntevenpagepos
+      \c@outcontpage
+    \fi
+  \fi
+ \fi
+} % end AtBeginShipoutUpperLeft
+} % end AtBeginShipout
+%
+%</usc>
+%    \end{macrocode}
+%
+%
+% \bibliographystyle{alpha}
+% \begin{thebibliography}{GMS94}
+%
+% \bibitem[Ars95]{FWLW}
+% Donald Arseneau.
+% \newblock \emph{fwlw.sty (First Word, Last Word)}.
+% \newblock 1995. (Available from CTAN in \texttt{macros/latex/contrib/fwlw}).
+%
+% \bibitem[GMS94]{GOOSSENS94}
+% Michel Goossens, Frank Mittelbach, and Alexander Samarin.
+% \newblock \emph{The LaTeX Companion}.
+% \newblock Addison-Wesley Publishing Company, 1994.
+%
+% \bibitem[Luc15]{TURNPAGEETEX}
+% Merciadri Luca.
+% \newblock \emph{turnpageetex.sty}.
+% \newblock 2011. (Available from CTAN in \texttt{macros/latex/contrib/turnthepage}).
+%
+% \end{thebibliography}
+%
+% \PrintIndex
+%     
+% \Finale
+%
+% \endinput
+
+
+
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
