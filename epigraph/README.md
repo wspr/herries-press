@@ -1,13 +1,16 @@
-____________________
-The EPIGRAPH package
+# The EPIGRAPH package
 
-    The epigraph package is designed for typesetting epigraphs --- the
+The epigraph package is designed for typesetting epigraphs --- the
 pithy quotations often found at the start (or end) of a chapter. Both
-single epigraphs and lists of epigraphs are catered for. Various aspects 
+single epigraphs and lists of epigraphs are catered for. Various aspects
 are easily configurable.
 
-______________
-Change History
+## Change History
+
+Version 1.5e (2020/01/02)
+- Try to prevent breaks after epigraphs
+- Add \epigraphnoindent to automatically suppress indentation
+  after all \epigraph commands
 
 Version 1.5d (2011/08/07)
 - Load the nextpage package for \cleartoevenpage
@@ -36,34 +39,39 @@ Changes in Version 1.2 (1999/09/12)
 Changes in Version 1.1: (1998/11/29)
 - Added support for epigraphs above chapter titles.
 
------------------------------------------------------------------ 
-  Author: Peter Wilson, Herries Press
-  Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-  Copyright 1998--2004 Peter R. Wilson
- 
-  This work may be distributed and/or modified under the
-  conditions of the LaTeX Project Public License, either
-  version 1.3c of this license or (at your option) any 
-  later version: <http://www.latex-project.org/lppl.txt>
+## Copyright
 
-  This work has the LPPL maintenance status "maintained".
-  The Current Maintainer of this work is Will Robertson.
+    Author: Peter Wilson, Herries Press
+    Maintainer: Will Robertson
+                will dot robertson at latex-project dot org
+    Copyright 1998--2004 Peter R. Wilson
+              2009--2020 Will Robertson
 
-  This work consists of the files:
-README (this file)
-epigraph.dtx
-epigraph.ins
-epigraph.pdf (user manual)
-  and the derived files:
-epigraph.sty
+    This work may be distributed and/or modified under the
+    conditions of the LaTeX Project Public License, either
+    version 1.3c of this license or (at your option) any
+    later version: <http://www.latex-project.org/lppl.txt>
+
+    This work has the LPPL maintenance status "maintained".
+    The Current Maintainer of this work is Will Robertson.
+
+## Manifest
+
+This work consists of the files:
+* README (this file)
+* epigraph.dtx
+* epigraph.ins
+* epigraph.pdf (user manual)
+and the derived files:
+* epigraph.sty
 
 The distribution consists of the files:
-README (this file)
-epigraph.dtx
-epigraph.ins
-epigraph.pdf (user manual)
+* README (this file)
+* epigraph.dtx
+* epigraph.ins
+* epigraph.pdf (user manual)
 
------------------------------------------------------------------ 
+## Installation
 
 To install the package:
 - run: latex epigraph.ins (which will generate epigraph.sty)
@@ -71,12 +79,11 @@ To install the package:
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
   http://www.tug.ac.uk/faq for more information on this.
+- (or `l3build install`)
 
 To process the user manual:
 - run: latex epigraph.dtx
 - run: makeindex -s gind.ist epigraph
 - run: latex epigraph.dtx
-- Print epigraph.dvi for a hardcopy of the package manual 
+- (or `l3build doc`)
 
-2004/04/22
-Peter Wilson
