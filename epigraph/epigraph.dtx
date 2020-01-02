@@ -28,7 +28,7 @@
 %
 % \fi
 %
-% \CheckSum{242}
+% \CheckSum{244}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -82,6 +82,7 @@
 % \changes{v1.5b}{2004/04/22}{Updated license and contact details}
 % \changes{v1.5c}{2009/09/02}{New maintainer (Will Robertson)}
 % \changes{v1.5d}{2011/08/07}{Load package `nextpage' for \cs{cleartoevenpage}}
+% \changes{v1.5e}{2020/01/02}{Prevent breaks after epigraphs, and add \cs{epigraphnoindent}}
 %
 % \def\dtxfile{epigraph.dtx}
 % \def\fileversion{v1.5}  \def\filedate{2000/02/20}
@@ -89,6 +90,7 @@
 % \def\fileversion{v1.5b} \def\filedate{2004/04/22}
 % \def\fileversion{v1.5c} \def\filedate{2009/09/02}
 % \def\fileversion{v1.5d} \def\filedate{2011/08/07}
+% \def\fileversion{v1.5e} \def\filedate{2020/01/02}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -197,16 +199,24 @@
 %      {\textit{Letters on a Regicide Peace}\\ \textsc{Edmund Burke}}
 %
 %   The commands described in this section apply to both the |\epigraph|
-% command and the |epigraphs| environment. But first of all, note that an
-% epigraph immediately after a heading will cause the first paragraph
-% of the following text to be indented. If you want the initial paragraph
-% to have no indentation, then start it with the |\noindent| command.
+% command and the |epigraphs| environment.
+%
+% An epigraph immediately after a heading will cause the first paragraph
+% of the following text to be indented. 
+% If you want the initial paragraph
+% to have no indentation, then start it with the |\noindent| command, or
+% \DescribeMacro{\epigraphnoindent}
+% add |\epigraphnoindent| to your document preamble.
+% (|\epigraphnoindentfalse| will reverse the setting.)
+% This command only affects the |\epigraph| command; for the |epigraphs| environment
+% the |\noindent| approach must still be used.
 %
 % \DescribeMacro{\epigraphwidth}
-% \DescribeMacro{\textflush}
 %  The epigraphs are typeset in a minipage of width |\epigraphwidth|. The default
 % value for this can be changed using the |\setlength| command. Typically,
 % epigraphs are typeset in a measure much less than the width of the textblock.
+%
+% \DescribeMacro{\textflush}
 % In order to avoid bad line breaks, the \meta{text} is normally typeset 
 % ragged right. 
 % The |\textflush| command controls the \meta{text} typesetting style,
@@ -488,7 +498,7 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{epigraph}[2009/09/02 v1.5c typesetting epigraphs]
+\ProvidesPackage{epigraph}[2020/01/02 v1.5e typesetting epigraphs]
 \RequirePackage{nextpage}
 %    \end{macrocode}
 %
@@ -518,6 +528,16 @@
 %    \begin{macrocode}
 \newcommand{\epigraphsize}{\small}
 %    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\epigraphnoindent}
+% \begin{macro}{\ifepigraphnoindent}
+%    Whether to add \cs{noindent} (false by default for backwards compatibility).
+%    \begin{macrocode}
+\newif\ifepigraphnoindent
+\newcommand\epigraphnoindent{\epigraphnoindenttrue}
+%    \end{macrocode}
+% \end{macro}
 % \end{macro}
 %
 % \begin{macro}{\epigraphflush}
@@ -601,11 +621,21 @@
 % for a single epigraph. This is set in a minipage to prevent breaking
 % across a page. Position it according to |\epigraphflush|.
 %    \begin{macrocode}
-\newcommand{\epigraph}[2]{\vspace{\beforeepigraphskip}
-  {\epigraphsize\begin{\epigraphflush}\begin{minipage}{\epigraphwidth}
-    \@epitext{#1}\\ \@episource{#2}
-    \end{minipage}\end{\epigraphflush}
-    \vspace{\afterepigraphskip}}}
+\newcommand{\epigraph}[2]{%
+  \vspace{\beforeepigraphskip}
+  \vbox{%
+    \epigraphsize
+    \begin{\epigraphflush}
+    \begin{minipage}{\epigraphwidth}
+      \@epitext{#1}\\
+      \@episource{#2}%
+    \end{minipage}%
+    \end{\epigraphflush}%
+  }%
+  \nointerlineskip
+  \vspace*{\afterepigraphskip}%
+  \ifepigraphnoindent\@afterheading\fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -648,7 +678,8 @@
      \leftmargin\z@ \rightmargin\z@
      \let\makelabel\qitemlabel}}%
   {\endlist\end{minipage}\end{\epigraphflush}
-   \vspace{\afterepigraphskip}}
+   \vspace{\afterepigraphskip}%
+}
 %    \end{macrocode}
 % \end{environment}
 %
