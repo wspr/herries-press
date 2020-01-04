@@ -1,13 +1,13 @@
-% \iffalse meta-comment
-% epigraph.dtx
-% Author: Peter Wilson, Herries Press
+% \iffalse
+%
+%     Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
-% Copyright 1998--2004 Peter R. Wilson
-% Copyright 2011 Will Robertson
+%  Copyright: 1998--2004 Peter R. Wilson
+%             2009--2020 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
-% version 1.3c of this license or (at your option) any 
+% version 1.3c of this license or (at your option) any
 % later version: <http://www.latex-project.org/lppl.txt>
 %
 % This work has the LPPL maintenance status "maintained".
@@ -15,7 +15,7 @@
 %
 % This work consists of the files listed in the README file.
 %
-% 
+%
 %<*driver>
 \documentclass{ltxdoc}
 \EnableCrossrefs
@@ -126,7 +126,7 @@
 %
 % \StopEventually{}
 %
-% 
+%
 %
 % \section{Introduction}
 %
@@ -136,7 +136,7 @@
 %
 % Some authors like to add an interesting quotation at either the start
 % or end of a section. The \Lpack{epigraph} package provides commands
-% to assist in the typesetting of a single epigraph. Other authors like to 
+% to assist in the typesetting of a single epigraph. Other authors like to
 % add many such quotations and the package provides environments to
 % cater for these as well.
 %
@@ -154,7 +154,7 @@
 %
 %    The \Lpack{epigraph} package provides commands for typesetting
 % a single epigraph and environments for typesetting a list of epigraphs.
-% Epigraphs can be typeset at either the left, the center or the right of 
+% Epigraphs can be typeset at either the left, the center or the right of
 % the typeblock. A few example epigraphs are exhibited here, and
 % others can be found in an article by
 % Christina Thiele~\cite{TTC199}.
@@ -168,11 +168,11 @@
 %
 %
 % \DescribeMacro{\epigraph}
-%  The command |\epigraph{|\meta{text}|}{|\meta{source}|}| 
+%  The command |\epigraph{|\meta{text}|}{|\meta{source}|}|
 % typesets
 % an epigraph using \meta{text} as the main text of the epigraph and
 % \meta{source} being the original author (or book, article, etc.)
-% of the quoted text. By default the epigraph is placed at the right hand 
+% of the quoted text. By default the epigraph is placed at the right hand
 % side of the textblock, and the \meta{source} is typeset at the bottom
 % right of the \meta{text}.
 %
@@ -184,13 +184,13 @@
 % places them at the right hand side of the textblock.
 %
 % \DescribeMacro{\qitem}
-%  Each epigraph in the list is specified by a 
+%  Each epigraph in the list is specified by a
 % |\qitem{|\meta{text}|}{|\meta{source}|}| command (analogous to the |\item|
 % command in ordinary list environments).
 % By default, the \meta{source} is typeset at the bottom right of the
-% \meta{text}. 
+% \meta{text}.
 %
-% 
+%
 %
 % \subsection{General}
 %
@@ -201,7 +201,7 @@
 % command and the |epigraphs| environment.
 %
 % An epigraph immediately after a heading will cause the first paragraph
-% of the following text to be indented. 
+% of the following text to be indented.
 % If you want the initial paragraph
 % to have no indentation, then start it with the |\noindent| command, or
 % \DescribeMacro{\epigraphnoindent}
@@ -216,8 +216,8 @@
 % epigraphs are typeset in a measure much less than the width of the textblock.
 %
 % \DescribeMacro{\textflush}
-% In order to avoid bad line breaks, the \meta{text} is normally typeset 
-% ragged right. 
+% In order to avoid bad line breaks, the \meta{text} is normally typeset
+% ragged right.
 % The |\textflush| command controls the \meta{text} typesetting style,
 % and it can be redefined from its default value of
 % \texttt{flushleft} (which produces ragged right). The sensible values
@@ -233,7 +233,7 @@
 % a new environment like:\\
 % |\newenvironment{myparastyle}{\setlength{\parindent}{1em}}{}| \\
 % and use it as: \\
-% |\renewcommand{\textflush}{myparastyle}|. 
+% |\renewcommand{\textflush}{myparastyle}|.
 %
 % \DescribeMacro{\epigraphflush}
 %  As noted, the default position of epigraphs is at the right hand side
@@ -261,7 +261,7 @@
 % If you don't like the default value, change it by redefining the command,
 % for example: \\
 % |    \renewcommand{\epigraphsize}{\footnotesize}|
-%		
+%
 % \DescribeMacro{\epigraphrule}
 % By default, a rule is drawn between the \meta{text} and \meta{source},
 % with the rule thickness being given by the value of |\epigraphrule|.
@@ -273,7 +273,7 @@
 % \DescribeMacro{\afterepigraphskip}
 % The two |...skip| commands specify the amount of vertical space inserted
 % before and after typeset epigraphs. Again, these can be changed by
-% |\setlength|. It is desirable that the sum of their values should be an 
+% |\setlength|. It is desirable that the sum of their values should be an
 % integer multiple of the |\baselineskip|.
 %
 % Note that you can use normal \LaTeX{} commands in the \meta{text} and
@@ -294,14 +294,14 @@
 % first thing that a |\chapter| command does is to start off a new page,
 % so another mechanism is provided for placing an epigraph just before
 % a chapter heading.
-%    
+%
 % \DescribeMacro{\epigraphhead}
-%  The |\epigraphhead[|\meta{distance}|]{|\meta{text}|}| stores \meta{text} 
+%  The |\epigraphhead[|\meta{distance}|]{|\meta{text}|}| stores \meta{text}
 % for printing at \meta{distance} below the header on a page.
 % \meta{text} can be ordinary text or, more likely, can be either an
-% |\epigraph| command or an |epigraphs| environment. By default, the 
+% |\epigraph| command or an |epigraphs| environment. By default, the
 % epigraph will be typeset at the right-hand margin.
-% If the command is immediately preceded by a |\chapter| or |\chapter*| 
+% If the command is immediately preceded by a |\chapter| or |\chapter*|
 % command, the epigraph is typeset on the chapter title page.
 %
 %    The default value for the optional \meta{distance} argument is set so
@@ -311,7 +311,7 @@
 % have to experiment with the \meta{distance} value. The value for
 % \meta{distance} can be either a integer or a real number. The units
 % are in terms of the current value for |\unitlength|. A typical value
-% for \meta{distance} for a single line quotation and source for 
+% for \meta{distance} for a single line quotation and source for
 % a |\chapter*| might be about 70 (points). A positive value
 % of \meta{distance} places the epigraph below the page heading and a negative
 % value will raise it above the page heading.
@@ -341,7 +341,7 @@
 % \DescribeMacro{\undodrop}
 % If a long epigraph is placed before a chapter title it is possible that the
 % bottom of the epigraph may interfere with the chapter title. The command
-% |\dropchapter{|\meta{length}|}| will lower any subsequent chapter titles by 
+% |\dropchapter{|\meta{length}|}| will lower any subsequent chapter titles by
 % \meta{length}; a negative \meta{length} will raise the titles.
 % The command |\undodrop| restores subsequent chapter titles to their default
 % positions. For example:
@@ -356,10 +356,10 @@
 % \DescribeMacro{\cleartoevenpage}
 % On occasions it may be desirable to put something (e.g., an epigraph, a map,
 % a picture) on the page facing the start
-% of a chapter, where the something belongs to the chapter that is about to 
-% start rather than the chapter that has just ended. In order to do this 
+% of a chapter, where the something belongs to the chapter that is about to
+% start rather than the chapter that has just ended. In order to do this
 % in a document that is going to be printed
-% double-sided, the chapter must start on an odd numbered page and the 
+% double-sided, the chapter must start on an odd numbered page and the
 % pre-chapter material put on the immediately preceding even numbered page.
 % The |\cleartoevenpage| command is like the |\cleardoublepage| except
 % that the page following the command will be an even numbered page, and the
@@ -379,7 +379,7 @@
 % If the style is such that chapter headings are put at the top of the pages,
 % then it would be advisable to include |\thispagestyle{empty}| (or |plain|)
 % immediately after |\cleartoevenpage| to avoid a heading related to the
-% previous chapter from appearing on the page. 
+% previous chapter from appearing on the page.
 %
 % If the something is like a figure with a numbered caption and the numbering
 % depends on the chapter numbering, then the numbers have to be hand set (unless
@@ -399,12 +399,12 @@
 % \chapter{Next chapter}     % increments chapter number, initialises figure number
 % \addtocounter{figure}{1}   % to account for pre-chapter figure
 % \end{verbatim}
-% 
+%
 %
 % \subsection{Epigraphs on Part pages}
 %
 %     The \Lpack{epigraph} package as it stands cannot put an epigraph on the
-% same page as a |\part| or |\part*| title page in 
+% same page as a |\part| or |\part*| title page in
 % a \Lpack{book} or \Lpack{report} class. This is because the |\part| command
 % internally does some page flipping before and after the title page.
 % However, it is easy enough to put epigraphs on part pages.
@@ -425,7 +425,7 @@
 % \usepackage{epipart}
 % \end{verbatim}
 %
-% \item Immediately \emph{before} each |\part| command put an 
+% \item Immediately \emph{before} each |\part| command put an
 % |\epigraphhead| command. For example:
 % \begin{verbatim}
 % \epigraphhead[300]{Epigraph text}
@@ -438,7 +438,7 @@
 %
 % \end{itemize}
 %
-%     A similar scheme may be used for epigraphs on other kinds of pages. 
+%     A similar scheme may be used for epigraphs on other kinds of pages.
 % The essential
 % trick is to make sure that the \pstyle{epigraph} pagestyle is used for
 % the page.
@@ -449,7 +449,7 @@
 % One author asked how to associate an epigraph with his bibliography. The
 % following is one way to do it (the example is based on the book class).
 % \begin{enumerate}
-% \item Copy the definition of the |thebibliography| environment from 
+% \item Copy the definition of the |thebibliography| environment from
 % \file{book.cls} to your own file called, say \file{epibib.sty}.
 %
 % \item Edit \file{epibib.sty} to include the definition of a vacuous
@@ -606,7 +606,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@episource}
-%    The internal command for typesetting the \meta{source}, which is put 
+%    The internal command for typesetting the \meta{source}, which is put
 % into a minipage and typeset according to |\sourceflush|.
 %    \begin{macrocode}
 \newcommand{\@episource}[1]{%
@@ -641,14 +641,14 @@
 %
 % \begin{macro}{\qitem}
 % \begin{macro}{\qitemlabel}
-%    |\qitem| is the epigraph list version of |\item|. 
+%    |\qitem| is the epigraph list version of |\item|.
 % Set everything inside a minipage.
 %    \begin{macrocode}
 \newcommand{\qitem}[2]{{\raggedright\item \begin{minipage}{\epigraphwidth}
   \@epitext{#1}\\ \@episource{#2}
   \end{minipage}}}
 %    \end{macrocode}
-%  |\qitemlabel| is needed for a list as well. It is not going to 
+%  |\qitemlabel| is needed for a list as well. It is not going to
 % typeset anything.
 %    \begin{macrocode}
 \newcommand{\qitemlabel}[1]{\hfill}
@@ -659,11 +659,11 @@
 %
 % \begin{environment}{epigraphs}
 %  Now for the epigraph list. This is defined in terms of a |list|
-% environment. 
+% environment.
 %    \begin{macrocode}
 \newenvironment{epigraphs}{%
 %    \end{macrocode}
-% Do the vertical space, set the font size, position according to 
+% Do the vertical space, set the font size, position according to
 % |\epigraphflush|, and put everyting into a minipage.
 %    \begin{macrocode}
   \vspace{\beforeepigraphskip}\begin{\epigraphflush}
@@ -702,7 +702,7 @@
 %
 % Placing an epigraph before a chapter title uses the scheme outlined
 % by Piet van Oostrum~\cite{OOSTRUM96}. This is to put a zero sized
-% picture into the page header. 
+% picture into the page header.
 %
 % \begin{macro}{\if@epirhs}
 % \begin{macro}{\if@epicenter}
@@ -718,7 +718,7 @@
 % \begin{macro}{\@epipos}
 %    This routine sets the |\if@epi...| booleans according to the value of
 % |\epigraphflush|. If |\epigraphflush| is neither |center| nor |flushleft|
-% then it defaults to |flushright|. We have to use this to be upward 
+% then it defaults to |flushright|. We have to use this to be upward
 % compatible with |\epigraphflush| being set by the user with |\renewcommand|.
 %    \begin{macrocode}
 \newcommand{\@epipos}{
@@ -739,7 +739,7 @@
 %
 % \begin{macro}{\epigraphhead}
 % |\epigraphhead[|\meta{distance}|]{|\meta{text}|}| puts \meta{text} at
-% \meta{distance} (a number, not a length) below the header at the 
+% \meta{distance} (a number, not a length) below the header at the
 % page position specified by |\epigraphflush|.
 %    \begin{macrocode}
 \newcommand{\epigraphhead}[2][95]{%

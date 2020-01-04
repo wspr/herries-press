@@ -77,8 +77,8 @@ To install the package:
 - run: latex epigraph.ins (which will generate epigraph.sty)
 - Move epigraph.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/***) and refresh the
-  file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  file database if necessary. See the FAQ at https://texfaq.org/
+  for more information on this.
 - (or `l3build install`)
 
 To process the user manual:
