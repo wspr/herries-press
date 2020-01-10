@@ -16,7 +16,7 @@
 %
 % This work consists of the files listed in the README file.
 %
-% 
+%
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hypdoc}
@@ -137,18 +137,18 @@
 % \date{\filedate}
 % \maketitle
 % \begin{abstract}
-%    The \Lpack{tocloft} package provides means of controlling the 
+%    The \Lpack{tocloft} package provides means of controlling the
 % typographic design of the Table of Contents, List of Figures and List of
 % Tables. New kinds of `List of \ldots' can be defined.
 %
-% The package has been tested with the 
-% \Lpack{tocbibind}, 
-% \Lpack{minitoc}, 
+% The package has been tested with the
+% \Lpack{tocbibind},
+% \Lpack{minitoc},
 % \Lpack{ccaption},
-% \Lpack{subfigure}, 
+% \Lpack{subfigure},
 % \Lpack{float},
 % \Lpack{fncychap}, and
-% \Lpack{hyperref} 
+% \Lpack{hyperref}
 % packages.
 % \end{abstract}
 % \tableofcontents
@@ -157,7 +157,7 @@
 % \listoftables
 % \StopEventually{}
 %
-% 
+%
 %
 % \section{Introduction}
 %
@@ -166,7 +166,7 @@
 % more precisely, it is buried within the class definitions.
 % The \Lpack{tocloft} package provides handles for an author to
 % change the design to meet the needs of the particular document.
-% 
+%
 % Elements of the package were developed as part of a class
 % and package bundle for typesetting ISO standards~\cite{PRW96i}.
 % This manual is typeset according to the conventions of the
@@ -176,17 +176,17 @@
 %    Section~\ref{sec:usc} describes the usage of the package.
 % Commented source code for the package is in Section~\ref{sec:code}.
 %
-% The package has been tested in combination with at least 
-% the \Lpack{tocbibind} package~\cite{TOCBIBIND}, 
-% the \Lpack{minitoc} package~\cite{MINITOC}, 
+% The package has been tested in combination with at least
+% the \Lpack{tocbibind} package~\cite{TOCBIBIND},
+% the \Lpack{minitoc} package~\cite{MINITOC},
 % the \Lpack{ccaption} package~\cite{CCAPTION},
 % the \Lpack{subfigure} package~\cite{SUBFIGURE} (versions 2.0 and 2.1),
 % the \Lpack{algorithm} package~\cite{ALGORITHM} (which, in turn, calls the
 % \Lpack{float} package~\cite{FLOAT}) and the \Lpack{fncychap} package~\cite{FNCYCHAP}.
 % It also works with the \Lpack{hyperref} package.
 % Please send me any comments as to how you think
-% that the package can be improved, or of any interesting examples of 
-% how you have used 
+% that the package can be improved, or of any interesting examples of
+% how you have used
 % it.\footnote{Thanks to Rowland (\texttt{rebecca@astrid.u-net.com}),
 %   John Foster (\texttt{john@isjf.demon.co.uk}),
 %   Kasper (\texttt{kbg@dkik.dk}),
@@ -203,7 +203,7 @@
 %
 % \DescribeMacro{\addcontentsline}
 %    \LaTeX{} generates a \file{.toc} file if the document contains a
-% |\tableofcontents| command. The sectioning 
+% |\tableofcontents| command. The sectioning
 % commands\footnote{For figures and tables it is the \texttt{\bs caption} command
 % that populates the \file{.lof} and \file{.lot} files.}
 % put entries into the \file{.toc} file by calling the \LaTeX{}
@@ -214,19 +214,19 @@
 % there is a number, the \meta{title} argument is given in the
 % form |{\numberline{number} title-text}|.
 %
-% NOTE: The \Lpack{hyperref} package dislikes authors using 
+% NOTE: The \Lpack{hyperref} package dislikes authors using
 % |\addcontentsline|. To get it to work properly with \Lpack{hyperref}
 % you normally have to put |\phantomsection| (a macro defined within
-% the \Lpack{hyperref} package) immediately 
+% the \Lpack{hyperref} package) immediately
 % before |\addcontentsline|.
 %
 % \DescribeMacro{\contentsline}
 %     The |\addcontentsline| command writes an entry to the given file
 % in the form |\contentsline{|\meta{kind}|}{|\meta{title}|}{|\meta{page}|}|
 % where \meta{page} is the page number.
-%     For each \meta{kind}, \LaTeX{} provides a command 
+%     For each \meta{kind}, \LaTeX{} provides a command
 % |\l@kind{|\meta{title}|}{|\meta{page}|}| which performs the actual
-% typesetting of the |\contentsline| entry. 
+% typesetting of the |\contentsline| entry.
 %
 % \newcommand{\maxx}{120}       ^^A picture width
 % \newcommand{\maxxm}{118}      ^^A \maxx - 2\
@@ -249,7 +249,7 @@
 % \newcommand{\fyvp}{42}        ^^A \fyv + 2
 % \newcommand{\flin}{4}         ^^A length of leader lines
 % \newcommand{\frmargm}{89}     ^^A \frmarg (90) - a little bit
-% 
+%
 % \providecommand{\bs}{\textbackslash}
 % \begin{figure}
 % \centering
@@ -292,13 +292,13 @@
 %   \put(\frmarg,\fyi){\vector(-1,0){\flin}}
 %   \put(\frmarg,\fyi){\vector(1,0){0}}
 %   \put(\frmarg,\fyim){\makebox(0,0)[tr]{\texttt{\bs @dotsep}}}
-% 
+%
 % \end{picture}
 % \setlength{\unitlength}{1pt}
 % \caption{Layout of a ToC (LoF, LoT) entry} \label{fig:ltoc}
 % \end{figure}
-% 
-% 
+%
+%
 % \DescribeMacro{\@pnumwidth}
 % \DescribeMacro{\@tocrmarg}
 % \DescribeMacro{\@dotsep}
@@ -319,7 +319,7 @@
 %    The standard values for these internal commands are:
 % \begin{itemize}
 % \item |\@pnumwidth| = 1.55em
-% \item |\@tocrmarg| = 2.55em 
+% \item |\@tocrmarg| = 2.55em
 % \item |\@dotsep| = 4.5
 % \end{itemize}
 % The values can be changed by using |\renewcommand|, in spite of the
@@ -329,15 +329,15 @@
 % (nor for Section entries in the \Lpack{article} class and its derivatives).
 %
 % \DescribeMacro{\numberline}
-%    Each |\l@kind| macro is responsible for setting the general 
+%    Each |\l@kind| macro is responsible for setting the general
 % \textit{indent} from the lefthand margin, and the \textit{numwidth}.
 % The |\numberline{|\meta{number}|}| macro is responsible for typesetting
-% the number flushleft in a box of width 
+% the number flushleft in a box of width
 % \textit{numwidth}. If the number is too long for the box then it will
 % protrude into the title text. The title text is indented by
 % (\textit{indent + numwidth}) from the lefthand margin. That is, the title
 % text is typeset in a block of width \\
-% (|\linewidth| - \textit{indent} - \textit{numwidth} - |\@tocrmarg|). 
+% (|\linewidth| - \textit{indent} - \textit{numwidth} - |\@tocrmarg|).
 %
 % \begin{table}
 % \centering
@@ -376,7 +376,7 @@
 % having to know the \LaTeX{} internals).
 %
 %    You can use the |\addcontentsline| command to add |\contentsline|
-% commands to a file. 
+% commands to a file.
 %
 % \DescribeMacro{\addtocontents}
 %    \LaTeX{} also provides the |\addtocontents{|\meta{file}|}{|\meta{text}|}|
@@ -388,7 +388,7 @@
 %
 % As |\addcontentsline| and |\addtocontents| write their arguments to a
 % file, any fragile commands used in their arguments must be |\protect|ed.
-% 
+%
 %    You can make certain adjustments to the ToC etc., layout without
 % using any package. Some examples are:
 % \begin{itemize}
@@ -425,7 +425,7 @@
 % the LoF with respect to that for the ToC. As you can see, it is much
 % better that all dot leaders have the same spacing.
 %
-% \item To add a horizontal line across the whole width of the ToC below 
+% \item To add a horizontal line across the whole width of the ToC below
 % an entry for a Part:
 % \begin{verbatim}
 % \part{Part title}
@@ -434,7 +434,7 @@
 % Note that as both |\addtocontents| and |\addcontentsline| write their
 % arguments to a file, it means that any \emph{fragile} commands in
 % their arguments must be protected
-% by preceding each fragile command with |\protect|. 
+% by preceding each fragile command with |\protect|.
 % The result of the example above
 % would be the following two lines in the \file{.toc} file (assuming that it
 % is the second Part and is on page 34):
@@ -449,14 +449,14 @@
 % \end{verbatim}
 % \end{small}
 %
-% \item You may get undesired page breaks in the ToC. For example you 
+% \item You may get undesired page breaks in the ToC. For example you
 % may have a long multiline section title and in the ToC there is a page
 % break between the lines. After your document is stable you can use
 % |\addtocontents| at appropriate places in the body of the document
 % to adjust the page breaking in the ToC. As examples:
 %  \begin{itemize}
 %  \item |\addtocontents{toc}{\protect\newpage}| to force a page break.
-%  \item |\addtocontents{toc}{\protect\enlargethispage{2\baselineskip}}| to 
+%  \item |\addtocontents{toc}{\protect\enlargethispage{2\baselineskip}}| to
 %        make the page longer.
 %  \item |\addtocontents{toc}{\protect\needspace{2\baselineskip}}| to specify
 %        that if there is not a vertical space of two baselines left on
@@ -467,7 +467,7 @@
 % \end{itemize}
 % Remember, if you are modifying any command that includes an |@| sign then this
 % must be done in either a \file{.sty} file or if in the document itself
-% it must be 
+% it must be
 % surrounded by |\makeatletter| and |\makeatother|. For example, if you
 % want to modify |\@dotsep| in the preamble to your document you have
 % to do it like this:
@@ -476,7 +476,7 @@
 % \renewcommand{\@dotsep}{9.0}
 % \makeatother
 % \end{verbatim}
-% 
+%
 %
 % \section{The \Lpack{tocloft} package} \label{sec:usc}
 %
@@ -505,7 +505,7 @@
 % \end{verbatim}
 %
 % \DescribeMacro{\tocloftpagestyle}
-% The |\thispagestyle| page style of the ToC, LoF and/or LoT is set 
+% The |\thispagestyle| page style of the ToC, LoF and/or LoT is set
 % by the command
 % |\tocloftpagestyle{|\meta{style}|}|, where \meta{style} is one of
 % the available page styles. The package initially
@@ -517,7 +517,7 @@
 % \begin{itemize}
 % \item[\Lopt{subfigure}] This option is required if, and only if,
 % the \Lpack{tocloft} and
-% \Lpack{subfigure} packages are being used together. The two packages 
+% \Lpack{subfigure} packages are being used together. The two packages
 % can be specified in any order.
 %
 % \item[\Lopt{titles}]
@@ -529,7 +529,7 @@
 %
 % \end{itemize}
 %
-% If you use the \Lopt{titles} option you can ignore the next 
+% If you use the \Lopt{titles} option you can ignore the next
 % section and continue reading at section~\ref{sec:entries}.
 %
 % \subsection{Changing the titles} \label{sec:titles}
@@ -544,6 +544,17 @@
 % descriptions I will use |Z| to stand for `toc' or `lof' or `lot'. For
 % example, |\cftmarkZ| stands for |\cftmarktoc| or |\cftmarklof| or
 % |\cftmarklot|.
+%
+% \DescribeMacro{\Zdepth}
+% The command |\Zdepth{|\meta{number}|}| is analogous to the standard
+% |\tocdepth{|\meta{number}|}| command, in that it specifies that entries
+% in the new listing should not be typeset if their numbering level
+% is greater
+% than \meta{number}. The default definition is
+% |\setcounter{Zdepth}{1}|.
+% These commands are needed, for instance by users of packages such as |subcaption|,
+% which will generate subfigure and subtable captions corresponding to a |lofdepth| and
+% |lotdepth| of |2|.
 %
 % \DescribeMacro{\cftmarkZ}
 % These macros set the appearance of the running heads on the ToC, LoF, and
@@ -576,7 +587,7 @@
 %   \\[\baselineskip]\mbox{}\hfill{\normalfont Page}}
 % \end{verbatim}
 %       will put the word `Page' flushright on the line following the title.
-%       (If you do this, then you may need to decrease 
+%       (If you do this, then you may need to decrease
 %        |\cftafterZtitleskip|).
 % \item |\renewcommand{\cftafterZtitle}{\thispagestyle{empty}}| will
 %       make the page with the title empty (i.e., the page
@@ -599,7 +610,7 @@
 % The `dot' in a leader is given by the value of |\cftdot|. Its default
 % definition is |\newcommand{\cftdot}{.}| which gives the default
 % dotted leader. By changing |\cftdot| you can use symbols other than
-% a period in the leader. For example 
+% a period in the leader. For example
 % \begin{verbatim}
 % \renewcommand{\cftdot}{\ensuremath{\ast}}
 % \end{verbatim}
@@ -610,7 +621,7 @@
 %    Each kind of entry can control the separation between the dots
 % in its leader (see below). For consistency though, all dotted leaders
 % should use the same spacing. The macro |\cftdotsep| specifies the
-% default spacing. Its value is a number. 
+% default spacing. Its value is a number.
 % However, if the separation is too large
 % then no dots will be actually typeset. The macro |\cftnodots| is
 % a separation value that is `too large'.
@@ -621,7 +632,7 @@
 % |\cftsetpnumwidth{|\meta{length}|}| can be used to change the width
 % of the box (\LaTeX 's internal |\@pnumwidth|).
 % The title texts will end before reaching the righthand margin.
-% |\cftsetrmarg{|\meta{length}|}| can be used to set this distance 
+% |\cftsetrmarg{|\meta{length}|}| can be used to set this distance
 % (\LaTeX 's internal |\@tocrmarg|).
 % Note that the length used in |\cftsetrmarg| should be greater
 % than the length set in |\cftsetpnumwidth|. These values should remain
@@ -662,22 +673,22 @@
 %
 % \DescribeMacro{\cftbeforeXskip}
 % This controls the vertical space before an entry. It can be changed
-% by using |\setlength|. 
+% by using |\setlength|.
 %
 % \DescribeMacro{\cftXindent}
-% This controls the indentation of an entry from the left margin 
+% This controls the indentation of an entry from the left margin
 % (\textit{indent} in Figure~\ref{fig:ltoc}). It
-% can be changed using |\setlength|. 
+% can be changed using |\setlength|.
 %
 % \DescribeMacro{\cftXnumwidth}
-% This controls the space allowed for typesetting title numbers 
+% This controls the space allowed for typesetting title numbers
 % (\textit{numwidth} in Figure~\ref{fig:ltoc}). It can
 % be changed using |\setlength|. Second and subsequent lines of a multiline
 % title will be indented by this amount.
 %
 % The remaining commands are related to the specifics of typesetting
 % an entry.
-% This is a simplified pseudo-code version for the typesetting of numbered 
+% This is a simplified pseudo-code version for the typesetting of numbered
 % and unnumbered entries.
 % \begin{verbatim}
 % {\cftXfont {\cftXpresnum SNUM\cftXaftersnum\hfil} \cftXaftersnumb TITLE}%
@@ -685,13 +696,13 @@
 %
 % {\cftXfont TITLE}{\cftXleader}{\cftXpagefont PAGE}\cftXafterpnum\par
 % \end{verbatim}
-% where |SNUM| is the section number, |TITLE| is the title text and |PAGE| 
+% where |SNUM| is the section number, |TITLE| is the title text and |PAGE|
 % is the page number. In the numbered entry the pseudo-code \\
 % |{\cftXpresnum SNUM\cftaftersnum\hfil}| \\
 % is typeset within a box of width |\cftXnumwidth|.
 %
 % \DescribeMacro{\cftXfont}
-% This controls the appearance of the title (and its preceding number, 
+% This controls the appearance of the title (and its preceding number,
 % if any). It may be changed using |\renewcommand|.
 %
 % \DescribeMacro{\cftXpresnum}
@@ -709,7 +720,7 @@
 % By default they are defined to do nothing.
 %
 % In the standard classes the ToC entry for a |\part| is just typeset as
-% the number and title, followed by the page number, with the 
+% the number and title, followed by the page number, with the
 % |\cftpartpresnum|
 % macro being called before typesetting the number and title.
 % Due to \LaTeX\ ideosyncracies, |\cftpartpresnum| may become doubled in the output
@@ -727,7 +738,7 @@
 % \DescribeMacro{\cftXdotsep}
 % |\cftXleader| defines the leader between the title and the page number;
 % it can be changed by |\renewcommand|.
-% The spacing between any dots in the leader is controlled by |\cftXdotsep| 
+% The spacing between any dots in the leader is controlled by |\cftXdotsep|
 % (|\@dotsep| in Figure~\ref{fig:ltoc}).
 % It can be changed by |\renewcommand| and its value must be either a
 % number (e.g., 6.6 or |\cftdotsep|) or |\cftnodots| (to disable the dots).
@@ -743,19 +754,19 @@
 % is to do nothing. It can be changed by |\renewcommand|.
 %
 % \DescribeMacro{\cftsetindents}
-% The command 
+% The command
 % |\cftsetindents{|\meta{entry}|}{|\meta{indent}|}{|\meta{numwidth}|}|
 % sets the \meta{entry}'s \textit{indent} to the length \meta{indent} and its
 % \textit{numwidth} to the length \meta{numwidth}. The \meta{entry} argument
-% is the name of one of the standard entries (e.g., |subsection|) or the name of 
-% entry that has been defined with the \Lpack{tocloft} package. 
+% is the name of one of the standard entries (e.g., |subsection|) or the name of
+% entry that has been defined with the \Lpack{tocloft} package.
 % For example \\
 % |\cftsetindents{figure}{0em}{1.5em}| \\
 % will make figure entries left justified.
 %
 %
 % Various effects can be achieved by changing the definitions of |\cftXfont|,
-% |\cftXaftersnum|, |\cftXaftersnumb|, |\cftXleader| and |\cftXafterpnum|, 
+% |\cftXaftersnum|, |\cftXaftersnumb|, |\cftXleader| and |\cftXafterpnum|,
 % either singly or in combination.
 % For the sake of some examples, assume that we have the following initial
 % definitions
@@ -768,7 +779,7 @@
 % \newcommand{\cftXpagefont}{}
 % \newcommand{\cftXafterpnum}{}
 % \end{verbatim}
-% (Note that the same font should be used for the title, leader and page 
+% (Note that the same font should be used for the title, leader and page
 % number to provide a coherent appearance).
 %
 % \begin{itemize}
@@ -802,7 +813,7 @@
 %    If you are adding text in the number box in addition to the number,
 % then you will probably have to increase the width of the box so that
 % multiline titles have a neat vertical alignment; changing box widths
-% usually implies that the indents will require modification as 
+% usually implies that the indents will require modification as
 % well.\footnote{Lyndon Dudding (\texttt{lyndon.dudding@totalise.co.uk})
 % discovered this.}
 % One possible method of adjusting the box width for the above example
@@ -811,7 +822,7 @@
 % \newlength{\mylen}   % a "scratch" length
 % \settowidth{\mylen}{\bfseries\cftXpresnum\cftXaftersnum} % extra space
 % \addtolength{\cftXnumwidth}{\mylen} % add the extra space
-% \end{verbatim} 
+% \end{verbatim}
 %
 % \item To set the section numbers flushright:\footnote{With thanks to
 % David Holz (\texttt{lbda@earthlink.net}) for requesting this.}
@@ -842,7 +853,7 @@
 % \end{verbatim}
 % By default the |\parfillskip| value is locally set to fill up the last
 % line of a paragraph. Just changing |\cftXleader| puts horrible interword
-% spaces into the last line of the title. The |\cftparfillskip| 
+% spaces into the last line of the title. The |\cftparfillskip|
 % command
 % is part of the \Lpack{tocloft} package and is provided just so that
 % the above effect can be achieved.
@@ -865,13 +876,13 @@
 % \meta{entry} is the name of one of the standard
 % kinds of entries (e.g., |subsection|, or |figure| --- including |subfigure|
 % if the \Lpack{subfigure} package is used --- etc.), or the name of a
-% new entry defined with the \Lpack{tocloft} package. 
+% new entry defined with the \Lpack{tocloft} package.
 %
 %    The command |\cftpagenumberson{|\meta{entry}|}| reverses
 % the effect of a corresponding |\cftpagenumbersoff|.
-% 
+%
 % One question that appeared on the \file{comp.text.tex} newsgroup asked
-% how to get the titles of Appendices list in the ToC \emph{without} 
+% how to get the titles of Appendices list in the ToC \emph{without}
 % page numbers. Here is a simple way of doing it, assuming the document
 % has chapters
 % \begin{verbatim}
@@ -880,7 +891,7 @@
 % \addtocontents{toc}{\cftpagenumbersoff{chapter}}
 % \chapter{First appendix}
 % \end{verbatim}
-% If there are other chaptered headings to go into the ToC after the 
+% If there are other chaptered headings to go into the ToC after the
 % appendices, then it will be necessary to do a similar \\
 % |\addtocontents{toc}{\cftpagenumberson{chapter}}| \\
 % to restore the page numbering in the ToC.
@@ -899,12 +910,12 @@
 % \DescribeMacro{\newlistof}
 % The command |\newlistof[|\meta{within}|]{|\meta{entry}|}{|\meta{ext}|}{|\meta{listofname}|}|
 % creates a new List of \ldots, and assorted commands to go along with it.
-% 
+%
 % The first required argument, \meta{entry} is used to define a new
 % counter called |entry|. The optional \meta{within} argument can
-% be used so that |entry| gets reset to one every time the counter called 
+% be used so that |entry| gets reset to one every time the counter called
 % |within| is changed. That is, the first two arguments are equivalent to
-% calling |\newcounter{|\meta{entry}|}[|\meta{within}|]|. 
+% calling |\newcounter{|\meta{entry}|}[|\meta{within}|]|.
 %
 % The next argument, \meta{ext}, is the file extension for the new List of.
 % The last argument, \meta{listofname}, is the text for the heading of the
@@ -914,11 +925,11 @@
 % \newlistof[chapter]{answer}{ans}{\listanswername}
 % \end{verbatim}
 % will create a new |answer| counter that will be reset at the start of each
-% |\chapter{...}|. Any answer titles will be written to the file 
+% |\chapter{...}|. Any answer titles will be written to the file
 % \file{jobname.ans} and |\listanswername| will be used as the list heading.
 % A command |\listofanswer| is created which can be used just like the
 % |\listoftables| or |tableofcontents| commands to generate a listing.
-% It is up to you to specify how the entries are put into the 
+% It is up to you to specify how the entries are put into the
 % new List of Answers. Here is a very simple example, remembering that an
 % |answer| counter has been created.
 % \begin{verbatim}
@@ -927,54 +938,54 @@
 %   \par\noindent\textbf{Answer \theanswer. #1}
 %   \addcontentsline{ans}{answer}{\protect\numberline{\theanswer}#1}\par}
 % \end{verbatim}
-% which, when used like: \\ 
-% |\answer{Hard} The \ldots|  will print as: 
+% which, when used like: \\
+% |\answer{Hard} The \ldots|  will print as:
 % \par\noindent\textbf{Answer 1. Hard}\par The \ldots
 %
-%    As mentioned above, the |\newlistof| command creates several new 
+%    As mentioned above, the |\newlistof| command creates several new
 % commands, most of which you should now be familiar with. For convenience,
 % assume that |\newlistof{X}{Z}{...}| has been issued; so |X| is the name
 % of the new counter and corresponds to the |X| in section~\ref{sec:entries},
 % and |Z| is the new file extension and corresponds to the |Z| in
-% section~\ref{sec:titles}. Then, among others, the following new commands 
+% section~\ref{sec:titles}. Then, among others, the following new commands
 % will be made available.
 %
-% The five commands, |\cftmarkZ|, 
-% |\cftbeforeZtitleskip|, 
-% |\cftafterZtitleskip|, 
+% The five commands, |\cftmarkZ|,
+% |\cftbeforeZtitleskip|,
+% |\cftafterZtitleskip|,
 % |\cftZtitlefont|, and
-% |\cftafterZtitle|, 
+% |\cftafterZtitle|,
 % are analogous to the commands of the same names
 % described in section~\ref{sec:titles}.
 %
 % \DescribeMacro{\listofX}
-% The command |\listofX| is similar to |\listoftables|, etc., 
+% The command |\listofX| is similar to |\listoftables|, etc.,
 % in that it typesets
 % the new listing at the point where it is called.
 %
 % \DescribeMacro{\Zdepth}
 % The command |\Zdepth{|\meta{number}|}| is analogous to the standard
 % |\tocdepth{|\meta{number}|}| command, in that it specifies that entries
-% in the new listing should not be typeset if their numbering level 
+% in the new listing should not be typeset if their numbering level
 % is greater
-% than \meta{number}. The default definition is 
+% than \meta{number}. The default definition is
 % |\setcounter{Zdepth}{1}|.
 %
 % \DescribeMacro{\newlistentry}
-% The command 
+% The command
 % |\newlistentry[|\meta{within}|]{|\meta{entry}|}{|\meta{ext}|}{|\meta{level-1}|}| creates
 % new commands for typesetting a new kind of entry in a listing. It is used
 % internally by the |\newlistof| command but may be used independently.
-% 
+%
 % The first required argument, \meta{entry} is used to define a new
 % counter called |entry|. The optional \meta{within} argument can
-% be used so that |entry| gets reset to one every time the counter called 
+% be used so that |entry| gets reset to one every time the counter called
 % |within| is changed. That is, the first two arguments are equivalent to
-% calling |\newcounter{|\meta{entry}|}[|\meta{within}|]|. 
+% calling |\newcounter{|\meta{entry}|}[|\meta{within}|]|.
 % The second required argument, \meta{ext}, is the file extension for the
 % entry listing.
 % The last argument, \meta{level-1}, is a number specifying the numbering
-% level minus one, 
+% level minus one,
 % of the entry in a listing.
 % For example, the command \\
 % |\newlistof[chapter]{answer}{ans}{\listanswername}| \\
@@ -988,13 +999,13 @@
 % previous uses of them, and |N| is an integer number, then the following
 % commands are made available.
 %
-%  The set of commands |\cftbeforeXskip|, 
-% |\cftXfont|, 
-% |\cftXpresnum|, 
-% |\cftXaftersnum|, 
-% |\cftXaftersnumb|, 
-% |\cftXleader|, 
-% |\cftXdotsep|, 
+%  The set of commands |\cftbeforeXskip|,
+% |\cftXfont|,
+% |\cftXpresnum|,
+% |\cftXaftersnum|,
+% |\cftXaftersnumb|,
+% |\cftXleader|,
+% |\cftXdotsep|,
 % |\cftXpagefont|, and
 % |\cftXafterpnum|,
 %  are analogous to the commands of the same names
@@ -1003,12 +1014,12 @@
 %
 % The default values of |\cftXindent| and |\cftXnumwidth| are set according
 % to the value of the \meta{level-1} argument (i.e., |N| in this example).
-% For |N=0| the settings correspond to those for 
+% For |N=0| the settings correspond to those for
 % sections in non-chaptered documents, as listed in Table~\ref{tab:indents}.
 % For |N=4| the settings correspond
 % to subparagraphs in non-chaptered documents, and for intermediate values
 % correspond to the matching sectional division in chaptered documents.
-% For values of |N| less than zero or greater than four, 
+% For values of |N| less than zero or greater than four,
 % or for non-default values, use the
 % |\cftsetindents| command to set the values.
 %
@@ -1050,7 +1061,7 @@
 %
 % By default the answer entries will appear in the List of Answers listing
 % (typeset by the |\listofanswer| command).
-% In order to get the subanswers to appear, 
+% In order to get the subanswers to appear,
 % the |\setcounter{ansdepth}{2}| command was used above.
 %
 % To turn off page numbering for the subanswers, do \\
@@ -1059,10 +1070,10 @@
 %    As another example of |\newlistentry|, suppose that an extra sectioning
 % division below |subparagraph| is required, called |subsubpara|.
 % The |\subsubpara| command itself can be defined via the LaTeX kernel
-% |\@startsection| command. 
+% |\@startsection| command.
 % Also it is necessary to define a |\subsubparamark| macro,
 % a new |subsubpara| counter, a |\thesubsubpara| macro and a |\l@subsubpara|
-% macro. Using the \Lpack{tocloft} package's |\newlistentry| 
+% macro. Using the \Lpack{tocloft} package's |\newlistentry|
 % takes care of most of these as shown below (remember
 % the caveats about commands with |@| signs in them).
 % \begin{verbatim}
@@ -1071,13 +1082,13 @@
 %    {\parindent}%                     indent from left margin
 %    {3.25ex \@plus1ex \@minus .2ex}%       skip above heading
 %    {-1em}%       runin heading with 1em between title & text
-%    {\normalfont\normalsize\itshape}% italic number and title 
+%    {\normalfont\normalsize\itshape}% italic number and title
 % }
 % \newlistentry[subparagraph]{subsubpara}{toc}{5}
 % \cftsetindents{subsubpara}{14.0em}{7.0em}
 % \newcommand*{\subsubparamark}[1]{}     % gobble heading mark
 % \end{verbatim}
-% 
+%
 %
 %     Each List of\ldots uses a file to store the list entries, and these
 % files must remain open for writing throughout the document processing.
@@ -1086,14 +1097,14 @@
 % that includes a ToC but no other extra ancillary files (e.g., no
 % index or bibliography output files) the maximum number of LoX's, including
 % a LoF and LoT, is no more than about eleven. If you try and create too many
-% new listings LaTeX will respond with the error message: 
+% new listings LaTeX will respond with the error message:
 % \begin{center}
-% |No room for a new write| 
+% |No room for a new write|
 % \end{center}
 % If you get such a message the only recourse is to redesign your document.
 %
 %    The \Lpack{tocloft} package does not provide a simple means of specifying
-% new Lists of Floats or float environments. 
+% new Lists of Floats or float environments.
 % For those, I recommend the \Lpack{ccaption} package~\cite{CCAPTION}.
 %
 % \subsection{Experimental utilities}
@@ -1102,13 +1113,13 @@
 % those described previously.
 %
 % \DescribeMacro{\cftchapterprecis}
-%   Some old style novels, and even some modern text 
+%   Some old style novels, and even some modern text
 % books,\footnote{For example, Robert Sedgewick, \textit{Algorithms},
-% Addison-Wesley, 1983.} include a short synopsis of the contents of 
+% Addison-Wesley, 1983.} include a short synopsis of the contents of
 % the chapter either immediately
 % after the chapter heading or in the Toc, or in both places.
 %
-%     The command |\cftchapterprecis{|\meta{text}|}| prints its argument 
+%     The command |\cftchapterprecis{|\meta{text}|}| prints its argument
 % both at the
 % point in the document where it is called, and also adds it to the \file{.toc}
 % file. For example:
@@ -1122,8 +1133,8 @@
 % \DescribeMacro{\cftchapterprecishere}
 % \DescribeMacro{\cftchapterprecistoc}
 % The |\cftchapterprecis| command calls these two commands to print the
-% text in the document (the |\...here{|\meta{text}|}| command) 
-% and to put it into the ToC (the |\...toc{|\meta{text}|}| command). 
+% text in the document (the |\...here{|\meta{text}|}| command)
+% and to put it into the ToC (the |\...toc{|\meta{text}|}| command).
 % These can be used individually if required.
 %
 % Sometimes it may be desirable to make a change to the global parameters
@@ -1136,7 +1147,7 @@
 %
 % \DescribeMacro{\cftlocalchange}
 % The command |\cftlocalchange{|\meta{file}|}{|\meta{pnumwidth}|}{|\meta{tocrmarg}|}|
-% will write an entry into \meta{file} to reset the global parameters. 
+% will write an entry into \meta{file} to reset the global parameters.
 % The command should be called again after any special entry to reset
 % the parameters back to their usual values. Any fragile commands used
 % in the arguments must be protected.
@@ -1156,23 +1167,23 @@
 % |\contentsline{kind}{\numberline{num} title}{page}| \\
 % Any fragile commands used in the arguments must be protected.
 %
-% As an example of the use of these commands, 
-% noting that the default \LaTeX{} values for 
-% |\@pnumwidth| and |\@tocrmarg| are 1.55em and 2.55em respectively, 
+% As an example of the use of these commands,
+% noting that the default \LaTeX{} values for
+% |\@pnumwidth| and |\@tocrmarg| are 1.55em and 2.55em respectively,
 % one might do the
 % following for a figure on the frontispiece page.
 % \begin{verbatim}
 % ...
 % % this is the frontispiece page with no number
 % % draw or import the picture (with no \caption)
-% \cftlocalchange{lof}{4em}{5em} % make pnumwidth big enough for 
+% \cftlocalchange{lof}{4em}{5em} % make pnumwidth big enough for
 %                                % frontispiece and change margin to suit
 % \cftaddtitleline{lof}{figure}{The title}{frontispiece}
 % \cftlocalchange{lof}{1.55em}{2.55em} % return to normal settings
 % ...
 % \end{verbatim}
 %    Recall that a |\caption| command will put an entry in the \file{.lof}
-% file, which is not wanted here. If a caption is required, then you can 
+% file, which is not wanted here. If a caption is required, then you can
 % either craft one yourself or, assuming that your general captions are not
 % too exotic, use the |\legend| command from the
 % \Lpack{ccaption} package. If the illustration is numbered, use the
@@ -1207,13 +1218,9 @@
 %
 %    The \Lpack{tocloft} and \Lpack{tocbibind} packages can be used together
 % in the same document. The \Lpack{tocbibind} package provides easy means
-% of adding document elements like the bibliography or the index to the 
-% Table of Contents. However there are two known potential problems:
+% of adding document elements like the bibliography or the index to the
+% Table of Contents. However there is one known potential problem:
 % \begin{itemize}
-% \item The 1998/11/15 version of \Lpack{tocbibind} may give surprising
-% results if the |\toctocname|, |\toclotname| or |\toclofname| commands
-% have been used. You should consider getting the current version of
-% \Lpack{tocbibind}.
 % \item If the argument to the |\tocotherhead| command is other than one
 % of the normal sectioning divisions (i.e., part through to sub-paragraph)
 % such as |\tocotherhead{clause}|,
@@ -1226,25 +1233,25 @@
 % \DescribeMacro{\@cftasnum}
 % \DescribeMacro{\@cftasnumb}
 %    Some packages, like the \Lpack{float} package by Anselm Lingnau,
-% enable the creation of other kinds of \textit{List of \ldots}. 
-% The \Lpack{tocloft} package is only minimally able to change the 
-% formatting of these, 
+% enable the creation of other kinds of \textit{List of \ldots}.
+% The \Lpack{tocloft} package is only minimally able to change the
+% formatting of these,
 % principally because the packages are independent of each other and, in
 % the case of the \Lpack{float} package, new kinds of float environments
-% and their associated lists can be created on the fly at any point in 
-% a document. Some aspects of the typesetting 
+% and their associated lists can be created on the fly at any point in
+% a document. Some aspects of the typesetting
 % are controlled by |\@cftbsnum|, |\@cftasnum| and |\@cftasnumb| commands.
 % These are equivalent to the |\cftXpresnum|, |\cftXaftersnum| and |\cftXaftersnumb|
 % commands described earlier. By default they are defined to do nothing, but
 % may be renewed to do something.
 %
 %   The \Lpack{tocloft} and \Lpack{minitoc} packages have an unfortunate
-% interaction,\footnote{Discovered by Lyndon Dudding 
+% interaction,\footnote{Discovered by Lyndon Dudding
 % (\texttt{lyndon.dudding@totalise.co.uk}).} which fortunately can be fixed.
 % In the normal course of events, when \Lpack{minitoc} is used in a chaptered
 % document it will typeset section
 % entries in the minitocs in bold font. If \Lpack{tocloft} is used in
-% conjunction with \Lpack{minitoc}, then the minitoc section entries are 
+% conjunction with \Lpack{minitoc}, then the minitoc section entries are
 % typeset in the normal font, except for the page numbers which are in
 % bold font, while the ToC section entries are all in normal font.
 %
@@ -1263,7 +1270,7 @@
 % \end{verbatim}
 % To have the section entries in both the ToC and the minitocs in bold then
 % put the incantation in the preamble. To have only the minitoc section
-% entries in bold while the ToC entries are in the normal font, 
+% entries in bold while the ToC entries are in the normal font,
 % put the incantation between the |\tableofcontents|
 % command and the first |\chapter| command.
 %
@@ -1327,7 +1334,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% Issue a warning if there are no recognised sectional divisions 
+% Issue a warning if there are no recognised sectional divisions
 % and then skip the rest of the package code.
 %    \begin{macrocode}
 \@cftifundefined{chapter}{%
@@ -1344,7 +1351,7 @@
 %    \begin{macrocode}
 \@cftquit
 %    \end{macrocode}
-% 
+%
 % Use chapter style if |\if@cfthaschapter| is TRUE, otherwise section style.
 %
 % \begin{macro}{\if@cfttocbibind}
@@ -1378,7 +1385,7 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 %
 % \begin{macro}{\if@cftsubfigopt}
-% A boolean used to implement the \Lopt{subfigure} option. 
+% A boolean used to implement the \Lopt{subfigure} option.
 %    \begin{macrocode}
 \newif\if@cftsubfigopt\@cftsubfigoptfalse
 \DeclareOption{subfigure}{\@cftsubfigopttrue}
@@ -1461,7 +1468,7 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 %
 % \begin{macro}{\phantomsection}
-% This is provided because the \Lopt{hyperref} package screws with 
+% This is provided because the \Lopt{hyperref} package screws with
 % |\addcontentsline|.
 % \changes{v2.2}{2001/04/17}{Provided \cs{phantomsection}}
 % \changes{v2.2}{2001/04/17}{Added \cs{phantomsection} before \cs{addcontentsline} commands}
@@ -1472,7 +1479,7 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 %
 % \begin{macro}{\@cftdobibtoc}
-% If the \Lpack{tocbibind} package has been used and it has 
+% If the \Lpack{tocbibind} package has been used and it has
 % redefined |\tableofcontents| we need to cater for that. The contents
 % of the definition are defined in \Lpack{tocbibind}.
 %    \begin{macrocode}
@@ -1499,7 +1506,7 @@ Consider installing the current version of tocbibind.}}
 
 %    \end{macrocode}
 % \end{macro}
-% 
+%
 %
 % \begin{macro}{\tableofcontents}
 % This is a parameterised version of the default |\tableofcontents| command.
@@ -1523,7 +1530,7 @@ Consider installing the current version of tocbibind.}}
       \parindent\z@ \parskip\cftparskip
       \@cftmaketoctitle
 %    \end{macrocode}
-% If \Lpack{tocbibind} has been used, then add the ToC 
+% If \Lpack{tocbibind} has been used, then add the ToC
 % name to the ToC.
 %    \begin{macrocode}
       \if@cfttocbibind
@@ -1564,7 +1571,7 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\cftbeforetoctitleskip}
 % \begin{macro}{\cftaftertoctitleskip}
-%  These two lengths control the vertical spacing before and after the 
+%  These two lengths control the vertical spacing before and after the
 %  ToC title.
 %    \begin{macrocode}
 \newlength{\cftbeforetoctitleskip}
@@ -1668,23 +1675,23 @@ Consider installing the current version of tocbibind.}}
 % entries.
 %
 %     A \file{.toc} (also \file{.lof} and \file{.lot}) file consists
-% of a list of 
+% of a list of
 % |\contentsline{|\meta{kind}|}{|\meta{title}|}{|\meta{page}|}|
 % commands, where \meta{kind} is the kind of heading (e.g., |part| or
 % |section| or |figure|), \meta{title} is the title text (including the number),
 % and \meta{page} is the page number. The entries are inserted into the
-% file by calling the 
+% file by calling the
 % |\addcontentsline{|\meta{file}|}{|\meta{kind}|}{|\meta{title}|}|
 % command, where \meta{file} is the file extension (e.g., |toc|, |lot|)
 % and the other arguments are the same as for the |\contentsline|
 % command. (Arbitrary stuff may also be put into the file via the
 % |\addtocontents{|\meta{file}|}{|\meta{text}|}| command).
-% The typesetting of the |\contentsline| entries is performed by 
+% The typesetting of the |\contentsline| entries is performed by
 % commands of the form |\l@kind|. The sectioning and captioning commands
 % call |\addcontentsline| to insert their titles into the \file{.toc}
 % etc., files.
 %
-%     For the purposes at hand it is generally impossible to treat 
+%     For the purposes at hand it is generally impossible to treat
 % the typesetting
 % of a title and its number separately, as both are bundled into the
 % \meta{title} argument within |\contentsline|. They could be handled
@@ -1717,12 +1724,12 @@ Consider installing the current version of tocbibind.}}
 % \changes{v1.1}{2000/02/11}{Added \cs{@cftbsnum} to \cs{numberline}}
 % The purpose of the |\numberline{|\meta{secnum}|}| command is to typeset
 % \meta{secnum} left justified in a box of width |\@tempdima|. I redefine
-% it to add three additional parameters, namely |\@cftbsnum|, 
-% |\@cftasnum| and |\@cftasnumb| 
+% it to add three additional parameters, namely |\@cftbsnum|,
+% |\@cftasnum| and |\@cftasnumb|
 % (see \file{ltsect.dtx} for the original
 % definition).
 %    \begin{macrocode}
-\renewcommand{\numberline}[1]{% 
+\renewcommand{\numberline}[1]{%
   \hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb}
 %    \end{macrocode}
 % \end{macro}
@@ -1746,8 +1753,8 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 % \end{macro}
 % \end{macro}
-% 
-% 
+%
+%
 %
 % \begin{macro}{\l@part}
 % \begin{macro}{\if@cftdopart}
@@ -1764,7 +1771,7 @@ Consider installing the current version of tocbibind.}}
 % \changes{v0.2a}{1999/01/24}{In article class, Part level is 0 not -1}
 % \changes{v2.0}{2001/03/03}{Checked directly for \cs{part} definition}
 % \changes{v2.3a}{2002/10/03}{Added \cs{cftpartpresnum} to \cs{l@part}}
-% 
+%
 %    \begin{macrocode}
 \newif\if@cftdopart
 \newif\if@cfthaspart
@@ -1795,7 +1802,7 @@ Consider installing the current version of tocbibind.}}
        \parfillskip -\rightskip
        \parindent \cftpartindent\relax\@afterindenttrue
        \interlinepenalty\@M
-       \leavevmode    
+       \leavevmode
        \@tempdima \cftpartnumwidth\relax
        \let\@cftbsnum \cftpartpresnum
        \let\@cftasnum \cftpartaftersnum
@@ -1974,7 +1981,7 @@ Consider installing the current version of tocbibind.}}
 % \begin{macro}{\l@section}
 %  |\l@section{|\meta{title}|}{|\meta{page}|}| typesets the ToC entry for
 % a |section| heading. It is a parameterised copy of the default |\l@section|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@section}[2]{%
   \ifnum \c@tocdepth >\z@
@@ -2060,9 +2067,9 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\l@subsection}
 %  |\l@subsection{|\meta{title}|}{|\meta{page}|}| typesets the ToC entry for
-% a |subsection| heading. It is a parameterised copy of the default 
+% a |subsection| heading. It is a parameterised copy of the default
 % |\l@subsection|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@subsection}[2]{%
 %    \end{macrocode}
@@ -2083,7 +2090,7 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
      \rightskip \@tocrmarg
 %    \end{macrocode}
-% Ensure that the last line of the entry will be filled. Setting 
+% Ensure that the last line of the entry will be filled. Setting
 % |\parfillskip| to a negative number prevents any overfull box messages.
 %    \begin{macrocode}
      \parfillskip -\rightskip
@@ -2101,7 +2108,7 @@ Consider installing the current version of tocbibind.}}
      \leavevmode
 %    \end{macrocode}
 % Our version of |\numberline| expects that the width of the number box
-% is in |\@tempdima|, and that the three macros |\@cftbsnum|, 
+% is in |\@tempdima|, and that the three macros |\@cftbsnum|,
 % |\@cftasnum| and |\@cftasnumb|
 % are defined. We set all these to the values for this entry.
 %    \begin{macrocode}
@@ -2188,9 +2195,9 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\l@subsubsection}
 %  |\l@subsubsection{|\meta{title}|}{|\meta{page}|}| typesets the ToC entry for
-% a |subsubsection| heading. It is a parameterised copy of the default 
+% a |subsubsection| heading. It is a parameterised copy of the default
 % |\l@subsubsection|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@subsubsection}[2]{%
   \ifnum \c@tocdepth >\tw@
@@ -2266,9 +2273,9 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\l@paragraph}
 %  |\l@paragraph{|\meta{title}|}{|\meta{page}|}| typesets the ToC entry for
-% a |paragraph| heading. It is a parameterised copy of the default 
+% a |paragraph| heading. It is a parameterised copy of the default
 % |\l@paragraph|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@paragraph}[2]{%
   \ifnum \c@tocdepth >3\relax
@@ -2344,9 +2351,9 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\l@subparagraph}
 %  |\l@subparagraph{|\meta{title}|}{|\meta{page}|}| typesets the ToC entry for
-% a |subparagraph| heading. It is a parameterised copy of the default 
+% a |subparagraph| heading. It is a parameterised copy of the default
 % |\l@subparagraph|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@subparagraph}[2]{%
   \ifnum \c@tocdepth >4\relax
@@ -2422,7 +2429,7 @@ Consider installing the current version of tocbibind.}}
 %
 %
 % \begin{macro}{\@cftdobiblof}
-% If the \Lpack{tocbibind} package has been used and it has 
+% If the \Lpack{tocbibind} package has been used and it has
 % redefined |\listoffigures| we need to cater for that. The contents
 % of the definition are defined in \Lpack{tocbibind}.
 %    \begin{macrocode}
@@ -2501,7 +2508,7 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\cftbeforeloftitleskip}
 % \begin{macro}{\cftafterloftitleskip}
-%  These two lengths control the vertical spacing before and after the 
+%  These two lengths control the vertical spacing before and after the
 %  LoF title.
 %    \begin{macrocode}
 \newlength{\cftbeforeloftitleskip}
@@ -2546,9 +2553,9 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\l@figure}
 %  |\l@figure{|\meta{title}|}{|\meta{page}|}| typesets the LoF entry for
-% a |figure| caption heading. It is a parameterised copy of the default 
+% a |figure| caption heading. It is a parameterised copy of the default
 % |\l@figure|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@figure}[2]{%
   \ifnum \c@lofdepth >\z@
@@ -2620,7 +2627,7 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{lofdepth}
 % \begin{macro}{lotdepth}
-% The counters |lofdepth| and |lotdepth| are defined by the 
+% The counters |lofdepth| and |lotdepth| are defined by the
 % \Lpack{subfigure} package.
 % Define them here if that package is not used.
 %    \begin{macrocode}
@@ -2634,7 +2641,7 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 %
 % \begin{macro}{\@cftdobiblot}
-% If the \Lpack{tocbibind} package has been used and it has 
+% If the \Lpack{tocbibind} package has been used and it has
 % redefined |\listoftables| we need to cater for that. The contents
 % of the definition are defined in \Lpack{tocbibind}.
 %    \begin{macrocode}
@@ -2672,7 +2679,7 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
   \par
   \begingroup
-    \parindent\z@ \parskip\cftparskip	
+    \parindent\z@ \parskip\cftparskip
     \@cftmakelottitle
     \if@cfttocbibind
       \@cftdobiblot
@@ -2714,7 +2721,7 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\cftbeforelottitleskip}
 % \begin{macro}{\cftafterlottitleskip}
-%  These two lengths control the vertical spacing before and after the 
+%  These two lengths control the vertical spacing before and after the
 %  LoT title.
 %    \begin{macrocode}
 \newlength{\cftbeforelottitleskip}
@@ -2759,9 +2766,9 @@ Consider installing the current version of tocbibind.}}
 %
 % \begin{macro}{\l@table}
 %  |\l@table{|\meta{title}|}{|\meta{page}|}| typesets the LoT entry for
-% a |table| caption heading. It is a parameterised copy of the default 
+% a |table| caption heading. It is a parameterised copy of the default
 % |\l@table|
-% (see \file{classes.dtx} for the original definition). 
+% (see \file{classes.dtx} for the original definition).
 %    \begin{macrocode}
 \renewcommand*{\l@table}[2]{%
   \ifnum\c@lotdepth >\z@
@@ -2834,19 +2841,19 @@ Consider installing the current version of tocbibind.}}
 % \subsection{Support for the \Lpack{subfigure} package}
 % \changes{v1.1}{2000/02/12}{Added subfigure support}
 %
-%  The code for supporting the \Lpack{subfigure} package is, in all 
+%  The code for supporting the \Lpack{subfigure} package is, in all
 % essentials, the same as that for the figure and table captions; only the
 % names are changed. However, the code need only be executed if the
-% \Lpack{subfigure} package is actually loaded. 
+% \Lpack{subfigure} package is actually loaded.
 %
 % \begin{macro}{\@cftl@subfig}
-%    This command redefines the |\l@subfigure| command. 
+%    This command redefines the |\l@subfigure| command.
 %    \begin{macrocode}
 \newcommand{\@cftl@subfig}{%
 %    \end{macrocode}
 % \begin{macro}{\l@subfigure}
 %  |\l@subfigure{|\meta{title}|}{|\meta{page}|}| typesets the LoF entry for
-% a |subfigure| caption heading. It is essentially the same as the 
+% a |subfigure| caption heading. It is essentially the same as the
 % parameterised code for |\l@figure| except that account has to be taken
 % of |lofdepth|.
 %    \begin{macrocode}
@@ -2940,8 +2947,8 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % \begin{macro}{\l@subtable}
 %  |\l@subtable{|\meta{title}|}{|\meta{page}|}| typesets the LoT entry for
-% a |subtable| caption heading. It is essentially the same as the 
-% parameterised code for |\l@table| except account has to be taken of 
+% a |subtable| caption heading. It is essentially the same as the
+% parameterised code for |\l@table| except account has to be taken of
 % |lotdepth|.
 %    \begin{macrocode}
 \renewcommand*{\l@subtable}[2]{%
@@ -2985,7 +2992,7 @@ Consider installing the current version of tocbibind.}}
 % \begin{macro}{\cftsubtabafterpnum}
 % \begin{macro}{\toclevel@subtable}
 % \begin{macro}{\cftsubtabfillnum}
-%  These are the user commands to control the typesetting of Subtable 
+%  These are the user commands to control the typesetting of Subtable
 % caption entries.
 %  They are initialised to give the standard appearance.
 %    \begin{macrocode}
@@ -3029,7 +3036,7 @@ Consider installing the current version of tocbibind.}}
 %    \end{macrocode}
 % \end{macro}
 %
-%    Call the \Lpack{subfigure} package setup code only if the 
+%    Call the \Lpack{subfigure} package setup code only if the
 % \Lopt{subfigure} option is specified. The |\l@...| redefinitions have to
 % come after the \Lpack{subfigure} package is loaded.
 %    \begin{macrocode}
@@ -3242,7 +3249,7 @@ Consider installing the current version of tocbibind.}}
 % \begin{macro}{\listofX}
 % Typeset the listing title and entries.
 %    \begin{macrocode}
- \if@cftnctoc  
+ \if@cftnctoc
 %    \end{macrocode}
 % For the \Lopt{titles} option, basically copy the code from
 % the standard |\tableofcontents| command.
@@ -3359,7 +3366,7 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
 \newcommand{\cftsetindents}[3]{%
   \def\@cftemp{#1}
-  \ifx\@cftemp\cftchapname 
+  \ifx\@cftemp\cftchapname
     \@cftsetindents{chap}{#2}{#3}
   \else
     \ifx\@cftemp\cftsecname \@cftsetindents{sec}{#2}{#3}
@@ -3370,11 +3377,11 @@ Consider installing the current version of tocbibind.}}
         \else
           \ifx\@cftemp\cftparaname \@cftsetindents{para}{#2}{#3}
           \else
-            \ifx\@cftemp\cftsubparaname \@cftsetindents{subpara}{#2}{#3} 
+            \ifx\@cftemp\cftsubparaname \@cftsetindents{subpara}{#2}{#3}
             \else
               \ifx\@cftemp\cftfigname \@cftsetindents{fig}{#2}{#3}
               \else
-                \ifx\@cftemp\cftsubfigname \@cftsetindents{subfig}{#2}{#3} 
+                \ifx\@cftemp\cftsubfigname \@cftsetindents{subfig}{#2}{#3}
                 \else
                   \ifx\@cftemp\cfttabname \@cftsetindents{tab}{#2}{#3}
                   \else
@@ -3423,9 +3430,9 @@ Consider installing the current version of tocbibind.}}
 \newcommand{\@cftpnumoff}[1]{%
   \@namedef{cft#1fillnum}##1{%
     \cftparfillskip\@nameuse{cft#1afterpnum}\par}}
-    
+
 %    \end{macrocode}
-% \end{macro}  
+% \end{macro}
 %
 % \begin{macro}{\cftchapname}
 % \begin{macro}{\cftsecname}
@@ -3465,7 +3472,7 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 %
 % \begin{macro}{\cftpagenumbersoff}
-% The user level command for switching off page numbers is 
+% The user level command for switching off page numbers is
 % |\cftpagenumbersoff{|\meta{entry}|}| where \meta{entry} is the longhand
 % name of the entry. The principal task opf this macro is to determine
 % the corresponding shorthand name of the \meta{entry} and then call
@@ -3474,10 +3481,10 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cftpagenumbersoff}[1]{%
   \def\@cftemp{#1}
-  \ifx\@cftemp\cftchapname 
+  \ifx\@cftemp\cftchapname
     \@cftpnumoff{chap}
   \else
-    \ifx\@cftemp\cftsecname \@cftpnumoff{sec} 
+    \ifx\@cftemp\cftsecname \@cftpnumoff{sec}
     \else
       \ifx\@cftemp\cftsubsecname \@cftpnumoff{subsec}
       \else
@@ -3485,13 +3492,13 @@ Consider installing the current version of tocbibind.}}
         \else
           \ifx\@cftemp\cftparaname \@cftpnumoff{para}
           \else
-            \ifx\@cftemp\cftsubparaname \@cftpnumoff{subpara} 
+            \ifx\@cftemp\cftsubparaname \@cftpnumoff{subpara}
             \else
               \ifx\@cftemp\cftfigname \@cftpnumoff{fig}
               \else
-                \ifx\@cftemp\cftsubfigname \@cftpnumoff{subfig} 
+                \ifx\@cftemp\cftsubfigname \@cftpnumoff{subfig}
                 \else
-                  \ifx\@cftemp\cfttabname \@cftpnumoff{tab} 
+                  \ifx\@cftemp\cfttabname \@cftpnumoff{tab}
                   \else
                     \ifx\@cftemp\cftsubtabname \@cftpnumoff{subtab}
                     \else
@@ -3512,15 +3519,15 @@ Consider installing the current version of tocbibind.}}
 % \end{macro}
 %
 % \begin{macro}{\cftpagenumberson}
-% |\cftpagenumberson{|\meta{entry}|}| is the user level command for 
+% |\cftpagenumberson{|\meta{entry}|}| is the user level command for
 % reversing the corresponding |\cftpagenumbersoff|.
 %    \begin{macrocode}
 \DeclareRobustCommand{\cftpagenumberson}[1]{%
   \def\@cftemp{#1}
-  \ifx\@cftemp\cftchapname 
+  \ifx\@cftemp\cftchapname
     \@cftpnumon{chap}
   \else
-    \ifx\@cftemp\cftsecname \@cftpnumon{sec} 
+    \ifx\@cftemp\cftsecname \@cftpnumon{sec}
     \else
       \ifx\@cftemp\cftsubsecname \@cftpnumon{subsec}
       \else
@@ -3528,13 +3535,13 @@ Consider installing the current version of tocbibind.}}
         \else
           \ifx\@cftemp\cftparaname \@cftpnumon{para}
           \else
-            \ifx\@cftemp\cftsubparaname \@cftpnumon{subpara} 
+            \ifx\@cftemp\cftsubparaname \@cftpnumon{subpara}
             \else
               \ifx\@cftemp\cftfigname \@cftpnumon{fig}
               \else
-                \ifx\@cftemp\cftsubfigname \@cftpnumon{subfig} 
+                \ifx\@cftemp\cftsubfigname \@cftpnumon{subfig}
                 \else
-                  \ifx\@cftemp\cfttabname \@cftpnumon{tab} 
+                  \ifx\@cftemp\cfttabname \@cftpnumon{tab}
                   \else
                     \ifx\@cftemp\cftsubtabname \@cftpnumon{subtab}
                     \else
@@ -3559,7 +3566,7 @@ Consider installing the current version of tocbibind.}}
 % |\@cftpnumon{|\meta{shorthand}|}| is the workhorse
 % for switching page numbering off. The \meta{shorthand} argument is the
 % shorthand name of the entry (e.g. |subsec| for |subsection|).
-% The macro defines the |\cftXnumfill| command to correspond to 
+% The macro defines the |\cftXnumfill| command to correspond to
 % the default definition.
 %    \begin{macrocode}
 \newcommand{\@cftpnumon}[1]{%
@@ -3569,7 +3576,7 @@ Consider installing the current version of tocbibind.}}
   }%
 }
 %    \end{macrocode}
-% \end{macro}  
+% \end{macro}
 %
 %
 %
@@ -3615,7 +3622,7 @@ Consider installing the current version of tocbibind.}}
 %    \begin{macrocode}
 \newcommand{\cftchapterprecistoc}[1]{\addtocontents{toc}{%
 %    \end{macrocode}
-% Start a group to localize changes to the paragraphing. Set the 
+% Start a group to localize changes to the paragraphing. Set the
 % left margin to the chapter indent plus the chapter number width.
 %    \begin{macrocode}
   {\leftskip \cftchapindent\relax
@@ -3626,7 +3633,7 @@ Consider installing the current version of tocbibind.}}
    \rightskip \@tocrmarg\relax
 %    \end{macrocode}
 % Typeset \meta{text} using an italic font, then ensure that the paragraph
-% is finished (to use the local skips). Finally close the group and we 
+% is finished (to use the local skips). Finally close the group and we
 % are done.
 %    \begin{macrocode}
    \textit{#1}\protect\par}}}
@@ -3700,7 +3707,7 @@ Consider installing the current version of tocbibind.}}
 % \item multitoc
 % \item nccsect
 % \item notoccite
-% \item artikel3, boek3, rapport3, 
+% \item artikel3, boek3, rapport3,
 % \item rerunfilecheck
 % \item parskip
 % \item pdfwin
