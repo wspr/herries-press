@@ -1518,7 +1518,16 @@ Consider installing the current version of tocbibind.}}
 %
 %    \begin{macrocode}
 \AtBeginDocument{%
-\if@cftnctoc\else
+\if@cftnctoc
+  % ensure \cftparskip is still set properly
+  \let\OLD@starttoc\@starttoc
+  \renewcommand{\@starttoc}[1]{%
+    \begingroup
+      \parskip=\cftparskip
+      \OLD@starttoc{#1}%
+    \endgroup
+  }
+\else
   \renewcommand{\tableofcontents}{%
     \@cfttocstart
 %    \end{macrocode}
