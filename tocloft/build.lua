@@ -22,9 +22,8 @@ Provides control over the typography of the Table of Contents, List of Figures a
 }
 
 announce = {}
-announce["v2.3j"] = [[
+announce["2.3j"] = [[
   * Add documentation around lofdepth and lotdepth when using subfigure captions.
-  * Add new package option [titles-numbered] for using numbered section headings.
   * Allow paragraph skip to be set even if the [titles] option is in effect.
 ]]
 uploadconfig.announcement = announce[version]
