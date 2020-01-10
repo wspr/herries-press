@@ -545,17 +545,6 @@
 % example, |\cftmarkZ| stands for |\cftmarktoc| or |\cftmarklof| or
 % |\cftmarklot|.
 %
-% \DescribeMacro{\Zdepth}
-% The command |\Zdepth{|\meta{number}|}| is analogous to the standard
-% |\tocdepth{|\meta{number}|}| command, in that it specifies that entries
-% in the new listing should not be typeset if their numbering level
-% is greater
-% than \meta{number}. The default definition is
-% |\setcounter{Zdepth}{1}|.
-% These commands are needed, for instance by users of packages such as |subcaption|,
-% which will generate subfigure and subtable captions corresponding to a |lofdepth| and
-% |lotdepth| of |2|.
-%
 % \DescribeMacro{\cftmarkZ}
 % These macros set the appearance of the running heads on the ToC, LoF, and
 % LoT pages. You probably don't need to change these.
@@ -602,6 +591,17 @@
 % layout of the entries are illustrated as part of the \Lpack{layouts}
 % package or in~\cite[page 34]{GOOSSENS94}, and are repeated in
 % Figure~\ref{fig:ltoc}.
+%
+% \DescribeMacro{\Zdepth}
+% The command |\Zdepth{|\meta{number}|}| is analogous to the standard
+% |\tocdepth{|\meta{number}|}| command, in that it specifies that entries
+% in the new listing should not be typeset if their numbering level
+% is greater
+% than \meta{number}. The default definition is
+% |\setcounter{Zdepth}{1}|.
+% These commands are needed, for instance by users of packages such as |subcaption|,
+% which will generate subfigure and subtable captions corresponding to a |lofdepth| and
+% |lotdepth| of |2|.
 %
 % \DescribeMacro{\cftdot}
 %  In the default ToC typesetting only the more minor entries have dotted
