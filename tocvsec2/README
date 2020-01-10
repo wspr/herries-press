@@ -69,7 +69,7 @@ tocvsec2.pdf (user manual)
 - Move tocvsec2.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/tocvsec2) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
 
     To regenerate the user manual:
 - run: pdflatex tocvsec2.dtx

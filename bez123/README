@@ -48,7 +48,7 @@ multiply.sty
 - Move bez123.sty and multiply.sty to a location where LaTeX will find them
   (typically in a local texmf tree at tex/latex/bez123) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
     To process the manual:
 - run: latex bez123.dtx (Note that bez123.dtx requires bez123.sty.
                          Several Package Warning messages will occur, but

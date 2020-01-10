@@ -97,7 +97,7 @@ tocbibind.pdf (user manual)
 - Move tocbibind.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
 
     To process the manual:
 - run: latex tocbibind.dtx

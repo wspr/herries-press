@@ -51,7 +51,7 @@ appendix.sty
 - Move appendix.sty to a location where LaTeX will find it
   (typically in a local texmf tree at tex/latex/appendix) and refresh
   the file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
 - To obtain the user manual:
   o run: latex appendix.dtx
   o run: makeindex -s gind.ist appendix

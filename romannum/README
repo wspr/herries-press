@@ -42,7 +42,7 @@ v1.0b (2009/09/03) - New maintainer (Will Robertson)
 - Move romannum.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
 
     To regenerate the user manual
 - run: latex romannum.dtx

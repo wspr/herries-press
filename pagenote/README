@@ -46,7 +46,7 @@ pagenote.sty
 - Move pagenote.sty to a location where LaTeX will find it (typically
   in a local texmf tree at tex/latex/pagenote) and refresh the 
   file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
     To process the user manual
 - run: latex pagenote.dtx
 - For an index, run: makeindex -s gind.ist pagenote

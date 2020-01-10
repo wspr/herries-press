@@ -1,7 +1,7 @@
 ___________________
 The TOCLOFT package
 
-    The tocloft package provides control over the typography of the 
+    The tocloft package provides control over the typography of the
 Table of Contents, List of Figures, and List of Tables. You can also
 define your own kinds of `List of ...'
 
@@ -30,7 +30,7 @@ Changes in version 2.3f (2013/05/02)
 Thanks to Andre Pinkert, Florent Chervet, Stephan Stiller, Matthew Skala, Simon Verleger, Leo Liu, Haruyuki Kawabe, and Axel Sommerfeldt for suggesting all of the changes above and my apologies for the slow turn-around releasing the package.
 
 Changes in version 2.3e (2010/10/13)
-- Remove a superfluous message from the console output:  
+- Remove a superfluous message from the console output:
    "The document has [section|chapter] divisions"
 
 Changes in version 2.3d (2009/09/04)
@@ -69,7 +69,7 @@ Changes in version 1.1 (2000/02/11)
 
 Changes in version 1.0 (1999/09/19)
 - Changed from beta to production release
-- Improved (warning) reporting 
+- Improved (warning) reporting
 
 Changes in version 0.3 (1999/08/22)
 - Added option to use default headings, so that packages like
@@ -83,20 +83,20 @@ Changes in version 0.2 (1999/01/17)
 Changes in version 0.1 (1998/12/31)
 - First public beta release
 
------------------------------------------------------------------ 
+-----------------------------------------------------------------
   Author: Peter Wilson, Herries Press
   Maintainer: Will Robertson (will dot robertson at latex-project dot org)
   Copyright 1998-2003 Peter R. Wilson
   Copyright 2009 Will Robertson
- 
+
   This work may be distributed and/or modified under the
   conditions of the LaTeX Project Public License, either
-  version 1.3c of this license or (at your option) any 
+  version 1.3c of this license or (at your option) any
   later version: <http://www.latex-project.org/lppl.txt>
 
   This work has the LPPL maintenance status "maintained".
   The Current Maintainer of this work is Will Robertson.
- 
+
   This work consists of the files:
 README (this file)
 tocloft.dtx
@@ -110,16 +110,16 @@ tocloft.ins
 tocloft.dtx
 tocloft.pdf (user manual)
 
------------------------------------------------------------------ 
+-----------------------------------------------------------------
 
     To install the package:
 - run: latex tocloft.ins (which will generate tocloft.sty)
 - Move tocloft.sty to a location where LaTeX will find it.
   (typically in a local texmf tree at tex/latex/***) and refresh the
   file database. See the FAQ on CTAN at help/uk-tex-faq or
-  http://www.tug.ac.uk/faq for more information on this.
+  https://texfaq.org/ for more information on this.
     To process the manual
 - run: pdflatex tocloft.dtx
 - run: makeindex -s gind.ist tocloft
 - run: pdflatex tocloft.dtx
-- Print tocloft.pdf for a hardcopy of the package manual 
+- Print tocloft.pdf for a hardcopy of the package manual
