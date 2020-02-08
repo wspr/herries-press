@@ -3,10 +3,11 @@
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1998--2004 Peter R. Wilson
+% Copyright 2009--2020 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
-% version 1.3c of this license or (at your option) any 
+% version 1.3c of this license or (at your option) any
 % later version: <http://www.latex-project.org/lppl.txt>
 %
 % This work has the LPPL maintenance status "maintained".
@@ -14,7 +15,7 @@
 %
 % This work consists of the files listed in the README file.
 %
-% 
+%
 %<*driver>
 \documentclass{ltxdoc}
 \EnableCrossrefs
@@ -79,6 +80,7 @@
 % \changes{v1.2}{2002/08/06}{Don't need the ifthen package any more}
 % \changes{v1.2a}{2004/04/16}{Changed license and contact details}
 % \changes{v1.2b}{2009/09/02}{New maintainer (Will Robertson)}
+% \changes{v1.2c}{2020/02/08}{Fix clash with hyperref}
 %
 % \def\dtxfile{appendix.dtx}
 % \def\fileversion{v1.1}  \def\filedate{2000/02/29}
@@ -86,6 +88,7 @@
 % \def\fileversion{v1.2}  \def\filedate{2002/08/06}
 % \def\fileversion{v1.2a} \def\filedate{2004/04/16}
 % \def\fileversion{v1.2b} \def\filedate{2009/09/02}
+% \def\fileversion{v1.2c} \def\filedate{2020/02/08}
 %
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
@@ -114,7 +117,7 @@
 % The package
 % is designed to work only with classes that have a |\chapter| and/or
 % |\section| command. It has not been tested with other packages
-% that change the definitions of the sectioning commands. 
+% that change the definitions of the sectioning commands.
 % \end{abstract}
 % \tableofcontents
 %
@@ -139,9 +142,9 @@
 %  \end{itemize}
 %
 % The \Lpack{appendix} package provides additional appendixing capabilities.
-% It cooperates with the \Lpack{hyperref} 
-% package\footnote{With thanks to Hylke W. van Dijk 
-% (\texttt{hylke@ubicom.tudelft.nl}) who pointed out that version~1.1 did 
+% It cooperates with the \Lpack{hyperref}
+% package\footnote{With thanks to Hylke W. van Dijk
+% (\texttt{hylke@ubicom.tudelft.nl}) who pointed out that version~1.1 did
 % not and set me on the track for supporting the \Lpack{hyperref} package.}
 % but may be problematic when used with packages that change the definition
 % of the sectioning commands.
@@ -191,18 +194,18 @@
 % For symmetry, the |\appendicestocpagenum| command ensures that
 % a page number is put in the ToC.
 %
-% \textbf{NOTE:} Unless |\noappendicestocpagenum| is used 
-% the |\addappheadtotoc| command uses the 
+% \textbf{NOTE:} Unless |\noappendicestocpagenum| is used
+% the |\addappheadtotoc| command uses the
 % current page number
 % when it makes the entry in the ToC. The |\appendixpage| command puts
 % a heading in the document like a |\part| heading; in un-chaptered documents
-% the |\part| heading appears in the ordinary run of the text like a 
+% the |\part| heading appears in the ordinary run of the text like a
 % |\section| heading, but in chaptered documents it is on a page by itself.
 % That is, in chaptered documents |\appendixpage| does a |\clear[double]page|
 % typesets the heading, and then does another |\clear[double]page|. Therefore,
-% in a chaptered document the above sequence of 
+% in a chaptered document the above sequence of
 % commands will use the page number
-% \emph{after} the |\appendixpage| as the ToC 
+% \emph{after} the |\appendixpage| as the ToC
 % entry\footnote{With thanks to Eduardo Jacob (\texttt{edu@kender.es})
 % for pointing this out.} and if the ordering
 % is reversed (i.e., |\addappheadtotoc| |\appendixname|) then the page number
@@ -212,7 +215,7 @@
 % |    \addappheadtotoc| \\
 % |    \appendixpage| \\
 % which will use the page number of |\appendixpage| as the ToC entry.
-% 
+%
 %
 % \DescribeMacro{\appendixname}
 % \DescribeMacro{\appendixtocname}
@@ -220,7 +223,7 @@
 % The |\appendixname| command is defined in those classes that provide
 % for chapters. It is provided in this package whether or not it has
 % been defined in the class. It's default value is `Appendix'.
-% The default value of both |\appendixtocname| and |\appendixpagename| is 
+% The default value of both |\appendixtocname| and |\appendixpagename| is
 % `Appendices'. These names can all be changed via |\renewcommand|.
 % For example,
 % \begin{verbatim}
@@ -229,11 +232,11 @@
 %
 % \DescribeEnv{appendices}
 % The |appendices| environment can be used instead of the |\appendix|
-% command. It provides more functionality than is possible from the 
+% command. It provides more functionality than is possible from the
 % combination of the |\appendix|, |\addappheadtotoc| and |\appendixpage|
 % commands.
 % The functions of the |appendices| environment are usually accessed through
-% the package options, but there are declarations that may be used instead. 
+% the package options, but there are declarations that may be used instead.
 % The options are:
 % \begin{itemize}
 % \item \Lopt{toc} Put a header (e.g., `Appendices') into the Table
@@ -243,7 +246,7 @@
 %       at the point where the |appendices| environment is begun.
 %       (This is done by calling the |\appendixpage| command.)
 % \item \Lopt{title} Adds a name (e.g., `Appendix') before each appendix
-%       title in the body of the document. 
+%       title in the body of the document.
 %       The name is given by the value of |\appendixname|.
 %       Note that this is the default behaviour for classes that have
 %       chapters.
@@ -277,29 +280,29 @@
 % \DescribeMacro{\appendixpageon}
 % \DescribeMacro{\appendixpageoff}
 % |\appendixpagecon| is a declaration equivalent to the \Lopt{page} option.
-% The |\appendixpageoff| declaration is equivalent to not using 
+% The |\appendixpageoff| declaration is equivalent to not using
 % that option.
 %
 % \DescribeMacro{\appendixtitleon}
 % \DescribeMacro{\appendixtitleoff}
 % |\appendixtitleon| is a declaration equivalent to the \Lopt{title} option.
-% The |\appendixtitleoff| declaration is equivalent to not using 
+% The |\appendixtitleoff| declaration is equivalent to not using
 % that option.
 %
 % \DescribeMacro{\appendixtitletocon}
 % \DescribeMacro{\appendixtitletocoff}
 % |\appendixtitletocon| is a declaration equivalent to the \Lopt{titletoc} option.
-% The |\appendixtitletocoff| declaration is equivalent to not using 
+% The |\appendixtitletocoff| declaration is equivalent to not using
 % that option.
 %
 % \DescribeMacro{\appendixheaderon}
 % \DescribeMacro{\appendixheaderoff}
 % |\appendixheaderon| is a declaration equivalent to the \Lopt{header} option.
-% The |\appendixheaderoff| declaration is equivalent to not using 
+% The |\appendixheaderoff| declaration is equivalent to not using
 % that option.
 %
 % \DescribeMacro{\restoreapp}
-%     The |appendices| environment restores the prior value of the 
+%     The |appendices| environment restores the prior value of the
 % chapter/section counter at the end of the environment, so the
 % environment may be used between the main document divisions. By default,
 % the appendix counter value is saved and restored by the environment. That
@@ -311,7 +314,7 @@
 % \DescribeEnv{subappendices}
 % Within the |subappendices| environment, an appendix is introduced by a
 % |\section| command in chaptered documents, otherwise it is introduced
-% by a |\subsection| command. Effectively, this provides for appendices 
+% by a |\subsection| command. Effectively, this provides for appendices
 % at the end of a main document division, as an integral
 % part of the division. The |subappendices| environment supports only
 % the \Lopt{title} and \Lopt{titletoc} options.
@@ -337,9 +340,9 @@
 % then the text of the |\addcontentsline| command (`addtotoc' in the example)
 % is not written to the
 % appropriate (toc) file until \textit{after} the included file has written all
-% its entries out to the (toc) file. As far as I can tell, there is no way 
+% its entries out to the (toc) file. As far as I can tell, there is no way
 % around this behaviour without rewriting parts of the \LaTeX{} kernel code.
-% 
+%
 %     It is thus up to the author to avoid putting an |\addcontentsline| command
 % (or a command that internally uses |\addcontentsline|, as does the
 % |\addappheadtotoc| command) before
@@ -356,7 +359,7 @@
 %    \begin{macrocode}
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{appendix}[2009/09/02 v1.2b extra appendix facilities]
+\ProvidesPackage{appendix}[2020/02/08 v1.2c extra appendix facilities]
 %    \end{macrocode}
 %
 % Check that an \cs{appendix} command is actually defined and emit a warning
@@ -566,7 +569,7 @@
 % \begin{macro}{\appendixpage}
 % The command to typeset a page announcing the start of the appendices.
 % It is based on the |\part| definition (either from the \Lpack{book}
-% class or the \Lpack{article} class). 
+% class or the \Lpack{article} class).
 %    \begin{macrocode}
 \newcommand{\appendixpage}{%
   \if@chapter@pp \@chap@pppage \else \@sec@pppage \fi
@@ -575,10 +578,10 @@
 % \end{macro}
 %
 % \begin{macro}{\clear@ppage}
-%  The non-chaptered classes do not define |\if@openright|, but we need to 
+%  The non-chaptered classes do not define |\if@openright|, but we need to
 % use this for chaptered documents to clear the appropriate pages.
 % |\clear@ppage| does the right thing, but must only be called in
-% chapter related code, otherwise there will be error message like 
+% chapter related code, otherwise there will be error message like
 % |extra \else| or |extra \fi|.
 %    \begin{macrocode}
 \newcommand{\clear@ppage}{%
@@ -589,7 +592,7 @@
 %
 % \begin{macro}{\@chap@pppage}
 % Do an appendix page in chapter style.
-% Copy code from the \Lpack{book} class |\part| command, but use 
+% Copy code from the \Lpack{book} class |\part| command, but use
 % |\appendixpagename| as the title.
 %    \begin{macrocode}
 \newcommand{\@chap@pppage}{%
@@ -632,8 +635,8 @@
 % \end{macro}
 %
 % \begin{macro}{\@sec@pppage}
-% Copy code from the \Lpack{article} class |\part| command, but use 
-% |\appendixpagename| as 
+% Copy code from the \Lpack{article} class |\part| command, but use
+% |\appendixpagename| as
 % the title.
 %    \begin{macrocode}
 \newcommand{\@sec@pppage}{%
@@ -663,7 +666,7 @@
 % \begin{macro}{\noappendicestocpagenum}
 % \begin{macro}{\appendicestocpagenum}
 % \begin{macro}{\addappheadtotoc}
-% The |\addappheadtotoc| command adds an `appendices' line to the ToC. 
+% The |\addappheadtotoc| command adds an `appendices' line to the ToC.
 % The style is the same
 % as used in \Lpack{tocbibind} for the `List of figures' line. That is,
 % as a Chapter heading or a Section heading. |\if@pptocpage| controls
@@ -691,7 +694,7 @@
         \addtocontents{toc}%
           {\protect\contentsline{chapter}{\appendixtocname}{}}%
       \fi
-    \fi      
+    \fi
   \else
 %    \end{macrocode}
 % Not a chaptered document
@@ -753,7 +756,7 @@
 %
 % \begin{macro}{\theH@pps}
 % We are going to use |\theH@pps| to disambiguate contents of appendices
-% that might have the same hyperref marks. It is |\provide|d as if 
+% that might have the same hyperref marks. It is |\provide|d as if
 % the \Lpack{appendix} and \Lpack{hyperref} are in the `wrong' order
 % then somehow \Lpack{hyperref} defines it before \Lpack{appendix}
 % can get to it.
@@ -767,7 +770,7 @@
 % \begin{macro}{\@resets@pp}
 % Resets the appropriate sectioning counters and names. This does almost
 % exactly
-% what the default |\appendix| command does, except that it saves and 
+% what the default |\appendix| command does, except that it saves and
 % restores sectional numbering. It saves the sectional number at the start
 % and restores the appendix number at the end.
 % \changes{v1.1}{2000/02/29}{Added number save/restore to \cs{@reset@pp}}
@@ -794,7 +797,7 @@
     \else
       \renewcommand{\theHsection}{\theH@pps.\Alph{section}}%
     \fi
-    \def\Hy@chapapp{\appendixname}%
+    \xdef\Hy@chapapp{\Hy@appendixstring}%
   \fi
   \restoreapp
 }
@@ -811,7 +814,7 @@
 %    \begin{macrocode}
 \newenvironment{appendices}{%
   \@resets@pp
-  \if@dotoc@pp 
+  \if@dotoc@pp
     \if@dopage@pp              % both page and toc
       \if@chapter@pp           % chapters
         \clear@ppage
@@ -837,7 +840,7 @@
     \if@dotitletoc@pp \@redotocentry@pp{chapter} \fi
   \else
 %    \end{macrocode}
-% The rest of the code is specific to the section style. While we're in the 
+% The rest of the code is specific to the section style. While we're in the
 % mood we might as well finish off doing the \Lopt{titletoc} option.
 %    \begin{macrocode}
     \if@dotitletoc@pp \@redotocentry@pp{section} \fi
@@ -845,7 +848,7 @@
 % The next piece of code implements the \Lopt{header} option by providing
 % a special version of |\sectionmark|.
 %    \begin{macrocode}
-    \if@dohead@pp 
+    \if@dohead@pp
       \def\sectionmark##1{%
         \if@twoside
           \markboth{\@formatsecmark@pp{##1}}{}
@@ -855,7 +858,7 @@
     \fi
 %    \end{macrocode}
 % The next piece of code implements the \Lopt{title} option by doing cunning
-% things with the |\@seccntformat|.\footnote{From a posting to 
+% things with the |\@seccntformat|.\footnote{From a posting to
 % \texttt{comp.tex.tex} by Donald Arseneau on 13 August 1998.}
 %    \begin{macrocode}
     \if@dotitle@pp
@@ -887,7 +890,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@resets@ppsub}
-% Similar to |\@resets@pp| except that it is for use within the 
+% Similar to |\@resets@pp| except that it is for use within the
 % |subappendices| environment; as such, it is a bit simpler.
 % \changes{v1.1}{2000/02/29}{Added \cs{@resets@ppsub} command}
 % \changes{v1.2}{2002/08/07}{Added hyperref code to \cs{@resets@ppsub}}
@@ -910,7 +913,7 @@
     \else
       \renewcommand{\theHsubsection}{\theH@pps.\setthesubsection}%
     \fi
-    \def\Hy@chapapp{\appendixname}%
+    \xdef\Hy@chapapp{\Hy@appendixstring}%
   \fi
 }
 
@@ -919,7 +922,7 @@
 %
 % \begin{environment}{subappendices}
 %  The environment for subappendices. Start it off by doing the resetting
-% of the |\(sub)section| command. 
+% of the |\(sub)section| command.
 % \changes{v1.1}{2000/02/29}{Added subappendices environment}
 %    \begin{macrocode}
 \newenvironment{subappendices}{%
@@ -971,13 +974,13 @@
 % |\addcontentsline| command which is used to put entries into the ToC.
 % |\@redotocentry@pp{|\meta{sect}|}| does the redefinition, where \meta{sect}
 % is the name of the sectional heading (i.e., either chapter or section).
-% \changes{v1.2}{2002/08/06}{Replaced ifthen package code in 
+% \changes{v1.2}{2002/08/06}{Replaced ifthen package code in
 %                \cs{@redotocentry@pp} by \cs{ifx} code.}
 % \changes{v1.2}{2002/08/06}{HW mods to \cs{@redotocentry@pp}}
 %    \begin{macrocode}
 \newcommand{\@redotocentry@pp}[1]{%
 %    \end{macrocode}
-% Save the original definition of |\addcontentsline|. Then start the 
+% Save the original definition of |\addcontentsline|. Then start the
 % redefinition.
 %    \begin{macrocode}
   \let\oldacl@pp=\addcontentsline
@@ -993,7 +996,7 @@
       \def\@pptempa{##2}\def\@pptempb{#1}%
       \ifx\@pptempa\@pptempb
 %    \end{macrocode}
-% The sectioning command is the same as that specified by the argument to 
+% The sectioning command is the same as that specified by the argument to
 % |\@redotocentry@pp|, so get on with the redefinition.
 %    \begin{macrocode}
 	\oldacl@pp{##1}{##2}{\appendixname\space ##3}%

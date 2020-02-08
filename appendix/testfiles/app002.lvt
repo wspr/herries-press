@@ -1,0 +1,14 @@
+\input{regression-test}
+
+\documentclass{book}
+\usepackage[magyar]{babel}
+\usepackage[titletoc]{appendix}
+\usepackage{hyperref}
+
+\begin{document}
+\tableofcontents
+
+\begin{appendices}
+\chapter{test appendix}
+\end{appendices}
+\end{document}
