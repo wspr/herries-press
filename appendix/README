@@ -5,7 +5,7 @@ The APPENDIX package
 of appendices. Also (sub)appendices environments are provided that can be
 used, for example, for per chapter/section appendices.
 
-Changes v1.2b (2020-02-08)
+Changes v1.2c (2020-02-08)
 - Fix clash with hyperref
 
 Changes v1.2b (2009/09/02)
