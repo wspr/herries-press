@@ -32,6 +32,12 @@ announce = {}
 announce["1.2c"] = [[
   * Fix bug with hyperref.
 ]]
+
+
+--[=================[--
+     MORE SETTINGS
+--]=================]--
+
 uploadconfig.announcement = announce[version]
 
 checkruns = 3
