@@ -314,7 +314,7 @@
 \usepackage{gmdoc}
 \usepackage{gmverb}
 \dekclubs
-\stanzaskip=\bigskipamount 
+\stanzaskip=\bigskipamount
 \CodeSpacesGrey
 
 \usepackage{tocloft,varwidth}
@@ -404,10 +404,10 @@ set \meta{true}, otherwise (on an even page) |\ifoddpage| is set
 
 \chng{Use \cs{ifcpoddpage} instead if you're using chngpage.}
 
-Strict page checking works by the |\checkoddpage| command generating 
-a label and then checking the |\pageref| for the label (actually, a special 
-version of |\pageref| is required and is used internally by |\checkoddpage|). 
-This mechanism requires at least two \LaTeX\ passes to ensure that 
+Strict page checking works by the |\checkoddpage| command generating
+a label and then checking the |\pageref| for the label (actually, a special
+version of |\pageref| is required and is used internally by |\checkoddpage|).
+This mechanism requires at least two \LaTeX\ passes to ensure that
 the labels have settled (on the initial pass there will be no labels
 in the *.aux file to be checked).
 
@@ -422,15 +422,23 @@ be of the form `|^_|\meta{N}' where \meta{N} is a positive integer.
 The package option `strict' turns on strict page checking --- the default
 is not to use strict checking. Strict page checking can be turned on or
 off at any time by the commands |\strictpagecheck| or |\easypagecheck|.
-The easy page check just tests the page number to see if it is odd or even, 
-which does not always give the correct result because of \TeX's asynchronous
+The easy page check just tests the page number to see if it is odd or even,
+which often does not give the correct result because of \TeX's asynchronous
 output mechanism.
+
+If you use |\checkoddpage| between two paragraphs of text it is possible even
+in strict mode that the label gets `attached' to the preceding paragraph.
+In some cases you can fix this by writing |\leavevmode\checkoddpage| so that the label
+is only created after the start of the next paragraph, but if you are inserting
+something like a section heading this approach will also insert an empty, unwanted,
+paragraph. Therefore use some care when choosing where and how this command is used
+in your document.
 
 
 \section{Adjusting the margins}
 
 Within an |adjustwidth| environment the left and right margins can be
-adjusted. The environment takes two required length arguments: 
+adjusted. The environment takes two required length arguments:
 \begin{quote}
 \cs{begin}|{adjustwidth}|\marg{leftmargin}\marg{rightmargin}
 \end{quote}
@@ -461,7 +469,7 @@ any surrounding text, the margins should be adjusted equally:
 \begin{quote}
 |\begin{adjustwidth}{-4em}{-4em}|
 \end{quote}
-For interest, \cs{begin}|{quotation}| is pretty much equivalent to 
+For interest, \cs{begin}|{quotation}| is pretty much equivalent to
 \begin{quote}
 |\begin{adjustwidth}{2.5em}{2.5em}|
 \end{quote}
@@ -494,7 +502,7 @@ the environment, and turned off by using |\easypagecheck|.
 instead of \cs{strictpagecheck} and \cs{easypagecheck}.}
 
 \textsc{note:}
-In a twocolumn document, the |adjustwidth| environment 
+In a twocolumn document, the |adjustwidth| environment
 treats both columns equally. For example, if the width is meant
 to be wider at the outer margin, then on odd pages the extra width
 will be at the right of any column, and on even pages the extra
@@ -505,22 +513,22 @@ by careful hand tuning on two column pages.
 \section{Changing the text block}
 
 The |\changetext| command is for changing the size and horizontal position
-of the text block on a page. The command takes 5 arguments, each of which 
+of the text block on a page. The command takes 5 arguments, each of which
 is a length or is empty. i.e.,
 \begin{quote}
 \cmd\changetext\marg{text height}\marg{text width}\marg{even-side margin}
 \newline\null\hfill\marg{odd-side margin}\marg{column sep.}
 \end{quote}
 The given lengths are added to the corresponding current lengths and
-the remainder of the current page is typeset using the changed text block 
-layout. The new layout remains in effect until another |\change...| command 
+the remainder of the current page is typeset using the changed text block
+layout. The new layout remains in effect until another |\change...| command
 is issued.
 
 
 \section{Changing the entire page design}
 
 The |\changepage| command is for changing the general layout of
-a page. The command takes 9 arguments, each of which is a length or is empty. 
+a page. The command takes 9 arguments, each of which is a length or is empty.
 The first 5 arguments are the same as for |\changetext| and have the same effect.
 The last four arguments are:
 \begin{quote}
@@ -528,8 +536,8 @@ The last four arguments are:
 \end{quote}
 These lengths are added to the corresponding current lengths and
 thus modify the vertical positions of the elements of the page. The
-remainder of the current page is typeset using the changed text block 
-and page layout. The new layout remains in effect until another 
+remainder of the current page is typeset using the changed text block
+and page layout. The new layout remains in effect until another
 |\change...| command is issued.
 
 \begin{itemize}
@@ -553,7 +561,7 @@ back to the initial layout:
 \changetext{-5\baselineskip}{10em}{-5em}{-5em}{}
 \twocolumn
 ... two column pages
-\clearpage 
+\clearpage
 \changetext{5\baselineskip}{-10em}{5em}{5em}{}
 \onecolumn
 ... normal pages
