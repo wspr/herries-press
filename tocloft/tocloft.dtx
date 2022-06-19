@@ -4,7 +4,7 @@
 % Author: Peter Wilson, Herries Press
 % Maintainer: Will Robertson (will dot robertson at latex-project dot org)
 % Copyright 1998-2003 Peter R. Wilson
-% Copyright 2009-2020 Will Robertson
+% Copyright 2009-2022 Will Robertson
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -30,7 +30,7 @@
 %
 %<*usc>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tocloft}[2017/08/31 v2.3i parameterised ToC, etc., typesetting]
+\ProvidesPackage{tocloft}[2022/06/18 v2.3i parameterised ToC, etc., typesetting]
 %</usc>
 %
 % \fi
@@ -3757,7 +3757,7 @@ Consider installing the current version of tocbibind.}}
   \newcommand\cftlofposthook{}
   \newcommand\cftlotposthook{}
 \else
-  \PackageWarning{tocloft}{\string\@starttoc\space has already been redefined; tocloft bailing out.}
+  \PackageWarning{tocloft}{\string\@starttoc\space has already been redefined; \string\cfttocprehook et al. not installed.}
 \fi
 %    \end{macrocode}
 % \end{macro}
