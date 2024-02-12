@@ -60,7 +60,7 @@
 %
 % \fi
 %
-% \CheckSum{551}
+% \CheckSum{553}
 %
 % \DoNotIndex{\',\.,\@M,\@@input,\@addtoreset,\@arabic,\@badmath}
 % \DoNotIndex{\@centercr,\@cite}
@@ -115,6 +115,7 @@
 % \changes{v2.4}{2007/01/10}{Added code to start numbering at a given line}
 % \changes{v2.4a}{2009/09/04}{New maintainer (Will Robertson)}
 % \changes{v2.4b}{2014/05/10}{Documentation updates}
+% \changes{v2.4c}{2024/02/11}{Avoid clash with tagging}
 %
 % \def\dtxfile{verse.dtx}
 % ^^A \def\fileversion{v1.0}
@@ -133,6 +134,7 @@
 % \def\fileversion{v2.4} \def\filedate{2007/01/10}
 % \def\fileversion{v2.4a} \def\filedate{2009/09/04}
 % \def\fileversion{v2.4b} \def\filedate{2014/05/10}
+% \def\fileversion{v2.4c} \def\filedate{2024/02/12}
 % \newcommand*{\Lpack}[1]{\textsf {#1}}           ^^A typeset a package
 % \newcommand*{\Lopt}[1]{\textsf {#1}}            ^^A typeset an option
 % \newcommand*{\file}[1]{\texttt {#1}}            ^^A typeset a file
@@ -968,6 +970,7 @@
 % \changes{v2.22}{2005/08/22}{Added verse@envctr counter and 
 %                \cs{theHpoemlines} for hyperref}
 % \changes{v2.4}{2007/01/10}{Added fvsline counter}
+% \changes{v2.4c}{2024/02/12}{Use provide/renew instead of newcommand}
 %    \begin{macrocode}
 \newcounter{vslineno}
 \newcounter{poemline}
@@ -975,7 +978,8 @@
   \setcounter{fvsline}{0}
 \newcounter{modulo@vs}
 \newcounter{verse@envctr}\setcounter{verse@envctr}{0}
-\newcommand*{\theHpoemline}{\arabic{verse@envctr}.\arabic{poemline}}
+\providecommand{\theHpoemline}{}
+\renewcommand*{\theHpoemline}{\arabic{verse@envctr}.\arabic{poemline}}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
